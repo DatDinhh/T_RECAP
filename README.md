@@ -1,4 +1,4 @@
-# T‑RECAP FPGA Demo (DE10‑Lite) — Transform-Domain + Selective Reconstruction MVP
+# T‑RECAP FPGA Demo (DE10‑Lite) - Transform-Domain + Selective Reconstruction MVP
 
 This repository contains a **minimal, real-time FPGA demo** that illustrates the core T‑RECAP idea:
 
