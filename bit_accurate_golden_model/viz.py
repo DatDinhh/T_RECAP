@@ -138,7 +138,7 @@ def main():
     plt.grid(True)
     plt.legend()
 
-    # ---- Plot 4: histograms ----
+    # Plot 4: histograms
     plt.figure()
     plt.hist(xt, bins=51)
     plt.title("Histogram: x (input)")
