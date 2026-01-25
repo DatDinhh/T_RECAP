@@ -5,7 +5,7 @@
 // phase1_golden.cpp (C++17)
 // Bit-accurate golden model for Phase 1: Haar(2-sample) + hard threshold + recon + metrics
 // Compile: g++ -O2 -std=c++17 phase1_golden.cpp -o golden
-// Run:     ./golden --nsamp 10000 --n 12 --thresh 16 --shift 3 --seed 0xACE1
+// Run: ./golden --nsamp 10000 --n 12 --thresh 16 --shift 3 --seed 0xACE1
 // Produces: x.memh, y.memh, sup.memh, metrics.json
 
 #include <cstdint>
