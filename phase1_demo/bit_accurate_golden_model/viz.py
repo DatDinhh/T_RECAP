@@ -1,7 +1,7 @@
 # Arizona State Univerity 
 # Capstone Senior Project
 # Sigma Force
-# Dat Dinh, Dat Huyynh, Paul Applebee, Kyung Jae Son
+# Dat Dinh, Dat Huynh, Paul Applebee, Kyung Jae Son
 import argparse
 import json
 from pathlib import Path
