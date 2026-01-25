@@ -1,3 +1,6 @@
+// Arizona State University 
+// Capstone Senior Project
+// Sigma Force
 // Dat Dinh, Dat Huynh, Paul Applebee, Kyung Jaeson
 // phase1_golden.cpp (C++17)
 // Bit-accurate golden model for Phase 1: Haar(2-sample) + hard threshold + recon + metrics
