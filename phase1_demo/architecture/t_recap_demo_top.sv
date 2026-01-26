@@ -1,9 +1,10 @@
 `timescale 1ns/1ps
 `default_nettype none
 
-// Arizona State University
+// Arizona State University 
 // Capstone Senior Project
-// Dat Dinh, Dat Huynh, Paul Applebee, Kyung Jaeson
+// Sigma Force
+// Dat Dinh, Dat Huynh, Paul Applebee, Kyung Jae Son
 // t_recap_demo_top.sv  (Phase 1 DE10-Lite Haar Demo - self contained)
 //
 // Board I/O:
@@ -29,6 +30,7 @@
 //                                                -> metrics_accum (per pair)
 //  dbg_tick(10Hz) latches debug word + LEDs
 
+
 module t_recap_demo_top #(
   parameter int N            = 12,        // sample width (signed)
   parameter int LFSR_W        = 16,
@@ -49,8 +51,9 @@ module t_recap_demo_top #(
   output logic [6:0]  HEX5
 );
 
-  // Reset + clear handling 
 
+  // Reset + clear handling
+  
   logic rst_n;
   assign rst_n = KEY[0]; // active-low reset button, so rst_n = KEY0
 
@@ -67,6 +70,7 @@ module t_recap_demo_top #(
   end
   logic clr_metrics_pulse;
   assign clr_metrics_pulse = (key1_dd == 1'b1) && (key1_d == 1'b0); // falling edge
+
 
   // Mode + Threshold
 
@@ -85,6 +89,7 @@ module t_recap_demo_top #(
     else              thresh_used = {{(N+1-8){1'b0}}, thresh8_manual};
   end
 
+
   // Tick generators
 
   logic sample_en;
@@ -102,6 +107,7 @@ module t_recap_demo_top #(
     .enable (1'b1),
     .tick   (dbg_tick)
   );
+
 
   // Internal source: LFSR -> centered signed noise -> shaper -> x[n]
 
@@ -136,6 +142,7 @@ module t_recap_demo_top #(
     .x_out    (x_stream)
   );
 
+
   // Pair assembly
 
   logic pair_valid;
@@ -150,6 +157,7 @@ module t_recap_demo_top #(
     .x0         (x0),
     .x1         (x1)
   );
+
 
   // Haar core (pair domain)
 
@@ -185,8 +193,9 @@ module t_recap_demo_top #(
     .abs_d         (abs_d_tap)
   );
 
+
   // Output serializer (push2/pop1)
-  
+
   logic y_valid;
   logic signed [N-1:0] y_out;
 
@@ -202,6 +211,7 @@ module t_recap_demo_top #(
     .y_valid     (y_valid),
     .y_out       (y_out)
   );
+
 
   // Metrics (pair domain)
 
@@ -228,6 +238,7 @@ module t_recap_demo_top #(
     .sum_abs_err     (sum_abs_err),
     .sum_sq_err      (sum_sq_err)
   );
+
 
   // Debug latch @ ~10Hz
 
@@ -326,7 +337,7 @@ endmodule
 
 
 // 16-bit style LFSR (parameter W), shift-right, insert new bit at MSB
-// new_bit = rnd[0] ^ rnd[2] ^ rnd[3] ^ rnd[5] 
+// new_bit = rnd[0] ^ rnd[2] ^ rnd[3] ^ rnd[5] (matches C++ example)
 
 module lfsr_noise #(
   parameter int W = 16
@@ -462,7 +473,7 @@ endmodule
 //  y0 = round_div2_ties_away(a + d')
 //  y1 = round_div2_ties_away(a - d')
 //  saturate y0,y1 to N-bit signed
-// Outputs are registered, out_valid is registered copy of pair_valid
+// Outputs are registered; out_valid is registered copy of pair_valid.
 
 module haar_core #(
   parameter int N = 12
@@ -487,34 +498,69 @@ module haar_core #(
   output logic [N:0]           abs_d
 );
 
-  localparam int WNUM = N+2; // width for (a ± d') intermediate
+  localparam int WNUM = N+2;
+
+  // module-scope intermediates (NO block declarations)
+  logic signed [N:0] x0e, x1e;
+  logic signed [N:0] a_c, d_c;
+  logic [N:0]        abs_c;
+  logic              sup_c;
+  logic signed [N:0] d_p;
+
+  logic signed [WNUM-1:0] a_w, d_w;
+  logic signed [WNUM-1:0] num0, num1;
+  logic signed [WNUM-1:0] y0_w, y1_w;
+  logic signed [N-1:0]    y0_sat, y1_sat;
 
   // rounding helper for WNUM-bit signed
   function automatic logic signed [WNUM-1:0] round_div2_ties_away(input logic signed [WNUM-1:0] num);
     logic signed [WNUM-1:0] adj;
-    logic signed [WNUM-1:0] one;
     begin
-      one = 'sd1;
-      if (num[0] == 1'b0) adj = num;
-      else if (num[WNUM-1] == 1'b0) adj = num + one; // positive odd -> +1
-      else adj = num - one;                          // negative odd -> -1
+      if (num[0] == 1'b0) adj = num;                    // even
+      else if (num[WNUM-1] == 1'b0) adj = num + 'sd1;   // + odd -> +1
+      else adj = num - 'sd1;                            // - odd -> -1
       round_div2_ties_away = adj >>> 1;
     end
   endfunction
 
   function automatic logic signed [N-1:0] sat_to_N(input logic signed [WNUM-1:0] v);
     logic signed [WNUM-1:0] maxv, minv;
-    logic signed [WNUM-1:0] one;
     begin
-      one  = 'sd1;
-      maxv = (one <<< (N-1)) - one;
-      minv = - (one <<< (N-1));
+      maxv = ( 'sd1 <<< (N-1)) - 'sd1;
+      minv = -('sd1 <<< (N-1));
       if (v > maxv)      sat_to_N = maxv[N-1:0];
       else if (v < minv) sat_to_N = minv[N-1:0];
       else               sat_to_N = v[N-1:0];
     end
   endfunction
 
+  // combinational math
+  always_comb begin
+    x0e  = {{1{x0[N-1]}}, x0};
+    x1e  = {{1{x1[N-1]}}, x1};
+
+    a_c  = x0e + x1e;
+    d_c  = x0e - x1e;
+
+    abs_c = d_c[N] ? (~d_c + 1'b1) : d_c;
+
+    sup_c = (abs_c < thresh);
+    d_p   = sup_c ? '0 : d_c;
+
+    a_w   = {{1{a_c[N]}}, a_c};
+    d_w   = {{1{d_p[N]}}, d_p};
+
+    num0  = a_w + d_w;
+    num1  = a_w - d_w;
+
+    y0_w  = round_div2_ties_away(num0);
+    y1_w  = round_div2_ties_away(num1);
+
+    y0_sat = sat_to_N(y0_w);
+    y1_sat = sat_to_N(y1_w);
+  end
+
+  // registered outputs
   always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       out_valid   <= 1'b0;
@@ -530,53 +576,16 @@ module haar_core #(
       out_valid <= pair_valid;
 
       if (pair_valid) begin
-        // Extend inputs to N+1 for a/d
-        logic signed [N:0] x0e, x1e;
-        logic signed [N:0] a_c, d_c;
-        logic [N:0]        abs_c;
-
-        x0e = {{1{x0[N-1]}}, x0};
-        x1e = {{1{x1[N-1]}}, x1};
-
-        a_c = x0e + x1e;
-        d_c = x0e - x1e;
-
-        // abs(d) as unsigned magnitude
-        abs_c = d_c[N] ? (~d_c + 1'b1) : d_c;
-
-        // suppress decision
-        logic sup_c;
-        sup_c = (abs_c < thresh);
-
-        // d' selection
-        logic signed [N:0] d_p;
-        d_p = sup_c ? '0 : d_c;
-
-        // widen to WNUM = N+2 for (a ± d')
-        logic signed [WNUM-1:0] a_w, d_w;
-        logic signed [WNUM-1:0] num0, num1;
-        logic signed [WNUM-1:0] y0_w, y1_w;
-
-        a_w  = {{1{a_c[N]}}, a_c};
-        d_w  = {{1{d_p[N]}}, d_p};
-        num0 = a_w + d_w;
-        num1 = a_w - d_w;
-
-        y0_w = round_div2_ties_away(num0);
-        y1_w = round_div2_ties_away(num1);
-
-        // register outputs
-        y0         <= sat_to_N(y0_w);
-        y1         <= sat_to_N(y1_w);
+        y0         <= y0_sat;
+        y1         <= y1_sat;
         suppressed <= sup_c;
 
         x0_aligned <= x0;
         x1_aligned <= x1;
 
-        // debug taps
-        a     <= a_c;
-        d     <= d_c;
-        abs_d <= abs_c;
+        a          <= a_c;
+        d          <= d_c;
+        abs_d      <= abs_c;
       end
     end
   end
@@ -610,12 +619,29 @@ module out_fifo_serializer #(
   logic signed [N-1:0] mem [0:DEPTH-1];
   logic [PW-1:0] rd_ptr, wr_ptr;
   logic [CW-1:0] count;
+
   logic overflow_sticky;
 
   function automatic logic [PW-1:0] inc_ptr(input logic [PW-1:0] p);
-    if (p == DEPTH-1) inc_ptr = '0;
-    else             inc_ptr = p + 1'b1;
+    begin
+      if (p == DEPTH-1) inc_ptr = '0;
+      else             inc_ptr = p + 1'b1;
+    end
   endfunction
+
+  // module-scope control signals
+  logic do_pop;
+  logic push_ok;
+  logic [PW-1:0] w0, w1, w2;
+
+  assign do_pop  = sample_en && (count != 0);
+  assign push_ok = push2_valid && (count <= (DEPTH-2));
+
+  always_comb begin
+    w0 = wr_ptr;
+    w1 = inc_ptr(w0);
+    w2 = inc_ptr(w1);
+  end
 
   always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
@@ -628,48 +654,28 @@ module out_fifo_serializer #(
     end else begin
       y_valid <= 1'b0;
 
-      // Determine actions
-      logic do_pop;
-      logic do_push2;
-
-      do_pop   = sample_en && (count != 0);
-      do_push2 = push2_valid;
-
-      // Pop first (read old contents)
+      // pop (1 sample) on sample_en if available
       if (do_pop) begin
         y_out   <= mem[rd_ptr];
         y_valid <= 1'b1;
         rd_ptr  <= inc_ptr(rd_ptr);
       end
 
-      // Push two samples if there is space; else flag overflow and drop
-      if (do_push2) begin
-        if (count <= (DEPTH-2)) begin
-          logic [PW-1:0] w0, w1, w2;
-          w0 = wr_ptr;
-          w1 = inc_ptr(w0);
-          w2 = inc_ptr(w1);
-
-          mem[w0] <= push2_data0;
-          mem[w1] <= push2_data1;
-          wr_ptr  <= w2;
-        end else begin
-          overflow_sticky <= 1'b1;
-        end
+      // push two samples per pair if space else drop and sticky flag
+      if (push_ok) begin
+        mem[w0] <= push2_data0;
+        mem[w1] <= push2_data1;
+        wr_ptr  <= w2;
+      end else if (push2_valid) begin
+        overflow_sticky <= 1'b1;
       end
 
-      // Update count robustly (handles pop and push same cycle)
-      unique case ({do_push2, do_pop})
+      // count update (based on actual push_ok, not just push2_valid)
+      unique case ({push_ok, do_pop})
         2'b00: count <= count;
         2'b01: count <= count - 1'b1;
-        2'b10: begin
-          if (count <= (DEPTH-2)) count <= count + 2;
-          else                    count <= count; // dropped due to overflow
-        end
-        2'b11: begin
-          if (count <= (DEPTH-2)) count <= count + 2 - 1;
-          else                    count <= count - 1; // pop happened, push dropped
-        end
+        2'b10: count <= count + 2'd2;
+        2'b11: count <= count + 1'b1; // -1 +2
       endcase
     end
   end
@@ -712,6 +718,28 @@ module metrics_accum #(
     end
   endfunction
 
+  // module-scope intermediates
+  logic signed [N:0] x0e, x1e, y0e, y1e;
+  logic signed [N:0] e0, e1;
+  logic [N:0]        ae0, ae1;
+  logic [2*(N+1)-1:0] sq0, sq1;
+
+  always_comb begin
+    x0e = {{1{x0[N-1]}}, x0};
+    x1e = {{1{x1[N-1]}}, x1};
+    y0e = {{1{y0[N-1]}}, y0};
+    y1e = {{1{y1[N-1]}}, y1};
+
+    e0  = x0e - y0e;
+    e1  = x1e - y1e;
+
+    ae0 = abs_sN1(e0);
+    ae1 = abs_sN1(e1);
+
+    sq0 = ae0 * ae0;
+    sq1 = ae1 * ae1;
+  end
+
   always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       total_pairs      <= '0;
@@ -725,27 +753,6 @@ module metrics_accum #(
         sum_abs_err      <= '0;
         sum_sq_err       <= '0;
       end else if (pair_out_valid) begin
-        // Extend for subtraction
-        logic signed [N:0] x0e, x1e, y0e, y1e;
-        logic signed [N:0] e0, e1;
-        logic [N:0]        ae0, ae1;
-
-        x0e = {{1{x0[N-1]}}, x0};
-        x1e = {{1{x1[N-1]}}, x1};
-        y0e = {{1{y0[N-1]}}, y0};
-        y1e = {{1{y1[N-1]}}, y1};
-
-        e0  = x0e - y0e;
-        e1  = x1e - y1e;
-
-        ae0 = abs_sN1(e0);
-        ae1 = abs_sN1(e1);
-
-        // squares (width ~ 2*(N+1))
-        logic [2*(N+1)-1:0] sq0, sq1;
-        sq0 = ae0 * ae0;
-        sq1 = ae1 * ae1;
-
         total_pairs      <= total_pairs + 1;
         suppressed_pairs <= suppressed_pairs + (suppressed ? 1 : 0);
         sum_abs_err      <= sum_abs_err + ae0 + ae1;
