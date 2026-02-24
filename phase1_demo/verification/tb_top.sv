@@ -36,7 +36,7 @@
 //   scoreboard_metrics.sv
 //   cov_phase1.sv
 //   sva_phase1_bind.sv
-//   board_driver_pkg.sv  (or board_driver.sv ??? BUT NOT BOTH)
+//   board_driver_pkg.sv 
 //   test_base.sv
 //   test_bypass_lossless.sv
 //   test_golden_thresh16.sv
@@ -44,11 +44,7 @@
 //   test_clear_metrics_midrun.sv
 //   test_mode_switch_stress.sv
 //   tb_top.sv
-//
-// IMPORTANT TRUTH:
-//   - The provided golden memh/json artifacts correspond to THRESH=16.
-//   - If you run threshold sweeps, memh-based checkers will fail unless you
-//     switch them to model-based modes via plusargs.
+
 
 
 module tb_top;
