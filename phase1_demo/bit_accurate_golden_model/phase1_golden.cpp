@@ -239,42 +239,35 @@ int main(int argc, char **argv) {
   int32_t x0 = 0;
 
   for (int n = 0; n < cfg.NSAMP; n++) {
-    // LFSR
-    lfsr = lfsr_step16(lfsr);
-
-    // map -> signed noise -> shaper -> x[n]
     int32_t u = map_lfsr_to_signedN(lfsr, cfg.N);
     int32_t x = noise_shaper_step(shaper_state, u, cfg.SHIFT, cfg.N);
-
     x_stream.push_back(x);
 
-    // pair assemble
+// pair assemble (normal for ALL n, including n==0 warmup)
     if (!have_x0) {
-      x0 = x;
-      have_x0 = true;
+    x0 = x;
+    have_x0 = true;
     } else {
-      int32_t x1 = x;
-      have_x0 = false;
+    int32_t x1 = x;
+    have_x0 = false;
 
-      PairOut po = haar_pair(x0, x1, cfg.THRESH, cfg.N);
+    PairOut po = haar_pair(x0, x1, cfg.THRESH, cfg.N);
 
-      // serialize outputs
-      y_stream.push_back(po.y0);
-      y_stream.push_back(po.y1);
+    y_stream.push_back(po.y0);
+    y_stream.push_back(po.y1);
 
-      // metrics
-      total_pairs++;
-      suppressed_pairs += (uint64_t)po.suppressed;
-      suppressed_flags.push_back(po.suppressed);
+    total_pairs++;
+    suppressed_pairs += (uint64_t)po.suppressed;
+    suppressed_flags.push_back(po.suppressed);
 
-      int32_t e0 = (int32_t)(x0 - po.y0);
-      int32_t e1 = (int32_t)(x1 - po.y1);
+    int32_t e0 = (int32_t)(x0 - po.y0);
+    int32_t e1 = (int32_t)(x1 - po.y1);
+    sum_abs_err += (uint64_t)iabs32(e0) + (uint64_t)iabs32(e1);
+    sum_sq_err  += (uint64_t)((int64_t)e0 * (int64_t)e0) + (uint64_t)((int64_t)e1 * (int64_t)e1);
+            }
+      lfsr = lfsr_step16(lfsr);
 
-      sum_abs_err += (uint64_t)iabs32(e0) + (uint64_t)iabs32(e1);
-      sum_sq_err  += (uint64_t)((int64_t)e0 * (int64_t)e0) + (uint64_t)((int64_t)e1 * (int64_t)e1);
-    }
   }
-
   // Sanity: THRESH=0 must be lossless (bit-exact)
   if (cfg.THRESH == 0) {
     bool ok = true;
