@@ -5,78 +5,62 @@
 // Capstone Senior Project
 // Sigma Force
 // Dat Dinh, Dat Huynh, Paul Applebee, Kyung Jae Son
-// scoreboard_y_stream.sv
+// scoreboard_pairs.sv
 //
-// Fully functional scoreboard for the DUT serialized output stream (y_out/y_valid).
+// Fully functional pair-domain scoreboard for t_recap_demo_top.
 //
-// It can validate y-stream correctness against up to three reference sources:
+// Compares DUT pair outputs (y0,y1,suppressed) on pair_out_valid against
+// one or both references:
 //
-//   (1) MEMH stream reference (golden y.memh)
-//       - Compares each observed y_out sample (when y_valid=1) against y_exp[m].
+//   - MEMH reference: x.memh, y.memh, sup.memh
+//   - MODEL reference: ref_model_phase1 (lockstep stepped on sample_en)
 //
-//   (2) MODEL stream reference (ref_model_phase1)
-//       - Steps the SV reference model on each sample_en pulse and queues the
-//         predicted (y0,y1) outputs in order.
-//       - Compares each observed y_out sample against the front of that queue.
+// It also optionally checks:
+//   - x0_a/x1_a alignment versus reference x0/x1
+//   - suppression rule: suppressed == (abs_d_tap < thresh_used)  (strict <)
+//   - lossless property when thresh_used==0: suppressed==0 and y==x
 //
-//   (3) PAIRS/serializer reference (DUT y0/y1 on pair_out_valid)
-//       - Models the out_fifo_serializer behavior (push2/pop1) and checks:
-//           * y_valid equals expected do_pop
-//           * y_out equals expected FIFO pop value
-//           * detects overflow conditions (push when no space)
+// The scoreboard is self-contained: it reads memh files directly if MEMH
+// mode is enabled, and it instantiates a ref_model_phase1 if MODEL mode
+// is enabled.
 //
-// Notes:
-//   - Sampling is done at negedge t.clk to avoid race with DUT posedge updates.
-//   - This scoreboard is *stream-domain* (one sample at a time).
-//   - For algorithm correctness at the pair level, see scoreboard_pairs.sv.
-//   - For standalone serializer correctness checking, y_stream_monitor.sv already does
-//     something similar; this file is the "scoreboard" version with model+memh support.
+// Sampling strategy:
+//   - All comparisons occur on negedge t.clk to avoid race with DUT posedge FF updates.
+//   - The model is stepped on negedge when sample_en is observed (same convention as
+//     x_stream_monitor) so that expected streams align with the values observed on taps.
 //
 // Plusargs:
-//   +Y_SB_DISABLE
-//   +Y_SB_VERBOSE
-//   +Y_SB_MAX_ERR=<N>              (default 10; 0 = never fatal by count)
-//   +Y_SB_STOP_ON_ERR
 //
-//   +Y_SB_MODE=<mode string>
-//       Modes (case-sensitive):
-//         off
-//         memh
-//         model
-//         pairs
-//         memh_pairs   (or pairs_memh)
-//         model_pairs  (or pairs_model)
-//         memh_model   (or model_memh)      (value-only; no serializer checks)
-//         all          (memh + model + pairs)
+//   +PAIR_SB_DISABLE
+//   +PAIR_SB_MODE=memh|model|both|off
 //
-//   Files:
-//     +Y_SB_Y_FILE=<path>          (default "y.memh")
-//     +Y_MEMH=<path>               (alias)
+//   +PAIR_SB_X_FILE=<path>         (default "x.memh")   [also honors +X_MEMH]
+//   +PAIR_SB_Y_FILE=<path>         (default "y.memh")   [also honors +Y_MEMH]
+//   +PAIR_SB_SUP_FILE=<path>       (default "sup.memh") [also honors +SUP_MEMH]
 //
-//   Serializer model controls (pairs checking):
-//     +Y_SB_DEPTH=<int>            (default parameter DEPTH)
-//     +Y_SB_CHECK_VALID            (force y_valid check on)
-//     +Y_SB_NO_CHECK_VALID         (force y_valid check off)
-//     +Y_SB_ALLOW_OVERFLOW         (do not fatal when push arrives with no space)
+//   +PAIR_SB_MAX_ERR=<N>           (default 10; 0 = never fatal due to count)
+//   +PAIR_SB_STOP_ON_ERR
+//   +PAIR_SB_VERBOSE
 //
-//   Clear/reset behavior:
-//     +Y_SB_EPOCH_ON_CLEAR         (default ON)
-//     +Y_SB_NO_EPOCH_ON_CLEAR
-//     +Y_SB_RESET_M_ON_CLEAR       (reset y sample index m on clr_metrics_pulse rising edge)
-//     +Y_SB_STRICT_MEMH_LENGTH     (fatal if y_valid arrives after memh end)
-//     +Y_SB_REQUIRE_FULL_MEMH      (fatal at end-of-sim if not all memh samples were checked)
+//   +PAIR_SB_CHECK_X_ALIGN         (default ON in MODEL/BOTH, OFF in MEMH-only)
+//   +PAIR_SB_NO_CHECK_X_ALIGN
 //
-// Public outputs/events:
-//   - event y_sb_ev;                       // triggers each time a y_valid sample is processed
-//   - last_* snapshot fields updated before y_sb_ev
-//   - tasks: start(), stop(), report(), check_complete_memh(), check_no_pending_model()
+//   +PAIR_SB_CHECK_RULE            (check suppressed == (abs_d_tap < thresh_used))
+//   +PAIR_SB_CHECK_LOSSLESS_T0     (if thresh_used==0, enforce y==x and sup==0)
+//
+//   +PAIR_SB_EPOCH_ON_CLEAR        (track epochs on clr_metrics_pulse rising edge) [default ON]
+//   +PAIR_SB_NO_EPOCH_ON_CLEAR
+//
+// Notes:
+//  - In MEMH mode, the scoreboard uses pair index k to compare:
+//        y_exp[2*k], y_exp[2*k+1], sup_exp[k], x_exp[2*k], x_exp[2*k+1]
+//  - In MODEL mode, the scoreboard keeps a small expected-pair queue fed by the model.
 
 
-module scoreboard_y_stream #(
-  parameter int N       = 12,
-  parameter int SHIFT   = 3,
-  parameter int LFSR_W  = 16,
-  parameter int DEPTH   = 4,
+module scoreboard_pairs #(
+  parameter int N      = 12,
+  parameter int SHIFT  = 3,
+  parameter int LFSR_W = 16,
   parameter logic [LFSR_W-1:0] SEED = 16'hACE1,
   parameter bit AUTO_START = 1'b1
 )(
@@ -86,52 +70,105 @@ module scoreboard_y_stream #(
   import tb_pkg::*;
 
   
-  // Event + last snapshot
+  // Mode enum
 
-  event y_sb_ev;
-
-  int unsigned      last_m;
-  int unsigned      last_epoch;
-  longint unsigned  last_time;
-
-  si64_t            last_act_y;
-
-  bit               last_have_memh;
-  si64_t            last_exp_memh;
-
-  bit               last_have_model;
-  si64_t            last_exp_model;
-
-  bit               last_have_pairs;
-  si64_t            last_exp_pairs;
+  typedef enum int {MODE_OFF=0, MODE_MEMH=1, MODE_MODEL=2, MODE_BOTH=3} mode_e;
+  mode_e mode;
 
 
-  // Mode selection -> flags
-  
-  localparam int REF_MEMH  = 1;
-  localparam int REF_MODEL = 2;
-  localparam int REF_PAIRS = 4;
+  // Configuration
 
-  function automatic int _parse_mode_mask(input string s);
-    // Returns OR of REF_* bits
-    if (s == "off" || s == "0" || s == "disable" || s == "disabled")
-      _parse_mode_mask = 0;
-    else if (s == "memh" || s == "file")
-      _parse_mode_mask = REF_MEMH;
-    else if (s == "model" || s == "predict" || s == "pred")
-      _parse_mode_mask = REF_MODEL;
-    else if (s == "pairs" || s == "pair" || s == "fifo")
-      _parse_mode_mask = REF_PAIRS;
-    else if (s == "all" || s == "everything")
-      _parse_mode_mask = (REF_MEMH | REF_MODEL | REF_PAIRS);
-    else if (s == "memh_pairs" || s == "pairs_memh" || s == "memh+pairs" || s == "pairs+memh")
-      _parse_mode_mask = (REF_MEMH | REF_PAIRS);
-    else if (s == "model_pairs" || s == "pairs_model" || s == "model+pairs" || s == "pairs+model")
-      _parse_mode_mask = (REF_MODEL | REF_PAIRS);
-    else if (s == "memh_model" || s == "model_memh" || s == "memh+model" || s == "model+memh" || s == "both")
-      _parse_mode_mask = (REF_MEMH | REF_MODEL);
-    else
-      _parse_mode_mask = (REF_MEMH | REF_PAIRS); // safe default
+  bit disabled;
+  bit verbose;
+
+  int unsigned max_err;
+  bit stop_on_err;
+
+  bit check_x_align;
+  bit check_rule;
+  bit check_lossless_t0;
+
+  bit epoch_on_clear;
+
+  string x_file;
+  string y_file;
+  string sup_file;
+
+
+  // Golden arrays (MEMH reference)
+
+  si64_t x_exp[$];
+  si64_t y_exp[$];
+  bit    sup_exp[$];
+
+
+  // Model reference (MODEL reference)
+
+  ref_model_phase1 #(
+    .N(N),
+    .SHIFT(SHIFT),
+    .LFSR_W(LFSR_W),
+    .SEED_DEFAULT(SEED)
+  ) rm();
+
+  typedef struct packed {
+    si64_t x0;
+    si64_t x1;
+    si64_t y0;
+    si64_t y1;
+    bit    sup;
+    ui64_t thresh_used;
+  } exp_pair_t;
+
+  exp_pair_t expq[$];
+
+  bit    ref_have_x0;
+  si64_t ref_x0_hold;
+
+
+  // Runtime bookkeeping
+
+  bit running;
+  bit stop_req;
+
+  int unsigned k;          // pair index since last reset (and maybe across clear)
+  int unsigned epoch;      // increments on clr_metrics_pulse rising edge (optional)
+  int unsigned err_count;
+
+  // event for each compared pair
+  event sb_pair_ev;
+
+  // last compared snapshot (for external tests if desired)
+  int unsigned last_k;
+  int unsigned last_epoch;
+  longint unsigned last_time;
+
+  si64_t last_act_x0;
+  si64_t last_act_x1;
+  si64_t last_act_y0;
+  si64_t last_act_y1;
+  bit    last_act_sup;
+
+  bit    last_have_memh;
+  bit    last_have_model;
+
+  si64_t last_exp_memh_y0, last_exp_memh_y1;
+  bit    last_exp_memh_sup;
+  si64_t last_exp_memh_x0, last_exp_memh_x1;
+
+  si64_t last_exp_model_y0, last_exp_model_y1;
+  bit    last_exp_model_sup;
+  si64_t last_exp_model_x0, last_exp_model_x1;
+
+
+  // Helpers
+
+  function automatic mode_e _parse_mode(input string s);
+    if (s == "off" || s == "0" || s == "disable" || s == "disabled") _parse_mode = MODE_OFF;
+    else if (s == "memh" || s == "file")                              _parse_mode = MODE_MEMH;
+    else if (s == "model" || s == "predict" || s == "pred")           _parse_mode = MODE_MODEL;
+    else if (s == "both" || s == "all")                               _parse_mode = MODE_BOTH;
+    else                                                              _parse_mode = MODE_MEMH;
   endfunction
 
   function automatic bit _file_exists(input string path);
@@ -146,84 +183,22 @@ module scoreboard_y_stream #(
     end
   endfunction
 
-
-  // Configuration
-
-  bit disabled;
-  bit verbose;
-
-  int unsigned max_err;
-  bit stop_on_err;
-
-  bit use_memh;
-  bit use_model;
-  bit use_pairs;
-
-  string y_file;
-
-  int unsigned depth_cfg;
-
-  bit check_valid;          // for pairs (serializer) y_valid check
-  bit allow_overflow;       // allow push with no space (DUT drops + sticky)
-
-  bit epoch_on_clear;       // track epoch increments on clr_metrics_pulse rising edge
-  bit reset_m_on_clear;     // reset output sample index m on clear (OFF by default)
-  bit strict_memh_length;   // fatal if y_valid beyond y_exp end
-  bit require_full_memh;    // fatal at end-of-sim if not all y_exp checked
-
-  
-  // MEMH reference storage
-
-  si64_t y_exp[$];
-  bit    memh_done;
-
-
-  // MODEL reference storage
-
-  ref_model_phase1 #(
-    .N(N),
-    .SHIFT(SHIFT),
-    .LFSR_W(LFSR_W),
-    .SEED_DEFAULT(SEED)
-  ) rm();
-
-  // queue of expected y samples (in-order)
-  si64_t model_q[$];
-
-
-  // PAIRS/serializer reference storage (models out_fifo_serializer FIFO contents)
-
-  si64_t fifo_q[$]; // acts like mem[rd_ptr..] in queue form
-
-
-  // Runtime state
-
-  bit running;
-  bit stop_req;
-
-  int unsigned m;
-  int unsigned epoch;
-  int unsigned err_count;
-
-
-  // Error handling
-
   task automatic _fatal_or_count(input string msg);
     begin
       err_count++;
-      $display("[scoreboard_y_stream] ERROR[%0d] m=%0d epoch=%0d : %s", err_count, m, epoch, msg);
+      $display("[scoreboard_pairs] ERROR[%0d] k=%0d epoch=%0d : %s", err_count, k, epoch, msg);
       if (stop_on_err || (max_err != 0 && err_count >= max_err)) begin
-        $fatal(1, "[scoreboard_y_stream] Too many errors (err_count=%0d, max_err=%0d).", err_count, max_err);
+        $fatal(1, "[scoreboard_pairs] Too many errors (err_count=%0d, max_err=%0d).", err_count, max_err);
       end
     end
   endtask
 
 
-  // Public control tasks
-
+  // Public control/tasks
+  
   task automatic start();
     if (running) begin
-      $display("[scoreboard_y_stream] NOTE: start() called but already running.");
+      $display("[scoreboard_pairs] NOTE: start() called but already running.");
       return;
     end
     stop_req = 1'b0;
@@ -237,56 +212,56 @@ module scoreboard_y_stream #(
     stop_req = 1'b1;
   endtask
 
-  task automatic report(input string tag = "scoreboard_y_stream");
-    $display("[%s] mode(memh,model,pairs)=(%0d,%0d,%0d) y_seen=%0d epoch=%0d errors=%0d fifo_q=%0d model_q=%0d memh_done=%0d",
-             tag, use_memh, use_model, use_pairs, m, epoch, err_count, fifo_q.size(), model_q.size(), memh_done);
+  function automatic int unsigned get_error_count();
+    return err_count;
+  endfunction
+
+  task automatic report(input string tag = "scoreboard_pairs");
+    $display("[%s] mode=%0d (OFF=0 MEMH=1 MODEL=2 BOTH=3) pairs_checked=%0d epoch=%0d errors=%0d expq_len=%0d",
+             tag, mode, k, epoch, err_count, expq.size());
   endtask
 
-  // Verify that all memh samples were checked.
-  task automatic check_complete_memh();
-    begin
-      if (!use_memh) begin
-        $display("[scoreboard_y_stream] check_complete_memh: memh mode not enabled; skipping.");
-        return;
+  // Optional: ensure model expected queue is empty (useful at end of test).
+  task automatic check_no_pending_model_pairs();
+    if (mode == MODE_MODEL || mode == MODE_BOTH) begin
+      if (expq.size() != 0) begin
+        $fatal(1, "[scoreboard_pairs] Pending expected pairs in model queue: %0d", expq.size());
       end
-      if (m < y_exp.size()) begin
-        $fatal(1, "[scoreboard_y_stream] MEMH NOT COMPLETE: checked %0d / %0d y samples.",
-               m, y_exp.size());
-      end
-      $display("[scoreboard_y_stream] MEMH COMPLETE: checked %0d / %0d y samples.",
-               m, y_exp.size());
     end
   endtask
 
-  // Verify the model queue is empty.
-  task automatic check_no_pending_model();
+  // Wait for the next compared pair (event-based).
+  task automatic wait_next_checked_pair(
+    output int unsigned k_out,
+    output int unsigned epoch_out,
+    output si64_t       act_y0,
+    output si64_t       act_y1,
+    output bit          act_sup
+  );
     begin
-      if (!use_model) begin
-        $display("[scoreboard_y_stream] check_no_pending_model: model mode not enabled; skipping.");
-        return;
-      end
-      if (model_q.size() != 0) begin
-        $fatal(1, "[scoreboard_y_stream] MODEL PENDING OUTPUTS: model_q has %0d unconsumed samples.", model_q.size());
-      end
-      $display("[scoreboard_y_stream] MODEL queue empty (no pending outputs).");
+      @sb_pair_ev;
+      k_out     = last_k;
+      epoch_out = last_epoch;
+      act_y0    = last_act_y0;
+      act_y1    = last_act_y1;
+      act_sup   = last_act_sup;
     end
   endtask
 
 
-  // Initialization / plusargs
+  // Initialization
 
   initial begin
     running   = 1'b0;
     stop_req  = 1'b0;
 
-    m         = 0;
+    k         = 0;
     epoch     = 0;
     err_count = 0;
 
-    fifo_q.delete();
-    model_q.delete();
-    y_exp.delete();
-    memh_done = 1'b0;
+    expq.delete();
+    ref_have_x0 = 1'b0;
+    ref_x0_hold = 0;
 
     // defaults
     disabled   = 1'b0;
@@ -294,95 +269,107 @@ module scoreboard_y_stream #(
     max_err    = 10;
     stop_on_err= 1'b0;
 
-    y_file = "y.memh";
-    void'($value$plusargs("Y_SB_Y_FILE=%s", y_file));
+    check_x_align     = 1'b0;
+    check_rule        = 1'b0;
+    check_lossless_t0 = 1'b0;
+
+    epoch_on_clear    = 1'b1;
+
+    x_file   = "x.memh";
+    y_file   = "y.memh";
+    sup_file = "sup.memh";
+
+    // plusargs
+    if ($test$plusargs("PAIR_SB_DISABLE")) disabled = 1'b1;
+    if ($test$plusargs("PAIR_SB_VERBOSE")) verbose  = 1'b1;
+
+    void'($value$plusargs("PAIR_SB_MAX_ERR=%d", max_err));
+    if ($test$plusargs("PAIR_SB_STOP_ON_ERR")) stop_on_err = 1'b1;
+
+    if ($test$plusargs("PAIR_SB_CHECK_RULE"))        check_rule        = 1'b1;
+    if ($test$plusargs("PAIR_SB_CHECK_LOSSLESS_T0")) check_lossless_t0 = 1'b1;
+
+    if ($test$plusargs("PAIR_SB_NO_EPOCH_ON_CLEAR")) epoch_on_clear = 1'b0;
+    if ($test$plusargs("PAIR_SB_EPOCH_ON_CLEAR"))    epoch_on_clear = 1'b1;
+
+    void'($value$plusargs("PAIR_SB_X_FILE=%s", x_file));
+    void'($value$plusargs("PAIR_SB_Y_FILE=%s", y_file));
+    void'($value$plusargs("PAIR_SB_SUP_FILE=%s", sup_file));
+
+    // accept loader-style aliases too
+    void'($value$plusargs("X_MEMH=%s", x_file));
     void'($value$plusargs("Y_MEMH=%s", y_file));
+    void'($value$plusargs("SUP_MEMH=%s", sup_file));
 
-    depth_cfg = DEPTH;
-    void'($value$plusargs("Y_SB_DEPTH=%d", depth_cfg));
-
-    allow_overflow = 1'b0;
-    if ($test$plusargs("Y_SB_ALLOW_OVERFLOW")) allow_overflow = 1'b1;
-
-    epoch_on_clear = 1'b1;
-    if ($test$plusargs("Y_SB_NO_EPOCH_ON_CLEAR")) epoch_on_clear = 1'b0;
-    if ($test$plusargs("Y_SB_EPOCH_ON_CLEAR"))    epoch_on_clear = 1'b1;
-
-    reset_m_on_clear = 1'b0;
-    if ($test$plusargs("Y_SB_RESET_M_ON_CLEAR")) reset_m_on_clear = 1'b1;
-
-    strict_memh_length = 1'b0;
-    if ($test$plusargs("Y_SB_STRICT_MEMH_LENGTH")) strict_memh_length = 1'b1;
-
-    require_full_memh = 1'b0;
-    if ($test$plusargs("Y_SB_REQUIRE_FULL_MEMH")) require_full_memh = 1'b1;
-
-    if ($test$plusargs("Y_SB_DISABLE")) disabled = 1'b1;
-    if ($test$plusargs("Y_SB_VERBOSE")) verbose  = 1'b1;
-
-    void'($value$plusargs("Y_SB_MAX_ERR=%d", max_err));
-    if ($test$plusargs("Y_SB_STOP_ON_ERR")) stop_on_err = 1'b1;
-
-    // Determine mode flags
+    // Determine mode
     begin
-      int mask;
       string mstr;
       mstr = "";
-      if ($value$plusargs("Y_SB_MODE=%s", mstr)) begin
-        mask = _parse_mode_mask(mstr);
+      if ($value$plusargs("PAIR_SB_MODE=%s", mstr)) begin
+        mode = _parse_mode(mstr);
       end else begin
-        // default: if y.memh exists -> memh+pairs else model+pairs
-        if (_file_exists(y_file)) mask = (REF_MEMH | REF_PAIRS);
-        else                      mask = (REF_MODEL | REF_PAIRS);
+        // Default mode:
+        // - if y.memh exists -> BOTH (strongest)
+        // - else -> MODEL
+        if (_file_exists(y_file) && _file_exists(sup_file)) mode = MODE_BOTH;
+        else                                               mode = MODE_MODEL;
       end
-
-      if (disabled) mask = 0;
-
-      use_memh  = ((mask & REF_MEMH)  != 0);
-      use_model = ((mask & REF_MODEL) != 0);
-      use_pairs = ((mask & REF_PAIRS) != 0);
     end
 
-    // check_valid default: ON if pairs enabled
-    check_valid = use_pairs ? 1'b1 : 1'b0;
-    if ($test$plusargs("Y_SB_CHECK_VALID"))    check_valid = 1'b1;
-    if ($test$plusargs("Y_SB_NO_CHECK_VALID")) check_valid = 1'b0;
+    if (disabled) mode = MODE_OFF;
 
-    // sanity: depth
-    if (use_pairs && (depth_cfg < 2)) begin
-      $fatal(1, "[scoreboard_y_stream] depth_cfg=%0d invalid; must be >= 2.", depth_cfg);
-    end
+    // Default x-align checking:
+    // - ON when model is enabled (MODEL/BOTH)
+    // - OFF in MEMH-only (optional, can still enable)
+    if (mode == MODE_MODEL || mode == MODE_BOTH) check_x_align = 1'b1;
 
-    // load memh if requested
-    if (use_memh) begin
-      if (!_file_exists(y_file)) begin
-        $fatal(1, "[scoreboard_y_stream] MEMH mode enabled but y_file not found: '%s'", y_file);
-      end
+    if ($test$plusargs("PAIR_SB_NO_CHECK_X_ALIGN")) check_x_align = 1'b0;
+    if ($test$plusargs("PAIR_SB_CHECK_X_ALIGN"))    check_x_align = 1'b1;
+
+    // Load memh files if needed
+    if (mode == MODE_MEMH || mode == MODE_BOTH) begin
+      if (!_file_exists(x_file)) $fatal(1, "[scoreboard_pairs] x file not found: '%s'", x_file);
+      if (!_file_exists(y_file)) $fatal(1, "[scoreboard_pairs] y file not found: '%s'", y_file);
+      if (!_file_exists(sup_file)) $fatal(1, "[scoreboard_pairs] sup file not found: '%s'", sup_file);
+
+      read_memh_signed(x_file, N, x_exp);
       read_memh_signed(y_file, N, y_exp);
-      if (y_exp.size() == 0) begin
-        $fatal(1, "[scoreboard_y_stream] Loaded 0 samples from '%s'", y_file);
+      read_flags01(sup_file, sup_exp);
+
+      if (x_exp.size() == 0) $fatal(1, "[scoreboard_pairs] Loaded 0 x samples from '%s'", x_file);
+      if (y_exp.size() == 0) $fatal(1, "[scoreboard_pairs] Loaded 0 y samples from '%s'", y_file);
+      if ((x_exp.size() % 2) != 0) $fatal(1, "[scoreboard_pairs] x length must be even; got %0d", x_exp.size());
+      if ((y_exp.size() % 2) != 0) $fatal(1, "[scoreboard_pairs] y length must be even; got %0d", y_exp.size());
+
+      if (x_exp.size() != y_exp.size()) begin
+        $fatal(1, "[scoreboard_pairs] x/y length mismatch: x=%0d y=%0d", x_exp.size(), y_exp.size());
       end
-      $display("[scoreboard_y_stream] Loaded y.memh: %0d samples from '%s'", y_exp.size(), y_file);
+      if (sup_exp.size() != (y_exp.size()/2)) begin
+        $fatal(1, "[scoreboard_pairs] sup flags size mismatch: sup=%0d expected=%0d", sup_exp.size(), (y_exp.size()/2));
+      end
+
+      $display("[scoreboard_pairs] Loaded memh: x=%0d samples, y=%0d samples, sup=%0d pairs",
+               x_exp.size(), y_exp.size(), sup_exp.size());
     end
 
-    // reset the reference model to a known seed
+    // Reset the model to a known starting state (even if mode doesn't use it)
     rm.reset_model(SEED, /*clear_hist*/ 1'b1);
-    model_q.delete();
+    ref_have_x0 = 1'b0;
+    ref_x0_hold = 0;
 
-    if (use_memh || use_model || use_pairs) begin
-      $display("[scoreboard_y_stream] Config:");
-      $display("  use_memh=%0d use_model=%0d use_pairs=%0d", use_memh, use_model, use_pairs);
-      $display("  y_file='%s' exists=%0d", y_file, _file_exists(y_file));
-      $display("  depth_cfg=%0d check_valid=%0d allow_overflow=%0d", depth_cfg, check_valid, allow_overflow);
-      $display("  epoch_on_clear=%0d reset_m_on_clear=%0d strict_memh_length=%0d require_full_memh=%0d",
-               epoch_on_clear, reset_m_on_clear, strict_memh_length, require_full_memh);
+    if (mode == MODE_OFF) begin
+      $display("[scoreboard_pairs] Disabled (mode=OFF).");
+    end else begin
+      $display("[scoreboard_pairs] Config:");
+      $display("  mode=%0d (OFF=0 MEMH=1 MODEL=2 BOTH=3)", mode);
+      $display("  files: x='%s' y='%s' sup='%s'", x_file, y_file, sup_file);
+      $display("  check_x_align=%0d check_rule=%0d check_lossless_t0=%0d epoch_on_clear=%0d",
+               check_x_align, check_rule, check_lossless_t0, epoch_on_clear);
       $display("  max_err=%0d stop_on_err=%0d verbose=%0d", max_err, stop_on_err, verbose);
       $display("  N=%0d SHIFT=%0d LFSR_W=%0d SEED=0x%0h", N, SHIFT, LFSR_W, SEED);
-    end else begin
-      $display("[scoreboard_y_stream] Disabled (mode=OFF).");
     end
 
-    if (AUTO_START && (use_memh || use_model || use_pairs)) begin
+    if (AUTO_START && mode != MODE_OFF) begin
       start();
     end
   end
@@ -394,39 +381,47 @@ module scoreboard_y_stream #(
     bit last_rst_n;
     bit last_clr;
 
-    // MODEL step outputs (we only need y0/y1 when pair completes)
+    // model step outputs
     bit    xv, pv;
     samp_t x_out;
-    samp_t my0, my1;
-    bit    msup;
+    samp_t y0_out, y1_out;
+    bit    sup_out;
 
-    // serializer model locals
-    int unsigned q_len_pre;
-    bit          do_pop;
-    bit          push_valid;
-    bit          push_ok;
-    si64_t       exp_pop_pairs;
+    // local hold for x1 in model pairing
+    si64_t ref_x1_hold;
 
-    // sample actual and expected values
-    si64_t act_y;
-    si64_t exp_memh;
-    si64_t exp_model;
+    // expected pair object from model queue
+    exp_pair_t expm;
 
-    bit memh_extra_reported;
+    // actual signals
+    si64_t act_x0, act_x1;
+    si64_t act_y0, act_y1;
+    bit    act_sup;
+
+    // memh expected
+    si64_t exp_y0m, exp_y1m;
+    bit    exp_supm;
+    si64_t exp_x0m, exp_x1m;
+
+    // suppression rule expected
+    bit rule_sup;
+
+    // threshold/bypass
+    ui64_t thresh_u;
+    bit    bypass;
 
     begin
       last_rst_n = 1'b1;
       last_clr   = 1'b0;
-      memh_extra_reported = 1'b0;
 
-      // Wait for a non-X clock
+      // Wait for clock to be known
       wait (^t.clk !== 1'bX);
 
       forever begin
         @(negedge t.clk);
 
         if (stop_req) begin
-          $display("[scoreboard_y_stream] stop requested.");
+          $display("[scoreboard_pairs] stop requested.");
           running = 1'b0;
           disable run;
         end
@@ -434,20 +429,16 @@ module scoreboard_y_stream #(
         // Reset handling
         if (!t.rst_n) begin
           if (last_rst_n) begin
-            m         = 0;
-            epoch     = 0;
+            k = 0;
+            epoch = 0;
             err_count = 0;
+            expq.delete();
 
-            fifo_q.delete();
-            model_q.delete();
-
-            // reset model state
             rm.reset_model(SEED, /*clear_hist*/ 1'b1);
+            ref_have_x0 = 1'b0;
+            ref_x0_hold = 0;
 
-            memh_done = 1'b0;
-            memh_extra_reported = 1'b0;
-
-            if (verbose) $display("[scoreboard_y_stream] Reset asserted: state cleared.");
+            if (verbose) $display("[scoreboard_pairs] Reset asserted: counters/model cleared.");
           end
           last_rst_n = 1'b0;
           last_clr   = 1'b0;
@@ -455,216 +446,232 @@ module scoreboard_y_stream #(
         end
         last_rst_n = 1'b1;
 
-        // Handle clear-metrics pulse (epoch tracking only; stream should continue)
-        if (t.clr_metrics_pulse && !last_clr) begin
-          if (epoch_on_clear) epoch++;
-          if (reset_m_on_clear) begin
-            if (verbose) $display("[scoreboard_y_stream] clr_metrics_pulse: resetting m to 0.");
-            m = 0;
+        // Clear pulse epoch tracking (optional)
+        if (epoch_on_clear) begin
+          if (t.clr_metrics_pulse && !last_clr) begin
+            epoch++;
+            if (verbose) $display("[scoreboard_pairs] clr_metrics_pulse: epoch -> %0d (k continues).", epoch);
           end
-        end
-        last_clr = t.clr_metrics_pulse;
-
-
-        // MODEL stepping: drive reference model on each sample_en
-
-        if (use_model && (t.sample_en === 1'b1)) begin
-          rm.step_sample(int'(ui64_t'(t.thresh_used)),
-                         (t.force_bypass === 1'b1),
-                         xv, x_out, pv, my0, my1, msup);
-
-          if (!xv) begin
-            _fatal_or_count("ref_model returned x_valid=0 on sample_en (unexpected).");
-          end
-
-          if (pv) begin
-            model_q.push_back(si64_t'($signed(my0)));
-            model_q.push_back(si64_t'($signed(my1)));
-          end
+          last_clr = t.clr_metrics_pulse;
         end
 
-        
-        // PAIRS/serializer model: compute expected pop/push for THIS cycle
 
-        if (use_pairs) begin
-          q_len_pre  = fifo_q.size();
-          do_pop     = (t.sample_en === 1'b1) && (q_len_pre != 0);
-          push_valid = (t.pair_out_valid === 1'b1);
-          push_ok    = push_valid && (q_len_pre <= (depth_cfg - 2));
+        // MODEL: step on sample_en
 
-          // y_valid check
-          if (check_valid) begin
-            if ((t.y_valid === 1'b1) != do_pop) begin
-              _fatal_or_count($sformatf("y_valid mismatch: dut=%0d exp=%0d (sample_en=%0d q_len_pre=%0d)",
-                                        t.y_valid, do_pop, t.sample_en, q_len_pre));
+        if (mode == MODE_MODEL || mode == MODE_BOTH) begin
+          if (t.sample_en === 1'b1) begin
+            bypass   = (t.force_bypass === 1'b1);
+            thresh_u = ui64_t'(t.thresh_used);
+
+            rm.step_sample(int'(thresh_u), bypass, xv, x_out, pv, y0_out, y1_out, sup_out);
+
+            // We always get x_valid (xv) for sample_en. If not, something is wrong.
+            if (!xv) begin
+              _fatal_or_count("ref_model returned x_valid=0 on sample_en (unexpected)");
             end
-          end
 
-          // y_out check when a pop is expected
-          if (do_pop) begin
-            if (q_len_pre == 0) begin
-              _fatal_or_count("internal error: do_pop=1 but q_len_pre==0");
+            // Track x0/x1 for alignment (mirror the model's internal pairing)
+            if (!ref_have_x0) begin
+              ref_x0_hold = si64_t'($signed(x_out));
+              ref_have_x0 = 1'b1;
+
+              if (pv) begin
+                _fatal_or_count("ref_model returned pair_valid=1 unexpectedly on first sample of pair");
+              end
             end else begin
-              exp_pop_pairs = fifo_q[0];
+              ref_x1_hold = si64_t'($signed(x_out));
+              ref_have_x0 = 1'b0;
 
-              if (t.y_valid !== 1'b1) begin
-                _fatal_or_count("expected y_valid=1 due to do_pop, but dut y_valid!=1");
-              end else if (^t.y_out === 1'bX) begin
-                _fatal_or_count("y_out is X when y_valid=1");
+              if (!pv) begin
+                _fatal_or_count("ref_model returned pair_valid=0 unexpectedly on second sample of pair");
               end else begin
-                act_y = si64_t'($signed(t.y_out));
-                if (act_y != exp_pop_pairs) begin
-                  _fatal_or_count($sformatf("serializer mismatch: dut y=%s exp=%s (q_len_pre=%0d)",
-                                            fmt_si64(act_y), fmt_si64(exp_pop_pairs), q_len_pre));
-                end else if (verbose) begin
-                  $display("[scoreboard_y_stream] PAIRS OK: y=%0d (q_len_pre=%0d)", act_y, q_len_pre);
-                end
+                // push expected pair into queue for future pair_out_valid comparison
+                expm.x0 = ref_x0_hold;
+                expm.x1 = ref_x1_hold;
+                expm.y0 = si64_t'($signed(y0_out));
+                expm.y1 = si64_t'($signed(y1_out));
+                expm.sup = sup_out;
+                expm.thresh_used = thresh_u;
+                expq.push_back(expm);
               end
             end
           end
-
-          // Overflow check (push when no room)
-          if (push_valid && !push_ok && !allow_overflow) begin
-            _fatal_or_count($sformatf("FIFO overflow condition: pair_out_valid=1 but no space (q_len_pre=%0d depth=%0d)",
-                                      q_len_pre, depth_cfg));
-          end
         end
 
 
-        // Stream-value checks: whenever DUT produces a y sample
+        // Compare on pair_out_valid
 
-        if (t.y_valid === 1'b1) begin
-          if (^t.y_out === 1'bX) begin
-            _fatal_or_count("y_out is X when y_valid=1 (cannot compare to references)");
-            act_y = 64'sd0;
+        if (t.pair_out_valid !== 1'b1) begin
+          continue;
+        end
+
+        // Basic X checks
+        if (^t.y0 === 1'bX || ^t.y1 === 1'bX || ^t.suppressed === 1'bX) begin
+          _fatal_or_count("y0/y1/suppressed contains X on pair_out_valid");
+        end
+        if (^t.x0_a === 1'bX || ^t.x1_a === 1'bX) begin
+          _fatal_or_count("x0_a/x1_a contains X on pair_out_valid");
+        end
+
+        // Actual values
+        act_x0  = si64_t'($signed(t.x0_a));
+        act_x1  = si64_t'($signed(t.x1_a));
+        act_y0  = si64_t'($signed(t.y0));
+        act_y1  = si64_t'($signed(t.y1));
+        act_sup = (t.suppressed === 1'b1);
+
+        // Save last snapshot
+        last_k      = k;
+        last_epoch  = epoch;
+        last_time   = $time;
+        last_act_x0 = act_x0;
+        last_act_x1 = act_x1;
+        last_act_y0 = act_y0;
+        last_act_y1 = act_y1;
+        last_act_sup= act_sup;
+
+        last_have_memh  = 1'b0;
+        last_have_model = 1'b0;
+
+        // MEMH reference comparison
+        if (mode == MODE_MEMH || mode == MODE_BOTH) begin
+          last_have_memh = 1'b1;
+            if ((2*k + 1) >= y_exp.size()) begin
+             if (verbose) $display("[scoreboard_pairs] Completed all %0d expected pairs; stopping.", y_exp.size()/2);
+              running = 1'b0;
+                disable run;
           end else begin
-            act_y = si64_t'($signed(t.y_out));
-          end
+            exp_y0m  = y_exp[2*k+0];
+            exp_y1m  = y_exp[2*k+1];
+            exp_supm = sup_exp[k];
+            exp_x0m  = x_exp[2*k+0];
+            exp_x1m  = x_exp[2*k+1];
 
-          // Prepare snapshot defaults
-          last_m        = m;
-          last_epoch    = epoch;
-          last_time     = $time;
-          last_act_y    = act_y;
+            last_exp_memh_y0  = exp_y0m;
+            last_exp_memh_y1  = exp_y1m;
+            last_exp_memh_sup = exp_supm;
+            last_exp_memh_x0  = exp_x0m;
+            last_exp_memh_x1  = exp_x1m;
 
-          last_have_memh  = 1'b0;
-          last_exp_memh   = 64'sd0;
-          last_have_model = 1'b0;
-          last_exp_model  = 64'sd0;
-          last_have_pairs = 1'b0;
-          last_exp_pairs  = 64'sd0;
+            if (act_y0 != exp_y0m || act_y1 != exp_y1m || act_sup != exp_supm) begin
+              _fatal_or_count($sformatf(
+                "MEMH mismatch: dut(y0,y1,sup)=(%s,%s,%0d) exp=(%s,%s,%0d)",
+                fmt_si64(act_y0), fmt_si64(act_y1), act_sup,
+                fmt_si64(exp_y0m), fmt_si64(exp_y1m), exp_supm
+              ));
+            end else if (verbose) begin
+              $display("[scoreboard_pairs] k=%0d MEMH OK y0=%0d y1=%0d sup=%0d", k, act_y0, act_y1, act_sup);
+            end
 
-          // MEMH compare
-          if (use_memh) begin
-            if (!memh_done) begin
-              if (m >= y_exp.size()) begin
-                memh_done = 1'b1;
-                if (strict_memh_length) begin
-                  _fatal_or_count($sformatf("memh overrun: m=%0d but y_exp.size()=%0d", m, y_exp.size()));
-                end else if (!memh_extra_reported) begin
-                  memh_extra_reported = 1'b1;
-                  $display("[scoreboard_y_stream] NOTE: reached end of y.memh at m=%0d (size=%0d). Further y_valid samples will not be compared to memh unless strict enabled.",
-                           m, y_exp.size());
-                end
-              end else begin
-                exp_memh = y_exp[m];
-                last_have_memh = 1'b1;
-                last_exp_memh  = exp_memh;
-
-                if (act_y != exp_memh) begin
-                  _fatal_or_count($sformatf("MEMH mismatch: m=%0d dut=%s exp=%s",
-                                            m, fmt_si64(act_y), fmt_si64(exp_memh)));
-                end else if (verbose) begin
-                  $display("[scoreboard_y_stream] MEMH OK: m=%0d y=%0d", m, act_y);
-                end
+            if (check_x_align) begin
+              if (act_x0 != exp_x0m || act_x1 != exp_x1m) begin
+                _fatal_or_count($sformatf(
+                  "MEMH x-align mismatch: dut(x0_a,x1_a)=(%s,%s) exp=(%s,%s)",
+                  fmt_si64(act_x0), fmt_si64(act_x1),
+                  fmt_si64(exp_x0m), fmt_si64(exp_x1m)
+                ));
               end
             end
           end
+        end
 
-          // MODEL compare
-          if (use_model) begin
-            if (model_q.size() == 0) begin
-              _fatal_or_count($sformatf("MODEL underflow: y_valid at m=%0d but model_q is empty", m));
-            end else begin
-              exp_model = model_q[0];
-              last_have_model = 1'b1;
-              last_exp_model  = exp_model;
+        // MODEL reference comparison
+        if (mode == MODE_MODEL || mode == MODE_BOTH) begin
+          last_have_model = 1'b1;
 
-              if (act_y != exp_model) begin
-                _fatal_or_count($sformatf("MODEL mismatch: m=%0d dut=%s exp=%s (model_q_len=%0d)",
-                                          m, fmt_si64(act_y), fmt_si64(exp_model), model_q.size()));
-              end else if (verbose) begin
-                $display("[scoreboard_y_stream] MODEL OK: m=%0d y=%0d", m, act_y);
+          if (expq.size() == 0) begin
+            _fatal_or_count("MODEL expected queue empty at pair_out_valid (model/DUT misalignment)");
+          end else begin
+            expm = expq.pop_front();
+
+            last_exp_model_x0  = expm.x0;
+            last_exp_model_x1  = expm.x1;
+            last_exp_model_y0  = expm.y0;
+            last_exp_model_y1  = expm.y1;
+            last_exp_model_sup = expm.sup;
+
+            if (act_y0 != expm.y0 || act_y1 != expm.y1 || act_sup != expm.sup) begin
+              _fatal_or_count($sformatf(
+                "MODEL mismatch: dut(y0,y1,sup)=(%s,%s,%0d) exp=(%s,%s,%0d) (thresh_used=%0d bypass=%0d)",
+                fmt_si64(act_y0), fmt_si64(act_y1), act_sup,
+                fmt_si64(expm.y0), fmt_si64(expm.y1), expm.sup,
+                ui64_t'(t.thresh_used), (t.force_bypass===1'b1)
+              ));
+            end else if (verbose) begin
+              $display("[scoreboard_pairs] k=%0d MODEL OK y0=%0d y1=%0d sup=%0d", k, act_y0, act_y1, act_sup);
+            end
+
+            if (check_x_align) begin
+              if (act_x0 != expm.x0 || act_x1 != expm.x1) begin
+                _fatal_or_count($sformatf(
+                  "MODEL x-align mismatch: dut(x0_a,x1_a)=(%s,%s) exp=(%s,%s)",
+                  fmt_si64(act_x0), fmt_si64(act_x1),
+                  fmt_si64(expm.x0), fmt_si64(expm.x1)
+                ));
               end
-
-              // consume expected sample
-              void'(model_q.pop_front());
-            end
-          end
-
-          // PAIRS expected value snapshot (only meaningful if do_pop true)
-          if (use_pairs) begin
-            // If check_valid is on, y_valid implies do_pop, so q_len_pre>0 and exp_pop_pairs computed.
-            // If check_valid is off, we can only snapshot if fifo_q currently non-empty.
-            if (fifo_q.size() != 0) begin
-              last_have_pairs = 1'b1;
-              last_exp_pairs  = fifo_q[0];
-            end
-          end
-
-          // Cross-check MEMH vs MODEL expected values (debug assist)
-          if (use_memh && use_model && last_have_memh && last_have_model) begin
-            if (last_exp_memh != last_exp_model) begin
-              _fatal_or_count($sformatf("REF mismatch (memh vs model) at m=%0d: memh=%s model=%s",
-                                        m, fmt_si64(last_exp_memh), fmt_si64(last_exp_model)));
-            end
-          end
-
-          // publish event
-          -> y_sb_ev;
-
-          // advance stream index
-          m++;
-        end
-
-
-        // Update PAIRS FIFO model queue AFTER checks (pop then push)
-
-        if (use_pairs) begin
-          // Note: use do_pop/push_ok computed from PRE-STATE q_len_pre earlier this cycle.
-          if (do_pop && (fifo_q.size() != 0)) begin
-            void'(fifo_q.pop_front());
-          end
-
-          if (push_ok) begin
-            if (^t.y0 === 1'bX || ^t.y1 === 1'bX) begin
-              _fatal_or_count("y0/y1 is X when push_ok=1 (cannot update serializer model)");
-            end else begin
-              fifo_q.push_back(si64_t'($signed(t.y0)));
-              fifo_q.push_back(si64_t'($signed(t.y1)));
             end
           end
         end
-      end
+
+        // Cross-check MEMH vs MODEL expected if both enabled
+        if (mode == MODE_BOTH && last_have_memh && last_have_model) begin
+          if (last_exp_memh_y0 != last_exp_model_y0 ||
+              last_exp_memh_y1 != last_exp_model_y1 ||
+              last_exp_memh_sup != last_exp_model_sup) begin
+            _fatal_or_count($sformatf(
+              "REF mismatch (memh vs model): memh(y0,y1,sup)=(%s,%s,%0d) model=(%s,%s,%0d)",
+              fmt_si64(last_exp_memh_y0), fmt_si64(last_exp_memh_y1), last_exp_memh_sup,
+              fmt_si64(last_exp_model_y0), fmt_si64(last_exp_model_y1), last_exp_model_sup
+            ));
+          end
+        end
+
+        // Optional suppression rule check (strict inequality)
+        if (check_rule) begin
+            if ((^t.abs_d_tap !== 1'bX) && (^t.thresh_used !== 1'bX)) begin
+               rule_sup = (t.abs_d_tap < t.thresh_used);
+            if (rule_sup != act_sup) begin
+              _fatal_or_count($sformatf(
+                "suppression rule mismatch: suppressed=%0d but (abs_d<thresh)=%0d  abs_d=%0d thresh=%0d",
+                act_sup, rule_sup, t.abs_d_tap, t.thresh_used
+              ));
+            end
+          end else begin
+            _fatal_or_count("check_rule enabled but abs_d_tap or thresh_used is X/unknown");
+          end
+        end
+
+        // Optional lossless check when thresh_used == 0
+        if (check_lossless_t0) begin
+          if (t.thresh_used == '0) begin
+            if (act_sup != 1'b0) begin
+              _fatal_or_count("lossless T=0 violated: suppressed asserted when thresh_used==0");
+            end
+            if (act_y0 != act_x0 || act_y1 != act_x1) begin
+              _fatal_or_count($sformatf(
+                "lossless T=0 violated: y!=x when thresh_used==0: (x0,x1)=(%s,%s) (y0,y1)=(%s,%s)",
+                fmt_si64(act_x0), fmt_si64(act_x1), fmt_si64(act_y0), fmt_si64(act_y1)
+              ));
+            end
+          end
+        end
+
+        // Publish event and increment pair index
+        -> sb_pair_ev;
+        k++;
+     end
     end
   endtask
 
 
-  // Final summary + optional strict completion checks
+  // End-of-sim summary
 
   final begin
-    if (use_memh || use_model || use_pairs) begin
-      report("scoreboard_y_stream_final");
-      if (require_full_memh && use_memh) begin
-        if (m < y_exp.size()) begin
-          $fatal(1, "[scoreboard_y_stream] REQUIRE_FULL_MEMH failed: checked %0d / %0d y samples.",
-                 m, y_exp.size());
-        end
-      end
+    if (mode != MODE_OFF) begin
+      report("scoreboard_pairs_final");
     end
   end
 
-endmodule : scoreboard_y_stream
+endmodule : scoreboard_pairs
 
 `default_nettype wire
-
