@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-`default_nettype none
+`default_nettype wire
 
 // Arizona State University 
 // Capstone Senior Project
@@ -43,6 +43,7 @@ module t_recap_demo_top #(
   input  logic [1:0]  KEY,
   input  logic [9:0]  SW,
   output logic [9:0]  LEDR,
+  output logic        RST_N,
   output logic [6:0]  HEX0,
   output logic [6:0]  HEX1,
   output logic [6:0]  HEX2,
@@ -56,7 +57,7 @@ module t_recap_demo_top #(
   
   logic rst_n;
   assign rst_n = KEY[0]; // active-low reset button, so rst_n = KEY0
-
+  assign RST_N = rst_n;
   // Edge detect KEY1 press (active-low)
   logic key1_d, key1_dd;
   always_ff @(posedge CLOCK_50 or negedge rst_n) begin
@@ -78,7 +79,7 @@ module t_recap_demo_top #(
   assign mode_sel = SW[9:8];
 
   logic force_bypass;
-  assign force_bypass = (mode_sel == 2'b00);
+  assign force_bypass = (mode_sel === 2'b00) ? 1'b1 : 1'b0;
 
   logic [7:0] thresh8_manual;
   assign thresh8_manual = SW[7:0];
@@ -132,7 +133,8 @@ module t_recap_demo_top #(
   logic signed [N:0] u_center_wide;
   assign u_center_wide = $signed({1'b0, u_u}) - $signed(1 <<< (N-1));
   assign u_noise       = u_center_wide[N-1:0];
-
+  
+  logic signed [N-1:0] x_stream_raw;
   logic signed [N-1:0] x_stream;
   noise_shaper #(.N(N), .SHIFT(SHAPER_SHIFT), .STATE_W(N+12)) u_shaper (
     .clk      (CLOCK_50),
@@ -141,6 +143,8 @@ module t_recap_demo_top #(
     .in_noise (u_noise),
     .x_out    (x_stream)
   );
+
+   assign x_stream = x_stream_raw;
 
 
   // Pair assembly
@@ -152,7 +156,7 @@ module t_recap_demo_top #(
     .clk        (CLOCK_50),
     .rst_n      (rst_n),
     .en         (sample_en),
-    .x_in       (x_stream),
+    .x_in       (x_stream_raw),
     .pair_valid (pair_valid),
     .x0         (x0),
     .x1         (x1)
@@ -412,15 +416,17 @@ module noise_shaper #(
     next_state = state + delta;
   end
 
-  always_ff @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-      state <= '0;
-      x_out <= '0;
-    end else if (en) begin
-      state <= next_state;
-      x_out <= sat_to_N(next_state);
-    end
+ always_ff @(posedge clk or negedge rst_n) begin
+  if (!rst_n) begin
+    state <= '0;
+  end else if (en) begin
+    state <= next_state;
   end
+end
+
+always_comb begin
+  x_out = sat_to_N(next_state);
+end
 
 endmodule
 
