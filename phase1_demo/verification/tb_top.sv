@@ -36,7 +36,7 @@
 //   scoreboard_metrics.sv
 //   cov_phase1.sv
 //   sva_phase1_bind.sv
-//   board_driver_pkg.sv 
+//   board_driver.sv 
 //   test_base.sv
 //   test_bypass_lossless.sv
 //   test_golden_thresh16.sv
