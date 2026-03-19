@@ -107,7 +107,7 @@ package tests_mode_stress_pkg;
 
     function new(
       virtual board_if.tb             b,
-      virtual tap_if t,
+     virtual tap_if #(N, LFSR_W).mon t,
       string                          name = "test_mode_switch_stress"
     );
       int unsigned tmp;
