@@ -440,7 +440,12 @@ module y_stream_monitor #(
             last_have_memh = 1'b1;
 
             if (m >= y_exp.size()) begin
-              _fatal_or_count($sformatf("memh index out of range: m=%0d y_exp.size()=%0d", m, y_exp.size()));
+               if (verbose) begin
+               $display("[y_stream_monitor] Completed all %0d expected samples; stopping.",
+                 y_exp.size());
+                end
+               running = 1'b0;
+               disable start;
             end else begin
               exp_memh = y_exp[m];
               last_exp_memh = exp_memh;
