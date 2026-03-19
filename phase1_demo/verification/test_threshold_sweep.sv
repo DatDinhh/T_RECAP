@@ -89,7 +89,7 @@ package tests_sweep_pkg;
 
     function new(
       virtual board_if.tb             b,
-      virtual tap_if t,
+      virtual tap_if #(N, LFSR_W).mon t,
       string                          name = "test_threshold_sweep"
     );
       int unsigned tmp;
