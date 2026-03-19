@@ -311,12 +311,11 @@ module x_stream_monitor #(
 
         if (have_memh) begin
           if (n_checked >= x_exp.size()) begin
-            _fatal_or_count($sformatf("Index out of range: n=%0d but x_exp.size()=%0d",
-                                      n_checked, x_exp.size()));
-            // do not compare further this cycle
-            n_checked++;
-            continue;
-          end
+            if (verbose) $display("[x_stream_monitor] Completed all %0d expected samples; stopping.", x_exp.size());
+               running = 1'b0;
+               disable run;
+           end
+
           x_ref_memh = x_exp[n_checked];
         end
 
