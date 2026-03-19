@@ -108,7 +108,7 @@ package tests_clear_pkg;
 
     function new(
       virtual board_if.tb             b,
-      virtual tap_if t,
+      virtual tap_if #(N, LFSR_W).mon t,
       string                          name = "test_clear_metrics_midrun"
     );
       int unsigned tmp;
