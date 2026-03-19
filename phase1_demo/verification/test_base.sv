@@ -78,7 +78,7 @@ package test_pkg;
 
     // Virtual interfaces
     virtual board_if.tb                 b;
-    virtual tap_if     t;
+   virtual tap_if #(N, LFSR_W).mon t;
 
     // Driver (front panel agent)
     board_driver #(N, LFSR_W)           drv;
@@ -148,7 +148,7 @@ package test_pkg;
 
     function new(
       virtual board_if.tb             b,
-      virtual tap_if t,
+      virtual tap_if #(N, LFSR_W).mon t;
       string                          name = "test_base"
     );
       this.b    = b;
