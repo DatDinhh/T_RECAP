@@ -72,7 +72,7 @@ package tests_pkg;
 
     function new(
       virtual board_if.tb             b,
-      virtual tap_if t,
+      virtual tap_if #(N, LFSR_W).mon t,
       string                          name = "test_bypass_lossless"
     );
       super.new(b, t, name);
