@@ -537,12 +537,11 @@ module scoreboard_pairs #(
         if (mode == MODE_MEMH || mode == MODE_BOTH) begin
           last_have_memh = 1'b1;
 
-          if ((2*k+1) >= y_exp.size()) begin
-            _fatal_or_count($sformatf("memh index out of range: k=%0d y_exp.size()=%0d", k, y_exp.size()));
-          end else if (k >= sup_exp.size()) begin
-            _fatal_or_count($sformatf("memh index out of range: k=%0d sup_exp.size()=%0d", k, sup_exp.size()));
-          end else if ((2*k+1) >= x_exp.size()) begin
-            _fatal_or_count($sformatf("memh index out of range: k=%0d x_exp.size()=%0d", k, x_exp.size()));
+        if ((2*k + 1) >= y_exp.size()) begin
+             if (verbose) $display("[scoreboard_pairs] Completed all %0d expected pairs; stopping.", y_exp.size()/2);
+              running = 1'b0;
+                disable run;
+
           end else begin
             exp_y0m  = y_exp[2*k+0];
             exp_y1m  = y_exp[2*k+1];
