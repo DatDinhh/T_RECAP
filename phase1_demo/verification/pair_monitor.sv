@@ -406,7 +406,7 @@ module pair_monitor #(
         // self-check: suppression rule (if enabled and taps known)
         if (check_rule) begin
           if (^t.abs_d_tap !== 1'bX && ^t.thresh_used !== 1'bX && ^t.suppressed !== 1'bX) begin
-            rule_sup = (t.abs_d_tap < t.thresh_used);
+           rule_sup = (t.abs_d_tap < ((t.thresh_used=='0) ? '0 : (t.thresh_used-1'b1)));
             if (rule_sup !== t.suppressed) begin
               _fatal_or_count($sformatf("suppression rule mismatch: suppressed=%0d but (abs_d<thresh)=%0d  abs_d=%0d thresh=%0d",
                                         t.suppressed, rule_sup, t.abs_d_tap, t.thresh_used));
