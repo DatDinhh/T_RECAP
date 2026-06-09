@@ -1,0 +1,147 @@
+{
+  "schema": "trecap_phase2_suite_config_v1",
+  "suite_name": "signoff_full",
+  "description": "Expanded candidate signoff suite with multiple tones, leakage cases, near-threshold debug, noise, headroom, and short-tail stress.",
+  "lifecycle_status": "candidate_signoff_full",
+  "signoff_ready": false,
+  "contract": {
+    "spec_revision": "core_rev_j",
+    "tail_policy": "full_tail",
+    "rounding": "round_nearest_ties_away_from_zero",
+    "threshold_mapping": "raw_thr2",
+    "default_protection": {
+      "PROTECT_DC": 1,
+      "PROTECT_NYQ": 0
+    }
+  },
+  "default_vector_config_dir": "configs/vectors",
+  "default_artifact_root": "artifacts",
+  "recommended_make_targets": [
+    "coeffs",
+    "vectors-suite",
+    "golden-suite",
+    "check-artifacts",
+    "quality-bounds",
+    "freeze-release"
+  ],
+  "acceptance": {
+    "require_canonical_memh": true,
+    "require_manifest_hashes": true,
+    "require_exact_row_counts": true,
+    "require_json_schema_validation": true,
+    "require_frame_stats_for_every_vector": true,
+    "bin_stats_policy": "only_when_vector_requires_bin_stats",
+    "require_quality_bounds": true,
+    "require_thr2_zero_masks_for_no_suppression_vectors": true,
+    "require_no_internal_overflow_flags": true,
+    "require_release_manifest": true
+  },
+  "vector_selection": [
+    {
+      "name": "zero_Ns4096_thr0",
+      "class": "zero_input",
+      "required": true,
+      "requires_bin_stats": false,
+      "rationale": "Zero-input baseline."
+    },
+    {
+      "name": "no_suppression_multitone_Ns4096_thr0",
+      "class": "no_suppression_thr2_zero",
+      "required": true,
+      "requires_bin_stats": false,
+      "rationale": "Nonzero no-suppression baseline."
+    },
+    {
+      "name": "impulse_Ns1024_thr0",
+      "class": "impulse",
+      "required": true,
+      "requires_bin_stats": false,
+      "rationale": "Impulse alignment case."
+    },
+    {
+      "name": "step_Ns1024_thr0",
+      "class": "step",
+      "required": true,
+      "requires_bin_stats": false,
+      "rationale": "Step alignment case."
+    },
+    {
+      "name": "exact_bin_cosine_k16_Ns4096_thr0",
+      "class": "exact_bin_tone",
+      "required": true,
+      "requires_bin_stats": false,
+      "rationale": "Exact-bin lower/mid-band point."
+    },
+    {
+      "name": "exact_bin_cosine_k64_Ns4096_thr0",
+      "class": "exact_bin_tone",
+      "required": true,
+      "requires_bin_stats": false,
+      "rationale": "Additional exact-bin sweep point."
+    },
+    {
+      "name": "off_bin_sine_35_over_512_Ns4096_thr0",
+      "class": "off_bin_tone",
+      "required": true,
+      "requires_bin_stats": false,
+      "rationale": "Half-bin leakage sine."
+    },
+    {
+      "name": "off_bin_cosine_71_over_512_Ns4096_thr0",
+      "class": "off_bin_tone",
+      "required": true,
+      "requires_bin_stats": false,
+      "rationale": "Second off-bin leakage point."
+    },
+    {
+      "name": "near_threshold_multitone_Ns1024_thr64",
+      "class": "near_threshold_multitone",
+      "required": true,
+      "requires_bin_stats": true,
+      "rationale": "Short near-threshold debug case."
+    },
+    {
+      "name": "near_threshold_multitone_Ns4096_thr4096",
+      "class": "near_threshold_multitone",
+      "required": true,
+      "requires_bin_stats": true,
+      "rationale": "Long near-threshold debug case."
+    },
+    {
+      "name": "noise_xorshift32_Ns4096_thr4096",
+      "class": "noise_only_stream",
+      "required": true,
+      "requires_bin_stats": false,
+      "rationale": "Noise-only stream."
+    },
+    {
+      "name": "high_amplitude_headroom_Ns4096_thr0",
+      "class": "high_amplitude_headroom",
+      "required": true,
+      "requires_bin_stats": false,
+      "rationale": "High-amplitude headroom case."
+    },
+    {
+      "name": "short_impulse_Ns17_thr0",
+      "class": "short_finite_stream",
+      "required": true,
+      "requires_bin_stats": true,
+      "rationale": "Short finite stream with full-tail zero flush."
+    }
+  ],
+  "required_class_coverage": [
+    "zero_input",
+    "no_suppression_thr2_zero",
+    "impulse",
+    "step",
+    "exact_bin_tone",
+    "off_bin_tone",
+    "near_threshold_multitone",
+    "noise_only_stream",
+    "high_amplitude_headroom",
+    "short_finite_stream"
+  ],
+  "notes": [
+    "This file defines the intended full candidate suite. It becomes final signoff only after artifacts, hashes, quality bounds, and release manifest are frozen from it."
+  ]
+}

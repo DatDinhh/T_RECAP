@@ -1,0 +1,41 @@
+{
+  "schema": "trecap_phase2_vector_bundle_v1",
+  "bundle_name": "short_finite_stream",
+  "description": "Short finite stream forcing startup, zero flush, full-tail row counts, and delay alignment.",
+  "spec_revision": "core_rev_j",
+  "generator_version": "phase2_generators_revision_j",
+  "tail_policy": "full_tail",
+  "rounding": "round_nearest_ties_away_from_zero",
+  "threshold_mapping": "raw_thr2",
+  "default_protection": {
+    "PROTECT_DC": 1,
+    "PROTECT_NYQ": 0
+  },
+  "signoff_class": "short_finite_stream",
+  "review_status": "candidate_signoff_config",
+  "notes": [
+    "This file is a reviewed vector-config bundle. It is not a frozen test_vectors.json manifest.",
+    "Each vector instance becomes authoritative only after gen_vectors.py emits x_in.memh and test_vectors.json records canonical hashes."
+  ],
+  "vectors": [
+    {
+      "name": "short_impulse_Ns17_thr0",
+      "description": "Short finite stream that forces startup, zero flush, and full-tail scoring behavior.",
+      "Ns": 17,
+      "generator": "impulse",
+      "parameters": {
+        "index": 0,
+        "amplitude": 1024
+      },
+      "THR2": "0",
+      "PROTECT_DC": 1,
+      "PROTECT_NYQ": 0,
+      "tail_policy": "full_tail",
+      "rounding": "round_nearest_ties_away_from_zero",
+      "requires_bin_stats": true,
+      "class": "short_finite_stream",
+      "rationale": "Required short finite-stream full-tail vector with bin_stats.",
+      "lifecycle_status": "candidate_frozen_input_config"
+    }
+  ]
+}
