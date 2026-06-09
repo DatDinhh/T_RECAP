@@ -1,0 +1,80 @@
+name: artifact-check
+
+"on":
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "include/**"
+      - "src/**"
+      - "tools/**"
+      - "python/**"
+      - "configs/**"
+      - "spec/**"
+      - "scripts/regenerate_all.sh"
+      - "scripts/clean_outputs.sh"
+      - "CMakeLists.txt"
+      - "Makefile"
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: artifact-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke-artifacts:
+    name: generate and validate smoke artifacts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      CMAKE_BUILD_PARALLEL_LEVEL: "2"
+      PYTHONPATH: python
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+      SUITE: configs/suites/smoke.json
+      RELEASE_CONFIG: configs/releases/phase2_revJ_dev.json
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements.lock
+
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            cmake \
+            ninja-build
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.lock
+
+      - name: Regenerate smoke artifact tree
+        run: scripts/regenerate_all.sh --clean-first --suite "${SUITE}" --release-config "${RELEASE_CONFIG}"
+
+      - name: Check artifact tree
+        run: make check-artifacts
+
+      - name: Package artifacts
+        run: make package-artifacts
+
+      - name: Upload artifact package
+        uses: actions/upload-artifact@v4
+        with:
+          name: trecap-smoke-artifacts
+          path: |
+            out/*.tar.gz
+            out/*.zip
+            out/*.package_manifest.json
+          if-no-files-found: error
+          retention-days: 14

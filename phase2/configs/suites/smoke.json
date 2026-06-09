@@ -1,0 +1,65 @@
+{
+  "schema": "trecap_phase2_suite_config_v1",
+  "suite_name": "smoke",
+  "description": "Small deterministic suite for tool-flow smoke checks before any long signoff run.",
+  "lifecycle_status": "runnable_smoke",
+  "signoff_ready": false,
+  "contract": {
+    "spec_revision": "core_rev_j",
+    "tail_policy": "full_tail",
+    "rounding": "round_nearest_ties_away_from_zero",
+    "threshold_mapping": "raw_thr2",
+    "default_protection": {
+      "PROTECT_DC": 1,
+      "PROTECT_NYQ": 0
+    }
+  },
+  "default_vector_config_dir": "configs/vectors",
+  "default_artifact_root": "artifacts",
+  "recommended_make_targets": [
+    "coeffs",
+    "vectors-suite",
+    "golden-suite",
+    "check-artifacts"
+  ],
+  "acceptance": {
+    "require_canonical_memh": true,
+    "require_manifest_hashes": true,
+    "require_exact_row_counts": true,
+    "require_json_schema_validation": true,
+    "require_frame_stats_for_every_vector": true,
+    "bin_stats_policy": "only_when_vector_requires_bin_stats"
+  },
+  "vector_selection": [
+    {
+      "name": "zero_Ns4096_thr0",
+      "class": "zero_input",
+      "required": true,
+      "requires_bin_stats": false,
+      "rationale": "Confirms zero input stays zero through windowing, FFT/IFFT, WOLA, and final rounding."
+    },
+    {
+      "name": "impulse_Ns1024_thr0",
+      "class": "impulse",
+      "required": true,
+      "requires_bin_stats": false,
+      "rationale": "Exercises startup, flush, delay alignment, and full-tail geometry."
+    },
+    {
+      "name": "near_threshold_multitone_Ns1024_thr64",
+      "class": "near_threshold_multitone",
+      "required": true,
+      "requires_bin_stats": true,
+      "rationale": "Exercises threshold comparison and bin_stats plumbing on a short debug vector."
+    }
+  ],
+  "coverage_claims": [
+    "tool_flow",
+    "zero_input",
+    "startup_flush",
+    "near_threshold_debug"
+  ],
+  "notes": [
+    "This suite is intentionally not final signoff. It is for fast CI and workflow validation."
+  ]
+}

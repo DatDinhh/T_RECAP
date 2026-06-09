@@ -1,0 +1,61 @@
+{
+  "schema": "trecap_phase2_vector_config_v1",
+  "vector_name": "zero_Ns4096_thr0",
+  "configuration": {
+    "N": 12,
+    "L": 256,
+    "P": 8,
+    "H": 128,
+    "F": 15,
+    "G": 128,
+    "D": 384,
+    "Ns": 4096,
+    "Ny": 4608,
+    "frames": 33,
+    "THR2": "0",
+    "PROTECT_DC": 1,
+    "PROTECT_NYQ": 0
+  },
+  "contract": {
+    "fft_mode": "custom_radix2_dit_bitrev_in_natural_out",
+    "rounding_mode": "round_nearest_ties_away_from_zero",
+    "tail_policy": "full_tail",
+    "threshold_mapping": "raw_thr2",
+    "memh_encoding": "fixed_width_lowercase_hex_lf",
+    "hash_rule": "logical_integer_vector_fixed_width_hex_lf"
+  },
+  "widths": {
+    "W_Qw": 16,
+    "W_tw": 17,
+    "W_u": 27,
+    "W_fft": 28,
+    "W_fft_pre": 29,
+    "W_can_pre": 29,
+    "W_can": 28,
+    "W_mag2": 56,
+    "W_ifft": 36,
+    "W_z": 36,
+    "W_ola": 37
+  },
+  "hashes": {
+    "window_qw_sha256": "05bcfd74bea5fe075b56a5b83c9db53ea73c4b0f6d6f45348eda0a14cf41c4ed",
+    "twiddle_re_sha256": "84094f5e7e6bbdde3e4f458e1e5386af2d3c440f6154bcd8fbd415e521377944",
+    "twiddle_im_sha256": "d8b9c42a442e0dcaace24ec76ae28b41c29d7ad4df6e43aed1da0c1df818d1a0",
+    "twiddle_inv_re_sha256": "84094f5e7e6bbdde3e4f458e1e5386af2d3c440f6154bcd8fbd415e521377944",
+    "twiddle_inv_im_sha256": "2ffc1ad332cb48307073a57c8dc5367c95a33210e1f4216f1b96091695f12d20"
+  },
+  "stream_hashes": {
+    "x_in_sha256": "9024e2856ad4ac8e8f91940331cd492ee792e5d72a380e779b67562ab1227a26",
+    "y_out_sha256": "ac450f2a1f94c04e0b50a3641dc7bfffced0f4aa58bed510148e87c11846d7cf"
+  },
+  "artifact_rows": {
+    "window_qw": 256,
+    "twiddle_re": 256,
+    "twiddle_im": 256,
+    "twiddle_inv_re": 256,
+    "twiddle_inv_im": 256,
+    "x_in": 4096,
+    "y_out": 4608,
+    "frame_stats_data_rows": 33
+  }
+}
