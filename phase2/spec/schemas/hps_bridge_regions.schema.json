@@ -1,0 +1,489 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trecap.local/schemas/hps_bridge_regions.schema.json",
+  "title": "T-RECAP Phase 2 DE1-SoC Step-4 address-map source freeze",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema",
+    "project",
+    "board",
+    "contract_stage",
+    "status",
+    "address_map_freeze",
+    "board_profile",
+    "platform_designer",
+    "exports",
+    "internal_interfaces",
+    "required_clock_connections",
+    "bridges",
+    "regions",
+    "runtime_network",
+    "validation_rules"
+  ],
+  "properties": {
+    "schema": {
+      "const": "trecap_phase2_de1soc_hps_bridge_regions_v2"
+    },
+    "project": {
+      "const": "T_RECAP_Phase2"
+    },
+    "board": {
+      "const": "de1soc"
+    },
+    "contract_stage": {
+      "const": "step4_address_map_source_frozen"
+    },
+    "status": {
+      "const": "source_frozen_pending_sopcinfo_linux_reservation_and_board_revision_signoff"
+    },
+    "address_map_freeze": {
+      "$ref": "#/$defs/freeze"
+    },
+    "board_profile": {
+      "type": "object",
+      "required": [
+        "preset",
+        "source_revision",
+        "physical_board_revision_status"
+      ],
+      "properties": {
+        "preset": {
+          "const": "terasic_de1soc_revh_qp20_1_trecap_f2sdram64"
+        },
+        "source_revision": {
+          "const": "H"
+        },
+        "physical_board_revision_status": {
+          "const": "unverified_requires_board_label_confirmation"
+        }
+      }
+    },
+    "platform_designer": {
+      "type": "object",
+      "required": [
+        "system_name",
+        "contract_status",
+        "address_contract_status",
+        "quartus_release",
+        "qsys_api_version",
+        "hps_component_version",
+        "f2sdram_type",
+        "f2sdram_width_bits",
+        "sopcinfo_file",
+        "sopcinfo_source_package_policy"
+      ],
+      "properties": {
+        "system_name": {
+          "const": "system"
+        },
+        "contract_status": {
+          "const": "source_implemented_pending_quartus_normalization_generation_compile"
+        },
+        "address_contract_status": {
+          "const": "source_frozen_hardware_evidence_pending"
+        },
+        "quartus_release": {
+          "const": "20.1"
+        },
+        "qsys_api_version": {
+          "const": "16.0"
+        },
+        "hps_component_version": {
+          "const": "20.1"
+        },
+        "f2sdram_type": {
+          "const": "Avalon-MM Bidirectional"
+        },
+        "f2sdram_width_bits": {
+          "const": 64
+        },
+        "sopcinfo_file": {
+          "const": "platform/de1soc/qsys/system.sopcinfo"
+        },
+        "sopcinfo_source_package_policy": {
+          "const": "excluded_generated_hardware_evidence"
+        }
+      }
+    },
+    "required_clock_connections": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source",
+          "sink"
+        ],
+        "properties": {
+          "source": {
+            "const": "clk_0.clk"
+          },
+          "sink": {
+            "enum": [
+              "hps_0.f2h_sdram0_clock",
+              "hps_0.h2f_axi_clock",
+              "hps_0.f2h_axi_clock",
+              "hps_0.h2f_lw_axi_clock"
+            ]
+          }
+        }
+      }
+    },
+    "bridges": {
+      "type": "object",
+      "required": [
+        "csr_bridge",
+        "ddr_writer_bridge"
+      ],
+      "properties": {
+        "csr_bridge": {
+          "$ref": "#/$defs/csrBridge"
+        },
+        "ddr_writer_bridge": {
+          "$ref": "#/$defs/ddrBridge"
+        }
+      }
+    },
+    "regions": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/csrRegion"
+          },
+          {
+            "$ref": "#/$defs/ringRegion"
+          }
+        ]
+      }
+    },
+    "runtime_network": {
+      "type": "object",
+      "required": [
+        "pc_direct_ip",
+        "hps_direct_ip",
+        "netmask",
+        "telemetry_dst_port",
+        "command_listen_port",
+        "trusted_command_peer",
+        "transport_version_major",
+        "transport_version_minor"
+      ]
+    },
+    "validation_rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "$defs": {
+    "uint64": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "string",
+          "pattern": "^0x[0-9a-fA-F]{1,16}$"
+        }
+      ]
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "freeze": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "revision",
+        "scope",
+        "hardware_signoff",
+        "canonicalization",
+        "canonical_sha256",
+        "pinned_source_sha256"
+      ],
+      "properties": {
+        "revision": {
+          "const": "step4_address_map_v1"
+        },
+        "scope": {
+          "const": "source_only_structural_contract"
+        },
+        "hardware_signoff": {
+          "const": false
+        },
+        "canonicalization": {
+          "const": "trecap_address_map_semantic_projection_v1"
+        },
+        "canonical_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "pinned_source_sha256": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "spec/generated/csr_map.json",
+            "sw/hps/config/trecap_hps_config.json",
+            "platform/de1soc/qsys/system_blueprint.xml"
+          ],
+          "properties": {
+            "spec/generated/csr_map.json": {
+              "$ref": "#/$defs/sha256"
+            },
+            "sw/hps/config/trecap_hps_config.json": {
+              "$ref": "#/$defs/sha256"
+            },
+            "platform/de1soc/qsys/system_blueprint.xml": {
+              "$ref": "#/$defs/sha256"
+            }
+          }
+        }
+      }
+    },
+    "csrBridge": {
+      "type": "object",
+      "required": [
+        "export",
+        "hps_lw_base_phys",
+        "hps_lw_span_bytes",
+        "csr_offset_in_lw",
+        "csr_base_hps_phys",
+        "csr_span_bytes",
+        "address_translation",
+        "data_width_bits",
+        "master_byte_address_width_bits",
+        "csr_leaf_byte_address_width_bits",
+        "byte_order",
+        "access_alignment_bytes",
+        "full_decode_required",
+        "unused_aperture_policy"
+      ],
+      "properties": {
+        "export": {
+          "const": "trecap_csr_lw_master"
+        },
+        "hps_lw_base_phys": {
+          "const": "0x00000000ff200000"
+        },
+        "hps_lw_span_bytes": {
+          "const": 2097152
+        },
+        "csr_offset_in_lw": {
+          "const": "0x0000000000000000"
+        },
+        "csr_base_hps_phys": {
+          "const": "0x00000000ff200000"
+        },
+        "csr_span_bytes": {
+          "const": 4096
+        },
+        "address_translation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "policy",
+            "formula",
+            "offset_bytes"
+          ],
+          "properties": {
+            "policy": {
+              "const": "hps_lw_window_plus_offset"
+            },
+            "formula": {
+              "const": "csr_base_hps_phys = hps_lw_base_phys + csr_offset_in_lw"
+            },
+            "offset_bytes": {
+              "const": 0
+            }
+          }
+        },
+        "data_width_bits": {
+          "const": 32
+        },
+        "master_byte_address_width_bits": {
+          "const": 21
+        },
+        "csr_leaf_byte_address_width_bits": {
+          "const": 12
+        },
+        "byte_order": {
+          "const": "little_endian"
+        },
+        "access_alignment_bytes": {
+          "const": 4
+        },
+        "full_decode_required": {
+          "const": true
+        },
+        "unused_aperture_policy": {
+          "const": "unmapped_decode_error_no_csr_aliasing"
+        }
+      }
+    },
+    "ddrBridge": {
+      "type": "object",
+      "required": [
+        "export",
+        "out_of_range_policy",
+        "data_width_bits",
+        "byteenable_width_bits",
+        "burstcount_width_bits",
+        "current_burst_policy",
+        "waitrequest_policy",
+        "write_response_policy"
+      ],
+      "properties": {
+        "export": {
+          "const": "trecap_f2h_sdram0"
+        },
+        "data_width_bits": {
+          "const": 64
+        },
+        "byteenable_width_bits": {
+          "const": 8
+        },
+        "burstcount_width_bits": {
+          "const": 1
+        },
+        "current_burst_policy": {
+          "const": "single_beat_baseline_burstcount_1"
+        },
+        "out_of_range_policy": {
+          "const": "registered_one_cycle_slave_error_no_platform_designer_write"
+        },
+        "write_response_policy": {
+          "const": "generated_hps_f2sdram_has_no_write_response_legal_writes_idle_okay_wrapper_out_of_range_registered_one_cycle_slave_error_producer_commit_blocked"
+        }
+      }
+    },
+    "csrRegion": {
+      "type": "object",
+      "required": [
+        "name",
+        "kind",
+        "hps_physical_base",
+        "span_bytes",
+        "end_exclusive",
+        "offset_source",
+        "generated_hps_header",
+        "required_id_value",
+        "required_version_value",
+        "access"
+      ],
+      "properties": {
+        "name": {
+          "const": "trecap_csr_window"
+        },
+        "kind": {
+          "const": "csr"
+        },
+        "hps_physical_base": {
+          "const": "0x00000000ff200000"
+        },
+        "span_bytes": {
+          "const": 4096
+        },
+        "end_exclusive": {
+          "const": "0x00000000ff201000"
+        }
+      }
+    },
+    "ringRegion": {
+      "type": "object",
+      "required": [
+        "name",
+        "kind",
+        "hps_physical_base",
+        "fpga_visible_base",
+        "size_bytes",
+        "end_exclusive",
+        "guard_bytes",
+        "alignment_bytes",
+        "natural_alignment_bytes",
+        "minimum_size_bytes",
+        "power_of_two_size_required",
+        "linux_allocation_policy",
+        "hps_cache_policy",
+        "address_translation",
+        "record_contract",
+        "pointer_contract"
+      ],
+      "properties": {
+        "name": {
+          "const": "telemetry_ddr_ring"
+        },
+        "kind": {
+          "const": "ddr_ring"
+        },
+        "hps_physical_base": {
+          "const": "0x000000003e000000"
+        },
+        "fpga_visible_base": {
+          "const": "0x000000003e000000"
+        },
+        "size_bytes": {
+          "const": 33554432
+        },
+        "end_exclusive": {
+          "const": "0x0000000040000000"
+        },
+        "guard_bytes": {
+          "const": 64
+        },
+        "alignment_bytes": {
+          "const": 64
+        },
+        "natural_alignment_bytes": {
+          "const": 33554432
+        },
+        "minimum_size_bytes": {
+          "const": 1048576
+        },
+        "power_of_two_size_required": {
+          "const": true
+        },
+        "linux_allocation_policy": {
+          "const": "reserved_ddr_or_dma_coherent"
+        },
+        "hps_cache_policy": {
+          "const": "non_cacheable_or_explicit_invalidate"
+        },
+        "address_translation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "policy",
+            "fpga_to_hps_offset_bytes",
+            "required_boot_remap",
+            "evidence_status"
+          ],
+          "properties": {
+            "policy": {
+              "const": "identity"
+            },
+            "fpga_to_hps_offset_bytes": {
+              "const": 0
+            },
+            "required_boot_remap": {
+              "const": "non_mpu_address_zero_maps_to_sdram"
+            },
+            "evidence_status": {
+              "const": "pending_hardware_confirmation"
+            }
+          }
+        }
+      }
+    }
+  }
+}

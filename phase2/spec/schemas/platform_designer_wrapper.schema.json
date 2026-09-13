@@ -1,0 +1,498 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trecap.local/schemas/platform_designer_wrapper.schema.json",
+  "title": "T-RECAP Phase 2 DE1-SoC Step-6 Platform Designer wrapper source contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "file_class",
+    "project",
+    "board",
+    "contract_stage",
+    "status",
+    "implementation_state",
+    "source_ownership",
+    "csr_interface",
+    "ddr_interface",
+    "invalid_ddr_address_policy",
+    "reset_policy",
+    "platform_designer_graph",
+    "generated_system_contract",
+    "integration",
+    "evidence_policy",
+    "validation_rules"
+  ],
+  "properties": {
+    "schema": {
+      "const": "trecap_phase2_de1soc_platform_designer_wrapper_v1"
+    },
+    "file_class": {
+      "const": "[1] hand-written Step-6 interface contract"
+    },
+    "project": {
+      "const": "T_RECAP_Phase2"
+    },
+    "board": {
+      "const": "de1soc"
+    },
+    "contract_stage": {
+      "const": "step6_platform_designer_wrapper_source_implemented"
+    },
+    "status": {
+      "const": "source_implemented_pending_quartus_generation_compile_and_hardware_evidence"
+    },
+    "implementation_state": {
+      "$ref": "#/$defs/implementationState"
+    },
+    "source_ownership": {
+      "$ref": "#/$defs/sourceOwnership"
+    },
+    "csr_interface": {
+      "$ref": "#/$defs/csrInterface"
+    },
+    "ddr_interface": {
+      "$ref": "#/$defs/ddrInterface"
+    },
+    "invalid_ddr_address_policy": {
+      "$ref": "#/$defs/invalidDdrAddressPolicy"
+    },
+    "reset_policy": {
+      "$ref": "#/$defs/resetPolicy"
+    },
+    "platform_designer_graph": {
+      "$ref": "#/$defs/platformDesignerGraph"
+    },
+    "generated_system_contract": {
+      "$ref": "#/$defs/generatedSystemContract"
+    },
+    "integration": {
+      "$ref": "#/$defs/integration"
+    },
+    "evidence_policy": {
+      "$ref": "#/$defs/evidencePolicy"
+    },
+    "validation_rules": {
+      "type": "array",
+      "minItems": 12,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "$defs": {
+    "implementationState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wrapper_source_implemented",
+        "board_source_connected",
+        "qsys_source_bridges_connected",
+        "generated_system_present",
+        "normalized_qsys",
+        "quartus_compile",
+        "functional_verification",
+        "hardware_signoff"
+      ],
+      "properties": {
+        "wrapper_source_implemented": {"const": true},
+        "board_source_connected": {"const": true},
+        "qsys_source_bridges_connected": {"const": true},
+        "generated_system_present": {"const": false},
+        "normalized_qsys": {"const": false},
+        "quartus_compile": {"const": false},
+        "functional_verification": {"const": false},
+        "hardware_signoff": {"const": false}
+      }
+    },
+    "sourceOwnership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wrapper_rtl",
+        "board_top_rtl",
+        "clock_reset_controller",
+        "logical_top_rtl",
+        "ddr_ring_writer_rtl",
+        "qsys_generator",
+        "qsys_config",
+        "qsys_source",
+        "qsys_blueprint",
+        "generated_hdl_policy"
+      ],
+      "properties": {
+        "wrapper_rtl": {"const": "rtl/platform/de1soc/platform_designer_wrapper.sv"},
+        "board_top_rtl": {"const": "rtl/platform/de1soc/de1_soc_trecap_top.sv"},
+        "clock_reset_controller": {"const": "rtl/platform/de1soc/clock_reset_ctrl.sv"},
+        "logical_top_rtl": {"const": "rtl/top/trecap_de1soc_full_top.sv"},
+        "ddr_ring_writer_rtl": {"const": "rtl/hps_bridge/trecap_ddr_ring_writer.sv"},
+        "qsys_generator": {"const": "platform/de1soc/qsys/platform_designer.tcl"},
+        "qsys_config": {"const": "platform/de1soc/qsys/hps_config.tcl"},
+        "qsys_source": {"const": "platform/de1soc/qsys/system.qsys"},
+        "qsys_blueprint": {"const": "platform/de1soc/qsys/system_blueprint.xml"},
+        "generated_hdl_policy": {"const": "quartus_generated_never_hand_edit_or_substitute_with_source_stub"}
+      }
+    },
+    "csrInterface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "export_name",
+        "internal_path",
+        "address_unit",
+        "address_width_bits",
+        "data_width_bits",
+        "byteenable_width_bits",
+        "burstcount_width_bits",
+        "maximum_burst_beats",
+        "full_lightweight_aperture_preserved",
+        "full_response_channel",
+        "response_width_bits",
+        "response_signals"
+      ],
+      "properties": {
+        "export_name": {"const": "trecap_csr_lw_master"},
+        "internal_path": {"const": "hps_0.h2f_lw_axi_master_to_trecap_csr_bridge.s0_to_trecap_csr_bridge.m0"},
+        "address_unit": {"const": "byte"},
+        "address_width_bits": {"const": 21},
+        "data_width_bits": {"const": 32},
+        "byteenable_width_bits": {"const": 4},
+        "burstcount_width_bits": {"const": 1},
+        "maximum_burst_beats": {"const": 1},
+        "full_lightweight_aperture_preserved": {"const": true},
+        "full_response_channel": {"const": true},
+        "response_width_bits": {"const": 2},
+        "response_signals": {
+          "const": [
+            "waitrequest",
+            "readdata",
+            "readdatavalid",
+            "writeresponsevalid",
+            "response"
+          ]
+        }
+      }
+    },
+    "ddrInterface": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "export_name",
+        "internal_path",
+        "address_unit",
+        "repository_address_width_bits",
+        "repository_data_width_bits",
+        "repository_byteenable_width_bits",
+        "repository_burstcount_width_bits",
+        "wrapper_address_width_bits",
+        "platform_designer_data_width_bits",
+        "platform_designer_byteenable_width_bits",
+        "platform_designer_burstcount_width_bits",
+        "maximum_address_exclusive",
+        "legal_address_range",
+        "legal_write_waitrequest_source",
+        "platform_designer_write_response_channel_present",
+        "repository_local_response_generated",
+        "repository_local_response_kind",
+        "repository_local_response_latency_cycles_after_acceptance",
+        "repository_local_legal_response",
+        "repository_local_response_is_downstream_dram_completion",
+        "read_command_tie",
+        "unused_read_outputs"
+      ],
+      "properties": {
+        "export_name": {"const": "trecap_f2h_sdram0"},
+        "internal_path": {"const": "trecap_f2h_sdram_bridge.s0_to_trecap_f2h_sdram_bridge.m0_to_hps_0.f2h_sdram0_data"},
+        "address_unit": {"const": "byte"},
+        "repository_address_width_bits": {"const": 64},
+        "repository_data_width_bits": {"const": 64},
+        "repository_byteenable_width_bits": {"const": 8},
+        "repository_burstcount_width_bits": {"const": 1},
+        "wrapper_address_width_bits": {"const": 32},
+        "platform_designer_data_width_bits": {"const": 64},
+        "platform_designer_byteenable_width_bits": {"const": 8},
+        "platform_designer_burstcount_width_bits": {"const": 1},
+        "maximum_address_exclusive": {"const": "0x40000000"},
+        "legal_address_range": {"const": "[0x00000000,0x40000000)"},
+        "legal_write_waitrequest_source": {"const": "trecap_f2h_sdram0_waitrequest"},
+        "platform_designer_write_response_channel_present": {"const": false},
+        "repository_local_response_generated": {"const": true},
+        "repository_local_response_kind": {"const": "registered_bridge_acceptance_only"},
+        "repository_local_response_latency_cycles_after_acceptance": {"const": 1},
+        "repository_local_legal_response": {"const": "OKAY"},
+        "repository_local_response_is_downstream_dram_completion": {"const": false},
+        "read_command_tie": {"const": 0},
+        "unused_read_outputs": {
+          "const": [
+            "trecap_f2h_sdram0_readdata",
+            "trecap_f2h_sdram0_readdatavalid"
+          ]
+        }
+      }
+    },
+    "invalidDdrAddressPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "invalid_condition",
+        "waitrequest",
+        "writeresponsevalid",
+        "response",
+        "forward_write_to_platform_designer",
+        "silent_truncation_permitted",
+        "response_is_registered",
+        "response_latency_cycles_after_acceptance",
+        "response_same_cycle_as_acceptance",
+        "upstream_commit_guard"
+      ],
+      "properties": {
+        "invalid_condition": {"const": "avm_write_i_and_avm_address_i_greater_than_or_equal_to_0x0000000040000000"},
+        "waitrequest": {"const": 0},
+        "writeresponsevalid": {"const": 1},
+        "response": {"const": "SLVERR"},
+        "forward_write_to_platform_designer": {"const": false},
+        "silent_truncation_permitted": {"const": false},
+        "response_is_registered": {"const": true},
+        "response_latency_cycles_after_acceptance": {"const": 1},
+        "response_same_cycle_as_acceptance": {"const": false},
+        "upstream_commit_guard": {"const": "avmm_write_master_waits_for_final_success_response_before_ring_writer_commit"}
+      }
+    },
+    "resetPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_reset_owner",
+        "board_reset_input",
+        "board_reset_release_qualification_cycles",
+        "h2f_reset_input",
+        "generated_system_reset_input",
+        "generated_system_reset_input_scope",
+        "generated_h2f_reset_output",
+        "wrapper_bridge_reset_input",
+        "wrapper_h2f_reset_output",
+        "generated_system_reset_source",
+        "fabric_reset_combination",
+        "fabric_reset_output",
+        "wrapper_local_response_reset_source",
+        "synchronizer_module",
+        "clock_domain",
+        "board_top_reset_synchronizer_permitted",
+        "pseudo_domain_reset_outputs_permitted",
+        "asynchronous_assertion",
+        "synchronous_deassertion",
+        "h2f_reset_reaches_generated_bridge_reset",
+        "h2f_reset_reaches_hps_reset_input",
+        "transaction_state_reset_coherent",
+        "reset_feedback_loop_permitted"
+      ],
+      "properties": {
+        "canonical_reset_owner": {"const": "clock_reset_ctrl"},
+        "board_reset_input": {"const": "KEY[0]"},
+        "board_reset_release_qualification_cycles": {"const": 1000000},
+        "h2f_reset_input": {"const": "h2f_reset_n_i"},
+        "generated_system_reset_input": {"const": "reset_n_reset_n"},
+        "generated_system_reset_input_scope": {"const": "clk_0_reset_to_typed_avalon_bridges_only"},
+        "generated_h2f_reset_output": {"const": "h2f_reset_reset_n"},
+        "wrapper_bridge_reset_input": {"const": "bridge_reset_n_i"},
+        "wrapper_h2f_reset_output": {"const": "h2f_reset_n_o"},
+        "generated_system_reset_source": {"const": "rst_n_platform"},
+        "fabric_reset_combination": {"const": "qualified_KEY0_and_h2f_reset_n"},
+        "fabric_reset_output": {"const": "rst_n_platform"},
+        "wrapper_local_response_reset_source": {"const": "rst_n_platform"},
+        "synchronizer_module": {"const": "trecap_reset_sync"},
+        "clock_domain": {"const": "clk_fabric_from_CLOCK_50"},
+        "board_top_reset_synchronizer_permitted": {"const": false},
+        "pseudo_domain_reset_outputs_permitted": {"const": false},
+        "asynchronous_assertion": {"const": true},
+        "synchronous_deassertion": {"const": true},
+        "h2f_reset_reaches_generated_bridge_reset": {"const": true},
+        "h2f_reset_reaches_hps_reset_input": {"const": false},
+        "transaction_state_reset_coherent": {"const": true},
+        "reset_feedback_loop_permitted": {"const": false}
+      }
+    },
+    "avalonBridge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "instance",
+        "component_type",
+        "address_units",
+        "address_width_bits",
+        "data_width_bits",
+        "symbol_width_bits",
+        "max_burst_size",
+        "max_pending_responses",
+        "use_auto_address_width",
+        "use_response",
+        "base_address"
+      ],
+      "properties": {
+        "instance": {"type": "string", "minLength": 1},
+        "component_type": {"const": "altera_avalon_mm_bridge"},
+        "address_units": {"const": "SYMBOLS"},
+        "address_width_bits": {"type": "integer", "minimum": 1},
+        "data_width_bits": {"enum": [32, 64]},
+        "symbol_width_bits": {"const": 8},
+        "max_burst_size": {"const": 1},
+        "max_pending_responses": {"const": 1},
+        "use_auto_address_width": {"const": 0},
+        "use_response": {"enum": [0, 1]},
+        "base_address": {"const": "0x00000000"},
+        "upstream": {"type": "string", "minLength": 1},
+        "slave_interface": {"type": "string", "minLength": 1},
+        "exported_master_interface": {"type": "string", "minLength": 1},
+        "exported_slave_interface": {"type": "string", "minLength": 1},
+        "master_interface": {"type": "string", "minLength": 1},
+        "downstream": {"type": "string", "minLength": 1}
+      }
+    },
+    "platformDesignerGraph": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_graph_authority",
+        "checked_in_qsys_state",
+        "clock_source",
+        "bridge_reset_source",
+        "csr_bridge",
+        "ddr_bridge"
+      ],
+      "properties": {
+        "source_graph_authority": {"const": "platform/de1soc/qsys/platform_designer.tcl"},
+        "checked_in_qsys_state": {"const": "hand_written_bootstrap_not_normalized"},
+        "clock_source": {"const": "clk_0.clk"},
+        "bridge_reset_source": {"const": "clk_0.clk_reset"},
+        "csr_bridge": {
+          "allOf": [
+            {"$ref": "#/$defs/avalonBridge"},
+            {
+              "properties": {
+                "instance": {"const": "trecap_csr_bridge"},
+                "upstream": {"const": "hps_0.h2f_lw_axi_master"},
+                "slave_interface": {"const": "trecap_csr_bridge.s0"},
+                "exported_master_interface": {"const": "trecap_csr_bridge.m0"},
+                "address_width_bits": {"const": 21},
+                "data_width_bits": {"const": 32},
+                "use_response": {"const": 1}
+              },
+              "required": ["upstream", "slave_interface", "exported_master_interface"]
+            }
+          ]
+        },
+        "ddr_bridge": {
+          "allOf": [
+            {"$ref": "#/$defs/avalonBridge"},
+            {
+              "properties": {
+                "instance": {"const": "trecap_f2h_sdram_bridge"},
+                "exported_slave_interface": {"const": "trecap_f2h_sdram_bridge.s0"},
+                "master_interface": {"const": "trecap_f2h_sdram_bridge.m0"},
+                "downstream": {"const": "hps_0.f2h_sdram0_data"},
+                "address_width_bits": {"const": 32},
+                "data_width_bits": {"const": 64},
+                "use_response": {"const": 0}
+              },
+              "required": ["exported_slave_interface", "master_interface", "downstream"]
+            }
+          ]
+        }
+      }
+    },
+    "portDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["direction", "width_bits"],
+      "properties": {
+        "direction": {"enum": ["input", "output", "inout"]},
+        "width_bits": {"type": "integer", "minimum": 1}
+      }
+    },
+    "generatedSystemContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "module_name",
+        "instance_name",
+        "hdl_candidates",
+        "qip_file",
+        "sopcinfo_file",
+        "expected_flattened_abi"
+      ],
+      "properties": {
+        "module_name": {"const": "system"},
+        "instance_name": {"const": "u_platform_designer_system"},
+        "hdl_candidates": {
+          "const": [
+            "platform/de1soc/qsys/system/synthesis/system.v",
+            "platform/de1soc/qsys/system/synthesis/system.sv"
+          ]
+        },
+        "qip_file": {"const": "platform/de1soc/qsys/system/synthesis/system.qip"},
+        "sopcinfo_file": {"const": "platform/de1soc/qsys/system.sopcinfo"},
+        "expected_flattened_abi": {
+          "type": "object",
+          "minProperties": 94,
+          "maxProperties": 94,
+          "propertyNames": {"pattern": "^[A-Za-z_][A-Za-z0-9_]*$"},
+          "additionalProperties": {"$ref": "#/$defs/portDefinition"}
+        }
+      }
+    },
+    "integration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "wrapper_module",
+        "board_top_module",
+        "board_wrapper_instance",
+        "board_safe_idle_bus_stubs_permitted",
+        "wrapper_system_compatibility_stub_permitted",
+        "required_filelists"
+      ],
+      "properties": {
+        "wrapper_module": {"const": "platform_designer_wrapper"},
+        "board_top_module": {"const": "de1_soc_trecap_top"},
+        "board_wrapper_instance": {"const": "u_platform_designer_wrapper"},
+        "board_safe_idle_bus_stubs_permitted": {"const": false},
+        "wrapper_system_compatibility_stub_permitted": {"const": false},
+        "required_filelists": {
+          "const": [
+            "filelists/rtl_de1soc_full.f",
+            "filelists/quartus_de1soc.qsf.inc",
+            "scripts/gen_filelists.py"
+          ]
+        }
+      }
+    },
+    "evidencePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_checker",
+        "human_document",
+        "schema_file",
+        "default_checker_scope",
+        "generated_checker_option",
+        "generated_artifacts_are_local_build_products",
+        "source_check_is_functional_verification",
+        "source_check_is_quartus_compile_evidence",
+        "source_check_is_hardware_signoff"
+      ],
+      "properties": {
+        "source_checker": {"const": "scripts/check_platform_designer_wrapper.py"},
+        "human_document": {"const": "docs/architecture/platform_designer_wrapper.md"},
+        "schema_file": {"const": "spec/schemas/platform_designer_wrapper.schema.json"},
+        "default_checker_scope": {"const": "source_only"},
+        "generated_checker_option": {"const": "--require-generated"},
+        "generated_artifacts_are_local_build_products": {"const": true},
+        "source_check_is_functional_verification": {"const": false},
+        "source_check_is_quartus_compile_evidence": {"const": false},
+        "source_check_is_hardware_signoff": {"const": false}
+      }
+    }
+  }
+}

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+SPDX-License-Identifier: MIT
+T-RECAP Phase 2 DE1-SoC Platform Designer system source.
+File class: [1] hand-written bootstrap Platform Designer source.
+Layer: platform/de1soc/qsys/
+Owner: T-RECAP Phase 2 implementation.
+
+T_RECAP_BOOTSTRAP_QSYS_SOURCE=1
+
+This checked-in system.qsys is the first-run working bootstrap. The immutable
+contract is system_blueprint.xml plus platform_designer.tcl, hps_config.tcl, and
+the frozen preset. Run generate_system.sh in construct mode once in Quartus 20.1
+to replace this file with reviewed tool-normalized XML. Subsequent
+generate-mode runs reuse that normalized graph and never
+reconstruct or rewire it.
+
+Do not hand-edit generated Platform Designer HDL. Do not add FFT, IFFT, WOLA,
+mask, error computation, Ethernet software, UDP parsing, or dashboard behavior here.
+HPS Ethernet remains HPS-owned. FPGA fabric uses the exported CSR and FPGA-to-HPS
+DDR interfaces only.
+-->
+<system name="system" schema="trecap_phase2_platform_designer_bootstrap_v2">
+  <metadata key="file_class" value="[1] hand-written bootstrap Platform Designer source" />
+  <metadata key="project" value="T_RECAP_Phase2" />
+  <metadata key="board" value="de1soc" />
+  <metadata key="device_family" value="Cyclone V" />
+  <metadata key="device_part" value="5CSEMA5F31C6" />
+  <metadata key="contract_stage" value="step6_platform_designer_typed_bridges_source_implemented" />
+  <metadata key="contract_status" value="source_implemented_pending_quartus_normalization_generation_compile" />
+  <metadata key="board_revision_profile" value="rev_h" />
+  <metadata key="physical_board_revision_status" value="unverified_requires_board_label_confirmation" />
+  <metadata key="quartus_release" value="20.1" />
+  <metadata key="qsys_api_version" value="16.0" />
+  <metadata key="hps_component_version" value="20.1" />
+  <metadata key="hps_preset" value="platform/de1soc/qsys/presets/terasic_de1soc_revh_qp20_1_hps.tsv" />
+  <metadata key="hps_preset_parameter_count" value="520" />
+  <metadata key="hps_preset_applied_parameter_count" value="476" />
+  <metadata key="hps_preset_readback_parameter_count" value="44" />
+  <metadata key="hps_preset_application_sha256" value="02c6f1fc1bec86f960d3a7740f38f65ec3931c74458bf338f20c9b9f22f45076" />
+  <metadata key="hps_preset_effective_sha256" value="bf0dc533f1a141c2a3d91058501b19b0a6ef5b479619bb4829fe94bea60e0888" />
+  <metadata key="address_contract_stage" value="step4_address_map_source_frozen" />
+  <metadata key="address_contract_status" value="source_frozen_pending_sopcinfo_linux_reservation_and_board_revision_signoff" />
+  <metadata key="address_contract_file" value="platform/de1soc/address_map/hps_bridge_regions.json" />
+  <metadata key="sopcinfo_location_document" value="platform/de1soc/address_map/sopcinfo_location.md" />
+  <metadata key="address_status" value="source_frozen_hardware_evidence_pending" />
+  <metadata key="generator_authority" value="platform/de1soc/qsys/platform_designer.tcl" />
+  <metadata key="config_authority" value="platform/de1soc/qsys/hps_config.tcl" />
+  <metadata key="runtime_config" value="sw/hps/config/trecap_hps_config.json" />
+  <metadata key="bridge_regions" value="platform/de1soc/address_map/hps_bridge_regions.json" />
+  <metadata key="csr_offset_source" value="spec/generated/csr_map.json" />
+  <metadata key="packet_layout_source" value="spec/generated/packet_layouts.json" />
+  <metadata key="interface_type_source" value="spec/generated/interface_types.json" />
+  <metadata key="transport_version" value="1.8" />
+  <metadata key="h2f_lw_base_hps_phys" value="0xff200000" />
+  <metadata key="h2f_lw_span_bytes" value="2097152" />
+  <metadata key="h2f_lw_master_byte_address_width_bits" value="21" />
+  <metadata key="csr_leaf_byte_address_width_bits" value="12" />
+  <metadata key="csr_offset_in_lw" value="0" />
+  <metadata key="csr_full_decode_required" value="true" />
+  <metadata key="csr_hps_physical_base" value="0xff200000" />
+  <metadata key="csr_span_bytes" value="4096" />
+  <metadata key="csr_bridge_instance" value="trecap_csr_bridge" />
+  <metadata key="csr_bridge_export_internal" value="trecap_csr_bridge.m0" />
+  <metadata key="csr_bridge_connection_base_address" value="0x00000000" />
+  <metadata key="f2h_sdram_bridge_instance" value="trecap_f2h_sdram_bridge" />
+  <metadata key="f2h_sdram_export_internal" value="trecap_f2h_sdram_bridge.s0" />
+  <metadata key="f2h_sdram_bridge_connection_base_address" value="0x00000000" />
+  <metadata key="f2h_sdram_bridge_byte_address_width_bits" value="32" />
+  <metadata key="ring_base_hps_phys" value="0x3e000000" />
+  <metadata key="ring_base_fpga_visible" value="0x3e000000" />
+  <metadata key="ring_size_bytes" value="33554432" />
+  <metadata key="ring_alignment_bytes" value="64" />
+  <metadata key="telemetry_udp_port" value="5005" />
+  <metadata key="command_udp_port" value="5006" />
+  <metadata key="pc_direct_ip" value="192.168.10.1" />
+  <metadata key="hps_direct_ip" value="192.168.10.2" />
+
+  <planned_instances>
+    <instance name="clk_0" kind="clock_source" role="50 MHz fabric clock source">
+      <parameter name="clockFrequency" value="50000000" />
+      <parameter name="clockFrequencyKnown" value="true" />
+      <parameter name="resetSynchronousEdges" value="NONE" />
+      <export name="clk_50" internal="clk_0.clk_in" kind="clock" direction="end" />
+      <export name="reset_n" internal="clk_0.clk_in_reset" kind="reset" direction="end" />
+    </instance>
+    <instance name="hps_0" kind="altera_hps" version="20.1" role="Cyclone V HPS boundary; TSV freezes 520 values, applies 476, and classifies 44 as tool-derived readback-only">
+      <parameter name="EMAC1_Mode" value="RGMII" />
+      <parameter name="EMAC1_PinMuxing" value="HPS I/O Set 0" />
+      <parameter name="F2SDRAM_Type" value="Avalon-MM Bidirectional" />
+      <parameter name="F2SDRAM_Width" value="64" />
+      <parameter name="HARD_EMIF" value="true" />
+      <parameter name="HHP_HPS" value="true" />
+      <parameter name="LWH2F_Enable" value="true" />
+      <parameter name="MPU_EVENTS_Enable" value="false" />
+      <parameter name="SDIO_Mode" value="4-bit Data" />
+      <parameter name="SDIO_PinMuxing" value="HPS I/O Set 0" />
+      <parameter name="UART0_Mode" value="No Flow Control" />
+      <parameter name="UART0_PinMuxing" value="HPS I/O Set 0" />
+      <parameter name="USB1_Mode" value="SDR" />
+      <parameter name="USB1_PinMuxing" value="HPS I/O Set 0" />
+      <export name="hps_io" internal="hps_0.hps_io" kind="conduit" direction="end" />
+      <export name="memory" internal="hps_0.memory" kind="conduit" direction="end" />
+      <export name="h2f_reset" internal="hps_0.h2f_reset" kind="reset" direction="start" />
+    </instance>
+    <instance name="trecap_csr_bridge" kind="altera_avalon_mm_bridge" version="20.1" role="32-bit, 21-bit byte-addressed CSR boundary">
+      <parameter name="ADDRESS_UNITS" value="SYMBOLS" />
+      <parameter name="ADDRESS_WIDTH" value="21" />
+      <parameter name="DATA_WIDTH" value="32" />
+      <parameter name="LINEWRAPBURSTS" value="0" />
+      <parameter name="MAX_BURST_SIZE" value="1" />
+      <parameter name="MAX_PENDING_RESPONSES" value="1" />
+      <parameter name="PIPELINE_COMMAND" value="0" />
+      <parameter name="PIPELINE_RESPONSE" value="0" />
+      <parameter name="SYMBOL_WIDTH" value="8" />
+      <parameter name="USE_AUTO_ADDRESS_WIDTH" value="0" />
+      <parameter name="USE_RESPONSE" value="1" />
+      <export name="trecap_csr_lw_master" internal="trecap_csr_bridge.m0" kind="avalon" direction="start" />
+    </instance>
+    <instance name="trecap_f2h_sdram_bridge" kind="altera_avalon_mm_bridge" version="20.1" role="64-bit, 32-bit byte-addressed FPGA-to-HPS SDRAM boundary">
+      <parameter name="ADDRESS_UNITS" value="SYMBOLS" />
+      <parameter name="ADDRESS_WIDTH" value="32" />
+      <parameter name="DATA_WIDTH" value="64" />
+      <parameter name="LINEWRAPBURSTS" value="0" />
+      <parameter name="MAX_BURST_SIZE" value="1" />
+      <parameter name="MAX_PENDING_RESPONSES" value="1" />
+      <parameter name="PIPELINE_COMMAND" value="1" />
+      <parameter name="PIPELINE_RESPONSE" value="1" />
+      <parameter name="SYMBOL_WIDTH" value="8" />
+      <parameter name="USE_AUTO_ADDRESS_WIDTH" value="0" />
+      <parameter name="USE_RESPONSE" value="0" />
+      <export name="trecap_f2h_sdram0" internal="trecap_f2h_sdram_bridge.s0" kind="avalon" direction="end" />
+    </instance>
+  </planned_instances>
+
+  <planned_connections>
+    <connection source="clk_0.clk" sink="hps_0.f2h_sdram0_clock" role="hps_bridge_clock" />
+    <connection source="clk_0.clk" sink="hps_0.h2f_axi_clock" role="hps_bridge_clock" />
+    <connection source="clk_0.clk" sink="hps_0.f2h_axi_clock" role="hps_bridge_clock" />
+    <connection source="clk_0.clk" sink="hps_0.h2f_lw_axi_clock" role="hps_bridge_clock" />
+    <connection source="clk_0.clk" sink="trecap_csr_bridge.clk" role="typed_bridge_clock" />
+    <connection source="clk_0.clk_reset" sink="trecap_csr_bridge.reset" role="typed_bridge_reset" />
+    <connection source="hps_0.h2f_lw_axi_master" sink="trecap_csr_bridge.s0" role="csr_bridge_upstream" baseAddress="0x00000000" />
+    <connection source="clk_0.clk" sink="trecap_f2h_sdram_bridge.clk" role="typed_bridge_clock" />
+    <connection source="clk_0.clk_reset" sink="trecap_f2h_sdram_bridge.reset" role="typed_bridge_reset" />
+    <connection source="trecap_f2h_sdram_bridge.m0" sink="hps_0.f2h_sdram0_data" role="f2h_sdram_bridge_downstream" baseAddress="0x00000000" />
+  </planned_connections>
+
+  <integration_contract>
+    <rule id="no_fpga_ethernet" value="Ethernet is HPS-owned. FPGA fabric shall not implement UDP or Ethernet MAC here." />
+    <rule id="no_signal_processing_on_hps" value="HPS may transport and control only. FFT, IFFT, WOLA, mask, and error computation remain in FPGA fabric." />
+    <rule id="csr_constants" value="CSR offsets come from generated headers derived from spec/generated/csr_map.json." />
+    <rule id="csr_full_decode" value="The 4 KiB CSR subwindow at offset zero shall be fully decoded inside the 2 MiB lightweight aperture; unused addresses must not alias the CSR bank." />
+    <rule id="ring_base" value="RING_BASE is FPGA-visible bus address, not Linux userspace virtual address." />
+    <rule id="platform_generated_policy" value="Generated Platform Designer HDL shall not be hand-edited." />
+    <rule id="source_freeze_boundary" value="This bootstrap records the source-implemented typed bridge graph; Quartus normalization, generation, compile, SOPCINFO review, and hardware evidence remain required before signoff." />
+  </integration_contract>
+</system>

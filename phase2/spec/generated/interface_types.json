@@ -1,0 +1,592 @@
+{
+  "schema": "trecap_phase2_interface_types_v1",
+  "project": "T_RECAP_Phase2",
+  "file_class": "[1] hand-written source-of-truth contract",
+  "contract_stage": "R1 generated-contract source input",
+  "source_spec": {
+    "active_pdf": "docs/specs/doneeeeeeeeee.pdf",
+    "clean_repo_name_if_renamed": "docs/specs/t_recap_phase2_integrated_spec.pdf",
+    "algorithm_revision": "Core Revision J",
+    "transport_revision": "Telemetry Revision G",
+    "repository_revision": "Architecture Revision D"
+  },
+  "repository_docs": [
+    "docs/architecture/generated_contracts.md",
+    "docs/architecture/generated_header_flow.md",
+    "docs/architecture/interface_contracts.md",
+    "docs/architecture/module_api.md",
+    "docs/architecture/dependency_rules.md",
+    "docs/architecture/memory_map.md",
+    "docs/bringup/ddr_ring_bringup.md",
+    "docs/bringup/hps_ethernet_bringup.md",
+    "docs/bringup/pc_dashboard_bringup.md"
+  ],
+  "edit_policy": {
+    "this_file_is_hand_written": true,
+    "generated_outputs_must_not_be_hand_edited": true,
+    "generator": "scripts/gen_headers.py",
+    "drift_check": "make check-generated",
+    "line_endings": "LF",
+    "json_format": "strict JSON, two-space indentation, deterministic key order where practical"
+  },
+  "generated_outputs": {
+    "rtl_sv": [
+      "rtl/include/generated/trecap_iface_pkg.sv"
+    ]
+  },
+  "package": {
+    "name": "trecap_iface_pkg",
+    "sv_output": "rtl/include/generated/trecap_iface_pkg.sv",
+    "imports": [
+      "trecap_core_pkg::*",
+      "trecap_packet_pkg::*"
+    ],
+    "purpose": "Shared packed structs and interface-type constants used by sources, core, telemetry, and HPS bridge layers."
+  },
+  "naming_contract": {
+    "clock": [
+      "clk",
+      "clk_core",
+      "clk_csr",
+      "clk_avmm"
+    ],
+    "reset": [
+      "rst_n",
+      "rst_core_n",
+      "rst_csr_n",
+      "rst_avmm_n"
+    ],
+    "ready_valid": [
+      "in_valid",
+      "in_ready",
+      "in_payload",
+      "out_valid",
+      "out_ready",
+      "out_payload"
+    ],
+    "valid_only_taps": "tap_*_valid plus payload; no tap_*_ready into core"
+  },
+  "primitive_width_aliases": [
+    {
+      "name": "trecap_sample_t_data",
+      "sv_type": "logic signed [T_SAMPLE_W-1:0]",
+      "description": "External signed sample data."
+    },
+    {
+      "name": "trecap_sample_idx_t",
+      "sv_type": "logic [63:0]",
+      "description": "Accepted-sample index."
+    },
+    {
+      "name": "trecap_frame_idx_t",
+      "sv_type": "logic [63:0]",
+      "description": "STFT frame index."
+    },
+    {
+      "name": "trecap_thr2_t",
+      "sv_type": "logic [T_MAG2_W-1:0]",
+      "description": "Unsigned magnitude-squared threshold; baseline width 56."
+    },
+    {
+      "name": "trecap_wave_i16_t",
+      "sv_type": "logic signed [15:0]",
+      "description": "Display/transport waveform scalar used by WAVE payload."
+    },
+    {
+      "name": "trecap_u16_t",
+      "sv_type": "logic [15:0]",
+      "description": "Unsigned 16-bit display scalar."
+    },
+    {
+      "name": "trecap_u32_t",
+      "sv_type": "logic [31:0]",
+      "description": "Unsigned 32-bit status/counter low word."
+    },
+    {
+      "name": "trecap_u64_t",
+      "sv_type": "logic [63:0]",
+      "description": "Unsigned 64-bit index, pointer, or counter low word."
+    }
+  ],
+  "enums": [
+    {
+      "name": "trecap_packet_type_e",
+      "base_sv_type": "logic [15:0]",
+      "source": "packet_layouts.json packet_types",
+      "values": [
+        {
+          "name": "TPKT_WAVE",
+          "value_hex": "16'h0001"
+        },
+        {
+          "name": "TPKT_SPEC64",
+          "value_hex": "16'h0002"
+        },
+        {
+          "name": "TPKT_SPEC129",
+          "value_hex": "16'h0003"
+        },
+        {
+          "name": "TPKT_METRICS",
+          "value_hex": "16'h0004"
+        },
+        {
+          "name": "TPKT_STATUS",
+          "value_hex": "16'h0005"
+        },
+        {
+          "name": "TPKT_PEAKS",
+          "value_hex": "16'h0006",
+          "reserved_disabled": true
+        },
+        {
+          "name": "TPKT_DEBUG",
+          "value_hex": "16'h007e",
+          "reserved_disabled": true
+        },
+        {
+          "name": "TPKT_WRAP",
+          "value_hex": "16'h007f"
+        }
+      ]
+    },
+    {
+      "name": "trecap_source_mode_e",
+      "base_sv_type": "logic [1:0]",
+      "source": "csr_map.json source_mode",
+      "values": [
+        {
+          "name": "TSRC_BRAM_REPLAY",
+          "value_hex": "2'd0"
+        },
+        {
+          "name": "TSRC_ADC_LIVE",
+          "value_hex": "2'd1"
+        },
+        {
+          "name": "TSRC_AUDIO_WRAPPER",
+          "value_hex": "2'd2"
+        },
+        {
+          "name": "TSRC_DIAGNOSTIC",
+          "value_hex": "2'd3"
+        }
+      ]
+    },
+    {
+      "name": "trecap_spec_mode_e",
+      "base_sv_type": "logic [1:0]",
+      "source": "csr_map.json spec_mode",
+      "values": [
+        {
+          "name": "TSPEC_DISABLED",
+          "value_hex": "2'd0"
+        },
+        {
+          "name": "TSPEC_SPEC64",
+          "value_hex": "2'd1"
+        },
+        {
+          "name": "TSPEC_SPEC129",
+          "value_hex": "2'd2"
+        }
+      ]
+    }
+  ],
+  "structs": [
+    {
+      "name": "trecap_sample_t",
+      "packed": true,
+      "description": "Core sample payload from a source adapter into the core boundary.",
+      "fields": [
+        {
+          "name": "valid",
+          "sv_type": "logic",
+          "width": 1
+        },
+        {
+          "name": "data",
+          "sv_type": "logic signed [T_SAMPLE_W-1:0]",
+          "signed": true,
+          "width_expr": "T_SAMPLE_W"
+        },
+        {
+          "name": "sample_idx",
+          "sv_type": "logic [63:0]",
+          "width": 64
+        }
+      ],
+      "rules": [
+        "sample_idx is accepted-sample index, not clock-cycle count",
+        "source identity is not encoded in this struct"
+      ]
+    },
+    {
+      "name": "trecap_frame_event_t",
+      "packed": true,
+      "description": "Frame trigger event emitted by the frame scheduler.",
+      "fields": [
+        {
+          "name": "valid",
+          "sv_type": "logic",
+          "width": 1
+        },
+        {
+          "name": "frame_idx",
+          "sv_type": "logic [63:0]",
+          "width": 64
+        },
+        {
+          "name": "trigger_sample_idx",
+          "sv_type": "logic [63:0]",
+          "width": 64
+        }
+      ],
+      "rules": [
+        "frame event occurs every H accepted samples",
+        "trigger_sample_idx is the positive multiple of H that triggered the frame"
+      ]
+    },
+    {
+      "name": "trecap_frame_stats_t",
+      "packed": true,
+      "description": "Per-frame suppression and kept-energy display statistics.",
+      "fields": [
+        {
+          "name": "unique_bins",
+          "sv_type": "logic [31:0]",
+          "width": 32
+        },
+        {
+          "name": "unique_suppressed_bins",
+          "sv_type": "logic [31:0]",
+          "width": 32
+        },
+        {
+          "name": "eligible_unique_bins",
+          "sv_type": "logic [31:0]",
+          "width": 32
+        },
+        {
+          "name": "eligible_suppressed_bins",
+          "sv_type": "logic [31:0]",
+          "width": 32
+        },
+        {
+          "name": "eligible_kept_mag2_lo",
+          "sv_type": "logic [63:0]",
+          "width": 64
+        },
+        {
+          "name": "eligible_total_mag2_lo",
+          "sv_type": "logic [63:0]",
+          "width": 64
+        },
+        {
+          "name": "mag2_truncated",
+          "sv_type": "logic",
+          "width": 1
+        }
+      ],
+      "rules": [
+        "low-word fields are display/telemetry words, not full signoff arbitrary-precision counters",
+        "mag2_truncated indicates omitted high bits or display truncation"
+      ]
+    },
+    {
+      "name": "trecap_wave_triplet_t",
+      "packed": true,
+      "description": "One WAVE payload display sample triple.",
+      "fields": [
+        {
+          "name": "xdel",
+          "sv_type": "logic signed [15:0]",
+          "width": 16,
+          "signed": true
+        },
+        {
+          "name": "yout",
+          "sv_type": "logic signed [15:0]",
+          "width": 16,
+          "signed": true
+        },
+        {
+          "name": "err",
+          "sv_type": "logic signed [15:0]",
+          "width": 16,
+          "signed": true
+        }
+      ],
+      "rules": [
+        "xdel is x[n-D] for the represented output sample",
+        "err is xdel-yout in display units"
+      ]
+    },
+    {
+      "name": "trecap_record_meta_t",
+      "packed": true,
+      "description": "Metadata carried with a formatted telemetry record before DDR record building.",
+      "fields": [
+        {
+          "name": "valid",
+          "sv_type": "logic",
+          "width": 1
+        },
+        {
+          "name": "packet_type",
+          "sv_type": "trecap_packet_type_e",
+          "width": 16
+        },
+        {
+          "name": "flags",
+          "sv_type": "logic [15:0]",
+          "width": 16
+        },
+        {
+          "name": "seq",
+          "sv_type": "logic [31:0]",
+          "width": 32
+        },
+        {
+          "name": "timestamp",
+          "sv_type": "logic [63:0]",
+          "width": 64
+        },
+        {
+          "name": "payload_bytes",
+          "sv_type": "logic [15:0]",
+          "width": 16
+        },
+        {
+          "name": "drop_priority",
+          "sv_type": "logic [1:0]",
+          "width": 2
+        }
+      ],
+      "rules": [
+        "metadata and payload commit shall be atomic at record boundary",
+        "payload_bytes is internally 16 bits because every legal Revision G UDP payload fits below 1168 bytes",
+        "DDR/UDP header zero-extends payload_bytes to uint32",
+        "drop_priority 0=WAVE, 1=SPEC64/SPEC129, 2=METRICS, 3=STATUS"
+      ]
+    },
+    {
+      "name": "trecap_core_tap_sample_t",
+      "packed": true,
+      "description": "Valid-only sample tap from the core to telemetry. This shall never backpressure the core.",
+      "fields": [
+        {
+          "name": "valid",
+          "sv_type": "logic",
+          "width": 1
+        },
+        {
+          "name": "x_delayed",
+          "sv_type": "logic signed [T_SAMPLE_W-1:0]",
+          "width_expr": "T_SAMPLE_W",
+          "signed": true
+        },
+        {
+          "name": "y_out",
+          "sv_type": "logic signed [T_SAMPLE_W-1:0]",
+          "width_expr": "T_SAMPLE_W",
+          "signed": true
+        },
+        {
+          "name": "error_i16",
+          "sv_type": "logic signed [15:0]",
+          "width": 16,
+          "signed": true
+        },
+        {
+          "name": "sample_idx",
+          "sv_type": "logic [63:0]",
+          "width": 64
+        }
+      ],
+      "rules": [
+        "no ready field is allowed",
+        "telemetry drops are counted outside the core"
+      ]
+    },
+    {
+      "name": "trecap_core_tap_frame_t",
+      "packed": true,
+      "description": "Valid-only frame tap from the core to telemetry.",
+      "fields": [
+        {
+          "name": "valid",
+          "sv_type": "logic",
+          "width": 1
+        },
+        {
+          "name": "frame_idx",
+          "sv_type": "logic [63:0]",
+          "width": 64
+        },
+        {
+          "name": "stats",
+          "sv_type": "trecap_frame_stats_t"
+        }
+      ],
+      "rules": [
+        "no ready field is allowed",
+        "frame stats are captured from post-protection mask semantics"
+      ]
+    },
+    {
+      "name": "trecap_hps_bridge_ctrl_t",
+      "packed": true,
+      "description": "Decoded CSR control values consumed by telemetry and HPS bridge layers.",
+      "fields": [
+        {
+          "name": "telemetry_enable",
+          "sv_type": "logic",
+          "width": 1
+        },
+        {
+          "name": "ring_writer_enable",
+          "sv_type": "logic",
+          "width": 1
+        },
+        {
+          "name": "clear_metrics_w1p",
+          "sv_type": "logic",
+          "width": 1
+        },
+        {
+          "name": "thr2_active",
+          "sv_type": "logic [T_MAG2_W-1:0]",
+          "width_expr": "T_MAG2_W"
+        },
+        {
+          "name": "packet_enable",
+          "sv_type": "logic [31:0]",
+          "width": 32
+        },
+        {
+          "name": "wave_decim",
+          "sv_type": "logic [15:0]",
+          "width": 16
+        },
+        {
+          "name": "spec_mode",
+          "sv_type": "trecap_spec_mode_e",
+          "width": 2
+        },
+        {
+          "name": "spec_shift",
+          "sv_type": "logic [5:0]",
+          "width": 6
+        },
+        {
+          "name": "source_mode",
+          "sv_type": "trecap_source_mode_e",
+          "width": 2
+        }
+      ],
+      "rules": [
+        "THR2 and source-mode updates enter this struct only after safe commit",
+        "do not feed raw low/high CSR halves into the core"
+      ]
+    },
+    {
+      "name": "trecap_ring_config_t",
+      "packed": true,
+      "description": "Committed FPGA-visible DDR ring configuration.",
+      "fields": [
+        {
+          "name": "configured",
+          "sv_type": "logic",
+          "width": 1
+        },
+        {
+          "name": "base_addr",
+          "sv_type": "logic [63:0]",
+          "width": 64
+        },
+        {
+          "name": "size_bytes",
+          "sv_type": "logic [31:0]",
+          "width": 32
+        },
+        {
+          "name": "size_mask",
+          "sv_type": "logic [31:0]",
+          "width": 32
+        }
+      ],
+      "rules": [
+        "base_addr is FPGA-visible, not Linux virtual",
+        "size_bytes is power-of-two and multiple of 64",
+        "size_mask is size_bytes-1 when configured"
+      ]
+    }
+  ],
+  "sv_interfaces_to_write_later": [
+    {
+      "file": "rtl/interfaces/trecap_sample_if.sv",
+      "primary_payload": "trecap_sample_t",
+      "direction": "sources_to_core",
+      "flow_control": "valid-only or sample-enable controlled; no transport backpressure"
+    },
+    {
+      "file": "rtl/interfaces/trecap_frame_if.sv",
+      "primary_payload": "trecap_frame_event_t",
+      "direction": "frame_scheduler_to_core_blocks",
+      "flow_control": "valid-only inside core schedule"
+    },
+    {
+      "file": "rtl/interfaces/trecap_core_tap_if.sv",
+      "primary_payloads": [
+        "trecap_core_tap_sample_t",
+        "trecap_core_tap_frame_t"
+      ],
+      "direction": "core_to_telemetry",
+      "flow_control": "valid-only; no ready into core"
+    },
+    {
+      "file": "rtl/interfaces/trecap_record_if.sv",
+      "primary_payload": "trecap_record_meta_t plus payload bytes or payload RAM reference",
+      "direction": "telemetry_to_hps_bridge",
+      "flow_control": "ready/valid allowed outside core"
+    },
+    {
+      "file": "rtl/interfaces/trecap_csr_if.sv",
+      "primary_payload": "32-bit little-endian CSR bus abstraction",
+      "direction": "HPS_to_CSR_bank",
+      "flow_control": "platform-specific bridge adapter"
+    },
+    {
+      "file": "rtl/interfaces/trecap_avmm_if.sv",
+      "primary_payload": "Avalon-MM write channel abstraction",
+      "direction": "DDR_ring_writer_to_platform",
+      "flow_control": "waitrequest handled in HPS bridge/domain only"
+    }
+  ],
+  "core_tap_signal_contract": [
+    "tap_sample_valid",
+    "tap_x_delayed",
+    "tap_y_out",
+    "tap_error",
+    "tap_sample_idx",
+    "tap_frame_valid",
+    "tap_frame_idx",
+    "tap_mag2_unique_bins",
+    "tap_mask_unique_bins",
+    "tap_frame_stats"
+  ],
+  "cdc_and_flow_rules": [
+    "Core taps are valid-only and shall never return ready/backpressure into sample path, frame scheduler, FFT/IFFT, WOLA, or core metrics.",
+    "Ready/valid is allowed between packetizers, packet FIFOs, and record builders.",
+    "Multi-bit clock-domain crossings use async FIFO, snapshot/commit, Gray-coded counter protocol, or documented equivalent.",
+    "Reset deassertion is synchronized per clock domain.",
+    "HPS-written core-affecting controls use shadow/commit and safe-boundary update."
+  ],
+  "generation_notes": [
+    "trecap_packet_type_e values shall be generated from packet_layouts.json, not duplicated manually.",
+    "trecap_source_mode_e and trecap_spec_mode_e values shall be generated from csr_map.json.",
+    "Struct declarations shall be emitted in dependency order: enums, primitive aliases, leaf structs, aggregate structs.",
+    "Generated SystemVerilog shall use packed structs, logic types, and an AUTO-GENERATED - DO NOT EDIT banner."
+  ]
+}

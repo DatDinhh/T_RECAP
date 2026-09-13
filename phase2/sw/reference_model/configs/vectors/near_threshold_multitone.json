@@ -1,0 +1,90 @@
+{
+  "schema": "trecap_phase2_vector_bundle_v1",
+  "bundle_name": "near_threshold_multitone",
+  "description": "Near-threshold multitone vectors for unsigned THR2 comparisons, Hermitian-pair consistency, and bin_stats debugging.",
+  "spec_revision": "core_rev_j",
+  "generator_version": "phase2_generators_revision_j",
+  "tail_policy": "full_tail",
+  "rounding": "round_nearest_ties_away_from_zero",
+  "threshold_mapping": "raw_thr2",
+  "default_protection": {
+    "PROTECT_DC": 1,
+    "PROTECT_NYQ": 0
+  },
+  "signoff_class": "near_threshold_multitone",
+  "review_status": "candidate_signoff_config",
+  "notes": [
+    "This file is a reviewed vector-config bundle. It is not a frozen test_vectors.json manifest.",
+    "Each vector instance becomes authoritative only after gen_vectors.py emits x_in.memh and test_vectors.json records canonical hashes."
+  ],
+  "vectors": [
+    {
+      "name": "near_threshold_multitone_Ns1024_thr64",
+      "description": "Near-threshold multitone smoke vector with bin_stats enabled.",
+      "Ns": 1024,
+      "generator": "multitone_sine_sum",
+      "parameters": {
+        "tones": [
+          {
+            "amplitude": 512,
+            "f_num": 16,
+            "f_den": 256,
+            "phase_rad": "0"
+          },
+          {
+            "amplitude": 128,
+            "f_num": 23,
+            "f_den": 256,
+            "phase_rad": "0.5"
+          }
+        ]
+      },
+      "THR2": "4096",
+      "PROTECT_DC": 1,
+      "PROTECT_NYQ": 0,
+      "tail_policy": "full_tail",
+      "rounding": "round_nearest_ties_away_from_zero",
+      "requires_bin_stats": true,
+      "class": "near_threshold_multitone",
+      "rationale": "Short near-threshold debug vector with bin_stats.",
+      "lifecycle_status": "candidate_frozen_input_config"
+    },
+    {
+      "name": "near_threshold_multitone_Ns4096_thr4096",
+      "description": "Longer near-threshold multitone with bin_stats enabled for threshold and Hermitian-pair debug.",
+      "Ns": 4096,
+      "generator": "multitone_sine_sum",
+      "parameters": {
+        "tones": [
+          {
+            "amplitude": 256,
+            "f_num": 16,
+            "f_den": 256,
+            "phase_rad": "0"
+          },
+          {
+            "amplitude": 96,
+            "f_num": 23,
+            "f_den": 256,
+            "phase_rad": "0.5"
+          },
+          {
+            "amplitude": 64,
+            "f_num": 47,
+            "f_den": 256,
+            "phase_rad": "1.25"
+          }
+        ]
+      },
+      "THR2": "4096",
+      "PROTECT_DC": 1,
+      "PROTECT_NYQ": 0,
+      "tail_policy": "full_tail",
+      "rounding": "round_nearest_ties_away_from_zero",
+      "requires_bin_stats": true,
+      "class": "near_threshold_multitone",
+      "rationale": "Longer near-threshold vector with bin_stats.",
+      "lifecycle_status": "candidate_frozen_input_config"
+    }
+  ]
+}

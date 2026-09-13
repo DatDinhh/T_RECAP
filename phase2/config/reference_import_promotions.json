@@ -1,0 +1,161 @@
+{
+  "promotions": [
+    {
+      "destination_path": "artifacts/coefficients/coeff_manifest.json",
+      "source_path": "artifacts/coefficients/coeff_manifest.json"
+    },
+    {
+      "destination_path": "artifacts/coefficients/twiddle_im.memh",
+      "source_path": "artifacts/coefficients/twiddle_im.memh"
+    },
+    {
+      "destination_path": "artifacts/coefficients/twiddle_inv_im.memh",
+      "source_path": "artifacts/coefficients/twiddle_inv_im.memh"
+    },
+    {
+      "destination_path": "artifacts/coefficients/twiddle_inv_re.memh",
+      "source_path": "artifacts/coefficients/twiddle_inv_re.memh"
+    },
+    {
+      "destination_path": "artifacts/coefficients/twiddle_re.memh",
+      "source_path": "artifacts/coefficients/twiddle_re.memh"
+    },
+    {
+      "destination_path": "artifacts/coefficients/window_qw.memh",
+      "source_path": "artifacts/coefficients/window_qw.memh"
+    },
+    {
+      "destination_path": "artifacts/manifests/core_config_snapshot.json",
+      "source_path": "artifacts/manifests/core_config_snapshot.json"
+    },
+    {
+      "destination_path": "artifacts/manifests/quality_bounds.json",
+      "source_path": "artifacts/manifests/quality_bounds.json"
+    },
+    {
+      "destination_path": "artifacts/reference_outputs/impulse_Ns1024_thr0/frame_stats.csv",
+      "source_path": "artifacts/golden/impulse_Ns1024_thr0/frame_stats.csv"
+    },
+    {
+      "destination_path": "artifacts/reference_outputs/impulse_Ns1024_thr0/metrics.json",
+      "source_path": "artifacts/golden/impulse_Ns1024_thr0/metrics.json"
+    },
+    {
+      "destination_path": "artifacts/reference_outputs/impulse_Ns1024_thr0/y_out.memh",
+      "source_path": "artifacts/golden/impulse_Ns1024_thr0/y_out.memh"
+    },
+    {
+      "destination_path": "artifacts/reference_outputs/near_threshold_multitone_Ns1024_thr64/bin_stats.csv",
+      "source_path": "artifacts/golden/near_threshold_multitone_Ns1024_thr64/bin_stats.csv"
+    },
+    {
+      "destination_path": "artifacts/reference_outputs/near_threshold_multitone_Ns1024_thr64/frame_stats.csv",
+      "source_path": "artifacts/golden/near_threshold_multitone_Ns1024_thr64/frame_stats.csv"
+    },
+    {
+      "destination_path": "artifacts/reference_outputs/near_threshold_multitone_Ns1024_thr64/metrics.json",
+      "source_path": "artifacts/golden/near_threshold_multitone_Ns1024_thr64/metrics.json"
+    },
+    {
+      "destination_path": "artifacts/reference_outputs/near_threshold_multitone_Ns1024_thr64/y_out.memh",
+      "source_path": "artifacts/golden/near_threshold_multitone_Ns1024_thr64/y_out.memh"
+    },
+    {
+      "destination_path": "artifacts/reference_outputs/zero_Ns4096_thr0/frame_stats.csv",
+      "source_path": "artifacts/golden/zero_Ns4096_thr0/frame_stats.csv"
+    },
+    {
+      "destination_path": "artifacts/reference_outputs/zero_Ns4096_thr0/metrics.json",
+      "source_path": "artifacts/golden/zero_Ns4096_thr0/metrics.json"
+    },
+    {
+      "destination_path": "artifacts/reference_outputs/zero_Ns4096_thr0/y_out.memh",
+      "source_path": "artifacts/golden/zero_Ns4096_thr0/y_out.memh"
+    },
+    {
+      "destination_path": "artifacts/test_vectors/impulse_Ns1024_thr0/config.json",
+      "source_path": "artifacts/test_vectors/impulse_Ns1024_thr0/config.json"
+    },
+    {
+      "destination_path": "artifacts/test_vectors/impulse_Ns1024_thr0/x_in.memh",
+      "source_path": "artifacts/test_vectors/impulse_Ns1024_thr0/x_in.memh"
+    },
+    {
+      "destination_path": "artifacts/test_vectors/near_threshold_multitone_Ns1024_thr64/config.json",
+      "source_path": "artifacts/test_vectors/near_threshold_multitone_Ns1024_thr64/config.json"
+    },
+    {
+      "destination_path": "artifacts/test_vectors/near_threshold_multitone_Ns1024_thr64/x_in.memh",
+      "source_path": "artifacts/test_vectors/near_threshold_multitone_Ns1024_thr64/x_in.memh"
+    },
+    {
+      "destination_path": "artifacts/test_vectors/test_vectors.json",
+      "source_path": "artifacts/test_vectors/test_vectors.json"
+    },
+    {
+      "destination_path": "artifacts/test_vectors/zero_Ns4096_thr0/config.json",
+      "source_path": "artifacts/test_vectors/zero_Ns4096_thr0/config.json"
+    },
+    {
+      "destination_path": "artifacts/test_vectors/zero_Ns4096_thr0/x_in.memh",
+      "source_path": "artifacts/test_vectors/zero_Ns4096_thr0/x_in.memh"
+    },
+    {
+      "destination_path": "spec/generated/artifact_contract.json",
+      "source_path": "spec/generated/artifact_contract.json"
+    },
+    {
+      "destination_path": "spec/generated/core_config.json",
+      "source_path": "spec/generated/core_config.json"
+    },
+    {
+      "destination_path": "spec/generated/width_config.json",
+      "source_path": "spec/generated/width_config.json"
+    },
+    {
+      "destination_path": "spec/schemas/artifact_index.schema.json",
+      "source_path": "spec/schemas/artifact_index.schema.json"
+    },
+    {
+      "destination_path": "spec/schemas/bin_stats.schema.md",
+      "source_path": "spec/schemas/bin_stats.schema.md"
+    },
+    {
+      "destination_path": "spec/schemas/coeff_manifest.schema.json",
+      "source_path": "spec/schemas/coeff_manifest.schema.json"
+    },
+    {
+      "destination_path": "spec/schemas/core_config.schema.json",
+      "source_path": "spec/schemas/core_config.schema.json"
+    },
+    {
+      "destination_path": "spec/schemas/frame_stats.schema.md",
+      "source_path": "spec/schemas/frame_stats.schema.md"
+    },
+    {
+      "destination_path": "spec/schemas/frozen_release_manifest.schema.json",
+      "source_path": "spec/schemas/frozen_release_manifest.schema.json"
+    },
+    {
+      "destination_path": "spec/schemas/metrics.schema.json",
+      "source_path": "spec/schemas/metrics.schema.json"
+    },
+    {
+      "destination_path": "spec/schemas/quality_bounds.schema.json",
+      "source_path": "spec/schemas/quality_bounds.schema.json"
+    },
+    {
+      "destination_path": "spec/schemas/reference_import_manifest.schema.json",
+      "source_path": "spec/schemas/reference_import_manifest.schema.json"
+    },
+    {
+      "destination_path": "spec/schemas/test_vectors.schema.json",
+      "source_path": "spec/schemas/test_vectors.schema.json"
+    },
+    {
+      "destination_path": "spec/schemas/vector_config.schema.json",
+      "source_path": "spec/schemas/vector_config.schema.json"
+    }
+  ],
+  "schema": "trecap_phase2_reference_promotion_map_v1"
+}

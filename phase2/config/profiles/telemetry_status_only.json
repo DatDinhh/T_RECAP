@@ -1,0 +1,16 @@
+{
+  "schema": "trecap_phase2_runtime_profile_v1",
+  "profile_kind": "telemetry_preset",
+  "profile_name": "telemetry_status_only",
+  "description": "Conservative first-transport preset that emits STATUS packets only.",
+  "packet_enable": [
+    "STATUS"
+  ],
+  "spec_mode": "DISABLED",
+  "wave_decim": 1,
+  "spec_shift": 0,
+  "status_rate_hz": 10,
+  "metrics_rate_hz": 0,
+  "transport_version_major": 1,
+  "transport_version_minor": 8
+}

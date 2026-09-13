@@ -1,0 +1,148 @@
+# SPDX-License-Identifier: MIT
+# T-RECAP Phase 2 DE1-SoC Quartus assignment include.
+# File class: [1] hand-written constraint/project source.
+# Layer: constraints/de1soc/
+# Owner: T-RECAP Phase 2 implementation.
+#
+# Purpose:
+#   Baseline DE1-SoC Quartus settings for the Phase 2 transport-capable FPGA build.
+#   This file is written as a project include that can be sourced by the real Quartus
+#   project under platform/de1soc/quartus/ or used directly by an early smoke project.
+#
+# Contract boundaries:
+#   - Source compile order is owned by filelists/quartus_de1soc.qsf.inc [2].
+#   - Board package pin assignments belong in constraints/de1soc/pin_assignments.tcl [1].
+#   - Timing constraints belong in constraints/de1soc/de1soc.sdc [1] and
+#     constraints/de1soc/clocks.sdc [1]; generated clock aliases remain pending until
+#     Quartus freezes the Platform Designer clock tree.
+#   - Platform Designer generated HDL is not hand-edited here.
+#
+# Current implementation note:
+#   rtl/platform/de1soc/de1_soc_trecap_top.sv is the board-facing top.  The hand-written
+#   platform_designer_wrapper.sv terminates CSR/DDR buses internally and passes HPS hard pins to
+#   generated module `system`; no abstract CSR/Avalon top-level virtual pins remain.
+
+# -----------------------------------------------------------------------------
+# Project/device baseline
+# -----------------------------------------------------------------------------
+
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CSEMA5F31C6
+set_global_assignment -name TOP_LEVEL_ENTITY de1_soc_trecap_top
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+
+# Keep these environmental bounds explicit.  Adjust only after the actual lab/board
+# thermal assumptions are documented in the DE1-SoC build notes.
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+
+# Let Quartus use host parallelism.  Build scripts may still override by exporting
+# QUARTUS_NUM_PARALLEL_PROCESSORS.
+set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
+
+# -----------------------------------------------------------------------------
+# Repository-relative path setup
+# -----------------------------------------------------------------------------
+
+
+proc trecap_qsf_normpath {path} {
+    if {[string equal $path ""]} {
+        return ""
+    }
+    if {[regexp {^[A-Za-z]:[\\/]} $path] || [regexp {^[/\\][/\\]} $path] || [string equal [string index $path 0] "/"]} {
+        return [file join $path]
+    }
+    return [file join [pwd] $path]
+}
+
+set trecap_this_qsf [info script]
+if {[string equal $trecap_this_qsf ""]} {
+    set trecap_this_qsf [trecap_qsf_normpath [file join [pwd] constraints de1soc de1soc.qsf]]
+}
+set trecap_constraints_dir [file dirname [trecap_qsf_normpath $trecap_this_qsf]]
+set trecap_repo_root [trecap_qsf_normpath [file join $trecap_constraints_dir .. ..]]
+
+foreach trecap_search_rel {
+    rtl/include
+    rtl/include/generated
+    rtl/interfaces
+    rtl/common
+    rtl/sources
+    rtl/core
+    rtl/fft
+    rtl/telemetry
+    rtl/hps_bridge
+    rtl/platform/de1soc
+    rtl/top
+    artifacts/coefficients
+} {
+    set trecap_search_path [file join $trecap_repo_root $trecap_search_rel]
+    if {[file isdirectory $trecap_search_path]} {
+        set_global_assignment -name SEARCH_PATH $trecap_search_path
+    }
+}
+
+# -----------------------------------------------------------------------------
+# Timing constraints
+# -----------------------------------------------------------------------------
+
+set trecap_sdc_file [file join $trecap_repo_root constraints de1soc de1soc.sdc]
+if {[file exists $trecap_sdc_file]} {
+    set_global_assignment -name SDC_FILE $trecap_sdc_file
+} else {
+    post_message -type warning "T-RECAP: missing constraints/de1soc/de1soc.sdc"
+}
+
+# Split-clock constraints for the implemented board wrapper. Exact aliases created by
+# generated Platform Designer SDC remain conditional until Quartus freezes their names.
+set trecap_clocks_sdc_file [file join $trecap_repo_root constraints de1soc clocks.sdc]
+if {[file exists $trecap_clocks_sdc_file]} {
+    set_global_assignment -name SDC_FILE $trecap_clocks_sdc_file
+}
+
+# -----------------------------------------------------------------------------
+# Generated source assignments
+# -----------------------------------------------------------------------------
+
+set trecap_generated_qsf [file join $trecap_repo_root filelists quartus_de1soc.qsf.inc]
+if {[file exists $trecap_generated_qsf]} {
+    post_message -type info "T-RECAP: sourcing generated Quartus filelist $trecap_generated_qsf"
+    source $trecap_generated_qsf
+} else {
+    post_message -type warning "T-RECAP: generated filelists/quartus_de1soc.qsf.inc is missing; run make rtl-filelist"
+}
+
+# -----------------------------------------------------------------------------
+# Platform Designer hooks
+# -----------------------------------------------------------------------------
+
+# One exact QIP path owns the complete generated IP/HDL boundary. Do not add
+# individual generated submodules or accept a stale alternate QIP location.
+set trecap_qip_file [file join $trecap_repo_root platform de1soc qsys system synthesis system.qip]
+if {[file exists $trecap_qip_file]} {
+    set_global_assignment -name QIP_FILE $trecap_qip_file
+} else {
+    post_message -type error "T-RECAP: mandatory Platform Designer QIP is missing; run platform-generate first: $trecap_qip_file"
+}
+
+# -----------------------------------------------------------------------------
+# Board pin assignments
+# -----------------------------------------------------------------------------
+
+set trecap_pin_assignments_file [file join $trecap_repo_root constraints de1soc pin_assignments.tcl]
+if {[file exists $trecap_pin_assignments_file]} {
+    post_message -type info "T-RECAP: sourcing DE1-SoC pin assignments $trecap_pin_assignments_file"
+    source $trecap_pin_assignments_file
+} else {
+    post_message -type warning "T-RECAP: missing constraints/de1soc/pin_assignments.tcl"
+}
+
+# -----------------------------------------------------------------------------
+# Pin assignment policy
+# -----------------------------------------------------------------------------
+
+# Do not put PACKAGE_PIN assignments in this file.  The real board pin map belongs in
+# constraints/de1soc/pin_assignments.tcl. HPS DDR/peripheral hard-pin placement comes from the
+# generated HPS QIP/pin-mux data and must not be duplicated as guessed FPGA package pins here.
+
+# End of constraints/de1soc/de1soc.qsf

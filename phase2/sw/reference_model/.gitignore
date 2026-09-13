@@ -1,0 +1,77 @@
+# SPDX-License-Identifier: MIT
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# CMake / C++
+build*/
+install*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+CTestTestfile.cmake
+Testing/
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.pdb
+
+# Local generated output
+out/*
+!out/.gitkeep
+runs/*
+!runs/.gitkeep
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.orig
+*.rej
+*.swp
+*.swo
+*~
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.code-workspace
+
+# Tool-specific local state
+.cache/
+.ipynb_checkpoints/
+
+# Do not accidentally commit old Phase 1 root dumps
+x.memh
+y.memh
+sup.memh
+metrics.json
+waves.vcd
+waves.wlf
+transcript
+work/

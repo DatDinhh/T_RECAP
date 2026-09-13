@@ -1,0 +1,38 @@
+{
+  "schema": "trecap_phase2_runtime_profile_v1",
+  "profile_kind": "build",
+  "profile_name": "de1soc_bram_replay",
+  "description": "Safe first DE1-SoC end-to-end profile: zero-vector BRAM replay with STATUS-only DDR/HPS/UDP telemetry.",
+  "build": {
+    "target": "de1soc_full",
+    "top_module": "de1_soc_trecap_top",
+    "platform": "de1soc",
+    "board": "de1soc",
+    "quartus_project": "platform/de1soc/quartus/trecap_de1soc"
+  },
+  "contract_refs": {
+    "core_config": "spec/generated/core_config.json",
+    "csr_map": "spec/generated/csr_map.json",
+    "packet_layouts": "spec/generated/packet_layouts.json"
+  },
+  "input": {
+    "kind": "bram_replay",
+    "source_mode": "bram_replay",
+    "vector_config": "artifacts/test_vectors/zero_Ns4096_thr0/config.json",
+    "input_memh": "artifacts/test_vectors/zero_Ns4096_thr0/x_in.memh",
+    "replay_start_policy": "board_key"
+  },
+  "sample_rate_hz": 48000,
+  "telemetry_profile": "config/profiles/telemetry_status_only.json",
+  "transport": {
+    "hps_ddr_enable": true,
+    "hps_udp_enable": true,
+    "command_server_enable": true,
+    "ring_enable_policy": "after_config_and_rd_commit",
+    "address_map": "platform/de1soc/address_map/hps_bridge_regions.json",
+    "hps_runtime_config": "sw/hps/config/trecap_hps_config.json",
+    "dashboard_config": "sw/pc_dashboard/configs/dashboard_direct_link.json"
+  },
+  "transport_version_major": 1,
+  "transport_version_minor": 8
+}

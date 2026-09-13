@@ -1,0 +1,185 @@
+{
+  "schema": "trecap_phase2_de1soc_audio_linein_v1",
+  "file_class": "[1] hand-written Step-16 DE1-SoC LINE-IN audio contract",
+  "project": "T_RECAP_Phase2",
+  "board": "de1soc",
+  "board_revision": "rev_h",
+  "contract_stage": "step16_audio_linein_source_implemented",
+  "status": "source_implemented_pending_rtl_compile_simulation_quartus_timing_i2c_ack_clock_measurement_live_audio_and_hardware_evidence",
+  "ownership": {
+    "physical_board_top": "rtl/platform/de1soc/de1_soc_trecap_top.sv",
+    "audio_pll_wrapper": "rtl/platform/de1soc/audio_pll_wrapper.sv",
+    "codec_i2c_initializer": "rtl/platform/de1soc/audio_codec_i2c_init.sv",
+    "audio_serial_wrapper": "rtl/platform/de1soc/audio_codec_wrapper.sv",
+    "async_fifo_primitive": "rtl/common/async_fifo.sv",
+    "audio_source_adapter": "rtl/sources/trecap_audio_adapter.sv",
+    "linein_profile": "config/profiles/de1soc_linein_demo.json",
+    "pin_assignments": "constraints/de1soc/pin_assignments.tcl",
+    "full_board_filelist": "filelists/rtl_de1soc_full.f",
+    "quartus_filelist": "filelists/quartus_de1soc.qsf.inc",
+    "schema_file": "spec/schemas/de1soc_audio_linein.schema.json",
+    "source_checker": "scripts/check_de1soc_audio_path.py",
+    "behavioral_model": "scripts/sim/check_step16_audio_model.py"
+  },
+  "board_codec_contract": {
+    "codec_model": "WM8731",
+    "codec_control_address_7bit": "0x1a",
+    "codec_control_bus": "FPGA_I2C",
+    "codec_control_bus_hz": 100000,
+    "codec_control_mux_select_owner": "HPS_GPIO48_HPS_I2C_CONTROL",
+    "codec_control_mux_fpga_selected_level": 0,
+    "fabric_may_drive_codec_control_mux_select": false,
+    "fpga_i2c_sclk": {
+      "top_port": "FPGA_I2C_SCLK",
+      "package_pin": "PIN_J12",
+      "io_standard": "3.3-V LVTTL",
+      "direction": "open_drain_output"
+    },
+    "fpga_i2c_sdat": {
+      "top_port": "FPGA_I2C_SDAT",
+      "package_pin": "PIN_K12",
+      "io_standard": "3.3-V LVTTL",
+      "direction": "open_drain_inout"
+    },
+    "external_board_pullups_required": true,
+    "internal_weak_pullup_assignment_permitted": false
+  },
+  "audio_pll_contract": {
+    "reference_clock": "CLOCK_50",
+    "reference_clock_hz": 50000000,
+    "master_clock_output": "AUD_XCK",
+    "master_clock_hz": 12288000,
+    "master_clock_multiple_of_sample_rate": 256,
+    "implementation": "altera_fractional_pll_behind_audio_pll_wrapper",
+    "integer_or_counter_divider_permitted": false,
+    "fabric_and_core_clock_remains_clock_50": true,
+    "qualified_lock_required_before_codec_init": true,
+    "unsupported_configuration_behavior": "clock_and_lock_fail_closed_low"
+  },
+  "codec_configuration_contract": {
+    "sample_rate_hz": 48000,
+    "word_width_bits": 16,
+    "serial_format": "i2s",
+    "clock_role": "codec_master",
+    "i2s_data_delay_bits": 1,
+    "ack_required_after_every_transmitted_byte": true,
+    "maximum_retries_after_initial_attempt_per_register": 3,
+    "configuration_done_requires_all_register_writes_acked": true,
+    "configuration_error_is_sticky": true,
+    "register_sequence": [
+      {"register": 15, "value": "0x000", "purpose": "software_reset"},
+      {"register": 9, "value": "0x000", "purpose": "inactive_during_configuration"},
+      {"register": 0, "value": "0x017", "purpose": "left_line_input_unmuted_0db"},
+      {"register": 1, "value": "0x017", "purpose": "right_line_input_unmuted_0db"},
+      {"register": 2, "value": "0x079", "purpose": "left_headphone_output_0db"},
+      {"register": 3, "value": "0x079", "purpose": "right_headphone_output_0db"},
+      {"register": 4, "value": "0x012", "purpose": "analog_path_linein_and_dac"},
+      {"register": 5, "value": "0x000", "purpose": "digital_path_unmuted"},
+      {"register": 6, "value": "0x002", "purpose": "required_codec_blocks_powered_microphone_off"},
+      {"register": 7, "value": "0x042", "purpose": "codec_master_16bit_i2s"},
+      {"register": 8, "value": "0x000", "purpose": "normal_48khz_at_12_288mhz"},
+      {"register": 9, "value": "0x001", "purpose": "activate_last"}
+    ]
+  },
+  "serial_audio_contract": {
+    "sample_rate_hz": 48000,
+    "sample_width_bits": 16,
+    "serial_format": "i2s",
+    "left_lrck_level": 0,
+    "receive_edge": "posedge_AUD_BCLK",
+    "transmit_edge": "negedge_AUD_BCLK",
+    "codec_generated_bclk_and_lrck": true,
+    "nominal_bclk_hz": 3072000,
+    "bclk_multiple_of_sample_rate": 64,
+    "audio_capture_requires_codec_config_done": true,
+    "lineout_backpressure_to_core_permitted": false
+  },
+  "cdc_and_counter_contract": {
+    "cdc_primitive": "trecap_async_fifo",
+    "minimum_audio_async_fifo_instances": 2,
+    "rx_fifo_direction": "AUD_BCLK_to_clk_fabric",
+    "tx_fifo_direction": "clk_fabric_to_AUD_BCLK",
+    "independent_multibit_payload_synchronizers_permitted": false,
+    "stale_rx_frames_across_disabled_source_epoch_permitted": false,
+    "counter_width_bits": 64,
+    "counter_arithmetic": "saturating_unsigned",
+    "counter_clear": "clear_sticky_i",
+    "counter_outputs": [
+      {
+        "name": "audio_rx_overflow_count_o",
+        "event": "completed_enabled_rx_frame_arrives_while_rx_async_fifo_full"
+      },
+      {
+        "name": "audio_tx_overflow_count_o",
+        "event": "enabled_lineout_sample_arrives_while_tx_async_fifo_full"
+      },
+      {
+        "name": "audio_tx_underflow_count_o",
+        "event": "enabled_primed_dac_frame_boundary_requires_sample_while_tx_async_fifo_empty"
+      }
+    ]
+  },
+  "top_level_contract": {
+    "pll_instance": "u_audio_pll_wrapper",
+    "codec_i2c_instance": "u_audio_codec_i2c_init",
+    "audio_wrapper_instance": "u_audio_codec_wrapper",
+    "pll_and_i2c_instances_owned_by_physical_top": true,
+    "i2s_and_audio_cdc_owned_by_audio_wrapper": true,
+    "aud_xck_constant_or_fabric_divider_permitted": false,
+    "codec_init_requires_pll_locked": true,
+    "audio_capture_requires_config_done": true
+  },
+  "profile_contract": {
+    "profile_name": "de1soc_linein_demo",
+    "input_kind": "audio_wrapper",
+    "source_mode": "audio_wrapper",
+    "sample_rate_hz": 48000,
+    "codec_sample_width": 16,
+    "channel_select": "left",
+    "input_scale_rule": "signed_rnd_shr_Baudio_minus_N",
+    "master_clock_hz": 12288000,
+    "codec_control": {
+      "enable": true,
+      "codec_model": "wm8731",
+      "i2c_bus": "fpga_i2c",
+      "i2c_address_7bit": "0x1a",
+      "serial_format": "i2s",
+      "sample_rate_hz": 48000,
+      "word_width_bits": 16,
+      "clock_role": "codec_master"
+    },
+    "audio_pll": {
+      "enable": true,
+      "reference_clock": "CLOCK_50",
+      "reference_clock_hz": 50000000,
+      "output_clock": "AUD_XCK",
+      "output_clock_hz": 12288000
+    },
+    "hardware_gate": {
+      "codec_init_requires_pll_locked": true,
+      "audio_capture_requires_config_done": true
+    },
+    "profile_is_build_and_bringup_selection_not_runtime_hardware_evidence": true
+  },
+  "evidence_policy": {
+    "source_checker": "scripts/check_de1soc_audio_path.py",
+    "behavioral_model": "scripts/sim/check_step16_audio_model.py",
+    "default_checker_scope": "source_and_dependency_free_model_only",
+    "source_check_is_rtl_compile": false,
+    "source_check_is_native_rtl_simulation": false,
+    "source_check_is_quartus_compile": false,
+    "source_check_is_timing_closure": false,
+    "source_check_is_pll_frequency_measurement": false,
+    "source_check_is_codec_i2c_ack_evidence": false,
+    "source_check_is_live_audio_evidence": false,
+    "source_check_is_hardware_signoff": false
+  },
+  "invariants": [
+    "BRAM replay remains the correctness and artifact-comparison authority; LINE-IN is a live demonstration source.",
+    "The audio PLL creates only the codec master clock; CLOCK_50 remains the fabric and mathematical-core clock.",
+    "Codec activation occurs only after the 48 kHz, 16-bit I2S codec-master configuration writes have been acknowledged.",
+    "Audio payload CDC uses asynchronous FIFOs; independently synchronized payload bits are forbidden.",
+    "Audio RX overflow, TX overflow, and TX underflow counters remain separate from reserved CSR overflow bits.",
+    "Selecting the LINE-IN profile does not establish PLL lock, I2C acknowledgement, timing closure, live audio, or board evidence."
+  ]
+}

@@ -1,0 +1,383 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trecap.local/schemas/core_telemetry_composition.schema.json",
+  "title": "T-RECAP Phase 2 Step-8 core plus telemetry composition contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "file_class",
+    "project",
+    "board",
+    "contract_stage",
+    "status",
+    "implementation_state",
+    "source_ownership",
+    "composition_contract",
+    "tap_mapping",
+    "packet_contract",
+    "non_stalling_drop_contract",
+    "metrics_status_boundary_contract",
+    "telemetry_soft_clear_contract",
+    "overflow_ownership_contract",
+    "fifo_output_ownership",
+    "board_system_binding",
+    "evidence_policy",
+    "validation_rules"
+  ],
+  "properties": {
+    "schema": {"const": "trecap_phase2_core_telemetry_composition_v1"},
+    "file_class": {"const": "[1] hand-written Step-8 composition contract"},
+    "project": {"const": "T_RECAP_Phase2"},
+    "board": {"const": "de1soc"},
+    "contract_stage": {"const": "step8_core_telemetry_composition_source_implemented"},
+    "status": {"const": "source_implemented_pending_rtl_compile_functional_verification_quartus_and_hardware_evidence"},
+    "implementation_state": {"$ref": "#/$defs/implementationState"},
+    "source_ownership": {"$ref": "#/$defs/sourceOwnership"},
+    "composition_contract": {"$ref": "#/$defs/compositionContract"},
+    "tap_mapping": {"$ref": "#/$defs/tapMapping"},
+    "packet_contract": {"$ref": "#/$defs/packetContract"},
+    "non_stalling_drop_contract": {"$ref": "#/$defs/nonStallingDropContract"},
+    "metrics_status_boundary_contract": {"$ref": "#/$defs/metricsStatusBoundaryContract"},
+    "telemetry_soft_clear_contract": {"$ref": "#/$defs/telemetrySoftClearContract"},
+    "overflow_ownership_contract": {"$ref": "#/$defs/overflowOwnershipContract"},
+    "fifo_output_ownership": {"$ref": "#/$defs/fifoOutputOwnership"},
+    "board_system_binding": {"$ref": "#/$defs/boardSystemBinding"},
+    "evidence_policy": {"$ref": "#/$defs/evidencePolicy"},
+    "validation_rules": {
+      "type": "array",
+      "minItems": 16,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  },
+  "$defs": {
+    "implementationState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "composition_rtl_implemented",
+        "real_core_instantiated",
+        "telemetry_top_instantiated",
+        "direct_core_tap_binding",
+        "pure_telemetry_filelist_separated",
+        "rtl_compile",
+        "functional_verification",
+        "quartus_compile",
+        "hardware_signoff"
+      ],
+      "properties": {
+        "composition_rtl_implemented": {"const": true},
+        "real_core_instantiated": {"const": true},
+        "telemetry_top_instantiated": {"const": true},
+        "direct_core_tap_binding": {"const": true},
+        "pure_telemetry_filelist_separated": {"const": true},
+        "rtl_compile": {"const": false},
+        "functional_verification": {"const": false},
+        "quartus_compile": {"const": false},
+        "hardware_signoff": {"const": false}
+      }
+    },
+    "sourceOwnership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "composition_rtl",
+        "core_rtl",
+        "telemetry_rtl",
+        "scheduler_rtl",
+        "packet_fifo_rtl",
+        "pure_telemetry_filelist",
+        "composed_filelist",
+        "board_source_core_rtl",
+        "board_transport_rtl"
+      ],
+      "properties": {
+        "composition_rtl": {"const": "rtl/top/trecap_core_telemetry_top.sv"},
+        "core_rtl": {"const": "rtl/core/trecap_core_top.sv"},
+        "telemetry_rtl": {"const": "rtl/telemetry/trecap_telemetry_top.sv"},
+        "scheduler_rtl": {"const": "rtl/telemetry/trecap_packet_scheduler.sv"},
+        "packet_fifo_rtl": {"const": "rtl/telemetry/trecap_packet_fifo.sv"},
+        "pure_telemetry_filelist": {"const": "filelists/rtl_telemetry.f"},
+        "composed_filelist": {"const": "filelists/rtl_core_telemetry.f"},
+        "board_source_core_rtl": {"const": "rtl/top/trecap_source_core_integration.sv"},
+        "board_transport_rtl": {"const": "rtl/top/trecap_de1soc_full_top.sv"}
+      }
+    },
+    "compositionContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_stream",
+        "sample_ready_owner",
+        "core_instances",
+        "telemetry_instances",
+        "external_core_tap_inputs_permitted",
+        "core_taps_bound_directly_to_telemetry",
+        "unique_bin_index_width_parameter_propagated",
+        "core_y_stream_exposed",
+        "core_status_and_metrics_exposed",
+        "core_observation_taps_exposed",
+        "formatted_record_stream_exposed",
+        "ddr_writer_owned_here",
+        "board_pins_owned_here",
+        "platform_designer_owned_here"
+      ],
+      "properties": {
+        "input_stream": {"const": "normalized_sample_ready_valid"},
+        "sample_ready_owner": {"const": "trecap_core_top"},
+        "core_instances": {"const": 1},
+        "telemetry_instances": {"const": 1},
+        "external_core_tap_inputs_permitted": {"const": false},
+        "core_taps_bound_directly_to_telemetry": {"const": true},
+        "unique_bin_index_width_parameter_propagated": {"const": true},
+        "core_y_stream_exposed": {"const": true},
+        "core_status_and_metrics_exposed": {"const": true},
+        "core_observation_taps_exposed": {"const": true},
+        "formatted_record_stream_exposed": {"const": true},
+        "ddr_writer_owned_here": {"const": false},
+        "board_pins_owned_here": {"const": false},
+        "platform_designer_owned_here": {"const": false}
+      }
+    },
+    "tapStream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["producer", "telemetry_input", "consumers", "fields"],
+      "properties": {
+        "producer": {"type": "string", "minLength": 1},
+        "telemetry_input": {"type": "string", "minLength": 1},
+        "consumers": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "fields": {"type": "array", "minItems": 3, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "tapMapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sample", "frame", "unique_bin", "flow_control"],
+      "properties": {
+        "sample": {"$ref": "#/$defs/tapStream"},
+        "frame": {"$ref": "#/$defs/tapStream"},
+        "unique_bin": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["producer_prefix", "telemetry_input_prefix", "consumer", "bindings", "non_telemetry_observability"],
+          "properties": {
+            "producer_prefix": {"const": "trecap_core_top.tap_bin_"},
+            "telemetry_input_prefix": {"const": "trecap_telemetry_top.tap_bin_"},
+            "consumer": {"const": "SPEC64_or_SPEC129"},
+            "bindings": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["tap_bin_valid_o", "tap_bin_frame_idx_o", "tap_bin_idx_o", "tap_bin_mag2_o", "tap_bin_mask_o", "tap_bin_eligible_o", "tap_bin_last_o"],
+              "properties": {
+                "tap_bin_valid_o": {"const": "tap_bin_valid_i"},
+                "tap_bin_frame_idx_o": {"const": "tap_bin_frame_idx_i"},
+                "tap_bin_idx_o": {"const": "tap_bin_idx_i"},
+                "tap_bin_mag2_o": {"const": "tap_bin_mag2_i"},
+                "tap_bin_mask_o": {"const": "tap_bin_mask_i"},
+                "tap_bin_eligible_o": {"const": "tap_bin_eligible_i"},
+                "tap_bin_last_o": {"const": "tap_bin_last_i"}
+              }
+            },
+            "non_telemetry_observability": {"type": "array", "minItems": 3, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+          }
+        },
+        "flow_control": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["tap_ready_signals", "tap_delivery", "telemetry_to_core_ready_path_permitted", "record_ready_to_sample_ready_path_permitted", "record_ready_to_y_ready_path_permitted"],
+          "properties": {
+            "tap_ready_signals": {"const": 0},
+            "tap_delivery": {"const": "valid_only_best_effort_observation"},
+            "telemetry_to_core_ready_path_permitted": {"const": false},
+            "record_ready_to_sample_ready_path_permitted": {"const": false},
+            "record_ready_to_y_ready_path_permitted": {"const": false}
+          }
+        }
+      }
+    },
+    "packetEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["packet_enable_mask", "additional_enable", "event_source", "priority"],
+      "properties": {
+        "packet_enable_mask": {"type": "string", "pattern": "^TCSR_PACKET_ENABLE_[A-Z0-9_]+_MASK$"},
+        "additional_enable": {"type": "string", "minLength": 1},
+        "event_source": {"type": "string", "minLength": 1},
+        "priority": {"type": "integer", "minimum": 0, "maximum": 3}
+      }
+    },
+    "packetContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["global_enable", "reserved_disabled_packet_types", "packets", "spectrum_modes", "illegal_or_disabled_candidates_are_drained", "scheduler_locks_selected_record_until_last_accept"],
+      "properties": {
+        "global_enable": {"const": "ctrl_i.telemetry_enable"},
+        "reserved_disabled_packet_types": {"type": "array", "minItems": 2, "maxItems": 2, "uniqueItems": true, "items": {"enum": ["PEAKS", "DEBUG"]}},
+        "packets": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["WAVE", "SPEC64", "SPEC129", "METRICS", "STATUS"],
+          "properties": {
+            "WAVE": {"$ref": "#/$defs/packetEntry"},
+            "SPEC64": {"$ref": "#/$defs/packetEntry"},
+            "SPEC129": {"$ref": "#/$defs/packetEntry"},
+            "METRICS": {"$ref": "#/$defs/packetEntry"},
+            "STATUS": {"$ref": "#/$defs/packetEntry"}
+          }
+        },
+        "spectrum_modes": {"type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true, "items": {"enum": ["TSPEC_DISABLED", "TSPEC_SPEC64", "TSPEC_SPEC129"]}},
+        "illegal_or_disabled_candidates_are_drained": {"const": true},
+        "scheduler_locks_selected_record_until_last_accept": {"const": true}
+      }
+    },
+    "nonStallingDropContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["core_progress_independent_of_telemetry", "packetizer_busy_event_action", "disabled_or_illegal_candidate_action", "disabled_or_illegal_drain_latched_until_record_last", "observation_epoch_reset_action", "observation_epoch_reset_resets_packet_fifo", "observation_epoch_reset_retracts_started_record", "fifo_admission_unit", "fifo_full_policy", "active_output_head_evictable", "drop_priority_low_to_high", "drop_counter_owner", "drop_counter_counts_all_pre_writer_drop_events", "writer_drop_count_is_separate"],
+      "properties": {
+        "core_progress_independent_of_telemetry": {"const": true},
+        "packetizer_busy_event_action": {"const": "drop_event_and_pulse"},
+        "disabled_or_illegal_candidate_action": {"const": "drain_candidate_and_pulse"},
+        "disabled_or_illegal_drain_latched_until_record_last": {"const": true},
+        "observation_epoch_reset_action": {"const": "suppress_new_admission_discard_partial_collection_drain_unselected_candidates_and_finish_selected_record"},
+        "observation_epoch_reset_resets_packet_fifo": {"const": false},
+        "observation_epoch_reset_retracts_started_record": {"const": false},
+        "fifo_admission_unit": {"const": "complete_record"},
+        "fifo_full_policy": {"const": "evict_oldest_lower_priority_resident_else_drop_incoming"},
+        "active_output_head_evictable": {"const": false},
+        "drop_priority_low_to_high": {"type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "drop_counter_owner": {"const": "trecap_telemetry_top"},
+        "drop_counter_counts_all_pre_writer_drop_events": {"const": true},
+        "writer_drop_count_is_separate": {"const": true}
+      }
+    },
+    "metricsStatusBoundaryContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raw_core_frame_boundary", "core_config_safe_boundary", "tap_frame_valid_is_config_boundary", "status_tick_is_config_boundary", "metrics_tick_is_config_boundary", "metrics_clear_owner", "metrics_clear_must_be_applied_at_core_config_safe_boundary", "board_metrics_clear_raw_request", "board_metrics_clear_safe_apply_source", "board_metrics_clear_core_consumer", "board_metrics_clear_telemetry_consumer", "board_metrics_clear_core_and_telemetry_same_event", "source_discontinuity_clears_both_metric_owners", "standalone_metrics_epoch_reset_sources", "telemetry_soft_reset_affects_core", "status_sample_count_source", "status_frame_count_source", "status_reconstructs_counts_from_tap_indices", "status_snapshot_semantics", "metrics_snapshot_semantics", "snapshot_packets_are_exact_completion_evidence"],
+      "properties": {
+        "raw_core_frame_boundary": {"const": "trecap_core_top.frame_boundary_pulse_o"},
+        "core_config_safe_boundary": {"const": "raw_core_frame_boundary_or_structural_core_idle"},
+        "tap_frame_valid_is_config_boundary": {"const": false},
+        "status_tick_is_config_boundary": {"const": false},
+        "metrics_tick_is_config_boundary": {"const": false},
+        "metrics_clear_owner": {"const": "composition_caller"},
+        "metrics_clear_must_be_applied_at_core_config_safe_boundary": {"const": true},
+        "board_metrics_clear_raw_request": {"const": "trecap_hps_bridge_top.clear_metrics_pulse_o"},
+        "board_metrics_clear_safe_apply_source": {"const": "trecap_source_core_integration.clear_metrics_apply_pulse_o"},
+        "board_metrics_clear_core_consumer": {"const": "trecap_core_top.clear_metrics_i"},
+        "board_metrics_clear_telemetry_consumer": {"const": "trecap_telemetry_top.metrics_clear_i"},
+        "board_metrics_clear_core_and_telemetry_same_event": {"const": true},
+        "source_discontinuity_clears_both_metric_owners": {"const": true},
+        "standalone_metrics_epoch_reset_sources": {
+          "const": ["clear_metrics_w1p", "datapath_clear", "core_disable", "source_discontinuity"]
+        },
+        "telemetry_soft_reset_affects_core": {"const": false},
+        "status_sample_count_source": {"const": "trecap_core_top.core_sample_count_o"},
+        "status_frame_count_source": {"const": "trecap_core_top.core_frame_count_o"},
+        "status_reconstructs_counts_from_tap_indices": {"const": false},
+        "status_snapshot_semantics": {"const": "explicit_authoritative_core_sample_and_frame_counters_plus_supplied_integration_status"},
+        "metrics_snapshot_semantics": {"const": "aggregate_valid_frame_taps_plus_authoritative_core_error_metrics_at_metrics_tick"},
+        "snapshot_packets_are_exact_completion_evidence": {"const": false}
+      }
+    },
+    "telemetrySoftClearContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "request",
+        "clock_domain",
+        "semantics",
+        "derived_async_reset_permitted",
+        "child_rst_n_source",
+        "packetizer_clear_port",
+        "scheduler_clear_port",
+        "fifo_clear_port",
+        "admission_during_clear_permitted",
+        "core_state_affected",
+        "soft_clear_preserves_metrics_aggregates",
+        "metrics_aggregate_clear_source"
+      ],
+      "properties": {
+        "request": {"const": "telemetry_soft_reset_i"},
+        "clock_domain": {"const": "clk"},
+        "semantics": {"const": "synchronous_formatter_scheduler_fifo_clear"},
+        "derived_async_reset_permitted": {"const": false},
+        "child_rst_n_source": {"const": "rst_n"},
+        "packetizer_clear_port": {"const": "formatter_reset_i"},
+        "scheduler_clear_port": {"const": "formatter_reset_i"},
+        "fifo_clear_port": {"const": "flush_i"},
+        "admission_during_clear_permitted": {"const": false},
+        "core_state_affected": {"const": false},
+        "soft_clear_preserves_metrics_aggregates": {"const": true},
+        "metrics_aggregate_clear_source": {"const": "metrics_clear_i"}
+      }
+    },
+    "overflowOwnershipContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["csr_visible_sticky_owner", "w1c_clear_input", "set_interface_semantics", "sticky_update_rule", "sticky_level_as_set_source_permitted", "packet_fifo_set_source", "packet_fifo_sticky_status", "packet_fifo_sticky_directly_orred_into_set", "scheduler_malformed_set_source", "w1c_rearms_new_fault_detection", "w1c_manufactures_event_from_persistent_level", "fifo_sticky_exposed_separately", "combined_status_ors_independently_owned_flags", "external_and_core_sticky_clear_at_their_owners"],
+      "properties": {
+        "csr_visible_sticky_owner": {"const": "trecap_core_telemetry_top.telemetry_overflow_flags_q"},
+        "w1c_clear_input": {"const": "clear_telemetry_flags_w1c_i"},
+        "set_interface_semantics": {"const": "one_cycle_new_fault_event_bitmask"},
+        "sticky_update_rule": {"const": "next=(current&~w1c_clear)|new_fault_events"},
+        "sticky_level_as_set_source_permitted": {"const": false},
+        "packet_fifo_set_source": {"const": "packet_fifo_drop_pulse_o"},
+        "packet_fifo_sticky_status": {"const": "packet_fifo_overflow_o"},
+        "packet_fifo_sticky_directly_orred_into_set": {"const": false},
+        "scheduler_malformed_set_source": {"const": "scheduler_illegal_drop_o"},
+        "w1c_rearms_new_fault_detection": {"const": true},
+        "w1c_manufactures_event_from_persistent_level": {"const": false},
+        "fifo_sticky_exposed_separately": {"const": true},
+        "combined_status_ors_independently_owned_flags": {"const": true},
+        "external_and_core_sticky_clear_at_their_owners": {"const": true}
+      }
+    },
+    "fifoOutputOwnership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sole_record_output_owner", "composition_adds_second_record_fifo", "metadata_stable_for_record", "record_payload_last_marks_final_payload_beat", "downstream_ready_scope", "ddr_header_added_downstream", "sequence_number_allocated_downstream", "wrap_record_generated_downstream"],
+      "properties": {
+        "sole_record_output_owner": {"const": "trecap_telemetry_top.u_packet_fifo"},
+        "composition_adds_second_record_fifo": {"const": false},
+        "metadata_stable_for_record": {"const": true},
+        "record_payload_last_marks_final_payload_beat": {"const": true},
+        "downstream_ready_scope": {"const": "telemetry_fifo_scheduler_and_packetizers_only"},
+        "ddr_header_added_downstream": {"const": true},
+        "sequence_number_allocated_downstream": {"const": true},
+        "wrap_record_generated_downstream": {"const": true}
+      }
+    },
+    "boardSystemBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["standalone_core_telemetry_variant_uses_composition", "de1soc_source_core_path_already_owns_core", "de1soc_transport_path_uses_telemetry_only_top", "duplicate_core_in_de1soc_path_permitted", "pure_telemetry_filelist_contains_core_rtl", "composed_filelist_contains_core_and_telemetry"],
+      "properties": {
+        "standalone_core_telemetry_variant_uses_composition": {"const": true},
+        "de1soc_source_core_path_already_owns_core": {"const": true},
+        "de1soc_transport_path_uses_telemetry_only_top": {"const": true},
+        "duplicate_core_in_de1soc_path_permitted": {"const": false},
+        "pure_telemetry_filelist_contains_core_rtl": {"const": false},
+        "composed_filelist_contains_core_and_telemetry": {"const": true}
+      }
+    },
+    "evidencePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_checker", "human_document", "schema_file", "default_checker_scope", "source_check_is_rtl_compile", "source_check_is_functional_verification", "source_check_is_quartus_compile", "source_check_is_hardware_signoff"],
+      "properties": {
+        "source_checker": {"const": "scripts/check_core_telemetry_composition.py"},
+        "human_document": {"const": "docs/architecture/core_telemetry_composition.md"},
+        "schema_file": {"const": "spec/schemas/core_telemetry_composition.schema.json"},
+        "default_checker_scope": {"const": "source_only"},
+        "source_check_is_rtl_compile": {"const": false},
+        "source_check_is_functional_verification": {"const": false},
+        "source_check_is_quartus_compile": {"const": false},
+        "source_check_is_hardware_signoff": {"const": false}
+      }
+    }
+  }
+}

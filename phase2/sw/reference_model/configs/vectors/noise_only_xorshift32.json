@@ -1,0 +1,40 @@
+{
+  "schema": "trecap_phase2_vector_bundle_v1",
+  "bundle_name": "noise_only_xorshift32",
+  "description": "Noise-only xorshift32 stream for suppression ratio, kept-energy ratio, and error characterization.",
+  "spec_revision": "core_rev_j",
+  "generator_version": "phase2_generators_revision_j",
+  "tail_policy": "full_tail",
+  "rounding": "round_nearest_ties_away_from_zero",
+  "threshold_mapping": "raw_thr2",
+  "default_protection": {
+    "PROTECT_DC": 1,
+    "PROTECT_NYQ": 0
+  },
+  "signoff_class": "noise_only_stream",
+  "review_status": "candidate_signoff_config",
+  "notes": [
+    "This file is a reviewed vector-config bundle. It is not a frozen test_vectors.json manifest.",
+    "Each vector instance becomes authoritative only after gen_vectors.py emits x_in.memh and test_vectors.json records canonical hashes."
+  ],
+  "vectors": [
+    {
+      "name": "noise_xorshift32_Ns4096_thr4096",
+      "description": "Noise-only stream for suppression ratio, kept-energy ratio, and error characterization.",
+      "Ns": 4096,
+      "generator": "uniform_noise_xorshift32",
+      "parameters": {
+        "seed": 305419896,
+        "B": 10
+      },
+      "THR2": "4096",
+      "PROTECT_DC": 1,
+      "PROTECT_NYQ": 0,
+      "tail_policy": "full_tail",
+      "rounding": "round_nearest_ties_away_from_zero",
+      "class": "noise_only_stream",
+      "rationale": "Required noise-only stream vector.",
+      "lifecycle_status": "candidate_frozen_input_config"
+    }
+  ]
+}

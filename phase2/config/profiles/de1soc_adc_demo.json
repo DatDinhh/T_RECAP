@@ -1,0 +1,54 @@
+{
+  "schema": "trecap_phase2_runtime_profile_v1",
+  "profile_kind": "build",
+  "profile_name": "de1soc_adc_demo",
+  "description": "DE1-SoC LTC2308 live-ADC demo profile with source-epoch channel latching and full Revision-G telemetry.",
+  "build": {
+    "target": "de1soc_full",
+    "top_module": "de1_soc_trecap_top",
+    "platform": "de1soc",
+    "board": "de1soc",
+    "quartus_project": "platform/de1soc/quartus/trecap_de1soc"
+  },
+  "contract_refs": {
+    "core_config": "spec/generated/core_config.json",
+    "csr_map": "spec/generated/csr_map.json",
+    "packet_layouts": "spec/generated/packet_layouts.json"
+  },
+  "input": {
+    "kind": "adc_live",
+    "source_mode": "adc_live",
+    "adc": {
+      "device_model": "ltc2308",
+      "sample_width_bits": 12,
+      "sample_format": "unsigned_straight_binary",
+      "input_mode": "single_ended",
+      "polarity": "unipolar",
+      "power_mode": "awake",
+      "input_range_volts": "0_to_4.096",
+      "zero_code": 2048,
+      "input_scale_rule": "unsigned_midscale_subtract_then_signed_rnd_shr_Badc_minus_N",
+      "channel_select": "sw6_4_latched_on_source_entry",
+      "default_channel": 0,
+      "channel_change_policy": "leave_and_reenter_adc_source",
+      "first_result_policy": "prime_and_discard_previous_configuration",
+      "sampling_mode_select": "sw7_low_continuous_high_key2_manual",
+      "continuous_sample_rate_hz": 100000,
+      "serial_clock_hz": 2500000,
+      "dc_block_enable": false
+    }
+  },
+  "sample_rate_hz": 100000,
+  "telemetry_profile": "config/profiles/telemetry_full_demo.json",
+  "transport": {
+    "hps_ddr_enable": true,
+    "hps_udp_enable": true,
+    "command_server_enable": true,
+    "ring_enable_policy": "after_config_and_rd_commit",
+    "address_map": "platform/de1soc/address_map/hps_bridge_regions.json",
+    "hps_runtime_config": "sw/hps/config/trecap_hps_config.json",
+    "dashboard_config": "sw/pc_dashboard/configs/dashboard_direct_link.json"
+  },
+  "transport_version_major": 1,
+  "transport_version_minor": 8
+}

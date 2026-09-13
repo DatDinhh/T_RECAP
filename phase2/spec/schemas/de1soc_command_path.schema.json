@@ -1,0 +1,607 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trecap.local/schemas/de1soc_command_path.schema.json",
+  "title": "T-RECAP Phase 2 DE1-SoC Step-14 command-path contract",
+  "const": {"authority":{"csr_version_major":1,"csr_version_minor":8,"extension_policy":"version_2_adds_types_and_results_without_reinterpreting_version_1","pdf_command_revision":"Telemetry Revision G command protocol version 1","pdf_v1_policy":"exact_and_unchanged","step14_extension":"explicit command protocol version 2"},"board":"de1soc","clear_counters":{"command":"CLEAR_COUNTERS","fpga_counters_cleared":["DMA_DROP_COUNT","DMA_PACKET_COUNT","PACKET_FIFO_DROP_COUNT","CSR_COMMAND_REJECT_COUNT"],"hps_transport_counters_cleared":true,"preserved":["OVERFLOW_FLAGS","producer_pointer_W","consumer_pointer_Rd","telemetry_sequence","core_sample_and_frame_counts","trusted_peer_binding","mutation_sequence_ledger","result_cache"]},"command_service":{"compatibility_direct_helper_policy":"command_apply_to_csr_not_used_by_live_streamer","identity_required_before_noop_or_applied":"every_command_except_PING_and_READ_STATUS_VERSION","lifecycle_and_replay_owner":"command_bridge","maximum_datagrams_per_streamer_pass":64,"nonblocking":true,"read_status_version_identity_exception":"return_raw_STATUS_and_VERSION_as_NOOP_even_when_incompatible; only_read_failure_is_FAILED","response_destination":"exact_validated_request_source_ip_and_port","ring_service_must_not_be_starved":true,"simple_csr_commands_owner":"command_bridge_for_live_network_path"},"contract_stage":"architecture_implementation_step_14_source","control_mutation_safety":{"applies_to_commands":["SET_SOURCE_MODE","SET_PACKET_ENABLE","SET_WAVE_DECIM","SET_SPEC_MODE","SET_SPEC_SHIFT"],"applies_to_version_1_and_version_2":true,"direct_live_csr_writes_allowed":false,"failure_policy":"attempt_CONTROL_zero_and_verify_disabled; otherwise_lock_software_RESET_REQUIRED_report_hardware_disable_unverified_and_do_not_commit_HPS_local_state","ordered_operation":["snapshot_requested_enable_state","disable_telemetry_and_ring_writer","verify_controls_disabled_epoch_idle_and_replay_idle","perform_generated_CSR_write_or_shadow_commit","wait_for_command_specific_safe_apply_and_verify_readback","restore_prior_enable_state_only_if_all_checks_succeeded","verify_restored_control_readback"],"required_preconditions":["telemetry_and_ring_writer_controls_disabled","STATUS.transport_epoch_idle_is_one","no_replay_busy_active_or_pending"],"source_mode_commit_rule":"write_SOURCE_MODE_SHADOW_pulse_SOURCE_MODE_COMMIT_then_wait_until_pending_clears_and_actual_source_mode_matches"},"csr_extension":{"existing_offsets_0x000_through_0x088_unchanged":true,"registers":[{"access":"W1P","fields":[{"lsb":0,"msb":0,"name":"transport_counters"}],"name":"COUNTER_CLEAR","offset":"0x08C"},{"access":"W1P","fields":[{"lsb":0,"msb":0,"name":"start"},{"lsb":1,"msb":1,"name":"rearm"}],"name":"REPLAY_CONTROL","offset":"0x090"},{"access":"R","fields":[{"lsb":0,"msb":0,"name":"pending"},{"lsb":1,"msb":1,"name":"last_accept"},{"lsb":2,"msb":2,"name":"last_reject"},{"lsb":3,"msb":3,"name":"start_ready"},{"lsb":4,"msb":4,"name":"replay_active"},{"lsb":5,"msb":5,"name":"replay_path_busy"},{"lsb":6,"msb":6,"name":"replay_path_done"},{"lsb":7,"msb":7,"name":"e2e_busy"},{"lsb":8,"msb":8,"name":"e2e_done"},{"lsb":9,"msb":9,"name":"error"},{"lsb":10,"msb":10,"name":"rearm_required"},{"lsb":16,"msb":31,"name":"result_epoch"}],"name":"REPLAY_STATUS","offset":"0x094"}],"status_extension_fields":[{"lsb":10,"msb":11,"name":"actual_source_mode"},{"lsb":12,"msb":12,"name":"transport_epoch_idle"},{"lsb":13,"msb":13,"name":"source_transition_busy"}],"status_source_pending_rule":"STATUS.source_commit_pending_is_one_when_commit_pending_or_requested_mode_differs_from_actual_mode","version_major":1,"version_minor":8},"evidence_boundary":{"bram_replay_hardware":false,"csr_mmap_runtime":false,"fpga_command_application":false,"host_test_execution_packaged":false,"host_test_source_claimed":true,"hps_linux_runtime":false,"lightweight_bridge_runtime":false,"live_pc_hps_udp":false,"physical_hardware":false,"platform_designer_generation":false,"quartus_timing":false,"rtl_simulation":false,"rtl_structural_checker_source_claimed":true,"rtl_testbench_source_claimed":true,"source_implementation_claimed":true},"file_class":"[1] hand-written source-of-truth architecture contract","lifecycle":{"configure_command_arguments":"all_zero","enable_preconditions":["csr_identity_version_1_8_verified","transport_reset_completed","ring_configured_from_pinned_runtime_profile","consumer_pointer_committed_zero","producer_pointer_snapshot_zero","no_malformed_latch","required_status_readback_matches"],"failure_disable_attempt":"write_CONTROL_zero_then_read_STATUS","hardware_disable_may_be_claimed_without_readback":false,"local_state_commit_policy":"commit_configuration_and_restored_enable_state_only_after_configuration_apply_readback_and_safe_control_restore_readback_both_succeed","network_supplied_ring_address_allowed":false,"partial_failure_policy":"attempt_CONTROL_zero_and_verify_both_controls_off_then_require_reset","required_order":["RESET_TRANSPORT","CONFIGURE_DDR_RING","SET_TELEMETRY_ENABLE_1"],"reset_replay_policy":{"active_replay_is_implicitly_aborted":false,"failed_epoch_rearm_condition":"rearm_required_and_replay_and_transport_quiescent","failed_epoch_rearm_pulse_count":1,"failure_policy":"FAILED_and_software_RESET_REQUIRED_fail_closed","healthy_reset_replay_control_write_count":0,"placement":"after_ring_reset_before_configuration_reconciliation","rearm_must_preserve_result_epoch":true,"rearm_readback_must_clear":["pending","replay_active","replay_path_busy","e2e_busy","last_accept","last_reject","error","rearm_required"],"reject_if_any_replay_state_set":["pending","replay_active","replay_path_busy","e2e_busy"],"reject_if_replay_status_reserved_nonzero":true,"required_transport_quiescence":["telemetry_control_off","ring_writer_control_off","writer_busy_clear","thr2_commit_pending_clear","source_commit_pending_clear","source_transition_busy_clear","transport_epoch_idle_set"]},"ring_address_source":"validated_local_runtime_configuration_only","unverified_hardware_disable_policy":"lock_software_RESET_REQUIRED_and_require_operator_or_transport_reset","verified_fail_closed_condition":"STATUS_telemetry_enable_and_ring_writer_enable_both_zero"},"project":"T_RECAP_Phase2","replay_command":{"acceptance_observation":"REPLAY_STATUS_last_accept_last_reject_pending_and_result_epoch","board_key_events_modify_csr_command_result":false,"rearm_write":"REPLAY_CONTROL.rearm","result_epoch_policy":"increment_on_each_CSR_originated_accept_or_reject_completion","start_command":"START_BRAM_REPLAY","start_policy":"pulse_raw_request_and_report_accept_or_reject_from_replay_owner","start_write":"REPLAY_CONTROL.start"},"schema":"trecap_phase2_de1soc_command_path_v1","sequence_and_replay":{"at_most_once_scope":"all_version_2_non_ping_commands","cache_policy":"bounded_result_cache_owned_by_HPS_command_bridge","comparison":"RFC1982_serial_number_arithmetic_32_bit","conflict_policy":"same_seq_and_different_request_rejected_SEQUENCE_CONFLICT","duplicate_policy":"same_seq_and_identical_request_returns_cached_result_without_reapplication","ledger_initial_state":"empty","ledger_reset_events":["command_server_start","new_first_ping_peer_binding"],"ping_exempt":true,"scope":"current_HPS_process_and_bound_peer_session","stale_policy":"older_or_ambiguous_non_ping_request_rejected_SEQUENCE_STALE"},"status":"source_contract_frozen_host_test_sources_required_live_evidence_absent","trusted_peer":{"canonical_mode":"configured_exact_peer","hps_listen_ip":"192.168.10.2","hps_listen_ip_source":"runtime_hps_static_ip","hps_listen_port":5006,"lab_learning_mode":{"allowed":true,"binding_event":"first_fully_valid_ping","initial_peer":"unbound","listen_override_ip":"0.0.0.0","post_binding_policy":"pin_exact_ipv4_and_udp_port","requirements":["direct_link_lab_mode_explicit","source_port_nonzero"]},"match_fields":["ipv4_address","udp_source_port"],"security_scope":"isolated_lab_or_direct_link_only_not_authenticated_not_encrypted","trusted_pc_ip":"192.168.10.1","trusted_pc_source_port":5007},"verification_source":{"checker":"scripts/check_command_path.py","host_test_execution_evidence_packaged":false,"hps_host_test":"sw/hps/tests/test_step14_command_path.c","native_rtl_simulation_evidence_packaged":false,"pc_host_test":"sw/pc_dashboard/tests/test_step14_command_client.py","quartus_or_hardware_evidence_packaged":false,"rtl_filelist_source":"sim/filelists/step14_command_csr.f","rtl_structural_checker":"sim/check_step14_command_rtl.py","rtl_structural_checker_execution_evidence_packaged":false,"rtl_testbench_source":"sim/tb/tb_trecap_step14_command_csr.sv"},"wire_contract":{"byte_order":"little_endian","crc_enabled":false,"packing":"packed_no_implicit_padding","request_bytes":28,"request_magic":"0x54524343","result_bytes":32,"result_layout":{"dispositions":[{"code":0,"name":"APPLIED"},{"code":1,"name":"NOOP"},{"code":2,"name":"REJECTED"},{"code":3,"name":"FAILED"}],"fields":[{"name":"magic","offset":0,"required_value":"0x54524352","type":"uint32"},{"name":"version","offset":4,"required_value":2,"type":"uint16"},{"name":"cmd_type","offset":6,"type":"uint16"},{"name":"seq","offset":8,"type":"uint32"},{"name":"disposition","offset":12,"type":"uint32"},{"name":"reject_reason","offset":16,"type":"uint32"},{"name":"fpga_status","offset":20,"source":"raw_STATUS_CSR","type":"uint32"},{"name":"csr_version","offset":24,"source":"raw_VERSION_CSR","type":"uint32"},{"name":"crc32","offset":28,"required_value":0,"type":"uint32"}],"reject_reasons":[{"code":0,"name":"NONE"},{"code":1,"name":"BAD_SOURCE"},{"code":2,"name":"BAD_LENGTH"},{"code":3,"name":"BAD_MAGIC"},{"code":4,"name":"BAD_VERSION"},{"code":5,"name":"BAD_CRC"},{"code":6,"name":"UNSUPPORTED_TYPE"},{"code":7,"name":"RANGE"},{"code":8,"name":"RESERVED_ARGUMENT"},{"code":9,"name":"CSR"},{"code":10,"name":"IO"},{"code":11,"name":"UNSAFE_STATE"},{"code":12,"name":"SEQUENCE_STALE"},{"code":13,"name":"SEQUENCE_CONFLICT"},{"code":14,"name":"TIMEOUT"},{"code":15,"name":"RESET_REQUIRED"},{"code":16,"name":"VERSION_MISMATCH"}],"size_bytes":32,"version":2},"result_magic":"0x54524352","version_1":{"exact_command_types":[{"code":"0x0001","name":"SET_THR2"},{"code":"0x0002","name":"CLEAR_METRICS"},{"code":"0x0003","name":"SET_SOURCE_MODE"},{"code":"0x0004","name":"SET_PACKET_ENABLE"},{"code":"0x0005","name":"SET_WAVE_DECIM"},{"code":"0x0006","name":"SET_SPEC_SHIFT"},{"code":"0x0007","name":"PING"}],"result_defined":false,"version":1},"version_2":{"extension_command_types":[{"args":{"arg0":"0..2","arg1":"0","arg2":"0"},"code":"0x0008","name":"SET_SPEC_MODE"},{"args":{"arg0":"0_or_1","arg1":"0","arg2":"0"},"code":"0x0009","name":"SET_TELEMETRY_ENABLE"},{"args":{"arg0":"0","arg1":"0","arg2":"0"},"code":"0x000A","name":"CONFIGURE_DDR_RING"},{"args":{"arg0":"0","arg1":"0","arg2":"0"},"code":"0x000B","name":"RESET_TRANSPORT"},{"args":{"arg0":"0","arg1":"0","arg2":"0"},"code":"0x000C","name":"CLEAR_COUNTERS"},{"args":{"arg0":"0","arg1":"0","arg2":"0"},"code":"0x000D","name":"START_BRAM_REPLAY"},{"args":{"arg0":"0","arg1":"0","arg2":"0"},"code":"0x000E","name":"READ_STATUS_VERSION"}],"inherits_version_1_command_types":true,"ping_policy":{"arguments":"ignored","command_result_emitted":false,"csr_access":false,"diagnostic_status_seq":0,"mutation_ledger_effect":"none","response":"fresh_diagnostic_status_only"},"version":2}}},
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "project",
+    "board",
+    "file_class",
+    "contract_stage",
+    "status",
+    "authority",
+    "wire_contract",
+    "trusted_peer",
+    "sequence_and_replay",
+    "lifecycle",
+    "control_mutation_safety",
+    "clear_counters",
+    "csr_extension",
+    "replay_command",
+    "command_service",
+    "verification_source",
+    "evidence_boundary"
+  ],
+  "properties": {
+    "schema": {"const": "trecap_phase2_de1soc_command_path_v1"},
+    "project": {"const": "T_RECAP_Phase2"},
+    "board": {"const": "de1soc"},
+    "file_class": {"type": "string", "minLength": 1},
+    "contract_stage": {"const": "architecture_implementation_step_14_source"},
+    "status": {"type": "string", "minLength": 1},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pdf_command_revision",
+        "pdf_v1_policy",
+        "step14_extension",
+        "extension_policy",
+        "csr_version_major",
+        "csr_version_minor"
+      ],
+      "properties": {
+        "pdf_command_revision": {"type": "string", "minLength": 1},
+        "pdf_v1_policy": {"const": "exact_and_unchanged"},
+        "step14_extension": {"const": "explicit command protocol version 2"},
+        "extension_policy": {"const": "version_2_adds_types_and_results_without_reinterpreting_version_1"},
+        "csr_version_major": {"const": 1},
+        "csr_version_minor": {"const": 8}
+      }
+    },
+    "wire_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "byte_order",
+        "packing",
+        "crc_enabled",
+        "request_bytes",
+        "request_magic",
+        "result_bytes",
+        "result_magic",
+        "version_1",
+        "version_2",
+        "result_layout"
+      ],
+      "properties": {
+        "byte_order": {"const": "little_endian"},
+        "packing": {"const": "packed_no_implicit_padding"},
+        "crc_enabled": {"const": false},
+        "request_bytes": {"const": 28},
+        "request_magic": {"const": "0x54524343"},
+        "result_bytes": {"const": 32},
+        "result_magic": {"const": "0x54524352"},
+        "version_1": {"$ref": "#/$defs/version1"},
+        "version_2": {"$ref": "#/$defs/version2"},
+        "result_layout": {"$ref": "#/$defs/resultLayout"}
+      }
+    },
+    "trusted_peer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_mode",
+        "hps_listen_ip_source",
+        "hps_listen_ip",
+        "hps_listen_port",
+        "trusted_pc_ip",
+        "trusted_pc_source_port",
+        "match_fields",
+        "lab_learning_mode",
+        "security_scope"
+      ],
+      "properties": {
+        "canonical_mode": {"const": "configured_exact_peer"},
+        "hps_listen_ip_source": {"const": "runtime_hps_static_ip"},
+        "hps_listen_ip": {"const": "192.168.10.2"},
+        "hps_listen_port": {"const": 5006},
+        "trusted_pc_ip": {"const": "192.168.10.1"},
+        "trusted_pc_source_port": {"const": 5007},
+        "match_fields": {
+          "const": ["ipv4_address", "udp_source_port"]
+        },
+        "lab_learning_mode": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["allowed", "initial_peer", "binding_event", "requirements", "listen_override_ip", "post_binding_policy"],
+          "properties": {
+            "allowed": {"const": true},
+            "initial_peer": {"const": "unbound"},
+            "binding_event": {"const": "first_fully_valid_ping"},
+            "requirements": {
+              "const": ["direct_link_lab_mode_explicit", "source_port_nonzero"]
+            },
+            "listen_override_ip": {"const": "0.0.0.0"},
+            "post_binding_policy": {"const": "pin_exact_ipv4_and_udp_port"}
+          }
+        },
+        "security_scope": {"const": "isolated_lab_or_direct_link_only_not_authenticated_not_encrypted"}
+      }
+    },
+    "sequence_and_replay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "comparison",
+        "scope",
+        "ledger_initial_state",
+        "ledger_reset_events",
+        "ping_exempt",
+        "duplicate_policy",
+        "conflict_policy",
+        "stale_policy",
+        "cache_policy",
+        "at_most_once_scope"
+      ],
+      "properties": {
+        "comparison": {"const": "RFC1982_serial_number_arithmetic_32_bit"},
+        "scope": {"const": "current_HPS_process_and_bound_peer_session"},
+        "ledger_initial_state": {"const": "empty"},
+        "ledger_reset_events": {
+          "const": ["command_server_start", "new_first_ping_peer_binding"]
+        },
+        "ping_exempt": {"const": true},
+        "duplicate_policy": {"const": "same_seq_and_identical_request_returns_cached_result_without_reapplication"},
+        "conflict_policy": {"const": "same_seq_and_different_request_rejected_SEQUENCE_CONFLICT"},
+        "stale_policy": {"const": "older_or_ambiguous_non_ping_request_rejected_SEQUENCE_STALE"},
+        "cache_policy": {"const": "bounded_result_cache_owned_by_HPS_command_bridge"},
+        "at_most_once_scope": {"const": "all_version_2_non_ping_commands"}
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_order",
+        "ring_address_source",
+        "network_supplied_ring_address_allowed",
+        "configure_command_arguments",
+        "enable_preconditions",
+        "partial_failure_policy",
+        "failure_disable_attempt",
+        "verified_fail_closed_condition",
+        "hardware_disable_may_be_claimed_without_readback",
+        "unverified_hardware_disable_policy",
+        "local_state_commit_policy",
+        "reset_replay_policy"
+      ],
+      "properties": {
+        "required_order": {
+          "const": ["RESET_TRANSPORT", "CONFIGURE_DDR_RING", "SET_TELEMETRY_ENABLE_1"]
+        },
+        "ring_address_source": {"const": "validated_local_runtime_configuration_only"},
+        "network_supplied_ring_address_allowed": {"const": false},
+        "configure_command_arguments": {"const": "all_zero"},
+        "enable_preconditions": {
+          "const": [
+            "csr_identity_version_1_8_verified",
+            "transport_reset_completed",
+            "ring_configured_from_pinned_runtime_profile",
+            "consumer_pointer_committed_zero",
+            "producer_pointer_snapshot_zero",
+            "no_malformed_latch",
+            "required_status_readback_matches"
+          ]
+        },
+        "partial_failure_policy": {"const": "attempt_CONTROL_zero_and_verify_both_controls_off_then_require_reset"},
+        "failure_disable_attempt": {"const": "write_CONTROL_zero_then_read_STATUS"},
+        "verified_fail_closed_condition": {"const": "STATUS_telemetry_enable_and_ring_writer_enable_both_zero"},
+        "hardware_disable_may_be_claimed_without_readback": {"const": false},
+        "unverified_hardware_disable_policy": {"const": "lock_software_RESET_REQUIRED_and_require_operator_or_transport_reset"},
+        "local_state_commit_policy": {"const": "commit_configuration_and_restored_enable_state_only_after_configuration_apply_readback_and_safe_control_restore_readback_both_succeed"},
+        "reset_replay_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "placement",
+            "reject_if_replay_status_reserved_nonzero",
+            "reject_if_any_replay_state_set",
+            "required_transport_quiescence",
+            "healthy_reset_replay_control_write_count",
+            "failed_epoch_rearm_condition",
+            "failed_epoch_rearm_pulse_count",
+            "rearm_must_preserve_result_epoch",
+            "rearm_readback_must_clear",
+            "active_replay_is_implicitly_aborted",
+            "failure_policy"
+          ],
+          "properties": {
+            "placement": {"const": "after_ring_reset_before_configuration_reconciliation"},
+            "reject_if_replay_status_reserved_nonzero": {"const": true},
+            "reject_if_any_replay_state_set": {
+              "const": ["pending", "replay_active", "replay_path_busy", "e2e_busy"]
+            },
+            "required_transport_quiescence": {
+              "const": [
+                "telemetry_control_off",
+                "ring_writer_control_off",
+                "writer_busy_clear",
+                "thr2_commit_pending_clear",
+                "source_commit_pending_clear",
+                "source_transition_busy_clear",
+                "transport_epoch_idle_set"
+              ]
+            },
+            "healthy_reset_replay_control_write_count": {"const": 0},
+            "failed_epoch_rearm_condition": {"const": "rearm_required_and_replay_and_transport_quiescent"},
+            "failed_epoch_rearm_pulse_count": {"const": 1},
+            "rearm_must_preserve_result_epoch": {"const": true},
+            "rearm_readback_must_clear": {
+              "const": [
+                "pending",
+                "replay_active",
+                "replay_path_busy",
+                "e2e_busy",
+                "last_accept",
+                "last_reject",
+                "error",
+                "rearm_required"
+              ]
+            },
+            "active_replay_is_implicitly_aborted": {"const": false},
+            "failure_policy": {"const": "FAILED_and_software_RESET_REQUIRED_fail_closed"}
+          }
+        }
+      }
+    },
+    "control_mutation_safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "applies_to_commands",
+        "applies_to_version_1_and_version_2",
+        "required_preconditions",
+        "ordered_operation",
+        "source_mode_commit_rule",
+        "direct_live_csr_writes_allowed",
+        "failure_policy"
+      ],
+      "properties": {
+        "applies_to_commands": {
+          "const": ["SET_SOURCE_MODE", "SET_PACKET_ENABLE", "SET_WAVE_DECIM", "SET_SPEC_MODE", "SET_SPEC_SHIFT"]
+        },
+        "applies_to_version_1_and_version_2": {"const": true},
+        "required_preconditions": {
+          "const": [
+            "telemetry_and_ring_writer_controls_disabled",
+            "STATUS.transport_epoch_idle_is_one",
+            "no_replay_busy_active_or_pending"
+          ]
+        },
+        "ordered_operation": {
+          "const": [
+            "snapshot_requested_enable_state",
+            "disable_telemetry_and_ring_writer",
+            "verify_controls_disabled_epoch_idle_and_replay_idle",
+            "perform_generated_CSR_write_or_shadow_commit",
+            "wait_for_command_specific_safe_apply_and_verify_readback",
+            "restore_prior_enable_state_only_if_all_checks_succeeded",
+            "verify_restored_control_readback"
+          ]
+        },
+        "source_mode_commit_rule": {"const": "write_SOURCE_MODE_SHADOW_pulse_SOURCE_MODE_COMMIT_then_wait_until_pending_clears_and_actual_source_mode_matches"},
+        "direct_live_csr_writes_allowed": {"const": false},
+        "failure_policy": {"const": "attempt_CONTROL_zero_and_verify_disabled; otherwise_lock_software_RESET_REQUIRED_report_hardware_disable_unverified_and_do_not_commit_HPS_local_state"}
+      }
+    },
+    "clear_counters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command", "fpga_counters_cleared", "hps_transport_counters_cleared", "preserved"],
+      "properties": {
+        "command": {"const": "CLEAR_COUNTERS"},
+        "fpga_counters_cleared": {
+          "const": [
+            "DMA_DROP_COUNT",
+            "DMA_PACKET_COUNT",
+            "PACKET_FIFO_DROP_COUNT",
+            "CSR_COMMAND_REJECT_COUNT"
+          ]
+        },
+        "hps_transport_counters_cleared": {"const": true},
+        "preserved": {
+          "const": [
+            "OVERFLOW_FLAGS",
+            "producer_pointer_W",
+            "consumer_pointer_Rd",
+            "telemetry_sequence",
+            "core_sample_and_frame_counts",
+            "trusted_peer_binding",
+            "mutation_sequence_ledger",
+            "result_cache"
+          ]
+        }
+      }
+    },
+    "csr_extension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version_major",
+        "version_minor",
+        "existing_offsets_0x000_through_0x088_unchanged",
+        "registers",
+        "status_extension_fields",
+        "status_source_pending_rule"
+      ],
+      "properties": {
+        "version_major": {"const": 1},
+        "version_minor": {"const": 8},
+        "existing_offsets_0x000_through_0x088_unchanged": {"const": true},
+        "registers": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {"$ref": "#/$defs/csrRegister"}
+        },
+        "status_extension_fields": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {"$ref": "#/$defs/bitField"}
+        },
+        "status_source_pending_rule": {"const": "STATUS.source_commit_pending_is_one_when_commit_pending_or_requested_mode_differs_from_actual_mode"}
+      }
+    },
+    "replay_command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "start_command",
+        "start_write",
+        "rearm_write",
+        "start_policy",
+        "result_epoch_policy",
+        "board_key_events_modify_csr_command_result",
+        "acceptance_observation"
+      ],
+      "properties": {
+        "start_command": {"const": "START_BRAM_REPLAY"},
+        "start_write": {"const": "REPLAY_CONTROL.start"},
+        "rearm_write": {"const": "REPLAY_CONTROL.rearm"},
+        "start_policy": {"const": "pulse_raw_request_and_report_accept_or_reject_from_replay_owner"},
+        "result_epoch_policy": {"const": "increment_on_each_CSR_originated_accept_or_reject_completion"},
+        "board_key_events_modify_csr_command_result": {"const": false},
+        "acceptance_observation": {"const": "REPLAY_STATUS_last_accept_last_reject_pending_and_result_epoch"}
+      }
+    },
+    "command_service": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "nonblocking",
+        "maximum_datagrams_per_streamer_pass",
+        "ring_service_must_not_be_starved",
+        "simple_csr_commands_owner",
+        "lifecycle_and_replay_owner",
+        "compatibility_direct_helper_policy",
+        "identity_required_before_noop_or_applied",
+        "read_status_version_identity_exception",
+        "response_destination"
+      ],
+      "properties": {
+        "nonblocking": {"const": true},
+        "maximum_datagrams_per_streamer_pass": {"const": 64},
+        "ring_service_must_not_be_starved": {"const": true},
+        "simple_csr_commands_owner": {"const": "command_bridge_for_live_network_path"},
+        "lifecycle_and_replay_owner": {"const": "command_bridge"},
+        "compatibility_direct_helper_policy": {"const": "command_apply_to_csr_not_used_by_live_streamer"},
+        "identity_required_before_noop_or_applied": {"const": "every_command_except_PING_and_READ_STATUS_VERSION"},
+        "read_status_version_identity_exception": {"const": "return_raw_STATUS_and_VERSION_as_NOOP_even_when_incompatible; only_read_failure_is_FAILED"},
+        "response_destination": {"const": "exact_validated_request_source_ip_and_port"}
+      }
+    },
+    "verification_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "checker",
+        "rtl_structural_checker",
+        "rtl_testbench_source",
+        "rtl_filelist_source",
+        "hps_host_test",
+        "pc_host_test",
+        "rtl_structural_checker_execution_evidence_packaged",
+        "host_test_execution_evidence_packaged",
+        "native_rtl_simulation_evidence_packaged",
+        "quartus_or_hardware_evidence_packaged"
+      ],
+      "properties": {
+        "checker": {"const": "scripts/check_command_path.py"},
+        "rtl_structural_checker": {"const": "sim/check_step14_command_rtl.py"},
+        "rtl_testbench_source": {"const": "sim/tb/tb_trecap_step14_command_csr.sv"},
+        "rtl_filelist_source": {"const": "sim/filelists/step14_command_csr.f"},
+        "hps_host_test": {"const": "sw/hps/tests/test_step14_command_path.c"},
+        "pc_host_test": {"const": "sw/pc_dashboard/tests/test_step14_command_client.py"},
+        "rtl_structural_checker_execution_evidence_packaged": {"const": false},
+        "host_test_execution_evidence_packaged": {"const": false},
+        "native_rtl_simulation_evidence_packaged": {"const": false},
+        "quartus_or_hardware_evidence_packaged": {"const": false}
+      }
+    },
+    "evidence_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_implementation_claimed",
+        "rtl_structural_checker_source_claimed",
+        "rtl_testbench_source_claimed",
+        "host_test_source_claimed",
+        "host_test_execution_packaged",
+        "live_pc_hps_udp",
+        "hps_linux_runtime",
+        "csr_mmap_runtime",
+        "lightweight_bridge_runtime",
+        "fpga_command_application",
+        "bram_replay_hardware",
+        "rtl_simulation",
+        "platform_designer_generation",
+        "quartus_timing",
+        "physical_hardware"
+      ],
+      "properties": {
+        "source_implementation_claimed": {"const": true},
+        "rtl_structural_checker_source_claimed": {"const": true},
+        "rtl_testbench_source_claimed": {"const": true},
+        "host_test_source_claimed": {"const": true},
+        "host_test_execution_packaged": {"const": false},
+        "live_pc_hps_udp": {"const": false},
+        "hps_linux_runtime": {"const": false},
+        "csr_mmap_runtime": {"const": false},
+        "lightweight_bridge_runtime": {"const": false},
+        "fpga_command_application": {"const": false},
+        "bram_replay_hardware": {"const": false},
+        "rtl_simulation": {"const": false},
+        "platform_designer_generation": {"const": false},
+        "quartus_timing": {"const": false},
+        "physical_hardware": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "nameCode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "code"],
+      "properties": {
+        "name": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+        "code": {
+          "oneOf": [
+            {"type": "integer", "minimum": 0, "maximum": 4294967295},
+            {"type": "string", "pattern": "^0x[0-9A-F]{4,8}$"}
+          ]
+        }
+      }
+    },
+    "commandWithArgs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "code", "args"],
+      "properties": {
+        "name": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+        "code": {"type": "string", "pattern": "^0x[0-9A-F]{4}$"},
+        "args": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["arg0", "arg1", "arg2"],
+          "properties": {
+            "arg0": {"type": "string", "minLength": 1},
+            "arg1": {"type": "string", "minLength": 1},
+            "arg2": {"type": "string", "minLength": 1}
+          }
+        }
+      }
+    },
+    "version1": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "result_defined", "exact_command_types"],
+      "properties": {
+        "version": {"const": 1},
+        "result_defined": {"const": false},
+        "exact_command_types": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {"$ref": "#/$defs/nameCode"}
+        }
+      }
+    },
+    "version2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "inherits_version_1_command_types", "extension_command_types", "ping_policy"],
+      "properties": {
+        "version": {"const": 2},
+        "inherits_version_1_command_types": {"const": true},
+        "extension_command_types": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "items": {"$ref": "#/$defs/commandWithArgs"}
+        },
+        "ping_policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["arguments", "response", "diagnostic_status_seq", "command_result_emitted", "csr_access", "mutation_ledger_effect"],
+          "properties": {
+            "arguments": {"const": "ignored"},
+            "response": {"const": "fresh_diagnostic_status_only"},
+            "diagnostic_status_seq": {"const": 0},
+            "command_result_emitted": {"const": false},
+            "csr_access": {"const": false},
+            "mutation_ledger_effect": {"const": "none"}
+          }
+        }
+      }
+    },
+    "wireField": {
+      "type": "object",
+      "required": ["name", "offset", "type"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "offset": {"type": "integer", "minimum": 0, "maximum": 28},
+        "type": {"enum": ["uint16", "uint32"]},
+        "required_value": {},
+        "source": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "resultLayout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "size_bytes", "fields", "dispositions", "reject_reasons"],
+      "properties": {
+        "version": {"const": 2},
+        "size_bytes": {"const": 32},
+        "fields": {
+          "type": "array",
+          "minItems": 9,
+          "maxItems": 9,
+          "items": {"$ref": "#/$defs/wireField"}
+        },
+        "dispositions": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": {"$ref": "#/$defs/nameCode"}
+        },
+        "reject_reasons": {
+          "type": "array",
+          "minItems": 17,
+          "maxItems": 17,
+          "items": {"$ref": "#/$defs/nameCode"}
+        }
+      }
+    },
+    "bitField": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "lsb", "msb"],
+      "properties": {
+        "name": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]*$"},
+        "lsb": {"type": "integer", "minimum": 0, "maximum": 31},
+        "msb": {"type": "integer", "minimum": 0, "maximum": 31}
+      }
+    },
+    "csrRegister": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "offset", "access", "fields"],
+      "properties": {
+        "name": {"enum": ["COUNTER_CLEAR", "REPLAY_CONTROL", "REPLAY_STATUS"]},
+        "offset": {"enum": ["0x08C", "0x090", "0x094"]},
+        "access": {"enum": ["W1P", "R"]},
+        "fields": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/bitField"}
+        }
+      }
+    }
+  }
+}

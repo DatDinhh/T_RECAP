@@ -1,0 +1,423 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trecap.local/spec/schemas/de1soc_clock_reset_architecture.schema.json",
+  "title": "T-RECAP Phase 2 Step-10 DE1-SoC clock/reset architecture contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "file_class",
+    "project",
+    "board",
+    "contract_stage",
+    "status",
+    "implementation_state",
+    "source_ownership",
+    "fabric_clock_domain",
+    "reset_architecture",
+    "clock_enable_architecture",
+    "canonical_binding_policy",
+    "telemetry_reset_policy",
+    "audio_clock_reset_policy",
+    "adc_clock_policy",
+    "platform_designer_clock_reset_boundary",
+    "constraint_policy",
+    "evidence_policy",
+    "validation_rules"
+  ],
+  "properties": {
+    "schema": {"const": "trecap_phase2_de1soc_clock_reset_architecture_v1"},
+    "file_class": {"const": "[1] hand-written Step-10 clock/reset architecture contract"},
+    "project": {"const": "T_RECAP_Phase2"},
+    "board": {"const": "de1soc"},
+    "contract_stage": {"const": "step10_clock_reset_architecture_source_implemented"},
+    "status": {"const": "source_implemented_pending_rtl_compile_functional_verification_platform_designer_generation_quartus_timing_and_hardware_evidence"},
+    "implementation_state": {"$ref": "#/$defs/implementationState"},
+    "source_ownership": {"$ref": "#/$defs/sourceOwnership"},
+    "fabric_clock_domain": {"$ref": "#/$defs/fabricClockDomain"},
+    "reset_architecture": {"$ref": "#/$defs/resetArchitecture"},
+    "clock_enable_architecture": {"$ref": "#/$defs/clockEnableArchitecture"},
+    "canonical_binding_policy": {"$ref": "#/$defs/canonicalBindingPolicy"},
+    "telemetry_reset_policy": {"$ref": "#/$defs/telemetryResetPolicy"},
+    "audio_clock_reset_policy": {"$ref": "#/$defs/audioClockResetPolicy"},
+    "adc_clock_policy": {"$ref": "#/$defs/adcClockPolicy"},
+    "platform_designer_clock_reset_boundary": {"$ref": "#/$defs/platformDesignerClockResetBoundary"},
+    "constraint_policy": {"$ref": "#/$defs/constraintPolicy"},
+    "evidence_policy": {"$ref": "#/$defs/evidencePolicy"},
+    "validation_rules": {
+      "type": "array",
+      "minItems": 12,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 20}
+    }
+  },
+  "$defs": {
+    "implementationState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "single_fabric_clock_domain_bound",
+        "qualified_board_reset_release_bound",
+        "board_and_hps_reset_combined_once",
+        "single_platform_reset_synchronizer_bound",
+        "exact_average_clock_enables_bound",
+        "telemetry_soft_reset_is_synchronous_clear",
+        "audio_edge_specific_reset_release_bound",
+        "rtl_compile",
+        "functional_verification",
+        "platform_designer_generation",
+        "quartus_compile",
+        "timing_closure",
+        "hardware_signoff"
+      ],
+      "properties": {
+        "single_fabric_clock_domain_bound": {"const": true},
+        "qualified_board_reset_release_bound": {"const": true},
+        "board_and_hps_reset_combined_once": {"const": true},
+        "single_platform_reset_synchronizer_bound": {"const": true},
+        "exact_average_clock_enables_bound": {"const": true},
+        "telemetry_soft_reset_is_synchronous_clear": {"const": true},
+        "audio_edge_specific_reset_release_bound": {"const": true},
+        "rtl_compile": {"const": false},
+        "functional_verification": {"const": false},
+        "platform_designer_generation": {"const": false},
+        "quartus_compile": {"const": false},
+        "timing_closure": {"const": false},
+        "hardware_signoff": {"const": false}
+      }
+    },
+    "sourceOwnership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "physical_board_top",
+        "clock_reset_controller",
+        "reset_synchronizer",
+        "audio_platform_wrapper",
+        "adc_platform_wrapper",
+        "telemetry_composition",
+        "telemetry_owner",
+        "platform_designer_wrapper",
+        "platform_designer_script",
+        "platform_designer_source",
+        "primary_constraints",
+        "supplemental_clock_constraints"
+      ],
+      "properties": {
+        "physical_board_top": {"const": "rtl/platform/de1soc/de1_soc_trecap_top.sv"},
+        "clock_reset_controller": {"const": "rtl/platform/de1soc/clock_reset_ctrl.sv"},
+        "reset_synchronizer": {"const": "rtl/common/reset_sync.sv"},
+        "audio_platform_wrapper": {"const": "rtl/platform/de1soc/audio_codec_wrapper.sv"},
+        "adc_platform_wrapper": {"const": "rtl/platform/de1soc/adc_wrapper.sv"},
+        "telemetry_composition": {"const": "rtl/top/trecap_de1soc_full_top.sv"},
+        "telemetry_owner": {"const": "rtl/telemetry/trecap_telemetry_top.sv"},
+        "platform_designer_wrapper": {"const": "rtl/platform/de1soc/platform_designer_wrapper.sv"},
+        "platform_designer_script": {"const": "platform/de1soc/qsys/platform_designer.tcl"},
+        "platform_designer_source": {"const": "platform/de1soc/qsys/system.qsys"},
+        "primary_constraints": {"const": "constraints/de1soc/de1soc.sdc"},
+        "supplemental_clock_constraints": {"const": "constraints/de1soc/clocks.sdc"}
+      }
+    },
+    "fabricClockDomain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_clock_input",
+        "canonical_clock_net",
+        "frequency_hz",
+        "period_ns",
+        "active_fabric_domains",
+        "pll_present",
+        "gated_clock_permitted",
+        "alternate_board_clocks_active",
+        "split_clock_profile_supported",
+        "clock_enable_pulses_replace_derived_low_rate_clocks",
+        "platform_designer_clock_export",
+        "platform_designer_clock_instance"
+      ],
+      "properties": {
+        "canonical_clock_input": {"const": "CLOCK_50"},
+        "canonical_clock_net": {"const": "clk_fabric"},
+        "frequency_hz": {"const": 50000000},
+        "period_ns": {"const": "20.000"},
+        "active_fabric_domains": {"const": 1},
+        "pll_present": {"const": false},
+        "gated_clock_permitted": {"const": false},
+        "alternate_board_clocks_active": {"const": false},
+        "split_clock_profile_supported": {"const": false},
+        "clock_enable_pulses_replace_derived_low_rate_clocks": {"const": true},
+        "platform_designer_clock_export": {"const": "clk_50"},
+        "platform_designer_clock_instance": {"const": "clk_0"}
+      }
+    },
+    "resetArchitecture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "board_reset_input",
+        "board_reset_polarity",
+        "board_release_qualification",
+        "board_release_qualification_cycles",
+        "hps_reset_input",
+        "combined_async_release_request",
+        "reset_requests_combined_locations",
+        "reset_synchronizer_module",
+        "reset_synchronizer_instance",
+        "minimum_release_stages",
+        "canonical_platform_reset",
+        "asynchronous_assertion",
+        "synchronous_deassertion",
+        "clock_reset_controller_owns_final_reset",
+        "board_top_second_reset_synchronizer_permitted",
+        "pseudo_per_domain_clock_outputs_permitted",
+        "pseudo_per_domain_reset_outputs_permitted",
+        "hardwired_pll_lock_permitted"
+      ],
+      "properties": {
+        "board_reset_input": {"const": "KEY[0]"},
+        "board_reset_polarity": {"const": "active_low"},
+        "board_release_qualification": {"const": "stable_high_for_20ms_in_CLOCK_50_domain"},
+        "board_release_qualification_cycles": {"const": 1000000},
+        "hps_reset_input": {"const": "h2f_reset_n_i"},
+        "combined_async_release_request": {"const": "qualified_board_release_n_and_h2f_reset_n_i"},
+        "reset_requests_combined_locations": {"const": 1},
+        "reset_synchronizer_module": {"const": "trecap_reset_sync"},
+        "reset_synchronizer_instance": {"const": "u_platform_reset_sync"},
+        "minimum_release_stages": {"const": 2},
+        "canonical_platform_reset": {"const": "rst_n_platform"},
+        "asynchronous_assertion": {"const": true},
+        "synchronous_deassertion": {"const": true},
+        "clock_reset_controller_owns_final_reset": {"const": true},
+        "board_top_second_reset_synchronizer_permitted": {"const": false},
+        "pseudo_per_domain_clock_outputs_permitted": {"const": false},
+        "pseudo_per_domain_reset_outputs_permitted": {"const": false},
+        "hardwired_pll_lock_permitted": {"const": false}
+      }
+    },
+    "clockEnableArchitecture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "generator_kind",
+        "reference_parameter",
+        "clock_enable_rates_hz",
+        "exact_average_rate_required",
+        "one_cycle_pulses_required",
+        "integer_period_divider_permitted",
+        "heartbeat_output_action",
+        "heartbeat_output_average_hz"
+      ],
+      "properties": {
+        "generator_kind": {"const": "rational_phase_accumulator_clock_enable"},
+        "reference_parameter": {"const": "FABRIC_CLK_HZ"},
+        "clock_enable_rates_hz": {"$ref": "#/$defs/clockEnableRates"},
+        "exact_average_rate_required": {"const": true},
+        "one_cycle_pulses_required": {"const": true},
+        "integer_period_divider_permitted": {"const": false},
+        "heartbeat_output_action": {"const": "toggle_heartbeat_state_on_each_2Hz_enable"},
+        "heartbeat_output_average_hz": {"const": 1}
+      }
+    },
+    "clockEnableRates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sample_tick_o", "status_tick_o", "metrics_tick_o", "heartbeat_toggle_o"],
+      "properties": {
+        "sample_tick_o": {"const": 48000},
+        "status_tick_o": {"const": 10},
+        "metrics_tick_o": {"const": 30},
+        "heartbeat_toggle_o": {"const": 2}
+      }
+    },
+    "canonicalBindingPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fabric_clock_for_board_integration",
+        "fabric_reset_for_board_integration",
+        "clock_reset_controller_instance",
+        "required_shared_domain_instances",
+        "low_rate_events_are_enables_not_clocks",
+        "board_key_and_switch_conditioning_owner",
+        "raw_board_controls_may_drive_functional_logic_outside_owner"
+      ],
+      "properties": {
+        "fabric_clock_for_board_integration": {"const": "clk_fabric"},
+        "fabric_reset_for_board_integration": {"const": "rst_n_platform"},
+        "clock_reset_controller_instance": {"const": "u_clock_reset_ctrl"},
+        "required_shared_domain_instances": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "u_platform_designer_wrapper",
+              "u_audio_codec_wrapper",
+              "u_adc_wrapper",
+              "u_source_core_integration",
+              "u_full_top"
+            ]
+          }
+        },
+        "low_rate_events_are_enables_not_clocks": {"const": true},
+        "board_key_and_switch_conditioning_owner": {"const": "clock_reset_ctrl"},
+        "raw_board_controls_may_drive_functional_logic_outside_owner": {"const": false}
+      }
+    },
+    "telemetryResetPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "soft_reset_signal",
+        "semantic",
+        "may_gate_or_derive_async_reset",
+        "may_enter_event_control",
+        "formatter_state_clear",
+        "packet_fifo_flush",
+        "transport_state_clear",
+        "platform_reset_remains_only_async_reset_source"
+      ],
+      "properties": {
+        "soft_reset_signal": {"const": "telemetry_soft_reset_pulse"},
+        "semantic": {"const": "one_cycle_synchronous_clear"},
+        "may_gate_or_derive_async_reset": {"const": false},
+        "may_enter_event_control": {"const": false},
+        "formatter_state_clear": {"const": true},
+        "packet_fifo_flush": {"const": true},
+        "transport_state_clear": {"const": true},
+        "platform_reset_remains_only_async_reset_source": {"const": true}
+      }
+    },
+    "audioClockResetPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "audio_clock",
+        "audio_clock_is_asynchronous_to_fabric",
+        "receive_edge",
+        "receive_reset_instance",
+        "transmit_edge",
+        "transmit_reset_instance",
+        "edge_specific_synchronous_release_required",
+        "master_clock_policy",
+        "live_audio_timing_constrained",
+        "live_audio_ready_claimed"
+      ],
+      "properties": {
+        "audio_clock": {"const": "AUD_BCLK"},
+        "audio_clock_is_asynchronous_to_fabric": {"const": true},
+        "receive_edge": {"const": "posedge"},
+        "receive_reset_instance": {"const": "u_bclk_rx_reset_sync"},
+        "transmit_edge": {"const": "negedge"},
+        "transmit_reset_instance": {"const": "u_bclk_tx_reset_sync"},
+        "edge_specific_synchronous_release_required": {"const": true},
+        "master_clock_policy": {"const": "AUD_XCK_from_audio_pll_wrapper_12_288_MHz_with_lock_qualified_codec_init"},
+        "live_audio_timing_constrained": {"const": false},
+        "live_audio_ready_claimed": {"const": false}
+      }
+    },
+    "adcClockPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "serial_clock_signal",
+        "semantic",
+        "internal_rtl_clock_permitted",
+        "separate_clock_domain_claimed",
+        "continuous_scheduler_kind",
+        "continuous_scheduler_rate_hz",
+        "continuous_scheduler_interval_jitter_max_fabric_cycles",
+        "integer_period_scheduler_permitted",
+        "external_io_timing_constrained",
+        "live_adc_ready_claimed"
+      ],
+      "properties": {
+        "serial_clock_signal": {"const": "ADC_SCLK"},
+        "semantic": {"const": "registered_protocol_output_driven_from_clk_fabric"},
+        "internal_rtl_clock_permitted": {"const": false},
+        "separate_clock_domain_claimed": {"const": false},
+        "continuous_scheduler_kind": {"const": "exact_average_fractional_phase_accumulator"},
+        "continuous_scheduler_rate_hz": {"const": 100000},
+        "continuous_scheduler_interval_jitter_max_fabric_cycles": {"const": 1},
+        "integer_period_scheduler_permitted": {"const": false},
+        "external_io_timing_constrained": {"const": false},
+        "live_adc_ready_claimed": {"const": false}
+      }
+    },
+    "platformDesignerClockResetBoundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_clock_hz",
+        "input_clock_export",
+        "input_reset_export",
+        "typed_bridge_clock_owner",
+        "typed_bridge_reset_owner",
+        "hps_reset_export",
+        "generated_system_source_is_bootstrap",
+        "generated_hdl_present",
+        "generated_sdc_present"
+      ],
+      "properties": {
+        "input_clock_hz": {"const": 50000000},
+        "input_clock_export": {"const": "clk_50"},
+        "input_reset_export": {"const": "reset_n"},
+        "typed_bridge_clock_owner": {"const": "clk_0.clk"},
+        "typed_bridge_reset_owner": {"const": "clk_0.clk_reset"},
+        "hps_reset_export": {"const": "h2f_reset"},
+        "generated_system_source_is_bootstrap": {"const": true},
+        "generated_hdl_present": {"const": false},
+        "generated_sdc_present": {"const": false}
+      }
+    },
+    "constraintPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_physical_clock",
+        "canonical_physical_period_ns",
+        "alternate_board_clock_constraints_active",
+        "audio_clock_constraint_deferred",
+        "adc_generated_clock_constraint_deferred",
+        "platform_designer_generated_constraints_deferred",
+        "timing_closed"
+      ],
+      "properties": {
+        "canonical_physical_clock": {"const": "CLOCK_50"},
+        "canonical_physical_period_ns": {"const": "20.000"},
+        "alternate_board_clock_constraints_active": {"const": false},
+        "audio_clock_constraint_deferred": {"const": true},
+        "adc_generated_clock_constraint_deferred": {"const": true},
+        "platform_designer_generated_constraints_deferred": {"const": true},
+        "timing_closed": {"const": false}
+      }
+    },
+    "evidencePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_checker",
+        "schema_file",
+        "default_checker_scope",
+        "source_check_is_rtl_compile",
+        "source_check_is_functional_verification",
+        "source_check_is_platform_designer_generation",
+        "source_check_is_quartus_compile",
+        "source_check_is_timing_closure",
+        "source_check_is_hardware_signoff"
+      ],
+      "properties": {
+        "source_checker": {"const": "scripts/check_de1soc_clock_reset.py"},
+        "schema_file": {"const": "spec/schemas/de1soc_clock_reset_architecture.schema.json"},
+        "default_checker_scope": {"const": "source_only"},
+        "source_check_is_rtl_compile": {"const": false},
+        "source_check_is_functional_verification": {"const": false},
+        "source_check_is_platform_designer_generation": {"const": false},
+        "source_check_is_quartus_compile": {"const": false},
+        "source_check_is_timing_closure": {"const": false},
+        "source_check_is_hardware_signoff": {"const": false}
+      }
+    }
+  }
+}

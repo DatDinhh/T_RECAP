@@ -1,0 +1,862 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trecap.local/schemas/interface_types.schema.json",
+  "title": "T-RECAP Phase 2 SystemVerilog interface and typedef schema",
+  "description": "Validates the hand-written interface and packed-typedef source-of-truth JSON consumed by the R1 generated-header flow.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "project",
+    "file_class",
+    "contract_stage",
+    "source_spec",
+    "repository_docs",
+    "edit_policy",
+    "generated_outputs",
+    "package",
+    "naming_contract",
+    "primitive_width_aliases",
+    "enums",
+    "structs",
+    "sv_interfaces_to_write_later",
+    "core_tap_signal_contract",
+    "cdc_and_flow_rules",
+    "generation_notes"
+  ],
+  "properties": {
+    "schema": {
+      "const": "trecap_phase2_interface_types_v1"
+    },
+    "project": {
+      "const": "T_RECAP_Phase2"
+    },
+    "file_class": {
+      "$ref": "#/$defs/non_empty_string"
+    },
+    "contract_stage": {
+      "const": "R1 generated-contract source input"
+    },
+    "source_spec": {
+      "$ref": "#/$defs/source_spec"
+    },
+    "repository_docs": {
+      "$ref": "#/$defs/path_list"
+    },
+    "edit_policy": {
+      "$ref": "#/$defs/edit_policy"
+    },
+    "generated_outputs": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/generated_outputs_common"
+        }
+      ],
+      "required": [
+        "rtl_sv"
+      ]
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "sv_output",
+        "imports",
+        "purpose"
+      ],
+      "properties": {
+        "name": {
+          "const": "trecap_iface_pkg"
+        },
+        "sv_output": {
+          "const": "rtl/include/generated/trecap_iface_pkg.sv"
+        },
+        "imports": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^trecap_[a-z0-9_]+_pkg::\\*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "purpose": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "naming_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "clock",
+        "reset",
+        "ready_valid",
+        "valid_only_taps"
+      ],
+      "properties": {
+        "clock": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^clk(_[a-z0-9]+)?$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "reset": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^rst(_[a-z0-9]+)?_n$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "ready_valid": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(in|out)_(valid|ready|payload)$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "valid_only_taps": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "primitive_width_aliases": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/primitive_alias"
+      },
+      "minItems": 8
+    },
+    "enums": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/enum_decl"
+      },
+      "minItems": 3,
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "trecap_packet_type_e"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "trecap_source_mode_e"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "trecap_spec_mode_e"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    },
+    "structs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/struct_decl"
+      },
+      "minItems": 9,
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "trecap_sample_t"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "trecap_frame_event_t"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "trecap_frame_stats_t"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "trecap_wave_triplet_t"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "trecap_record_meta_t"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "trecap_core_tap_sample_t"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "trecap_core_tap_frame_t"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "trecap_hps_bridge_ctrl_t"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "trecap_ring_config_t"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    },
+    "sv_interfaces_to_write_later": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/sv_interface_to_write"
+      },
+      "minItems": 6,
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "file"
+            ],
+            "properties": {
+              "file": {
+                "const": "rtl/interfaces/trecap_sample_if.sv"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "file"
+            ],
+            "properties": {
+              "file": {
+                "const": "rtl/interfaces/trecap_frame_if.sv"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "file"
+            ],
+            "properties": {
+              "file": {
+                "const": "rtl/interfaces/trecap_core_tap_if.sv"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "file"
+            ],
+            "properties": {
+              "file": {
+                "const": "rtl/interfaces/trecap_record_if.sv"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "file"
+            ],
+            "properties": {
+              "file": {
+                "const": "rtl/interfaces/trecap_csr_if.sv"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "file"
+            ],
+            "properties": {
+              "file": {
+                "const": "rtl/interfaces/trecap_avmm_if.sv"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    },
+    "core_tap_signal_contract": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^tap_[a-z0-9_]+$"
+      },
+      "minItems": 10,
+      "uniqueItems": true,
+      "allOf": [
+        {
+          "contains": {
+            "const": "tap_sample_valid"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "const": "tap_x_delayed"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "const": "tap_y_out"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "const": "tap_error"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "const": "tap_sample_idx"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "const": "tap_frame_valid"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "const": "tap_frame_idx"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "const": "tap_mag2_unique_bins"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "const": "tap_mask_unique_bins"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "const": "tap_frame_stats"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    },
+    "cdc_and_flow_rules": {
+      "$ref": "#/$defs/string_list"
+    },
+    "generation_notes": {
+      "$ref": "#/$defs/string_list"
+    }
+  },
+  "$defs": {
+    "non_empty_string": {
+      "type": "string",
+      "minLength": 1
+    },
+    "path_string": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_./+:-]+$"
+    },
+    "hex_string": {
+      "type": "string",
+      "pattern": "^0x[0-9A-Fa-f]+$"
+    },
+    "decimal_string": {
+      "type": "string",
+      "pattern": "^[0-9]+$"
+    },
+    "source_spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "active_pdf",
+        "clean_repo_name_if_renamed",
+        "algorithm_revision",
+        "transport_revision",
+        "repository_revision"
+      ],
+      "properties": {
+        "active_pdf": {
+          "$ref": "#/$defs/path_string"
+        },
+        "clean_repo_name_if_renamed": {
+          "$ref": "#/$defs/path_string"
+        },
+        "algorithm_revision": {
+          "const": "Core Revision J"
+        },
+        "transport_revision": {
+          "const": "Telemetry Revision G"
+        },
+        "repository_revision": {
+          "const": "Architecture Revision D"
+        }
+      }
+    },
+    "edit_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "this_file_is_hand_written",
+        "generated_outputs_must_not_be_hand_edited",
+        "generator",
+        "drift_check",
+        "line_endings",
+        "json_format"
+      ],
+      "properties": {
+        "this_file_is_hand_written": {
+          "const": true
+        },
+        "generated_outputs_must_not_be_hand_edited": {
+          "const": true
+        },
+        "generator": {
+          "const": "scripts/gen_headers.py"
+        },
+        "drift_check": {
+          "const": "make check-generated"
+        },
+        "line_endings": {
+          "const": "LF"
+        },
+        "json_format": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "string_list": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/non_empty_string"
+      },
+      "minItems": 1
+    },
+    "path_list": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/path_string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "generated_outputs_common": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rtl_sv": {
+          "$ref": "#/$defs/path_list"
+        },
+        "hps_c": {
+          "$ref": "#/$defs/path_list"
+        },
+        "pc_python": {
+          "$ref": "#/$defs/path_list"
+        },
+        "reference_python": {
+          "$ref": "#/$defs/path_list"
+        }
+      },
+      "minProperties": 1
+    },
+    "valid_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "allowed": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "power_of_two": {
+          "type": "boolean"
+        },
+        "multiple_of": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "mask_required_zero_hex": {
+          "$ref": "#/$defs/hex_string"
+        },
+        "valid_payload_mask_hex": {
+          "$ref": "#/$defs/hex_string"
+        }
+      },
+      "minProperties": 1
+    },
+    "sv_type_string": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(logic|trecap_|TPKT_|TSRC_|TSPEC_|[A-Za-z_]).*$"
+    },
+    "primitive_alias": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "sv_type",
+        "description"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^trecap_[a-z0-9_]+$"
+        },
+        "sv_type": {
+          "$ref": "#/$defs/sv_type_string"
+        },
+        "description": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "enum_value": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "value_hex"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "value_hex": {
+          "type": "string",
+          "pattern": "^[0-9]+\\'[hd][0-9A-Fa-f]+$"
+        },
+        "reserved_disabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "enum_decl": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "base_sv_type",
+        "source",
+        "values"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^trecap_[a-z0-9_]+_e$"
+        },
+        "base_sv_type": {
+          "$ref": "#/$defs/sv_type_string"
+        },
+        "source": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/enum_value"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "struct_field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "sv_type"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "sv_type": {
+          "$ref": "#/$defs/sv_type_string"
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 128
+        },
+        "width_expr": {
+          "type": "string",
+          "pattern": "^T_[A-Z0-9_]+$"
+        },
+        "signed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "struct_decl": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "packed",
+        "description",
+        "fields",
+        "rules"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^trecap_[a-z0-9_]+_t$"
+        },
+        "packed": {
+          "const": true
+        },
+        "description": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/struct_field"
+          },
+          "minItems": 1
+        },
+        "rules": {
+          "$ref": "#/$defs/string_list"
+        }
+      }
+    },
+    "sv_interface_to_write": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file",
+        "direction",
+        "flow_control"
+      ],
+      "properties": {
+        "file": {
+          "type": "string",
+          "pattern": "^rtl/interfaces/trecap_[a-z0-9_]+_if\\.sv$"
+        },
+        "primary_payload": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "primary_payloads": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/non_empty_string"
+          },
+          "minItems": 1
+        },
+        "direction": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "flow_control": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "primary_payload"
+          ]
+        },
+        {
+          "required": [
+            "primary_payloads"
+          ]
+        }
+      ]
+    }
+  },
+  "x-trecap-semantic-checks": [
+    "generated enums shall be sourced from packet_layouts.json and csr_map.json, not duplicated by hand",
+    "packed struct field order shall be preserved when emitting SystemVerilog",
+    "valid-only core tap structs shall not contain ready fields",
+    "sample and frame indices shall be 64-bit unsigned logic vectors",
+    "transport payload metadata shall be wide enough for every Revision G UDP record and zero-extended when written to the 32-bit header field",
+    "ready/valid interfaces are allowed only outside the non-stalling core tap boundary"
+  ]
+}

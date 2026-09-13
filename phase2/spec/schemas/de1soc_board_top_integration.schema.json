@@ -1,0 +1,321 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trecap.local/spec/schemas/de1soc_board_top_integration.schema.json",
+  "title": "T-RECAP Phase 2 Step-9 DE1-SoC board-top integration contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "file_class",
+    "project",
+    "board",
+    "contract_stage",
+    "status",
+    "implementation_state",
+    "source_ownership",
+    "board_composition",
+    "clock_reset_scaffold_contract",
+    "platform_designer_paths",
+    "source_core_telemetry_paths",
+    "ltc2308_board_contract",
+    "board_status_path",
+    "filelist_contract",
+    "evidence_policy",
+    "validation_rules"
+  ],
+  "properties": {
+    "schema": {"const": "trecap_phase2_de1soc_board_top_integration_v1"},
+    "file_class": {"const": "[1] hand-written Step-9 board-top integration contract"},
+    "project": {"const": "T_RECAP_Phase2"},
+    "board": {"const": "de1soc"},
+    "contract_stage": {"const": "step9_board_top_scaffolds_replaced_source_implemented"},
+    "status": {"const": "source_implemented_pending_rtl_compile_functional_verification_platform_designer_generation_quartus_and_hardware_evidence"},
+    "implementation_state": {"$ref": "#/$defs/implementationState"},
+    "source_ownership": {"$ref": "#/$defs/sourceOwnership"},
+    "board_composition": {"$ref": "#/$defs/boardComposition"},
+    "clock_reset_scaffold_contract": {"$ref": "#/$defs/clockResetScaffoldContract"},
+    "platform_designer_paths": {"$ref": "#/$defs/platformDesignerPaths"},
+    "source_core_telemetry_paths": {"$ref": "#/$defs/sourceCoreTelemetryPaths"},
+    "ltc2308_board_contract": {"$ref": "#/$defs/ltc2308BoardContract"},
+    "board_status_path": {"$ref": "#/$defs/boardStatusPath"},
+    "filelist_contract": {"$ref": "#/$defs/filelistContract"},
+    "evidence_policy": {"$ref": "#/$defs/evidencePolicy"},
+    "validation_rules": {
+      "type": "array",
+      "minItems": 12,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 20}
+    }
+  },
+  "$defs": {
+    "nonEmptyStringArray": {
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "implementationState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "board_top_scaffolds_replaced",
+        "generated_platform_designer_csr_path_bound",
+        "generated_platform_designer_ddr_path_bound",
+        "audio_linein_to_source_core_bound",
+        "adc_capture_to_source_core_bound",
+        "core_y_to_best_effort_audio_lineout_bound",
+        "ltc2308_capture_and_config_path_bound",
+        "real_board_status_bound",
+        "rtl_compile",
+        "functional_verification",
+        "platform_designer_generation",
+        "quartus_compile",
+        "hardware_signoff"
+      ],
+      "properties": {
+        "board_top_scaffolds_replaced": {"const": true},
+        "generated_platform_designer_csr_path_bound": {"const": true},
+        "generated_platform_designer_ddr_path_bound": {"const": true},
+        "audio_linein_to_source_core_bound": {"const": true},
+        "adc_capture_to_source_core_bound": {"const": true},
+        "core_y_to_best_effort_audio_lineout_bound": {"const": true},
+        "ltc2308_capture_and_config_path_bound": {"const": true},
+        "real_board_status_bound": {"const": true},
+        "rtl_compile": {"const": false},
+        "functional_verification": {"const": false},
+        "platform_designer_generation": {"const": false},
+        "quartus_compile": {"const": false},
+        "hardware_signoff": {"const": false}
+      }
+    },
+    "sourceOwnership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "physical_board_top",
+        "clock_reset_controller",
+        "platform_designer_boundary",
+        "generated_platform_designer_module",
+        "audio_platform_wrapper",
+        "adc_platform_wrapper",
+        "source_core_integration",
+        "telemetry_hps_integration",
+        "full_board_filelist",
+        "quartus_filelist"
+      ],
+      "properties": {
+        "physical_board_top": {"const": "rtl/platform/de1soc/de1_soc_trecap_top.sv"},
+        "clock_reset_controller": {"const": "rtl/platform/de1soc/clock_reset_ctrl.sv"},
+        "platform_designer_boundary": {"const": "rtl/platform/de1soc/platform_designer_wrapper.sv"},
+        "generated_platform_designer_module": {"const": "system"},
+        "audio_platform_wrapper": {"const": "rtl/platform/de1soc/audio_codec_wrapper.sv"},
+        "adc_platform_wrapper": {"const": "rtl/platform/de1soc/adc_wrapper.sv"},
+        "source_core_integration": {"const": "rtl/top/trecap_source_core_integration.sv"},
+        "telemetry_hps_integration": {"const": "rtl/top/trecap_de1soc_full_top.sv"},
+        "full_board_filelist": {"const": "filelists/rtl_de1soc_full.f"},
+        "quartus_filelist": {"const": "filelists/quartus_de1soc.qsf.inc"}
+      }
+    },
+    "requiredInstances": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["clock_reset_ctrl", "platform_designer_wrapper", "audio_codec_wrapper", "adc_wrapper", "trecap_source_core_integration", "trecap_de1soc_full_top"],
+      "properties": {
+        "clock_reset_ctrl": {"const": "u_clock_reset_ctrl"},
+        "platform_designer_wrapper": {"const": "u_platform_designer_wrapper"},
+        "audio_codec_wrapper": {"const": "u_audio_codec_wrapper"},
+        "adc_wrapper": {"const": "u_adc_wrapper"},
+        "trecap_source_core_integration": {"const": "u_source_core_integration"},
+        "trecap_de1soc_full_top": {"const": "u_full_top"}
+      }
+    },
+    "boardComposition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["physical_top_module", "required_instances", "instances_per_required_type", "direct_trecap_core_top_instances", "trecap_core_telemetry_top_instances", "mathematical_core_owner", "telemetry_hps_owner", "fabric_clock", "platform_reset"],
+      "properties": {
+        "physical_top_module": {"const": "de1_soc_trecap_top"},
+        "required_instances": {"$ref": "#/$defs/requiredInstances"},
+        "instances_per_required_type": {"const": 1},
+        "direct_trecap_core_top_instances": {"const": 0},
+        "trecap_core_telemetry_top_instances": {"const": 0},
+        "mathematical_core_owner": {"const": "trecap_source_core_integration"},
+        "telemetry_hps_owner": {"const": "trecap_de1soc_full_top"},
+        "fabric_clock": {"const": "clk_fabric"},
+        "platform_reset": {"const": "rst_n_platform"}
+      }
+    },
+    "clockResetScaffoldContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "active_fabric_clock_source",
+        "active_fabric_clock_domain_count",
+        "canonical_reset_owner",
+        "canonical_reset_output",
+        "physical_reset_source",
+        "board_reset_release_qualification_cycles",
+        "hps_reset_source",
+        "canonical_reset_combination",
+        "board_top_reset_synchronizer_permitted",
+        "pseudo_clock_domain_outputs_permitted",
+        "pseudo_reset_domain_outputs_permitted",
+        "tick_generation",
+        "ticks_used_as_clocks_permitted",
+        "audio_rx_reset_sync_instance",
+        "audio_tx_reset_sync_instance",
+        "audio_rx_reset_release_edge",
+        "audio_tx_reset_release_edge",
+        "synthetic_frame_boundary_output_permitted",
+        "synthetic_source_safe_boundary_output_permitted",
+        "real_frame_boundary_owner",
+        "real_source_safe_boundary_owner",
+        "direct_clock_baseline_claims_pll_lock",
+        "reset_may_depend_on_hardwired_pll_locked_true"
+      ],
+      "properties": {
+        "active_fabric_clock_source": {"const": "CLOCK_50"},
+        "active_fabric_clock_domain_count": {"const": 1},
+        "canonical_reset_owner": {"const": "clock_reset_ctrl"},
+        "canonical_reset_output": {"const": "rst_n_platform"},
+        "physical_reset_source": {"const": "KEY[0]"},
+        "board_reset_release_qualification_cycles": {"const": 1000000},
+        "hps_reset_source": {"const": "h2f_reset_n"},
+        "canonical_reset_combination": {"const": "qualified_KEY0_and_h2f_reset_n"},
+        "board_top_reset_synchronizer_permitted": {"const": false},
+        "pseudo_clock_domain_outputs_permitted": {"const": false},
+        "pseudo_reset_domain_outputs_permitted": {"const": false},
+        "tick_generation": {"const": "fractional_accumulator_clock_enables"},
+        "ticks_used_as_clocks_permitted": {"const": false},
+        "audio_rx_reset_sync_instance": {"const": "u_bclk_rx_reset_sync"},
+        "audio_tx_reset_sync_instance": {"const": "u_bclk_tx_reset_sync"},
+        "audio_rx_reset_release_edge": {"const": "posedge_AUD_BCLK"},
+        "audio_tx_reset_release_edge": {"const": "negedge_AUD_BCLK"},
+        "synthetic_frame_boundary_output_permitted": {"const": false},
+        "synthetic_source_safe_boundary_output_permitted": {"const": false},
+        "real_frame_boundary_owner": {"const": "trecap_source_core_integration"},
+        "real_source_safe_boundary_owner": {"const": "trecap_source_core_integration"},
+        "direct_clock_baseline_claims_pll_lock": {"const": false},
+        "reset_may_depend_on_hardwired_pll_locked_true": {"const": false}
+      }
+    },
+    "platformDesignerPaths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generated_instance", "csr_path", "ddr_path", "csr_request_and_response_bound_end_to_end", "ddr_write_request_and_response_bound_end_to_end", "safe_idle_csr_substitute_permitted", "safe_idle_ddr_substitute_permitted", "local_generated_system_stub_permitted"],
+      "properties": {
+        "generated_instance": {"const": "platform_designer_wrapper.u_platform_designer_system"},
+        "csr_path": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "ddr_path": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "csr_request_and_response_bound_end_to_end": {"const": true},
+        "ddr_write_request_and_response_bound_end_to_end": {"const": true},
+        "safe_idle_csr_substitute_permitted": {"const": false},
+        "safe_idle_ddr_substitute_permitted": {"const": false},
+        "local_generated_system_stub_permitted": {"const": false}
+      }
+    },
+    "sourceCoreTelemetryPaths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["audio_linein_path", "adc_capture_path", "core_observation_path", "core_y_lineout_monitor_path", "core_y_ready_owner", "audio_lineout_backpressure_to_core_permitted", "audio_lineout_busy_action", "audio_lineout_enable_propagated_to_bclk_domain", "stale_enabled_lineout_after_disable_permitted", "audio_lineout_ready_is_observability_only", "core_y_audio_scale_rule", "core_y_audio_channel_mapping", "audio_xck_policy", "audio_xck_source_until_reviewed_pll", "enableable_ad_hoc_xck_debug_divider_permitted", "audio_live_ready_claimed", "core_y_constant_or_disconnected_board_tieoff_permitted", "synthetic_tap_generation_permitted", "telemetry_ready_to_core_permitted", "adc_configuration_constant_tieoff_permitted", "adc_explicit_request_may_be_inactive_when_continuous_mode_is_active", "audio_lineout_constant_tieoff_permitted"],
+      "properties": {
+        "audio_linein_path": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "adc_capture_path": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "core_observation_path": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "core_y_lineout_monitor_path": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "core_y_ready_owner": {"const": "always_accept_non_stalling_board_sink"},
+        "audio_lineout_backpressure_to_core_permitted": {"const": false},
+        "audio_lineout_busy_action": {"const": "drop_monitor_sample_and_count_tx_overflow"},
+        "audio_lineout_enable_propagated_to_bclk_domain": {"const": true},
+        "stale_enabled_lineout_after_disable_permitted": {"const": false},
+        "audio_lineout_ready_is_observability_only": {"const": true},
+        "core_y_audio_scale_rule": {"const": "signed_left_shift_by_AUDIO_SAMPLE_W_minus_T_SAMPLE_W"},
+        "core_y_audio_channel_mapping": {"const": "dual_mono_left_and_right"},
+        "audio_xck_policy": {"const": "pll_generated_12_288_MHz_lock_qualified_codec_init"},
+        "audio_xck_source_until_reviewed_pll": {"const": "audio_pll_wrapper.audio_mclk_o"},
+        "enableable_ad_hoc_xck_debug_divider_permitted": {"const": false},
+        "audio_live_ready_claimed": {"const": false},
+        "core_y_constant_or_disconnected_board_tieoff_permitted": {"const": false},
+        "synthetic_tap_generation_permitted": {"const": false},
+        "telemetry_ready_to_core_permitted": {"const": false},
+        "adc_configuration_constant_tieoff_permitted": {"const": false},
+        "adc_explicit_request_may_be_inactive_when_continuous_mode_is_active": {"const": true},
+        "audio_lineout_constant_tieoff_permitted": {"const": false}
+      }
+    },
+    "ltc2308BoardContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["device_family", "board_signal_alias", "conversion_input_range_volts", "conversion_start", "minimum_post_convst_wait_us", "serial_data_bits_per_result", "next_configuration_bits", "configuration_source", "configuration_latch_point", "configuration_stable_for_active_source_epoch", "configuration_update_requires_leave_and_reenter", "mid_epoch_channel_mixing_permitted", "new_adc_source_epoch_requires_reprime", "sampling_mode_select", "manual_request_source", "configuration_shifted_while_reading_previous_result", "first_result_after_enable_or_channel_change", "sample_valid_only_after_primed_current_configuration", "adc_wrapper_owns_protocol_timing", "continuous_scheduler_kind", "continuous_scheduler_rate_hz", "continuous_scheduler_interval_jitter_max_fabric_cycles", "integer_period_scheduler_permitted", "timing_parameters_validated_against_clk_hz_with_wide_arithmetic", "compile_time_timing_assertions_required", "literal_default_cycles_as_only_timing_proof_permitted"],
+      "properties": {
+        "device_family": {"const": "LTC2308"},
+        "board_signal_alias": {"const": "ADC_CS_N_is_CONVST"},
+        "conversion_input_range_volts": {"const": "0_to_4.096"},
+        "conversion_start": {"const": "short_active_high_CONVST_pulse_idle_low"},
+        "minimum_post_convst_wait_us": {"const": "1.6"},
+        "serial_data_bits_per_result": {"const": 12},
+        "next_configuration_bits": {"const": 6},
+        "configuration_source": {"const": "sw_sync[6:4]"},
+        "configuration_latch_point": {"const": "entry_to_TSRC_ADC_LIVE"},
+        "configuration_stable_for_active_source_epoch": {"const": true},
+        "configuration_update_requires_leave_and_reenter": {"const": true},
+        "mid_epoch_channel_mixing_permitted": {"const": false},
+        "new_adc_source_epoch_requires_reprime": {"const": true},
+        "sampling_mode_select": {"const": "sw_sync[7]"},
+        "manual_request_source": {"const": "key_press_pulse[2]"},
+        "configuration_shifted_while_reading_previous_result": {"const": true},
+        "first_result_after_enable_or_channel_change": {"const": "prime_and_discard_old_configuration_result"},
+        "sample_valid_only_after_primed_current_configuration": {"const": true},
+        "adc_wrapper_owns_protocol_timing": {"const": true},
+        "continuous_scheduler_kind": {"const": "exact_average_fractional_phase_accumulator"},
+        "continuous_scheduler_rate_hz": {"const": 100000},
+        "continuous_scheduler_interval_jitter_max_fabric_cycles": {"const": 1},
+        "integer_period_scheduler_permitted": {"const": false},
+        "timing_parameters_validated_against_clk_hz_with_wide_arithmetic": {"const": true},
+        "compile_time_timing_assertions_required": {"const": true},
+        "literal_default_cycles_as_only_timing_proof_permitted": {"const": false}
+      }
+    },
+    "boardStatusPath": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["led_outputs", "seven_segment_outputs", "status_sources", "synthetic_activity_counter_permitted", "constant_status_display_permitted"],
+      "properties": {
+        "led_outputs": {"const": "LEDR"},
+        "seven_segment_outputs": {"type": "array", "minItems": 6, "maxItems": 6, "uniqueItems": true, "items": {"enum": ["HEX0", "HEX1", "HEX2", "HEX3", "HEX4", "HEX5"]}},
+        "status_sources": {"$ref": "#/$defs/nonEmptyStringArray"},
+        "synthetic_activity_counter_permitted": {"const": false},
+        "constant_status_display_permitted": {"const": false}
+      }
+    },
+    "filelistContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["full_board_top_listed_once", "platform_wrappers_listed_once", "source_core_precedes_board_top", "telemetry_hps_precedes_board_top", "standalone_core_telemetry_composition_excluded", "generated_system_hdl_owned_by_vendor_generation"],
+      "properties": {
+        "full_board_top_listed_once": {"const": true},
+        "platform_wrappers_listed_once": {"const": true},
+        "source_core_precedes_board_top": {"const": true},
+        "telemetry_hps_precedes_board_top": {"const": true},
+        "standalone_core_telemetry_composition_excluded": {"const": true},
+        "generated_system_hdl_owned_by_vendor_generation": {"const": true}
+      }
+    },
+    "evidencePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_checker", "human_document", "schema_file", "default_checker_scope", "source_check_is_rtl_compile", "source_check_is_functional_verification", "source_check_is_platform_designer_generation", "source_check_is_quartus_compile", "source_check_is_hardware_signoff"],
+      "properties": {
+        "source_checker": {"const": "scripts/check_de1soc_board_top.py"},
+        "human_document": {"const": "docs/architecture/de1soc_board_top_integration.md"},
+        "schema_file": {"const": "spec/schemas/de1soc_board_top_integration.schema.json"},
+        "default_checker_scope": {"const": "source_only"},
+        "source_check_is_rtl_compile": {"const": false},
+        "source_check_is_functional_verification": {"const": false},
+        "source_check_is_platform_designer_generation": {"const": false},
+        "source_check_is_quartus_compile": {"const": false},
+        "source_check_is_hardware_signoff": {"const": false}
+      }
+    }
+  }
+}

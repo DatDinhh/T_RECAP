@@ -1,0 +1,376 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trecap.local/schemas/de1soc_audio_linein.schema.json",
+  "title": "T-RECAP Phase 2 Step-16 DE1-SoC LINE-IN Audio Contract",
+  "description": "Source-level contract for the FPGA-side WM8731 control, 12.288 MHz audio PLL, 48 kHz 16-bit I2S path, asynchronous audio FIFOs, counters, board pins, profile, and evidence boundary.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "file_class",
+    "project",
+    "board",
+    "board_revision",
+    "contract_stage",
+    "status",
+    "ownership",
+    "board_codec_contract",
+    "audio_pll_contract",
+    "codec_configuration_contract",
+    "serial_audio_contract",
+    "cdc_and_counter_contract",
+    "top_level_contract",
+    "profile_contract",
+    "evidence_policy",
+    "invariants"
+  ],
+  "properties": {
+    "schema": {"const": "trecap_phase2_de1soc_audio_linein_v1"},
+    "file_class": {"const": "[1] hand-written Step-16 DE1-SoC LINE-IN audio contract"},
+    "project": {"const": "T_RECAP_Phase2"},
+    "board": {"const": "de1soc"},
+    "board_revision": {"const": "rev_h"},
+    "contract_stage": {"const": "step16_audio_linein_source_implemented"},
+    "status": {
+      "const": "source_implemented_pending_rtl_compile_simulation_quartus_timing_i2c_ack_clock_measurement_live_audio_and_hardware_evidence"
+    },
+    "ownership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "physical_board_top",
+        "audio_pll_wrapper",
+        "codec_i2c_initializer",
+        "audio_serial_wrapper",
+        "async_fifo_primitive",
+        "audio_source_adapter",
+        "linein_profile",
+        "pin_assignments",
+        "full_board_filelist",
+        "quartus_filelist",
+        "schema_file",
+        "source_checker",
+        "behavioral_model"
+      ],
+      "properties": {
+        "physical_board_top": {"const": "rtl/platform/de1soc/de1_soc_trecap_top.sv"},
+        "audio_pll_wrapper": {"const": "rtl/platform/de1soc/audio_pll_wrapper.sv"},
+        "codec_i2c_initializer": {"const": "rtl/platform/de1soc/audio_codec_i2c_init.sv"},
+        "audio_serial_wrapper": {"const": "rtl/platform/de1soc/audio_codec_wrapper.sv"},
+        "async_fifo_primitive": {"const": "rtl/common/async_fifo.sv"},
+        "audio_source_adapter": {"const": "rtl/sources/trecap_audio_adapter.sv"},
+        "linein_profile": {"const": "config/profiles/de1soc_linein_demo.json"},
+        "pin_assignments": {"const": "constraints/de1soc/pin_assignments.tcl"},
+        "full_board_filelist": {"const": "filelists/rtl_de1soc_full.f"},
+        "quartus_filelist": {"const": "filelists/quartus_de1soc.qsf.inc"},
+        "schema_file": {"const": "spec/schemas/de1soc_audio_linein.schema.json"},
+        "source_checker": {"const": "scripts/check_de1soc_audio_path.py"},
+        "behavioral_model": {"const": "scripts/sim/check_step16_audio_model.py"}
+      }
+    },
+    "board_codec_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "codec_model",
+        "codec_control_address_7bit",
+        "codec_control_bus",
+        "codec_control_bus_hz",
+        "codec_control_mux_select_owner",
+        "codec_control_mux_fpga_selected_level",
+        "fabric_may_drive_codec_control_mux_select",
+        "fpga_i2c_sclk",
+        "fpga_i2c_sdat",
+        "external_board_pullups_required",
+        "internal_weak_pullup_assignment_permitted"
+      ],
+      "properties": {
+        "codec_model": {"const": "WM8731"},
+        "codec_control_address_7bit": {"const": "0x1a"},
+        "codec_control_bus": {"const": "FPGA_I2C"},
+        "codec_control_bus_hz": {"const": 100000},
+        "codec_control_mux_select_owner": {"const": "HPS_GPIO48_HPS_I2C_CONTROL"},
+        "codec_control_mux_fpga_selected_level": {"const": 0},
+        "fabric_may_drive_codec_control_mux_select": {"const": false},
+        "fpga_i2c_sclk": {
+          "const": {
+            "top_port": "FPGA_I2C_SCLK",
+            "package_pin": "PIN_J12",
+            "io_standard": "3.3-V LVTTL",
+            "direction": "open_drain_output"
+          }
+        },
+        "fpga_i2c_sdat": {
+          "const": {
+            "top_port": "FPGA_I2C_SDAT",
+            "package_pin": "PIN_K12",
+            "io_standard": "3.3-V LVTTL",
+            "direction": "open_drain_inout"
+          }
+        },
+        "external_board_pullups_required": {"const": true},
+        "internal_weak_pullup_assignment_permitted": {"const": false}
+      }
+    },
+    "audio_pll_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reference_clock",
+        "reference_clock_hz",
+        "master_clock_output",
+        "master_clock_hz",
+        "master_clock_multiple_of_sample_rate",
+        "implementation",
+        "integer_or_counter_divider_permitted",
+        "fabric_and_core_clock_remains_clock_50",
+        "qualified_lock_required_before_codec_init",
+        "unsupported_configuration_behavior"
+      ],
+      "properties": {
+        "reference_clock": {"const": "CLOCK_50"},
+        "reference_clock_hz": {"const": 50000000},
+        "master_clock_output": {"const": "AUD_XCK"},
+        "master_clock_hz": {"const": 12288000},
+        "master_clock_multiple_of_sample_rate": {"const": 256},
+        "implementation": {"const": "altera_fractional_pll_behind_audio_pll_wrapper"},
+        "integer_or_counter_divider_permitted": {"const": false},
+        "fabric_and_core_clock_remains_clock_50": {"const": true},
+        "qualified_lock_required_before_codec_init": {"const": true},
+        "unsupported_configuration_behavior": {"const": "clock_and_lock_fail_closed_low"}
+      }
+    },
+    "codec_configuration_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sample_rate_hz",
+        "word_width_bits",
+        "serial_format",
+        "clock_role",
+        "i2s_data_delay_bits",
+        "ack_required_after_every_transmitted_byte",
+        "maximum_retries_after_initial_attempt_per_register",
+        "configuration_done_requires_all_register_writes_acked",
+        "configuration_error_is_sticky",
+        "register_sequence"
+      ],
+      "properties": {
+        "sample_rate_hz": {"const": 48000},
+        "word_width_bits": {"const": 16},
+        "serial_format": {"const": "i2s"},
+        "clock_role": {"const": "codec_master"},
+        "i2s_data_delay_bits": {"const": 1},
+        "ack_required_after_every_transmitted_byte": {"const": true},
+        "maximum_retries_after_initial_attempt_per_register": {"const": 3},
+        "configuration_done_requires_all_register_writes_acked": {"const": true},
+        "configuration_error_is_sticky": {"const": true},
+        "register_sequence": {
+          "const": [
+            {"register": 15, "value": "0x000", "purpose": "software_reset"},
+            {"register": 9, "value": "0x000", "purpose": "inactive_during_configuration"},
+            {"register": 0, "value": "0x017", "purpose": "left_line_input_unmuted_0db"},
+            {"register": 1, "value": "0x017", "purpose": "right_line_input_unmuted_0db"},
+            {"register": 2, "value": "0x079", "purpose": "left_headphone_output_0db"},
+            {"register": 3, "value": "0x079", "purpose": "right_headphone_output_0db"},
+            {"register": 4, "value": "0x012", "purpose": "analog_path_linein_and_dac"},
+            {"register": 5, "value": "0x000", "purpose": "digital_path_unmuted"},
+            {"register": 6, "value": "0x002", "purpose": "required_codec_blocks_powered_microphone_off"},
+            {"register": 7, "value": "0x042", "purpose": "codec_master_16bit_i2s"},
+            {"register": 8, "value": "0x000", "purpose": "normal_48khz_at_12_288mhz"},
+            {"register": 9, "value": "0x001", "purpose": "activate_last"}
+          ]
+        }
+      }
+    },
+    "serial_audio_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sample_rate_hz",
+        "sample_width_bits",
+        "serial_format",
+        "left_lrck_level",
+        "receive_edge",
+        "transmit_edge",
+        "codec_generated_bclk_and_lrck",
+        "nominal_bclk_hz",
+        "bclk_multiple_of_sample_rate",
+        "audio_capture_requires_codec_config_done",
+        "lineout_backpressure_to_core_permitted"
+      ],
+      "properties": {
+        "sample_rate_hz": {"const": 48000},
+        "sample_width_bits": {"const": 16},
+        "serial_format": {"const": "i2s"},
+        "left_lrck_level": {"const": 0},
+        "receive_edge": {"const": "posedge_AUD_BCLK"},
+        "transmit_edge": {"const": "negedge_AUD_BCLK"},
+        "codec_generated_bclk_and_lrck": {"const": true},
+        "nominal_bclk_hz": {"const": 3072000},
+        "bclk_multiple_of_sample_rate": {"const": 64},
+        "audio_capture_requires_codec_config_done": {"const": true},
+        "lineout_backpressure_to_core_permitted": {"const": false}
+      }
+    },
+    "cdc_and_counter_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cdc_primitive",
+        "minimum_audio_async_fifo_instances",
+        "rx_fifo_direction",
+        "tx_fifo_direction",
+        "independent_multibit_payload_synchronizers_permitted",
+        "stale_rx_frames_across_disabled_source_epoch_permitted",
+        "counter_width_bits",
+        "counter_arithmetic",
+        "counter_clear",
+        "counter_outputs"
+      ],
+      "properties": {
+        "cdc_primitive": {"const": "trecap_async_fifo"},
+        "minimum_audio_async_fifo_instances": {"const": 2},
+        "rx_fifo_direction": {"const": "AUD_BCLK_to_clk_fabric"},
+        "tx_fifo_direction": {"const": "clk_fabric_to_AUD_BCLK"},
+        "independent_multibit_payload_synchronizers_permitted": {"const": false},
+        "stale_rx_frames_across_disabled_source_epoch_permitted": {"const": false},
+        "counter_width_bits": {"const": 64},
+        "counter_arithmetic": {"const": "saturating_unsigned"},
+        "counter_clear": {"const": "clear_sticky_i"},
+        "counter_outputs": {
+          "const": [
+            {
+              "name": "audio_rx_overflow_count_o",
+              "event": "completed_enabled_rx_frame_arrives_while_rx_async_fifo_full"
+            },
+            {
+              "name": "audio_tx_overflow_count_o",
+              "event": "enabled_lineout_sample_arrives_while_tx_async_fifo_full"
+            },
+            {
+              "name": "audio_tx_underflow_count_o",
+              "event": "enabled_primed_dac_frame_boundary_requires_sample_while_tx_async_fifo_empty"
+            }
+          ]
+        }
+      }
+    },
+    "top_level_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pll_instance",
+        "codec_i2c_instance",
+        "audio_wrapper_instance",
+        "pll_and_i2c_instances_owned_by_physical_top",
+        "i2s_and_audio_cdc_owned_by_audio_wrapper",
+        "aud_xck_constant_or_fabric_divider_permitted",
+        "codec_init_requires_pll_locked",
+        "audio_capture_requires_config_done"
+      ],
+      "properties": {
+        "pll_instance": {"const": "u_audio_pll_wrapper"},
+        "codec_i2c_instance": {"const": "u_audio_codec_i2c_init"},
+        "audio_wrapper_instance": {"const": "u_audio_codec_wrapper"},
+        "pll_and_i2c_instances_owned_by_physical_top": {"const": true},
+        "i2s_and_audio_cdc_owned_by_audio_wrapper": {"const": true},
+        "aud_xck_constant_or_fabric_divider_permitted": {"const": false},
+        "codec_init_requires_pll_locked": {"const": true},
+        "audio_capture_requires_config_done": {"const": true}
+      }
+    },
+    "profile_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile_name",
+        "input_kind",
+        "source_mode",
+        "sample_rate_hz",
+        "codec_sample_width",
+        "channel_select",
+        "input_scale_rule",
+        "master_clock_hz",
+        "codec_control",
+        "audio_pll",
+        "hardware_gate",
+        "profile_is_build_and_bringup_selection_not_runtime_hardware_evidence"
+      ],
+      "properties": {
+        "profile_name": {"const": "de1soc_linein_demo"},
+        "input_kind": {"const": "audio_wrapper"},
+        "source_mode": {"const": "audio_wrapper"},
+        "sample_rate_hz": {"const": 48000},
+        "codec_sample_width": {"const": 16},
+        "channel_select": {"const": "left"},
+        "input_scale_rule": {"const": "signed_rnd_shr_Baudio_minus_N"},
+        "master_clock_hz": {"const": 12288000},
+        "codec_control": {
+          "const": {
+            "enable": true,
+            "codec_model": "wm8731",
+            "i2c_bus": "fpga_i2c",
+            "i2c_address_7bit": "0x1a",
+            "serial_format": "i2s",
+            "sample_rate_hz": 48000,
+            "word_width_bits": 16,
+            "clock_role": "codec_master"
+          }
+        },
+        "audio_pll": {
+          "const": {
+            "enable": true,
+            "reference_clock": "CLOCK_50",
+            "reference_clock_hz": 50000000,
+            "output_clock": "AUD_XCK",
+            "output_clock_hz": 12288000
+          }
+        },
+        "hardware_gate": {
+          "const": {
+            "codec_init_requires_pll_locked": true,
+            "audio_capture_requires_config_done": true
+          }
+        },
+        "profile_is_build_and_bringup_selection_not_runtime_hardware_evidence": {"const": true}
+      }
+    },
+    "evidence_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_checker",
+        "behavioral_model",
+        "default_checker_scope",
+        "source_check_is_rtl_compile",
+        "source_check_is_native_rtl_simulation",
+        "source_check_is_quartus_compile",
+        "source_check_is_timing_closure",
+        "source_check_is_pll_frequency_measurement",
+        "source_check_is_codec_i2c_ack_evidence",
+        "source_check_is_live_audio_evidence",
+        "source_check_is_hardware_signoff"
+      ],
+      "properties": {
+        "source_checker": {"const": "scripts/check_de1soc_audio_path.py"},
+        "behavioral_model": {"const": "scripts/sim/check_step16_audio_model.py"},
+        "default_checker_scope": {"const": "source_and_dependency_free_model_only"},
+        "source_check_is_rtl_compile": {"const": false},
+        "source_check_is_native_rtl_simulation": {"const": false},
+        "source_check_is_quartus_compile": {"const": false},
+        "source_check_is_timing_closure": {"const": false},
+        "source_check_is_pll_frequency_measurement": {"const": false},
+        "source_check_is_codec_i2c_ack_evidence": {"const": false},
+        "source_check_is_live_audio_evidence": {"const": false},
+        "source_check_is_hardware_signoff": {"const": false}
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}

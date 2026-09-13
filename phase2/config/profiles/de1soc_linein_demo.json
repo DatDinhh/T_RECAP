@@ -1,0 +1,63 @@
+{
+  "schema": "trecap_phase2_runtime_profile_v1",
+  "profile_kind": "build",
+  "profile_name": "de1soc_linein_demo",
+  "description": "Final DE1-SoC LINE-IN demo profile with the canonical left audio channel and full Revision-G telemetry.",
+  "build": {
+    "target": "de1soc_full",
+    "top_module": "de1_soc_trecap_top",
+    "platform": "de1soc",
+    "board": "de1soc",
+    "quartus_project": "platform/de1soc/quartus/trecap_de1soc"
+  },
+  "contract_refs": {
+    "core_config": "spec/generated/core_config.json",
+    "csr_map": "spec/generated/csr_map.json",
+    "packet_layouts": "spec/generated/packet_layouts.json"
+  },
+  "input": {
+    "kind": "audio_wrapper",
+    "source_mode": "audio_wrapper",
+    "audio": {
+      "codec_sample_width": 16,
+      "channel_select": "left",
+      "input_scale_rule": "signed_rnd_shr_Baudio_minus_N",
+      "master_clock_hz": 12288000,
+      "lineout_enable": false,
+      "codec_control": {
+        "enable": true,
+        "codec_model": "wm8731",
+        "i2c_bus": "fpga_i2c",
+        "i2c_address_7bit": "0x1a",
+        "serial_format": "i2s",
+        "sample_rate_hz": 48000,
+        "word_width_bits": 16,
+        "clock_role": "codec_master"
+      },
+      "audio_pll": {
+        "enable": true,
+        "reference_clock": "CLOCK_50",
+        "reference_clock_hz": 50000000,
+        "output_clock": "AUD_XCK",
+        "output_clock_hz": 12288000
+      },
+      "hardware_gate": {
+        "codec_init_requires_pll_locked": true,
+        "audio_capture_requires_config_done": true
+      }
+    }
+  },
+  "sample_rate_hz": 48000,
+  "telemetry_profile": "config/profiles/telemetry_full_demo.json",
+  "transport": {
+    "hps_ddr_enable": true,
+    "hps_udp_enable": true,
+    "command_server_enable": true,
+    "ring_enable_policy": "after_config_and_rd_commit",
+    "address_map": "platform/de1soc/address_map/hps_bridge_regions.json",
+    "hps_runtime_config": "sw/hps/config/trecap_hps_config.json",
+    "dashboard_config": "sw/pc_dashboard/configs/dashboard_direct_link.json"
+  },
+  "transport_version_major": 1,
+  "transport_version_minor": 8
+}

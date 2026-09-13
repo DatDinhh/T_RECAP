@@ -1,0 +1,285 @@
+{
+  "schema": "trecap_phase2_core_telemetry_composition_v1",
+  "file_class": "[1] hand-written Step-8 composition contract",
+  "project": "T_RECAP_Phase2",
+  "board": "de1soc",
+  "contract_stage": "step8_core_telemetry_composition_source_implemented",
+  "status": "source_implemented_pending_rtl_compile_functional_verification_quartus_and_hardware_evidence",
+  "implementation_state": {
+    "composition_rtl_implemented": true,
+    "real_core_instantiated": true,
+    "telemetry_top_instantiated": true,
+    "direct_core_tap_binding": true,
+    "pure_telemetry_filelist_separated": true,
+    "rtl_compile": false,
+    "functional_verification": false,
+    "quartus_compile": false,
+    "hardware_signoff": false
+  },
+  "source_ownership": {
+    "composition_rtl": "rtl/top/trecap_core_telemetry_top.sv",
+    "core_rtl": "rtl/core/trecap_core_top.sv",
+    "telemetry_rtl": "rtl/telemetry/trecap_telemetry_top.sv",
+    "scheduler_rtl": "rtl/telemetry/trecap_packet_scheduler.sv",
+    "packet_fifo_rtl": "rtl/telemetry/trecap_packet_fifo.sv",
+    "pure_telemetry_filelist": "filelists/rtl_telemetry.f",
+    "composed_filelist": "filelists/rtl_core_telemetry.f",
+    "board_source_core_rtl": "rtl/top/trecap_source_core_integration.sv",
+    "board_transport_rtl": "rtl/top/trecap_de1soc_full_top.sv"
+  },
+  "composition_contract": {
+    "input_stream": "normalized_sample_ready_valid",
+    "sample_ready_owner": "trecap_core_top",
+    "core_instances": 1,
+    "telemetry_instances": 1,
+    "external_core_tap_inputs_permitted": false,
+    "core_taps_bound_directly_to_telemetry": true,
+    "unique_bin_index_width_parameter_propagated": true,
+    "core_y_stream_exposed": true,
+    "core_status_and_metrics_exposed": true,
+    "core_observation_taps_exposed": true,
+    "formatted_record_stream_exposed": true,
+    "ddr_writer_owned_here": false,
+    "board_pins_owned_here": false,
+    "platform_designer_owned_here": false
+  },
+  "tap_mapping": {
+    "sample": {
+      "producer": "trecap_core_top.tap_sample_o",
+      "telemetry_input": "trecap_telemetry_top.tap_sample_i",
+      "consumers": [
+        "WAVE"
+      ],
+      "fields": [
+        "valid",
+        "x_delayed",
+        "y_out",
+        "error_i16",
+        "sample_idx"
+      ]
+    },
+    "frame": {
+      "producer": "trecap_core_top.tap_frame_o",
+      "telemetry_input": "trecap_telemetry_top.tap_frame_i",
+      "consumers": [
+        "SPEC64",
+        "SPEC129",
+        "METRICS"
+      ],
+      "fields": [
+        "valid",
+        "frame_idx",
+        "stats"
+      ]
+    },
+    "unique_bin": {
+      "producer_prefix": "trecap_core_top.tap_bin_",
+      "telemetry_input_prefix": "trecap_telemetry_top.tap_bin_",
+      "consumer": "SPEC64_or_SPEC129",
+      "bindings": {
+        "tap_bin_valid_o": "tap_bin_valid_i",
+        "tap_bin_frame_idx_o": "tap_bin_frame_idx_i",
+        "tap_bin_idx_o": "tap_bin_idx_i",
+        "tap_bin_mag2_o": "tap_bin_mag2_i",
+        "tap_bin_mask_o": "tap_bin_mask_i",
+        "tap_bin_eligible_o": "tap_bin_eligible_i",
+        "tap_bin_last_o": "tap_bin_last_i"
+      },
+      "non_telemetry_observability": [
+        "tap_bin_re_o",
+        "tap_bin_im_o",
+        "tap_bin_pre_mask_o"
+      ]
+    },
+    "flow_control": {
+      "tap_ready_signals": 0,
+      "tap_delivery": "valid_only_best_effort_observation",
+      "telemetry_to_core_ready_path_permitted": false,
+      "record_ready_to_sample_ready_path_permitted": false,
+      "record_ready_to_y_ready_path_permitted": false
+    }
+  },
+  "packet_contract": {
+    "global_enable": "ctrl_i.telemetry_enable",
+    "reserved_disabled_packet_types": [
+      "PEAKS",
+      "DEBUG"
+    ],
+    "packets": {
+      "WAVE": {
+        "packet_enable_mask": "TCSR_PACKET_ENABLE_WAVE_EN_MASK",
+        "additional_enable": "none",
+        "event_source": "tap_sample",
+        "priority": 0
+      },
+      "SPEC64": {
+        "packet_enable_mask": "TCSR_PACKET_ENABLE_SPEC_EN_MASK",
+        "additional_enable": "ctrl_i.spec_mode==TSPEC_SPEC64",
+        "event_source": "tap_frame_plus_unique_bin",
+        "priority": 1
+      },
+      "SPEC129": {
+        "packet_enable_mask": "TCSR_PACKET_ENABLE_SPEC_EN_MASK",
+        "additional_enable": "ctrl_i.spec_mode==TSPEC_SPEC129",
+        "event_source": "tap_frame_plus_unique_bin",
+        "priority": 1
+      },
+      "METRICS": {
+        "packet_enable_mask": "TCSR_PACKET_ENABLE_METRICS_EN_MASK",
+        "additional_enable": "metrics_tick_i",
+        "event_source": "frame_tap_plus_authoritative_core_error_metrics",
+        "priority": 2
+      },
+      "STATUS": {
+        "packet_enable_mask": "TCSR_PACKET_ENABLE_STATUS_EN_MASK",
+        "additional_enable": "status_tick_i",
+        "event_source": "authoritative_core_counters_plus_integration_status",
+        "priority": 3
+      }
+    },
+    "spectrum_modes": [
+      "TSPEC_DISABLED",
+      "TSPEC_SPEC64",
+      "TSPEC_SPEC129"
+    ],
+    "illegal_or_disabled_candidates_are_drained": true,
+    "scheduler_locks_selected_record_until_last_accept": true
+  },
+  "non_stalling_drop_contract": {
+    "core_progress_independent_of_telemetry": true,
+    "packetizer_busy_event_action": "drop_event_and_pulse",
+    "disabled_or_illegal_candidate_action": "drain_candidate_and_pulse",
+    "disabled_or_illegal_drain_latched_until_record_last": true,
+    "observation_epoch_reset_action": "suppress_new_admission_discard_partial_collection_drain_unselected_candidates_and_finish_selected_record",
+    "observation_epoch_reset_resets_packet_fifo": false,
+    "observation_epoch_reset_retracts_started_record": false,
+    "fifo_admission_unit": "complete_record",
+    "fifo_full_policy": "evict_oldest_lower_priority_resident_else_drop_incoming",
+    "active_output_head_evictable": false,
+    "drop_priority_low_to_high": [
+      "WAVE",
+      "SPEC64_or_SPEC129",
+      "METRICS",
+      "STATUS"
+    ],
+    "drop_counter_owner": "trecap_telemetry_top",
+    "drop_counter_counts_all_pre_writer_drop_events": true,
+    "writer_drop_count_is_separate": true
+  },
+  "metrics_status_boundary_contract": {
+    "raw_core_frame_boundary": "trecap_core_top.frame_boundary_pulse_o",
+    "core_config_safe_boundary": "raw_core_frame_boundary_or_structural_core_idle",
+    "tap_frame_valid_is_config_boundary": false,
+    "status_tick_is_config_boundary": false,
+    "metrics_tick_is_config_boundary": false,
+    "metrics_clear_owner": "composition_caller",
+    "metrics_clear_must_be_applied_at_core_config_safe_boundary": true,
+    "board_metrics_clear_raw_request": "trecap_hps_bridge_top.clear_metrics_pulse_o",
+    "board_metrics_clear_safe_apply_source": "trecap_source_core_integration.clear_metrics_apply_pulse_o",
+    "board_metrics_clear_core_consumer": "trecap_core_top.clear_metrics_i",
+    "board_metrics_clear_telemetry_consumer": "trecap_telemetry_top.metrics_clear_i",
+    "board_metrics_clear_core_and_telemetry_same_event": true,
+    "source_discontinuity_clears_both_metric_owners": true,
+    "standalone_metrics_epoch_reset_sources": [
+      "clear_metrics_w1p",
+      "datapath_clear",
+      "core_disable",
+      "source_discontinuity"
+    ],
+    "telemetry_soft_reset_affects_core": false,
+    "status_sample_count_source": "trecap_core_top.core_sample_count_o",
+    "status_frame_count_source": "trecap_core_top.core_frame_count_o",
+    "status_reconstructs_counts_from_tap_indices": false,
+    "status_snapshot_semantics": "explicit_authoritative_core_sample_and_frame_counters_plus_supplied_integration_status",
+    "metrics_snapshot_semantics": "aggregate_valid_frame_taps_plus_authoritative_core_error_metrics_at_metrics_tick",
+    "snapshot_packets_are_exact_completion_evidence": false
+  },
+  "telemetry_soft_clear_contract": {
+    "request": "telemetry_soft_reset_i",
+    "clock_domain": "clk",
+    "semantics": "synchronous_formatter_scheduler_fifo_clear",
+    "derived_async_reset_permitted": false,
+    "child_rst_n_source": "rst_n",
+    "packetizer_clear_port": "formatter_reset_i",
+    "scheduler_clear_port": "formatter_reset_i",
+    "fifo_clear_port": "flush_i",
+    "admission_during_clear_permitted": false,
+    "core_state_affected": false,
+    "soft_clear_preserves_metrics_aggregates": true,
+    "metrics_aggregate_clear_source": "metrics_clear_i"
+  },
+  "overflow_ownership_contract": {
+    "csr_visible_sticky_owner": "trecap_core_telemetry_top.telemetry_overflow_flags_q",
+    "w1c_clear_input": "clear_telemetry_flags_w1c_i",
+    "set_interface_semantics": "one_cycle_new_fault_event_bitmask",
+    "sticky_update_rule": "next=(current&~w1c_clear)|new_fault_events",
+    "sticky_level_as_set_source_permitted": false,
+    "packet_fifo_set_source": "packet_fifo_drop_pulse_o",
+    "packet_fifo_sticky_status": "packet_fifo_overflow_o",
+    "packet_fifo_sticky_directly_orred_into_set": false,
+    "scheduler_malformed_set_source": "scheduler_illegal_drop_o",
+    "w1c_rearms_new_fault_detection": true,
+    "w1c_manufactures_event_from_persistent_level": false,
+    "fifo_sticky_exposed_separately": true,
+    "combined_status_ors_independently_owned_flags": true,
+    "external_and_core_sticky_clear_at_their_owners": true
+  },
+  "fifo_output_ownership": {
+    "sole_record_output_owner": "trecap_telemetry_top.u_packet_fifo",
+    "composition_adds_second_record_fifo": false,
+    "metadata_stable_for_record": true,
+    "record_payload_last_marks_final_payload_beat": true,
+    "downstream_ready_scope": "telemetry_fifo_scheduler_and_packetizers_only",
+    "ddr_header_added_downstream": true,
+    "sequence_number_allocated_downstream": true,
+    "wrap_record_generated_downstream": true
+  },
+  "board_system_binding": {
+    "standalone_core_telemetry_variant_uses_composition": true,
+    "de1soc_source_core_path_already_owns_core": true,
+    "de1soc_transport_path_uses_telemetry_only_top": true,
+    "duplicate_core_in_de1soc_path_permitted": false,
+    "pure_telemetry_filelist_contains_core_rtl": false,
+    "composed_filelist_contains_core_and_telemetry": true
+  },
+  "evidence_policy": {
+    "source_checker": "scripts/check_core_telemetry_composition.py",
+    "human_document": "docs/architecture/core_telemetry_composition.md",
+    "schema_file": "spec/schemas/core_telemetry_composition.schema.json",
+    "default_checker_scope": "source_only",
+    "source_check_is_rtl_compile": false,
+    "source_check_is_functional_verification": false,
+    "source_check_is_quartus_compile": false,
+    "source_check_is_hardware_signoff": false
+  },
+  "validation_rules": [
+    "The reusable composition shall instantiate exactly one trecap_core_top and one trecap_telemetry_top.",
+    "The composition shall accept a normalized ready/valid sample stream and shall expose the real core y stream, status, metrics, taps, and telemetry record stream.",
+    "Core sample, frame, and unique-bin taps shall bind directly to telemetry and shall have no ready path back into the core.",
+    "record_ready_i shall backpressure only telemetry record handling and shall not affect sample_ready_o or y_ready_i.",
+    "WAVE, SPEC64 or SPEC129, METRICS, and STATUS shall be gated by the generated global and per-packet controls.",
+    "PEAKS and DEBUG shall remain reserved-disabled, and TSPEC_DISABLED shall suppress spectrum records.",
+    "A packetizer that cannot accept an observation shall drop telemetry rather than stall the core.",
+    "A source observation-epoch reset shall discard partial collections and suppress new admission; an already-selected record finishes atomically, unselected candidates drain locally, and the packet FIFO is not reset.",
+    "The scheduler shall preserve record atomicity and shall latch local drain ownership for every disabled or illegal candidate until that candidate's final beat produces one counted drop event.",
+    "The packet FIFO shall admit complete records and shall preserve the active output head while it is presented downstream.",
+    "Pre-writer packetizer, scheduler, and FIFO drops shall be counted separately from DDR-writer drops.",
+    "tap_frame.valid, status_tick_i, and metrics_tick_i shall never be treated as core-configuration safe boundaries.",
+    "Core metrics clear shall be applied only by the composition caller at a true core frame boundary or structural core idle boundary.",
+    "In the DE1-SoC path, the source/core layer's safe clear_metrics_apply_pulse_o event shall drive both the core and telemetry metric epochs; the raw CSR request shall not clear telemetry directly.",
+    "Any source discontinuity or standalone datapath reset that clears core metrics shall also clear telemetry-owned eligible-bin aggregates.",
+    "Telemetry soft reset shall be a synchronous formatter, scheduler, and packet-FIFO clear in clk; it shall not derive an asynchronous reset or reset or clear the mathematical core.",
+    "Every telemetry child rst_n shall remain driven by canonical rst_n; telemetry_soft_reset_i shall suppress admission and drive only synchronous formatter_reset_i or flush_i controls.",
+    "Telemetry soft clear shall preserve metrics aggregates, whose epoch remains controlled separately by metrics_clear_i.",
+    "STATUS sample_count and frame_count shall come from explicit authoritative core counters and shall not be reconstructed from delayed tap indices.",
+    "CSR-visible OVERFLOW_FLAGS shall be set only by new-fault events and shall remain clearable through W1C.",
+    "Step-8-owned telemetry configuration and writer histories shall not manufacture a second new-fault event while the underlying fault episode remains continuously asserted.",
+    "The packet-FIFO sticky level shall be exposed separately and shall not be continuously ORed into the CSR-visible sticky set path.",
+    "Writer overflow event history shall re-arm after the source deasserts so a later same-bit recurrence can set CSR-visible OVERFLOW_FLAGS again.",
+    "trecap_telemetry_top.u_packet_fifo shall be the sole owner of the formatted record output stream.",
+    "The pure telemetry filelist shall exclude core RTL and the composed wrapper; the composed filelist shall contain both layers in dependency order.",
+    "The DE1-SoC path shall not instantiate the reusable composition behind a source/core layer that already owns trecap_core_top.",
+    "BIN_IDX_W shall propagate explicitly through the standalone and DE1-SoC telemetry instance boundaries.",
+    "Source-only checks shall not claim RTL compile, functional verification, Quartus compile, or hardware signoff."
+  ]
+}

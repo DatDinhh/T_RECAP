@@ -1,0 +1,11 @@
++timescale+1ns/1ps
++incdir+rtl/include
+rtl/include/generated/trecap_core_pkg.sv
+rtl/include/generated/trecap_csr_pkg.sv
+rtl/include/generated/trecap_packet_pkg.sv
+rtl/include/generated/trecap_iface_pkg.sv
+rtl/include/trecap_math_pkg.sv
+rtl/include/trecap_build_pkg.sv
+rtl/hps_bridge/trecap_csr_shadow_commit.sv
+rtl/hps_bridge/trecap_csr_bank.sv
+sim/tb/tb_trecap_step14_command_csr.sv

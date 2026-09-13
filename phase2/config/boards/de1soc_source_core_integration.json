@@ -1,0 +1,194 @@
+{
+  "schema": "trecap_phase2_de1soc_source_core_integration_v1",
+  "file_class": "[1] hand-written Step-7 integration contract",
+  "project": "T_RECAP_Phase2",
+  "board": "de1soc",
+  "contract_stage": "step7_source_to_core_integration_source_implemented",
+  "status": "source_implemented_pending_rtl_compile_functional_verification_quartus_and_hardware_evidence",
+  "implementation_state": {
+    "integration_rtl_implemented": true,
+    "all_four_normalized_sources_present": true,
+    "board_audio_and_adc_wrappers_source_connected": true,
+    "synthetic_board_taps_removed": true,
+    "real_core_taps_connected_to_transport": true,
+    "rtl_compile": false,
+    "functional_verification": false,
+    "quartus_compile": false,
+    "live_audio_hardware_ready": false,
+    "live_adc_hardware_ready": false,
+    "hardware_signoff": false
+  },
+  "source_ownership": {
+    "integration_rtl": "rtl/top/trecap_source_core_integration.sv",
+    "board_top_rtl": "rtl/platform/de1soc/de1_soc_trecap_top.sv",
+    "logical_transport_top_rtl": "rtl/top/trecap_de1soc_full_top.sv",
+    "core_rtl": "rtl/core/trecap_core_top.sv",
+    "source_mux_rtl": "rtl/sources/trecap_source_mux.sv",
+    "bram_source_rtl": "rtl/sources/trecap_bram_replay_source.sv",
+    "diagnostic_source_rtl": "rtl/sources/trecap_diagnostic_source.sv",
+    "audio_adapter_rtl": "rtl/sources/trecap_audio_adapter.sv",
+    "adc_adapter_rtl": "rtl/sources/trecap_adc_adapter.sv",
+    "audio_board_wrapper_rtl": "rtl/platform/de1soc/audio_codec_wrapper.sv",
+    "adc_board_wrapper_rtl": "rtl/platform/de1soc/adc_wrapper.sv"
+  },
+  "clock_reset_contract": {
+    "clock": "clk_fabric",
+    "reset": "rst_n_platform",
+    "single_clock_source_core_transport_domain": true,
+    "platform_reset_already_synchronized": true,
+    "logical_top_second_reset_synchronizer_enabled": false,
+    "logical_top_parameter_binding": "SYNC_TOP_RESET_DEASSERTION=0"
+  },
+  "source_inventory": {
+    "bram_replay": {
+      "mode": "TSRC_BRAM_REPLAY",
+      "normalized_module": "trecap_bram_replay_source",
+      "board_wrapper": null,
+      "pacing": "source_tick_i"
+    },
+    "adc_live": {
+      "mode": "TSRC_ADC_LIVE",
+      "normalized_module": "trecap_adc_adapter",
+      "board_wrapper": "adc_wrapper",
+      "pacing": "raw_sample_valid"
+    },
+    "audio_wrapper": {
+      "mode": "TSRC_AUDIO_WRAPPER",
+      "normalized_module": "trecap_audio_adapter",
+      "board_wrapper": "audio_codec_wrapper",
+      "pacing": "raw_sample_valid"
+    },
+    "diagnostic": {
+      "mode": "TSRC_DIAGNOSTIC",
+      "normalized_module": "trecap_diagnostic_source",
+      "board_wrapper": null,
+      "pacing": "source_tick_i"
+    }
+  },
+  "stream_contract": {
+    "only_legal_path": "normalized_source_to_trecap_source_mux_to_trecap_core_top",
+    "source_mux_module": "trecap_source_mux",
+    "core_module": "trecap_core_top",
+    "ready_owner": "trecap_core_top",
+    "telemetry_ready_path_to_core_permitted": false,
+    "transport_ready_path_to_core_permitted": false,
+    "synthetic_sources_gate_valid_and_ready_with_source_tick": true,
+    "live_sources_use_raw_sample_valid": true,
+    "board_core_output_ready_tie": 1
+  },
+  "bram_full_tail_contract": {
+    "input_samples_parameter": "REPLAY_INPUT_SAMPLES",
+    "frame_count_formula": "floor((Ns+L-2)/H)",
+    "tau_last_formula": "Nframes*H",
+    "output_samples_formula": "tau_last+G+L",
+    "flush_samples_formula": "Ny-Ns",
+    "drain_samples_formula": "G+L",
+    "analysis_condition": "sample_idx<tau_last",
+    "tail_condition": "sample_idx>=tau_last",
+    "analysis_and_tail_mutually_exclusive": true,
+    "tail_bypasses_fft_mask_path": true,
+    "tail_advances_wola_only": true,
+    "tail_phase_reports_held_selected_token": true,
+    "finite_stream_only_in_bram_mode": true,
+    "replay_restart_requires_source_core_and_y_quiescent": true,
+    "replay_done_semantics": "final_source_token_accepted_not_exact_core_completion"
+  },
+  "source_switch_contract": {
+    "requested_mode_source": "ctrl.source_mode",
+    "apply_pulse_source": "source_mode_apply_pulse",
+    "csr_has_already_waited_for_source_safe_boundary": true,
+    "mux_safe_to_switch_tie": 1,
+    "real_mode_change_blanks_stream": true,
+    "real_mode_change_clears_source_epoch": true,
+    "real_mode_change_clears_core_alignment_by_discontinuity": true,
+    "first_new_source_beat_blocked_until_clear_settles": true,
+    "public_discontinuity_event_width_cycles": 1,
+    "datapath_clear_preserves_active_source_mode": true,
+    "coordinated_source_mode_reset": "rst_n",
+    "idempotent_commit_causes_discontinuity": false,
+    "safe_boundary_definition": "accepted_selected_source_beat_or_selected_source_empty_while_not_pending_or_transitioning"
+  },
+  "core_config_contract": {
+    "threshold_source": "ctrl.thr2_active",
+    "threshold_boundary_source": "core_config_safe_boundary_o",
+    "threshold_boundary_definition": "true_core_frame_boundary_or_structural_core_idle",
+    "late_tap_frame_valid_is_commit_boundary": false,
+    "metrics_clear_request_source": "clear_metrics_pulse",
+    "metrics_clear_request_latched": true,
+    "metrics_clear_apply_boundary": "core_config_safe_boundary_o",
+    "repeated_pending_metrics_clear_requests_coalesce": true
+  },
+  "observability_contract": {
+    "tap_source": "trecap_core_top",
+    "tap_destination": "trecap_de1soc_full_top",
+    "tap_transport_is_valid_only": true,
+    "real_core_frame_count_to_csr": true,
+    "real_core_sample_count_to_csr": true,
+    "synthetic_board_tap_generator_permitted": false
+  },
+  "fault_projection_contract": {
+    "set_interface_semantics": "one_cycle_new_fault_pulses",
+    "sticky_level_directly_drives_set_interface": false,
+    "edge_detection_required": true,
+    "w1c_rearms_edge_history": true,
+    "mapped_masks": [
+      "TCSR_OVERFLOW_FLAGS_ARITHMETIC_OVERFLOW_MASK",
+      "TCSR_OVERFLOW_FLAGS_RING_OVERFLOW_MASK",
+      "TCSR_OVERFLOW_FLAGS_SOURCE_MODE_ERROR_MASK"
+    ],
+    "unmapped_live_source_and_protocol_faults_use_dedicated_status": true,
+    "source_mux_reject_drives_external_csr_reject_pulse": true,
+    "w1c_core_clear_masks": [
+      "TCSR_OVERFLOW_FLAGS_ARITHMETIC_OVERFLOW_MASK",
+      "TCSR_OVERFLOW_FLAGS_OLA_OVERFLOW_MASK",
+      "TCSR_OVERFLOW_FLAGS_RING_OVERFLOW_MASK"
+    ],
+    "w1c_source_clear_mask": "TCSR_OVERFLOW_FLAGS_SOURCE_MODE_ERROR_MASK"
+  },
+  "board_binding": {
+    "integration_instance": "u_source_core_integration",
+    "logical_transport_instance": "u_full_top",
+    "audio_wrapper_instance": "u_audio_codec_wrapper",
+    "adc_wrapper_instance": "u_adc_wrapper",
+    "replay_start_control": "key_press_pulse[1]",
+    "frame_boundary_binding": "core_config_safe_boundary",
+    "source_safe_boundary_binding": "source_core_safe_boundary",
+    "overflow_set_binding": "source_core_overflow_flags_set",
+    "csr_reject_binding": "source_core_csr_reject_pulse",
+    "generated_filelists": [
+      "filelists/rtl_de1soc_full.f",
+      "filelists/quartus_de1soc.qsf.inc",
+      "scripts/gen_filelists.py"
+    ]
+  },
+  "evidence_policy": {
+    "source_checker": "scripts/check_source_core_integration.py",
+    "human_document": "docs/architecture/source_core_integration.md",
+    "schema_file": "spec/schemas/source_core_integration.schema.json",
+    "default_checker_scope": "source_only",
+    "source_check_is_rtl_compile": false,
+    "source_check_is_functional_verification": false,
+    "source_check_is_quartus_compile": false,
+    "source_check_is_live_source_hardware_evidence": false,
+    "source_check_is_hardware_signoff": false
+  },
+  "validation_rules": [
+    "Every normalized source shall enter trecap_core_top only through trecap_source_mux.",
+    "BRAM replay samples before tau_last feed analysis and samples from tau_last through Ny-1 feed only WOLA tail drain.",
+    "BRAM replay and diagnostic source handshakes shall be paced by source_tick_i.",
+    "The replay tail phase shall remain asserted while a selected tail token is held between source ticks.",
+    "A real source-mode change shall blank the stream, clear the source epoch, and issue a core discontinuity before the first new-source beat.",
+    "The public source discontinuity shall be a one-cycle event even though registered mux evidence extends the transition guard.",
+    "Datapath clear shall preserve the CSR-selected mux mode; shared rst_n is the coordinated source-mode reset.",
+    "An idempotent source-mode commit shall not clear or discontinuity-mark the stream.",
+    "A replay restart shall be accepted only when the selected BRAM source, core pipeline, and y output are quiescent.",
+    "A raw metrics-clear request shall be retained until a true core frame boundary or structural core idle boundary.",
+    "THR2 commit shall use the dedicated core-configuration safe boundary and never tap_frame_i.valid.",
+    "Core taps shall remain valid-only observation signals with no telemetry or DDR ready path into the core.",
+    "Only new-fault pulses with exact generated bit semantics may drive external_overflow_flags_set_i.",
+    "A delayed W1C owner-clear pulse shall re-arm the corresponding new-fault edge history.",
+    "Source/core and transport shall share clk_fabric and the already synchronized rst_n_platform in this implementation.",
+    "Replay done shall mean final source-token acceptance and shall not be represented as exact or quiescent core completion.",
+    "Source-only checks shall not claim RTL compile, functional verification, Quartus compile, live-source readiness, or hardware signoff."
+  ]
+}

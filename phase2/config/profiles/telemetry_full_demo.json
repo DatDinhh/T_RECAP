@@ -1,0 +1,19 @@
+{
+  "schema": "trecap_phase2_runtime_profile_v1",
+  "profile_kind": "telemetry_preset",
+  "profile_name": "telemetry_full_demo",
+  "description": "Full Revision-G demo preset with waveform, spectrum, metrics, and status telemetry.",
+  "packet_enable": [
+    "STATUS",
+    "WAVE",
+    "METRICS",
+    "SPEC"
+  ],
+  "spec_mode": "SPEC64",
+  "wave_decim": 1,
+  "spec_shift": 0,
+  "status_rate_hz": 5,
+  "metrics_rate_hz": 20,
+  "transport_version_major": 1,
+  "transport_version_minor": 8
+}

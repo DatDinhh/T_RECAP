@@ -1,0 +1,69 @@
+{
+  "file_class": "[2] generated manifest - do not edit by hand",
+  "generator": {
+    "path": "scripts/gen_headers.py",
+    "version": "r1.2.0"
+  },
+  "output_files": [
+    {
+      "path": "rtl/include/generated/trecap_core_pkg.sv",
+      "sha256": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784"
+    },
+    {
+      "path": "rtl/include/generated/trecap_csr_pkg.sv",
+      "sha256": "66f150b879a848510d8d705ef05d65436903ddef924e410f96e428c5f01abdb9"
+    },
+    {
+      "path": "rtl/include/generated/trecap_iface_pkg.sv",
+      "sha256": "d24ab618d901cb92394e190549489cb88caa7444de18731de0923c24446afd68"
+    },
+    {
+      "path": "rtl/include/generated/trecap_packet_pkg.sv",
+      "sha256": "97a003c14b93019b5356208ea8be2e76df7435123132440729ea7038cd13b2be"
+    },
+    {
+      "path": "sw/hps/include/generated/trecap_csr.h",
+      "sha256": "1116b366a1eae74f532b09d4c531506d56ce7eff3a69f22579a0857e8d2003e8"
+    },
+    {
+      "path": "sw/hps/include/generated/trecap_packet.h",
+      "sha256": "40780abbae55af281f5bbf64d6c618886f4ba933f3f91169bdff41c83659a563"
+    },
+    {
+      "path": "sw/pc_dashboard/generated/trecap_packet.py",
+      "sha256": "91ad9282aa4107e56b74797cba1b358bce2f4b6e2dff4438dc9c5a84f369df87"
+    },
+    {
+      "path": "sw/reference_model/generated/trecap_config.py",
+      "sha256": "2ca5f9457d187768b1a2850eea2c739a96e9700b6139617bb0b5caf3847c5a90"
+    }
+  ],
+  "schema": "trecap_phase2_gen_manifest_v1",
+  "source_files": [
+    {
+      "path": "spec/generated/artifact_contract.json",
+      "sha256": "a5a009b2a735af7c3211aba13a4c1c1b4b170226a0e89373ade3b99ddbf036a6"
+    },
+    {
+      "path": "spec/generated/core_config.json",
+      "sha256": "bcecf65648099883ae02def17de56ab4140a611434bf93de314c542d9b14438a"
+    },
+    {
+      "path": "spec/generated/csr_map.json",
+      "sha256": "bf565e83f882f68752601dfacaacd3f37146f811dcc0b399ccc46649fe656f2c"
+    },
+    {
+      "path": "spec/generated/interface_types.json",
+      "sha256": "659667d317f5a5f5904863dfc8817911f4e5bcff3f576c08b14889d39aa7c4ea"
+    },
+    {
+      "path": "spec/generated/packet_layouts.json",
+      "sha256": "7ad8de7979927e623d885b9ba499b1eb5d546207791160655153f9accf78b48f"
+    },
+    {
+      "path": "spec/generated/width_config.json",
+      "sha256": "919f3f8d278cb4c027386462defce9bf28a5027cf5b084dfe79928aa461d35ff"
+    }
+  ],
+  "warnings": []
+}

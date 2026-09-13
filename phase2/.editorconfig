@@ -1,0 +1,83 @@
+# SPDX-License-Identifier: MIT
+# T-RECAP Phase 2 editor policy.
+# File class: [1] hand-written repository infrastructure.
+#
+# This file is intentionally conservative. It normalizes whitespace and line
+# endings across RTL, C/C++, Python, JSON, Tcl, Quartus, HPS, and dashboard code
+# without trying to replace language-specific formatters or generated-file checks.
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+tab_width = 4
+max_line_length = 100
+
+# Make recipes require literal tabs. Do not convert these to spaces.
+[Makefile]
+indent_style = tab
+indent_size = 4
+
+[*.mk]
+indent_style = tab
+indent_size = 4
+
+# Python tooling: scripts, reference-model utilities, dashboard, and HPS helpers.
+[*.py]
+indent_style = space
+indent_size = 4
+max_line_length = 100
+
+# C/C++: reference model and HPS userspace transport/control code.
+[*.{c,h,cc,cpp,cxx,hh,hpp,hxx}]
+indent_style = space
+indent_size = 4
+max_line_length = 100
+
+# SystemVerilog/Verilog: one module per file, explicit indentation, no tabs.
+[*.{sv,svh,v,vh}]
+indent_style = space
+indent_size = 4
+max_line_length = 100
+
+# CMake, Tcl, Quartus, SDC, and filelists.
+[*.{cmake,tcl,qsf,sdc,f,inc}]
+indent_style = space
+indent_size = 4
+max_line_length = 100
+
+[CMakeLists.txt]
+indent_style = space
+indent_size = 4
+max_line_length = 100
+
+# Machine-readable contracts and runtime profiles.
+[*.{json,yml,yaml,toml}]
+indent_style = space
+indent_size = 2
+max_line_length = 100
+
+# Markdown often uses deliberate trailing spaces for hard line breaks.
+[*.{md,markdown,rst,txt}]
+trim_trailing_whitespace = false
+max_line_length = off
+
+# Canonical artifact text files. The generator/checker remains authoritative;
+# this only prevents editor-created CRLF/trailing-space drift.
+[*.{memh,mif,hex,csv}]
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = off
+
+# Shell scripts used for bring-up and Quartus/HPS helpers.
+[*.sh]
+indent_style = space
+indent_size = 4
+max_line_length = 100

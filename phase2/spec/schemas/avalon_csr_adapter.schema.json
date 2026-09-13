@@ -1,0 +1,456 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trecap.local/schemas/avalon_csr_adapter.schema.json",
+  "title": "T-RECAP Phase 2 DE1-SoC Step-5 Avalon-MM CSR adapter source contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "file_class",
+    "project",
+    "board",
+    "contract_stage",
+    "status",
+    "source_freeze",
+    "address_contract",
+    "transfer_contract",
+    "response_contract",
+    "csr_leaf_contract",
+    "integration",
+    "evidence_policy",
+    "validation_rules"
+  ],
+  "properties": {
+    "schema": {
+      "const": "trecap_phase2_de1soc_avalon_csr_adapter_v1"
+    },
+    "file_class": {
+      "const": "[1] hand-written Step-5 interface contract"
+    },
+    "project": {
+      "const": "T_RECAP_Phase2"
+    },
+    "board": {
+      "const": "de1soc"
+    },
+    "contract_stage": {
+      "const": "step5_avalon_mm_csr_adapter_source_implemented"
+    },
+    "status": {
+      "const": "source_implemented_and_board_source_connected_pending_generation_compile_and_hardware_evidence"
+    },
+    "source_freeze": {
+      "$ref": "#/$defs/sourceFreeze"
+    },
+    "address_contract": {
+      "$ref": "#/$defs/addressContract"
+    },
+    "transfer_contract": {
+      "$ref": "#/$defs/transferContract"
+    },
+    "response_contract": {
+      "$ref": "#/$defs/responseContract"
+    },
+    "csr_leaf_contract": {
+      "$ref": "#/$defs/csrLeafContract"
+    },
+    "integration": {
+      "$ref": "#/$defs/integration"
+    },
+    "evidence_policy": {
+      "$ref": "#/$defs/evidencePolicy"
+    },
+    "validation_rules": {
+      "type": "array",
+      "minItems": 10,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sourceFreeze": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "rtl_file",
+        "raw_sha256",
+        "hash_algorithm",
+        "source_implemented",
+        "platform_designer_connected",
+        "functional_verification_complete",
+        "hardware_signoff"
+      ],
+      "properties": {
+        "scope": {
+          "const": "raw_adapter_rtl_source_only"
+        },
+        "rtl_file": {
+          "const": "rtl/hps_bridge/trecap_avmm_csr_adapter.sv"
+        },
+        "raw_sha256": {
+          "const": "ba096b8203fafae8099e830506c14f4eead8f95c6c0667ebd422e998de9fe40c"
+        },
+        "hash_algorithm": {
+          "const": "sha256_raw_file_bytes"
+        },
+        "source_implemented": {
+          "const": true
+        },
+        "platform_designer_connected": {
+          "const": true
+        },
+        "functional_verification_complete": {
+          "const": false
+        },
+        "hardware_signoff": {
+          "const": false
+        }
+      }
+    },
+    "addressContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "address_unit",
+        "avalon_address_width_bits",
+        "lightweight_aperture_span_bytes",
+        "csr_base_offset_bytes",
+        "csr_window_span_bytes",
+        "csr_leaf_byte_address_width_bits",
+        "forwarded_leaf_address_bits",
+        "all_avalon_address_bits_decoded",
+        "full_decode_required",
+        "accepted_offset_range",
+        "unused_aperture_policy"
+      ],
+      "properties": {
+        "address_unit": {
+          "const": "byte"
+        },
+        "avalon_address_width_bits": {
+          "const": 21
+        },
+        "lightweight_aperture_span_bytes": {
+          "const": 2097152
+        },
+        "csr_base_offset_bytes": {
+          "const": 0
+        },
+        "csr_window_span_bytes": {
+          "const": 4096
+        },
+        "csr_leaf_byte_address_width_bits": {
+          "const": 12
+        },
+        "forwarded_leaf_address_bits": {
+          "const": "avs_address_i[11:0]"
+        },
+        "all_avalon_address_bits_decoded": {
+          "const": true
+        },
+        "full_decode_required": {
+          "const": true
+        },
+        "accepted_offset_range": {
+          "const": "[0x000000,0x001000)"
+        },
+        "unused_aperture_policy": {
+          "const": "decode_error_no_csr_aliasing"
+        }
+      }
+    },
+    "transferContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "data_width_bits",
+        "byte_order",
+        "alignment_bytes",
+        "read_byteenable_required",
+        "write_byteenable_required",
+        "burstcount_width_bits",
+        "burstcount_required",
+        "read_write_mutually_exclusive",
+        "maximum_outstanding_transactions",
+        "request_fields_stable_while_waitrequest",
+        "waitrequest_asserted_during_reset",
+        "waitrequest_asserted_while_busy",
+        "response_never_in_acceptance_cycle",
+        "local_rejects_forwarded_to_leaf"
+      ],
+      "properties": {
+        "data_width_bits": {
+          "const": 32
+        },
+        "byte_order": {
+          "const": "little_endian"
+        },
+        "alignment_bytes": {
+          "const": 4
+        },
+        "read_byteenable_required": {
+          "const": "0xf"
+        },
+        "write_byteenable_required": {
+          "const": "0xf"
+        },
+        "burstcount_width_bits": {
+          "const": 1
+        },
+        "burstcount_required": {
+          "const": 1
+        },
+        "read_write_mutually_exclusive": {
+          "const": true
+        },
+        "maximum_outstanding_transactions": {
+          "const": 1
+        },
+        "request_fields_stable_while_waitrequest": {
+          "const": true
+        },
+        "waitrequest_asserted_during_reset": {
+          "const": true
+        },
+        "waitrequest_asserted_while_busy": {
+          "const": true
+        },
+        "response_never_in_acceptance_cycle": {
+          "const": true
+        },
+        "local_rejects_forwarded_to_leaf": {
+          "const": false
+        }
+      }
+    },
+    "responseContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "shared_response_width_bits",
+        "codes",
+        "out_of_window_response",
+        "misaligned_response",
+        "partial_byteenable_response",
+        "unsupported_burst_response",
+        "leaf_error_response",
+        "missing_read_valid_response",
+        "read_error_data",
+        "write_response_required_for_every_accepted_write",
+        "read_response_required_for_every_accepted_read",
+        "read_and_write_response_valid_mutually_exclusive",
+        "illegal_simultaneous_read_write_policy",
+        "illegal_simultaneous_read_write_forwarded_to_leaf"
+      ],
+      "properties": {
+        "shared_response_width_bits": {
+          "const": 2
+        },
+        "codes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "okay",
+            "slave_error",
+            "decode_error"
+          ],
+          "properties": {
+            "okay": {
+              "const": 0
+            },
+            "slave_error": {
+              "const": 2
+            },
+            "decode_error": {
+              "const": 3
+            }
+          }
+        },
+        "out_of_window_response": {
+          "const": "decode_error"
+        },
+        "misaligned_response": {
+          "const": "slave_error"
+        },
+        "partial_byteenable_response": {
+          "const": "slave_error"
+        },
+        "unsupported_burst_response": {
+          "const": "slave_error"
+        },
+        "leaf_error_response": {
+          "const": "slave_error"
+        },
+        "missing_read_valid_response": {
+          "const": "slave_error"
+        },
+        "read_error_data": {
+          "const": "0x00000000"
+        },
+        "write_response_required_for_every_accepted_write": {
+          "const": true
+        },
+        "read_response_required_for_every_accepted_read": {
+          "const": true
+        },
+        "read_and_write_response_valid_mutually_exclusive": {
+          "const": true
+        },
+        "illegal_simultaneous_read_write_policy": {
+          "const": "read_priority_single_read_response_address_classification_still_applies"
+        },
+        "illegal_simultaneous_read_write_forwarded_to_leaf": {
+          "const": false
+        }
+      }
+    },
+    "csrLeafContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "request_interface",
+        "request_held_until_ready",
+        "request_fields_stable_until_ready",
+        "result_latency_cycles_after_acceptance",
+        "read_success_requires_rvalid",
+        "write_success_requires_no_error",
+        "leaf_error_maps_to",
+        "local_reject_pulse_scope",
+        "local_reject_counting_path",
+        "leaf_command_reject_accounting_owner"
+      ],
+      "properties": {
+        "request_interface": {
+          "const": "private_valid_ready_request"
+        },
+        "request_held_until_ready": {
+          "const": true
+        },
+        "request_fields_stable_until_ready": {
+          "const": true
+        },
+        "result_latency_cycles_after_acceptance": {
+          "const": 1
+        },
+        "read_success_requires_rvalid": {
+          "const": true
+        },
+        "write_success_requires_no_error": {
+          "const": true
+        },
+        "leaf_error_maps_to": {
+          "const": "slave_error"
+        },
+        "local_reject_pulse_scope": {
+          "const": "pre_leaf_adapter_rejects_only"
+        },
+        "local_reject_counting_path": {
+          "const": "dedicated_csr_bank_input_no_leaf_double_count"
+        },
+        "leaf_command_reject_accounting_owner": {
+          "const": "rtl/hps_bridge/trecap_csr_bank.sv"
+        }
+      }
+    },
+    "integration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adapter_rtl",
+        "csr_leaf_rtl",
+        "adapter_owner",
+        "logical_top",
+        "board_top",
+        "board_top_current_state",
+        "current_hps_export",
+        "current_hps_export_protocol",
+        "required_pending_platform_graph",
+        "required_platform_wrapper_source",
+        "required_pending_hardware_evidence",
+        "board_connectivity_complete"
+      ],
+      "properties": {
+        "adapter_rtl": {
+          "const": "rtl/hps_bridge/trecap_avmm_csr_adapter.sv"
+        },
+        "csr_leaf_rtl": {
+          "const": "rtl/hps_bridge/trecap_csr_bank.sv"
+        },
+        "adapter_owner": {
+          "const": "rtl/hps_bridge/trecap_hps_bridge_top.sv"
+        },
+        "logical_top": {
+          "const": "rtl/top/trecap_de1soc_full_top.sv"
+        },
+        "board_top": {
+          "const": "rtl/platform/de1soc/de1_soc_trecap_top.sv"
+        },
+        "board_top_current_state": {
+          "const": "platform_designer_wrapper_source_connected"
+        },
+        "current_hps_export": {
+          "const": "trecap_csr_bridge.m0"
+        },
+        "current_hps_export_protocol": {
+          "const": "avalon_mm_after_qsys_axi_to_avalon_adaptation"
+        },
+        "required_pending_platform_graph": {
+          "const": "quartus_normalized_generated_interconnect_evidence"
+        },
+        "required_platform_wrapper_source": {
+          "const": "rtl/platform/de1soc/platform_designer_wrapper.sv"
+        },
+        "required_pending_hardware_evidence": {
+          "const": "platform/de1soc/qsys/system.sopcinfo"
+        },
+        "board_connectivity_complete": {
+          "const": false
+        }
+      }
+    },
+    "evidencePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_checker",
+        "human_document",
+        "schema_file",
+        "compile_evidence_present",
+        "platform_designer_generation_evidence_present",
+        "functional_verification_present",
+        "hardware_evidence_present"
+      ],
+      "properties": {
+        "source_checker": {
+          "const": "scripts/check_csr_adapter.py"
+        },
+        "human_document": {
+          "const": "docs/architecture/avalon_mm_csr_adapter.md"
+        },
+        "schema_file": {
+          "const": "spec/schemas/avalon_csr_adapter.schema.json"
+        },
+        "compile_evidence_present": {
+          "const": false
+        },
+        "platform_designer_generation_evidence_present": {
+          "const": false
+        },
+        "functional_verification_present": {
+          "const": false
+        },
+        "hardware_evidence_present": {
+          "const": false
+        }
+      }
+    }
+  }
+}

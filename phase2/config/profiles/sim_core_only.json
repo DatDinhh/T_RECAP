@@ -1,0 +1,33 @@
+{
+  "schema": "trecap_phase2_runtime_profile_v1",
+  "profile_kind": "build",
+  "profile_name": "sim_core_only",
+  "description": "Core-only simulation profile using the finite impulse BRAM-replay artifact and no telemetry transport.",
+  "build": {
+    "target": "bram_replay",
+    "top_module": "trecap_core_bram_replay_top",
+    "platform": "simulation"
+  },
+  "contract_refs": {
+    "core_config": "spec/generated/core_config.json",
+    "csr_map": "spec/generated/csr_map.json",
+    "packet_layouts": "spec/generated/packet_layouts.json"
+  },
+  "input": {
+    "kind": "bram_replay",
+    "source_mode": "bram_replay",
+    "vector_config": "artifacts/test_vectors/impulse_Ns1024_thr0/config.json",
+    "input_memh": "artifacts/test_vectors/impulse_Ns1024_thr0/x_in.memh",
+    "replay_start_policy": "testbench_pulse"
+  },
+  "sample_rate_hz": 0,
+  "telemetry_profile": null,
+  "transport": {
+    "hps_ddr_enable": false,
+    "hps_udp_enable": false,
+    "command_server_enable": false,
+    "ring_enable_policy": "disabled"
+  },
+  "transport_version_major": 1,
+  "transport_version_minor": 8
+}

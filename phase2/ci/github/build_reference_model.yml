@@ -1,0 +1,154 @@
+name: build-reference-model
+
+"on":
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "sw/reference_model/**"
+      - "spec/generated/core_config.json"
+      - "spec/generated/width_config.json"
+      - "spec/generated/artifact_contract.json"
+      - "spec/schemas/**"
+      - "artifacts/coefficients/**"
+      - "artifacts/test_vectors/**"
+      - "artifacts/reference_outputs/**"
+      - "artifacts/manifests/**"
+      - "scripts/package_artifacts.py"
+      - "Makefile"
+      - "CMakeLists.txt"
+      - "ci/github/build_reference_model.yml"
+  push:
+    branches: [main]
+    paths:
+      - "sw/reference_model/**"
+      - "spec/generated/core_config.json"
+      - "spec/generated/width_config.json"
+      - "spec/generated/artifact_contract.json"
+      - "spec/schemas/**"
+      - "artifacts/coefficients/**"
+      - "artifacts/test_vectors/**"
+      - "artifacts/reference_outputs/**"
+      - "artifacts/manifests/**"
+      - "scripts/package_artifacts.py"
+      - "Makefile"
+      - "CMakeLists.txt"
+      - "ci/github/build_reference_model.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-reference-model-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build-test:
+    name: reference model build and self-test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      PYTHONUNBUFFERED: "1"
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+      CMAKE_BUILD_PARALLEL_LEVEL: "2"
+      CTEST_OUTPUT_ON_FAILURE: "1"
+      REFERENCE_DIR: sw/reference_model
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            sw/reference_model/requirements.lock
+            sw/pc_dashboard/pyproject.toml
+
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            ca-certificates \
+            cmake \
+            ninja-build
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          if [[ -f sw/reference_model/requirements.lock ]]; then
+            python -m pip install -r sw/reference_model/requirements.lock
+          fi
+          python -m pip install jsonschema pytest
+
+      - name: Check reference import is clean before build outputs are created
+        run: make check-reference-import REFERENCE_DIR="${REFERENCE_DIR}"
+
+      - name: Build reference model
+        run: make reference-build REFERENCE_DIR="${REFERENCE_DIR}"
+
+      - name: Run reference self-tests
+        run: make reference-test REFERENCE_DIR="${REFERENCE_DIR}"
+
+  artifact-smoke:
+    name: reference artifact smoke
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      PYTHONUNBUFFERED: "1"
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+      CMAKE_BUILD_PARALLEL_LEVEL: "2"
+      REFERENCE_DIR: sw/reference_model
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            sw/reference_model/requirements.lock
+            sw/pc_dashboard/pyproject.toml
+
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            ca-certificates \
+            cmake \
+            ninja-build
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          if [[ -f sw/reference_model/requirements.lock ]]; then
+            python -m pip install -r sw/reference_model/requirements.lock
+          fi
+          python -m pip install jsonschema pytest
+
+      - name: Validate committed reference import
+        run: make check-reference-import REFERENCE_DIR="${REFERENCE_DIR}"
+
+      - name: Check committed frozen artifact DAGs
+        run: make check-artifacts REFERENCE_DIR="${REFERENCE_DIR}"
+
+      - name: Package implementation artifacts
+        run: python scripts/package_artifacts.py --include-tools
+
+      - name: Upload artifact bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: trecap-reference-artifact-smoke
+          path: |
+            out/artifacts/*.tar.gz
+            out/artifacts/*.manifest.json
+          if-no-files-found: error
+          retention-days: 14

@@ -1,0 +1,84 @@
+# SPDX-License-Identifier: MIT
+# T-RECAP Phase 2 clang-format policy.
+# File class: [1] hand-written repository infrastructure.
+#
+# Primary scope: hand-written C/C++ and C-compatible HPS code.
+# SystemVerilog formatting is intentionally conservative in pre-commit because
+# clang-format Verilog support varies by installed version. The project may still
+# use this style for RTL only after the local toolchain proves it handles .sv/.svh
+# files correctly. Generated outputs are excluded by .pre-commit-config.yaml.
+
+BasedOnStyle: LLVM
+
+# Width and indentation.
+ColumnLimit: 100
+IndentWidth: 4
+ContinuationIndentWidth: 4
+TabWidth: 4
+UseTab: Never
+
+# C/C++ language baseline. CMake sets C11 and C++20; this keeps parser behavior
+# compatible with the host-side reference model and HPS userspace code.
+Standard: c++20
+
+# Includes in this project often encode generated-header ordering and HPS/RTL
+# contract dependencies. Do not sort them automatically.
+SortIncludes: Never
+IncludeBlocks: Preserve
+
+# Pointer/reference spelling.
+DerivePointerAlignment: false
+PointerAlignment: Right
+ReferenceAlignment: Right
+
+# Braces and layout.
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: false
+  AfterControlStatement: Never
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  AfterStruct: false
+  AfterUnion: false
+  BeforeCatch: false
+  BeforeElse: false
+  IndentBraces: false
+
+# Keep implementation code readable without creating dense one-line constructs.
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+BinPackArguments: false
+BinPackParameters: false
+
+# Switch/case and preprocessor behavior.
+IndentCaseLabels: false
+IndentPPDirectives: None
+
+# Spacing.
+SpaceAfterCStyleCast: false
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: ControlStatements
+SpacesInAngles: Never
+SpacesInContainerLiterals: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+
+# Comments.
+ReflowComments: true
+
+# Namespace endings and empty lines.
+FixNamespaceComments: true
+KeepEmptyLinesAtTheStartOfBlocks: false
+MaxEmptyLinesToKeep: 1
+
+# Penalties tuned to prefer readable generated-interface and packet-layout code.
+PenaltyBreakBeforeFirstCallParameter: 120
+PenaltyBreakComment: 300
+PenaltyBreakString: 1000
+PenaltyExcessCharacter: 100
+PenaltyReturnTypeOnItsOwnLine: 200

@@ -1,0 +1,1190 @@
+{
+  "schema": "trecap_phase2_csr_map_v1",
+  "project": "T_RECAP_Phase2",
+  "file_class": "[1] hand-written source-of-truth contract",
+  "contract_stage": "R1 generated-contract source input",
+  "source_spec": {
+    "active_pdf": "docs/specs/doneeeeeeeeee.pdf",
+    "clean_repo_name_if_renamed": "docs/specs/t_recap_phase2_integrated_spec.pdf",
+    "algorithm_revision": "Core Revision J",
+    "transport_revision": "Telemetry Revision G",
+    "repository_revision": "Architecture Revision D"
+  },
+  "repository_docs": [
+    "docs/architecture/generated_contracts.md",
+    "docs/architecture/generated_header_flow.md",
+    "docs/architecture/interface_contracts.md",
+    "docs/architecture/module_api.md",
+    "docs/architecture/dependency_rules.md",
+    "docs/architecture/memory_map.md",
+    "docs/bringup/ddr_ring_bringup.md",
+    "docs/bringup/hps_ethernet_bringup.md",
+    "docs/bringup/pc_dashboard_bringup.md"
+  ],
+  "edit_policy": {
+    "this_file_is_hand_written": true,
+    "generated_outputs_must_not_be_hand_edited": true,
+    "generator": "scripts/gen_headers.py",
+    "drift_check": "make check-generated",
+    "line_endings": "LF",
+    "json_format": "strict JSON, two-space indentation, deterministic key order where practical"
+  },
+  "generated_outputs": {
+    "rtl_sv": [
+      "rtl/include/generated/trecap_csr_pkg.sv"
+    ],
+    "hps_c": [
+      "sw/hps/include/generated/trecap_csr.h"
+    ],
+    "pc_python": [
+      "sw/pc_dashboard/generated/trecap_packet.py"
+    ]
+  },
+  "bus_contract": {
+    "endianness": "little",
+    "word_bits": 32,
+    "word_alignment_bytes": 4,
+    "access_unit": "32-bit aligned CSR word",
+    "csr_window_span_min_bytes": 256,
+    "csr_window_span_recommended_bytes": 4096,
+    "multiword_rule": "multiword live values use snapshot or commit; independent low/high live transfer is invalid"
+  },
+  "constants": {
+    "ID": {
+      "value_hex": "0x54524350",
+      "mnemonic": "TRCP",
+      "compare_as": "uint32 little-endian numeric"
+    },
+    "VERSION": {
+      "major": 1,
+      "minor": 8,
+      "packed_hex": "0x00010008",
+      "packed_formula": "(major << 16) | minor"
+    },
+    "THR2_WIDTH_BITS": 56,
+    "THR2_MAX_EXCLUSIVE_DECIMAL": "72057594037927936",
+    "SPEC_SHIFT_MAX": 55,
+    "WAVE_DECIM_MIN": 1,
+    "WAVE_DECIM_MAX": 65535,
+    "RING_SIZE_MIN_BYTES": 1048576,
+    "RING_ALIGNMENT_BYTES": 64,
+    "RING_GUARD_BYTES_MIN": 64
+  },
+  "enums": {
+    "source_mode": [
+      {
+        "name": "BRAM_REPLAY",
+        "value": 0,
+        "description": "BRAM replay source used for signoff and controlled bring-up."
+      },
+      {
+        "name": "ADC_LIVE",
+        "value": 1,
+        "description": "Live ADC source adapter."
+      },
+      {
+        "name": "AUDIO_WRAPPER",
+        "value": 2,
+        "description": "Audio codec LINE-IN source wrapper."
+      },
+      {
+        "name": "DIAGNOSTIC",
+        "value": 3,
+        "description": "Deterministic diagnostic hardware source."
+      }
+    ],
+    "spec_mode": [
+      {
+        "name": "SPEC_DISABLED",
+        "value": 0,
+        "description": "Do not generate spectrum packets even when SPEC_EN is set."
+      },
+      {
+        "name": "SPEC64",
+        "value": 1,
+        "description": "Generate SPEC64 packets when SPEC_EN is set."
+      },
+      {
+        "name": "SPEC129",
+        "value": 2,
+        "description": "Generate SPEC129 packets when SPEC_EN is set."
+      }
+    ]
+  },
+  "legacy_register_freeze": {
+    "first_offset": 0,
+    "last_offset": 136,
+    "first_offset_hex": "0x000",
+    "last_offset_hex": "0x088",
+    "register_count": 35,
+    "canonicalization": "json_sorted_keys_compact_utf8_full_register_objects_sorted_by_numeric_offset",
+    "sha256": "1169ac8154dfd510598efd17bacfc356cd694d86da791f083b9ec290f1ac424d"
+  },
+  "registers": [
+    {
+      "name": "ID",
+      "offset": 0,
+      "offset_hex": "0x000",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_constant",
+      "reset": "0x54524350",
+      "description": "Numeric little-endian CSR value 0x54524350. Software compares the numeric value, not raw ASCII bytes."
+    },
+    {
+      "name": "VERSION",
+      "offset": 4,
+      "offset_hex": "0x004",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_constant",
+      "reset": "0x00010008",
+      "description": "Transport version packed as VERSION[31:16]=major and VERSION[15:0]=minor. Step 14 appends the explicitly supported command/replay CSR extension as minor 8 while retaining major 1 compatibility."
+    },
+    {
+      "name": "CONTROL",
+      "offset": 8,
+      "offset_hex": "0x008",
+      "width_bits": 32,
+      "access": "R/W",
+      "owner": "hps_write_fpga_decode",
+      "reset": "0x00000000",
+      "description": "Control register containing persistent levels and write-one pulses.",
+      "fields": [
+        {
+          "name": "telemetry_enable",
+          "lsb": 0,
+          "msb": 0,
+          "kind": "level",
+          "description": "Persistent level. 1 enables telemetry writer scheduling after ring configuration.",
+          "reset": 0
+        },
+        {
+          "name": "telemetry_soft_reset",
+          "lsb": 1,
+          "msb": 1,
+          "kind": "w1p",
+          "description": "Write-one pulse. Resets telemetry formatter, packet FIFOs, writer FSM, and transport counters.",
+          "reset": 0,
+          "write_semantics": "write 1 generates one pulse; write 0 has no effect"
+        },
+        {
+          "name": "clear_metrics",
+          "lsb": 2,
+          "msb": 2,
+          "kind": "w1p",
+          "description": "Write-one pulse. Requests core metric clear at a safe boundary.",
+          "reset": 0,
+          "write_semantics": "write 1 generates one pulse; write 0 has no effect"
+        },
+        {
+          "name": "reserved_3",
+          "lsb": 3,
+          "msb": 3,
+          "kind": "reserved_write_zero_read_zero",
+          "description": "Reserved in Revision G. Sticky flags are cleared only by CLEAR_STICKY_FLAGS.",
+          "reset": 0
+        },
+        {
+          "name": "ring_writer_enable",
+          "lsb": 4,
+          "msb": 4,
+          "kind": "level",
+          "description": "Persistent level. Enables DDR ring writes after ring configuration is accepted.",
+          "reset": 0
+        },
+        {
+          "name": "reserved_31_5",
+          "lsb": 5,
+          "msb": 31,
+          "kind": "reserved",
+          "description": "Reserved. Write zero; ignore on read unless a later revision assigns bits."
+        }
+      ]
+    },
+    {
+      "name": "STATUS",
+      "offset": 12,
+      "offset_hex": "0x00C",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_status",
+      "reset": "0x00000000",
+      "description": "Live transport state bits.",
+      "fields": [
+        {
+          "name": "telemetry_enabled",
+          "lsb": 0,
+          "msb": 0,
+          "kind": "normal",
+          "description": "Active telemetry-enable state."
+        },
+        {
+          "name": "ring_writer_enabled",
+          "lsb": 1,
+          "msb": 1,
+          "kind": "normal",
+          "description": "Active DDR ring-writer enable state."
+        },
+        {
+          "name": "ring_configured",
+          "lsb": 2,
+          "msb": 2,
+          "kind": "normal",
+          "description": "Ring base and size have been committed and accepted."
+        },
+        {
+          "name": "writer_busy",
+          "lsb": 3,
+          "msb": 3,
+          "kind": "normal",
+          "description": "DDR writer is actively writing, waiting, or committing a record."
+        },
+        {
+          "name": "core_alive",
+          "lsb": 4,
+          "msb": 4,
+          "kind": "normal",
+          "description": "Core/sample activity heartbeat."
+        },
+        {
+          "name": "malformed_config",
+          "lsb": 5,
+          "msb": 5,
+          "kind": "normal",
+          "description": "Current ring/control configuration is malformed or not accepted."
+        },
+        {
+          "name": "ring_full",
+          "lsb": 6,
+          "msb": 6,
+          "kind": "normal",
+          "description": "Ring has insufficient free space for at least one scheduled telemetry record."
+        },
+        {
+          "name": "packet_fifo_full",
+          "lsb": 7,
+          "msb": 7,
+          "kind": "normal",
+          "description": "Telemetry packet FIFO has reached or recently reached full condition."
+        },
+        {
+          "name": "thr2_commit_pending",
+          "lsb": 8,
+          "msb": 8,
+          "kind": "normal",
+          "description": "THR2 commit is pending safe-frame application."
+        },
+        {
+          "name": "source_commit_pending",
+          "lsb": 9,
+          "msb": 9,
+          "kind": "normal",
+          "description": "A source-mode request is pending safe application or the requested source mode has not yet become the actual source-mux selection."
+        },
+        {
+          "name": "actual_source_mode",
+          "lsb": 10,
+          "msb": 11,
+          "kind": "normal",
+          "description": "Actual source-mux selection using the source_mode enumeration. This is active readback, not the requested shadow value."
+        },
+        {
+          "name": "transport_epoch_idle",
+          "lsb": 12,
+          "msb": 12,
+          "kind": "normal",
+          "description": "The DDR writer is idle and no telemetry packet is queued for DDR, so a transport command may perform an idle-only operation."
+        },
+        {
+          "name": "source_transition_busy",
+          "lsb": 13,
+          "msb": 13,
+          "kind": "normal",
+          "description": "A source discontinuity, source-adapter reset, or safe-boundary source transition is in progress."
+        },
+        {
+          "name": "reserved_31_14",
+          "lsb": 14,
+          "msb": 31,
+          "kind": "reserved",
+          "description": "Reserved. Shall read as zero unless assigned by a later compatible minor revision."
+        }
+      ]
+    },
+    {
+      "name": "THR2_LO",
+      "offset": 16,
+      "offset_hex": "0x010",
+      "width_bits": 32,
+      "access": "W",
+      "owner": "hps_write_shadow",
+      "reset": "0x00000000",
+      "description": "Shadow threshold bits [31:0].",
+      "write_semantics": "write low word of THR2 shadow"
+    },
+    {
+      "name": "THR2_HI",
+      "offset": 20,
+      "offset_hex": "0x014",
+      "width_bits": 32,
+      "access": "W",
+      "owner": "hps_write_shadow",
+      "reset": "0x00000000",
+      "description": "Shadow threshold bits [55:32] in bits [23:0]; upper bits [31:24] shall be zero.",
+      "write_semantics": "write high word of THR2 shadow; reject or flag nonzero upper bits",
+      "validity": {
+        "mask_required_zero_hex": "0xFF000000",
+        "valid_payload_mask_hex": "0x00FFFFFF"
+      }
+    },
+    {
+      "name": "THR2_COMMIT",
+      "offset": 24,
+      "offset_hex": "0x018",
+      "width_bits": 32,
+      "access": "W1P",
+      "owner": "hps_write_fpga_decode",
+      "reset": "0x00000000",
+      "description": "Writing 1 requests active threshold update at the next frame boundary.",
+      "write_semantics": "write one pulse; active THR2 updates only at safe frame boundary"
+    },
+    {
+      "name": "PACKET_ENABLE",
+      "offset": 28,
+      "offset_hex": "0x01C",
+      "width_bits": 32,
+      "access": "R/W",
+      "owner": "hps_write_fpga_decode",
+      "reset": "0x00000000",
+      "description": "Packet-enable bitmask. Spectrum format is selected by SPEC_MODE, not by separate SPEC packet enables.",
+      "fields": [
+        {
+          "name": "WAVE_EN",
+          "lsb": 0,
+          "msb": 0,
+          "kind": "enable",
+          "description": "Enable WAVE telemetry packets.",
+          "reset": 0
+        },
+        {
+          "name": "SPEC_EN",
+          "lsb": 1,
+          "msb": 1,
+          "kind": "enable",
+          "description": "Enable spectrum telemetry. SPEC_MODE selects SPEC64 or SPEC129.",
+          "reset": 0
+        },
+        {
+          "name": "METRICS_EN",
+          "lsb": 2,
+          "msb": 2,
+          "kind": "enable",
+          "description": "Enable METRICS telemetry packets.",
+          "reset": 0
+        },
+        {
+          "name": "STATUS_EN",
+          "lsb": 3,
+          "msb": 3,
+          "kind": "enable",
+          "description": "Enable STATUS telemetry packets.",
+          "reset": 0
+        },
+        {
+          "name": "PEAKS_EN",
+          "lsb": 4,
+          "msb": 4,
+          "kind": "reserved_disabled",
+          "description": "Reserved-disabled in Revision G. Commands setting this bit are rejected unless an extension freezes PEAKS.",
+          "reset": 0
+        },
+        {
+          "name": "DEBUG_EN",
+          "lsb": 5,
+          "msb": 5,
+          "kind": "reserved_disabled",
+          "description": "Reserved-disabled in Revision G. Commands setting this bit are rejected unless an extension freezes DEBUG.",
+          "reset": 0
+        },
+        {
+          "name": "reserved_31_6",
+          "lsb": 6,
+          "msb": 31,
+          "kind": "reserved",
+          "description": "Reserved. Commands setting these bits are rejected."
+        }
+      ]
+    },
+    {
+      "name": "WAVE_DECIM",
+      "offset": 32,
+      "offset_hex": "0x020",
+      "width_bits": 32,
+      "access": "R/W",
+      "owner": "hps_write_fpga_decode",
+      "reset": "0x00000001",
+      "description": "Waveform sample decimation factor. Active value is reported as WAVE.stride.",
+      "validity": {
+        "min": 1,
+        "max": 65535
+      }
+    },
+    {
+      "name": "SPEC_MODE",
+      "offset": 36,
+      "offset_hex": "0x024",
+      "width_bits": 32,
+      "access": "R/W",
+      "owner": "hps_write_fpga_decode",
+      "reset": "0x00000000",
+      "description": "Spectrum selector: 0 disabled, 1 SPEC64, 2 SPEC129. Other values are illegal.",
+      "validity": {
+        "allowed": [
+          0,
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "name": "SPEC_SHIFT",
+      "offset": 40,
+      "offset_hex": "0x028",
+      "width_bits": 32,
+      "access": "R/W",
+      "owner": "hps_write_fpga_decode",
+      "reset": "0x00000000",
+      "description": "Unsigned right shift before clamping mag2 to uint16_t spectrum display values.",
+      "validity": {
+        "min": 0,
+        "max": 55
+      }
+    },
+    {
+      "name": "SOURCE_MODE_SHADOW",
+      "offset": 44,
+      "offset_hex": "0x02C",
+      "width_bits": 32,
+      "access": "W",
+      "owner": "hps_write_shadow",
+      "reset": "0x00000000",
+      "description": "Shadow source mode: 0 BRAM replay, 1 ADC live, 2 audio wrapper, 3 diagnostic source.",
+      "validity": {
+        "allowed": [
+          0,
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "name": "SOURCE_MODE_COMMIT",
+      "offset": 48,
+      "offset_hex": "0x030",
+      "width_bits": 32,
+      "access": "W1P",
+      "owner": "hps_write_fpga_decode",
+      "reset": "0x00000000",
+      "description": "Writing 1 requests atomic source-mode update under the source-mode change rule.",
+      "write_semantics": "write one pulse; FPGA applies only at safe sample/frame boundary and resets affected state"
+    },
+    {
+      "name": "RING_BASE_LO",
+      "offset": 52,
+      "offset_hex": "0x034",
+      "width_bits": 32,
+      "access": "W",
+      "owner": "hps_write_shadow",
+      "reset": "0x00000000",
+      "description": "FPGA-visible DDR ring base address bits [31:0]."
+    },
+    {
+      "name": "RING_BASE_HI",
+      "offset": 56,
+      "offset_hex": "0x038",
+      "width_bits": 32,
+      "access": "W",
+      "owner": "hps_write_shadow",
+      "reset": "0x00000000",
+      "description": "FPGA-visible DDR ring base address bits [63:32], if used by the bridge."
+    },
+    {
+      "name": "RING_SIZE_BYTES",
+      "offset": 60,
+      "offset_hex": "0x03C",
+      "width_bits": 32,
+      "access": "W",
+      "owner": "hps_write_shadow",
+      "reset": "0x00000000",
+      "description": "Ring size in bytes. Must be power of two, multiple of 64, and at least 1 MiB.",
+      "validity": {
+        "power_of_two": true,
+        "multiple_of": 64,
+        "min": 1048576
+      }
+    },
+    {
+      "name": "RING_CONFIG_COMMIT",
+      "offset": 64,
+      "offset_hex": "0x040",
+      "width_bits": 32,
+      "access": "W1P",
+      "owner": "hps_write_fpga_decode",
+      "reset": "0x00000000",
+      "description": "Latches ring base/size into the writer when telemetry is disabled. Resets producer pointer W to zero on accepted commit.",
+      "write_semantics": "write one pulse; accepted only while telemetry disabled"
+    },
+    {
+      "name": "RING_WR_SNAPSHOT",
+      "offset": 68,
+      "offset_hex": "0x044",
+      "width_bits": 32,
+      "access": "W1P",
+      "owner": "hps_write_fpga_decode",
+      "reset": "0x00000000",
+      "description": "HPS writes 1 to request an atomic snapshot of the FPGA-owned producer pointer."
+    },
+    {
+      "name": "RING_WR_LO_SNAP",
+      "offset": 72,
+      "offset_hex": "0x048",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_snapshot",
+      "reset": "0x00000000",
+      "description": "Latched producer pointer bits [31:0]. Stable until next RING_WR_SNAPSHOT."
+    },
+    {
+      "name": "RING_WR_HI_SNAP",
+      "offset": 76,
+      "offset_hex": "0x04C",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_snapshot",
+      "reset": "0x00000000",
+      "description": "Latched producer pointer bits [63:32]. Stable until next RING_WR_SNAPSHOT."
+    },
+    {
+      "name": "RING_RD_LO_SHADOW",
+      "offset": 80,
+      "offset_hex": "0x050",
+      "width_bits": 32,
+      "access": "W",
+      "owner": "hps_write_shadow",
+      "reset": "0x00000000",
+      "description": "HPS-owned consumer pointer shadow bits [31:0]."
+    },
+    {
+      "name": "RING_RD_HI_SHADOW",
+      "offset": 84,
+      "offset_hex": "0x054",
+      "width_bits": 32,
+      "access": "W",
+      "owner": "hps_write_shadow",
+      "reset": "0x00000000",
+      "description": "HPS-owned consumer pointer shadow bits [63:32]."
+    },
+    {
+      "name": "RING_RD_COMMIT",
+      "offset": 88,
+      "offset_hex": "0x058",
+      "width_bits": 32,
+      "access": "W1P",
+      "owner": "hps_write_fpga_decode",
+      "reset": "0x00000000",
+      "description": "Writing 1 makes the shadow consumer pointer visible to the FPGA writer through a CDC-safe commit.",
+      "write_semantics": "write one pulse; do not consume independent low/high updates"
+    },
+    {
+      "name": "DMA_DROP_COUNT",
+      "offset": 92,
+      "offset_hex": "0x05C",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_counter",
+      "reset": "0x00000000",
+      "description": "Number of telemetry records dropped by the FPGA DDR writer after writer scheduling/free-space acceptance stage."
+    },
+    {
+      "name": "DMA_PACKET_COUNT",
+      "offset": 96,
+      "offset_hex": "0x060",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_counter",
+      "reset": "0x00000000",
+      "description": "Number of normal telemetry records committed to DDR."
+    },
+    {
+      "name": "DMA_STATUS",
+      "offset": 100,
+      "offset_hex": "0x064",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_status",
+      "reset": "0x00000000",
+      "description": "DDR writer status bits.",
+      "fields": [
+        {
+          "name": "writer_idle",
+          "lsb": 0,
+          "msb": 0,
+          "kind": "normal",
+          "description": "DDR writer FSM is idle."
+        },
+        {
+          "name": "writer_busy",
+          "lsb": 1,
+          "msb": 1,
+          "kind": "normal",
+          "description": "DDR writer FSM is processing a record or waiting for write completion."
+        },
+        {
+          "name": "no_space",
+          "lsb": 2,
+          "msb": 2,
+          "kind": "normal",
+          "description": "Last attempted record did not fit under the ring free-space rule."
+        },
+        {
+          "name": "malformed_config",
+          "lsb": 3,
+          "msb": 3,
+          "kind": "normal",
+          "description": "Base, size, or alignment configuration is invalid."
+        },
+        {
+          "name": "ring_full",
+          "lsb": 4,
+          "msb": 4,
+          "kind": "normal",
+          "description": "Ring occupancy has reached the writer full threshold."
+        },
+        {
+          "name": "packet_fifo_full",
+          "lsb": 5,
+          "msb": 5,
+          "kind": "normal",
+          "description": "Packet FIFO full condition is active or was recently observed."
+        },
+        {
+          "name": "ddr_wait",
+          "lsb": 6,
+          "msb": 6,
+          "kind": "normal",
+          "description": "Writer is blocked by DDR/Avalon waitrequest or equivalent bus backpressure."
+        },
+        {
+          "name": "drop_active",
+          "lsb": 7,
+          "msb": 7,
+          "kind": "normal",
+          "description": "A record is currently being dropped or was dropped in the current service interval."
+        },
+        {
+          "name": "reserved_31_8",
+          "lsb": 8,
+          "msb": 31,
+          "kind": "reserved",
+          "description": "Reserved. Shall read as zero unless assigned by a later revision."
+        }
+      ]
+    },
+    {
+      "name": "CORE_COUNT_SNAPSHOT",
+      "offset": 104,
+      "offset_hex": "0x068",
+      "width_bits": 32,
+      "access": "W1P",
+      "owner": "hps_write_fpga_decode",
+      "reset": "0x00000000",
+      "description": "HPS writes 1 to latch coherent sample and frame counters into snapshot registers."
+    },
+    {
+      "name": "FRAME_COUNT_SNAP_LO",
+      "offset": 108,
+      "offset_hex": "0x06C",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_snapshot",
+      "reset": "0x00000000",
+      "description": "Latched STFT frame count bits [31:0]."
+    },
+    {
+      "name": "FRAME_COUNT_SNAP_HI",
+      "offset": 112,
+      "offset_hex": "0x070",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_snapshot",
+      "reset": "0x00000000",
+      "description": "Latched STFT frame count bits [63:32]."
+    },
+    {
+      "name": "SAMPLE_COUNT_SNAP_LO",
+      "offset": 116,
+      "offset_hex": "0x074",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_snapshot",
+      "reset": "0x00000000",
+      "description": "Latched core sample count bits [31:0]."
+    },
+    {
+      "name": "SAMPLE_COUNT_SNAP_HI",
+      "offset": 120,
+      "offset_hex": "0x078",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_snapshot",
+      "reset": "0x00000000",
+      "description": "Latched core sample count bits [63:32]."
+    },
+    {
+      "name": "OVERFLOW_FLAGS",
+      "offset": 124,
+      "offset_hex": "0x07C",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_sticky_status",
+      "reset": "0x00000000",
+      "description": "Sticky overflow/error/status flags.",
+      "fields": [
+        {
+          "name": "arithmetic_overflow",
+          "lsb": 0,
+          "msb": 0,
+          "kind": "sticky_w1c",
+          "description": "Core arithmetic overflow or unexpected internal range violation observed."
+        },
+        {
+          "name": "ola_overflow",
+          "lsb": 1,
+          "msb": 1,
+          "kind": "sticky_w1c",
+          "description": "OLA accumulator overflow or saturation-risk condition observed."
+        },
+        {
+          "name": "ring_overflow",
+          "lsb": 2,
+          "msb": 2,
+          "kind": "sticky_w1c",
+          "description": "Ring occupancy rule was violated or would have been violated without dropping."
+        },
+        {
+          "name": "packet_fifo_overflow",
+          "lsb": 3,
+          "msb": 3,
+          "kind": "sticky_w1c",
+          "description": "Packet FIFO overflow/drop condition occurred."
+        },
+        {
+          "name": "malformed_packet",
+          "lsb": 4,
+          "msb": 4,
+          "kind": "sticky_w1c",
+          "description": "Malformed DDR record or packet header observed."
+        },
+        {
+          "name": "illegal_command",
+          "lsb": 5,
+          "msb": 5,
+          "kind": "sticky_w1c",
+          "description": "FPGA/CSR-side illegal command or illegal CSR safety request observed."
+        },
+        {
+          "name": "cdc_error",
+          "lsb": 6,
+          "msb": 6,
+          "kind": "sticky_w1c",
+          "description": "CDC protocol violation or invalid snapshot/commit condition detected."
+        },
+        {
+          "name": "threshold_range_error",
+          "lsb": 7,
+          "msb": 7,
+          "kind": "sticky_w1c",
+          "description": "Requested THR2 outside legal 56-bit baseline range."
+        },
+        {
+          "name": "source_mode_error",
+          "lsb": 8,
+          "msb": 8,
+          "kind": "sticky_w1c",
+          "description": "Illegal or unsafe source-mode transition requested."
+        },
+        {
+          "name": "oversized_record",
+          "lsb": 9,
+          "msb": 9,
+          "kind": "sticky_w1c",
+          "description": "Record exceeded Revision G UDP size bound or packet-type maximum."
+        },
+        {
+          "name": "reserved_31_10",
+          "lsb": 10,
+          "msb": 31,
+          "kind": "reserved",
+          "description": "Reserved. Reads zero. Writes to CLEAR_STICKY_FLAGS reserved bits have no effect."
+        }
+      ]
+    },
+    {
+      "name": "CLEAR_STICKY_FLAGS",
+      "offset": 128,
+      "offset_hex": "0x080",
+      "width_bits": 32,
+      "access": "W1C",
+      "owner": "hps_write_fpga_decode",
+      "reset": "0x00000000",
+      "description": "Write-one-to-clear mask using the same bit map as OVERFLOW_FLAGS. Reserved-bit writes have no effect.",
+      "fields": [
+        {
+          "name": "arithmetic_overflow",
+          "lsb": 0,
+          "msb": 0,
+          "kind": "sticky_w1c",
+          "description": "Core arithmetic overflow or unexpected internal range violation observed."
+        },
+        {
+          "name": "ola_overflow",
+          "lsb": 1,
+          "msb": 1,
+          "kind": "sticky_w1c",
+          "description": "OLA accumulator overflow or saturation-risk condition observed."
+        },
+        {
+          "name": "ring_overflow",
+          "lsb": 2,
+          "msb": 2,
+          "kind": "sticky_w1c",
+          "description": "Ring occupancy rule was violated or would have been violated without dropping."
+        },
+        {
+          "name": "packet_fifo_overflow",
+          "lsb": 3,
+          "msb": 3,
+          "kind": "sticky_w1c",
+          "description": "Packet FIFO overflow/drop condition occurred."
+        },
+        {
+          "name": "malformed_packet",
+          "lsb": 4,
+          "msb": 4,
+          "kind": "sticky_w1c",
+          "description": "Malformed DDR record or packet header observed."
+        },
+        {
+          "name": "illegal_command",
+          "lsb": 5,
+          "msb": 5,
+          "kind": "sticky_w1c",
+          "description": "FPGA/CSR-side illegal command or illegal CSR safety request observed."
+        },
+        {
+          "name": "cdc_error",
+          "lsb": 6,
+          "msb": 6,
+          "kind": "sticky_w1c",
+          "description": "CDC protocol violation or invalid snapshot/commit condition detected."
+        },
+        {
+          "name": "threshold_range_error",
+          "lsb": 7,
+          "msb": 7,
+          "kind": "sticky_w1c",
+          "description": "Requested THR2 outside legal 56-bit baseline range."
+        },
+        {
+          "name": "source_mode_error",
+          "lsb": 8,
+          "msb": 8,
+          "kind": "sticky_w1c",
+          "description": "Illegal or unsafe source-mode transition requested."
+        },
+        {
+          "name": "oversized_record",
+          "lsb": 9,
+          "msb": 9,
+          "kind": "sticky_w1c",
+          "description": "Record exceeded Revision G UDP size bound or packet-type maximum."
+        },
+        {
+          "name": "reserved_31_10",
+          "lsb": 10,
+          "msb": 31,
+          "kind": "reserved",
+          "description": "Reserved. Reads zero. Writes to CLEAR_STICKY_FLAGS reserved bits have no effect."
+        }
+      ],
+      "write_semantics": "write 1 clears matching sticky flag bit; write 0 leaves bit unchanged"
+    },
+    {
+      "name": "CSR_COMMAND_REJECT_COUNT",
+      "offset": 132,
+      "offset_hex": "0x084",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_counter",
+      "reset": "0x00000000",
+      "description": "Number of command or state-change requests rejected by FPGA/CSR safety logic after HPS validation."
+    },
+    {
+      "name": "PACKET_FIFO_DROP_COUNT",
+      "offset": 136,
+      "offset_hex": "0x088",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_counter",
+      "reset": "0x00000000",
+      "description": "Pre-writer telemetry tap or packet-FIFO drop count. Distinct from DMA_DROP_COUNT."
+    },
+    {
+      "name": "COUNTER_CLEAR",
+      "offset": 140,
+      "offset_hex": "0x08C",
+      "width_bits": 32,
+      "access": "W1P",
+      "owner": "hps_write_fpga_decode",
+      "reset": "0x00000000",
+      "description": "Step-14 write-one-pulse control for clearing FPGA-owned transport diagnostic counters without resetting active transport state.",
+      "fields": [
+        {
+          "name": "transport_counters",
+          "lsb": 0,
+          "msb": 0,
+          "kind": "w1p",
+          "description": "Clear DMA_DROP_COUNT, DMA_PACKET_COUNT, CSR_COMMAND_REJECT_COUNT, and PACKET_FIFO_DROP_COUNT. Preserve producer W, consumer Rd, normal telemetry sequence state, core sample/frame counters, ring configuration, control levels, sticky flags, and replay state.",
+          "reset": 0,
+          "write_semantics": "write 1 emits one clear pulse; write 0 has no effect"
+        },
+        {
+          "name": "reserved_31_1",
+          "lsb": 1,
+          "msb": 31,
+          "kind": "reserved",
+          "description": "Reserved. Software shall write zero."
+        }
+      ],
+      "write_semantics": "Only bit 0 is legal. Counter clear is diagnostic-only and shall not reset or reconfigure the transport."
+    },
+    {
+      "name": "REPLAY_CONTROL",
+      "offset": 144,
+      "offset_hex": "0x090",
+      "width_bits": 32,
+      "access": "W1P",
+      "owner": "hps_write_fpga_decode",
+      "reset": "0x00000000",
+      "description": "Step-14 replay command pulses routed through the existing BRAM-replay request, admission, and retained-result authority.",
+      "fields": [
+        {
+          "name": "start",
+          "lsb": 0,
+          "msb": 0,
+          "kind": "w1p",
+          "description": "Issue one raw BRAM-replay start request. The request shall pass through the existing Step-11 admission logic and shall never bypass readiness checks.",
+          "reset": 0,
+          "write_semantics": "write 1 emits one raw start-request pulse; acceptance or rejection is retained in REPLAY_STATUS"
+        },
+        {
+          "name": "rearm",
+          "lsb": 1,
+          "msb": 1,
+          "kind": "w1p",
+          "description": "Rearm a quiescent failed replay epoch and clear its retained replay result state while preserving committed transport W, Rd, packet sequence, ring configuration, and transport counters.",
+          "reset": 0,
+          "write_semantics": "write 1 emits one replay-only rearm pulse; software waits for start_ready before a later start write"
+        },
+        {
+          "name": "reserved_31_2",
+          "lsb": 2,
+          "msb": 31,
+          "kind": "reserved",
+          "description": "Reserved. Software shall write zero."
+        }
+      ],
+      "write_semantics": "START and REARM are separate write-one-pulse operations and shall not be asserted in the same CSR write."
+    },
+    {
+      "name": "REPLAY_STATUS",
+      "offset": 148,
+      "offset_hex": "0x094",
+      "width_bits": 32,
+      "access": "R",
+      "owner": "fpga_status",
+      "reset": "0x00000000",
+      "description": "Live and retained BRAM-replay command/result state. HPS snapshots result_epoch before START and waits for a modulo-2^16 epoch change with exactly one retained terminal result.",
+      "fields": [
+        {
+          "name": "pending",
+          "lsb": 0,
+          "msb": 0,
+          "kind": "normal",
+          "description": "A raw START request has been captured and its admission decision has not yet been retained."
+        },
+        {
+          "name": "last_accept",
+          "lsb": 1,
+          "msb": 1,
+          "kind": "normal",
+          "description": "Retained terminal result for the most recently decided START request was accepted. Mutually exclusive with last_reject."
+        },
+        {
+          "name": "last_reject",
+          "lsb": 2,
+          "msb": 2,
+          "kind": "normal",
+          "description": "Retained terminal result for the most recently decided START request was rejected by replay admission. Mutually exclusive with last_accept."
+        },
+        {
+          "name": "start_ready",
+          "lsb": 3,
+          "msb": 3,
+          "kind": "normal",
+          "description": "Current Step-11 replay admission prerequisites are satisfied for a new raw START request."
+        },
+        {
+          "name": "replay_active",
+          "lsb": 4,
+          "msb": 4,
+          "kind": "normal",
+          "description": "The BRAM replay source is actively presenting its input or required zero-tail tokens."
+        },
+        {
+          "name": "replay_path_busy",
+          "lsb": 5,
+          "msb": 5,
+          "kind": "normal",
+          "description": "The source-through-core replay path epoch is in progress."
+        },
+        {
+          "name": "replay_path_done",
+          "lsb": 6,
+          "msb": 6,
+          "kind": "normal",
+          "description": "Retained Step-11 source-through-core path completion evidence for the current or most recent accepted epoch."
+        },
+        {
+          "name": "e2e_busy",
+          "lsb": 7,
+          "msb": 7,
+          "kind": "normal",
+          "description": "The stronger replay-through-telemetry-to-DDR completion epoch is in progress."
+        },
+        {
+          "name": "e2e_done",
+          "lsb": 8,
+          "msb": 8,
+          "kind": "normal",
+          "description": "Retained Step-11 end-to-end replay completion evidence for the current or most recent accepted epoch."
+        },
+        {
+          "name": "error",
+          "lsb": 9,
+          "msb": 9,
+          "kind": "normal",
+          "description": "A replay source, core-path, admission, telemetry, or end-to-end error is retained for the current or most recent replay epoch."
+        },
+        {
+          "name": "rearm_required",
+          "lsb": 10,
+          "msb": 10,
+          "kind": "normal",
+          "description": "A failed accepted replay epoch is latched and blocks restart until REPLAY_CONTROL.rearm or reset succeeds."
+        },
+        {
+          "name": "reserved_15_11",
+          "lsb": 11,
+          "msb": 15,
+          "kind": "reserved",
+          "description": "Reserved. Shall read as zero."
+        },
+        {
+          "name": "result_epoch",
+          "lsb": 16,
+          "msb": 31,
+          "kind": "normal",
+          "description": "Modulo-2^16 terminal START-decision epoch. Increment exactly once when a captured START becomes last_accept or last_reject; do not increment on REARM."
+        }
+      ]
+    }
+  ],
+  "multiword_transactions": [
+    {
+      "name": "THR2",
+      "bits": 56,
+      "direction": "HPS_to_FPGA",
+      "sequence": [
+        "write THR2_LO",
+        "write THR2_HI",
+        "write THR2_COMMIT=1"
+      ],
+      "apply_rule": "active value changes only at frame boundary"
+    },
+    {
+      "name": "RING_BASE_AND_SIZE",
+      "direction": "HPS_to_FPGA",
+      "sequence": [
+        "telemetry_enable=0",
+        "ring_writer_enable=0",
+        "write RING_BASE_LO",
+        "write RING_BASE_HI",
+        "write RING_SIZE_BYTES",
+        "write RING_CONFIG_COMMIT=1"
+      ],
+      "apply_rule": "accepted only while telemetry disabled"
+    },
+    {
+      "name": "RING_WR_POINTER",
+      "bits": 64,
+      "direction": "FPGA_to_HPS",
+      "sequence": [
+        "write RING_WR_SNAPSHOT=1",
+        "read RING_WR_LO_SNAP",
+        "read RING_WR_HI_SNAP"
+      ],
+      "apply_rule": "snapshot registers stable until next snapshot"
+    },
+    {
+      "name": "RING_RD_POINTER",
+      "bits": 64,
+      "direction": "HPS_to_FPGA",
+      "sequence": [
+        "write RING_RD_LO_SHADOW",
+        "write RING_RD_HI_SHADOW",
+        "write RING_RD_COMMIT=1"
+      ],
+      "apply_rule": "FPGA consumes committed value through CDC-safe handshake"
+    },
+    {
+      "name": "CORE_COUNTERS",
+      "bits": 64,
+      "direction": "FPGA_to_HPS",
+      "sequence": [
+        "write CORE_COUNT_SNAPSHOT=1",
+        "read FRAME_COUNT_SNAP_LO/HI",
+        "read SAMPLE_COUNT_SNAP_LO/HI"
+      ],
+      "apply_rule": "snapshot registers stable until next snapshot"
+    }
+  ],
+  "validation_rules": [
+    "All CSR offsets are 32-bit aligned and unique.",
+    "Reserved write fields shall be written as zero by software and ignored or rejected as specified.",
+    "Threshold high word bits [31:24] shall be zero for Revision G baseline.",
+    "PACKET_ENABLE reserved bits, PEAKS_EN, and DEBUG_EN are rejected in Revision G baseline commands.",
+    "WAVE_DECIM zero is illegal.",
+    "SPEC_MODE values outside 0,1,2 are illegal.",
+    "SPEC_SHIFT values above 55 are illegal for baseline Wmag2=56.",
+    "Ring base/size commit is accepted only while telemetry is disabled.",
+    "No 64-bit pointer or counter is transferred by independent live low/high halves.",
+    "STATUS.actual_source_mode reports the active source mux; source_commit_pending remains set while a request is pending or requested and actual modes differ.",
+    "COUNTER_CLEAR.transport_counters clears only the four FPGA transport diagnostic counters and preserves W, Rd, telemetry sequence state, core counts, active configuration, control levels, sticky flags, and replay state.",
+    "REPLAY_CONTROL.start and REPLAY_CONTROL.rearm are separate W1P requests and shall not be asserted in the same write.",
+    "Every captured replay START reaches the existing admission owner and terminates exactly once as last_accept or last_reject with one modulo-2^16 result_epoch increment.",
+    "HPS replay command completion requires pending=0, result_epoch changed from its pre-START snapshot, and exactly one of last_accept or last_reject asserted."
+  ]
+}

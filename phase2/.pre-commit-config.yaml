@@ -1,0 +1,169 @@
+# SPDX-License-Identifier: MIT
+# T-RECAP Phase 2 pre-commit policy.
+# File class: [1] hand-written repository infrastructure.
+#
+# This config is R0-tolerant: it can be installed before scripts/gen_headers.py
+# and scripts/gen_filelists.py exist. Once R1 is implemented, the generated-drift
+# hooks automatically start enforcing deterministic regeneration.
+
+minimum_pre_commit_version: "3.5.0"
+default_install_hook_types: [pre-commit, pre-push]
+default_stages: [pre-commit]
+fail_fast: false
+
+ci:
+  autofix_prs: false
+  autoupdate_schedule: quarterly
+
+# Do not run generic auto-formatters over generated outputs, frozen/reference
+# artifacts, captured telemetry, local runs, or quarantined Phase 1 code. Generated
+# files are checked through the explicit drift hooks below instead.
+exclude: |
+  (?x)^(
+    legacy/phase1/|
+    legacy/deprecated_phase2_docs/|
+    runs/|
+    out/|
+    build/|
+    cmake-build-[^/]+/|
+    rtl/include/generated/|
+    sw/hps/include/generated/|
+    sw/pc_dashboard/generated/|
+    sw/reference_model/generated/|
+    sw/golden/generated/|
+    filelists/|
+    artifacts/reference_outputs/|
+    artifacts/telemetry_captures/|
+    sw/reference_model/(\.venv|build[^/]*|out|runs|\.pytest_cache)/|
+    sw/golden/(\.venv|build[^/]*|out|runs|\.pytest_cache)/|
+    platform/de1soc/qsys/.*/(synthesis|simulation|testbench|greybox_tmp|submodules)/
+  )
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-added-large-files
+        args: [--maxkb=4096]
+        exclude: ^(docs/specs/.*\.pdf|artifacts/|legacy/phase1/)
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: check-shebang-scripts-are-executable
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-yaml
+        args: [--unsafe]
+      - id: check-json
+        exclude: ^(artifacts/reference_outputs/|artifacts/telemetry_captures/)
+      - id: detect-private-key
+      - id: end-of-file-fixer
+        types: [text]
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+        types: [text]
+
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+        name: black hand-written Python
+        language_version: python3
+        args: [--line-length=100]
+        files: ^(scripts/|sw/reference_model/|sw/golden/|sw/pc_dashboard/).*\.py$
+        exclude: ^(sw/(reference_model|golden)/generated/|sw/pc_dashboard/generated/)
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      - id: ruff
+        name: ruff Python syntax/safety lint
+        args: [--select=E9,F63,F7,F82]
+        files: ^(scripts/|sw/reference_model/|sw/golden/|sw/pc_dashboard/).*\.py$
+        exclude: ^(sw/(reference_model|golden)/generated/|sw/pc_dashboard/generated/)
+
+  - repo: https://github.com/pre-commit/mirrors-clang-format
+    rev: v18.1.8
+    hooks:
+      - id: clang-format
+        name: clang-format hand-written C/C++
+        args: [--style=file, --fallback-style=none]
+        files: ^(sw/reference_model|sw/golden|sw/hps|scripts).*(\.(c|h|cc|cpp|cxx|hh|hpp|hxx))$
+        exclude: ^sw/hps/include/generated/
+
+  - repo: local
+    hooks:
+      - id: make-check-layout
+        name: make check-layout
+        entry: make check-layout
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+
+      - id: make-lint-basic
+        name: make lint-basic
+        entry: make lint-basic
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+
+      - id: guard-generated-manual-edit
+        name: guard generated files against hand edits
+        language: system
+        pass_filenames: false
+        stages: [pre-commit]
+        entry: >-
+          bash -lc '
+          set -euo pipefail;
+          changed="$(git diff --cached --name-only --diff-filter=ACMR)";
+          if [[ -z "${changed}" ]]; then exit 0; fi;
+          gen_re="^(rtl/include/generated/|sw/hps/include/generated/|sw/pc_dashboard/generated/|sw/reference_model/generated/|sw/golden/generated/|filelists/)";
+          src_re="^(spec/generated/|spec/schemas/|scripts/gen_headers.py|scripts/gen_filelists.py)";
+          if grep -Eq "${gen_re}" <<<"${changed}" && ! grep -Eq "${src_re}" <<<"${changed}"; then
+              echo "ERROR: staged generated files changed without the schema/generator source.";
+              echo "       Do not hand-edit generated files. Change spec/generated or scripts/gen_*.py, then regenerate.";
+              grep -E "${gen_re}" <<<"${changed}" || true;
+              exit 1;
+          fi'
+
+      - id: check-generated-drift-r1
+        name: check generated-header drift when R1 scripts exist
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push, manual]
+        entry: >-
+          bash -lc '
+          set -euo pipefail;
+          if [[ -f scripts/gen_headers.py && -f scripts/check_generated.py ]]; then
+              make check-generated;
+          else
+              echo "SKIP check-generated: R1 generator/checker scripts are not present yet.";
+          fi'
+
+      - id: check-filelists-drift-r1
+        name: check generated filelists when R1 scripts exist
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push, manual]
+        entry: >-
+          bash -lc '
+          set -euo pipefail;
+          if [[ -f scripts/gen_filelists.py ]]; then
+              make rtl-filelist;
+              git diff --exit-code -- filelists/;
+          else
+              echo "SKIP rtl-filelist drift check: scripts/gen_filelists.py is not present yet.";
+          fi'
+
+      - id: cmake-configure-smoke
+        name: CMake configure smoke test
+        entry: cmake -S . -B build/precommit-smoke -DCMAKE_BUILD_TYPE=RelWithDebInfo
+        language: system
+        pass_filenames: false
+        stages: [manual]

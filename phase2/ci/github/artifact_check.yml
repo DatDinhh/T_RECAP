@@ -1,0 +1,167 @@
+name: artifact-check
+
+"on":
+  workflow_dispatch:
+    inputs:
+      strict_frozen_artifacts:
+        description: "Require frozen coefficient/vector/reference-output manifests. Use only after artifact freeze."
+        required: false
+        default: "false"
+        type: choice
+        options: ["false", "true"]
+  pull_request:
+    paths:
+      - "artifacts/**"
+      - "spec/generated/**"
+      - "spec/schemas/**"
+      - "scripts/package_artifacts.py"
+      - "scripts/check_generated.py"
+      - "scripts/gen_headers.py"
+      - "scripts/gen_filelists.py"
+      - "sw/reference_model/**"
+      - "Makefile"
+      - "ci/github/artifact_check.yml"
+  push:
+    branches: [main]
+    paths:
+      - "artifacts/**"
+      - "spec/generated/**"
+      - "spec/schemas/**"
+      - "scripts/package_artifacts.py"
+      - "scripts/check_generated.py"
+      - "scripts/gen_headers.py"
+      - "scripts/gen_filelists.py"
+      - "sw/reference_model/**"
+      - "Makefile"
+      - "ci/github/artifact_check.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: artifact-check-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  manifest-and-package:
+    name: artifact manifest and package smoke
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONUNBUFFERED: "1"
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            sw/reference_model/requirements.lock
+            sw/pc_dashboard/pyproject.toml
+
+      - name: Install artifact-check dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install jsonschema
+
+      - name: Check repository layout
+        run: make check-layout
+
+      - name: Check generated contracts before packaging artifacts
+        run: python scripts/check_generated.py --quiet
+
+      - name: Package artifact manifest only
+        run: |
+          strict_arg=()
+          if [[ "${{ github.event.inputs.strict_frozen_artifacts || 'false' }}" == "true" ]]; then
+            strict_arg+=(--strict)
+          fi
+          python scripts/package_artifacts.py \
+            --manifest-only \
+            --include-tools \
+            "${strict_arg[@]}"
+
+      - name: Package artifact archive
+        run: |
+          strict_arg=()
+          if [[ "${{ github.event.inputs.strict_frozen_artifacts || 'false' }}" == "true" ]]; then
+            strict_arg+=(--strict)
+          fi
+          python scripts/package_artifacts.py \
+            --include-tools \
+            "${strict_arg[@]}"
+
+      - name: Upload artifact package
+        uses: actions/upload-artifact@v4
+        with:
+          name: trecap-artifact-package
+          path: |
+            out/artifacts/*.tar.gz
+            out/artifacts/*.manifest.json
+          if-no-files-found: error
+          retention-days: 14
+
+  reference-artifact-check:
+    name: reference artifact checker
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    env:
+      PYTHONUNBUFFERED: "1"
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+      CMAKE_BUILD_PARALLEL_LEVEL: "2"
+      CTEST_OUTPUT_ON_FAILURE: "1"
+      REFERENCE_DIR: sw/reference_model
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            sw/reference_model/requirements.lock
+            sw/pc_dashboard/pyproject.toml
+
+      - name: Install reference artifact dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            ca-certificates \
+            cmake \
+            ninja-build
+          python -m pip install --upgrade pip setuptools wheel
+          if [[ -f sw/reference_model/requirements.lock ]]; then
+            python -m pip install -r sw/reference_model/requirements.lock
+          fi
+          python -m pip install jsonschema pytest
+
+      - name: Verify imported reference package is clean
+        run: make check-reference-import REFERENCE_DIR="${REFERENCE_DIR}"
+
+      - name: Check committed frozen artifact DAGs
+        run: make check-artifacts REFERENCE_DIR="${REFERENCE_DIR}"
+
+      - name: Build reference executable
+        run: make reference-build REFERENCE_DIR="${REFERENCE_DIR}"
+
+      - name: Upload checked reference artifacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trecap-reference-artifacts-debug
+          path: |
+            sw/reference_model/artifacts/**
+            artifacts/**
+          if-no-files-found: ignore
+          retention-days: 7

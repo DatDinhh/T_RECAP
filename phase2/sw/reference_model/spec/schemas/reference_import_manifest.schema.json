@@ -1,0 +1,437 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trecap.local/schemas/reference_import_manifest.schema.json",
+  "title": "T-RECAP Reference Import Manifest v3",
+  "description": "Fail-closed provenance contract for a verbatim source-archive import or an explicitly unverified embedded proxy.",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "crc32_or_null": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "relative_path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[^\\\\/](?:[^\\\\]*[^\\\\/. ])?$",
+      "not": {
+        "pattern": "(?:^|/)\\.\\.(?:/|$)"
+      }
+    },
+    "nullable_string": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "file_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "archive_member",
+        "archive_member_raw",
+        "class",
+        "crc32",
+        "origin",
+        "path",
+        "sha256",
+        "size_bytes"
+      ],
+      "properties": {
+        "archive_member": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "archive_member_raw": {
+          "$ref": "#/$defs/nullable_string"
+        },
+        "class": {
+          "const": "[0]"
+        },
+        "crc32": {
+          "$ref": "#/$defs/crc32_or_null"
+        },
+        "origin": {
+          "enum": [
+            "source_archive",
+            "embedded_proxy"
+          ]
+        },
+        "path": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "promotion_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "class",
+        "operation",
+        "path",
+        "sha256",
+        "size_bytes",
+        "source_path"
+      ],
+      "properties": {
+        "class": {
+          "const": "[0]"
+        },
+        "operation": {
+          "const": "verbatim_copy"
+        },
+        "path": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_path": {
+          "$ref": "#/$defs/relative_path"
+        }
+      }
+    },
+    "resource_caps": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_compression_ratio",
+        "max_entries",
+        "max_file_bytes",
+        "max_total_bytes"
+      ],
+      "properties": {
+        "max_compression_ratio": {
+          "type": "string",
+          "pattern": "^(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?(?:e[+-]?[0-9]+)?$"
+        },
+        "max_entries": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_file_bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_total_bytes": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "source_zip": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "archive_name",
+        "archive_root",
+        "archive_sha256",
+        "archive_size_bytes",
+        "expected_sha256",
+        "kind",
+        "verified"
+      ],
+      "properties": {
+        "archive_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "archive_root": {
+          "type": "string",
+          "minLength": 1
+        },
+        "archive_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "archive_size_bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "expected_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "kind": {
+          "const": "zip"
+        },
+        "verified": {
+          "const": true
+        }
+      }
+    },
+    "source_proxy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "proxy_id",
+        "verified"
+      ],
+      "properties": {
+        "kind": {
+          "const": "embedded_proxy"
+        },
+        "proxy_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verified": {
+          "const": false
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "source": {
+            "properties": {
+              "kind": {
+                "const": "zip"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          }
+        },
+        "required": [
+          "source"
+        ]
+      },
+      "then": {
+        "properties": {
+          "import_policy": {
+            "properties": {
+              "archive_validation": {
+                "const": "complete-central-directory-and-full-member-crc"
+              }
+            }
+          },
+          "provenance_status": {
+            "const": "verified_source_archive"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "import_policy": {
+            "properties": {
+              "archive_validation": {
+                "const": "not_applicable_embedded_proxy"
+              }
+            }
+          },
+          "provenance_status": {
+            "const": "embedded_proxy_unverified_source_archive"
+          }
+        }
+      }
+    }
+  ],
+  "required": [
+    "excluded_member_count",
+    "excluded_members",
+    "file_class",
+    "import_policy",
+    "imported_reference_file_count",
+    "imported_reference_files",
+    "imported_tree_sha256",
+    "project",
+    "promoted_root_file_count",
+    "promoted_root_files",
+    "promoted_tree_sha256",
+    "promotion_map_sha256",
+    "provenance_status",
+    "reference_root",
+    "schema",
+    "source"
+  ],
+  "properties": {
+    "excluded_member_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "excluded_members": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/$defs/file_record"
+          },
+          {
+            "required": [
+              "reason"
+            ]
+          }
+        ]
+      }
+    },
+    "file_class": {
+      "const": "[2] generated import manifest"
+    },
+    "import_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "archive_validation",
+        "excluded_directories",
+        "excluded_exact",
+        "excluded_suffixes",
+        "generated_manifest_paths",
+        "manifest_serialization",
+        "path_policy",
+        "payload_policy",
+        "policy_version",
+        "resource_caps"
+      ],
+      "properties": {
+        "archive_validation": {
+          "enum": [
+            "complete-central-directory-and-full-member-crc",
+            "not_applicable_embedded_proxy"
+          ]
+        },
+        "excluded_directories": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "excluded_exact": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/relative_path"
+          }
+        },
+        "excluded_suffixes": {
+          "const": [
+            ".pyc",
+            ".pyo"
+          ]
+        },
+        "generated_manifest_paths": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/relative_path"
+          }
+        },
+        "manifest_serialization": {
+          "const": "canonical-json-sort-keys-compact-ascii-lf-v1"
+        },
+        "path_policy": {
+          "const": "portable-nfc-casefold-collision-free-v1"
+        },
+        "payload_policy": {
+          "const": "verbatim_bytes_no_newline_or_json_normalization"
+        },
+        "policy_version": {
+          "const": "trecap_phase2_reference_import_policy_v1"
+        },
+        "resource_caps": {
+          "$ref": "#/$defs/resource_caps"
+        }
+      }
+    },
+    "imported_reference_file_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "imported_reference_files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "allOf": [
+          {
+            "$ref": "#/$defs/file_record"
+          },
+          {
+            "not": {
+              "required": [
+                "reason"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "imported_tree_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "project": {
+      "const": "T_RECAP_Phase2"
+    },
+    "promoted_root_file_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "promoted_root_files": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/promotion_record"
+      }
+    },
+    "promoted_tree_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "promotion_map_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "provenance_status": {
+      "enum": [
+        "verified_source_archive",
+        "embedded_proxy_unverified_source_archive"
+      ]
+    },
+    "reference_root": {
+      "const": "sw/reference_model"
+    },
+    "schema": {
+      "const": "trecap_phase2_reference_import_manifest_v3"
+    },
+    "source": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/source_zip"
+        },
+        {
+          "$ref": "#/$defs/source_proxy"
+        }
+      ]
+    }
+  }
+}

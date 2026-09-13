@@ -1,0 +1,533 @@
+# SPDX-License-Identifier: MIT
+# AUTO-GENERATED - DO NOT EDIT.
+# Generator: scripts/import_de1soc_hps_preset.py
+# Source: official Terasic DE1-SoC Rev-H Quartus 20.1 GHRD soc_system.qsys
+# upstream_qsys_sha256=e289b9955e64e51fe5a8dc4c4f3f0a82d62eb1741774ae46e989e186504eaf5c
+# base_parameter_sha256=57a6d9d4ab09a0b6f88d26908d2f2def38e46a37e2b0f94466411fcabc73be26
+# effective_parameter_sha256=bf0dc533f1a141c2a3d91058501b19b0a6ef5b479619bb4829fe94bea60e0888
+# parameter_count=520
+# applied_parameter_count=476
+# readback_only_parameter_count=44
+# application_mode_sha256=02c6f1fc1bec86f960d3a7740f38f65ec3931c74458bf338f20c9b9f22f45076
+# Canonical hash input: UTF-8, parameters sorted by name, one name=value\n per row.
+# Columns: parameter_name<TAB>value<TAB>application_mode(set|readback_only).
+ABSTRACT_REAL_COMPARE_TEST	false	set
+ABS_RAM_MEM_INIT_FILENAME	meminit	set
+ACV_PHY_CLK_ADD_FR_PHASE	0.0	set
+AC_PACKAGE_DESKEW	false	set
+AC_ROM_USER_ADD_0	0_0000_0000_0000	set
+AC_ROM_USER_ADD_1	0_0000_0000_1000	set
+ADDR_ORDER	0	set
+ADD_EFFICIENCY_MONITOR	false	set
+ADD_EXTERNAL_SEQ_DEBUG_NIOS	false	set
+ADVANCED_CK_PHASES	false	set
+ADVERTIZE_SEQUENCER_SW_BUILD_FILES	false	set
+AFI_DEBUG_INFO_WIDTH	32	set
+ALTMEMPHY_COMPATIBLE_MODE	false	set
+AP_MODE	false	set
+AP_MODE_EN	0	set
+AUTO_DEVICE_SPEEDGRADE	6	readback_only
+AUTO_PD_CYCLES	0	set
+AUTO_POWERDN_EN	false	set
+AVL_DATA_WIDTH_PORT	32,32,32,32,32,32	set
+AVL_MAX_SIZE	4	set
+BONDING_OUT_ENABLED	false	set
+BOOTFROMFPGA_Enable	false	set
+BSEL	1	set
+BSEL_EN	false	set
+BYTE_ENABLE	true	set
+C2P_WRITE_CLOCK_ADD_PHASE	0.0	set
+CALIBRATION_MODE	Skip	set
+CALIB_REG_WIDTH	8	set
+CAN0_Mode	N/A	set
+CAN0_PinMuxing	Unused	set
+CAN1_Mode	N/A	set
+CAN1_PinMuxing	Unused	set
+CFG_DATA_REORDERING_TYPE	INTER_BANK	set
+CFG_REORDER_DATA	true	set
+CFG_TCCD_NS	2.5	set
+COMMAND_PHASE	0.0	set
+CONTROLLER_LATENCY	5	set
+CORE_DEBUG_CONNECTION	EXPORT	set
+CPORT_TYPE_PORT	Bidirectional,Bidirectional,Bidirectional,Bidirectional,Bidirectional,Bidirectional	set
+CSEL	0	set
+CSEL_EN	false	set
+CTI_Enable	false	set
+CTL_AUTOPCH_EN	false	set
+CTL_CMD_QUEUE_DEPTH	8	set
+CTL_CSR_CONNECTION	INTERNAL_JTAG	set
+CTL_CSR_ENABLED	false	set
+CTL_CSR_READ_ONLY	1	set
+CTL_DEEP_POWERDN_EN	false	set
+CTL_DYNAMIC_BANK_ALLOCATION	false	set
+CTL_DYNAMIC_BANK_NUM	4	set
+CTL_ECC_AUTO_CORRECTION_ENABLED	false	set
+CTL_ECC_ENABLED	false	set
+CTL_ENABLE_BURST_INTERRUPT	true	set
+CTL_ENABLE_BURST_TERMINATE	true	set
+CTL_HRB_ENABLED	false	set
+CTL_LOOK_AHEAD_DEPTH	4	set
+CTL_SELF_REFRESH_EN	false	set
+CTL_USR_REFRESH_EN	false	set
+CTL_ZQCAL_EN	false	set
+CUT_NEW_FAMILY_TIMING	true	set
+DAT_DATA_WIDTH	32	set
+DEBUGAPB_Enable	false	set
+DEBUG_MODE	false	set
+DEVICE_DEPTH	1	set
+DEVICE_FAMILY_PARAM		set
+DISABLE_CHILD_MESSAGING	false	set
+DISCRETE_FLY_BY	true	set
+DLL_SHARING_MODE	None	set
+DMA_Enable	No,No,No,No,No,No,No,No	set
+DQS_DQSN_MODE	DIFFERENTIAL	set
+DQ_INPUT_REG_USE_CLKN	false	set
+DUPLICATE_AC	false	set
+ED_EXPORT_SEQ_DEBUG	false	set
+EMAC0_Mode	N/A	set
+EMAC0_PTP	false	readback_only
+EMAC0_PinMuxing	Unused	set
+EMAC1_Mode	RGMII	set
+EMAC1_PTP	false	readback_only
+EMAC1_PinMuxing	HPS I/O Set 0	set
+ENABLE_ABS_RAM_MEM_INIT	false	set
+ENABLE_BONDING	false	set
+ENABLE_BURST_MERGE	false	set
+ENABLE_CTRL_AVALON_INTERFACE	true	set
+ENABLE_DELAY_CHAIN_WRITE	false	set
+ENABLE_EMIT_BFM_MASTER	false	set
+ENABLE_EXPORT_SEQ_DEBUG_BRIDGE	false	set
+ENABLE_EXTRA_REPORTING	false	set
+ENABLE_ISS_PROBES	false	set
+ENABLE_NON_DESTRUCTIVE_CALIB	false	set
+ENABLE_NON_DES_CAL	false	set
+ENABLE_NON_DES_CAL_TEST	false	set
+ENABLE_SEQUENCER_MARGINING_ON_BY_DEFAULT	false	set
+ENABLE_USER_ECC	false	set
+EXPORT_AFI_HALF_CLK	false	set
+EXTRA_SETTINGS		set
+F2H_AXI_CLOCK_FREQ	50000000	readback_only
+F2H_SDRAM0_CLOCK_FREQ	100	readback_only
+F2H_SDRAM1_CLOCK_FREQ	100	readback_only
+F2H_SDRAM2_CLOCK_FREQ	100	readback_only
+F2H_SDRAM3_CLOCK_FREQ	100	readback_only
+F2H_SDRAM4_CLOCK_FREQ	100	readback_only
+F2H_SDRAM5_CLOCK_FREQ	100	readback_only
+F2SCLK_COLDRST_Enable	true	set
+F2SCLK_DBGRST_Enable	true	set
+F2SCLK_PERIPHCLK_Enable	false	set
+F2SCLK_PERIPHCLK_FREQ	0	readback_only
+F2SCLK_SDRAMCLK_Enable	false	set
+F2SCLK_SDRAMCLK_FREQ	0	readback_only
+F2SCLK_WARMRST_Enable	true	set
+F2SDRAM_Type	Avalon-MM Bidirectional	set
+F2SDRAM_Width	64	set
+F2SINTERRUPT_Enable	true	set
+F2S_Width	2	set
+FIX_READ_LATENCY	8	readback_only
+FORCED_NON_LDC_ADDR_CMD_MEM_CK_INVERT	false	set
+FORCED_NUM_WRITE_FR_CYCLE_SHIFTS	0	set
+FORCE_DQS_TRACKING	AUTO	set
+FORCE_MAX_LATENCY_COUNT_WIDTH	0	set
+FORCE_SEQUENCER_TCL_DEBUG_MODE	false	set
+FORCE_SHADOW_REGS	AUTO	set
+FORCE_SYNTHESIS_LANGUAGE		set
+FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_EMAC0_RX_CLK_IN	100	readback_only
+FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_EMAC0_TX_CLK_IN	100	readback_only
+FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_EMAC1_RX_CLK_IN	100	readback_only
+FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_EMAC1_TX_CLK_IN	100	readback_only
+FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_EMAC_PTP_REF_CLOCK	100	readback_only
+FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_I2C0_SCL_IN	100	readback_only
+FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_I2C1_SCL_IN	100	readback_only
+FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_I2C2_SCL_IN	100	readback_only
+FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_I2C3_SCL_IN	100	readback_only
+FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_SPIS0_SCLK_IN	100	readback_only
+FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_SPIS1_SCLK_IN	100	readback_only
+FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_USB0_CLK_IN	100	readback_only
+FPGA_PERIPHERAL_INPUT_CLOCK_FREQ_USB1_CLK_IN	100	readback_only
+FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC0_GTX_CLK	100	set
+FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC0_MD_CLK	100.0	set
+FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC1_GTX_CLK	100	set
+FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_EMAC1_MD_CLK	100.0	set
+FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_I2C0_CLK	100	set
+FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_I2C1_CLK	100	set
+FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_I2C2_CLK	100	set
+FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_I2C3_CLK	100	set
+FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_QSPI_SCLK_OUT	100	set
+FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_SDIO_CCLK	100	set
+FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_SPIM0_SCLK_OUT	100	set
+FPGA_PERIPHERAL_OUTPUT_CLOCK_FREQ_SPIM1_SCLK_OUT	100	set
+GPIO_Enable	No,No,No,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Yes,No,No,No,No,Yes,No,No,No,No,No,No,No,Yes,No,No,No,No,Yes,Yes,No,No,No,No,No,No,Yes,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No	set
+GP_Enable	false	set
+H2F_AXI_CLOCK_FREQ	50000000	readback_only
+H2F_CTI_CLOCK_FREQ	100	readback_only
+H2F_DEBUG_APB_CLOCK_FREQ	100	readback_only
+H2F_LW_AXI_CLOCK_FREQ	50000000	readback_only
+H2F_TPIU_CLOCK_IN_FREQ	100	readback_only
+HARD_EMIF	true	set
+HCX_COMPAT_MODE	false	set
+HHP_HPS	true	set
+HHP_HPS_SIMULATION	false	set
+HHP_HPS_VERIFICATION	false	set
+HLGPI_Enable	false	set
+HPS_PROTOCOL	DDR3	set
+I2C0_Mode	I2C	set
+I2C0_PinMuxing	HPS I/O Set 0	set
+I2C1_Mode	I2C	set
+I2C1_PinMuxing	HPS I/O Set 0	set
+I2C2_Mode	N/A	set
+I2C2_PinMuxing	Unused	set
+I2C3_Mode	N/A	set
+I2C3_PinMuxing	Unused	set
+INCLUDE_BOARD_DELAY_MODEL	false	set
+INCLUDE_MULTIRANK_BOARD_DELAY_MODEL	false	set
+IS_ES_DEVICE	false	set
+LOANIO_Enable	No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No	set
+LOCAL_ID_WIDTH	8	set
+LRDIMM_EXTENDED_CONFIG	0x000000000000000000	set
+LWH2F_Enable	true	set
+MARGIN_VARIATION_TEST	false	set
+MAX_PENDING_RD_CMD	16	set
+MAX_PENDING_WR_CMD	8	set
+MEM_ASR	Manual	set
+MEM_ATCL	Disabled	set
+MEM_AUTO_LEVELING_MODE	true	set
+MEM_BANKADDR_WIDTH	3	set
+MEM_BL	OTF	set
+MEM_BT	Sequential	set
+MEM_CK_PHASE	0.0	set
+MEM_CK_WIDTH	1	set
+MEM_CLK_EN_WIDTH	1	set
+MEM_CLK_FREQ	400.0	set
+MEM_CLK_FREQ_MAX	800.0	set
+MEM_COL_ADDR_WIDTH	10	set
+MEM_CS_WIDTH	1	set
+MEM_DEVICE	MISSING_MODEL	set
+MEM_DLL_EN	true	set
+MEM_DQ_PER_DQS	8	set
+MEM_DQ_WIDTH	32	set
+MEM_DRV_STR	RZQ/6	set
+MEM_FORMAT	DISCRETE	set
+MEM_GUARANTEED_WRITE_INIT	false	set
+MEM_IF_BOARD_BASE_DELAY	10	set
+MEM_IF_DM_PINS_EN	true	set
+MEM_IF_DQSN_EN	true	set
+MEM_IF_SIM_VALID_WINDOW	0	set
+MEM_INIT_EN	false	set
+MEM_INIT_FILE		set
+MEM_MIRROR_ADDRESSING	0	set
+MEM_NUMBER_OF_DIMMS	1	set
+MEM_NUMBER_OF_RANKS_PER_DEVICE	1	set
+MEM_NUMBER_OF_RANKS_PER_DIMM	1	set
+MEM_PD	DLL off	set
+MEM_RANK_MULTIPLICATION_FACTOR	1	set
+MEM_ROW_ADDR_WIDTH	15	set
+MEM_RTT_NOM	RZQ/6	set
+MEM_RTT_WR	Dynamic ODT off	set
+MEM_SRT	Normal	set
+MEM_TCL	7	set
+MEM_TFAW_NS	45.0	set
+MEM_TINIT_US	500	set
+MEM_TMRD_CK	4	set
+MEM_TRAS_NS	36.0	set
+MEM_TRCD_NS	13.125	set
+MEM_TREFI_US	7.8	set
+MEM_TRFC_NS	300.0	set
+MEM_TRP_NS	13.125	set
+MEM_TRRD_NS	7.5	set
+MEM_TRTP_NS	7.5	set
+MEM_TWR_NS	15.0	set
+MEM_TWTR	4	set
+MEM_USER_LEVELING_MODE	Leveling	set
+MEM_VENDOR	Micron	set
+MEM_VERBOSE	true	set
+MEM_VOLTAGE	1.5V DDR3	set
+MEM_WTCL	7	set
+MPU_EVENTS_Enable	false	set
+MRS_MIRROR_PING_PONG_ATSO	false	set
+MULTICAST_EN	false	set
+NAND_Mode	N/A	set
+NAND_PinMuxing	Unused	set
+NEXTGEN	true	set
+NIOS_ROM_DATA_WIDTH	32	set
+NUM_DLL_SHARING_INTERFACES	1	set
+NUM_EXTRA_REPORT_PATH	10	set
+NUM_OCT_SHARING_INTERFACES	1	set
+NUM_OF_PORTS	1	set
+NUM_PLL_SHARING_INTERFACES	1	set
+OCT_SHARING_MODE	None	set
+P2C_READ_CLOCK_ADD_PHASE	0.0	set
+PACKAGE_DESKEW	false	set
+PARSE_FRIENDLY_DEVICE_FAMILY_PARAM		set
+PARSE_FRIENDLY_DEVICE_FAMILY_PARAM_VALID	false	set
+PHY_CSR_CONNECTION	INTERNAL_JTAG	set
+PHY_CSR_ENABLED	false	set
+PHY_ONLY	false	set
+PINGPONGPHY_EN	false	set
+PLL_ADDR_CMD_CLK_DIV_PARAM	0	set
+PLL_ADDR_CMD_CLK_FREQ_PARAM	0.0	set
+PLL_ADDR_CMD_CLK_FREQ_SIM_STR_PARAM		set
+PLL_ADDR_CMD_CLK_MULT_PARAM	0	set
+PLL_ADDR_CMD_CLK_PHASE_PS_PARAM	0	set
+PLL_ADDR_CMD_CLK_PHASE_PS_SIM_STR_PARAM		set
+PLL_AFI_CLK_DIV_PARAM	0	set
+PLL_AFI_CLK_FREQ_PARAM	0.0	set
+PLL_AFI_CLK_FREQ_SIM_STR_PARAM		set
+PLL_AFI_CLK_MULT_PARAM	0	set
+PLL_AFI_CLK_PHASE_PS_PARAM	0	set
+PLL_AFI_CLK_PHASE_PS_SIM_STR_PARAM		set
+PLL_AFI_HALF_CLK_DIV_PARAM	0	set
+PLL_AFI_HALF_CLK_FREQ_PARAM	0.0	set
+PLL_AFI_HALF_CLK_FREQ_SIM_STR_PARAM		set
+PLL_AFI_HALF_CLK_MULT_PARAM	0	set
+PLL_AFI_HALF_CLK_PHASE_PS_PARAM	0	set
+PLL_AFI_HALF_CLK_PHASE_PS_SIM_STR_PARAM		set
+PLL_AFI_PHY_CLK_DIV_PARAM	0	set
+PLL_AFI_PHY_CLK_FREQ_PARAM	0.0	set
+PLL_AFI_PHY_CLK_FREQ_SIM_STR_PARAM		set
+PLL_AFI_PHY_CLK_MULT_PARAM	0	set
+PLL_AFI_PHY_CLK_PHASE_PS_PARAM	0	set
+PLL_AFI_PHY_CLK_PHASE_PS_SIM_STR_PARAM		set
+PLL_C2P_WRITE_CLK_DIV_PARAM	0	set
+PLL_C2P_WRITE_CLK_FREQ_PARAM	0.0	set
+PLL_C2P_WRITE_CLK_FREQ_SIM_STR_PARAM		set
+PLL_C2P_WRITE_CLK_MULT_PARAM	0	set
+PLL_C2P_WRITE_CLK_PHASE_PS_PARAM	0	set
+PLL_C2P_WRITE_CLK_PHASE_PS_SIM_STR_PARAM		set
+PLL_CLK_PARAM_VALID	false	set
+PLL_CONFIG_CLK_DIV_PARAM	0	set
+PLL_CONFIG_CLK_FREQ_PARAM	0.0	set
+PLL_CONFIG_CLK_FREQ_SIM_STR_PARAM		set
+PLL_CONFIG_CLK_MULT_PARAM	0	set
+PLL_CONFIG_CLK_PHASE_PS_PARAM	0	set
+PLL_CONFIG_CLK_PHASE_PS_SIM_STR_PARAM		set
+PLL_DR_CLK_DIV_PARAM	0	set
+PLL_DR_CLK_FREQ_PARAM	0.0	set
+PLL_DR_CLK_FREQ_SIM_STR_PARAM		set
+PLL_DR_CLK_MULT_PARAM	0	set
+PLL_DR_CLK_PHASE_PS_PARAM	0	set
+PLL_DR_CLK_PHASE_PS_SIM_STR_PARAM		set
+PLL_HR_CLK_DIV_PARAM	0	set
+PLL_HR_CLK_FREQ_PARAM	0.0	set
+PLL_HR_CLK_FREQ_SIM_STR_PARAM		set
+PLL_HR_CLK_MULT_PARAM	0	set
+PLL_HR_CLK_PHASE_PS_PARAM	0	set
+PLL_HR_CLK_PHASE_PS_SIM_STR_PARAM		set
+PLL_LOCATION	Top_Bottom	set
+PLL_MEM_CLK_DIV_PARAM	0	set
+PLL_MEM_CLK_FREQ_PARAM	0.0	set
+PLL_MEM_CLK_FREQ_SIM_STR_PARAM		set
+PLL_MEM_CLK_MULT_PARAM	0	set
+PLL_MEM_CLK_PHASE_PS_PARAM	0	set
+PLL_MEM_CLK_PHASE_PS_SIM_STR_PARAM		set
+PLL_NIOS_CLK_DIV_PARAM	0	set
+PLL_NIOS_CLK_FREQ_PARAM	0.0	set
+PLL_NIOS_CLK_FREQ_SIM_STR_PARAM		set
+PLL_NIOS_CLK_MULT_PARAM	0	set
+PLL_NIOS_CLK_PHASE_PS_PARAM	0	set
+PLL_NIOS_CLK_PHASE_PS_SIM_STR_PARAM		set
+PLL_P2C_READ_CLK_DIV_PARAM	0	set
+PLL_P2C_READ_CLK_FREQ_PARAM	0.0	set
+PLL_P2C_READ_CLK_FREQ_SIM_STR_PARAM		set
+PLL_P2C_READ_CLK_MULT_PARAM	0	set
+PLL_P2C_READ_CLK_PHASE_PS_PARAM	0	set
+PLL_P2C_READ_CLK_PHASE_PS_SIM_STR_PARAM		set
+PLL_SHARING_MODE	None	set
+PLL_WRITE_CLK_DIV_PARAM	0	set
+PLL_WRITE_CLK_FREQ_PARAM	0.0	set
+PLL_WRITE_CLK_FREQ_SIM_STR_PARAM		set
+PLL_WRITE_CLK_MULT_PARAM	0	set
+PLL_WRITE_CLK_PHASE_PS_PARAM	0	set
+PLL_WRITE_CLK_PHASE_PS_SIM_STR_PARAM		set
+POWER_OF_TWO_BUS	false	set
+PRIORITY_PORT	1,1,1,1,1,1	set
+QSPI_Mode	1 SS	set
+QSPI_PinMuxing	HPS I/O Set 0	set
+RATE	Full	set
+RDIMM_CONFIG	0000000000000000	set
+READ_DQ_DQS_CLOCK_SOURCE	INVERTED_DQS_BUS	set
+READ_FIFO_SIZE	8	set
+REFRESH_BURST_VALIDATION	false	set
+REFRESH_INTERVAL	15000	set
+REF_CLK_FREQ	25.0	set
+REF_CLK_FREQ_MAX_PARAM	0.0	set
+REF_CLK_FREQ_MIN_PARAM	0.0	set
+REF_CLK_FREQ_PARAM_VALID	false	set
+S2FCLK_COLDRST_Enable	false	set
+S2FCLK_PENDINGRST_Enable	false	set
+S2FCLK_USER0CLK_Enable	false	set
+S2FCLK_USER1CLK_Enable	false	set
+S2FCLK_USER1CLK_FREQ	100.0	set
+S2FCLK_USER2CLK	5	readback_only
+S2FCLK_USER2CLK_Enable	false	set
+S2FCLK_USER2CLK_FREQ	100.0	set
+S2FINTERRUPT_CAN_Enable	false	set
+S2FINTERRUPT_CLOCKPERIPHERAL_Enable	false	set
+S2FINTERRUPT_CTI_Enable	false	set
+S2FINTERRUPT_DMA_Enable	false	set
+S2FINTERRUPT_EMAC_Enable	false	set
+S2FINTERRUPT_FPGAMANAGER_Enable	false	set
+S2FINTERRUPT_GPIO_Enable	false	set
+S2FINTERRUPT_I2CEMAC_Enable	false	set
+S2FINTERRUPT_I2CPERIPHERAL_Enable	false	set
+S2FINTERRUPT_L4TIMER_Enable	false	set
+S2FINTERRUPT_NAND_Enable	false	set
+S2FINTERRUPT_OSCTIMER_Enable	false	set
+S2FINTERRUPT_QSPI_Enable	false	set
+S2FINTERRUPT_SDMMC_Enable	false	set
+S2FINTERRUPT_SPIMASTER_Enable	false	set
+S2FINTERRUPT_SPISLAVE_Enable	false	set
+S2FINTERRUPT_UART_Enable	false	set
+S2FINTERRUPT_USB_Enable	false	set
+S2FINTERRUPT_WATCHDOG_Enable	false	set
+S2F_Width	3	set
+SDIO_Mode	4-bit Data	set
+SDIO_PinMuxing	HPS I/O Set 0	set
+SEQUENCER_TYPE	NIOS	set
+SEQ_MODE	0	set
+SKIP_MEM_INIT	true	set
+SOPC_COMPAT_RESET	false	set
+SPEED_GRADE	7	set
+SPIM0_Mode	N/A	set
+SPIM0_PinMuxing	Unused	set
+SPIM1_Mode	Single Slave Select	set
+SPIM1_PinMuxing	HPS I/O Set 0	set
+SPIS0_Mode	N/A	set
+SPIS0_PinMuxing	Unused	set
+SPIS1_Mode	N/A	set
+SPIS1_PinMuxing	Unused	set
+STARVE_LIMIT	10	set
+STM_Enable	true	set
+SYS_INFO_DEVICE_FAMILY	Cyclone V	readback_only
+TEST_Enable	false	set
+TIMING_BOARD_AC_EYE_REDUCTION_H	0.0	set
+TIMING_BOARD_AC_EYE_REDUCTION_SU	0.0	set
+TIMING_BOARD_AC_SKEW	0.02	set
+TIMING_BOARD_AC_SLEW_RATE	1.0	set
+TIMING_BOARD_AC_TO_CK_SKEW	0.01	set
+TIMING_BOARD_CK_CKN_SLEW_RATE	2.0	set
+TIMING_BOARD_DELTA_DQS_ARRIVAL_TIME	0.0	set
+TIMING_BOARD_DELTA_READ_DQS_ARRIVAL_TIME	0.0	set
+TIMING_BOARD_DERATE_METHOD	AUTO	set
+TIMING_BOARD_DQS_DQSN_SLEW_RATE	2.0	set
+TIMING_BOARD_DQ_EYE_REDUCTION	0.0	set
+TIMING_BOARD_DQ_SLEW_RATE	1.0	set
+TIMING_BOARD_DQ_TO_DQS_SKEW	0.05	set
+TIMING_BOARD_ISI_METHOD	AUTO	set
+TIMING_BOARD_MAX_CK_DELAY	0.03	set
+TIMING_BOARD_MAX_DQS_DELAY	0.02	set
+TIMING_BOARD_READ_DQ_EYE_REDUCTION	0.0	set
+TIMING_BOARD_SKEW_BETWEEN_DIMMS	0.05	set
+TIMING_BOARD_SKEW_BETWEEN_DQS	0.06	set
+TIMING_BOARD_SKEW_CKDQS_DIMM_MAX	0.12	set
+TIMING_BOARD_SKEW_CKDQS_DIMM_MIN	0.06	set
+TIMING_BOARD_SKEW_WITHIN_DQS	0.01	set
+TIMING_BOARD_TDH	0.0	set
+TIMING_BOARD_TDS	0.0	set
+TIMING_BOARD_TIH	0.0	set
+TIMING_BOARD_TIS	0.0	set
+TIMING_TDH	65	set
+TIMING_TDQSCK	255	set
+TIMING_TDQSCKDL	1200	set
+TIMING_TDQSCKDM	900	set
+TIMING_TDQSCKDS	450	set
+TIMING_TDQSH	0.35	set
+TIMING_TDQSQ	125	set
+TIMING_TDQSS	0.25	set
+TIMING_TDS	30	set
+TIMING_TDSH	0.2	set
+TIMING_TDSS	0.2	set
+TIMING_TIH	140	set
+TIMING_TIS	190	set
+TIMING_TQH	0.38	set
+TIMING_TQHS	300	set
+TIMING_TQSH	0.4	set
+TPIUFPGA_Enable	false	set
+TPIUFPGA_alt	false	readback_only
+TRACE_Mode	N/A	set
+TRACE_PinMuxing	Unused	set
+TRACKING_ERROR_TEST	false	set
+TRACKING_WATCH_TEST	false	set
+TREFI	35100	set
+TRFC	350	set
+UART0_Mode	No Flow Control	set
+UART0_PinMuxing	HPS I/O Set 0	set
+UART1_Mode	N/A	set
+UART1_PinMuxing	Unused	set
+USB0_Mode	N/A	set
+USB0_PinMuxing	Unused	set
+USB1_Mode	SDR	set
+USB1_PinMuxing	HPS I/O Set 0	set
+USER_DEBUG_LEVEL	1	set
+USE_AXI_ADAPTOR	false	set
+USE_FAKE_PHY	false	set
+USE_MEM_CLK_FREQ	false	set
+USE_MM_ADAPTOR	true	set
+USE_SEQUENCER_BFM	false	set
+WEIGHT_PORT	0,0,0,0,0,0	set
+WRBUFFER_ADDR_WIDTH	6	set
+can0_clk_div	1	set
+can1_clk_div	1	set
+configure_advanced_parameters	false	set
+customize_device_pll_info	false	set
+dbctrl_stayosc1	true	set
+dbg_at_clk_div	0	set
+dbg_clk_div	1	set
+dbg_trace_clk_div	0	set
+desired_can0_clk_mhz	100.0	set
+desired_can1_clk_mhz	100.0	set
+desired_cfg_clk_mhz	100.0	set
+desired_emac0_clk_mhz	250.0	set
+desired_emac1_clk_mhz	250.0	set
+desired_gpio_db_clk_hz	32000	set
+desired_l4_mp_clk_mhz	100.0	set
+desired_l4_sp_clk_mhz	100.0	set
+desired_mpu_clk_mhz	800.0	set
+desired_nand_clk_mhz	12.5	set
+desired_qspi_clk_mhz	400.0	set
+desired_sdmmc_clk_mhz	200.0	set
+desired_spi_m_clk_mhz	200.0	set
+desired_usb_mp_clk_mhz	200.0	set
+device_name	5CSEMA5F31C6	readback_only
+device_pll_info_manual	{320000000 1600000000} {320000000 1000000000} {800000000 400000000 400000000}	set
+eosc1_clk_mhz	25.0	set
+eosc2_clk_mhz	25.0	set
+gpio_db_clk_div	6249	set
+l3_mp_clk_div	1	set
+l3_sp_clk_div	1	set
+l4_mp_clk_div	1	set
+l4_mp_clk_source	1	set
+l4_sp_clk_div	1	set
+l4_sp_clk_source	1	set
+main_pll_c3	3	set
+main_pll_c4	3	set
+main_pll_c5	15	set
+main_pll_m	63	set
+main_pll_n	0	set
+nand_clk_source	2	set
+periph_pll_c0	3	set
+periph_pll_c1	3	set
+periph_pll_c2	1	set
+periph_pll_c3	19	set
+periph_pll_c4	4	set
+periph_pll_c5	9	set
+periph_pll_m	79	set
+periph_pll_n	1	set
+periph_pll_source	0	set
+qspi_clk_source	1	set
+quartus_ini_hps_emif_pll	false	readback_only
+quartus_ini_hps_ip_enable_all_peripheral_fpga_interfaces	false	readback_only
+quartus_ini_hps_ip_enable_bsel_csel	false	readback_only
+quartus_ini_hps_ip_enable_emac0_peripheral_fpga_interface	false	readback_only
+quartus_ini_hps_ip_enable_low_speed_serial_fpga_interfaces	false	readback_only
+quartus_ini_hps_ip_enable_test_interface	false	readback_only
+quartus_ini_hps_ip_f2sdram_bonding_out	false	readback_only
+quartus_ini_hps_ip_fast_f2sdram_sim_model	false	readback_only
+quartus_ini_hps_ip_suppress_sdram_synth	false	readback_only
+sdmmc_clk_source	2	set
+show_advanced_parameters	false	set
+show_debug_info_as_warning_msg	false	set
+show_warning_as_error_msg	false	set
+spi_m_clk_div	0	set
+usb_mp_clk_div	0	set
+use_default_mpu_clk	true	set

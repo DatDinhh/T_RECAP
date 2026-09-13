@@ -1,0 +1,238 @@
+{
+  "schema": "trecap_phase2_release_config_v1",
+  "release_config_name": "phase2_revJ_signoff",
+  "release_name": "phase2_revJ_signoff",
+  "release_version": "1.0.0-rc.0",
+  "description": "Reviewed candidate signoff release recipe for Revision J golden artifacts. This file is an input recipe, not generated signoff evidence.",
+  "generated": false,
+  "manual_review_required": true,
+  "lifecycle_status": "candidate_signoff",
+  "signoff_ready": false,
+  "spec_revision": "core_rev_j",
+  "telemetry_revision": "telemetry_rev_g",
+  "contract": {
+    "spec_revision": "core_rev_j",
+    "telemetry_revision": "telemetry_rev_g",
+    "tail_policy": "full_tail",
+    "rounding": "round_nearest_ties_away_from_zero",
+    "threshold_mapping": "raw_thr2",
+    "default_protection": {
+      "PROTECT_DC": 1,
+      "PROTECT_NYQ": 0
+    },
+    "memh_encoding": "fixed_width_lowercase_hex_lf",
+    "hash_rule": "logical_integer_vector_fixed_width_hex_lf",
+    "artifact_authority": "canonical_artifacts_and_sha256"
+  },
+  "suite_config": "configs/suites/signoff_full.json",
+  "vector_config_dir": "configs/vectors",
+  "artifact_root": "artifacts",
+  "output_manifests": {
+    "core_config_snapshot": "artifacts/manifests/core_config_snapshot.json",
+    "artifact_index": "artifacts/manifests/artifact_index.json",
+    "quality_bounds": "artifacts/manifests/quality_bounds.json",
+    "frozen_release_manifest": "artifacts/manifests/frozen_release_manifest.json"
+  },
+  "artifact_requirements": {
+    "coefficients": [
+      "window_qw.memh",
+      "twiddle_re.memh",
+      "twiddle_im.memh",
+      "twiddle_inv_re.memh",
+      "twiddle_inv_im.memh",
+      "coeff_manifest.json"
+    ],
+    "test_vectors_manifest": "test_vectors.json",
+    "per_vector_required": [
+      "x_in.memh",
+      "config.json",
+      "y_out.memh",
+      "frame_stats.csv",
+      "metrics.json"
+    ],
+    "per_vector_conditional": [
+      "bin_stats.csv when the vector requires bin stats"
+    ],
+    "manifests": [
+      "quality_bounds.json",
+      "artifact_index.json",
+      "frozen_release_manifest.json"
+    ]
+  },
+  "release": {
+    "release_name": "phase2_revJ_signoff",
+    "release_version": "1.0.0-rc.0",
+    "artifact_root": "artifacts",
+    "manifest_out": "artifacts/manifests/frozen_release_manifest.json"
+  },
+  "package": {
+    "target": "make package-artifacts",
+    "deterministic_archive_required": true,
+    "exclude": [
+      "runs/",
+      "out/",
+      "build/",
+      ".venv/"
+    ]
+  },
+  "notes": [
+    "This file is hand-authored and reviewed; it is not generated.",
+    "Generated hashes belong in artifacts/manifests/ and per-vector artifact JSON, not in this release recipe.",
+    "The generated top-level release output is artifacts/manifests/frozen_release_manifest.json."
+  ],
+  "required_class_coverage": [
+    "zero_input",
+    "no_suppression_thr2_zero",
+    "impulse",
+    "step",
+    "exact_bin_tone",
+    "off_bin_tone",
+    "near_threshold_multitone",
+    "noise_only_stream",
+    "high_amplitude_headroom",
+    "short_finite_stream"
+  ],
+  "required_gates": {
+    "golden_repo": [
+      {
+        "name": "check_layout",
+        "target": "make check-layout",
+        "required": true
+      },
+      {
+        "name": "check_schemas",
+        "target": "make check-schemas",
+        "required": true
+      },
+      {
+        "name": "check_vector_configs",
+        "target": "make check-vector-configs",
+        "required": true
+      },
+      {
+        "name": "check_suite_configs",
+        "target": "make check-suite-configs",
+        "required": true
+      },
+      {
+        "name": "check_release_configs",
+        "target": "make check-release-configs",
+        "required": true
+      },
+      {
+        "name": "artifact_check",
+        "target": "make check-artifacts",
+        "required": true
+      },
+      {
+        "name": "quality_bounds",
+        "target": "make quality-bounds",
+        "required": true
+      },
+      {
+        "name": "unit_tests",
+        "target": "make test",
+        "required": true
+      }
+    ],
+    "external_signoff": [
+      {
+        "name": "rtl_simulation_matches_y_out_memh",
+        "required": true,
+        "status": "required_outside_golden_repo"
+      },
+      {
+        "name": "rtl_simulation_matches_frame_stats_csv",
+        "required": true,
+        "status": "required_outside_golden_repo"
+      },
+      {
+        "name": "rtl_simulation_matches_metrics_json",
+        "required": true,
+        "status": "required_outside_golden_repo"
+      },
+      {
+        "name": "bram_replay_board_matches_mandatory_artifacts",
+        "required": true,
+        "status": "required_outside_golden_repo"
+      },
+      {
+        "name": "overflow_or_wrap_flags_remain_deasserted",
+        "required": true,
+        "status": "required_outside_golden_repo"
+      }
+    ]
+  },
+  "acceptance": {
+    "canonical_memh": true,
+    "manifest_hashes": true,
+    "exact_row_counts": true,
+    "json_schema_validation": true,
+    "csv_header_validation": true,
+    "wide_integer_decimal_strings": true,
+    "no_placeholder_strings": true,
+    "quality_bounds_present": true,
+    "phase1_quarantine": true,
+    "thr2_zero_masks_for_no_suppression_vectors": true,
+    "rtl_sample_match": true,
+    "rtl_frame_stats_match": true,
+    "rtl_metrics_match": true,
+    "bram_replay_match": true,
+    "no_internal_overflow_flags": true,
+    "require_rtl_sample_match": true,
+    "require_rtl_frame_stats_match": true,
+    "require_rtl_metrics_match": true,
+    "require_bram_replay_match": true
+  },
+  "quality_bounds": {
+    "policy": "generate_from_frozen_golden_model_then_review_margin",
+    "manual_margin_review_required": true,
+    "required_fields": [
+      "max_abs_err",
+      "sum_sq_err",
+      "error_sample_count"
+    ]
+  },
+  "reproduction": {
+    "commands": [
+      "make check-layout",
+      "make check-schemas",
+      "make check-vector-configs",
+      "make check-suite-configs",
+      "make check-release-configs",
+      "make build",
+      "make test",
+      "make coeffs",
+      "make vectors-suite SUITE=configs/suites/signoff_full.json",
+      "make golden-suite SUITE=configs/suites/signoff_full.json",
+      "make check-artifacts",
+      "make quality-bounds",
+      "make freeze-release RELEASE_CONFIG=configs/releases/phase2_revJ_signoff.json",
+      "make package-artifacts"
+    ]
+  },
+  "human_review_gates": [
+    {
+      "name": "quality_bounds_reviewed",
+      "required": true
+    },
+    {
+      "name": "rtl_simulation_evidence_attached",
+      "required": true
+    },
+    {
+      "name": "bram_replay_evidence_attached",
+      "required": true
+    },
+    {
+      "name": "package_manifest_reviewed",
+      "required": true
+    }
+  ],
+  "signoff_blockers": [
+    "Regenerate artifacts from configs/suites/signoff_full.json and freeze the resulting hashes.",
+    "Review generated quality_bounds.json margins.",
+    "Attach RTL simulation evidence for y_out.memh, frame_stats.csv, metrics.json, and required bin_stats.csv.",
+    "Attach BRAM replay evidence before final board signoff."
+  ]
+}

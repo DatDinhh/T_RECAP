@@ -1,0 +1,2061 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trecap.local/schemas/packet_layouts.schema.json",
+  "title": "T-RECAP Phase 2 telemetry and command packet layout schema",
+  "description": "Validates the hand-written DDR/UDP packet and PC-command source-of-truth JSON consumed by the R1 generated-header flow.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "project",
+    "file_class",
+    "contract_stage",
+    "source_spec",
+    "repository_docs",
+    "edit_policy",
+    "generated_outputs",
+    "byte_order",
+    "packing",
+    "transport",
+    "common_header",
+    "common_flags",
+    "packet_types",
+    "timestamp_semantics",
+    "payloads",
+    "command_packet",
+    "command_result",
+    "record_validation_rules",
+    "derived_size_checks"
+  ],
+  "properties": {
+    "schema": {
+      "const": "trecap_phase2_packet_layouts_v1"
+    },
+    "project": {
+      "const": "T_RECAP_Phase2"
+    },
+    "file_class": {
+      "$ref": "#/$defs/non_empty_string"
+    },
+    "contract_stage": {
+      "const": "R1 generated-contract source input"
+    },
+    "source_spec": {
+      "$ref": "#/$defs/source_spec"
+    },
+    "repository_docs": {
+      "$ref": "#/$defs/path_list"
+    },
+    "edit_policy": {
+      "$ref": "#/$defs/edit_policy"
+    },
+    "generated_outputs": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/generated_outputs_common"
+        }
+      ],
+      "required": [
+        "rtl_sv",
+        "hps_c",
+        "pc_python"
+      ]
+    },
+    "byte_order": {
+      "const": "little_endian"
+    },
+    "packing": {
+      "const": "packed_no_implicit_padding"
+    },
+    "transport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "telemetry_magic_hex",
+        "telemetry_magic_mnemonic",
+        "command_magic_hex",
+        "command_magic_mnemonic",
+        "telemetry_header_version",
+        "command_version",
+        "command_versions_supported",
+        "transport_version_major",
+        "transport_version_minor",
+        "telemetry_header_bytes",
+        "command_packet_bytes",
+        "udp_no_fragment_payload_max_bytes",
+        "ddr_record_alignment_bytes",
+        "header_crc_enabled",
+        "command_crc_enabled",
+        "one_udp_datagram_per_record",
+        "send_ddr_padding_over_udp"
+      ],
+      "properties": {
+        "telemetry_magic_hex": {
+          "const": "0x54524350"
+        },
+        "telemetry_magic_mnemonic": {
+          "const": "TRCP"
+        },
+        "command_magic_hex": {
+          "const": "0x54524343"
+        },
+        "command_magic_mnemonic": {
+          "const": "TRCC"
+        },
+        "telemetry_header_version": {
+          "const": 1
+        },
+        "command_version": {
+          "const": 2
+        },
+        "command_versions_supported": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "const": 1
+            },
+            {
+              "const": 2
+            }
+          ],
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "transport_version_major": {
+          "const": 1
+        },
+        "transport_version_minor": {
+          "const": 8
+        },
+        "telemetry_header_bytes": {
+          "const": 32
+        },
+        "command_packet_bytes": {
+          "const": 28
+        },
+        "udp_no_fragment_payload_max_bytes": {
+          "const": 1200
+        },
+        "ddr_record_alignment_bytes": {
+          "const": 64
+        },
+        "header_crc_enabled": {
+          "const": false
+        },
+        "command_crc_enabled": {
+          "const": false
+        },
+        "one_udp_datagram_per_record": {
+          "const": true
+        },
+        "send_ddr_padding_over_udp": {
+          "const": false
+        }
+      }
+    },
+    "common_header": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "size_bytes",
+        "fields"
+      ],
+      "properties": {
+        "name": {
+          "const": "trecap_telemetry_header"
+        },
+        "size_bytes": {
+          "const": 32
+        },
+        "fields": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "const": {
+                "name": "magic",
+                "offset": 0,
+                "type": "uint32",
+                "required_value_hex": "0x54524350"
+              }
+            },
+            {
+              "const": {
+                "name": "version",
+                "offset": 4,
+                "type": "uint16",
+                "required_value": 1
+              }
+            },
+            {
+              "const": {
+                "name": "header_bytes",
+                "offset": 6,
+                "type": "uint16",
+                "required_value": 32
+              }
+            },
+            {
+              "const": {
+                "name": "packet_type",
+                "offset": 8,
+                "type": "uint16",
+                "enum": "packet_type"
+              }
+            },
+            {
+              "const": {
+                "name": "flags",
+                "offset": 10,
+                "type": "uint16",
+                "bitset": "common_flags"
+              }
+            },
+            {
+              "const": {
+                "name": "seq",
+                "offset": 12,
+                "type": "uint32",
+                "semantics": "PC-visible normal telemetry sequence; WRAP and diagnostic STATUS do not consume normal sequence numbers"
+              }
+            },
+            {
+              "const": {
+                "name": "timestamp",
+                "offset": 16,
+                "type": "uint64",
+                "semantics": "packet-type-specific"
+              }
+            },
+            {
+              "const": {
+                "name": "payload_bytes",
+                "offset": 24,
+                "type": "uint32",
+                "semantics": "valid payload bytes after header; DDR alignment padding excluded"
+              }
+            },
+            {
+              "const": {
+                "name": "header_crc",
+                "offset": 28,
+                "type": "uint32",
+                "required_value": 0,
+                "semantics": "CRC disabled in Revision G"
+              }
+            }
+          ],
+          "items": false,
+          "minItems": 9,
+          "allOf": [
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "magic"
+                  },
+                  "offset": {
+                    "const": 0
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "version"
+                  },
+                  "offset": {
+                    "const": 4
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "header_bytes"
+                  },
+                  "offset": {
+                    "const": 6
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "packet_type"
+                  },
+                  "offset": {
+                    "const": 8
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "flags"
+                  },
+                  "offset": {
+                    "const": 10
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "seq"
+                  },
+                  "offset": {
+                    "const": 12
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "timestamp"
+                  },
+                  "offset": {
+                    "const": 16
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "payload_bytes"
+                  },
+                  "offset": {
+                    "const": 24
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "header_crc"
+                  },
+                  "offset": {
+                    "const": 28
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        }
+      }
+    },
+    "common_flags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/packet_flag"
+      },
+      "minItems": 7,
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "payload_truncated"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "payload_scaled"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "aggregate_metrics"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "per_frame_metrics"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "crc_enabled"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "status_diagnostic"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "reserved_15_6"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    },
+    "packet_types": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/packet_type"
+      },
+      "minItems": 8,
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "code"
+            ],
+            "properties": {
+              "name": {
+                "const": "WAVE"
+              },
+              "code": {
+                "const": 1
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "code"
+            ],
+            "properties": {
+              "name": {
+                "const": "SPEC64"
+              },
+              "code": {
+                "const": 2
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "code"
+            ],
+            "properties": {
+              "name": {
+                "const": "SPEC129"
+              },
+              "code": {
+                "const": 3
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "code"
+            ],
+            "properties": {
+              "name": {
+                "const": "METRICS"
+              },
+              "code": {
+                "const": 4
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "code"
+            ],
+            "properties": {
+              "name": {
+                "const": "STATUS"
+              },
+              "code": {
+                "const": 5
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "code"
+            ],
+            "properties": {
+              "name": {
+                "const": "PEAKS"
+              },
+              "code": {
+                "const": 6
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "code"
+            ],
+            "properties": {
+              "name": {
+                "const": "DEBUG"
+              },
+              "code": {
+                "const": 126
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "code"
+            ],
+            "properties": {
+              "name": {
+                "const": "WRAP"
+              },
+              "code": {
+                "const": 127
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    },
+    "timestamp_semantics": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/non_empty_string"
+      },
+      "required": [
+        "WAVE",
+        "SPEC64",
+        "SPEC129",
+        "METRICS",
+        "STATUS",
+        "WRAP"
+      ]
+    },
+    "payloads": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "WAVE",
+        "SPEC129",
+        "SPEC64",
+        "METRICS",
+        "STATUS",
+        "WRAP",
+        "PEAKS",
+        "DEBUG"
+      ],
+      "properties": {
+        "WAVE": {
+          "$ref": "#/$defs/payload_layout"
+        },
+        "SPEC129": {
+          "$ref": "#/$defs/payload_layout"
+        },
+        "SPEC64": {
+          "$ref": "#/$defs/payload_layout"
+        },
+        "METRICS": {
+          "$ref": "#/$defs/payload_layout"
+        },
+        "STATUS": {
+          "$ref": "#/$defs/payload_layout"
+        },
+        "WRAP": {
+          "$ref": "#/$defs/payload_layout"
+        },
+        "PEAKS": {
+          "$ref": "#/$defs/payload_layout"
+        },
+        "DEBUG": {
+          "$ref": "#/$defs/payload_layout"
+        }
+      }
+    },
+    "command_packet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "size_bytes",
+        "fields",
+        "command_types",
+        "reject_rules"
+      ],
+      "properties": {
+        "size_bytes": {
+          "const": 28
+        },
+        "fields": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "const": {
+                "name": "magic",
+                "offset": 0,
+                "type": "uint32",
+                "required_value_hex": "0x54524343"
+              }
+            },
+            {
+              "const": {
+                "name": "version",
+                "offset": 4,
+                "type": "uint16",
+                "supported_values": [
+                  1,
+                  2
+                ],
+                "semantics": "required value 1 for a version-1 request and required value 2 for a version-2 request; version 1 accepts command types 0x0001..0x0007 and version 2 accepts 0x0001..0x000E"
+              }
+            },
+            {
+              "const": {
+                "name": "cmd_type",
+                "offset": 6,
+                "type": "uint16",
+                "enum": "command_type"
+              }
+            },
+            {
+              "const": {
+                "name": "seq",
+                "offset": 8,
+                "type": "uint32"
+              }
+            },
+            {
+              "const": {
+                "name": "arg0",
+                "offset": 12,
+                "type": "uint32"
+              }
+            },
+            {
+              "const": {
+                "name": "arg1",
+                "offset": 16,
+                "type": "uint32"
+              }
+            },
+            {
+              "const": {
+                "name": "arg2",
+                "offset": 20,
+                "type": "uint32"
+              }
+            },
+            {
+              "const": {
+                "name": "crc32",
+                "offset": 24,
+                "type": "uint32",
+                "required_value": 0
+              }
+            }
+          ],
+          "items": false,
+          "minItems": 8,
+          "maxItems": 8,
+          "allOf": [
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "magic"
+                  },
+                  "offset": {
+                    "const": 0
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "version"
+                  },
+                  "offset": {
+                    "const": 4
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "cmd_type"
+                  },
+                  "offset": {
+                    "const": 6
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "seq"
+                  },
+                  "offset": {
+                    "const": 8
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "arg0"
+                  },
+                  "offset": {
+                    "const": 12
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "arg1"
+                  },
+                  "offset": {
+                    "const": 16
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "arg2"
+                  },
+                  "offset": {
+                    "const": 20
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "offset"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "crc32"
+                  },
+                  "offset": {
+                    "const": 24
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        },
+        "command_types": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "const": {
+                "name": "SET_THR2",
+                "code": 1,
+                "code_hex": "0x0001",
+                "introduced_in_version": 1,
+                "args": {
+                  "arg0": "THR2[31:0]",
+                  "arg1": "THR2[55:32] in low 24 bits; upper bits zero",
+                  "arg2": "0"
+                },
+                "action": "write THR2_LO, write THR2_HI, pulse THR2_COMMIT"
+              }
+            },
+            {
+              "const": {
+                "name": "CLEAR_METRICS",
+                "code": 2,
+                "code_hex": "0x0002",
+                "introduced_in_version": 1,
+                "args": {"arg0": "0", "arg1": "0", "arg2": "0"},
+                "action": "pulse CONTROL.clear_metrics"
+              }
+            },
+            {
+              "const": {
+                "name": "SET_SOURCE_MODE",
+                "code": 3,
+                "code_hex": "0x0003",
+                "introduced_in_version": 1,
+                "args": {"arg0": "0..3", "arg1": "0", "arg2": "0"},
+                "action": "write SOURCE_MODE_SHADOW and pulse SOURCE_MODE_COMMIT under source-mode change rule"
+              }
+            },
+            {
+              "const": {
+                "name": "SET_PACKET_ENABLE",
+                "code": 4,
+                "code_hex": "0x0004",
+                "introduced_in_version": 1,
+                "args": {
+                  "arg0": "PACKET_ENABLE bit mask with reserved and reserved-disabled bits zero",
+                  "arg1": "0",
+                  "arg2": "0"
+                },
+                "action": "write PACKET_ENABLE"
+              }
+            },
+            {
+              "const": {
+                "name": "SET_WAVE_DECIM",
+                "code": 5,
+                "code_hex": "0x0005",
+                "introduced_in_version": 1,
+                "args": {"arg0": "1..65535", "arg1": "0", "arg2": "0"},
+                "action": "write WAVE_DECIM"
+              }
+            },
+            {
+              "const": {
+                "name": "SET_SPEC_SHIFT",
+                "code": 6,
+                "code_hex": "0x0006",
+                "introduced_in_version": 1,
+                "args": {"arg0": "0..55", "arg1": "0", "arg2": "0"},
+                "action": "write SPEC_SHIFT"
+              }
+            },
+            {
+              "const": {
+                "name": "PING",
+                "code": 7,
+                "code_hex": "0x0007",
+                "introduced_in_version": 1,
+                "args": {"arg0": "ignored", "arg1": "ignored", "arg2": "ignored"},
+                "action": "return a fresh diagnostic STATUS only; no command-result packet and no non-PING sequence-ledger change"
+              }
+            },
+            {
+              "const": {
+                "name": "SET_SPEC_MODE",
+                "code": 8,
+                "code_hex": "0x0008",
+                "introduced_in_version": 2,
+                "args": {"arg0": "0..2", "arg1": "0", "arg2": "0"},
+                "action": "write SPEC_MODE"
+              }
+            },
+            {
+              "const": {
+                "name": "SET_TELEMETRY_ENABLE",
+                "code": 9,
+                "code_hex": "0x0009",
+                "introduced_in_version": 2,
+                "args": {"arg0": "0 or 1", "arg1": "0", "arg2": "0"},
+                "action": "transactionally disable or enable telemetry transport"
+              }
+            },
+            {
+              "const": {
+                "name": "CONFIGURE_DDR_RING",
+                "code": 10,
+                "code_hex": "0x000A",
+                "introduced_in_version": 2,
+                "args": {"arg0": "0", "arg1": "0", "arg2": "0"},
+                "action": "configure the canonical trusted HPS runtime DDR ring tuple and leave telemetry disabled"
+              }
+            },
+            {
+              "const": {
+                "name": "RESET_TRANSPORT",
+                "code": 11,
+                "code_hex": "0x000B",
+                "introduced_in_version": 2,
+                "args": {"arg0": "0", "arg1": "0", "arg2": "0"},
+                "action": "transactionally reset transport and enter reconfiguration-required state"
+              }
+            },
+            {
+              "const": {
+                "name": "CLEAR_COUNTERS",
+                "code": 12,
+                "code_hex": "0x000C",
+                "introduced_in_version": 2,
+                "args": {"arg0": "0", "arg1": "0", "arg2": "0"},
+                "action": "pulse FPGA transport diagnostic counter clear"
+              }
+            },
+            {
+              "const": {
+                "name": "START_BRAM_REPLAY",
+                "code": 13,
+                "code_hex": "0x000D",
+                "introduced_in_version": 2,
+                "args": {"arg0": "0", "arg1": "0", "arg2": "0"},
+                "action": "pulse the retained BRAM replay request/admission path and report retained accept or reject evidence"
+              }
+            },
+            {
+              "const": {
+                "name": "READ_STATUS_VERSION",
+                "code": 14,
+                "code_hex": "0x000E",
+                "introduced_in_version": 2,
+                "args": {"arg0": "0", "arg1": "0", "arg2": "0"},
+                "action": "read raw FPGA STATUS and VERSION and return a NOOP command result"
+              }
+            }
+          ],
+          "items": false,
+          "minItems": 14,
+          "maxItems": 14,
+          "allOf": [
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "code"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "SET_THR2"
+                  },
+                  "code": {
+                    "const": 1
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "code"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "CLEAR_METRICS"
+                  },
+                  "code": {
+                    "const": 2
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "code"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "SET_SOURCE_MODE"
+                  },
+                  "code": {
+                    "const": 3
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "code"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "SET_PACKET_ENABLE"
+                  },
+                  "code": {
+                    "const": 4
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "code"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "SET_WAVE_DECIM"
+                  },
+                  "code": {
+                    "const": 5
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "code"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "SET_SPEC_SHIFT"
+                  },
+                  "code": {
+                    "const": 6
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "code"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "PING"
+                  },
+                  "code": {
+                    "const": 7
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        },
+        "reject_rules": {
+          "$ref": "#/$defs/string_list"
+        }
+      }
+    },
+    "command_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "size_bytes",
+        "magic_hex",
+        "version",
+        "fields",
+        "dispositions",
+        "reject_reasons",
+        "semantics"
+      ],
+      "properties": {
+        "size_bytes": {
+          "const": 32
+        },
+        "magic_hex": {
+          "const": "0x54524352"
+        },
+        "version": {
+          "const": 2
+        },
+        "fields": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "const": {
+                "name": "magic",
+                "offset": 0,
+                "type": "uint32",
+                "required_value_hex": "0x54524352"
+              }
+            },
+            {
+              "const": {
+                "name": "version",
+                "offset": 4,
+                "type": "uint16",
+                "required_value": 2
+              }
+            },
+            {
+              "const": {
+                "name": "cmd_type",
+                "offset": 6,
+                "type": "uint16",
+                "enum": "command_type"
+              }
+            },
+            {
+              "const": {
+                "name": "seq",
+                "offset": 8,
+                "type": "uint32",
+                "semantics": "echoes the version-2 non-PING request sequence"
+              }
+            },
+            {
+              "const": {
+                "name": "disposition",
+                "offset": 12,
+                "type": "uint32",
+                "enum": "command_disposition"
+              }
+            },
+            {
+              "const": {
+                "name": "reject_reason",
+                "offset": 16,
+                "type": "uint32",
+                "enum": "command_reject_reason"
+              }
+            },
+            {
+              "const": {
+                "name": "fpga_status",
+                "offset": 20,
+                "type": "uint32",
+                "semantics": "raw post-attempt TCSR_STATUS, or zero when unreadable"
+              }
+            },
+            {
+              "const": {
+                "name": "csr_version",
+                "offset": 24,
+                "type": "uint32",
+                "semantics": "raw post-attempt TCSR_VERSION, or zero when unreadable"
+              }
+            },
+            {
+              "const": {
+                "name": "crc32",
+                "offset": 28,
+                "type": "uint32",
+                "required_value": 0
+              }
+            }
+          ],
+          "items": false,
+          "minItems": 9,
+          "maxItems": 9
+        },
+        "dispositions": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "const": {
+                "name": "APPLIED",
+                "code": 0
+              }
+            },
+            {
+              "const": {
+                "name": "NOOP",
+                "code": 1
+              }
+            },
+            {
+              "const": {
+                "name": "REJECTED",
+                "code": 2
+              }
+            },
+            {
+              "const": {
+                "name": "FAILED",
+                "code": 3
+              }
+            }
+          ],
+          "items": false,
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "reject_reasons": {
+          "type": "array",
+          "prefixItems": [
+            {"const": {"name": "NONE", "code": 0}},
+            {"const": {"name": "BAD_SOURCE", "code": 1}},
+            {"const": {"name": "BAD_LENGTH", "code": 2}},
+            {"const": {"name": "BAD_MAGIC", "code": 3}},
+            {"const": {"name": "BAD_VERSION", "code": 4}},
+            {"const": {"name": "BAD_CRC", "code": 5}},
+            {"const": {"name": "UNSUPPORTED_TYPE", "code": 6}},
+            {"const": {"name": "RANGE", "code": 7}},
+            {"const": {"name": "RESERVED_ARGUMENT", "code": 8}},
+            {"const": {"name": "CSR", "code": 9}},
+            {"const": {"name": "IO", "code": 10}},
+            {"const": {"name": "UNSAFE_STATE", "code": 11}},
+            {"const": {"name": "SEQUENCE_STALE", "code": 12}},
+            {"const": {"name": "SEQUENCE_CONFLICT", "code": 13}},
+            {"const": {"name": "TIMEOUT", "code": 14}},
+            {"const": {"name": "RESET_REQUIRED", "code": 15}},
+            {"const": {"name": "VERSION_MISMATCH", "code": 16}}
+          ],
+          "items": false,
+          "minItems": 17,
+          "maxItems": 17
+        },
+        "semantics": {
+          "$ref": "#/$defs/string_list"
+        }
+      }
+    },
+    "record_validation_rules": {
+      "$ref": "#/$defs/string_list"
+    },
+    "derived_size_checks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": [
+          "string",
+          "integer"
+        ]
+      },
+      "required": [
+        "WAVE_max_udp_bytes",
+        "WAVE_payload_bytes_at_nsamp_192",
+        "SPEC129_payload_formula",
+        "SPEC64_payload_formula",
+        "METRICS_payload_bytes",
+        "STATUS_payload_bytes"
+      ]
+    }
+  },
+  "$defs": {
+    "non_empty_string": {
+      "type": "string",
+      "minLength": 1
+    },
+    "path_string": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_./+:-]+$"
+    },
+    "hex_string": {
+      "type": "string",
+      "pattern": "^0x[0-9A-Fa-f]+$"
+    },
+    "decimal_string": {
+      "type": "string",
+      "pattern": "^[0-9]+$"
+    },
+    "source_spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "active_pdf",
+        "clean_repo_name_if_renamed",
+        "algorithm_revision",
+        "transport_revision",
+        "repository_revision"
+      ],
+      "properties": {
+        "active_pdf": {
+          "$ref": "#/$defs/path_string"
+        },
+        "clean_repo_name_if_renamed": {
+          "$ref": "#/$defs/path_string"
+        },
+        "algorithm_revision": {
+          "const": "Core Revision J"
+        },
+        "transport_revision": {
+          "const": "Telemetry Revision G"
+        },
+        "repository_revision": {
+          "const": "Architecture Revision D"
+        }
+      }
+    },
+    "edit_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "this_file_is_hand_written",
+        "generated_outputs_must_not_be_hand_edited",
+        "generator",
+        "drift_check",
+        "line_endings",
+        "json_format"
+      ],
+      "properties": {
+        "this_file_is_hand_written": {
+          "const": true
+        },
+        "generated_outputs_must_not_be_hand_edited": {
+          "const": true
+        },
+        "generator": {
+          "const": "scripts/gen_headers.py"
+        },
+        "drift_check": {
+          "const": "make check-generated"
+        },
+        "line_endings": {
+          "const": "LF"
+        },
+        "json_format": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "string_list": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/non_empty_string"
+      },
+      "minItems": 1
+    },
+    "path_list": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/path_string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "generated_outputs_common": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rtl_sv": {
+          "$ref": "#/$defs/path_list"
+        },
+        "hps_c": {
+          "$ref": "#/$defs/path_list"
+        },
+        "pc_python": {
+          "$ref": "#/$defs/path_list"
+        },
+        "reference_python": {
+          "$ref": "#/$defs/path_list"
+        }
+      },
+      "minProperties": 1
+    },
+    "valid_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "allowed": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "power_of_two": {
+          "type": "boolean"
+        },
+        "multiple_of": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "mask_required_zero_hex": {
+          "$ref": "#/$defs/hex_string"
+        },
+        "valid_payload_mask_hex": {
+          "$ref": "#/$defs/hex_string"
+        }
+      },
+      "minProperties": 1
+    },
+    "packet_scalar_type": {
+      "enum": [
+        "uint16",
+        "uint32",
+        "uint64",
+        "int16",
+        "uint16_array",
+        "uint8_array",
+        "array"
+      ]
+    },
+    "payload_size_rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "variable",
+            "exact",
+            "undefined_in_revision_g"
+          ]
+        },
+        "expression": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1168
+        },
+        "min_bytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1168
+        },
+        "nsamp_min": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "nsamp_max": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 192
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "exact"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "bytes"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "variable"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "expression",
+              "min_bytes",
+              "max_bytes"
+            ]
+          }
+        }
+      ]
+    },
+    "payload_field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "type"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "relative_offset": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "type": {
+          "$ref": "#/$defs/packet_scalar_type"
+        },
+        "required_value": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "required_value_hex": {
+          "$ref": "#/$defs/hex_string"
+        },
+        "supported_values": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "enum": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "bitset": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "semantics": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "valid": {
+          "$ref": "#/$defs/valid_range"
+        },
+        "must_equal_header_timestamp": {
+          "type": "boolean"
+        },
+        "must_equal_header_timestamp_for_normal_status": {
+          "type": "boolean"
+        },
+        "must_equal": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "count_field": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "element_size_bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "element_fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/payload_field"
+          },
+          "minItems": 1
+        },
+        "value_rule": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "packing": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "unused_bits_rule": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "source": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "description": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "offset"
+          ]
+        },
+        {
+          "required": [
+            "relative_offset"
+          ]
+        }
+      ]
+    },
+    "packet_flag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "lsb",
+        "msb",
+        "kind",
+        "description"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "lsb": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 15
+        },
+        "msb": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 15
+        },
+        "kind": {
+          "enum": [
+            "flag",
+            "metrics_class_flag",
+            "reserved",
+            "reserved_must_be_zero",
+            "status_only_flag"
+          ]
+        },
+        "description": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "packet_type": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "code",
+        "code_hex",
+        "priority",
+        "enabled_by",
+        "description"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "code": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65535
+        },
+        "code_hex": {
+          "type": "string",
+          "pattern": "^0x[0-9A-Fa-f]{4}$"
+        },
+        "priority": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 3
+        },
+        "enabled_by": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "description": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "reserved_disabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "payload_layout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "payload_size_rule"
+      ],
+      "properties": {
+        "payload_size_rule": {
+          "$ref": "#/$defs/payload_size_rule"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/payload_field"
+          },
+          "minItems": 1
+        },
+        "time_axis_rule": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "bucket_rule": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/non_empty_string"
+          },
+          "minProperties": 1
+        },
+        "required_flags": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "exactly_one_of": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "aggregate_metrics",
+                  "per_frame_metrics"
+                ]
+              },
+              "minItems": 2,
+              "maxItems": 2,
+              "uniqueItems": true
+            },
+            "payload_scaled": {
+              "const": 0
+            }
+          },
+          "minProperties": 1
+        },
+        "hps_patch_policy": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "forward_to_pc": {
+          "type": "boolean"
+        },
+        "sequence_consumed": {
+          "type": "boolean"
+        },
+        "effective_ddr_record_length_rule": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "tail_padding_rule": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "reserved_disabled": {
+          "type": "boolean"
+        }
+      }
+    },
+    "command_type": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "code",
+        "code_hex",
+        "introduced_in_version",
+        "args",
+        "action"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "code": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        },
+        "code_hex": {
+          "type": "string",
+          "pattern": "^0x[0-9A-Fa-f]{4}$"
+        },
+        "introduced_in_version": {
+          "type": "integer",
+          "enum": [
+            1,
+            2
+          ]
+        },
+        "args": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "arg0",
+            "arg1",
+            "arg2"
+          ],
+          "properties": {
+            "arg0": {
+              "$ref": "#/$defs/non_empty_string"
+            },
+            "arg1": {
+              "$ref": "#/$defs/non_empty_string"
+            },
+            "arg2": {
+              "$ref": "#/$defs/non_empty_string"
+            }
+          }
+        },
+        "action": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "result_enum_value": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "code"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "code": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        }
+      }
+    }
+  },
+  "x-trecap-semantic-checks": [
+    "numeric magic constants are compared after little-endian integer parsing",
+    "header fields shall occupy exactly 32 bytes without implicit padding",
+    "one UDP datagram shall carry one header plus payload and exclude DDR alignment padding",
+    "normal payload sizes shall satisfy 32 + payload_bytes <= 1200",
+    "WAVE payload shall satisfy payload_bytes = 16 + 6 * nsamp and 1 <= nsamp <= 192",
+    "SPEC129, SPEC64, METRICS, STATUS, and WRAP payload byte counts shall match the exact Revision G values",
+    "METRICS shall set exactly one metrics-class flag and payload_scaled shall be zero",
+    "reserved-disabled PEAKS and DEBUG shall not be emitted unless a later explicit extension replaces their undefined payload contract"
+  ]
+}

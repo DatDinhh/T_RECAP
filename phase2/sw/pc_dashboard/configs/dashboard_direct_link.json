@@ -1,0 +1,68 @@
+{
+  "schema": "trecap_phase2_pc_dashboard_config_v1",
+  "project": "T_RECAP_Phase2",
+  "file_class": "[1]",
+  "profile_name": "de1soc_direct_link_dashboard",
+  "description": "PC-side dashboard profile for direct Ethernet link to the DE1-SoC HPS UDP streamer. This file is hand-written runtime configuration; packet IDs, payload sizes, CSR offsets, and command IDs still come from generated headers/modules.",
+  "transport_revision": "Telemetry Revision G",
+  "default_topology": {
+    "pc_static_ip": "192.168.10.1",
+    "hps_static_ip": "192.168.10.2",
+    "netmask": "255.255.255.0",
+    "telemetry_udp_port": 5005,
+    "command_udp_port": 5006
+  },
+  "network": {
+    "bind_host": "0.0.0.0",
+    "bind_port": 5005,
+    "expected_source": "192.168.10.2",
+    "enforce_udp_limit": true,
+    "allow_wrap": false
+  },
+  "command": {
+    "host": "192.168.10.2",
+    "port": 5006,
+    "bind_host": "192.168.10.1",
+    "bind_port": 5007,
+    "timeout_s": 1.0,
+    "sequence_start": 1,
+    "protocol_version": 2,
+    "retries": 2
+  },
+  "capture": {
+    "capture_write": null,
+    "capture_read": null,
+    "capture_append": false
+  },
+  "display": {
+    "text_only": false,
+    "refresh_hz": 20.0,
+    "text_refresh_hz": 2.0,
+    "queue_size": 4096,
+    "max_packets": null,
+    "duration_s": null,
+    "event_budget_per_refresh": 2048,
+    "title": "T-RECAP Phase 2 Telemetry - DE1-SoC Direct Link",
+    "quiet": false,
+    "wave_points": 8192,
+    "spectrum_frames": 256,
+    "spectrogram_frames": 128,
+    "metrics_points": 1024,
+    "status_points": 512,
+    "packet_summaries": 2048,
+    "sequence_gaps": 256,
+    "packet_rate_window_s": 1.0,
+    "status_lines": 34,
+    "show_suppression_overlay": true,
+    "live_controls": true,
+    "command_queue_size": 16
+  },
+  "bringup_policy": {
+    "start_status_only": true,
+    "dashboard_is_correctness_authority": false,
+    "correctness_authority": "BRAM replay plus reference-output artifact comparison",
+    "udp_datagram_rule": "one telemetry header plus payload per UDP datagram; DDR padding is not transmitted",
+    "wrap_policy": "WRAP is a DDR-ring control record and is not expected on the normal UDP stream",
+    "command_policy": "commands are sent only by explicit launcher options or explicit live-control actions through one persistent HPS-mediated command-client session"
+  }
+}

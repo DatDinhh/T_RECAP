@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trecap.local/spec/schemas/de1soc_hps_transport.schema.json",
+  "title": "T-RECAP Phase 2 Step-13 DE1-SoC HPS transport contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "file_class",
+    "project",
+    "board",
+    "contract_stage",
+    "status",
+    "implementation_state",
+    "source_ownership",
+    "mapping_contract",
+    "consumer_contract",
+    "validation_contract",
+    "udp_contract",
+    "malformed_contract",
+    "dummy_udp_contract",
+    "evidence_policy"
+  ],
+  "properties": {
+    "schema": {"const": "trecap_phase2_de1soc_hps_transport_v1"},
+    "file_class": {"const": "[1] hand-written Step-13 HPS transport contract"},
+    "project": {"const": "T_RECAP_Phase2"},
+    "board": {"const": "de1soc"},
+    "contract_stage": {"const": "step13_hps_transport_source_implemented"},
+    "status": {"const": "source_implemented_host_tests_available_pending_hps_linux_network_systemd_and_hardware_evidence"},
+    "implementation_state": {"$ref": "#/$defs/implementationState"},
+    "source_ownership": {"$ref": "#/$defs/sourceOwnership"},
+    "mapping_contract": {"$ref": "#/$defs/mappingContract"},
+    "consumer_contract": {"$ref": "#/$defs/consumerContract"},
+    "validation_contract": {"$ref": "#/$defs/validationContract"},
+    "udp_contract": {"$ref": "#/$defs/udpContract"},
+    "malformed_contract": {"$ref": "#/$defs/malformedContract"},
+    "dummy_udp_contract": {"$ref": "#/$defs/dummyUdpContract"},
+    "evidence_policy": {"$ref": "#/$defs/evidencePolicy"}
+  },
+  "$defs": {
+    "implementationState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "csr_and_reserved_ddr_mapping_source_implemented",
+        "ring_consumer_source_implemented",
+        "runtime_record_validation_source_implemented",
+        "wrap_consume_source_implemented",
+        "five_telemetry_types_source_implemented",
+        "udp_packetization_source_implemented",
+        "consumer_commit_source_implemented",
+        "malformed_exactly_once_latch_source_implemented",
+        "dummy_udp_counter_source_implemented",
+        "host_unit_test_source_implemented",
+        "host_unit_test_execution_evidence_in_package",
+        "hps_linux_runtime_evidence",
+        "active_reserved_memory_runtime_evidence",
+        "csr_mmap_runtime_evidence",
+        "reserved_ddr_mmap_runtime_evidence",
+        "udp_network_runtime_evidence",
+        "systemd_runtime_evidence",
+        "quartus_compile_evidence",
+        "hardware_evidence",
+        "hardware_signoff"
+      ],
+      "properties": {
+        "csr_and_reserved_ddr_mapping_source_implemented": {"const": true},
+        "ring_consumer_source_implemented": {"const": true},
+        "runtime_record_validation_source_implemented": {"const": true},
+        "wrap_consume_source_implemented": {"const": true},
+        "five_telemetry_types_source_implemented": {"const": true},
+        "udp_packetization_source_implemented": {"const": true},
+        "consumer_commit_source_implemented": {"const": true},
+        "malformed_exactly_once_latch_source_implemented": {"const": true},
+        "dummy_udp_counter_source_implemented": {"const": true},
+        "host_unit_test_source_implemented": {"const": true},
+        "host_unit_test_execution_evidence_in_package": {"const": false},
+        "hps_linux_runtime_evidence": {"const": false},
+        "active_reserved_memory_runtime_evidence": {"const": false},
+        "csr_mmap_runtime_evidence": {"const": false},
+        "reserved_ddr_mmap_runtime_evidence": {"const": false},
+        "udp_network_runtime_evidence": {"const": false},
+        "systemd_runtime_evidence": {"const": false},
+        "quartus_compile_evidence": {"const": false},
+        "hardware_evidence": {"const": false},
+        "hardware_signoff": {"const": false}
+      }
+    },
+    "sourceOwnership": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_config", "config_parser", "config_api", "csr_access",
+        "ring_reader", "ring_reader_api", "udp_sender", "streamer", "launcher",
+        "systemd_service", "host_test", "human_document", "schema_file", "source_checker"
+      ],
+      "properties": {
+        "runtime_config": {"const": "sw/hps/config/trecap_hps_config.json"},
+        "config_parser": {"const": "sw/hps/src/config.c"},
+        "config_api": {"const": "sw/hps/include/trecap_hps_config.h"},
+        "csr_access": {"const": "sw/hps/src/csr_map.c"},
+        "ring_reader": {"const": "sw/hps/src/ring_reader.c"},
+        "ring_reader_api": {"const": "sw/hps/include/ring_reader.h"},
+        "udp_sender": {"const": "sw/hps/src/udp_sender.c"},
+        "streamer": {"const": "sw/hps/src/trecap_udp_streamer.c"},
+        "launcher": {"const": "sw/hps/scripts/run_udp_streamer.sh"},
+        "systemd_service": {"const": "sw/hps/systemd/trecap_udp_streamer.service"},
+        "host_test": {"const": "sw/hps/tests/test_step13_hps_transport.c"},
+        "human_document": {"const": "docs/architecture/de1soc_hps_transport.md"},
+        "schema_file": {"const": "spec/schemas/de1soc_hps_transport.schema.json"},
+        "source_checker": {"const": "scripts/check_hps_transport.py"}
+      }
+    },
+    "mappingContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "csr_base_phys", "csr_span_bytes", "ring_base_hps_phys", "ring_base_fpga",
+        "ring_size_bytes", "ring_end_exclusive", "ring_mapping_access",
+        "cached_mapping_permitted", "live_dt_node", "live_dt_exact_reg_required",
+        "live_dt_no_map_required", "live_dt_reusable_forbidden",
+        "system_ram_overlap_forbidden", "missing_or_masked_runtime_proof_is_pass"
+      ],
+      "properties": {
+        "csr_base_phys": {"const": "0x00000000ff200000"},
+        "csr_span_bytes": {"const": 4096},
+        "ring_base_hps_phys": {"const": "0x000000003e000000"},
+        "ring_base_fpga": {"const": "0x000000003e000000"},
+        "ring_size_bytes": {"const": 33554432},
+        "ring_end_exclusive": {"const": "0x0000000040000000"},
+        "ring_mapping_access": {"const": "read_only_noncacheable_synchronous_devmem"},
+        "cached_mapping_permitted": {"const": false},
+        "live_dt_node": {"const": "/sys/firmware/devicetree/base/reserved-memory/trecap-ring@3e000000"},
+        "live_dt_exact_reg_required": {"const": true},
+        "live_dt_no_map_required": {"const": true},
+        "live_dt_reusable_forbidden": {"const": true},
+        "system_ram_overlap_forbidden": {"const": true},
+        "missing_or_masked_runtime_proof_is_pass": {"const": false}
+      }
+    },
+    "consumerContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_state_sequence", "producer_snapshot_atomic",
+        "producer_and_consumer_alignment_bytes", "full_header_must_be_committed_before_read",
+        "normal_length_rule", "normal_record_may_cross_physical_end",
+        "wrap_effective_length_rule", "wrap_zero_tail_padding_required",
+        "wrap_forwarded_to_udp", "one_record_per_udp_datagram",
+        "ddr_padding_forwarded_to_udp", "consumer_commit_after_each_consumed_record",
+        "local_rd_changes_only_after_successful_csr_commit",
+        "sequence_accounting_changes_only_after_successful_rd_commit"
+      ],
+      "properties": {
+        "required_state_sequence": {"const": ["reset_required", "reconfig_required", "rd0_required", "active"]},
+        "producer_snapshot_atomic": {"const": true},
+        "producer_and_consumer_alignment_bytes": {"const": 64},
+        "full_header_must_be_committed_before_read": {"const": true},
+        "normal_length_rule": {"const": "align64(32+payload_bytes)_computed_in_uint64"},
+        "normal_record_may_cross_physical_end": {"const": false},
+        "wrap_effective_length_rule": {"const": "ring_size-off(Rd)"},
+        "wrap_zero_tail_padding_required": {"const": true},
+        "wrap_forwarded_to_udp": {"const": false},
+        "one_record_per_udp_datagram": {"const": true},
+        "ddr_padding_forwarded_to_udp": {"const": false},
+        "consumer_commit_after_each_consumed_record": {"const": true},
+        "local_rd_changes_only_after_successful_csr_commit": {"const": true},
+        "sequence_accounting_changes_only_after_successful_rd_commit": {"const": true}
+      }
+    },
+    "validationContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "header_bytes", "udp_max_bytes", "header_crc_required", "forwarded_packet_types",
+        "wrap_packet_type", "magic_version_header_type_flags_lengths_and_bounds_checked",
+        "wave_fields_checked", "spec64_nbin", "spec129_nbin",
+        "spec129_unused_mask_bits_zero", "metrics_exactly_one_mode_flag",
+        "oversized_complete_record_drop_count_and_advance", "oversized_fragmentation_permitted"
+      ],
+      "properties": {
+        "header_bytes": {"const": 32},
+        "udp_max_bytes": {"const": 1200},
+        "header_crc_required": {"const": 0},
+        "forwarded_packet_types": {"const": ["WAVE", "SPEC64", "SPEC129", "METRICS", "STATUS"]},
+        "wrap_packet_type": {"const": "WRAP"},
+        "magic_version_header_type_flags_lengths_and_bounds_checked": {"const": true},
+        "wave_fields_checked": {"const": true},
+        "spec64_nbin": {"const": 64},
+        "spec129_nbin": {"const": 129},
+        "spec129_unused_mask_bits_zero": {"const": true},
+        "metrics_exactly_one_mode_flag": {"const": true},
+        "oversized_complete_record_drop_count_and_advance": {"const": true},
+        "oversized_fragmentation_permitted": {"const": false}
+      }
+    },
+    "udpContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "socket_policy", "send_error_counted", "send_failure_drops_datagram",
+        "send_failure_still_advances_and_commits_rd", "status_udp_copy_only_is_patched",
+        "ddr_record_is_modified_by_hps"
+      ],
+      "properties": {
+        "socket_policy": {"const": "nonblocking_or_bounded_timeout"},
+        "send_error_counted": {"const": true},
+        "send_failure_drops_datagram": {"const": true},
+        "send_failure_still_advances_and_commits_rd": {"const": true},
+        "status_udp_copy_only_is_patched": {"const": true},
+        "ddr_record_is_modified_by_hps": {"const": false}
+      }
+    },
+    "malformedContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "default_policy", "counter_increment_per_latched_incident",
+        "same_bad_rd_reparsed_while_latched", "telemetry_and_writer_disabled",
+        "current_rd_recommitted", "resume_requires_soft_reset_ring_reconfiguration_and_rd0_commit",
+        "byte_scanning_recovery_permitted", "debug_stop_option", "debug_stop_exit_code"
+      ],
+      "properties": {
+        "default_policy": {"const": "latch_and_stay_alive"},
+        "counter_increment_per_latched_incident": {"const": 1},
+        "same_bad_rd_reparsed_while_latched": {"const": false},
+        "telemetry_and_writer_disabled": {"const": true},
+        "current_rd_recommitted": {"const": true},
+        "resume_requires_soft_reset_ring_reconfiguration_and_rd0_commit": {"const": true},
+        "byte_scanning_recovery_permitted": {"const": false},
+        "debug_stop_option": {"const": "--stop-on-malformed"},
+        "debug_stop_exit_code": {"const": 3}
+      }
+    },
+    "dummyUdpContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "option", "packet", "sequence_field", "monotonic_field",
+        "csr_mapping_required", "ddr_mapping_required", "root_required"
+      ],
+      "properties": {
+        "option": {"const": "--dummy-udp-counter"},
+        "packet": {"const": "diagnostic_STATUS"},
+        "sequence_field": {"const": 0},
+        "monotonic_field": {"const": "sample_count_and_timestamp"},
+        "csr_mapping_required": {"const": false},
+        "ddr_mapping_required": {"const": false},
+        "root_required": {"const": false}
+      }
+    },
+    "evidencePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "checker_scope", "host_test_scope", "host_test_is_hps_linux_runtime",
+        "host_test_is_reserved_memory_runtime", "host_test_is_udp_network_runtime",
+        "host_test_is_systemd_runtime", "host_test_is_hardware_evidence",
+        "source_check_is_hardware_signoff"
+      ],
+      "properties": {
+        "checker_scope": {"const": "checked_in_source_only"},
+        "host_test_scope": {"const": "ram_backed_csr_ring_and_wrapped_udp_mmio_calls"},
+        "host_test_is_hps_linux_runtime": {"const": false},
+        "host_test_is_reserved_memory_runtime": {"const": false},
+        "host_test_is_udp_network_runtime": {"const": false},
+        "host_test_is_systemd_runtime": {"const": false},
+        "host_test_is_hardware_evidence": {"const": false},
+        "source_check_is_hardware_signoff": {"const": false}
+      }
+    }
+  }
+}

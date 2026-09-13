@@ -1,0 +1,30 @@
+{
+  "schema": "trecap_phase2_runtime_profile_v1",
+  "profile_kind": "build",
+  "profile_name": "baseline_core",
+  "description": "Generic Revision-J core-only build with an externally supplied sample stream and no telemetry transport.",
+  "build": {
+    "target": "core_only",
+    "top_module": "trecap_core_only_top",
+    "platform": "generic_rtl"
+  },
+  "contract_refs": {
+    "core_config": "spec/generated/core_config.json",
+    "csr_map": "spec/generated/csr_map.json",
+    "packet_layouts": "spec/generated/packet_layouts.json"
+  },
+  "input": {
+    "kind": "external_stream",
+    "source_mode": null
+  },
+  "sample_rate_hz": 0,
+  "telemetry_profile": null,
+  "transport": {
+    "hps_ddr_enable": false,
+    "hps_udp_enable": false,
+    "command_server_enable": false,
+    "ring_enable_policy": "disabled"
+  },
+  "transport_version_major": 1,
+  "transport_version_minor": 8
+}

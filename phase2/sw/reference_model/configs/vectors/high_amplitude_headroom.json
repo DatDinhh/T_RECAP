@@ -1,0 +1,41 @@
+{
+  "schema": "trecap_phase2_vector_bundle_v1",
+  "bundle_name": "high_amplitude_headroom",
+  "description": "High-amplitude vector for internal width/headroom and no-wrap checks on the frozen width schedule.",
+  "spec_revision": "core_rev_j",
+  "generator_version": "phase2_generators_revision_j",
+  "tail_policy": "full_tail",
+  "rounding": "round_nearest_ties_away_from_zero",
+  "threshold_mapping": "raw_thr2",
+  "default_protection": {
+    "PROTECT_DC": 1,
+    "PROTECT_NYQ": 0
+  },
+  "signoff_class": "high_amplitude_headroom",
+  "review_status": "candidate_signoff_config",
+  "notes": [
+    "This file is a reviewed vector-config bundle. It is not a frozen test_vectors.json manifest.",
+    "Each vector instance becomes authoritative only after gen_vectors.py emits x_in.memh and test_vectors.json records canonical hashes."
+  ],
+  "vectors": [
+    {
+      "name": "high_amplitude_headroom_Ns4096_thr0",
+      "description": "High-amplitude exact-bin cosine for internal width/headroom and no-wrap checks on the frozen width schedule.",
+      "Ns": 4096,
+      "generator": "exact_bin_cosine",
+      "parameters": {
+        "amplitude": 1900,
+        "bin": 8,
+        "phase_rad": "0"
+      },
+      "THR2": "0",
+      "PROTECT_DC": 1,
+      "PROTECT_NYQ": 0,
+      "tail_policy": "full_tail",
+      "rounding": "round_nearest_ties_away_from_zero",
+      "class": "high_amplitude_headroom",
+      "rationale": "Required high-amplitude headroom vector.",
+      "lifecycle_status": "candidate_frozen_input_config"
+    }
+  ]
+}

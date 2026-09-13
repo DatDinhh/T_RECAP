@@ -1,0 +1,355 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trecap.local/schemas/de1soc_adc_live.schema.json",
+  "title": "T-RECAP Phase 2 Step-17 DE1-SoC Live-ADC Contract",
+  "description": "Exact frozen source-level contract for the Rev-H LTC2308 protocol, timing, channel mapping, sample format, CDC boundary, source integration, profile, faults, counters, and evidence boundary.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "file_class",
+    "project",
+    "board",
+    "board_revision",
+    "contract_stage",
+    "status",
+    "ownership",
+    "protocol_authority",
+    "board_adc_contract",
+    "serial_timing_contract",
+    "channel_command_contract",
+    "sample_format_contract",
+    "sampling_contract",
+    "cdc_contract",
+    "source_integration_contract",
+    "fault_contract",
+    "profile_contract",
+    "evidence_policy",
+    "invariants"
+  ],
+  "properties": {
+    "schema": {
+      "const": "trecap_phase2_de1soc_adc_live_v1"
+    },
+    "file_class": {
+      "const": "[1] hand-written Step-17 DE1-SoC live-ADC contract"
+    },
+    "project": {
+      "const": "T_RECAP_Phase2"
+    },
+    "board": {
+      "const": "de1soc"
+    },
+    "board_revision": {
+      "const": "rev_h"
+    },
+    "contract_stage": {
+      "const": "step17_adc_live_source_implemented"
+    },
+    "status": {
+      "const": "source_implemented_pending_native_rtl_simulation_quartus_timing_post_fit_io_measurement_analog_characterization_and_hardware_evidence"
+    },
+    "ownership": {
+      "const": {
+        "physical_board_top": "rtl/platform/de1soc/de1_soc_trecap_top.sv",
+        "adc_protocol_wrapper": "rtl/platform/de1soc/adc_wrapper.sv",
+        "adc_source_adapter": "rtl/sources/trecap_adc_adapter.sv",
+        "source_mux": "rtl/sources/trecap_source_mux.sv",
+        "source_core_owner": "rtl/top/trecap_source_core_integration.sv",
+        "adc_profile": "config/profiles/de1soc_adc_demo.json",
+        "runtime_profile_schema": "spec/schemas/runtime_profile.schema.json",
+        "pin_assignments": "constraints/de1soc/pin_assignments.tcl",
+        "clock_constraints": "constraints/de1soc/clocks.sdc",
+        "full_board_filelist": "filelists/rtl_de1soc_full.f",
+        "quartus_filelist": "filelists/quartus_de1soc.qsf.inc",
+        "schema_file": "spec/schemas/de1soc_adc_live.schema.json",
+        "source_checker": "scripts/check_de1soc_adc_path.py",
+        "behavioral_model": "scripts/sim/check_step17_adc_model.py"
+      }
+    },
+    "protocol_authority": {
+      "const": {
+        "device_datasheet": "https://www.analog.com/media/en/technical-documentation/data-sheets/2308fc.pdf",
+        "device_product_page": "https://www.analog.com/en/products/ltc2308.html",
+        "board_distribution_index": "https://download.terasic.com/downloads/cd-rom/de1-soc/",
+        "datasheet_revision": "2308fc_rev_c_2016",
+        "board_document": "DE1-SoC_User_manual_rev_h",
+        "authority_scope": "device_protocol_timing_sample_format_and_rev_h_board_pin_identity",
+        "cross_revision_ad7928_or_other_adc_compatibility_claimed": false,
+        "source_checker_does_not_retrieve_network_documents": true
+      }
+    },
+    "board_adc_contract": {
+      "const": {
+        "device_model": "LTC2308",
+        "channel_count": 8,
+        "resolution_bits": 12,
+        "maximum_device_sample_rate_hz": 500000,
+        "serial_interface": "SPI_MICROWIRE_compatible_four_wire",
+        "board_input_range_volts": "0_to_4.096",
+        "io_standard": "3.3-V LVTTL",
+        "pins": [
+          {
+            "top_port": "ADC_CS_N",
+            "package_pin": "PIN_AJ4",
+            "device_signal": "CONVST",
+            "direction": "fpga_output"
+          },
+          {
+            "top_port": "ADC_DIN",
+            "package_pin": "PIN_AK4",
+            "device_signal": "SDI",
+            "direction": "fpga_output"
+          },
+          {
+            "top_port": "ADC_DOUT",
+            "package_pin": "PIN_AK3",
+            "device_signal": "SDO",
+            "direction": "fpga_input"
+          },
+          {
+            "top_port": "ADC_SCLK",
+            "package_pin": "PIN_AK2",
+            "device_signal": "SCK",
+            "direction": "fpga_output"
+          }
+        ],
+        "adc_cs_n_name_is_active_low_chip_select": false,
+        "adc_cs_n_electrical_role": "active_high_CONVST_idle_low"
+      }
+    },
+    "serial_timing_contract": {
+      "const": {
+        "fabric_clock_hz": 50000000,
+        "fabric_clock_period_ns": 20,
+        "adc_sclk_half_div": 10,
+        "adc_sclk_hz": 2500000,
+        "adc_sclk_idle_level": 0,
+        "adc_sclk_high_time_ns": 200,
+        "adc_sclk_low_time_ns": 200,
+        "device_sclk_max_hz": 40000000,
+        "convst_pulse_cycles": 2,
+        "convst_high_time_ns": 40,
+        "device_convst_high_min_ns": 20,
+        "best_performance_convst_high_max_ns": 40,
+        "conversion_wait_cycles": 80,
+        "conversion_to_first_sclk_rise_cycles": 92,
+        "conversion_to_first_sclk_rise_ns": 1840,
+        "device_conversion_time_max_ns": 1600,
+        "serial_result_bits": 12,
+        "serial_command_bits": 6,
+        "result_bit_order": "B11_to_B0_MSB_first",
+                "sdo_transition_edge": "B11_valid_after_conversion_then_B10_to_B0_change_after_falling_ADC_SCLK",
+        "sdo_capture_event": "fabric_clock_event_that_raises_ADC_SCLK_after_DOUT_synchronizer",
+        "sdi_capture_edge_at_device": "rising_ADC_SCLK",
+        "acquisition_guard_cycles": 12,
+        "seventh_sclk_rise_to_next_convst_min_cycles": 122,
+        "seventh_sclk_rise_to_next_convst_min_ns": 2440,
+        "device_acquisition_time_min_ns": 240,
+                "transaction_cycles": 334,
+                "transaction_time_ns": 6680,
+                "reentry_recovery_cycles_after_enable_or_abort": 92,
+                "reentry_recovery_time_ns": 1840,
+                "all_timing_parameters_checked_with_wide_cross_multiplied_arithmetic": true,
+                "unsupported_well_formed_parameter_configuration_behavior": "fail_closed_idle_pins_no_requests_no_samples",
+                "degenerate_zero_width_parameter_overrides_are_outside_module_abi": true
+      }
+    },
+    "channel_command_contract": {
+      "const": {
+        "command_bit_order": [
+          "S/D",
+          "O/S",
+          "S1",
+          "S0",
+          "UNI",
+          "SLP"
+        ],
+        "operating_mode": "single_ended_unipolar_awake",
+                "sleep_bit_always_zero": true,
+                "sleep_wakeup_delay_applicable": false,
+                "unsupported_input_mode_polarity_or_sleep_command": "reject_set_protocol_error_no_transaction",
+        "command_formula": "{1,channel[0],channel[2],channel[1],1,0}",
+        "channel_commands": [
+          {
+            "channel": 0,
+            "command_binary": "100010",
+            "command_hex": "0x22"
+          },
+          {
+            "channel": 1,
+            "command_binary": "110010",
+            "command_hex": "0x32"
+          },
+          {
+            "channel": 2,
+            "command_binary": "100110",
+            "command_hex": "0x26"
+          },
+          {
+            "channel": 3,
+            "command_binary": "110110",
+            "command_hex": "0x36"
+          },
+          {
+            "channel": 4,
+            "command_binary": "101010",
+            "command_hex": "0x2a"
+          },
+          {
+            "channel": 5,
+            "command_binary": "111010",
+            "command_hex": "0x3a"
+          },
+          {
+            "channel": 6,
+            "command_binary": "101110",
+            "command_hex": "0x2e"
+          },
+          {
+            "channel": 7,
+            "command_binary": "111110",
+            "command_hex": "0x3e"
+          }
+        ],
+        "default_channel": 0,
+        "default_command_binary": "100010",
+        "board_channel_source": "sw_sync[6:4]",
+        "channel_latch_point": "entry_to_TSRC_ADC_LIVE",
+        "channel_stable_for_source_epoch": true,
+        "channel_change_requires_leave_and_reenter": true,
+        "command_shifted_during_result_read_configures_next_conversion": true,
+        "first_result_after_reset_enable_abort_or_command_change": "discard",
+        "sample_valid_requires_result_for_current_primed_command": true
+      }
+    },
+    "sample_format_contract": {
+      "const": {
+        "device_output_format": "unsigned_straight_binary",
+        "raw_code_min": 0,
+        "raw_code_max": 4095,
+        "default_zero_code": 2048,
+        "center_rule": "signed(raw_code)-2048",
+        "centered_min": -2048,
+        "centered_max": 2047,
+        "core_sample_width_bits": 12,
+        "adapter_scale_rule": "unsigned_midscale_subtract_then_signed_rnd_shr_Badc_minus_N",
+        "dc_block_enabled_by_profile": false,
+        "raw_sample_counter_width_bits": 64,
+        "raw_sample_counter_arithmetic": "saturating_unsigned",
+        "raw_sample_counter_event": "published_eligible_current_configuration_sample",
+        "raw_sample_counter_clear": "hard_reset_only"
+      }
+    },
+    "sampling_contract": {
+      "const": {
+        "continuous_sample_rate_hz": 100000,
+        "device_max_sample_rate_hz": 500000,
+        "scheduler_kind": "exact_average_fractional_phase_accumulator",
+        "scheduler_fabric_cycles_per_request": 500,
+        "scheduler_interval_jitter_fabric_cycles_at_frozen_rate": 0,
+        "transaction_must_finish_before_next_request": true,
+        "manual_or_continuous_select": "sw_sync[7]",
+        "continuous_select_level": 0,
+        "manual_request_source": "key_press_pulse[2]",
+        "requests_while_busy": "reject_set_sticky_fault",
+        "disabled_source_can_start_transactions": false
+      }
+    },
+    "cdc_contract": {
+      "const": {
+        "controller_clock_domain": "clk_fabric_50mhz",
+        "adc_sclk_is_internal_rtl_clock": false,
+        "adc_sclk_role": "registered_protocol_output_only",
+        "asynchronous_input": "ADC_DOUT",
+        "dout_synchronizer_stages": 2,
+        "dout_synchronizer_attributes": [
+          "async_reg",
+          "preserve",
+          "SYNCHRONIZER_IDENTIFICATION_FORCED"
+        ],
+        "minimum_sclk_half_div_relative_to_sync_stages": "SCLK_HALF_DIV_greater_than_or_equal_to_DOUT_SYNC_STAGES_plus_1",
+        "raw_adc_dout_direct_payload_capture_permitted": false,
+        "sample_data_and_valid_registered_together_in_fabric_domain": true,
+        "post_wrapper_multibit_cdc_required": false,
+        "independent_multibit_payload_synchronizers_permitted": false,
+        "separate_adc_clock_domain_if_introduced_requires_async_fifo": true
+      }
+    },
+    "source_integration_contract": {
+      "const": {
+        "wrapper_instance": "u_adc_wrapper",
+        "adapter_instance": "u_adc_adapter",
+        "source_mux_instance": "u_source_mux",
+        "source_mode": "TSRC_ADC_LIVE",
+        "wrapper_enable": "active_source_mode_equals_TSRC_ADC_LIVE",
+                "board_channel_latch_guard_cycles_before_request_input": 1,
+                "wrapper_reentry_recovery_cycles_before_request_acceptance": 92,
+                "requests_during_reentry_recovery": "reject_set_request_overrun_sticky",
+        "adapter_enable": "active_source_mode_equals_TSRC_ADC_LIVE",
+        "adapter_has_single_entry_ready_valid_buffer": true,
+        "adapter_drop_counter_arithmetic": "saturating_unsigned",
+        "source_mux_routes_adc_only_when_selected": true,
+        "telemetry_sample_rate_binding": "TSRC_ADC_LIVE_100000_otherwise_48000",
+        "telemetry_adc_sample_rate_hz": 100000,
+        "telemetry_non_adc_sample_rate_hz": 48000,
+        "adc_may_block_bram_replay_or_audio_milestones": false,
+        "bram_replay_remains_correctness_authority": true
+      }
+    },
+    "fault_contract": {
+      "const": {
+                "request_overrun_sticky_event": "scheduler_or_manual_request_attempt_occurs_during_reentry_recovery_or_while_protocol_state_not_idle",
+                "protocol_error_sticky_event": "illegal_state_or_unsupported_protocol_configuration_or_unsupported_runtime_command",
+        "clear_sticky_input": "clear_sticky_i",
+        "clear_sticky_does_not_clear_lifetime_sample_count": true,
+        "wrapper_faults_are_not_aliased_to_unrelated_reserved_csr_bits": true,
+        "board_fault_visibility": "LEDR7_source_or_platform_fault_summary"
+      }
+    },
+    "profile_contract": {
+      "const": {
+        "profile_name": "de1soc_adc_demo",
+        "input_kind": "adc_live",
+        "source_mode": "adc_live",
+        "sample_rate_hz": 100000,
+        "telemetry_profile": "config/profiles/telemetry_full_demo.json",
+        "device_model": "ltc2308",
+        "sample_width_bits": 12,
+        "serial_clock_hz": 2500000,
+        "default_channel": 0,
+        "channel_select": "sw6_4_latched_on_source_entry",
+        "first_result_policy": "prime_and_discard_previous_configuration",
+        "profile_is_build_and_bringup_selection_not_runtime_hardware_evidence": true
+      }
+    },
+    "evidence_policy": {
+      "const": {
+        "source_checker": "scripts/check_de1soc_adc_path.py",
+        "behavioral_model": "scripts/sim/check_step17_adc_model.py",
+        "default_checker_scope": "source_contract_and_dependency_free_model_only",
+        "source_check_is_native_rtl_compile": false,
+        "source_check_is_native_rtl_simulation": false,
+        "source_check_is_quartus_compile": false,
+        "source_check_is_timing_closure": false,
+        "source_check_is_post_fit_io_timing_measurement": false,
+        "source_check_is_analog_accuracy_or_noise_measurement": false,
+        "source_check_is_live_adc_evidence": false,
+        "source_check_is_hardware_signoff": false
+      }
+    },
+    "invariants": {
+      "const": [
+        "ADC_CS_N is the legacy board alias for active-high LTC2308 CONVST and shall idle low.",
+        "This contract is limited to DE1-SoC Rev-H with LTC2308 and makes no cross-revision AD7928 or other ADC compatibility claim.",
+        "SLP remains zero in every supported command, so no reset-pin state or 200 ms sleep-wakeup path is assumed.",
+                "Every result is tagged by the previously shifted command; the first old-configuration result is never published as a new-channel sample.",
+                "After reset, disable, or abort, the wrapper shall wait at least 92 fabric cycles before accepting a new conversion request; an early request is rejected and sticky-attributed.",
+        "ADC_DOUT is synchronized before capture, while sample data and valid remain registered together in the 50 MHz fabric domain.",
+        "The ADC wrapper and adapter enter the source mux only through TSRC_ADC_LIVE and cannot bypass source selection.",
+        "BRAM replay remains the correctness and artifact-comparison authority and ADC completion cannot block BRAM replay or LINE-IN milestones.",
+        "Selecting the ADC profile does not establish native RTL behavior, Quartus timing closure, post-fit serial timing, analog fidelity, live ADC operation, or board evidence."
+      ]
+    }
+  }
+}

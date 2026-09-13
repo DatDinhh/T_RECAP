@@ -1,0 +1,132 @@
+# SPDX-License-Identifier: MIT
+# T-RECAP Phase 2 HPS UDP streamer systemd unit.
+# File class: [1] hand-written HPS runtime service.
+#
+# This unit is for the installed HPS runtime, not for source-tree development.
+# Build and install the streamer first:
+#
+#   make -C /opt/trecap/T_RECAP_Phase2/sw/hps install
+#   install -m 0644 \
+#     /opt/trecap/T_RECAP_Phase2/sw/hps/systemd/trecap_udp_streamer.service \
+#     /etc/systemd/system/trecap_udp_streamer.service
+#   systemctl daemon-reload
+#   systemctl enable --now trecap_udp_streamer.service
+#
+# Runtime customization belongs in a systemd drop-in or in:
+#   /etc/default/trecap_udp_streamer
+#
+# Default launch policy is STATUS-only. That is intentional. Full WAVE/SPEC/
+# METRICS should be enabled only after CSR, DDR ring, UDP, and PC parser bring-up
+# have already passed. Example full-demo override:
+#
+#   TRECAP_PROFILE=--full-demo
+#   TRECAP_EXTRA_ARGS="--wave-decim 2 --spec-mode 1 --spec-shift 16"
+#
+# Network setup is intentionally not performed by this service. Configure the HPS
+# Ethernet interface through the board OS or run sw/hps/scripts/setup_static_ip.sh
+# once during bring-up. This service assumes Ethernet is already online.
+
+[Unit]
+Description=T-RECAP Phase 2 HPS DDR-ring UDP telemetry streamer
+Documentation=file:/etc/trecap/trecap_hps_config.json
+Documentation=file:/opt/trecap/T_RECAP_Phase2/docs/bringup/hps_ethernet_bringup.md
+Documentation=file:/opt/trecap/T_RECAP_Phase2/sw/hps/scripts/reserve_ddr_region_notes.md
+Wants=network-online.target
+After=local-fs.target network-online.target
+ConditionPathExists=/usr/local/bin/trecap_udp_streamer
+ConditionPathExists=/etc/trecap/trecap_hps_config.json
+ConditionPathExists=/dev/mem
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=root
+Group=root
+UMask=0077
+WorkingDirectory=/var/lib/trecap
+
+# Installed by sw/hps/Makefile `install` target.
+Environment=TRECAP_CONFIG=/etc/trecap/trecap_hps_config.json
+
+# Safe Revision-G bring-up default: STATUS first. Override only after the
+# STATUS-only path is proven on the board and PC parser.
+Environment=TRECAP_PROFILE=--status-only
+# Canonical policy comes from JSON: latch disabled, keep the process alive for
+# diagnostic PING/STATUS, and require operator reset/reconfiguration to resume.
+# A lab drop-in may set --stop-on-malformed; exit 3 is then never auto-restarted.
+Environment=TRECAP_MALFORMED_POLICY=
+Environment=TRECAP_EXTRA_ARGS=
+EnvironmentFile=-/etc/default/trecap_udp_streamer
+
+ExecStartPre=/usr/bin/test -x /usr/local/bin/trecap_udp_streamer
+ExecStartPre=/usr/bin/test -r ${TRECAP_CONFIG}
+ExecStartPre=/usr/bin/test -c /dev/mem
+ExecStartPre=/usr/local/bin/trecap_udp_streamer --config ${TRECAP_CONFIG} --dry-run --quiet
+ExecStart=/usr/local/bin/trecap_udp_streamer --config ${TRECAP_CONFIG} $TRECAP_PROFILE $TRECAP_MALFORMED_POLICY $TRECAP_EXTRA_ARGS
+
+Restart=on-failure
+RestartSec=2s
+RestartPreventExitStatus=3
+TimeoutStartSec=30s
+TimeoutStopSec=10s
+KillSignal=SIGTERM
+KillMode=control-group
+SuccessExitStatus=0 130 143
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=trecap_udp_streamer
+
+# systemd-managed writable locations. The streamer normally logs to journald;
+# these directories are reserved for future runtime counters, crash notes, or
+# operator captures without widening filesystem writes.
+RuntimeDirectory=trecap
+StateDirectory=trecap
+LogsDirectory=trecap
+
+# The current userspace prototype maps CSR and DDR through /dev/mem. Keep the
+# service root-only and grant only the raw-I/O capability needed for that path.
+# A later DMA-coherent kernel-driver path should remove /dev/mem and tighten this.
+NoNewPrivileges=true
+CapabilityBoundingSet=CAP_SYS_RAWIO
+AmbientCapabilities=CAP_SYS_RAWIO
+PrivateTmp=true
+PrivateDevices=false
+DevicePolicy=closed
+DeviceAllow=/dev/mem rw
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+# Filesystem hardening. Runtime/config paths are kept narrow; source trees,
+# generated headers, build products, and reference artifacts are not needed at
+# service runtime.
+ProtectSystem=strict
+ProtectHome=true
+ReadOnlyPaths=/etc/trecap /usr/local/bin/trecap_udp_streamer
+ReadWritePaths=/run/trecap /var/lib/trecap /var/log/trecap
+
+# General service hardening. Do not add a broad SystemCallFilter yet; /dev/mem,
+# mmap, and the exact DE1-SoC Linux image must be validated on hardware first.
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectKernelLogs=true
+ProtectClock=true
+ProtectHostname=true
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+RemoveIPC=true
+SystemCallArchitectures=native
+KeyringMode=private
+
+# Long-demo accounting visible through systemctl status / systemd-cgtop.
+CPUAccounting=true
+MemoryAccounting=true
+IOAccounting=true
+IPAccounting=true
+
+[Install]
+WantedBy=multi-user.target

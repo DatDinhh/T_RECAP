@@ -1,0 +1,645 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trecap.local/schemas/runtime_profile.schema.json",
+  "title": "T-RECAP Phase 2 Runtime and Build Profile",
+  "description": "Schema for the build profiles and reusable telemetry presets under config/profiles/. Profiles select operating modes and reference normative contracts; they do not redefine core arithmetic, CSR, packet-layout, or platform address constants.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/build_profile"
+    },
+    {
+      "$ref": "#/$defs/telemetry_preset"
+    }
+  ],
+  "$defs": {
+    "relative_path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?![A-Za-z]:)(?!.*(?:^|/)\\.\\.(?:/|$)).+$",
+      "description": "Repository-relative path. Absolute paths and parent traversal are forbidden."
+    },
+    "profile_name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "minLength": 1,
+      "maxLength": 96
+    },
+    "contract_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "core_config",
+        "csr_map",
+        "packet_layouts"
+      ],
+      "properties": {
+        "core_config": {
+          "const": "spec/generated/core_config.json"
+        },
+        "csr_map": {
+          "const": "spec/generated/csr_map.json"
+        },
+        "packet_layouts": {
+          "const": "spec/generated/packet_layouts.json"
+        }
+      }
+    },
+    "build": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target",
+        "top_module",
+        "platform"
+      ],
+      "properties": {
+        "target": {
+          "type": "string",
+          "enum": [
+            "core_only",
+            "bram_replay",
+            "core_telemetry",
+            "hps_bridge",
+            "de1soc_full"
+          ]
+        },
+        "top_module": {
+          "type": "string",
+          "enum": [
+            "trecap_core_only_top",
+            "trecap_core_bram_replay_top",
+            "trecap_core_telemetry_top",
+            "trecap_de1soc_full_top",
+            "de1_soc_trecap_top"
+          ]
+        },
+        "platform": {
+          "type": "string",
+          "enum": [
+            "generic_rtl",
+            "simulation",
+            "de1soc"
+          ]
+        },
+        "board": {
+          "type": "string",
+          "const": "de1soc"
+        },
+        "quartus_project": {
+          "$ref": "#/$defs/relative_path"
+        }
+      }
+    },
+    "audio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "codec_sample_width",
+        "channel_select",
+        "input_scale_rule",
+        "master_clock_hz",
+        "lineout_enable",
+        "codec_control",
+        "audio_pll",
+        "hardware_gate"
+      ],
+      "properties": {
+        "codec_sample_width": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32
+        },
+        "channel_select": {
+          "type": "string",
+          "const": "left"
+        },
+        "input_scale_rule": {
+          "type": "string",
+          "const": "signed_rnd_shr_Baudio_minus_N"
+        },
+        "master_clock_hz": {
+          "type": "integer",
+          "const": 12288000
+        },
+        "lineout_enable": {
+          "type": "boolean"
+        },
+        "codec_control": {
+          "$ref": "#/$defs/codec_control"
+        },
+        "audio_pll": {
+          "$ref": "#/$defs/audio_pll"
+        },
+        "hardware_gate": {
+          "$ref": "#/$defs/audio_hardware_gate"
+        }
+      }
+    },
+    "codec_control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enable",
+        "codec_model",
+        "i2c_bus",
+        "i2c_address_7bit",
+        "serial_format",
+        "sample_rate_hz",
+        "word_width_bits",
+        "clock_role"
+      ],
+      "properties": {
+        "enable": {
+          "const": true
+        },
+        "codec_model": {
+          "const": "wm8731"
+        },
+        "i2c_bus": {
+          "const": "fpga_i2c"
+        },
+        "i2c_address_7bit": {
+          "const": "0x1a"
+        },
+        "serial_format": {
+          "const": "i2s"
+        },
+        "sample_rate_hz": {
+          "const": 48000
+        },
+        "word_width_bits": {
+          "const": 16
+        },
+        "clock_role": {
+          "const": "codec_master"
+        }
+      }
+    },
+    "audio_pll": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enable",
+        "reference_clock",
+        "reference_clock_hz",
+        "output_clock",
+        "output_clock_hz"
+      ],
+      "properties": {
+        "enable": {
+          "const": true
+        },
+        "reference_clock": {
+          "const": "CLOCK_50"
+        },
+        "reference_clock_hz": {
+          "const": 50000000
+        },
+        "output_clock": {
+          "const": "AUD_XCK"
+        },
+        "output_clock_hz": {
+          "const": 12288000
+        }
+      }
+    },
+    "audio_hardware_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "codec_init_requires_pll_locked",
+        "audio_capture_requires_config_done"
+      ],
+      "properties": {
+        "codec_init_requires_pll_locked": {
+          "const": true
+        },
+        "audio_capture_requires_config_done": {
+          "const": true
+        }
+      }
+    },
+    "adc": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "device_model",
+        "sample_width_bits",
+        "sample_format",
+        "input_mode",
+        "polarity",
+        "power_mode",
+        "input_range_volts",
+        "zero_code",
+        "input_scale_rule",
+        "channel_select",
+        "default_channel",
+        "channel_change_policy",
+        "first_result_policy",
+        "sampling_mode_select",
+        "continuous_sample_rate_hz",
+        "serial_clock_hz",
+        "dc_block_enable"
+      ],
+      "properties": {
+        "device_model": {"const": "ltc2308"},
+        "sample_width_bits": {"const": 12},
+        "sample_format": {"const": "unsigned_straight_binary"},
+        "input_mode": {"const": "single_ended"},
+        "polarity": {"const": "unipolar"},
+        "power_mode": {"const": "awake"},
+        "input_range_volts": {"const": "0_to_4.096"},
+        "zero_code": {"const": 2048},
+        "input_scale_rule": {
+          "const": "unsigned_midscale_subtract_then_signed_rnd_shr_Badc_minus_N"
+        },
+        "channel_select": {"const": "sw6_4_latched_on_source_entry"},
+        "default_channel": {"const": 0},
+        "channel_change_policy": {"const": "leave_and_reenter_adc_source"},
+        "first_result_policy": {
+          "const": "prime_and_discard_previous_configuration"
+        },
+        "sampling_mode_select": {
+          "const": "sw7_low_continuous_high_key2_manual"
+        },
+        "continuous_sample_rate_hz": {"const": 100000},
+        "serial_clock_hz": {"const": 2500000},
+        "dc_block_enable": {"const": false}
+      }
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "source_mode"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "external_stream",
+            "bram_replay",
+            "adc_live",
+            "audio_wrapper",
+            "diagnostic_source"
+          ]
+        },
+        "source_mode": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            null,
+            "bram_replay",
+            "adc_live",
+            "audio_wrapper",
+            "diagnostic_source"
+          ]
+        },
+        "vector_config": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "input_memh": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "replay_start_policy": {
+          "type": "string",
+          "enum": [
+            "testbench_pulse",
+            "board_key",
+            "auto_start_on_reset_release"
+          ]
+        },
+        "audio": {
+          "$ref": "#/$defs/audio"
+        },
+        "adc": {
+          "$ref": "#/$defs/adc"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "adc_live"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "adc"
+            ],
+            "properties": {
+              "source_mode": {
+                "const": "adc_live"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "external_stream"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "source_mode": {
+                "const": null
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "bram_replay"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "vector_config",
+              "input_memh",
+              "replay_start_policy"
+            ],
+            "properties": {
+              "source_mode": {
+                "const": "bram_replay"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "audio_wrapper"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "audio"
+            ],
+            "properties": {
+              "source_mode": {
+                "const": "audio_wrapper"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "transport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hps_ddr_enable",
+        "hps_udp_enable",
+        "command_server_enable",
+        "ring_enable_policy"
+      ],
+      "properties": {
+        "hps_ddr_enable": {
+          "type": "boolean"
+        },
+        "hps_udp_enable": {
+          "type": "boolean"
+        },
+        "command_server_enable": {
+          "type": "boolean"
+        },
+        "ring_enable_policy": {
+          "type": "string",
+          "enum": [
+            "disabled",
+            "after_config_and_rd_commit"
+          ]
+        },
+        "address_map": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "hps_runtime_config": {
+          "$ref": "#/$defs/relative_path"
+        },
+        "dashboard_config": {
+          "$ref": "#/$defs/relative_path"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "hps_ddr_enable": {
+                "const": true
+              }
+            },
+            "required": [
+              "hps_ddr_enable"
+            ]
+          },
+          "then": {
+            "required": [
+              "address_map",
+              "hps_runtime_config"
+            ],
+            "properties": {
+              "ring_enable_policy": {
+                "const": "after_config_and_rd_commit"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "hps_ddr_enable": {
+                "const": false
+              }
+            },
+            "required": [
+              "hps_ddr_enable"
+            ]
+          },
+          "then": {
+            "properties": {
+              "ring_enable_policy": {
+                "const": "disabled"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "build_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "profile_kind",
+        "profile_name",
+        "description",
+        "build",
+        "contract_refs",
+        "input",
+        "sample_rate_hz",
+        "telemetry_profile",
+        "transport",
+        "transport_version_major",
+        "transport_version_minor"
+      ],
+      "properties": {
+        "schema": {
+          "const": "trecap_phase2_runtime_profile_v1"
+        },
+        "profile_kind": {
+          "const": "build"
+        },
+        "profile_name": {
+          "$ref": "#/$defs/profile_name"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "build": {
+          "$ref": "#/$defs/build"
+        },
+        "contract_refs": {
+          "$ref": "#/$defs/contract_refs"
+        },
+        "input": {
+          "$ref": "#/$defs/input"
+        },
+        "sample_rate_hz": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        "telemetry_profile": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            null,
+            "config/profiles/telemetry_status_only.json",
+            "config/profiles/telemetry_full_demo.json"
+          ]
+        },
+        "transport": {
+          "$ref": "#/$defs/transport"
+        },
+        "transport_version_major": {
+          "type": "integer",
+          "const": 1
+        },
+        "transport_version_minor": {
+          "type": "integer",
+          "const": 8
+        }
+      }
+    },
+    "telemetry_preset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "profile_kind",
+        "profile_name",
+        "description",
+        "packet_enable",
+        "spec_mode",
+        "wave_decim",
+        "spec_shift",
+        "status_rate_hz",
+        "metrics_rate_hz",
+        "transport_version_major",
+        "transport_version_minor"
+      ],
+      "properties": {
+        "schema": {
+          "const": "trecap_phase2_runtime_profile_v1"
+        },
+        "profile_kind": {
+          "const": "telemetry_preset"
+        },
+        "profile_name": {
+          "$ref": "#/$defs/profile_name"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "packet_enable": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "STATUS",
+              "WAVE",
+              "METRICS",
+              "SPEC"
+            ]
+          }
+        },
+        "spec_mode": {
+          "type": "string",
+          "enum": [
+            "DISABLED",
+            "SPEC64",
+            "SPEC129"
+          ]
+        },
+        "wave_decim": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        },
+        "spec_shift": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 55
+        },
+        "status_rate_hz": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "metrics_rate_hz": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000
+        },
+        "transport_version_major": {
+          "type": "integer",
+          "const": 1
+        },
+        "transport_version_minor": {
+          "type": "integer",
+          "const": 8
+        }
+      }
+    }
+  }
+}

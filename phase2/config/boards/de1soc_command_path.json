@@ -1,0 +1,356 @@
+{
+  "schema": "trecap_phase2_de1soc_command_path_v1",
+  "project": "T_RECAP_Phase2",
+  "board": "de1soc",
+  "file_class": "[1] hand-written source-of-truth architecture contract",
+  "contract_stage": "architecture_implementation_step_14_source",
+  "status": "source_contract_frozen_host_test_sources_required_live_evidence_absent",
+  "authority": {
+    "pdf_command_revision": "Telemetry Revision G command protocol version 1",
+    "pdf_v1_policy": "exact_and_unchanged",
+    "step14_extension": "explicit command protocol version 2",
+    "extension_policy": "version_2_adds_types_and_results_without_reinterpreting_version_1",
+    "csr_version_major": 1,
+    "csr_version_minor": 8
+  },
+  "wire_contract": {
+    "byte_order": "little_endian",
+    "packing": "packed_no_implicit_padding",
+    "crc_enabled": false,
+    "request_bytes": 28,
+    "request_magic": "0x54524343",
+    "result_bytes": 32,
+    "result_magic": "0x54524352",
+    "version_1": {
+      "version": 1,
+      "result_defined": false,
+      "exact_command_types": [
+        {"name": "SET_THR2", "code": "0x0001"},
+        {"name": "CLEAR_METRICS", "code": "0x0002"},
+        {"name": "SET_SOURCE_MODE", "code": "0x0003"},
+        {"name": "SET_PACKET_ENABLE", "code": "0x0004"},
+        {"name": "SET_WAVE_DECIM", "code": "0x0005"},
+        {"name": "SET_SPEC_SHIFT", "code": "0x0006"},
+        {"name": "PING", "code": "0x0007"}
+      ]
+    },
+    "version_2": {
+      "version": 2,
+      "inherits_version_1_command_types": true,
+      "extension_command_types": [
+        {
+          "name": "SET_SPEC_MODE",
+          "code": "0x0008",
+          "args": {"arg0": "0..2", "arg1": "0", "arg2": "0"}
+        },
+        {
+          "name": "SET_TELEMETRY_ENABLE",
+          "code": "0x0009",
+          "args": {"arg0": "0_or_1", "arg1": "0", "arg2": "0"}
+        },
+        {
+          "name": "CONFIGURE_DDR_RING",
+          "code": "0x000A",
+          "args": {"arg0": "0", "arg1": "0", "arg2": "0"}
+        },
+        {
+          "name": "RESET_TRANSPORT",
+          "code": "0x000B",
+          "args": {"arg0": "0", "arg1": "0", "arg2": "0"}
+        },
+        {
+          "name": "CLEAR_COUNTERS",
+          "code": "0x000C",
+          "args": {"arg0": "0", "arg1": "0", "arg2": "0"}
+        },
+        {
+          "name": "START_BRAM_REPLAY",
+          "code": "0x000D",
+          "args": {"arg0": "0", "arg1": "0", "arg2": "0"}
+        },
+        {
+          "name": "READ_STATUS_VERSION",
+          "code": "0x000E",
+          "args": {"arg0": "0", "arg1": "0", "arg2": "0"}
+        }
+      ],
+      "ping_policy": {
+        "arguments": "ignored",
+        "response": "fresh_diagnostic_status_only",
+        "diagnostic_status_seq": 0,
+        "command_result_emitted": false,
+        "csr_access": false,
+        "mutation_ledger_effect": "none"
+      }
+    },
+    "result_layout": {
+      "version": 2,
+      "size_bytes": 32,
+      "fields": [
+        {"name": "magic", "offset": 0, "type": "uint32", "required_value": "0x54524352"},
+        {"name": "version", "offset": 4, "type": "uint16", "required_value": 2},
+        {"name": "cmd_type", "offset": 6, "type": "uint16"},
+        {"name": "seq", "offset": 8, "type": "uint32"},
+        {"name": "disposition", "offset": 12, "type": "uint32"},
+        {"name": "reject_reason", "offset": 16, "type": "uint32"},
+        {"name": "fpga_status", "offset": 20, "type": "uint32", "source": "raw_STATUS_CSR"},
+        {"name": "csr_version", "offset": 24, "type": "uint32", "source": "raw_VERSION_CSR"},
+        {"name": "crc32", "offset": 28, "type": "uint32", "required_value": 0}
+      ],
+      "dispositions": [
+        {"name": "APPLIED", "code": 0},
+        {"name": "NOOP", "code": 1},
+        {"name": "REJECTED", "code": 2},
+        {"name": "FAILED", "code": 3}
+      ],
+      "reject_reasons": [
+        {"name": "NONE", "code": 0},
+        {"name": "BAD_SOURCE", "code": 1},
+        {"name": "BAD_LENGTH", "code": 2},
+        {"name": "BAD_MAGIC", "code": 3},
+        {"name": "BAD_VERSION", "code": 4},
+        {"name": "BAD_CRC", "code": 5},
+        {"name": "UNSUPPORTED_TYPE", "code": 6},
+        {"name": "RANGE", "code": 7},
+        {"name": "RESERVED_ARGUMENT", "code": 8},
+        {"name": "CSR", "code": 9},
+        {"name": "IO", "code": 10},
+        {"name": "UNSAFE_STATE", "code": 11},
+        {"name": "SEQUENCE_STALE", "code": 12},
+        {"name": "SEQUENCE_CONFLICT", "code": 13},
+        {"name": "TIMEOUT", "code": 14},
+        {"name": "RESET_REQUIRED", "code": 15},
+        {"name": "VERSION_MISMATCH", "code": 16}
+      ]
+    }
+  },
+  "trusted_peer": {
+    "canonical_mode": "configured_exact_peer",
+    "hps_listen_ip_source": "runtime_hps_static_ip",
+    "hps_listen_ip": "192.168.10.2",
+    "hps_listen_port": 5006,
+    "trusted_pc_ip": "192.168.10.1",
+    "trusted_pc_source_port": 5007,
+    "match_fields": ["ipv4_address", "udp_source_port"],
+    "lab_learning_mode": {
+      "allowed": true,
+      "initial_peer": "unbound",
+      "binding_event": "first_fully_valid_ping",
+      "requirements": ["direct_link_lab_mode_explicit", "source_port_nonzero"],
+      "listen_override_ip": "0.0.0.0",
+      "post_binding_policy": "pin_exact_ipv4_and_udp_port"
+    },
+    "security_scope": "isolated_lab_or_direct_link_only_not_authenticated_not_encrypted"
+  },
+  "sequence_and_replay": {
+    "comparison": "RFC1982_serial_number_arithmetic_32_bit",
+    "scope": "current_HPS_process_and_bound_peer_session",
+    "ledger_initial_state": "empty",
+    "ledger_reset_events": ["command_server_start", "new_first_ping_peer_binding"],
+    "ping_exempt": true,
+    "duplicate_policy": "same_seq_and_identical_request_returns_cached_result_without_reapplication",
+    "conflict_policy": "same_seq_and_different_request_rejected_SEQUENCE_CONFLICT",
+    "stale_policy": "older_or_ambiguous_non_ping_request_rejected_SEQUENCE_STALE",
+    "cache_policy": "bounded_result_cache_owned_by_HPS_command_bridge",
+    "at_most_once_scope": "all_version_2_non_ping_commands"
+  },
+  "lifecycle": {
+    "required_order": ["RESET_TRANSPORT", "CONFIGURE_DDR_RING", "SET_TELEMETRY_ENABLE_1"],
+    "ring_address_source": "validated_local_runtime_configuration_only",
+    "network_supplied_ring_address_allowed": false,
+    "configure_command_arguments": "all_zero",
+    "enable_preconditions": [
+      "csr_identity_version_1_8_verified",
+      "transport_reset_completed",
+      "ring_configured_from_pinned_runtime_profile",
+      "consumer_pointer_committed_zero",
+      "producer_pointer_snapshot_zero",
+      "no_malformed_latch",
+      "required_status_readback_matches"
+    ],
+    "partial_failure_policy": "attempt_CONTROL_zero_and_verify_both_controls_off_then_require_reset",
+    "failure_disable_attempt": "write_CONTROL_zero_then_read_STATUS",
+    "verified_fail_closed_condition": "STATUS_telemetry_enable_and_ring_writer_enable_both_zero",
+    "hardware_disable_may_be_claimed_without_readback": false,
+    "unverified_hardware_disable_policy": "lock_software_RESET_REQUIRED_and_require_operator_or_transport_reset",
+    "local_state_commit_policy": "commit_configuration_and_restored_enable_state_only_after_configuration_apply_readback_and_safe_control_restore_readback_both_succeed",
+    "reset_replay_policy": {
+      "placement": "after_ring_reset_before_configuration_reconciliation",
+      "reject_if_replay_status_reserved_nonzero": true,
+      "reject_if_any_replay_state_set": [
+        "pending",
+        "replay_active",
+        "replay_path_busy",
+        "e2e_busy"
+      ],
+      "required_transport_quiescence": [
+        "telemetry_control_off",
+        "ring_writer_control_off",
+        "writer_busy_clear",
+        "thr2_commit_pending_clear",
+        "source_commit_pending_clear",
+        "source_transition_busy_clear",
+        "transport_epoch_idle_set"
+      ],
+      "healthy_reset_replay_control_write_count": 0,
+      "failed_epoch_rearm_condition": "rearm_required_and_replay_and_transport_quiescent",
+      "failed_epoch_rearm_pulse_count": 1,
+      "rearm_must_preserve_result_epoch": true,
+      "rearm_readback_must_clear": [
+        "pending",
+        "replay_active",
+        "replay_path_busy",
+        "e2e_busy",
+        "last_accept",
+        "last_reject",
+        "error",
+        "rearm_required"
+      ],
+      "active_replay_is_implicitly_aborted": false,
+      "failure_policy": "FAILED_and_software_RESET_REQUIRED_fail_closed"
+    }
+  },
+  "control_mutation_safety": {
+    "applies_to_commands": [
+      "SET_SOURCE_MODE",
+      "SET_PACKET_ENABLE",
+      "SET_WAVE_DECIM",
+      "SET_SPEC_MODE",
+      "SET_SPEC_SHIFT"
+    ],
+    "applies_to_version_1_and_version_2": true,
+    "required_preconditions": [
+      "telemetry_and_ring_writer_controls_disabled",
+      "STATUS.transport_epoch_idle_is_one",
+      "no_replay_busy_active_or_pending"
+    ],
+    "ordered_operation": [
+      "snapshot_requested_enable_state",
+      "disable_telemetry_and_ring_writer",
+      "verify_controls_disabled_epoch_idle_and_replay_idle",
+      "perform_generated_CSR_write_or_shadow_commit",
+      "wait_for_command_specific_safe_apply_and_verify_readback",
+      "restore_prior_enable_state_only_if_all_checks_succeeded",
+      "verify_restored_control_readback"
+    ],
+    "source_mode_commit_rule": "write_SOURCE_MODE_SHADOW_pulse_SOURCE_MODE_COMMIT_then_wait_until_pending_clears_and_actual_source_mode_matches",
+    "direct_live_csr_writes_allowed": false,
+    "failure_policy": "attempt_CONTROL_zero_and_verify_disabled; otherwise_lock_software_RESET_REQUIRED_report_hardware_disable_unverified_and_do_not_commit_HPS_local_state"
+  },
+  "clear_counters": {
+    "command": "CLEAR_COUNTERS",
+    "fpga_counters_cleared": [
+      "DMA_DROP_COUNT",
+      "DMA_PACKET_COUNT",
+      "PACKET_FIFO_DROP_COUNT",
+      "CSR_COMMAND_REJECT_COUNT"
+    ],
+    "hps_transport_counters_cleared": true,
+    "preserved": [
+      "OVERFLOW_FLAGS",
+      "producer_pointer_W",
+      "consumer_pointer_Rd",
+      "telemetry_sequence",
+      "core_sample_and_frame_counts",
+      "trusted_peer_binding",
+      "mutation_sequence_ledger",
+      "result_cache"
+    ]
+  },
+  "csr_extension": {
+    "version_major": 1,
+    "version_minor": 8,
+    "existing_offsets_0x000_through_0x088_unchanged": true,
+    "registers": [
+      {
+        "name": "COUNTER_CLEAR",
+        "offset": "0x08C",
+        "access": "W1P",
+        "fields": [{"name": "transport_counters", "lsb": 0, "msb": 0}]
+      },
+      {
+        "name": "REPLAY_CONTROL",
+        "offset": "0x090",
+        "access": "W1P",
+        "fields": [
+          {"name": "start", "lsb": 0, "msb": 0},
+          {"name": "rearm", "lsb": 1, "msb": 1}
+        ]
+      },
+      {
+        "name": "REPLAY_STATUS",
+        "offset": "0x094",
+        "access": "R",
+        "fields": [
+          {"name": "pending", "lsb": 0, "msb": 0},
+          {"name": "last_accept", "lsb": 1, "msb": 1},
+          {"name": "last_reject", "lsb": 2, "msb": 2},
+          {"name": "start_ready", "lsb": 3, "msb": 3},
+          {"name": "replay_active", "lsb": 4, "msb": 4},
+          {"name": "replay_path_busy", "lsb": 5, "msb": 5},
+          {"name": "replay_path_done", "lsb": 6, "msb": 6},
+          {"name": "e2e_busy", "lsb": 7, "msb": 7},
+          {"name": "e2e_done", "lsb": 8, "msb": 8},
+          {"name": "error", "lsb": 9, "msb": 9},
+          {"name": "rearm_required", "lsb": 10, "msb": 10},
+          {"name": "result_epoch", "lsb": 16, "msb": 31}
+        ]
+      }
+    ],
+    "status_extension_fields": [
+      {"name": "actual_source_mode", "lsb": 10, "msb": 11},
+      {"name": "transport_epoch_idle", "lsb": 12, "msb": 12},
+      {"name": "source_transition_busy", "lsb": 13, "msb": 13}
+    ],
+    "status_source_pending_rule": "STATUS.source_commit_pending_is_one_when_commit_pending_or_requested_mode_differs_from_actual_mode"
+  },
+  "replay_command": {
+    "start_command": "START_BRAM_REPLAY",
+    "start_write": "REPLAY_CONTROL.start",
+    "rearm_write": "REPLAY_CONTROL.rearm",
+    "start_policy": "pulse_raw_request_and_report_accept_or_reject_from_replay_owner",
+    "result_epoch_policy": "increment_on_each_CSR_originated_accept_or_reject_completion",
+    "board_key_events_modify_csr_command_result": false,
+    "acceptance_observation": "REPLAY_STATUS_last_accept_last_reject_pending_and_result_epoch"
+  },
+  "command_service": {
+    "nonblocking": true,
+    "maximum_datagrams_per_streamer_pass": 64,
+    "ring_service_must_not_be_starved": true,
+    "simple_csr_commands_owner": "command_bridge_for_live_network_path",
+    "lifecycle_and_replay_owner": "command_bridge",
+    "compatibility_direct_helper_policy": "command_apply_to_csr_not_used_by_live_streamer",
+    "identity_required_before_noop_or_applied": "every_command_except_PING_and_READ_STATUS_VERSION",
+    "read_status_version_identity_exception": "return_raw_STATUS_and_VERSION_as_NOOP_even_when_incompatible; only_read_failure_is_FAILED",
+    "response_destination": "exact_validated_request_source_ip_and_port"
+  },
+  "verification_source": {
+    "checker": "scripts/check_command_path.py",
+    "rtl_structural_checker": "sim/check_step14_command_rtl.py",
+    "rtl_testbench_source": "sim/tb/tb_trecap_step14_command_csr.sv",
+    "rtl_filelist_source": "sim/filelists/step14_command_csr.f",
+    "hps_host_test": "sw/hps/tests/test_step14_command_path.c",
+    "pc_host_test": "sw/pc_dashboard/tests/test_step14_command_client.py",
+    "rtl_structural_checker_execution_evidence_packaged": false,
+    "host_test_execution_evidence_packaged": false,
+    "native_rtl_simulation_evidence_packaged": false,
+    "quartus_or_hardware_evidence_packaged": false
+  },
+  "evidence_boundary": {
+    "source_implementation_claimed": true,
+    "rtl_structural_checker_source_claimed": true,
+    "rtl_testbench_source_claimed": true,
+    "host_test_source_claimed": true,
+    "host_test_execution_packaged": false,
+    "live_pc_hps_udp": false,
+    "hps_linux_runtime": false,
+    "csr_mmap_runtime": false,
+    "lightweight_bridge_runtime": false,
+    "fpga_command_application": false,
+    "bram_replay_hardware": false,
+    "rtl_simulation": false,
+    "platform_designer_generation": false,
+    "quartus_timing": false,
+    "physical_hardware": false
+  }
+}

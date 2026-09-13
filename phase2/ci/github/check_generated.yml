@@ -1,0 +1,247 @@
+name: check-generated
+
+"on":
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "spec/generated/**"
+      - "spec/schemas/**"
+      - "scripts/gen_headers.py"
+      - "scripts/gen_filelists.py"
+      - "scripts/check_generated.py"
+      - "tests/test_gen_headers_csr_freeze.py"
+      - "tests/test_command_path_contract_freeze.py"
+      - "scripts/address_map_contract.py"
+      - "scripts/check_address_map.py"
+      - "scripts/check_csr_adapter.py"
+      - "scripts/check_platform_designer_wrapper.py"
+      - "scripts/check_source_core_integration.py"
+      - "scripts/check_core_telemetry_composition.py"
+      - "scripts/check_de1soc_board_top.py"
+      - "scripts/check_de1soc_clock_reset.py"
+      - "scripts/check_de1soc_audio_path.py"
+      - "scripts/sim/check_step16_audio_model.py"
+      - "scripts/check_de1soc_adc_path.py"
+      - "scripts/sim/check_step17_adc_model.py"
+      - "scripts/freeze_address_map.py"
+      - "platform/de1soc/address_map/**"
+      - "rtl/hps_bridge/trecap_avmm_csr_adapter.sv"
+      - "rtl/hps_bridge/trecap_hps_bridge_top.sv"
+      - "rtl/top/trecap_de1soc_full_top.sv"
+      - "rtl/top/trecap_source_core_integration.sv"
+      - "rtl/top/trecap_core_telemetry_top.sv"
+      - "rtl/telemetry/trecap_telemetry_top.sv"
+      - "rtl/telemetry/trecap_metrics_packetizer.sv"
+      - "rtl/telemetry/trecap_status_packetizer.sv"
+      - "rtl/telemetry/trecap_wave_packetizer.sv"
+      - "rtl/telemetry/trecap_spec_packetizer.sv"
+      - "rtl/telemetry/trecap_packet_scheduler.sv"
+      - "rtl/platform/de1soc/de1_soc_trecap_top.sv"
+      - "rtl/platform/de1soc/platform_designer_wrapper.sv"
+      - "rtl/platform/de1soc/clock_reset_ctrl.sv"
+      - "rtl/platform/de1soc/audio_pll_wrapper.sv"
+      - "rtl/platform/de1soc/audio_codec_i2c_init.sv"
+      - "rtl/platform/de1soc/audio_codec_wrapper.sv"
+      - "rtl/platform/de1soc/adc_wrapper.sv"
+      - "rtl/common/async_fifo.sv"
+      - "rtl/common/reset_sync.sv"
+      - "rtl/sources/trecap_audio_adapter.sv"
+      - "rtl/sources/trecap_adc_adapter.sv"
+      - "constraints/de1soc/**"
+      - "docs/architecture/avalon_mm_csr_adapter.md"
+      - "docs/architecture/source_core_integration.md"
+      - "docs/architecture/core_telemetry_composition.md"
+      - "docs/architecture/de1soc_board_top_integration.md"
+      - "config/boards/de1soc_source_core_integration.json"
+      - "config/boards/core_telemetry_composition.json"
+      - "config/boards/de1soc_board_top_integration.json"
+      - "config/boards/de1soc_clock_reset_architecture.json"
+      - "config/boards/de1soc_audio_linein.json"
+      - "config/profiles/de1soc_linein_demo.json"
+      - "spec/schemas/de1soc_audio_linein.schema.json"
+      - "config/boards/de1soc_adc_live.json"
+      - "config/profiles/de1soc_adc_demo.json"
+      - "spec/schemas/de1soc_adc_live.schema.json"
+      - "platform/de1soc/qsys/hps_config.tcl"
+      - "platform/de1soc/qsys/platform_designer.tcl"
+      - "platform/de1soc/qsys/system_blueprint.xml"
+      - "platform/de1soc/qsys/system.qsys"
+      - "sw/hps/config/trecap_hps_config.json"
+      - "rtl/include/generated/**"
+      - "sw/hps/include/generated/**"
+      - "sw/pc_dashboard/generated/**"
+      - "sw/reference_model/generated/**"
+      - "filelists/**"
+      - "ci/github/check_generated.yml"
+  push:
+    branches: [main]
+    paths:
+      - "spec/generated/**"
+      - "spec/schemas/**"
+      - "scripts/gen_headers.py"
+      - "scripts/gen_filelists.py"
+      - "scripts/check_generated.py"
+      - "tests/test_gen_headers_csr_freeze.py"
+      - "tests/test_command_path_contract_freeze.py"
+      - "scripts/address_map_contract.py"
+      - "scripts/check_address_map.py"
+      - "scripts/check_csr_adapter.py"
+      - "scripts/check_platform_designer_wrapper.py"
+      - "scripts/check_source_core_integration.py"
+      - "scripts/check_core_telemetry_composition.py"
+      - "scripts/check_de1soc_board_top.py"
+      - "scripts/check_de1soc_clock_reset.py"
+      - "scripts/check_de1soc_audio_path.py"
+      - "scripts/sim/check_step16_audio_model.py"
+      - "scripts/check_de1soc_adc_path.py"
+      - "scripts/sim/check_step17_adc_model.py"
+      - "scripts/freeze_address_map.py"
+      - "platform/de1soc/address_map/**"
+      - "rtl/hps_bridge/trecap_avmm_csr_adapter.sv"
+      - "rtl/hps_bridge/trecap_hps_bridge_top.sv"
+      - "rtl/top/trecap_de1soc_full_top.sv"
+      - "rtl/top/trecap_source_core_integration.sv"
+      - "rtl/top/trecap_core_telemetry_top.sv"
+      - "rtl/telemetry/trecap_telemetry_top.sv"
+      - "rtl/telemetry/trecap_metrics_packetizer.sv"
+      - "rtl/telemetry/trecap_status_packetizer.sv"
+      - "rtl/telemetry/trecap_wave_packetizer.sv"
+      - "rtl/telemetry/trecap_spec_packetizer.sv"
+      - "rtl/telemetry/trecap_packet_scheduler.sv"
+      - "rtl/platform/de1soc/de1_soc_trecap_top.sv"
+      - "rtl/platform/de1soc/platform_designer_wrapper.sv"
+      - "rtl/platform/de1soc/clock_reset_ctrl.sv"
+      - "rtl/platform/de1soc/audio_pll_wrapper.sv"
+      - "rtl/platform/de1soc/audio_codec_i2c_init.sv"
+      - "rtl/platform/de1soc/audio_codec_wrapper.sv"
+      - "rtl/platform/de1soc/adc_wrapper.sv"
+      - "rtl/common/async_fifo.sv"
+      - "rtl/common/reset_sync.sv"
+      - "rtl/sources/trecap_audio_adapter.sv"
+      - "rtl/sources/trecap_adc_adapter.sv"
+      - "constraints/de1soc/**"
+      - "docs/architecture/avalon_mm_csr_adapter.md"
+      - "docs/architecture/source_core_integration.md"
+      - "docs/architecture/core_telemetry_composition.md"
+      - "docs/architecture/de1soc_board_top_integration.md"
+      - "config/boards/de1soc_source_core_integration.json"
+      - "config/boards/core_telemetry_composition.json"
+      - "config/boards/de1soc_board_top_integration.json"
+      - "config/boards/de1soc_clock_reset_architecture.json"
+      - "config/boards/de1soc_audio_linein.json"
+      - "config/profiles/de1soc_linein_demo.json"
+      - "spec/schemas/de1soc_audio_linein.schema.json"
+      - "config/boards/de1soc_adc_live.json"
+      - "config/profiles/de1soc_adc_demo.json"
+      - "spec/schemas/de1soc_adc_live.schema.json"
+      - "platform/de1soc/qsys/hps_config.tcl"
+      - "platform/de1soc/qsys/platform_designer.tcl"
+      - "platform/de1soc/qsys/system_blueprint.xml"
+      - "platform/de1soc/qsys/system.qsys"
+      - "sw/hps/config/trecap_hps_config.json"
+      - "rtl/include/generated/**"
+      - "sw/hps/include/generated/**"
+      - "sw/pc_dashboard/generated/**"
+      - "sw/reference_model/generated/**"
+      - "filelists/**"
+      - "ci/github/check_generated.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-generated-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  generated-contracts:
+    name: generated headers and filelists are deterministic
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      PYTHONUNBUFFERED: "1"
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: |
+            sw/reference_model/requirements.lock
+            sw/pc_dashboard/pyproject.toml
+
+      - name: Install generated-contract dependencies
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install jsonschema
+
+      - name: Regenerate headers
+        run: python scripts/gen_headers.py
+
+      - name: Regenerate RTL filelists
+        run: python scripts/gen_filelists.py
+
+      - name: Run generated drift checker
+        run: python scripts/check_generated.py --quiet
+
+      - name: Validate source-frozen address map
+        run: python scripts/check_address_map.py --quiet
+
+      - name: Validate Avalon-MM CSR adapter source contract
+        run: python scripts/check_csr_adapter.py --quiet
+
+      - name: Validate Platform Designer wrapper source contract
+        run: python scripts/check_platform_designer_wrapper.py --quiet
+
+      - name: Validate source-to-core integration source contract
+        run: python scripts/check_source_core_integration.py --quiet
+
+      - name: Validate core plus telemetry composition source contract
+        run: python scripts/check_core_telemetry_composition.py --quiet
+
+      - name: Validate DE1-SoC board-top source-integration contract
+        run: python scripts/check_de1soc_board_top.py --quiet
+
+      - name: Validate DE1-SoC clock/reset source architecture
+        run: python scripts/check_de1soc_clock_reset.py --quiet
+
+      - name: Validate Step-16 DE1-SoC audio source contract
+        run: python scripts/check_de1soc_audio_path.py --quiet
+
+      - name: Run Step-16 dependency-free audio architecture model
+        run: python scripts/sim/check_step16_audio_model.py
+
+      - name: Validate Step-17 DE1-SoC ADC source contract
+        run: python scripts/check_de1soc_adc_path.py --quiet
+
+      - name: Run Step-17 dependency-free ADC protocol/CDC model
+        run: python scripts/sim/check_step17_adc_model.py
+
+      - name: Verify working tree is clean for generated files
+        run: |
+          git diff --exit-code -- \
+            spec/generated/gen_manifest.json \
+            rtl/include/generated \
+            sw/hps/include/generated \
+            sw/pc_dashboard/generated \
+            sw/reference_model/generated \
+            filelists
+
+      - name: Upload generated manifest and filelists
+        uses: actions/upload-artifact@v4
+        with:
+          name: trecap-generated-contracts
+          path: |
+            spec/generated/gen_manifest.json
+            filelists/*.f
+            filelists/*.inc
+          if-no-files-found: error
+          retention-days: 14

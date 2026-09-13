@@ -1,0 +1,19 @@
+// SPDX-License-Identifier: MIT
+// File class: [1] hand-written Step-12 Linux device-tree source.
+//
+// Include this source in the DE1-SoC board DTS that is compiled into the DTB
+// selected by the bootloader.  Merely packaging this file does not reserve RAM
+// on a running board; the node must be present in the FDT before Linux boots.
+
+/ {
+	reserved-memory {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		trecap_telemetry_ring: trecap-ring@3e000000 {
+			reg = <0x3e000000 0x02000000>;
+			no-map;
+		};
+	};
+};

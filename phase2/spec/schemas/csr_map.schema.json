@@ -1,0 +1,3021 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://trecap.local/schemas/csr_map.schema.json",
+  "title": "T-RECAP Phase 2 CSR map contract schema",
+  "description": "Validates the hand-written CSR source-of-truth JSON consumed by the R1 generated-header flow.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "project",
+    "file_class",
+    "contract_stage",
+    "source_spec",
+    "repository_docs",
+    "edit_policy",
+    "generated_outputs",
+    "bus_contract",
+    "constants",
+    "enums",
+    "legacy_register_freeze",
+    "registers",
+    "multiword_transactions",
+    "validation_rules"
+  ],
+  "properties": {
+    "schema": {
+      "const": "trecap_phase2_csr_map_v1"
+    },
+    "project": {
+      "const": "T_RECAP_Phase2"
+    },
+    "file_class": {
+      "$ref": "#/$defs/non_empty_string"
+    },
+    "contract_stage": {
+      "const": "R1 generated-contract source input"
+    },
+    "source_spec": {
+      "$ref": "#/$defs/source_spec"
+    },
+    "repository_docs": {
+      "$ref": "#/$defs/path_list"
+    },
+    "edit_policy": {
+      "$ref": "#/$defs/edit_policy"
+    },
+    "generated_outputs": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/generated_outputs_common"
+        }
+      ],
+      "required": [
+        "rtl_sv",
+        "hps_c",
+        "pc_python"
+      ]
+    },
+    "bus_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "endianness",
+        "word_bits",
+        "word_alignment_bytes",
+        "access_unit",
+        "csr_window_span_min_bytes",
+        "csr_window_span_recommended_bytes",
+        "multiword_rule"
+      ],
+      "properties": {
+        "endianness": {
+          "const": "little"
+        },
+        "word_bits": {
+          "const": 32
+        },
+        "word_alignment_bytes": {
+          "const": 4
+        },
+        "access_unit": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "csr_window_span_min_bytes": {
+          "type": "integer",
+          "minimum": 256
+        },
+        "csr_window_span_recommended_bytes": {
+          "type": "integer",
+          "minimum": 256
+        },
+        "multiword_rule": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "constants": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ID",
+        "VERSION",
+        "THR2_WIDTH_BITS",
+        "THR2_MAX_EXCLUSIVE_DECIMAL",
+        "SPEC_SHIFT_MAX",
+        "WAVE_DECIM_MIN",
+        "WAVE_DECIM_MAX",
+        "RING_SIZE_MIN_BYTES",
+        "RING_ALIGNMENT_BYTES",
+        "RING_GUARD_BYTES_MIN"
+      ],
+      "properties": {
+        "ID": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value_hex",
+            "mnemonic",
+            "compare_as"
+          ],
+          "properties": {
+            "value_hex": {
+              "const": "0x54524350"
+            },
+            "mnemonic": {
+              "const": "TRCP"
+            },
+            "compare_as": {
+              "$ref": "#/$defs/non_empty_string"
+            }
+          }
+        },
+        "VERSION": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "major",
+            "minor",
+            "packed_hex",
+            "packed_formula"
+          ],
+          "properties": {
+            "major": {
+              "const": 1
+            },
+            "minor": {
+              "const": 8
+            },
+            "packed_hex": {
+              "const": "0x00010008"
+            },
+            "packed_formula": {
+              "$ref": "#/$defs/non_empty_string"
+            }
+          }
+        },
+        "THR2_WIDTH_BITS": {
+          "const": 56
+        },
+        "THR2_MAX_EXCLUSIVE_DECIMAL": {
+          "const": "72057594037927936"
+        },
+        "SPEC_SHIFT_MAX": {
+          "const": 55
+        },
+        "WAVE_DECIM_MIN": {
+          "const": 1
+        },
+        "WAVE_DECIM_MAX": {
+          "const": 65535
+        },
+        "RING_SIZE_MIN_BYTES": {
+          "type": "integer",
+          "minimum": 1048576
+        },
+        "RING_ALIGNMENT_BYTES": {
+          "const": 64
+        },
+        "RING_GUARD_BYTES_MIN": {
+          "const": 64
+        }
+      }
+    },
+    "enums": {
+      "$ref": "#/$defs/csr_enums"
+    },
+    "legacy_register_freeze": {
+      "$ref": "#/$defs/legacy_register_freeze"
+    },
+    "registers": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "const": {
+            "name": "ID",
+            "offset": 0,
+            "offset_hex": "0x000",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_constant",
+            "reset": "0x54524350",
+            "description": "Numeric little-endian CSR value 0x54524350. Software compares the numeric value, not raw ASCII bytes."
+          }
+        },
+        {
+          "const": {
+            "name": "VERSION",
+            "offset": 4,
+            "offset_hex": "0x004",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_constant",
+            "reset": "0x00010008",
+            "description": "Transport version packed as VERSION[31:16]=major and VERSION[15:0]=minor. Step 14 appends the explicitly supported command/replay CSR extension as minor 8 while retaining major 1 compatibility."
+          }
+        },
+        {
+          "const": {
+            "name": "CONTROL",
+            "offset": 8,
+            "offset_hex": "0x008",
+            "width_bits": 32,
+            "access": "R/W",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000000",
+            "description": "Control register containing persistent levels and write-one pulses.",
+            "fields": [
+              {
+                "name": "telemetry_enable",
+                "lsb": 0,
+                "msb": 0,
+                "kind": "level",
+                "description": "Persistent level. 1 enables telemetry writer scheduling after ring configuration.",
+                "reset": 0
+              },
+              {
+                "name": "telemetry_soft_reset",
+                "lsb": 1,
+                "msb": 1,
+                "kind": "w1p",
+                "description": "Write-one pulse. Resets telemetry formatter, packet FIFOs, writer FSM, and transport counters.",
+                "reset": 0,
+                "write_semantics": "write 1 generates one pulse; write 0 has no effect"
+              },
+              {
+                "name": "clear_metrics",
+                "lsb": 2,
+                "msb": 2,
+                "kind": "w1p",
+                "description": "Write-one pulse. Requests core metric clear at a safe boundary.",
+                "reset": 0,
+                "write_semantics": "write 1 generates one pulse; write 0 has no effect"
+              },
+              {
+                "name": "reserved_3",
+                "lsb": 3,
+                "msb": 3,
+                "kind": "reserved_write_zero_read_zero",
+                "description": "Reserved in Revision G. Sticky flags are cleared only by CLEAR_STICKY_FLAGS.",
+                "reset": 0
+              },
+              {
+                "name": "ring_writer_enable",
+                "lsb": 4,
+                "msb": 4,
+                "kind": "level",
+                "description": "Persistent level. Enables DDR ring writes after ring configuration is accepted.",
+                "reset": 0
+              },
+              {
+                "name": "reserved_31_5",
+                "lsb": 5,
+                "msb": 31,
+                "kind": "reserved",
+                "description": "Reserved. Write zero; ignore on read unless a later revision assigns bits."
+              }
+            ]
+          }
+        },
+        {
+          "const": {
+            "name": "STATUS",
+            "offset": 12,
+            "offset_hex": "0x00C",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Live transport state bits.",
+            "fields": [
+              {
+                "name": "telemetry_enabled",
+                "lsb": 0,
+                "msb": 0,
+                "kind": "normal",
+                "description": "Active telemetry-enable state."
+              },
+              {
+                "name": "ring_writer_enabled",
+                "lsb": 1,
+                "msb": 1,
+                "kind": "normal",
+                "description": "Active DDR ring-writer enable state."
+              },
+              {
+                "name": "ring_configured",
+                "lsb": 2,
+                "msb": 2,
+                "kind": "normal",
+                "description": "Ring base and size have been committed and accepted."
+              },
+              {
+                "name": "writer_busy",
+                "lsb": 3,
+                "msb": 3,
+                "kind": "normal",
+                "description": "DDR writer is actively writing, waiting, or committing a record."
+              },
+              {
+                "name": "core_alive",
+                "lsb": 4,
+                "msb": 4,
+                "kind": "normal",
+                "description": "Core/sample activity heartbeat."
+              },
+              {
+                "name": "malformed_config",
+                "lsb": 5,
+                "msb": 5,
+                "kind": "normal",
+                "description": "Current ring/control configuration is malformed or not accepted."
+              },
+              {
+                "name": "ring_full",
+                "lsb": 6,
+                "msb": 6,
+                "kind": "normal",
+                "description": "Ring has insufficient free space for at least one scheduled telemetry record."
+              },
+              {
+                "name": "packet_fifo_full",
+                "lsb": 7,
+                "msb": 7,
+                "kind": "normal",
+                "description": "Telemetry packet FIFO has reached or recently reached full condition."
+              },
+              {
+                "name": "thr2_commit_pending",
+                "lsb": 8,
+                "msb": 8,
+                "kind": "normal",
+                "description": "THR2 commit is pending safe-frame application."
+              },
+              {
+                "name": "source_commit_pending",
+                "lsb": 9,
+                "msb": 9,
+                "kind": "normal",
+                "description": "A source-mode request is pending safe application or the requested source mode has not yet become the actual source-mux selection."
+              },
+              {
+                "name": "actual_source_mode",
+                "lsb": 10,
+                "msb": 11,
+                "kind": "normal",
+                "description": "Actual source-mux selection using the source_mode enumeration. This is active readback, not the requested shadow value."
+              },
+              {
+                "name": "transport_epoch_idle",
+                "lsb": 12,
+                "msb": 12,
+                "kind": "normal",
+                "description": "The DDR writer is idle and no telemetry packet is queued for DDR, so a transport command may perform an idle-only operation."
+              },
+              {
+                "name": "source_transition_busy",
+                "lsb": 13,
+                "msb": 13,
+                "kind": "normal",
+                "description": "A source discontinuity, source-adapter reset, or safe-boundary source transition is in progress."
+              },
+              {
+                "name": "reserved_31_14",
+                "lsb": 14,
+                "msb": 31,
+                "kind": "reserved",
+                "description": "Reserved. Shall read as zero unless assigned by a later compatible minor revision."
+              }
+            ]
+          }
+        },
+        {
+          "const": {
+            "name": "THR2_LO",
+            "offset": 16,
+            "offset_hex": "0x010",
+            "width_bits": 32,
+            "access": "W",
+            "owner": "hps_write_shadow",
+            "reset": "0x00000000",
+            "description": "Shadow threshold bits [31:0].",
+            "write_semantics": "write low word of THR2 shadow"
+          }
+        },
+        {
+          "const": {
+            "name": "THR2_HI",
+            "offset": 20,
+            "offset_hex": "0x014",
+            "width_bits": 32,
+            "access": "W",
+            "owner": "hps_write_shadow",
+            "reset": "0x00000000",
+            "description": "Shadow threshold bits [55:32] in bits [23:0]; upper bits [31:24] shall be zero.",
+            "write_semantics": "write high word of THR2 shadow; reject or flag nonzero upper bits",
+            "validity": {
+              "mask_required_zero_hex": "0xFF000000",
+              "valid_payload_mask_hex": "0x00FFFFFF"
+            }
+          }
+        },
+        {
+          "const": {
+            "name": "THR2_COMMIT",
+            "offset": 24,
+            "offset_hex": "0x018",
+            "width_bits": 32,
+            "access": "W1P",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000000",
+            "description": "Writing 1 requests active threshold update at the next frame boundary.",
+            "write_semantics": "write one pulse; active THR2 updates only at safe frame boundary"
+          }
+        },
+        {
+          "const": {
+            "name": "PACKET_ENABLE",
+            "offset": 28,
+            "offset_hex": "0x01C",
+            "width_bits": 32,
+            "access": "R/W",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000000",
+            "description": "Packet-enable bitmask. Spectrum format is selected by SPEC_MODE, not by separate SPEC packet enables.",
+            "fields": [
+              {
+                "name": "WAVE_EN",
+                "lsb": 0,
+                "msb": 0,
+                "kind": "enable",
+                "description": "Enable WAVE telemetry packets.",
+                "reset": 0
+              },
+              {
+                "name": "SPEC_EN",
+                "lsb": 1,
+                "msb": 1,
+                "kind": "enable",
+                "description": "Enable spectrum telemetry. SPEC_MODE selects SPEC64 or SPEC129.",
+                "reset": 0
+              },
+              {
+                "name": "METRICS_EN",
+                "lsb": 2,
+                "msb": 2,
+                "kind": "enable",
+                "description": "Enable METRICS telemetry packets.",
+                "reset": 0
+              },
+              {
+                "name": "STATUS_EN",
+                "lsb": 3,
+                "msb": 3,
+                "kind": "enable",
+                "description": "Enable STATUS telemetry packets.",
+                "reset": 0
+              },
+              {
+                "name": "PEAKS_EN",
+                "lsb": 4,
+                "msb": 4,
+                "kind": "reserved_disabled",
+                "description": "Reserved-disabled in Revision G. Commands setting this bit are rejected unless an extension freezes PEAKS.",
+                "reset": 0
+              },
+              {
+                "name": "DEBUG_EN",
+                "lsb": 5,
+                "msb": 5,
+                "kind": "reserved_disabled",
+                "description": "Reserved-disabled in Revision G. Commands setting this bit are rejected unless an extension freezes DEBUG.",
+                "reset": 0
+              },
+              {
+                "name": "reserved_31_6",
+                "lsb": 6,
+                "msb": 31,
+                "kind": "reserved",
+                "description": "Reserved. Commands setting these bits are rejected."
+              }
+            ]
+          }
+        },
+        {
+          "const": {
+            "name": "WAVE_DECIM",
+            "offset": 32,
+            "offset_hex": "0x020",
+            "width_bits": 32,
+            "access": "R/W",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000001",
+            "description": "Waveform sample decimation factor. Active value is reported as WAVE.stride.",
+            "validity": {
+              "min": 1,
+              "max": 65535
+            }
+          }
+        },
+        {
+          "const": {
+            "name": "SPEC_MODE",
+            "offset": 36,
+            "offset_hex": "0x024",
+            "width_bits": 32,
+            "access": "R/W",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000000",
+            "description": "Spectrum selector: 0 disabled, 1 SPEC64, 2 SPEC129. Other values are illegal.",
+            "validity": {
+              "allowed": [
+                0,
+                1,
+                2
+              ]
+            }
+          }
+        },
+        {
+          "const": {
+            "name": "SPEC_SHIFT",
+            "offset": 40,
+            "offset_hex": "0x028",
+            "width_bits": 32,
+            "access": "R/W",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000000",
+            "description": "Unsigned right shift before clamping mag2 to uint16_t spectrum display values.",
+            "validity": {
+              "min": 0,
+              "max": 55
+            }
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_MODE_SHADOW",
+            "offset": 44,
+            "offset_hex": "0x02C",
+            "width_bits": 32,
+            "access": "W",
+            "owner": "hps_write_shadow",
+            "reset": "0x00000000",
+            "description": "Shadow source mode: 0 BRAM replay, 1 ADC live, 2 audio wrapper, 3 diagnostic source.",
+            "validity": {
+              "allowed": [
+                0,
+                1,
+                2,
+                3
+              ]
+            }
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_MODE_COMMIT",
+            "offset": 48,
+            "offset_hex": "0x030",
+            "width_bits": 32,
+            "access": "W1P",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000000",
+            "description": "Writing 1 requests atomic source-mode update under the source-mode change rule.",
+            "write_semantics": "write one pulse; FPGA applies only at safe sample/frame boundary and resets affected state"
+          }
+        },
+        {
+          "const": {
+            "name": "RING_BASE_LO",
+            "offset": 52,
+            "offset_hex": "0x034",
+            "width_bits": 32,
+            "access": "W",
+            "owner": "hps_write_shadow",
+            "reset": "0x00000000",
+            "description": "FPGA-visible DDR ring base address bits [31:0]."
+          }
+        },
+        {
+          "const": {
+            "name": "RING_BASE_HI",
+            "offset": 56,
+            "offset_hex": "0x038",
+            "width_bits": 32,
+            "access": "W",
+            "owner": "hps_write_shadow",
+            "reset": "0x00000000",
+            "description": "FPGA-visible DDR ring base address bits [63:32], if used by the bridge."
+          }
+        },
+        {
+          "const": {
+            "name": "RING_SIZE_BYTES",
+            "offset": 60,
+            "offset_hex": "0x03C",
+            "width_bits": 32,
+            "access": "W",
+            "owner": "hps_write_shadow",
+            "reset": "0x00000000",
+            "description": "Ring size in bytes. Must be power of two, multiple of 64, and at least 1 MiB.",
+            "validity": {
+              "power_of_two": true,
+              "multiple_of": 64,
+              "min": 1048576
+            }
+          }
+        },
+        {
+          "const": {
+            "name": "RING_CONFIG_COMMIT",
+            "offset": 64,
+            "offset_hex": "0x040",
+            "width_bits": 32,
+            "access": "W1P",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000000",
+            "description": "Latches ring base/size into the writer when telemetry is disabled. Resets producer pointer W to zero on accepted commit.",
+            "write_semantics": "write one pulse; accepted only while telemetry disabled"
+          }
+        },
+        {
+          "const": {
+            "name": "RING_WR_SNAPSHOT",
+            "offset": 68,
+            "offset_hex": "0x044",
+            "width_bits": 32,
+            "access": "W1P",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000000",
+            "description": "HPS writes 1 to request an atomic snapshot of the FPGA-owned producer pointer."
+          }
+        },
+        {
+          "const": {
+            "name": "RING_WR_LO_SNAP",
+            "offset": 72,
+            "offset_hex": "0x048",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_snapshot",
+            "reset": "0x00000000",
+            "description": "Latched producer pointer bits [31:0]. Stable until next RING_WR_SNAPSHOT."
+          }
+        },
+        {
+          "const": {
+            "name": "RING_WR_HI_SNAP",
+            "offset": 76,
+            "offset_hex": "0x04C",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_snapshot",
+            "reset": "0x00000000",
+            "description": "Latched producer pointer bits [63:32]. Stable until next RING_WR_SNAPSHOT."
+          }
+        },
+        {
+          "const": {
+            "name": "RING_RD_LO_SHADOW",
+            "offset": 80,
+            "offset_hex": "0x050",
+            "width_bits": 32,
+            "access": "W",
+            "owner": "hps_write_shadow",
+            "reset": "0x00000000",
+            "description": "HPS-owned consumer pointer shadow bits [31:0]."
+          }
+        },
+        {
+          "const": {
+            "name": "RING_RD_HI_SHADOW",
+            "offset": 84,
+            "offset_hex": "0x054",
+            "width_bits": 32,
+            "access": "W",
+            "owner": "hps_write_shadow",
+            "reset": "0x00000000",
+            "description": "HPS-owned consumer pointer shadow bits [63:32]."
+          }
+        },
+        {
+          "const": {
+            "name": "RING_RD_COMMIT",
+            "offset": 88,
+            "offset_hex": "0x058",
+            "width_bits": 32,
+            "access": "W1P",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000000",
+            "description": "Writing 1 makes the shadow consumer pointer visible to the FPGA writer through a CDC-safe commit.",
+            "write_semantics": "write one pulse; do not consume independent low/high updates"
+          }
+        },
+        {
+          "const": {
+            "name": "DMA_DROP_COUNT",
+            "offset": 92,
+            "offset_hex": "0x05C",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_counter",
+            "reset": "0x00000000",
+            "description": "Number of telemetry records dropped by the FPGA DDR writer after writer scheduling/free-space acceptance stage."
+          }
+        },
+        {
+          "const": {
+            "name": "DMA_PACKET_COUNT",
+            "offset": 96,
+            "offset_hex": "0x060",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_counter",
+            "reset": "0x00000000",
+            "description": "Number of normal telemetry records committed to DDR."
+          }
+        },
+        {
+          "const": {
+            "name": "DMA_STATUS",
+            "offset": 100,
+            "offset_hex": "0x064",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "DDR writer status bits.",
+            "fields": [
+              {
+                "name": "writer_idle",
+                "lsb": 0,
+                "msb": 0,
+                "kind": "normal",
+                "description": "DDR writer FSM is idle."
+              },
+              {
+                "name": "writer_busy",
+                "lsb": 1,
+                "msb": 1,
+                "kind": "normal",
+                "description": "DDR writer FSM is processing a record or waiting for write completion."
+              },
+              {
+                "name": "no_space",
+                "lsb": 2,
+                "msb": 2,
+                "kind": "normal",
+                "description": "Last attempted record did not fit under the ring free-space rule."
+              },
+              {
+                "name": "malformed_config",
+                "lsb": 3,
+                "msb": 3,
+                "kind": "normal",
+                "description": "Base, size, or alignment configuration is invalid."
+              },
+              {
+                "name": "ring_full",
+                "lsb": 4,
+                "msb": 4,
+                "kind": "normal",
+                "description": "Ring occupancy has reached the writer full threshold."
+              },
+              {
+                "name": "packet_fifo_full",
+                "lsb": 5,
+                "msb": 5,
+                "kind": "normal",
+                "description": "Packet FIFO full condition is active or was recently observed."
+              },
+              {
+                "name": "ddr_wait",
+                "lsb": 6,
+                "msb": 6,
+                "kind": "normal",
+                "description": "Writer is blocked by DDR/Avalon waitrequest or equivalent bus backpressure."
+              },
+              {
+                "name": "drop_active",
+                "lsb": 7,
+                "msb": 7,
+                "kind": "normal",
+                "description": "A record is currently being dropped or was dropped in the current service interval."
+              },
+              {
+                "name": "reserved_31_8",
+                "lsb": 8,
+                "msb": 31,
+                "kind": "reserved",
+                "description": "Reserved. Shall read as zero unless assigned by a later revision."
+              }
+            ]
+          }
+        },
+        {
+          "const": {
+            "name": "CORE_COUNT_SNAPSHOT",
+            "offset": 104,
+            "offset_hex": "0x068",
+            "width_bits": 32,
+            "access": "W1P",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000000",
+            "description": "HPS writes 1 to latch coherent sample and frame counters into snapshot registers."
+          }
+        },
+        {
+          "const": {
+            "name": "FRAME_COUNT_SNAP_LO",
+            "offset": 108,
+            "offset_hex": "0x06C",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_snapshot",
+            "reset": "0x00000000",
+            "description": "Latched STFT frame count bits [31:0]."
+          }
+        },
+        {
+          "const": {
+            "name": "FRAME_COUNT_SNAP_HI",
+            "offset": 112,
+            "offset_hex": "0x070",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_snapshot",
+            "reset": "0x00000000",
+            "description": "Latched STFT frame count bits [63:32]."
+          }
+        },
+        {
+          "const": {
+            "name": "SAMPLE_COUNT_SNAP_LO",
+            "offset": 116,
+            "offset_hex": "0x074",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_snapshot",
+            "reset": "0x00000000",
+            "description": "Latched core sample count bits [31:0]."
+          }
+        },
+        {
+          "const": {
+            "name": "SAMPLE_COUNT_SNAP_HI",
+            "offset": 120,
+            "offset_hex": "0x078",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_snapshot",
+            "reset": "0x00000000",
+            "description": "Latched core sample count bits [63:32]."
+          }
+        },
+        {
+          "const": {
+            "name": "OVERFLOW_FLAGS",
+            "offset": 124,
+            "offset_hex": "0x07C",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_sticky_status",
+            "reset": "0x00000000",
+            "description": "Sticky overflow/error/status flags.",
+            "fields": [
+              {
+                "name": "arithmetic_overflow",
+                "lsb": 0,
+                "msb": 0,
+                "kind": "sticky_w1c",
+                "description": "Core arithmetic overflow or unexpected internal range violation observed."
+              },
+              {
+                "name": "ola_overflow",
+                "lsb": 1,
+                "msb": 1,
+                "kind": "sticky_w1c",
+                "description": "OLA accumulator overflow or saturation-risk condition observed."
+              },
+              {
+                "name": "ring_overflow",
+                "lsb": 2,
+                "msb": 2,
+                "kind": "sticky_w1c",
+                "description": "Ring occupancy rule was violated or would have been violated without dropping."
+              },
+              {
+                "name": "packet_fifo_overflow",
+                "lsb": 3,
+                "msb": 3,
+                "kind": "sticky_w1c",
+                "description": "Packet FIFO overflow/drop condition occurred."
+              },
+              {
+                "name": "malformed_packet",
+                "lsb": 4,
+                "msb": 4,
+                "kind": "sticky_w1c",
+                "description": "Malformed DDR record or packet header observed."
+              },
+              {
+                "name": "illegal_command",
+                "lsb": 5,
+                "msb": 5,
+                "kind": "sticky_w1c",
+                "description": "FPGA/CSR-side illegal command or illegal CSR safety request observed."
+              },
+              {
+                "name": "cdc_error",
+                "lsb": 6,
+                "msb": 6,
+                "kind": "sticky_w1c",
+                "description": "CDC protocol violation or invalid snapshot/commit condition detected."
+              },
+              {
+                "name": "threshold_range_error",
+                "lsb": 7,
+                "msb": 7,
+                "kind": "sticky_w1c",
+                "description": "Requested THR2 outside legal 56-bit baseline range."
+              },
+              {
+                "name": "source_mode_error",
+                "lsb": 8,
+                "msb": 8,
+                "kind": "sticky_w1c",
+                "description": "Illegal or unsafe source-mode transition requested."
+              },
+              {
+                "name": "oversized_record",
+                "lsb": 9,
+                "msb": 9,
+                "kind": "sticky_w1c",
+                "description": "Record exceeded Revision G UDP size bound or packet-type maximum."
+              },
+              {
+                "name": "reserved_31_10",
+                "lsb": 10,
+                "msb": 31,
+                "kind": "reserved",
+                "description": "Reserved. Reads zero. Writes to CLEAR_STICKY_FLAGS reserved bits have no effect."
+              }
+            ]
+          }
+        },
+        {
+          "const": {
+            "name": "CLEAR_STICKY_FLAGS",
+            "offset": 128,
+            "offset_hex": "0x080",
+            "width_bits": 32,
+            "access": "W1C",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000000",
+            "description": "Write-one-to-clear mask using the same bit map as OVERFLOW_FLAGS. Reserved-bit writes have no effect.",
+            "fields": [
+              {
+                "name": "arithmetic_overflow",
+                "lsb": 0,
+                "msb": 0,
+                "kind": "sticky_w1c",
+                "description": "Core arithmetic overflow or unexpected internal range violation observed."
+              },
+              {
+                "name": "ola_overflow",
+                "lsb": 1,
+                "msb": 1,
+                "kind": "sticky_w1c",
+                "description": "OLA accumulator overflow or saturation-risk condition observed."
+              },
+              {
+                "name": "ring_overflow",
+                "lsb": 2,
+                "msb": 2,
+                "kind": "sticky_w1c",
+                "description": "Ring occupancy rule was violated or would have been violated without dropping."
+              },
+              {
+                "name": "packet_fifo_overflow",
+                "lsb": 3,
+                "msb": 3,
+                "kind": "sticky_w1c",
+                "description": "Packet FIFO overflow/drop condition occurred."
+              },
+              {
+                "name": "malformed_packet",
+                "lsb": 4,
+                "msb": 4,
+                "kind": "sticky_w1c",
+                "description": "Malformed DDR record or packet header observed."
+              },
+              {
+                "name": "illegal_command",
+                "lsb": 5,
+                "msb": 5,
+                "kind": "sticky_w1c",
+                "description": "FPGA/CSR-side illegal command or illegal CSR safety request observed."
+              },
+              {
+                "name": "cdc_error",
+                "lsb": 6,
+                "msb": 6,
+                "kind": "sticky_w1c",
+                "description": "CDC protocol violation or invalid snapshot/commit condition detected."
+              },
+              {
+                "name": "threshold_range_error",
+                "lsb": 7,
+                "msb": 7,
+                "kind": "sticky_w1c",
+                "description": "Requested THR2 outside legal 56-bit baseline range."
+              },
+              {
+                "name": "source_mode_error",
+                "lsb": 8,
+                "msb": 8,
+                "kind": "sticky_w1c",
+                "description": "Illegal or unsafe source-mode transition requested."
+              },
+              {
+                "name": "oversized_record",
+                "lsb": 9,
+                "msb": 9,
+                "kind": "sticky_w1c",
+                "description": "Record exceeded Revision G UDP size bound or packet-type maximum."
+              },
+              {
+                "name": "reserved_31_10",
+                "lsb": 10,
+                "msb": 31,
+                "kind": "reserved",
+                "description": "Reserved. Reads zero. Writes to CLEAR_STICKY_FLAGS reserved bits have no effect."
+              }
+            ],
+            "write_semantics": "write 1 clears matching sticky flag bit; write 0 leaves bit unchanged"
+          }
+        },
+        {
+          "const": {
+            "name": "CSR_COMMAND_REJECT_COUNT",
+            "offset": 132,
+            "offset_hex": "0x084",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_counter",
+            "reset": "0x00000000",
+            "description": "Number of command or state-change requests rejected by FPGA/CSR safety logic after HPS validation."
+          }
+        },
+        {
+          "const": {
+            "name": "PACKET_FIFO_DROP_COUNT",
+            "offset": 136,
+            "offset_hex": "0x088",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_counter",
+            "reset": "0x00000000",
+            "description": "Pre-writer telemetry tap or packet-FIFO drop count. Distinct from DMA_DROP_COUNT."
+          }
+        },
+        {
+          "const": {
+            "name": "COUNTER_CLEAR",
+            "offset": 140,
+            "offset_hex": "0x08C",
+            "width_bits": 32,
+            "access": "W1P",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000000",
+            "description": "Step-14 write-one-pulse control for clearing FPGA-owned transport diagnostic counters without resetting active transport state.",
+            "fields": [
+              {
+                "name": "transport_counters",
+                "lsb": 0,
+                "msb": 0,
+                "kind": "w1p",
+                "description": "Clear DMA_DROP_COUNT, DMA_PACKET_COUNT, CSR_COMMAND_REJECT_COUNT, and PACKET_FIFO_DROP_COUNT. Preserve producer W, consumer Rd, normal telemetry sequence state, core sample/frame counters, ring configuration, control levels, sticky flags, and replay state.",
+                "reset": 0,
+                "write_semantics": "write 1 emits one clear pulse; write 0 has no effect"
+              },
+              {
+                "name": "reserved_31_1",
+                "lsb": 1,
+                "msb": 31,
+                "kind": "reserved",
+                "description": "Reserved. Software shall write zero."
+              }
+            ],
+            "write_semantics": "Only bit 0 is legal. Counter clear is diagnostic-only and shall not reset or reconfigure the transport."
+          }
+        },
+        {
+          "const": {
+            "name": "REPLAY_CONTROL",
+            "offset": 144,
+            "offset_hex": "0x090",
+            "width_bits": 32,
+            "access": "W1P",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000000",
+            "description": "Step-14 replay command pulses routed through the existing BRAM-replay request, admission, and retained-result authority.",
+            "fields": [
+              {
+                "name": "start",
+                "lsb": 0,
+                "msb": 0,
+                "kind": "w1p",
+                "description": "Issue one raw BRAM-replay start request. The request shall pass through the existing Step-11 admission logic and shall never bypass readiness checks.",
+                "reset": 0,
+                "write_semantics": "write 1 emits one raw start-request pulse; acceptance or rejection is retained in REPLAY_STATUS"
+              },
+              {
+                "name": "rearm",
+                "lsb": 1,
+                "msb": 1,
+                "kind": "w1p",
+                "description": "Rearm a quiescent failed replay epoch and clear its retained replay result state while preserving committed transport W, Rd, packet sequence, ring configuration, and transport counters.",
+                "reset": 0,
+                "write_semantics": "write 1 emits one replay-only rearm pulse; software waits for start_ready before a later start write"
+              },
+              {
+                "name": "reserved_31_2",
+                "lsb": 2,
+                "msb": 31,
+                "kind": "reserved",
+                "description": "Reserved. Software shall write zero."
+              }
+            ],
+            "write_semantics": "START and REARM are separate write-one-pulse operations and shall not be asserted in the same CSR write."
+          }
+        },
+        {
+          "const": {
+            "name": "REPLAY_STATUS",
+            "offset": 148,
+            "offset_hex": "0x094",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Live and retained BRAM-replay command/result state. HPS snapshots result_epoch before START and waits for a modulo-2^16 epoch change with exactly one retained terminal result.",
+            "fields": [
+              {
+                "name": "pending",
+                "lsb": 0,
+                "msb": 0,
+                "kind": "normal",
+                "description": "A raw START request has been captured and its admission decision has not yet been retained."
+              },
+              {
+                "name": "last_accept",
+                "lsb": 1,
+                "msb": 1,
+                "kind": "normal",
+                "description": "Retained terminal result for the most recently decided START request was accepted. Mutually exclusive with last_reject."
+              },
+              {
+                "name": "last_reject",
+                "lsb": 2,
+                "msb": 2,
+                "kind": "normal",
+                "description": "Retained terminal result for the most recently decided START request was rejected by replay admission. Mutually exclusive with last_accept."
+              },
+              {
+                "name": "start_ready",
+                "lsb": 3,
+                "msb": 3,
+                "kind": "normal",
+                "description": "Current Step-11 replay admission prerequisites are satisfied for a new raw START request."
+              },
+              {
+                "name": "replay_active",
+                "lsb": 4,
+                "msb": 4,
+                "kind": "normal",
+                "description": "The BRAM replay source is actively presenting its input or required zero-tail tokens."
+              },
+              {
+                "name": "replay_path_busy",
+                "lsb": 5,
+                "msb": 5,
+                "kind": "normal",
+                "description": "The source-through-core replay path epoch is in progress."
+              },
+              {
+                "name": "replay_path_done",
+                "lsb": 6,
+                "msb": 6,
+                "kind": "normal",
+                "description": "Retained Step-11 source-through-core path completion evidence for the current or most recent accepted epoch."
+              },
+              {
+                "name": "e2e_busy",
+                "lsb": 7,
+                "msb": 7,
+                "kind": "normal",
+                "description": "The stronger replay-through-telemetry-to-DDR completion epoch is in progress."
+              },
+              {
+                "name": "e2e_done",
+                "lsb": 8,
+                "msb": 8,
+                "kind": "normal",
+                "description": "Retained Step-11 end-to-end replay completion evidence for the current or most recent accepted epoch."
+              },
+              {
+                "name": "error",
+                "lsb": 9,
+                "msb": 9,
+                "kind": "normal",
+                "description": "A replay source, core-path, admission, telemetry, or end-to-end error is retained for the current or most recent replay epoch."
+              },
+              {
+                "name": "rearm_required",
+                "lsb": 10,
+                "msb": 10,
+                "kind": "normal",
+                "description": "A failed accepted replay epoch is latched and blocks restart until REPLAY_CONTROL.rearm or reset succeeds."
+              },
+              {
+                "name": "reserved_15_11",
+                "lsb": 11,
+                "msb": 15,
+                "kind": "reserved",
+                "description": "Reserved. Shall read as zero."
+              },
+              {
+                "name": "result_epoch",
+                "lsb": 16,
+                "msb": 31,
+                "kind": "normal",
+                "description": "Modulo-2^16 terminal START-decision epoch. Increment exactly once when a captured START becomes last_accept or last_reject; do not increment on REARM."
+              }
+            ]
+          }
+        }
+      ],
+      "items": {
+        "$ref": "#/$defs/csr_register"
+      },
+      "minItems": 38,
+      "maxItems": 38,
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "ID"
+              },
+              "offset": {
+                "const": 0
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "VERSION"
+              },
+              "offset": {
+                "const": 4
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "CONTROL"
+              },
+              "offset": {
+                "const": 8
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/step14_status_register"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "THR2_LO"
+              },
+              "offset": {
+                "const": 16
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "THR2_HI"
+              },
+              "offset": {
+                "const": 20
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "THR2_COMMIT"
+              },
+              "offset": {
+                "const": 24
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "PACKET_ENABLE"
+              },
+              "offset": {
+                "const": 28
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "WAVE_DECIM"
+              },
+              "offset": {
+                "const": 32
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "SPEC_MODE"
+              },
+              "offset": {
+                "const": 36
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "SPEC_SHIFT"
+              },
+              "offset": {
+                "const": 40
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "SOURCE_MODE_SHADOW"
+              },
+              "offset": {
+                "const": 44
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "SOURCE_MODE_COMMIT"
+              },
+              "offset": {
+                "const": 48
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "RING_BASE_LO"
+              },
+              "offset": {
+                "const": 52
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "RING_BASE_HI"
+              },
+              "offset": {
+                "const": 56
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "RING_SIZE_BYTES"
+              },
+              "offset": {
+                "const": 60
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "RING_CONFIG_COMMIT"
+              },
+              "offset": {
+                "const": 64
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "RING_WR_SNAPSHOT"
+              },
+              "offset": {
+                "const": 68
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "RING_WR_LO_SNAP"
+              },
+              "offset": {
+                "const": 72
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "RING_WR_HI_SNAP"
+              },
+              "offset": {
+                "const": 76
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "RING_RD_LO_SHADOW"
+              },
+              "offset": {
+                "const": 80
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "RING_RD_HI_SHADOW"
+              },
+              "offset": {
+                "const": 84
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "RING_RD_COMMIT"
+              },
+              "offset": {
+                "const": 88
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "DMA_DROP_COUNT"
+              },
+              "offset": {
+                "const": 92
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "DMA_PACKET_COUNT"
+              },
+              "offset": {
+                "const": 96
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "DMA_STATUS"
+              },
+              "offset": {
+                "const": 100
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "CORE_COUNT_SNAPSHOT"
+              },
+              "offset": {
+                "const": 104
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "FRAME_COUNT_SNAP_LO"
+              },
+              "offset": {
+                "const": 108
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "FRAME_COUNT_SNAP_HI"
+              },
+              "offset": {
+                "const": 112
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "SAMPLE_COUNT_SNAP_LO"
+              },
+              "offset": {
+                "const": 116
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "SAMPLE_COUNT_SNAP_HI"
+              },
+              "offset": {
+                "const": 120
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "OVERFLOW_FLAGS"
+              },
+              "offset": {
+                "const": 124
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "CLEAR_STICKY_FLAGS"
+              },
+              "offset": {
+                "const": 128
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "CSR_COMMAND_REJECT_COUNT"
+              },
+              "offset": {
+                "const": 132
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name",
+              "offset"
+            ],
+            "properties": {
+              "name": {
+                "const": "PACKET_FIFO_DROP_COUNT"
+              },
+              "offset": {
+                "const": 136
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/step14_counter_clear_register"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/step14_replay_control_register"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/step14_replay_status_register"
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    },
+    "multiword_transactions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/multiword_transaction"
+      },
+      "minItems": 5,
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "THR2"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "RING_BASE_AND_SIZE"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "RING_WR_POINTER"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "RING_RD_POINTER"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "CORE_COUNTERS"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    },
+    "validation_rules": {
+      "$ref": "#/$defs/string_list"
+    }
+  },
+  "$defs": {
+    "non_empty_string": {
+      "type": "string",
+      "minLength": 1
+    },
+    "path_string": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_./+:-]+$"
+    },
+    "hex_string": {
+      "type": "string",
+      "pattern": "^0x[0-9A-Fa-f]+$"
+    },
+    "decimal_string": {
+      "type": "string",
+      "pattern": "^[0-9]+$"
+    },
+    "source_spec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "active_pdf",
+        "clean_repo_name_if_renamed",
+        "algorithm_revision",
+        "transport_revision",
+        "repository_revision"
+      ],
+      "properties": {
+        "active_pdf": {
+          "$ref": "#/$defs/path_string"
+        },
+        "clean_repo_name_if_renamed": {
+          "$ref": "#/$defs/path_string"
+        },
+        "algorithm_revision": {
+          "const": "Core Revision J"
+        },
+        "transport_revision": {
+          "const": "Telemetry Revision G"
+        },
+        "repository_revision": {
+          "const": "Architecture Revision D"
+        }
+      }
+    },
+    "edit_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "this_file_is_hand_written",
+        "generated_outputs_must_not_be_hand_edited",
+        "generator",
+        "drift_check",
+        "line_endings",
+        "json_format"
+      ],
+      "properties": {
+        "this_file_is_hand_written": {
+          "const": true
+        },
+        "generated_outputs_must_not_be_hand_edited": {
+          "const": true
+        },
+        "generator": {
+          "const": "scripts/gen_headers.py"
+        },
+        "drift_check": {
+          "const": "make check-generated"
+        },
+        "line_endings": {
+          "const": "LF"
+        },
+        "json_format": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "string_list": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/non_empty_string"
+      },
+      "minItems": 1
+    },
+    "path_list": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/path_string"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "generated_outputs_common": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rtl_sv": {
+          "$ref": "#/$defs/path_list"
+        },
+        "hps_c": {
+          "$ref": "#/$defs/path_list"
+        },
+        "pc_python": {
+          "$ref": "#/$defs/path_list"
+        },
+        "reference_python": {
+          "$ref": "#/$defs/path_list"
+        }
+      },
+      "minProperties": 1
+    },
+    "legacy_register_freeze": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "first_offset",
+        "last_offset",
+        "first_offset_hex",
+        "last_offset_hex",
+        "register_count",
+        "canonicalization",
+        "sha256"
+      ],
+      "properties": {
+        "first_offset": {
+          "const": 0
+        },
+        "last_offset": {
+          "const": 136
+        },
+        "first_offset_hex": {
+          "const": "0x000"
+        },
+        "last_offset_hex": {
+          "const": "0x088"
+        },
+        "register_count": {
+          "const": 35
+        },
+        "canonicalization": {
+          "const": "json_sorted_keys_compact_utf8_full_register_objects_sorted_by_numeric_offset"
+        },
+        "sha256": {
+          "const": "1169ac8154dfd510598efd17bacfc356cd694d86da791f083b9ec290f1ac424d"
+        }
+      }
+    },
+    "valid_range": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "allowed": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "power_of_two": {
+          "type": "boolean"
+        },
+        "multiple_of": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "mask_required_zero_hex": {
+          "$ref": "#/$defs/hex_string"
+        },
+        "valid_payload_mask_hex": {
+          "$ref": "#/$defs/hex_string"
+        }
+      },
+      "minProperties": 1
+    },
+    "csr_access": {
+      "enum": [
+        "R",
+        "W",
+        "R/W",
+        "W1P",
+        "W1C"
+      ]
+    },
+    "csr_owner": {
+      "enum": [
+        "fpga_constant",
+        "fpga_counter",
+        "fpga_snapshot",
+        "fpga_status",
+        "fpga_sticky_status",
+        "hps_write_fpga_decode",
+        "hps_write_shadow"
+      ]
+    },
+    "csr_field_kind": {
+      "enum": [
+        "enable",
+        "level",
+        "normal",
+        "reserved",
+        "reserved_disabled",
+        "reserved_write_zero_read_zero",
+        "sticky_w1c",
+        "w1p"
+      ]
+    },
+    "csr_field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "lsb",
+        "msb",
+        "kind",
+        "description"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+        },
+        "lsb": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 31
+        },
+        "msb": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 31
+        },
+        "kind": {
+          "$ref": "#/$defs/csr_field_kind"
+        },
+        "description": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "reset": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "write_semantics": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "csr_register": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "offset",
+        "offset_hex",
+        "width_bits",
+        "access",
+        "owner",
+        "reset",
+        "description"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4092,
+          "multipleOf": 4
+        },
+        "offset_hex": {
+          "type": "string",
+          "pattern": "^0x[0-9A-Fa-f]{3}$"
+        },
+        "width_bits": {
+          "const": 32
+        },
+        "access": {
+          "$ref": "#/$defs/csr_access"
+        },
+        "owner": {
+          "$ref": "#/$defs/csr_owner"
+        },
+        "reset": {
+          "$ref": "#/$defs/hex_string"
+        },
+        "description": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "write_semantics": {
+          "$ref": "#/$defs/non_empty_string"
+        },
+        "validity": {
+          "$ref": "#/$defs/valid_range"
+        },
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/csr_field"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "step14_status_register": {
+      "type": "object",
+      "required": [
+        "name",
+        "offset",
+        "offset_hex",
+        "access",
+        "owner",
+        "reset",
+        "fields"
+      ],
+      "properties": {
+        "name": {
+          "const": "STATUS"
+        },
+        "offset": {
+          "const": 12
+        },
+        "offset_hex": {
+          "const": "0x00C"
+        },
+        "access": {
+          "const": "R"
+        },
+        "owner": {
+          "const": "fpga_status"
+        },
+        "reset": {
+          "const": "0x00000000"
+        },
+        "fields": {
+          "type": "array",
+          "minItems": 14,
+          "maxItems": 14,
+          "allOf": [
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "source_commit_pending"},
+                  "lsb": {"const": 9},
+                  "msb": {"const": 9},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "actual_source_mode"},
+                  "lsb": {"const": 10},
+                  "msb": {"const": 11},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "transport_epoch_idle"},
+                  "lsb": {"const": 12},
+                  "msb": {"const": 12},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "source_transition_busy"},
+                  "lsb": {"const": 13},
+                  "msb": {"const": 13},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "reserved_31_14"},
+                  "lsb": {"const": 14},
+                  "msb": {"const": 31},
+                  "kind": {"const": "reserved"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        }
+      }
+    },
+    "step14_counter_clear_register": {
+      "type": "object",
+      "required": [
+        "name",
+        "offset",
+        "offset_hex",
+        "access",
+        "owner",
+        "reset",
+        "fields",
+        "write_semantics"
+      ],
+      "properties": {
+        "name": {"const": "COUNTER_CLEAR"},
+        "offset": {"const": 140},
+        "offset_hex": {"const": "0x08C"},
+        "access": {"const": "W1P"},
+        "owner": {"const": "hps_write_fpga_decode"},
+        "reset": {"const": "0x00000000"},
+        "fields": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "allOf": [
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind", "reset", "write_semantics"],
+                "properties": {
+                  "name": {"const": "transport_counters"},
+                  "lsb": {"const": 0},
+                  "msb": {"const": 0},
+                  "kind": {"const": "w1p"},
+                  "reset": {"const": 0}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "reserved_31_1"},
+                  "lsb": {"const": 1},
+                  "msb": {"const": 31},
+                  "kind": {"const": "reserved"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        }
+      }
+    },
+    "step14_replay_control_register": {
+      "type": "object",
+      "required": [
+        "name",
+        "offset",
+        "offset_hex",
+        "access",
+        "owner",
+        "reset",
+        "fields",
+        "write_semantics"
+      ],
+      "properties": {
+        "name": {"const": "REPLAY_CONTROL"},
+        "offset": {"const": 144},
+        "offset_hex": {"const": "0x090"},
+        "access": {"const": "W1P"},
+        "owner": {"const": "hps_write_fpga_decode"},
+        "reset": {"const": "0x00000000"},
+        "fields": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "allOf": [
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind", "reset", "write_semantics"],
+                "properties": {
+                  "name": {"const": "start"},
+                  "lsb": {"const": 0},
+                  "msb": {"const": 0},
+                  "kind": {"const": "w1p"},
+                  "reset": {"const": 0}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind", "reset", "write_semantics"],
+                "properties": {
+                  "name": {"const": "rearm"},
+                  "lsb": {"const": 1},
+                  "msb": {"const": 1},
+                  "kind": {"const": "w1p"},
+                  "reset": {"const": 0}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "reserved_31_2"},
+                  "lsb": {"const": 2},
+                  "msb": {"const": 31},
+                  "kind": {"const": "reserved"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        }
+      }
+    },
+    "step14_replay_status_register": {
+      "type": "object",
+      "required": [
+        "name",
+        "offset",
+        "offset_hex",
+        "access",
+        "owner",
+        "reset",
+        "fields"
+      ],
+      "properties": {
+        "name": {"const": "REPLAY_STATUS"},
+        "offset": {"const": 148},
+        "offset_hex": {"const": "0x094"},
+        "access": {"const": "R"},
+        "owner": {"const": "fpga_status"},
+        "reset": {"const": "0x00000000"},
+        "fields": {
+          "type": "array",
+          "minItems": 13,
+          "maxItems": 13,
+          "allOf": [
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "pending"},
+                  "lsb": {"const": 0},
+                  "msb": {"const": 0},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "last_accept"},
+                  "lsb": {"const": 1},
+                  "msb": {"const": 1},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "last_reject"},
+                  "lsb": {"const": 2},
+                  "msb": {"const": 2},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "start_ready"},
+                  "lsb": {"const": 3},
+                  "msb": {"const": 3},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "replay_active"},
+                  "lsb": {"const": 4},
+                  "msb": {"const": 4},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "replay_path_busy"},
+                  "lsb": {"const": 5},
+                  "msb": {"const": 5},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "replay_path_done"},
+                  "lsb": {"const": 6},
+                  "msb": {"const": 6},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "e2e_busy"},
+                  "lsb": {"const": 7},
+                  "msb": {"const": 7},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "e2e_done"},
+                  "lsb": {"const": 8},
+                  "msb": {"const": 8},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "error"},
+                  "lsb": {"const": 9},
+                  "msb": {"const": 9},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "rearm_required"},
+                  "lsb": {"const": 10},
+                  "msb": {"const": 10},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "reserved_15_11"},
+                  "lsb": {"const": 11},
+                  "msb": {"const": 15},
+                  "kind": {"const": "reserved"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": ["name", "lsb", "msb", "kind"],
+                "properties": {
+                  "name": {"const": "result_epoch"},
+                  "lsb": {"const": 16},
+                  "msb": {"const": 31},
+                  "kind": {"const": "normal"}
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        }
+      }
+    },
+    "csr_enum_value": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "value",
+        "description"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "value": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 65535
+        },
+        "description": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    },
+    "csr_enums": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_mode",
+        "spec_mode"
+      ],
+      "properties": {
+        "source_mode": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/csr_enum_value"
+          },
+          "minItems": 4,
+          "allOf": [
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "BRAM_REPLAY"
+                  },
+                  "value": {
+                    "const": 0
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "ADC_LIVE"
+                  },
+                  "value": {
+                    "const": 1
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "AUDIO_WRAPPER"
+                  },
+                  "value": {
+                    "const": 2
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "DIAGNOSTIC"
+                  },
+                  "value": {
+                    "const": 3
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        },
+        "spec_mode": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/csr_enum_value"
+          },
+          "minItems": 3,
+          "allOf": [
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "SPEC_DISABLED"
+                  },
+                  "value": {
+                    "const": 0
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "SPEC64"
+                  },
+                  "value": {
+                    "const": 1
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "required": [
+                  "name",
+                  "value"
+                ],
+                "properties": {
+                  "name": {
+                    "const": "SPEC129"
+                  },
+                  "value": {
+                    "const": 2
+                  }
+                }
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        }
+      }
+    },
+    "multiword_transaction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "direction",
+        "sequence",
+        "apply_rule"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "bits": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 128
+        },
+        "direction": {
+          "enum": [
+            "HPS_to_FPGA",
+            "FPGA_to_HPS"
+          ]
+        },
+        "sequence": {
+          "$ref": "#/$defs/string_list"
+        },
+        "apply_rule": {
+          "$ref": "#/$defs/non_empty_string"
+        }
+      }
+    }
+  },
+  "x-trecap-semantic-checks": [
+    "register offsets are sorted, unique, and 32-bit aligned",
+    "field lsb shall be less than or equal to msb",
+    "fields within one register shall not overlap except documented reserved ranges",
+    "offset_hex shall match offset",
+    "complete legacy register objects at offsets 0x000 through 0x088 shall match the executable semantic SHA-256 snapshot",
+    "VERSION.packed_hex shall equal (major << 16) | minor",
+    "reserved and reserved-disabled fields shall not be emitted as writable enables",
+    "multiword controls shall be emitted as snapshot or shadow/commit helpers, not live low/high transfers"
+  ]
+}

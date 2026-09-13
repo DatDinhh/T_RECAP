@@ -1,0 +1,89 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trecap-dashboard"
+version = "0.1.0"
+description = "PC-side packet parser and dashboard tooling for T-RECAP Phase 2 telemetry."
+readme = { text = "PC-side packet parser and dashboard tooling for T-RECAP Phase 2 telemetry.", content-type = "text/markdown" }
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "T-RECAP Phase 2 Team" }]
+keywords = ["fpga", "telemetry", "udp", "dashboard", "de1-soc"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
+  "Topic :: System :: Hardware",
+]
+dependencies = []
+
+[project.optional-dependencies]
+gui = [
+  "matplotlib>=3.8",
+  "numpy>=1.24",
+]
+dev = [
+  "black>=24.0",
+  "mypy>=1.8",
+  "pytest>=8.0",
+  "ruff>=0.5",
+]
+
+[tool.setuptools]
+package-dir = { "" = "." }
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["trecap_dashboard*", "generated*"]
+namespaces = true
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.ruff_cache
+  | build
+  | dist
+  | runs
+  | generated
+)/
+'''
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+exclude = [
+  "generated",
+  "runs",
+  "build",
+  "dist",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = [
+  "E501",
+]
+
+[tool.mypy]
+python_version = "3.10"
+warn_unused_configs = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+exclude = [
+  "generated/",
+  "runs/",
+  "build/",
+  "dist/",
+]

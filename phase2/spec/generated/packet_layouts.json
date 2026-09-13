@@ -1,0 +1,1034 @@
+{
+  "schema": "trecap_phase2_packet_layouts_v1",
+  "project": "T_RECAP_Phase2",
+  "file_class": "[1] hand-written source-of-truth contract",
+  "contract_stage": "R1 generated-contract source input",
+  "source_spec": {
+    "active_pdf": "docs/specs/doneeeeeeeeee.pdf",
+    "clean_repo_name_if_renamed": "docs/specs/t_recap_phase2_integrated_spec.pdf",
+    "algorithm_revision": "Core Revision J",
+    "transport_revision": "Telemetry Revision G",
+    "repository_revision": "Architecture Revision D"
+  },
+  "repository_docs": [
+    "docs/architecture/generated_contracts.md",
+    "docs/architecture/generated_header_flow.md",
+    "docs/architecture/interface_contracts.md",
+    "docs/architecture/module_api.md",
+    "docs/architecture/dependency_rules.md",
+    "docs/architecture/memory_map.md",
+    "docs/bringup/ddr_ring_bringup.md",
+    "docs/bringup/hps_ethernet_bringup.md",
+    "docs/bringup/pc_dashboard_bringup.md"
+  ],
+  "edit_policy": {
+    "this_file_is_hand_written": true,
+    "generated_outputs_must_not_be_hand_edited": true,
+    "generator": "scripts/gen_headers.py",
+    "drift_check": "make check-generated",
+    "line_endings": "LF",
+    "json_format": "strict JSON, two-space indentation, deterministic key order where practical"
+  },
+  "generated_outputs": {
+    "rtl_sv": [
+      "rtl/include/generated/trecap_packet_pkg.sv"
+    ],
+    "hps_c": [
+      "sw/hps/include/generated/trecap_packet.h"
+    ],
+    "pc_python": [
+      "sw/pc_dashboard/generated/trecap_packet.py"
+    ]
+  },
+  "byte_order": "little_endian",
+  "packing": "packed_no_implicit_padding",
+  "transport": {
+    "telemetry_magic_hex": "0x54524350",
+    "telemetry_magic_mnemonic": "TRCP",
+    "command_magic_hex": "0x54524343",
+    "command_magic_mnemonic": "TRCC",
+    "telemetry_header_version": 1,
+    "command_version": 2,
+    "command_versions_supported": [
+      1,
+      2
+    ],
+    "transport_version_major": 1,
+    "transport_version_minor": 8,
+    "telemetry_header_bytes": 32,
+    "command_packet_bytes": 28,
+    "udp_no_fragment_payload_max_bytes": 1200,
+    "ddr_record_alignment_bytes": 64,
+    "header_crc_enabled": false,
+    "command_crc_enabled": false,
+    "one_udp_datagram_per_record": true,
+    "send_ddr_padding_over_udp": false
+  },
+  "common_header": {
+    "name": "trecap_telemetry_header",
+    "size_bytes": 32,
+    "fields": [
+      {
+        "name": "magic",
+        "offset": 0,
+        "type": "uint32",
+        "required_value_hex": "0x54524350"
+      },
+      {
+        "name": "version",
+        "offset": 4,
+        "type": "uint16",
+        "required_value": 1
+      },
+      {
+        "name": "header_bytes",
+        "offset": 6,
+        "type": "uint16",
+        "required_value": 32
+      },
+      {
+        "name": "packet_type",
+        "offset": 8,
+        "type": "uint16",
+        "enum": "packet_type"
+      },
+      {
+        "name": "flags",
+        "offset": 10,
+        "type": "uint16",
+        "bitset": "common_flags"
+      },
+      {
+        "name": "seq",
+        "offset": 12,
+        "type": "uint32",
+        "semantics": "PC-visible normal telemetry sequence; WRAP and diagnostic STATUS do not consume normal sequence numbers"
+      },
+      {
+        "name": "timestamp",
+        "offset": 16,
+        "type": "uint64",
+        "semantics": "packet-type-specific"
+      },
+      {
+        "name": "payload_bytes",
+        "offset": 24,
+        "type": "uint32",
+        "semantics": "valid payload bytes after header; DDR alignment padding excluded"
+      },
+      {
+        "name": "header_crc",
+        "offset": 28,
+        "type": "uint32",
+        "required_value": 0,
+        "semantics": "CRC disabled in Revision G"
+      }
+    ]
+  },
+  "common_flags": [
+    {
+      "name": "payload_truncated",
+      "lsb": 0,
+      "msb": 0,
+      "kind": "flag",
+      "description": "Payload was truncated for live display or known high bits are omitted."
+    },
+    {
+      "name": "payload_scaled",
+      "lsb": 1,
+      "msb": 1,
+      "kind": "flag",
+      "description": "Numeric payload values are scaled display values rather than full signoff integers."
+    },
+    {
+      "name": "aggregate_metrics",
+      "lsb": 2,
+      "msb": 2,
+      "kind": "metrics_class_flag",
+      "description": "METRICS payload contains aggregate counters."
+    },
+    {
+      "name": "per_frame_metrics",
+      "lsb": 3,
+      "msb": 3,
+      "kind": "metrics_class_flag",
+      "description": "METRICS payload contains per-frame counters."
+    },
+    {
+      "name": "crc_enabled",
+      "lsb": 4,
+      "msb": 4,
+      "kind": "reserved_must_be_zero",
+      "description": "Must be zero in Revision G because CRC is disabled."
+    },
+    {
+      "name": "status_diagnostic",
+      "lsb": 5,
+      "msb": 5,
+      "kind": "status_only_flag",
+      "description": "Legal only for HPS-synthesized diagnostic STATUS packets; excluded from sequence-gap logic."
+    },
+    {
+      "name": "reserved_15_6",
+      "lsb": 6,
+      "msb": 15,
+      "kind": "reserved",
+      "description": "Reserved. Must be zero."
+    }
+  ],
+  "packet_types": [
+    {
+      "name": "WAVE",
+      "code": 1,
+      "code_hex": "0x0001",
+      "priority": 0,
+      "enabled_by": "PACKET_ENABLE.WAVE_EN",
+      "description": "Delayed input, reconstructed output, and error waveform triples."
+    },
+    {
+      "name": "SPEC64",
+      "code": 2,
+      "code_hex": "0x0002",
+      "priority": 1,
+      "enabled_by": "PACKET_ENABLE.SPEC_EN and SPEC_MODE=1",
+      "description": "64-bucket compressed spectrum with bucket suppression counts."
+    },
+    {
+      "name": "SPEC129",
+      "code": 3,
+      "code_hex": "0x0003",
+      "priority": 1,
+      "enabled_by": "PACKET_ENABLE.SPEC_EN and SPEC_MODE=2",
+      "description": "129 unique-bin compressed spectrum for baseline L=256."
+    },
+    {
+      "name": "METRICS",
+      "code": 4,
+      "code_hex": "0x0004",
+      "priority": 2,
+      "enabled_by": "PACKET_ENABLE.METRICS_EN",
+      "description": "Frame or aggregate metrics."
+    },
+    {
+      "name": "STATUS",
+      "code": 5,
+      "code_hex": "0x0005",
+      "priority": 3,
+      "enabled_by": "PACKET_ENABLE.STATUS_EN",
+      "description": "Source mode, sample rate, threshold, overflow flags, and drop counters."
+    },
+    {
+      "name": "PEAKS",
+      "code": 6,
+      "code_hex": "0x0006",
+      "priority": 1,
+      "enabled_by": "reserved-disabled",
+      "reserved_disabled": true,
+      "description": "Reserved optional top-K peak-bin summary."
+    },
+    {
+      "name": "DEBUG",
+      "code": 126,
+      "code_hex": "0x007E",
+      "priority": 0,
+      "enabled_by": "reserved-disabled",
+      "reserved_disabled": true,
+      "description": "Reserved optional low-rate debug record."
+    },
+    {
+      "name": "WRAP",
+      "code": 127,
+      "code_hex": "0x007F",
+      "priority": null,
+      "enabled_by": "ring_writer_internal",
+      "description": "Ring wrap marker. Not forwarded to PC and payload length is zero."
+    }
+  ],
+  "timestamp_semantics": {
+    "WAVE": "sample index of first represented output sample; equals payload sample_base",
+    "SPEC64": "STFT frame index associated with the spectrum payload",
+    "SPEC129": "STFT frame index associated with the spectrum payload",
+    "METRICS": "frame index for per-frame metrics or latest frame index included in aggregate metrics",
+    "STATUS": "current core sample count for FPGA-originated or HPS-patched STATUS; latest known coherent sample count for diagnostic STATUS",
+    "WRAP": "ignored and should be zero"
+  },
+  "payloads": {
+    "WAVE": {
+      "payload_size_rule": {
+        "kind": "variable",
+        "expression": "16 + 6 * nsamp",
+        "min_bytes": 22,
+        "max_bytes": 1168,
+        "nsamp_min": 1,
+        "nsamp_max": 192
+      },
+      "fields": [
+        {
+          "name": "sample_base",
+          "offset": 0,
+          "type": "uint64",
+          "must_equal_header_timestamp": true
+        },
+        {
+          "name": "nsamp",
+          "offset": 8,
+          "type": "uint16",
+          "valid": {
+            "min": 1,
+            "max": 192
+          }
+        },
+        {
+          "name": "channels",
+          "offset": 10,
+          "type": "uint16",
+          "required_value": 3
+        },
+        {
+          "name": "stride",
+          "offset": 12,
+          "type": "uint16",
+          "valid": {
+            "min": 1
+          },
+          "must_equal": "active WAVE_DECIM"
+        },
+        {
+          "name": "reserved",
+          "offset": 14,
+          "type": "uint16",
+          "required_value": 0
+        },
+        {
+          "name": "sample",
+          "offset": 16,
+          "type": "array",
+          "count_field": "nsamp",
+          "element_size_bytes": 6,
+          "element_fields": [
+            {
+              "name": "xdel",
+              "relative_offset": 0,
+              "type": "int16",
+              "description": "input delayed by D=L+G"
+            },
+            {
+              "name": "yout",
+              "relative_offset": 2,
+              "type": "int16",
+              "description": "reconstructed output"
+            },
+            {
+              "name": "err",
+              "relative_offset": 4,
+              "type": "int16",
+              "description": "xdel - yout display error"
+            }
+          ]
+        }
+      ],
+      "time_axis_rule": "represented_sample_index[i] = sample_base + i * stride"
+    },
+    "SPEC129": {
+      "payload_size_rule": {
+        "kind": "exact",
+        "bytes": 287
+      },
+      "fields": [
+        {
+          "name": "frame_idx",
+          "offset": 0,
+          "type": "uint64",
+          "must_equal_header_timestamp": true
+        },
+        {
+          "name": "nbin",
+          "offset": 8,
+          "type": "uint16",
+          "required_value": 129
+        },
+        {
+          "name": "spec_shift",
+          "offset": 10,
+          "type": "uint16",
+          "valid": {
+            "min": 0,
+            "max": 55
+          }
+        },
+        {
+          "name": "spec129",
+          "offset": 12,
+          "type": "uint16_array",
+          "count": 129,
+          "value_rule": "clip16(mag2[k] >> spec_shift)"
+        },
+        {
+          "name": "mask_bits",
+          "offset": 270,
+          "type": "uint8_array",
+          "count": 17,
+          "packing": "LSB-first; bit b of byte j is bin 8*j+b",
+          "unused_bits_rule": "unused bits in final byte shall be zero"
+        }
+      ]
+    },
+    "SPEC64": {
+      "payload_size_rule": {
+        "kind": "exact",
+        "bytes": 268
+      },
+      "bucket_rule": {
+        "kmin": "floor(129*b/64)",
+        "kmax": "floor(129*(b+1)/64)-1",
+        "spec64_value": "clip16(max(mag2[k] >> spec_shift for k in bucket))"
+      },
+      "fields": [
+        {
+          "name": "frame_idx",
+          "offset": 0,
+          "type": "uint64",
+          "must_equal_header_timestamp": true
+        },
+        {
+          "name": "nbin",
+          "offset": 8,
+          "type": "uint16",
+          "required_value": 64
+        },
+        {
+          "name": "spec_shift",
+          "offset": 10,
+          "type": "uint16",
+          "valid": {
+            "min": 0,
+            "max": 55
+          }
+        },
+        {
+          "name": "spec64",
+          "offset": 12,
+          "type": "uint16_array",
+          "count": 64
+        },
+        {
+          "name": "suppressed_count",
+          "offset": 140,
+          "type": "uint8_array",
+          "count": 64
+        },
+        {
+          "name": "eligible_count",
+          "offset": 204,
+          "type": "uint8_array",
+          "count": 64
+        }
+      ]
+    },
+    "METRICS": {
+      "payload_size_rule": {
+        "kind": "exact",
+        "bytes": 56
+      },
+      "required_flags": {
+        "exactly_one_of": [
+          "aggregate_metrics",
+          "per_frame_metrics"
+        ],
+        "payload_scaled": 0
+      },
+      "fields": [
+        {
+          "name": "frame_idx",
+          "offset": 0,
+          "type": "uint64"
+        },
+        {
+          "name": "eligible_unique_bins",
+          "offset": 8,
+          "type": "uint32"
+        },
+        {
+          "name": "eligible_suppressed_bins",
+          "offset": 12,
+          "type": "uint32"
+        },
+        {
+          "name": "eligible_kept_mag2_lo",
+          "offset": 16,
+          "type": "uint64"
+        },
+        {
+          "name": "eligible_total_mag2_lo",
+          "offset": 24,
+          "type": "uint64"
+        },
+        {
+          "name": "sum_abs_err_lo",
+          "offset": 32,
+          "type": "uint64"
+        },
+        {
+          "name": "sum_sq_err_lo",
+          "offset": 40,
+          "type": "uint64"
+        },
+        {
+          "name": "max_abs_err",
+          "offset": 48,
+          "type": "uint32"
+        },
+        {
+          "name": "overflow_flags",
+          "offset": 52,
+          "type": "uint32",
+          "bitset": "OVERFLOW_FLAGS"
+        }
+      ]
+    },
+    "STATUS": {
+      "payload_size_rule": {
+        "kind": "exact",
+        "bytes": 72
+      },
+      "hps_patch_policy": "HPS may patch only the local UDP transmit copy of STATUS fields it owns; HPS shall not patch committed DDR ring contents or non-STATUS payloads.",
+      "fields": [
+        {
+          "name": "sample_count",
+          "offset": 0,
+          "type": "uint64",
+          "must_equal_header_timestamp_for_normal_status": true
+        },
+        {
+          "name": "frame_count",
+          "offset": 8,
+          "type": "uint64"
+        },
+        {
+          "name": "source_mode",
+          "offset": 16,
+          "type": "uint32"
+        },
+        {
+          "name": "sample_rate",
+          "offset": 20,
+          "type": "uint32"
+        },
+        {
+          "name": "packet_enable",
+          "offset": 24,
+          "type": "uint32"
+        },
+        {
+          "name": "dma_drop_count",
+          "offset": 28,
+          "type": "uint32",
+          "source": "low 32 bits of DMA_DROP_COUNT"
+        },
+        {
+          "name": "udp_send_error_count",
+          "offset": 32,
+          "type": "uint32",
+          "source": "HPS"
+        },
+        {
+          "name": "malformed_record_count",
+          "offset": 36,
+          "type": "uint32",
+          "source": "HPS"
+        },
+        {
+          "name": "oversized_record_count",
+          "offset": 40,
+          "type": "uint32",
+          "source": "HPS"
+        },
+        {
+          "name": "command_reject_count",
+          "offset": 44,
+          "type": "uint32",
+          "source": "HPS + CSR low 32 bits"
+        },
+        {
+          "name": "sequence_gap_count",
+          "offset": 48,
+          "type": "uint32",
+          "source": "HPS normal forwarded sequence gaps"
+        },
+        {
+          "name": "overflow_flags",
+          "offset": 52,
+          "type": "uint32",
+          "bitset": "OVERFLOW_FLAGS"
+        },
+        {
+          "name": "thr2_lo",
+          "offset": 56,
+          "type": "uint32",
+          "source": "active THR2[31:0]"
+        },
+        {
+          "name": "thr2_hi",
+          "offset": 60,
+          "type": "uint32",
+          "source": "active THR2[55:32] in low bits; upper bits zero"
+        },
+        {
+          "name": "packet_fifo_drop_count",
+          "offset": 64,
+          "type": "uint32",
+          "source": "low 32 bits of PACKET_FIFO_DROP_COUNT"
+        },
+        {
+          "name": "reserved",
+          "offset": 68,
+          "type": "uint32",
+          "required_value": 0
+        }
+      ]
+    },
+    "WRAP": {
+      "payload_size_rule": {
+        "kind": "exact",
+        "bytes": 0
+      },
+      "forward_to_pc": false,
+      "sequence_consumed": false,
+      "effective_ddr_record_length_rule": "R - off(W), not align64(32)",
+      "tail_padding_rule": "all bytes after 32-byte header through physical end of ring are zero"
+    },
+    "PEAKS": {
+      "reserved_disabled": true,
+      "payload_size_rule": {
+        "kind": "undefined_in_revision_g"
+      }
+    },
+    "DEBUG": {
+      "reserved_disabled": true,
+      "payload_size_rule": {
+        "kind": "undefined_in_revision_g"
+      }
+    }
+  },
+  "command_packet": {
+    "size_bytes": 28,
+    "fields": [
+      {
+        "name": "magic",
+        "offset": 0,
+        "type": "uint32",
+        "required_value_hex": "0x54524343"
+      },
+      {
+        "name": "version",
+        "offset": 4,
+        "type": "uint16",
+        "supported_values": [
+          1,
+          2
+        ],
+        "semantics": "required value 1 for a version-1 request and required value 2 for a version-2 request; version 1 accepts command types 0x0001..0x0007 and version 2 accepts 0x0001..0x000E"
+      },
+      {
+        "name": "cmd_type",
+        "offset": 6,
+        "type": "uint16",
+        "enum": "command_type"
+      },
+      {
+        "name": "seq",
+        "offset": 8,
+        "type": "uint32"
+      },
+      {
+        "name": "arg0",
+        "offset": 12,
+        "type": "uint32"
+      },
+      {
+        "name": "arg1",
+        "offset": 16,
+        "type": "uint32"
+      },
+      {
+        "name": "arg2",
+        "offset": 20,
+        "type": "uint32"
+      },
+      {
+        "name": "crc32",
+        "offset": 24,
+        "type": "uint32",
+        "required_value": 0
+      }
+    ],
+    "command_types": [
+      {
+        "name": "SET_THR2",
+        "code": 1,
+        "code_hex": "0x0001",
+        "introduced_in_version": 1,
+        "args": {
+          "arg0": "THR2[31:0]",
+          "arg1": "THR2[55:32] in low 24 bits; upper bits zero",
+          "arg2": "0"
+        },
+        "action": "write THR2_LO, write THR2_HI, pulse THR2_COMMIT"
+      },
+      {
+        "name": "CLEAR_METRICS",
+        "code": 2,
+        "code_hex": "0x0002",
+        "introduced_in_version": 1,
+        "args": {
+          "arg0": "0",
+          "arg1": "0",
+          "arg2": "0"
+        },
+        "action": "pulse CONTROL.clear_metrics"
+      },
+      {
+        "name": "SET_SOURCE_MODE",
+        "code": 3,
+        "code_hex": "0x0003",
+        "introduced_in_version": 1,
+        "args": {
+          "arg0": "0..3",
+          "arg1": "0",
+          "arg2": "0"
+        },
+        "action": "write SOURCE_MODE_SHADOW and pulse SOURCE_MODE_COMMIT under source-mode change rule"
+      },
+      {
+        "name": "SET_PACKET_ENABLE",
+        "code": 4,
+        "code_hex": "0x0004",
+        "introduced_in_version": 1,
+        "args": {
+          "arg0": "PACKET_ENABLE bit mask with reserved and reserved-disabled bits zero",
+          "arg1": "0",
+          "arg2": "0"
+        },
+        "action": "write PACKET_ENABLE"
+      },
+      {
+        "name": "SET_WAVE_DECIM",
+        "code": 5,
+        "code_hex": "0x0005",
+        "introduced_in_version": 1,
+        "args": {
+          "arg0": "1..65535",
+          "arg1": "0",
+          "arg2": "0"
+        },
+        "action": "write WAVE_DECIM"
+      },
+      {
+        "name": "SET_SPEC_SHIFT",
+        "code": 6,
+        "code_hex": "0x0006",
+        "introduced_in_version": 1,
+        "args": {
+          "arg0": "0..55",
+          "arg1": "0",
+          "arg2": "0"
+        },
+        "action": "write SPEC_SHIFT"
+      },
+      {
+        "name": "PING",
+        "code": 7,
+        "code_hex": "0x0007",
+        "introduced_in_version": 1,
+        "args": {
+          "arg0": "ignored",
+          "arg1": "ignored",
+          "arg2": "ignored"
+        },
+        "action": "return a fresh diagnostic STATUS only; no command-result packet and no non-PING sequence-ledger change"
+      },
+      {
+        "name": "SET_SPEC_MODE",
+        "code": 8,
+        "code_hex": "0x0008",
+        "introduced_in_version": 2,
+        "args": {
+          "arg0": "0..2",
+          "arg1": "0",
+          "arg2": "0"
+        },
+        "action": "write SPEC_MODE"
+      },
+      {
+        "name": "SET_TELEMETRY_ENABLE",
+        "code": 9,
+        "code_hex": "0x0009",
+        "introduced_in_version": 2,
+        "args": {
+          "arg0": "0 or 1",
+          "arg1": "0",
+          "arg2": "0"
+        },
+        "action": "transactionally disable or enable telemetry transport"
+      },
+      {
+        "name": "CONFIGURE_DDR_RING",
+        "code": 10,
+        "code_hex": "0x000A",
+        "introduced_in_version": 2,
+        "args": {
+          "arg0": "0",
+          "arg1": "0",
+          "arg2": "0"
+        },
+        "action": "configure the canonical trusted HPS runtime DDR ring tuple and leave telemetry disabled"
+      },
+      {
+        "name": "RESET_TRANSPORT",
+        "code": 11,
+        "code_hex": "0x000B",
+        "introduced_in_version": 2,
+        "args": {
+          "arg0": "0",
+          "arg1": "0",
+          "arg2": "0"
+        },
+        "action": "transactionally reset transport and enter reconfiguration-required state"
+      },
+      {
+        "name": "CLEAR_COUNTERS",
+        "code": 12,
+        "code_hex": "0x000C",
+        "introduced_in_version": 2,
+        "args": {
+          "arg0": "0",
+          "arg1": "0",
+          "arg2": "0"
+        },
+        "action": "pulse FPGA transport diagnostic counter clear"
+      },
+      {
+        "name": "START_BRAM_REPLAY",
+        "code": 13,
+        "code_hex": "0x000D",
+        "introduced_in_version": 2,
+        "args": {
+          "arg0": "0",
+          "arg1": "0",
+          "arg2": "0"
+        },
+        "action": "pulse the retained BRAM replay request/admission path and report retained accept or reject evidence"
+      },
+      {
+        "name": "READ_STATUS_VERSION",
+        "code": 14,
+        "code_hex": "0x000E",
+        "introduced_in_version": 2,
+        "args": {
+          "arg0": "0",
+          "arg1": "0",
+          "arg2": "0"
+        },
+        "action": "read raw FPGA STATUS and VERSION and return a NOOP command result"
+      }
+    ],
+    "reject_rules": [
+      "wrong source IP or untrusted peer",
+      "length not exactly 28 bytes",
+      "bad command magic",
+      "unsupported version",
+      "nonzero crc32 field",
+      "unknown command type",
+      "THR2 >= 2^56 or nonzero upper bits beyond bit 55",
+      "source mode outside 0..3",
+      "packet-enable reserved bits set or PEAKS_EN/DEBUG_EN set in baseline",
+      "WAVE_DECIM == 0",
+      "SPEC_SHIFT > 55",
+      "SPEC_MODE outside 0..2",
+      "TELEMETRY_ENABLE outside 0..1",
+      "nonzero reserved arguments except PING, whose three arguments are ignored",
+      "unsafe transport lifecycle state",
+      "stale or conflicting version-2 non-PING request sequence"
+    ]
+  },
+  "command_result": {
+    "size_bytes": 32,
+    "magic_hex": "0x54524352",
+    "version": 2,
+    "fields": [
+      {
+        "name": "magic",
+        "offset": 0,
+        "type": "uint32",
+        "required_value_hex": "0x54524352"
+      },
+      {
+        "name": "version",
+        "offset": 4,
+        "type": "uint16",
+        "required_value": 2
+      },
+      {
+        "name": "cmd_type",
+        "offset": 6,
+        "type": "uint16",
+        "enum": "command_type"
+      },
+      {
+        "name": "seq",
+        "offset": 8,
+        "type": "uint32",
+        "semantics": "echoes the version-2 non-PING request sequence"
+      },
+      {
+        "name": "disposition",
+        "offset": 12,
+        "type": "uint32",
+        "enum": "command_disposition"
+      },
+      {
+        "name": "reject_reason",
+        "offset": 16,
+        "type": "uint32",
+        "enum": "command_reject_reason"
+      },
+      {
+        "name": "fpga_status",
+        "offset": 20,
+        "type": "uint32",
+        "semantics": "raw post-attempt TCSR_STATUS, or zero when unreadable"
+      },
+      {
+        "name": "csr_version",
+        "offset": 24,
+        "type": "uint32",
+        "semantics": "raw post-attempt TCSR_VERSION, or zero when unreadable"
+      },
+      {
+        "name": "crc32",
+        "offset": 28,
+        "type": "uint32",
+        "required_value": 0
+      }
+    ],
+    "dispositions": [
+      {
+        "name": "APPLIED",
+        "code": 0
+      },
+      {
+        "name": "NOOP",
+        "code": 1
+      },
+      {
+        "name": "REJECTED",
+        "code": 2
+      },
+      {
+        "name": "FAILED",
+        "code": 3
+      }
+    ],
+    "reject_reasons": [
+      {
+        "name": "NONE",
+        "code": 0
+      },
+      {
+        "name": "BAD_SOURCE",
+        "code": 1
+      },
+      {
+        "name": "BAD_LENGTH",
+        "code": 2
+      },
+      {
+        "name": "BAD_MAGIC",
+        "code": 3
+      },
+      {
+        "name": "BAD_VERSION",
+        "code": 4
+      },
+      {
+        "name": "BAD_CRC",
+        "code": 5
+      },
+      {
+        "name": "UNSUPPORTED_TYPE",
+        "code": 6
+      },
+      {
+        "name": "RANGE",
+        "code": 7
+      },
+      {
+        "name": "RESERVED_ARGUMENT",
+        "code": 8
+      },
+      {
+        "name": "CSR",
+        "code": 9
+      },
+      {
+        "name": "IO",
+        "code": 10
+      },
+      {
+        "name": "UNSAFE_STATE",
+        "code": 11
+      },
+      {
+        "name": "SEQUENCE_STALE",
+        "code": 12
+      },
+      {
+        "name": "SEQUENCE_CONFLICT",
+        "code": 13
+      },
+      {
+        "name": "TIMEOUT",
+        "code": 14
+      },
+      {
+        "name": "RESET_REQUIRED",
+        "code": 15
+      },
+      {
+        "name": "VERSION_MISMATCH",
+        "code": 16
+      }
+    ],
+    "semantics": [
+      "only trusted, structurally parsed version-2 non-PING requests receive command results",
+      "PING receives a fresh diagnostic STATUS instead of a command result and never touches the non-PING sequence ledger",
+      "APPLIED and NOOP require reject_reason NONE",
+      "an identical duplicate sequence replays the byte-identical cached result without reapplying the command",
+      "command results are sent on the command socket and never enter telemetry sequence or DDR ring accounting"
+    ]
+  },
+  "record_validation_rules": [
+    "magic == 0x54524350",
+    "version is supported",
+    "header_bytes == 32",
+    "packet_type is known",
+    "reserved and packet-illegal flags are zero",
+    "status_diagnostic is legal only for HPS-synthesized diagnostic STATUS",
+    "payload_bytes matches packet-specific rule",
+    "32 + payload_bytes <= 1200 for UDP forwarding",
+    "normal DDR records do not cross the physical ring end",
+    "WRAP records consume exactly the remaining physical tail and are not forwarded",
+    "header_crc == 0",
+    "METRICS sets exactly one metrics-class flag and payload_scaled=0",
+    "SPEC129 unused mask bits are zero",
+    "WAVE.channels == 3 and WAVE.reserved == 0"
+  ],
+  "derived_size_checks": {
+    "WAVE_max_udp_bytes": 1200,
+    "WAVE_payload_bytes_at_nsamp_192": 1168,
+    "SPEC129_payload_formula": "12 + 129*2 + 17 = 287",
+    "SPEC64_payload_formula": "12 + 64*2 + 64 + 64 = 268",
+    "METRICS_payload_bytes": 56,
+    "STATUS_payload_bytes": 72
+  }
+}
