@@ -22,11 +22,6 @@
 //   - csr_rvalid_o/csr_rdata_o are registered and valid one cycle after an accepted read request.
 //   - csr_error_o is registered and reports invalid read/write or rejected write requests.
 module trecap_csr_bank
-  import trecap_core_pkg::*;
-  import trecap_csr_pkg::*;
-  import trecap_packet_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_build_pkg::*;
 #(
     parameter int unsigned CSR_ADDR_W = 12,
     parameter logic [31:0] RING_SIZE_MIN_BYTES = 32'h0010_0000
@@ -51,8 +46,11 @@ module trecap_csr_bank
 
     // Actual source/transport state. The requested CSR source and the physical mux selection are
     // intentionally separate so software cannot re-enable telemetry during the one-cycle handoff.
-    input  trecap_source_mode_e      actual_source_mode_i,
+    input  trecap_iface_pkg::trecap_source_mode_e      actual_source_mode_i,
     input  logic                    source_transition_busy_i,
+    input  logic [991:0]             source_health_i,
+    output logic                    source_rearm_pulse_o,
+    output logic                    codec_fpga_grant_o,
     input  logic                    transport_epoch_idle_i,
 
     // Replay admission/result feedback from the existing source/core and E2E owners.
@@ -93,8 +91,8 @@ module trecap_csr_bank
     input  logic                    csr_command_reject_pulse_i,
     input  logic                    csr_adapter_reject_pulse_i,
 
-    output trecap_hps_bridge_ctrl_t ctrl_o,
-    output trecap_ring_config_t     ring_config_o,
+    output trecap_iface_pkg::trecap_hps_bridge_ctrl_t ctrl_o,
+    output trecap_iface_pkg::trecap_ring_config_t     ring_config_o,
     output logic [63:0]             ring_rd_committed_o,
     output logic                    ring_rd_commit_pending_o,
 
@@ -118,6 +116,12 @@ module trecap_csr_bank
     output logic                    csr_reject_pulse_o,
     output logic                    malformed_config_o
 );
+  import trecap_core_pkg::*;
+  import trecap_csr_pkg::*;
+  import trecap_packet_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_build_pkg::*;
+
 
     localparam int unsigned ADDR_PAD_W = 32 - CSR_ADDR_W;
     localparam logic [31:0] CONTROL_LEVEL_MASK =
@@ -171,6 +175,7 @@ module trecap_csr_bank
     logic [31:0] dma_status_comb;
     logic [31:0] replay_status_comb;
     logic [31:0] read_data_comb;
+    logic [991:0] source_health_snapshot_q;
     logic [31:0] overflow_set_comb;
     logic [31:0] clear_mask_comb;
     logic [1:0]  reject_increment_comb;
@@ -252,6 +257,41 @@ module trecap_csr_bank
             TCSR_SAMPLE_COUNT_SNAP_HI_OFFSET, TCSR_OVERFLOW_FLAGS_OFFSET,
             TCSR_CLEAR_STICKY_FLAGS_OFFSET, TCSR_CSR_COMMAND_REJECT_COUNT_OFFSET,
             TCSR_PACKET_FIFO_DROP_COUNT_OFFSET, TCSR_COUNTER_CLEAR_OFFSET,
+            TCSR_PLATFORM_CONTROL_OFFSET,
+            TCSR_PLATFORM_CAPABILITY_OFFSET,
+            TCSR_SOURCE_HEALTH_CAPABILITY_OFFSET,
+            TCSR_SOURCE_HEALTH_CONTROL_OFFSET,
+            TCSR_SOURCE_HEALTH_STATUS_OFFSET,
+            TCSR_SOURCE_HEALTH_FAULT_OFFSET,
+            TCSR_SOURCE_HEALTH_RATE_OFFSET,
+            TCSR_SOURCE_HEALTH_EPOCH_LO_OFFSET,
+            TCSR_SOURCE_HEALTH_EPOCH_HI_OFFSET,
+            TCSR_SOURCE_HEALTH_AUDIO_RAW_LO_OFFSET,
+            TCSR_SOURCE_HEALTH_AUDIO_RAW_HI_OFFSET,
+            TCSR_SOURCE_HEALTH_ADC_RAW_LO_OFFSET,
+            TCSR_SOURCE_HEALTH_ADC_RAW_HI_OFFSET,
+            TCSR_SOURCE_HEALTH_AUDIO_ADMITTED_LO_OFFSET,
+            TCSR_SOURCE_HEALTH_AUDIO_ADMITTED_HI_OFFSET,
+            TCSR_SOURCE_HEALTH_ADC_ADMITTED_LO_OFFSET,
+            TCSR_SOURCE_HEALTH_ADC_ADMITTED_HI_OFFSET,
+            TCSR_SOURCE_HEALTH_AUDIO_ACCEPTED_LO_OFFSET,
+            TCSR_SOURCE_HEALTH_AUDIO_ACCEPTED_HI_OFFSET,
+            TCSR_SOURCE_HEALTH_ADC_ACCEPTED_LO_OFFSET,
+            TCSR_SOURCE_HEALTH_ADC_ACCEPTED_HI_OFFSET,
+            TCSR_SOURCE_HEALTH_AUDIO_ADAPTER_DROP_LO_OFFSET,
+            TCSR_SOURCE_HEALTH_AUDIO_ADAPTER_DROP_HI_OFFSET,
+            TCSR_SOURCE_HEALTH_ADC_ADAPTER_DROP_LO_OFFSET,
+            TCSR_SOURCE_HEALTH_ADC_ADAPTER_DROP_HI_OFFSET,
+            TCSR_SOURCE_HEALTH_AUDIO_WRAPPER_DROP_LO_OFFSET,
+            TCSR_SOURCE_HEALTH_AUDIO_WRAPPER_DROP_HI_OFFSET,
+            TCSR_SOURCE_HEALTH_ADC_WRAPPER_DROP_LO_OFFSET,
+            TCSR_SOURCE_HEALTH_ADC_WRAPPER_DROP_HI_OFFSET,
+            TCSR_SOURCE_HEALTH_GAP_EVENTS_LO_OFFSET,
+            TCSR_SOURCE_HEALTH_GAP_EVENTS_HI_OFFSET,
+            TCSR_SOURCE_HEALTH_READY_LOSS_LO_OFFSET,
+            TCSR_SOURCE_HEALTH_READY_LOSS_HI_OFFSET,
+            TCSR_SOURCE_HEALTH_TIMEOUT_EVENTS_LO_OFFSET,
+            TCSR_SOURCE_HEALTH_TIMEOUT_EVENTS_HI_OFFSET,
             TCSR_REPLAY_CONTROL_OFFSET, TCSR_REPLAY_STATUS_OFFSET: begin
                 return 1'b1;
             end
@@ -272,7 +312,8 @@ module trecap_csr_bank
             TCSR_RING_RD_LO_SHADOW_OFFSET, TCSR_RING_RD_HI_SHADOW_OFFSET,
             TCSR_RING_RD_COMMIT_OFFSET, TCSR_CORE_COUNT_SNAPSHOT_OFFSET,
             TCSR_CLEAR_STICKY_FLAGS_OFFSET, TCSR_COUNTER_CLEAR_OFFSET,
-            TCSR_REPLAY_CONTROL_OFFSET: begin
+            TCSR_PLATFORM_CONTROL_OFFSET,
+            TCSR_SOURCE_HEALTH_CONTROL_OFFSET, TCSR_REPLAY_CONTROL_OFFSET: begin
                 return 1'b1;
             end
             default: begin
@@ -519,6 +560,41 @@ module trecap_csr_bank
             TCSR_REPLAY_STATUS_OFFSET: begin
                 read_data_comb = replay_status_comb;
             end
+            TCSR_PLATFORM_CONTROL_OFFSET: read_data_comb = codec_fpga_grant_o ? TCSR_PLATFORM_CONTROL_CODEC_FPGA_GRANT_MASK : 32'd0;
+            TCSR_PLATFORM_CAPABILITY_OFFSET: read_data_comb = TCSR_PLATFORM_CAPABILITY_RESET;
+            TCSR_SOURCE_HEALTH_CAPABILITY_OFFSET: read_data_comb = TCSR_SOURCE_HEALTH_CAPABILITY_RESET;
+            TCSR_SOURCE_HEALTH_CONTROL_OFFSET: read_data_comb = 32'd0;
+            TCSR_SOURCE_HEALTH_STATUS_OFFSET: read_data_comb = source_health_snapshot_q[0 +: 32];
+            TCSR_SOURCE_HEALTH_FAULT_OFFSET: read_data_comb = source_health_snapshot_q[32 +: 32];
+            TCSR_SOURCE_HEALTH_RATE_OFFSET: read_data_comb = source_health_snapshot_q[64 +: 32];
+            TCSR_SOURCE_HEALTH_EPOCH_LO_OFFSET: read_data_comb = source_health_snapshot_q[96 +: 32];
+            TCSR_SOURCE_HEALTH_EPOCH_HI_OFFSET: read_data_comb = source_health_snapshot_q[128 +: 32];
+            TCSR_SOURCE_HEALTH_AUDIO_RAW_LO_OFFSET: read_data_comb = source_health_snapshot_q[160 +: 32];
+            TCSR_SOURCE_HEALTH_AUDIO_RAW_HI_OFFSET: read_data_comb = source_health_snapshot_q[192 +: 32];
+            TCSR_SOURCE_HEALTH_ADC_RAW_LO_OFFSET: read_data_comb = source_health_snapshot_q[224 +: 32];
+            TCSR_SOURCE_HEALTH_ADC_RAW_HI_OFFSET: read_data_comb = source_health_snapshot_q[256 +: 32];
+            TCSR_SOURCE_HEALTH_AUDIO_ADMITTED_LO_OFFSET: read_data_comb = source_health_snapshot_q[288 +: 32];
+            TCSR_SOURCE_HEALTH_AUDIO_ADMITTED_HI_OFFSET: read_data_comb = source_health_snapshot_q[320 +: 32];
+            TCSR_SOURCE_HEALTH_ADC_ADMITTED_LO_OFFSET: read_data_comb = source_health_snapshot_q[352 +: 32];
+            TCSR_SOURCE_HEALTH_ADC_ADMITTED_HI_OFFSET: read_data_comb = source_health_snapshot_q[384 +: 32];
+            TCSR_SOURCE_HEALTH_AUDIO_ACCEPTED_LO_OFFSET: read_data_comb = source_health_snapshot_q[416 +: 32];
+            TCSR_SOURCE_HEALTH_AUDIO_ACCEPTED_HI_OFFSET: read_data_comb = source_health_snapshot_q[448 +: 32];
+            TCSR_SOURCE_HEALTH_ADC_ACCEPTED_LO_OFFSET: read_data_comb = source_health_snapshot_q[480 +: 32];
+            TCSR_SOURCE_HEALTH_ADC_ACCEPTED_HI_OFFSET: read_data_comb = source_health_snapshot_q[512 +: 32];
+            TCSR_SOURCE_HEALTH_AUDIO_ADAPTER_DROP_LO_OFFSET: read_data_comb = source_health_snapshot_q[544 +: 32];
+            TCSR_SOURCE_HEALTH_AUDIO_ADAPTER_DROP_HI_OFFSET: read_data_comb = source_health_snapshot_q[576 +: 32];
+            TCSR_SOURCE_HEALTH_ADC_ADAPTER_DROP_LO_OFFSET: read_data_comb = source_health_snapshot_q[608 +: 32];
+            TCSR_SOURCE_HEALTH_ADC_ADAPTER_DROP_HI_OFFSET: read_data_comb = source_health_snapshot_q[640 +: 32];
+            TCSR_SOURCE_HEALTH_AUDIO_WRAPPER_DROP_LO_OFFSET: read_data_comb = source_health_snapshot_q[672 +: 32];
+            TCSR_SOURCE_HEALTH_AUDIO_WRAPPER_DROP_HI_OFFSET: read_data_comb = source_health_snapshot_q[704 +: 32];
+            TCSR_SOURCE_HEALTH_ADC_WRAPPER_DROP_LO_OFFSET: read_data_comb = source_health_snapshot_q[736 +: 32];
+            TCSR_SOURCE_HEALTH_ADC_WRAPPER_DROP_HI_OFFSET: read_data_comb = source_health_snapshot_q[768 +: 32];
+            TCSR_SOURCE_HEALTH_GAP_EVENTS_LO_OFFSET: read_data_comb = source_health_snapshot_q[800 +: 32];
+            TCSR_SOURCE_HEALTH_GAP_EVENTS_HI_OFFSET: read_data_comb = source_health_snapshot_q[832 +: 32];
+            TCSR_SOURCE_HEALTH_READY_LOSS_LO_OFFSET: read_data_comb = source_health_snapshot_q[864 +: 32];
+            TCSR_SOURCE_HEALTH_READY_LOSS_HI_OFFSET: read_data_comb = source_health_snapshot_q[896 +: 32];
+            TCSR_SOURCE_HEALTH_TIMEOUT_EVENTS_LO_OFFSET: read_data_comb = source_health_snapshot_q[928 +: 32];
+            TCSR_SOURCE_HEALTH_TIMEOUT_EVENTS_HI_OFFSET: read_data_comb = source_health_snapshot_q[960 +: 32];
             default: begin
                 read_data_comb = 32'h0000_0000;
             end
@@ -533,7 +609,8 @@ module trecap_csr_bank
             // An integration clear owns the CSR ring epoch. Reject concurrent writes so a
             // transaction cannot report success while its configuration/Rd update is discarded,
             // or emit a delayed commit pulse after the clear has invalidated the epoch.
-            if (external_transport_clear_i) begin
+            // Platform grant is independent so physical bus revocation remains available.
+            if (external_transport_clear_i && (csr_offset != TCSR_PLATFORM_CONTROL_OFFSET)) begin
                 write_reject = 1'b1;
                 write_reject_flags = TCSR_OVERFLOW_FLAGS_ILLEGAL_COMMAND_MASK;
             end else if (!addr_aligned || !write_known) begin
@@ -541,6 +618,22 @@ module trecap_csr_bank
                 write_reject_flags = TCSR_OVERFLOW_FLAGS_ILLEGAL_COMMAND_MASK;
             end else begin
                 unique case (csr_offset)
+                    TCSR_PLATFORM_CONTROL_OFFSET: begin
+                        if ((csr_wdata_i & ~TCSR_PLATFORM_CONTROL_CODEC_FPGA_GRANT_MASK) != 0) begin
+                            write_reject = 1'b1;
+                            write_reject_flags = TCSR_OVERFLOW_FLAGS_ILLEGAL_COMMAND_MASK;
+                        end
+                    end
+                    TCSR_SOURCE_HEALTH_CONTROL_OFFSET: begin
+                        if ((csr_wdata_i > 32'd2) ||
+                            (csr_wdata_i[1] && ((!source_health_i[TCSR_SOURCE_HEALTH_STATUS_PRESENT_LSB]) || source_pending || source_transition_busy_i ||
+                             (source_active != actual_source_mode_i) ||
+                             !((actual_source_mode_i == TSRC_AUDIO_WRAPPER) ||
+                               (actual_source_mode_i == TSRC_ADC_LIVE))))) begin
+                            write_reject = 1'b1;
+                            write_reject_flags = TCSR_OVERFLOW_FLAGS_ILLEGAL_COMMAND_MASK;
+                        end
+                    end
                     TCSR_CONTROL_OFFSET: begin
                         if ((csr_wdata_i & ~CONTROL_LEGAL_WRITE_MASK) != 32'd0) begin
                             write_reject = 1'b1;
@@ -849,6 +942,27 @@ module trecap_csr_bank
         clear_mask_comb = 32'h0000_0000;
         if (write_accept && (csr_offset == TCSR_CLEAR_STICKY_FLAGS_OFFSET)) begin
             clear_mask_comb = csr_wdata_i & OVERFLOW_VALID_MASK;
+        end
+    end
+
+    // The platform driver owns this level. It is independent of transport reset
+    // so teardown can revoke the physical bus even while transport is clearing.
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) codec_fpga_grant_o <= 1'b0;
+        else if (write_accept && (csr_offset == TCSR_PLATFORM_CONTROL_OFFSET))
+            codec_fpga_grant_o <= csr_wdata_i[TCSR_PLATFORM_CONTROL_CODEC_FPGA_GRANT_LSB];
+    end
+
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            source_health_snapshot_q <= '0;
+            source_rearm_pulse_o <= 1'b0;
+        end else begin
+            source_rearm_pulse_o <= 1'b0;
+            if (write_accept && (csr_offset == TCSR_SOURCE_HEALTH_CONTROL_OFFSET)) begin
+                if (csr_wdata_i[TCSR_SOURCE_HEALTH_CONTROL_SNAPSHOT_LSB]) source_health_snapshot_q <= source_health_i;
+                if (csr_wdata_i[TCSR_SOURCE_HEALTH_CONTROL_REARM_LSB]) source_rearm_pulse_o <= 1'b1;
+            end
         end
     end
 

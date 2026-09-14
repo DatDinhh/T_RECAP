@@ -1,5 +1,7 @@
 # C0 flow-control fix v65
 
+> Historical design note. Revision-specific results and open items below belong to that development stage; they are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
+
 File class: **[1] hand-written bring-up and verification note**.
 
 ## Scope
@@ -118,13 +120,13 @@ boundary rather than propagated through analysis, FFT, IFFT, and WOLA.
 that reproduces the legacy loss and checks the fixed conservation behavior.
 It is not a substitute for RTL simulation.
 
-The historical v65 runner is no longer shipped. The current superset runner is:
+The historical v65 runner is no longer shipped. The retained superset runner is:
 
 ```text
 scripts/windows/run_c0_golden_v70.ps1
 ```
 
-## Verification status in the construction environment
+## Verification status for that historical revision
 
 - SystemVerilog 1800-2023 parse of the replay source, changed ring RTL,
   scheduler, generated packages, and testbench: pass.
@@ -146,7 +148,7 @@ LEGACY_FAIL due=6 accepted_frames=2 dropped=4 reserved_accepts=639
 FIXED_PASS samples=768 frames=6 beats=1536 triggers=[127, 255, 383, 511, 639, 767] lookahead=1 cycles=3420
 ```
 
-- ModelSim/Questa RTL execution: not run in the construction environment
+- ModelSim/Questa RTL execution: not run for that historical revision
   because no HDL simulator is installed there. Run the supplied PowerShell
   runner before treating this patch as hardware evidence.
 

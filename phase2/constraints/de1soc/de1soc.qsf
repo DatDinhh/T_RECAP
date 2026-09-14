@@ -13,8 +13,8 @@
 #   - Source compile order is owned by filelists/quartus_de1soc.qsf.inc [2].
 #   - Board package pin assignments belong in constraints/de1soc/pin_assignments.tcl [1].
 #   - Timing constraints belong in constraints/de1soc/de1soc.sdc [1] and
-#     constraints/de1soc/clocks.sdc [1]; generated clock aliases remain pending until
-#     Quartus freezes the Platform Designer clock tree.
+#     constraints/de1soc/clocks.sdc [1]; generated PLL/HPS clocks are owned by
+#     derive_pll_clocks and the generated Platform Designer QIP.
 #   - Platform Designer generated HDL is not hand-edited here.
 #
 # Current implementation note:
@@ -29,6 +29,8 @@
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
 set_global_assignment -name TOP_LEVEL_ENTITY de1_soc_trecap_top
+# Select production RTL and omit existing simulation-only assertion blocks.
+set_global_assignment -name VERILOG_MACRO "SYNTHESIS=1"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 
 # Keep these environmental bounds explicit.  Adjust only after the actual lab/board
@@ -61,6 +63,10 @@ if {[string equal $trecap_this_qsf ""]} {
 }
 set trecap_constraints_dir [file dirname [trecap_qsf_normpath $trecap_this_qsf]]
 set trecap_repo_root [trecap_qsf_normpath [file join $trecap_constraints_dir .. ..]]
+
+# ROM initialization paths are repository-relative; retain the root when Quartus
+# runs from platform/de1soc/quartus or another project directory.
+set_global_assignment -name SEARCH_PATH $trecap_repo_root
 
 foreach trecap_search_rel {
     rtl/include
@@ -100,6 +106,10 @@ if {[file exists $trecap_clocks_sdc_file]} {
     set_global_assignment -name SDC_FILE $trecap_clocks_sdc_file
 }
 
+# Match the generated HPS hard-peripheral timing boundary to our board port
+# aliases. The generated DDR/fabric timing constraints remain in system.qip.
+set_global_assignment -name SDC_FILE [file join $trecap_repo_root constraints de1soc hps_peripheral_timing.sdc]
+
 # -----------------------------------------------------------------------------
 # Generated source assignments
 # -----------------------------------------------------------------------------
@@ -137,6 +147,10 @@ if {[file exists $trecap_pin_assignments_file]} {
     post_message -type warning "T-RECAP: missing constraints/de1soc/pin_assignments.tcl"
 }
 
+# Board HPS peripheral voltage standards are separate from hard-pin placement
+# and from the generated DDR electrical assignments.
+source [file join $trecap_repo_root constraints de1soc hps_peripheral_io.tcl]
+
 # -----------------------------------------------------------------------------
 # Pin assignment policy
 # -----------------------------------------------------------------------------
@@ -146,3 +160,21 @@ if {[file exists $trecap_pin_assignments_file]} {
 # generated HPS QIP/pin-mux data and must not be duplicated as guessed FPGA package pins here.
 
 # End of constraints/de1soc/de1soc.qsf
+
+# Profile parameters are emitted by the build entry point, never handwritten in
+# generated HDL. Direct GUI builds use explicit RTL defaults unless this is set.
+if {[info exists ::env(TRECAP_PROFILE_QSF)]} {
+    set trecap_profile_qsf $::env(TRECAP_PROFILE_QSF)
+    if {![file isfile $trecap_profile_qsf]} {
+        error "T-RECAP: profile parameter include is missing: $trecap_profile_qsf"
+    }
+    source $trecap_profile_qsf
+}
+
+# The generated DDR electrical assignments are extracted from this build's
+# post-map netlist by scripts/quartus/capture_hps_ddr_assignments.tcl. The first
+# map runs before this file exists; later fitting stages consume its validated
+# snapshot. The build wrapper requires the file before launching the fitter.
+if {[info exists ::env(TRECAP_HPS_DDR_QSF)] && [file isfile $::env(TRECAP_HPS_DDR_QSF)]} {
+    source $::env(TRECAP_HPS_DDR_QSF)
+}

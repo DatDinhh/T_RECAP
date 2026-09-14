@@ -85,7 +85,7 @@ module audio_codec_i2c_init #(
         (AUDIO_WORD_W == 16) &&
         (CODEC_I2C_ADDRESS == 7'h1a) &&
         (I2C_BUS_HZ > 0) &&
-        (I2C_BUS_HZ <= 400_000) &&
+        (I2C_BUS_HZ == 100_000) &&
         (I2C_EDGE_RATE <= CLK_HZ) &&
         ((CLK_HZ % I2C_EDGE_RATE_SAFE) == 0);
 
@@ -120,6 +120,16 @@ module audio_codec_i2c_init #(
     wire half_tick;
     wire start_request;
     wire sampled_ack;
+    (* async_reg = "true", preserve = "true",
+       altera_attribute = "-name SYNCHRONIZER_IDENTIFICATION FORCED" *)
+    logic [1:0] sda_sync_q;
+
+    // SDA is asynchronous to the fabric. At 100kHz the ACK high phase is 250
+    // fabric clocks, so two synchronization stages settle before its final edge.
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) sda_sync_q <= 2'b11;
+        else sda_sync_q <= {sda_sync_q[0], FPGA_I2C_SDAT};
+    end
 
     assign unsupported_config_o = !CONFIG_SUPPORTED;
     assign start_ready_o = CONFIG_SUPPORTED && enable_i && bus_grant_i &&
@@ -128,7 +138,7 @@ module audio_codec_i2c_init #(
     assign half_tick = (half_div_count_q == HALF_DIV_LAST);
     // A released SDA resolves to 1 on hardware.  In a pull-up-free unit test it may be Z, which
     // is deliberately not accepted as ACK; the testbench must model the slave pulling SDA low.
-    assign sampled_ack = (FPGA_I2C_SDAT === 1'b0);
+    assign sampled_ack = (sda_sync_q[1] === 1'b0);
 
     assign FPGA_I2C_SCLK = scl_drive_low ? 1'b0 : 1'bz;
     assign FPGA_I2C_SDAT = sda_drive_low ? 1'b0 : 1'bz;

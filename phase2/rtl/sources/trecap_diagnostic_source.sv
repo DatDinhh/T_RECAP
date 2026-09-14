@@ -10,12 +10,11 @@
 `default_nettype none
 
 module trecap_diagnostic_source
-  import trecap_core_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_math_pkg::*;
 #(
     parameter logic [15:0] LFSR_SEED = 16'hace1,
-    parameter int unsigned DROP_COUNT_W = 32
+    parameter int unsigned DROP_COUNT_W = 32,
+    // Zero keeps runtime period_i behavior; nonzero specializes a fixed profile.
+    parameter int unsigned DIAGNOSTIC_PERIOD_FIXED = 0
 ) (
     input  logic                         clk,
     input  logic                         rst_n,
@@ -30,16 +29,16 @@ module trecap_diagnostic_source
     //   2: constant
     //   3: alternating +amplitude/-amplitude
     //   4: deterministic 16-bit LFSR centered to signed sample range
-    //   5: periodic impulse, period_i clamped to at least 1
+    //   5: periodic impulse, fixed parameter or period_i clamped to at least 1
     input  logic [2:0]                   diag_mode_i,
-    input  logic signed [T_SAMPLE_W-1:0] constant_i,
-    input  logic signed [T_SAMPLE_W-1:0] amplitude_i,
+    input  logic signed [trecap_core_pkg::T_SAMPLE_W-1:0] constant_i,
+    input  logic signed [trecap_core_pkg::T_SAMPLE_W-1:0] amplitude_i,
     input  logic [31:0]                  period_i,
 
     input  logic                         sample_ready_i,
-    output trecap_sample_t               sample_o,
+    output trecap_iface_pkg::trecap_sample_t               sample_o,
     output logic                         sample_valid_o,
-    output logic signed [T_SAMPLE_W-1:0] sample_data_o,
+    output logic signed [trecap_core_pkg::T_SAMPLE_W-1:0] sample_data_o,
     output logic [63:0]                  sample_idx_o,
 
     output logic                         output_accept_pulse_o,
@@ -51,6 +50,10 @@ module trecap_diagnostic_source
     output logic                         mode_error_sticky_o,
     output logic                         disabled_sticky_o
 );
+  import trecap_core_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_math_pkg::*;
+
 
     localparam int unsigned DROP_COUNT_SAFE_W = (DROP_COUNT_W == 0) ? 1 : DROP_COUNT_W;
 
@@ -74,12 +77,28 @@ module trecap_diagnostic_source
     logic           can_issue;
     logic           mode_known;
     logic [31:0]    period_safe;
+    logic           periodic_impulse_due;
     logic signed [T_SAMPLE_W-1:0] next_data_comb;
     logic [15:0]    lfsr_next;
 
     assign output_accept = pending_sample_q.valid && sample_ready_i;
     assign can_issue = enable_i && (!pending_sample_q.valid || output_accept);
     assign period_safe = (period_i == 32'd0) ? 32'd1 : period_i;
+
+    generate
+        if (DIAGNOSTIC_PERIOD_FIXED == 0) begin : gen_dynamic_period
+            // Evaluate the current runtime period at each issue, as before.
+            assign periodic_impulse_due = ((next_sample_idx_q % period_safe) == 0);
+        end else if ((DIAGNOSTIC_PERIOD_FIXED & (DIAGNOSTIC_PERIOD_FIXED - 1)) == 0)
+            begin : gen_fixed_power_of_two_period
+            // A 64-bit mask also covers period=1 without a zero-width slice.
+            localparam logic [63:0] PERIOD_MASK = 64'(DIAGNOSTIC_PERIOD_FIXED) - 64'd1;
+            assign periodic_impulse_due = ((next_sample_idx_q & PERIOD_MASK) == 64'd0);
+        end else begin : gen_fixed_period
+            assign periodic_impulse_due =
+                ((next_sample_idx_q % 64'(DIAGNOSTIC_PERIOD_FIXED)) == 64'd0);
+        end
+    endgenerate
 
     assign sample_o = pending_sample_q;
     assign sample_valid_o = pending_sample_q.valid;
@@ -140,7 +159,7 @@ module trecap_diagnostic_source
                 next_data_comb = lfsr_to_sample(lfsr_next);
             end
             TDIAG_PERIODIC_IMPULSE: begin
-                next_data_comb = ((next_sample_idx_q % period_safe) == 0) ? amplitude_i : '0;
+                next_data_comb = periodic_impulse_due ? amplitude_i : '0;
             end
             default: begin
                 next_data_comb = '0;

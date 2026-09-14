@@ -28,12 +28,8 @@
 //   consume a sequence number. A sequence number advances only when a normal record commit is
 //   reported through producer_advance_valid_i with producer_advance_is_normal_i asserted.
 module trecap_ring_pointer_ctrl
-  import trecap_csr_pkg::*;
-  import trecap_packet_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_build_pkg::*;
 #(
-    parameter int unsigned GUARD_BYTES = TCSR_RING_GUARD_BYTES_MIN,
+    parameter int unsigned GUARD_BYTES = trecap_csr_pkg::TCSR_RING_GUARD_BYTES_MIN,
     parameter logic [31:0] RING_SIZE_MIN_BYTES = 32'h0010_0000
 ) (
     input  logic                clk,
@@ -45,7 +41,7 @@ module trecap_ring_pointer_ctrl
 
     // Ring configuration from the CSR bank. ring_config_commit_pulse_i is expected only while the
     // writer is disabled; this block still validates the fields defensively.
-    input  trecap_ring_config_t ring_config_i,
+    input  trecap_iface_pkg::trecap_ring_config_t ring_config_i,
     input  logic                ring_config_commit_pulse_i,
 
     // Control-state hints used for status checks only. Policy ownership stays in csr_bank/writer.
@@ -108,6 +104,11 @@ module trecap_ring_pointer_ctrl
     output logic                malformed_config_o,
     output logic                pointer_error_sticky_o
 );
+  import trecap_csr_pkg::*;
+  import trecap_packet_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_build_pkg::*;
+
 
     trecap_ring_config_t config_q;
     logic [63:0]         producer_ptr_q;
@@ -119,6 +120,7 @@ module trecap_ring_pointer_ctrl
     logic                rd_epoch_valid_q;
 
     logic                config_legal;
+    logic                config_legal_q;
     localparam logic [63:0] HEADER_BYTES_64 = TPKT_HEADER_BYTES;
     localparam logic [63:0] DDR_ALIGN_BYTES_64 = TPKT_DDR_ALIGN_BYTES;
     localparam logic [63:0] DDR_ALIGN_MASK_64 = (TPKT_DDR_ALIGN_BYTES - 1);
@@ -131,6 +133,10 @@ module trecap_ring_pointer_ctrl
     logic                pointers_valid_comb;
     logic [63:0]         current_offset_comb;
     logic [63:0]         current_tail_comb;
+    logic                candidate_len_legal;
+    logic                candidate_crosses_tail;
+    logic [63:0]         candidate_required_bytes;
+    logic                candidate_fits;
     logic                scheduled_len_legal;
     logic                schedule_crosses_tail;
     logic [63:0]         schedule_required_comb;
@@ -169,7 +175,9 @@ module trecap_ring_pointer_ctrl
                (cfg.size_mask == (cfg.size_bytes - 32'd1));
     endfunction : ring_config_legal_fn
 
-    assign config_legal = ring_config_legal_fn(config_q);
+    // Cache validation on the same edge as the configuration it describes.
+    // This keeps the size-minus-one/power-of-two check off every pointer query.
+    assign config_legal = config_legal_q;
     assign ring_size_64 = {32'd0, config_q.size_bytes};
     assign ring_mask_64 = {32'd0, config_q.size_mask};
     assign guard_64 = GUARD_BYTES;
@@ -185,24 +193,32 @@ module trecap_ring_pointer_ctrl
     assign current_offset_comb = config_legal ? (producer_ptr_q & ring_mask_64) : 64'd0;
     assign current_tail_comb = config_legal ? (ring_size_64 - current_offset_comb) : 64'd0;
 
-    assign scheduled_len_legal = schedule_valid_i &&
-                                 config_legal &&
+    // Compute the candidate from metadata and registered ring state. Qualify only the
+    // results, so late record-valid/flush control does not enter the 64-bit arithmetic.
+    assign candidate_len_legal = config_legal &&
                                  (scheduled_record_bytes_i != 64'd0) &&
                                  (scheduled_record_bytes_i <= ring_size_64) &&
                                  aligned64(scheduled_record_bytes_i) &&
                                  (HEADER_BYTES_64 <= scheduled_record_bytes_i);
-    assign schedule_crosses_tail = scheduled_len_legal &&
-                                   ((current_offset_comb + scheduled_record_bytes_i) > ring_size_64);
-    assign schedule_required_comb = !scheduled_len_legal ? 64'd0 :
-                                    (schedule_crosses_tail ?
-                                     (current_tail_comb + scheduled_record_bytes_i) :
-                                     scheduled_record_bytes_i);
-    assign schedule_fits_comb = scheduled_len_legal &&
-                                pointers_valid_comb &&
-                                (free_bytes_comb >= schedule_required_comb) &&
-                                (!schedule_crosses_tail ||
-                                 ((current_offset_comb != 64'd0) &&
-                                  (current_tail_comb >= DDR_ALIGN_BYTES_64)));
+    assign candidate_crosses_tail = candidate_len_legal &&
+                                    ((current_offset_comb + scheduled_record_bytes_i) > ring_size_64);
+    assign candidate_required_bytes = !candidate_len_legal ? 64'd0 :
+                                      (candidate_crosses_tail ?
+                                       (current_tail_comb + scheduled_record_bytes_i) :
+                                       scheduled_record_bytes_i);
+    assign candidate_fits = candidate_len_legal &&
+                            pointers_valid_comb &&
+                            (free_bytes_comb >= candidate_required_bytes) &&
+                            (!candidate_crosses_tail ||
+                             ((current_offset_comb != 64'd0) &&
+                              (current_tail_comb >= DDR_ALIGN_BYTES_64)));
+
+    // With a valid query these are the original expressions. Otherwise legal, crossing,
+    // required bytes and fits are all zero, including when candidate metadata is invalid.
+    assign scheduled_len_legal = schedule_valid_i && candidate_len_legal;
+    assign schedule_crosses_tail = schedule_valid_i && candidate_crosses_tail;
+    assign schedule_required_comb = schedule_valid_i ? candidate_required_bytes : 64'd0;
+    assign schedule_fits_comb = schedule_valid_i && candidate_fits;
 
     assign schedule_fits_o = schedule_fits_comb;
     assign schedule_needs_wrap_o = schedule_crosses_tail;
@@ -210,7 +226,9 @@ module trecap_ring_pointer_ctrl
     assign schedule_tail_bytes_o = current_tail_comb;
     assign schedule_required_bytes_o = schedule_required_comb;
     assign schedule_free_bytes_o = free_bytes_comb;
-    assign schedule_normal_addr_o = config_q.base_addr + (schedule_crosses_tail ? 64'd0 : current_offset_comb);
+    // Select after the addition: base + 0 is base, and an invalid query selects the
+    // original base + current offset. The wrap-address sum is independent of validity.
+    assign schedule_normal_addr_o = schedule_crosses_tail ? config_q.base_addr : schedule_wrap_addr_o;
     assign schedule_wrap_addr_o = config_q.base_addr + current_offset_comb;
 
     assign producer_advance_kind_legal = producer_advance_is_normal_i ^ producer_advance_is_wrap_i;
@@ -248,6 +266,7 @@ module trecap_ring_pointer_ctrl
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             config_q <= '0;
+            config_legal_q <= 1'b0;
             producer_ptr_q <= 64'd0;
             consumer_ptr_q <= 64'd0;
             sequence_q <= 32'd0;
@@ -269,6 +288,7 @@ module trecap_ring_pointer_ctrl
 
             if (soft_reset_i) begin
                 config_q <= '0;
+                config_legal_q <= 1'b0;
                 producer_ptr_q <= 64'd0;
                 sequence_q <= 32'd0;
                 snapshot_q <= 64'd0;
@@ -277,6 +297,7 @@ module trecap_ring_pointer_ctrl
                 rd_epoch_valid_q <= 1'b0;
             end else if (ring_config_commit_pulse_i) begin
                 config_q <= ring_config_i;
+                config_legal_q <= ring_config_legal_fn(ring_config_i);
                 producer_ptr_q <= 64'd0;
                 sequence_q <= 32'd0;
                 snapshot_q <= 64'd0;

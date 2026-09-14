@@ -34,7 +34,6 @@
 // first result after reset, an aborted transaction, or a command change is discarded. Publishing
 // it as though it belonged to the newly requested channel would silently mislabel the source.
 module adc_wrapper
-  import trecap_core_pkg::*;
 #(
     parameter int unsigned CLK_HZ                    = 50_000_000,
     parameter int unsigned SAMPLE_RATE_HZ            = 100_000,
@@ -65,6 +64,10 @@ module adc_wrapper
     output logic [ADC_BITS-1:0]           sample_raw_o,
     output logic signed [ADC_BITS:0]      sample_centered_preview_o,
     output logic [63:0]                  sample_count_o,
+    output logic [63:0]                  request_drop_count_o,
+    // clk-domain pulse aligned with a strictly positive counter change.
+    output logic                         request_drop_count_advanced_o,
+    output logic                         config_supported_o,
 
     output logic                         busy_o,
     output logic                         transaction_done_pulse_o,
@@ -76,6 +79,8 @@ module adc_wrapper
     input  wire                          ADC_DOUT,
     output logic                         ADC_SCLK
 );
+  import trecap_core_pkg::*;
+
 
     localparam int unsigned SAMPLE_ACCUM_W =
         (CLK_HZ <= 1) ? 1 : $clog2(CLK_HZ);
@@ -221,6 +226,21 @@ module adc_wrapper
     assign request_attempt = enable_i && PROTOCOL_CONFIG_SUPPORTED &&
         (sample_request_i || (continuous_enable_i && internal_sample_tick));
     assign request_now = request_attempt && reentry_recovery_ready_q;
+    assign config_supported_o = PROTOCOL_CONFIG_SUPPORTED && requested_command_supported;
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            request_drop_count_o <= 64'd0;
+            request_drop_count_advanced_o <= 1'b0;
+        end else begin
+            request_drop_count_advanced_o <= 1'b0;
+            if (request_attempt &&
+                (!reentry_recovery_ready_q || (state_q != ADC_IDLE) || !requested_command_supported)) begin
+                request_drop_count_o <= sat_inc64(request_drop_count_o);
+                // At saturation the event does not advance the published counter.
+                request_drop_count_advanced_o <= !(&request_drop_count_o);
+            end
+        end
+    end
     assign centered_midpoint = {{ADC_BITS{1'b0}}, 1'b1} << (ADC_BITS - 1);
     assign sample_centered_preview_o =
         $signed({1'b0, sample_raw_o}) - $signed(centered_midpoint);

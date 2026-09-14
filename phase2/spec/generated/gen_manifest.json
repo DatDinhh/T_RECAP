@@ -11,7 +11,7 @@
     },
     {
       "path": "rtl/include/generated/trecap_csr_pkg.sv",
-      "sha256": "66f150b879a848510d8d705ef05d65436903ddef924e410f96e428c5f01abdb9"
+      "sha256": "3a1b8b968015494077f8627ff541de8120769258461b2d182c3ea4ac944176e1"
     },
     {
       "path": "rtl/include/generated/trecap_iface_pkg.sv",
@@ -23,7 +23,7 @@
     },
     {
       "path": "sw/hps/include/generated/trecap_csr.h",
-      "sha256": "1116b366a1eae74f532b09d4c531506d56ce7eff3a69f22579a0857e8d2003e8"
+      "sha256": "55de2d8a1a73b40a80f1e26ef538e924e3fa65590ffe6e086d9fbfc8ba2268b3"
     },
     {
       "path": "sw/hps/include/generated/trecap_packet.h",
@@ -31,11 +31,11 @@
     },
     {
       "path": "sw/pc_dashboard/generated/trecap_packet.py",
-      "sha256": "91ad9282aa4107e56b74797cba1b358bce2f4b6e2dff4438dc9c5a84f369df87"
+      "sha256": "94955f9263fbc464fb61c5715913be500f50d74189edb24f91eb27ef76e78eef"
     },
     {
       "path": "sw/reference_model/generated/trecap_config.py",
-      "sha256": "2ca5f9457d187768b1a2850eea2c739a96e9700b6139617bb0b5caf3847c5a90"
+      "sha256": "23a1d91a887dd154ccf8c41b925aa42415d8f7ae01f411dc10c8d7b4fa10d9df"
     }
   ],
   "schema": "trecap_phase2_gen_manifest_v1",
@@ -50,7 +50,7 @@
     },
     {
       "path": "spec/generated/csr_map.json",
-      "sha256": "bf565e83f882f68752601dfacaacd3f37146f811dcc0b399ccc46649fe656f2c"
+      "sha256": "32cfca2bb4d1df15b11ba3ab9422b88921441a45c97ecd2a0c7b12b6d4763778"
     },
     {
       "path": "spec/generated/interface_types.json",

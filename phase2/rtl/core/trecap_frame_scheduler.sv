@@ -11,10 +11,9 @@
 `default_nettype none
 
 module trecap_frame_scheduler
-  import trecap_core_pkg::*;
 #(
-    parameter int unsigned L = T_FFT_L,
-    parameter int unsigned H = T_HOP_H
+    parameter int unsigned L = trecap_core_pkg::T_FFT_L,
+    parameter int unsigned H = trecap_core_pkg::T_HOP_H
 ) (
     input  logic        clk,
     input  logic        rst_n,
@@ -47,6 +46,8 @@ module trecap_frame_scheduler
     output logic [63:0] frame_count_o,
     output logic        protocol_error_sticky_o
 );
+  import trecap_core_pkg::*;
+
 
     localparam logic [63:0] H_U64 = 64'(H);
 

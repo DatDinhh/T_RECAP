@@ -168,6 +168,12 @@ module platform_designer_wrapper #(
         // reset used by the CSR leaf and DDR writer so transaction state is coherent.
         .reset_n_reset_n(bridge_reset_n_i),
         .h2f_reset_reset_n(h2f_reset_n_o),
+        // The preserved HPS preset enables these optional fabric inputs.
+        // Keep all three active-low reset requests inactive and emit no STM events.
+        .hps_f2h_cold_reset_req_reset_n(1'b1),
+        .hps_f2h_debug_reset_req_reset_n(1'b1),
+        .hps_f2h_warm_reset_req_reset_n(1'b1),
+        .hps_f2h_stm_hw_events_stm_hwevents(28'b0),
 
         .memory_mem_a(HPS_DDR3_ADDR),
         .memory_mem_ba(HPS_DDR3_BA),
@@ -258,6 +264,7 @@ module platform_designer_wrapper #(
         .trecap_f2h_sdram0_burstcount(pd_ddr_burstcount),
         .trecap_f2h_sdram0_waitrequest(pd_ddr_waitrequest),
         .trecap_f2h_sdram0_read(1'b0),
+        .trecap_f2h_sdram0_debugaccess(1'b0),
         .trecap_f2h_sdram0_readdata(pd_ddr_readdata_unused),
         .trecap_f2h_sdram0_readdatavalid(pd_ddr_readdatavalid_unused),
         .trecap_f2h_sdram0_write(pd_ddr_write),

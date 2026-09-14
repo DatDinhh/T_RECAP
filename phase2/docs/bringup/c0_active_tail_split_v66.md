@@ -1,5 +1,7 @@
 # C0 active-frame / WOLA-tail split v66
 
+> Historical design note. Revision-specific results and open items below belong to that development stage; they are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
+
 File class: **[1] hand-written bring-up and verification note**.
 
 ## Scope
@@ -109,14 +111,14 @@ clocks:
 sim/tb/tb_trecap_wola_tail_drain.sv
 ```
 
-The historical v66 runner is no longer shipped. The current v70b Windows runner
+The historical v66 runner is no longer shipped. The retained v70b Windows runner
 compiles the full C0 core and executes a superset containing the v65 flow-control
 test and both v66 tail tests:
 
 ```powershell
 & ".\scripts\windows\run_c0_golden_v70.ps1" `
   -Repo (Resolve-Path ".").Path `
-  -ModelSimExe "D:\Quartus\modelsim_ase\win32aloem\modelsim.exe"
+  -ModelSimExe "$env:MODELSIM_EXE"
 ```
 
 Expected sentinels:
@@ -145,7 +147,7 @@ translation preserves the all-zero control/counting test semantics and is not
 part of the deliverable RTL. The checked-in sources themselves were parsed
 directly without translation.
 
-ModelSim/Questa was not available in the construction environment. Run the
+ModelSim/Questa was not available for that historical revision. Run the
 fail-closed Windows runner on the checked-in source before treating v66 as
 native Intel-simulator evidence.
 

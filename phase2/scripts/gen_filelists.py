@@ -17,7 +17,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence
 
-GENERATOR_VERSION = "r1.4.0"
+GENERATOR_VERSION = "r1.4.1"
 GENERATOR_PATH = "scripts/gen_filelists.py"
 
 FILELIST_OUTPUTS = [
@@ -230,14 +230,16 @@ def render_qsf(root: Path, files: Sequence[str], strict: bool, comment_missing: 
         f"# Generator: {GENERATOR_PATH}",
         f"# Generator version: {GENERATOR_VERSION}",
         "# Include this from the DE1-SoC Quartus project after project-specific QSF settings.",
+        "# Resolve relative to this include, independent of the Quartus project directory.",
+        "set trecap_filelist_root [file normalize [file join [file dirname [info script]] ..]]",
         "",
     ]
     for rel in unique(files):
         exists = (root / rel).is_file()
         if exists or not comment_missing:
-            lines.append(f"set_global_assignment -name SYSTEMVERILOG_FILE {rel}")
+            lines.append(f"set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {{{rel}}}]")
         else:
-            lines.append(f"# MISSING: set_global_assignment -name SYSTEMVERILOG_FILE {rel}")
+            lines.append(f"# MISSING: set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {{{rel}}}]")
         if strict and not exists:
             raise FileNotFoundError(f"missing expected Quartus source: {rel}")
     return "\n".join(lines).rstrip() + "\n"

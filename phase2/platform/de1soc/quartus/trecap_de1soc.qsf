@@ -1,0 +1,6 @@
+set_global_assignment -name TOP_LEVEL_ENTITY de1_soc_trecap_top
+# Source-owned project entry point; paths are relative to this Quartus project.
+# QSF loading does not give [info script] the same context as a sourced Tcl file.
+source ../../../constraints/de1soc/de1soc.qsf
+
+set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Standard Edition"

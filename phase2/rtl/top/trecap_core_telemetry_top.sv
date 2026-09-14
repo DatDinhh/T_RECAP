@@ -24,25 +24,20 @@
 // ring writes, sequence allocation, HPS CSRs, Ethernet/UDP, or board pins. A source integration
 // supplies already-normalized samples and, when required, the finite-stream/tail controls.
 module trecap_core_telemetry_top
-  import trecap_core_pkg::*;
-  import trecap_csr_pkg::*;
-  import trecap_packet_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_build_pkg::*;
 #(
-    parameter int unsigned SAMPLE_W             = T_SAMPLE_W,
-    parameter int unsigned L                    = T_FFT_L,
-    parameter int unsigned P                    = T_FFT_P,
-    parameter int unsigned BIN_IDX_W            = (T_UNIQUE_BINS <= 1) ? 1 : $clog2(T_UNIQUE_BINS),
-    parameter string       WINDOW_FILE           = "artifacts/coefficients/window_qw.memh",
-    parameter string       TWIDDLE_RE_FILE       = "artifacts/coefficients/twiddle_re.memh",
-    parameter string       TWIDDLE_IM_FILE       = "artifacts/coefficients/twiddle_im.memh",
-    parameter string       TWIDDLE_INV_RE_FILE   = "artifacts/coefficients/twiddle_inv_re.memh",
-    parameter string       TWIDDLE_INV_IM_FILE   = "artifacts/coefficients/twiddle_inv_im.memh",
+    parameter int unsigned SAMPLE_W             = trecap_core_pkg::T_SAMPLE_W,
+    parameter int unsigned L                    = trecap_core_pkg::T_FFT_L,
+    parameter int unsigned P                    = trecap_core_pkg::T_FFT_P,
+    parameter int unsigned BIN_IDX_W            = (trecap_core_pkg::T_UNIQUE_BINS <= 1) ? 1 : $clog2(trecap_core_pkg::T_UNIQUE_BINS),
+    parameter              WINDOW_FILE           = "artifacts/coefficients/window_qw.memh",
+    parameter              TWIDDLE_RE_FILE       = "artifacts/coefficients/twiddle_re.memh",
+    parameter              TWIDDLE_IM_FILE       = "artifacts/coefficients/twiddle_im.memh",
+    parameter              TWIDDLE_INV_RE_FILE   = "artifacts/coefficients/twiddle_inv_re.memh",
+    parameter              TWIDDLE_INV_IM_FILE   = "artifacts/coefficients/twiddle_inv_im.memh",
     parameter int unsigned PAYLOAD_DATA_W        = 32,
     parameter int unsigned PAYLOAD_KEEP_W        = (PAYLOAD_DATA_W + 7) / 8,
     parameter int unsigned PACKET_FIFO_RECORDS   = 8,
-    parameter int unsigned PACKET_FIFO_BYTES     = TPKT_UDP_MAX_BYTES,
+    parameter int unsigned PACKET_FIFO_BYTES     = trecap_packet_pkg::TPKT_UDP_MAX_BYTES,
     parameter bit          CLEAR_COUNTERS_ON_SOFT_RESET = 1'b1
 ) (
     input  logic                         clk,
@@ -55,10 +50,10 @@ module trecap_core_telemetry_top
     input  logic                         clear_i,
     input  logic                         clear_sticky_i,
     input  logic                         telemetry_soft_reset_i,
-    input  trecap_hps_bridge_ctrl_t      ctrl_i,
+    input  trecap_iface_pkg::trecap_hps_bridge_ctrl_t      ctrl_i,
 
     // Normalized source stream. Backpressure here is core-local only.
-    input  trecap_sample_t               sample_i,
+    input  trecap_iface_pkg::trecap_sample_t               sample_i,
     input  logic                         sample_valid_i,
     output logic                         sample_ready_o,
     input  logic                         source_discontinuity_i,
@@ -75,7 +70,7 @@ module trecap_core_telemetry_top
     // Mathematical output. y_ready_i belongs to a real core-output sink, never telemetry.
     output logic                         y_valid_o,
     input  logic                         y_ready_i,
-    output trecap_sample_t               y_sample_o,
+    output trecap_iface_pkg::trecap_sample_t               y_sample_o,
     output logic signed [SAMPLE_W-1:0]   y_data_o,
     output logic [63:0]                  y_sample_idx_o,
 
@@ -96,20 +91,20 @@ module trecap_core_telemetry_top
     // framing. Backpressure may stall this stream and cause telemetry drops, never core stalls.
     output logic                         record_valid_o,
     input  logic                         record_ready_i,
-    output trecap_record_meta_t          record_meta_o,
+    output trecap_iface_pkg::trecap_record_meta_t          record_meta_o,
     output logic [PAYLOAD_DATA_W-1:0]    record_payload_data_o,
     output logic [PAYLOAD_KEEP_W-1:0]    record_payload_keep_o,
     output logic                         record_payload_last_o,
 
     // Direct valid-only taps remain visible for observability and alternate non-stalling sinks.
-    output trecap_core_tap_sample_t      tap_sample_o,
-    output trecap_core_tap_frame_t       tap_frame_o,
+    output trecap_iface_pkg::trecap_core_tap_sample_t      tap_sample_o,
+    output trecap_iface_pkg::trecap_core_tap_frame_t       tap_frame_o,
     output logic                         tap_bin_valid_o,
     output logic [63:0]                  tap_bin_frame_idx_o,
     output logic [BIN_IDX_W-1:0]         tap_bin_idx_o,
-    output logic signed [T_CAN_W-1:0]    tap_bin_re_o,
-    output logic signed [T_CAN_W-1:0]    tap_bin_im_o,
-    output logic [T_MAG2_W-1:0]          tap_bin_mag2_o,
+    output logic signed [trecap_core_pkg::T_CAN_W-1:0]    tap_bin_re_o,
+    output logic signed [trecap_core_pkg::T_CAN_W-1:0]    tap_bin_im_o,
+    output logic [trecap_core_pkg::T_MAG2_W-1:0]          tap_bin_mag2_o,
     output logic                         tap_bin_pre_mask_o,
     output logic                         tap_bin_mask_o,
     output logic                         tap_bin_eligible_o,
@@ -151,6 +146,12 @@ module trecap_core_telemetry_top
     output logic                         scheduler_disabled_drop_o,
     output logic                         scheduler_illegal_drop_o
 );
+  import trecap_core_pkg::*;
+  import trecap_csr_pkg::*;
+  import trecap_packet_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_build_pkg::*;
+
 
     trecap_core_tap_sample_t tap_sample_w;
     trecap_core_tap_frame_t  tap_frame_w;

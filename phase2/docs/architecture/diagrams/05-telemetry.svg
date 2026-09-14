@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1132" viewBox="0 0 1600 1132" role="img" aria-labelledby="title desc">
+<title id="title">Observation and telemetry records</title>
+<desc id="desc">Core taps are valid-only: packet congestion can discard telemetry without stalling numerical processing.</desc>
+<rect x="0" y="0" width="1600" height="1132" rx="0" fill="#FCFCFE" stroke="none" stroke-width="1.3"/>
+<rect x="48" y="42" width="7" height="83" rx="3" fill="#8066A9" stroke="none" stroke-width="1.3"/>
+<text x="75" y="57" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#586A80" text-anchor="start">T-RECAP   /   ARCHITECTURE ATLAS</text>
+<text x="75" y="104" font-family="DejaVu Sans, Arial, sans-serif" font-size="39" font-weight="700" fill="#26364B" text-anchor="start">Observation and telemetry records</text>
+<text x="75" y="139" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="400" fill="#586A80" text-anchor="start">Core taps are valid-only: packet congestion can discard telemetry without stalling numerical processing.</text>
+<text x="1525" y="83" font-family="DejaVu Sans, Arial, sans-serif" font-size="35" font-weight="700" fill="#8066A9" text-anchor="end">05</text>
+<polyline points="48,163 1552,163" fill="none" stroke="#D8E0EA" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="66" y="213" width="1470" height="80" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="65" y="210" width="1470" height="80" rx="14" fill="#EBE4FA" stroke="#8066A9" stroke-width="1.15"/>
+<text x="82" y="240" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Core observation taps: samples / unique bins / frame statistics / error aggregates</text>
+<text x="84" y="271" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#8066A9" text-anchor="start">Authoritative core counters + source status + synthesized STATUS / METRICS cadence</text>
+<rect x="66" y="375" width="315" height="178" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="65" y="372" width="315" height="178" rx="14" fill="#F8E0E8" stroke="#A66882" stroke-width="1.15"/>
+<text x="82" y="402" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">WAVE</text>
+<text x="82" y="431" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">x_delayed / y / error: int16</text>
+<text x="82" y="453" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">16 + 6 x nsamp payload bytes</text>
+<text x="82" y="475" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">nsamp &lt;= 192; stride selection</text>
+<text x="82" y="535" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#A66882" text-anchor="start">trecap_wave_packetizer</text>
+<polyline points="222,290 222,372" fill="none" stroke="#A66882" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="3,5"/>
+<polygon points="222,372 226.5,362.0 217.5,362.0" fill="#A66882"/>
+<rect x="451" y="375" width="315" height="178" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="450" y="372" width="315" height="178" rx="14" fill="#F8E0E8" stroke="#A66882" stroke-width="1.15"/>
+<text x="467" y="402" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">SPEC129 / SPEC64</text>
+<text x="467" y="431" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">129 bins / 64 buckets</text>
+<text x="467" y="453" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">287 / 268 payload bytes</text>
+<text x="467" y="475" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">clip16(mag2 &gt;&gt; spec_shift)</text>
+<text x="467" y="535" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#A66882" text-anchor="start">trecap_spec_packetizer</text>
+<polyline points="607,290 607,372" fill="none" stroke="#A66882" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="3,5"/>
+<polygon points="607,372 611.5,362.0 602.5,362.0" fill="#A66882"/>
+<rect x="836" y="375" width="315" height="178" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="835" y="372" width="315" height="178" rx="14" fill="#F8E0E8" stroke="#A66882" stroke-width="1.15"/>
+<text x="852" y="402" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">METRICS</text>
+<text x="852" y="431" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Error + eligible-bin aggregates</text>
+<text x="852" y="453" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">56 payload bytes</text>
+<text x="852" y="475" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Core totals; explicit metric epoch</text>
+<text x="852" y="535" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#A66882" text-anchor="start">trecap_metrics_packetizer</text>
+<polyline points="992,290 992,372" fill="none" stroke="#A66882" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="3,5"/>
+<polygon points="992,372 996.5,362.0 987.5,362.0" fill="#A66882"/>
+<rect x="1221" y="375" width="315" height="178" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="1220" y="372" width="315" height="178" rx="14" fill="#F8E0E8" stroke="#A66882" stroke-width="1.15"/>
+<text x="1237" y="402" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">STATUS</text>
+<text x="1237" y="431" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Core + transport state</text>
+<text x="1237" y="453" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">72 payload bytes</text>
+<text x="1237" y="475" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Current CSR threshold snapshot</text>
+<text x="1237" y="535" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#A66882" text-anchor="start">trecap_status_packetizer</text>
+<polyline points="1377,290 1377,372" fill="none" stroke="#A66882" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="3,5"/>
+<polygon points="1377,372 1381.5,362.0 1372.5,362.0" fill="#A66882"/>
+<rect x="356" y="645" width="395" height="152" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="355" y="642" width="395" height="152" rx="14" fill="#F8E0E8" stroke="#A66882" stroke-width="1.15"/>
+<text x="372" y="672" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Record-atomic scheduler</text>
+<text x="372" y="701" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">STATUS &gt; METRICS &gt; SPEC &gt; WAVE</text>
+<text x="372" y="723" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">One candidate owns all its beats</text>
+<text x="372" y="779" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#A66882" text-anchor="start">trecap_packet_scheduler</text>
+<rect x="991" y="645" width="545" height="152" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="990" y="642" width="545" height="152" rx="14" fill="#F8E0E8" stroke="#A66882" stroke-width="1.15"/>
+<text x="1007" y="672" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Bounded packet FIFO + priority drops</text>
+<text x="1007" y="701" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">8 queued records + 1 staging ownership slot</text>
+<text x="1007" y="723" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Descriptors move; payload stays in M10K RAM</text>
+<text x="1007" y="779" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#A66882" text-anchor="start">trecap_packet_fifo / trecap_priority_dropper</text>
+<polyline points="222.5,550 222.5,592 550,592 550,642" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="550,642 554.5,632.0 545.5,632.0" fill="#708299"/>
+<polyline points="607.5,550 607.5,592 550,592 550,642" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="550,642 554.5,632.0 545.5,632.0" fill="#708299"/>
+<polyline points="992.5,550 992.5,592 550,592 550,642" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="550,642 554.5,632.0 545.5,632.0" fill="#708299"/>
+<polyline points="1377.5,550 1377.5,592 550,592 550,642" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="550,642 554.5,632.0 545.5,632.0" fill="#708299"/>
+<polyline points="750,718.0 990,718.0" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="990,718.0 980.0,713.5 980.0,722.5" fill="#708299"/>
+<rect x="773.43603515625" y="688" width="193.1279296875" height="21" rx="4" fill="#FCFCFE" stroke="none" stroke-width="1.3"/>
+<text x="870" y="703" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#708299" text-anchor="middle">payload32 + keep4 + last</text>
+<rect x="65" y="850" width="455" height="150" rx="13" fill="#F8E0E8" stroke="none" stroke-width="1.3"/>
+<text x="84" y="879" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#A66882" text-anchor="start">FORMATTED RECORD BOUNDARY</text>
+<text x="84" y="905" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Per-beat valid/ready; stable metadata for a whole</text>
+<text x="84" y="927" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">record. The common header and DDR padding are</text>
+<text x="84" y="949" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">added downstream.</text>
+<rect x="545" y="850" width="480" height="150" rx="13" fill="#F8E0E8" stroke="none" stroke-width="1.3"/>
+<text x="564" y="879" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#A66882" text-anchor="start">LOSS AND EPOCH OWNERSHIP</text>
+<text x="564" y="905" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Packetizer/scheduler/FIFO losses share</text>
+<text x="564" y="927" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">packet_fifo_drop_count. DDR losses use</text>
+<text x="564" y="949" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">dma_drop_count. Epoch changes discard partial</text>
+<text x="564" y="971" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">collections.</text>
+<rect x="1050" y="850" width="485" height="150" rx="13" fill="#DFECFA" stroke="none" stroke-width="1.3"/>
+<text x="1069" y="879" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#4D78A8" text-anchor="start">RECORDS -&gt; DDR BUILDER</text>
+<text x="1069" y="905" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">32-byte common header; complete record &lt;= 1200</text>
+<text x="1069" y="927" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">UDP bytes. DDR storage rounds total length to a</text>
+<text x="1069" y="949" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">64-byte boundary.</text>
+<polyline points="1262,794 1262,850" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1262,850 1266.5,840.0 1257.5,840.0" fill="#708299"/>
+<rect x="1315.90625" y="813" width="124.1875" height="21" rx="4" fill="#FCFCFE" stroke="none" stroke-width="1.3"/>
+<text x="1378" y="828" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#708299" text-anchor="middle">accepted record</text>
+<polyline points="48,1034 1552,1034" fill="none" stroke="#D8E0EA" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="65" y="1052" width="14" height="14" rx="4" fill="#DDF2E9" stroke="#407D6C" stroke-width="0.8"/>
+<text x="88" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">Sources</text>
+<rect x="250" y="1052" width="14" height="14" rx="4" fill="#EBE4FA" stroke="#8066A9" stroke-width="0.8"/>
+<text x="273" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">DSP / configuration</text>
+<rect x="570" y="1052" width="14" height="14" rx="4" fill="#F8E0E8" stroke="#A66882" stroke-width="0.8"/>
+<text x="593" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">Telemetry</text>
+<rect x="780" y="1052" width="14" height="14" rx="4" fill="#F7ECD5" stroke="#9C7D3F" stroke-width="0.8"/>
+<text x="803" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">HPS / host</text>
+<rect x="1000" y="1052" width="14" height="14" rx="4" fill="#DFECFA" stroke="#4D78A8" stroke-width="0.8"/>
+<text x="1023" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">Platform / memory</text>
+<polyline points="1290,1059 1328,1059" fill="none" stroke="#708299" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1337" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#586A80" text-anchor="start">data</text>
+<polyline points="1412,1059 1450,1059" fill="none" stroke="#8066A9" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="7,5"/>
+<text x="1459" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#586A80" text-anchor="start">control</text>
+<text x="65" y="1090" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#586A80" text-anchor="start">SOURCE: trecap_telemetry_top.sv  |  trecap_packet_fifo.sv  |  packet_layouts.json</text>
+<text x="65" y="1114" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#586A80" text-anchor="start">Architecture source snapshot 2026-09-14  /  Implementation structure; hardware operation is a separate milestone.</text>
+<text x="1535" y="1114" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#586A80" text-anchor="end">T-RECAP  /  05</text>
+</svg>

@@ -1,286 +1,268 @@
 // SPDX-License-Identifier: MIT
-#include "trecap_golden/artifact_checker.hpp"
+#include "json_config.hpp"
 #include "trecap_golden/artifact_writer.hpp"
 #include "trecap_golden/memh.hpp"
 #include "trecap_golden/metrics.hpp"
 #include "trecap_golden/stft_wola_model.hpp"
 #include "trecap_golden/version.hpp"
-#include "trecap_golden/window.hpp"
 
-#include <cstdint>
-#include <exception>
+#include <algorithm>
+#include <cstdlib>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <optional>
 #include <regex>
+#include <set>
 #include <sstream>
-#include <string>
-#include <string_view>
-#include <vector>
 
 namespace fs = std::filesystem;
+namespace model = trecap::golden;
+using trecap::reference_cli::Json;
 
 namespace {
 
 struct Options final {
     fs::path vectors_root{};
-    fs::path out_root{"artifacts/golden"};
+    fs::path out_root{"runs/reference_outputs"};
     fs::path input{};
     fs::path vector_dir{};
-    fs::path golden_dir{};
+    fs::path output_dir{};
+    fs::path coeff_dir{"artifacts/coefficients"};
     std::string vector_name{};
     std::optional<std::uint64_t> thr2{};
     bool collect_bin_stats{false};
-    bool collect_bin_stats_set{false};
 };
 
-[[nodiscard]] std::string read_text_file(const fs::path& path) {
+std::string read_text(const fs::path& path) {
     std::ifstream in(path, std::ios::binary);
-    if (!in) {
-        throw trecap::golden::contract_error("failed to open text file: " + path.string());
-    }
-    std::ostringstream os;
-    os << in.rdbuf();
-    return os.str();
+    if (!in) throw model::contract_error("cannot open " + path.string());
+    std::ostringstream text; text << in.rdbuf();
+    if (in.bad()) throw model::contract_error("I/O error reading " + path.string());
+    return text.str();
 }
 
-[[nodiscard]] std::optional<std::string> extract_json_string(const std::string& text, const std::string_view key) {
-    const std::regex pattern{"\"" + std::string(key) + "\"[[:space:]]*:[[:space:]]*\"([^\"]*)\""};
-    std::smatch match;
-    if (std::regex_search(text, match, pattern) && match.size() == 2U) {
-        return match[1].str();
-    }
-    return std::nullopt;
+Json read_json(const fs::path& path) {
+    const auto text = read_text(path);
+    return trecap::reference_cli::JsonReader(text).parse();
 }
 
-[[nodiscard]] bool text_contains_true_field(const std::string& text, const std::string_view key) {
-    const std::regex pattern{"\"" + std::string(key) + "\"[[:space:]]*:[[:space:]]*true"};
-    return std::regex_search(text, pattern);
+std::uint64_t decimal(std::string_view text) {
+    if (text.empty() || (text.size() > 1U && text.front() == '0') ||
+        !std::all_of(text.begin(), text.end(), [](char c) { return c >= '0' && c <= '9'; }))
+        throw model::contract_error("THR2 must be a canonical unsigned decimal string");
+    std::uint64_t result{};
+    const auto [end, error] = std::from_chars(text.data(), text.data() + text.size(), result);
+    if (error != std::errc{} || end != text.data() + text.size() ||
+        !model::threshold_is_legal(result, model::kBaselineWidths.W_mag2))
+        throw model::contract_error("THR2 is outside the baseline magnitude-squared domain");
+    return result;
 }
 
-[[nodiscard]] std::uint64_t parse_u64_decimal(const std::string_view text, const std::string_view field_name) {
-    if (text.empty()) {
-        throw trecap::golden::contract_error(std::string(field_name) + " is empty");
-    }
-    if (text.size() > 1U && text.front() == '0') {
-        throw trecap::golden::contract_error(std::string(field_name) + " is not canonical decimal");
-    }
-    for (const char ch : text) {
-        if (ch < '0' || ch > '9') {
-            throw trecap::golden::contract_error(std::string(field_name) + " is not unsigned decimal");
-        }
-    }
-    std::size_t consumed = 0U;
-    const auto value = static_cast<std::uint64_t>(std::stoull(std::string(text), &consumed, 10));
-    if (consumed != text.size()) {
-        throw trecap::golden::contract_error(std::string(field_name) + " has trailing characters");
-    }
-    return value;
+std::string vector_name(const Json& config) {
+    const auto name = config.at("vector_name").string();
+    if (!std::regex_match(name, std::regex("[A-Za-z0-9][A-Za-z0-9_-]{0,95}")))
+        throw model::contract_error("invalid vector_name");
+    return name;
 }
 
-[[nodiscard]] std::string maybe_config_text(const fs::path& vector_dir) {
-    const fs::path config = vector_dir / "config.json";
-    if (fs::exists(config)) {
-        return read_text_file(config);
+void require_uint(const Json& object, std::string_view field, std::uint64_t expected) {
+    if (object.at(field).uint() != expected)
+        throw model::contract_error("baseline config mismatch: " + std::string(field));
+}
+
+void require_text(const Json& object, std::string_view field, std::string_view expected) {
+    if (object.at(field).string() != expected)
+        throw model::contract_error("baseline config mismatch: " + std::string(field));
+}
+
+void validate_config(const Json& config, const model::StreamGeometry* geometry = nullptr) {
+    require_text(config, "schema", model::kVectorConfigSchema);
+    static_cast<void>(vector_name(config));
+    const auto& c = config.at("configuration");
+    const auto cfg = model::CoreConfig::baseline();
+    require_uint(c, "N", cfg.N); require_uint(c, "L", cfg.L); require_uint(c, "P", cfg.P);
+    require_uint(c, "H", cfg.H); require_uint(c, "F", cfg.F); require_uint(c, "G", cfg.G);
+    require_uint(c, "D", cfg.D); require_uint(c, "PROTECT_DC", cfg.protect_dc ? 1U : 0U);
+    require_uint(c, "PROTECT_NYQ", cfg.protect_nyq ? 1U : 0U);
+    static_cast<void>(decimal(c.at("THR2").string()));
+    const auto& widths = config.at("widths");
+    const auto w = model::WidthConfig::baseline();
+    require_uint(widths, "W_Qw", w.W_Qw); require_uint(widths, "W_tw", w.W_tw);
+    require_uint(widths, "W_u", w.W_u); require_uint(widths, "W_fft", w.W_fft);
+    require_uint(widths, "W_fft_pre", w.W_fft_pre); require_uint(widths, "W_can_pre", w.W_can_pre);
+    require_uint(widths, "W_can", w.W_can); require_uint(widths, "W_mag2", w.W_mag2);
+    require_uint(widths, "W_ifft", w.W_ifft); require_uint(widths, "W_z", w.W_z);
+    require_uint(widths, "W_ola", w.W_ola);
+    const auto& contract = config.at("contract");
+    require_text(contract, "fft_mode", model::kFftMode);
+    require_text(contract, "rounding_mode", model::kRoundingMode);
+    require_text(contract, "tail_policy", model::kTailPolicyFullTail);
+    require_text(contract, "threshold_mapping", model::kThresholdMappingRawThr2);
+    require_text(contract, "memh_encoding", model::kMemhEncoding);
+    require_text(contract, "hash_rule", model::kHashRule);
+    const auto& rows = config.at("artifact_rows");
+    for (const auto key : {"window_qw", "twiddle_re", "twiddle_im", "twiddle_inv_re", "twiddle_inv_im"})
+        require_uint(rows, key, cfg.L);
+    if (geometry) {
+        require_uint(c, "Ns", geometry->Ns); require_uint(c, "Ny", geometry->Ny);
+        require_uint(c, "frames", geometry->Nframes);
+        require_uint(rows, "x_in", geometry->Ns); require_uint(rows, "y_out", geometry->Ny);
+        require_uint(rows, "frame_stats_data_rows", geometry->Nframes);
+        if (rows.has("bin_stats_data_rows"))
+            require_uint(rows, "bin_stats_data_rows", geometry->Nframes * cfg.unique_bins());
     }
-    return {};
 }
 
-[[nodiscard]] std::uint64_t thr2_from_config_or_zero(const std::string& config_text) {
-    if (const std::optional<std::string> value = extract_json_string(config_text, "THR2")) {
-        return parse_u64_decimal(*value, "THR2");
+bool within(const fs::path& child, const fs::path& parent) {
+    // weakly_canonical resolves aliases through existing parent directories.
+    const auto c = fs::weakly_canonical(child);
+    const auto p = fs::weakly_canonical(parent);
+    for (auto current = c; !current.empty(); current = current.parent_path()) {
+        if (current == p || (fs::exists(current) && fs::exists(p) && fs::equivalent(current, p))) return true;
+        if (current == current.root_path()) break;
     }
-    return 0U;
+    return false;
 }
 
-[[nodiscard]] bool collect_bin_stats_from_config(const std::string& config_text) {
-    return config_text.find("\"bin_stats_data_rows\"") != std::string::npos ||
-           text_contains_true_field(config_text, "requires_bin_stats");
-}
+void run_one(const Options& opt, const fs::path& vector_dir, const fs::path& input,
+             const fs::path& explicit_output = {}) {
+    const auto config_path = vector_dir / "config.json";
+    const auto config_text = read_text(config_path);
+    const auto config = trecap::reference_cli::JsonReader(config_text).parse();
+    validate_config(config);
+    const auto name = vector_name(config);
+    if (!opt.vector_name.empty() && opt.vector_name != name)
+        throw model::contract_error("--vector-name must agree with config.json");
+    const auto output = explicit_output.empty() ? opt.out_root / name : explicit_output;
+    if (within(output, vector_dir) || within(vector_dir, output) ||
+        within(output, input.parent_path()) ||
+        within(output, opt.coeff_dir) || within(opt.coeff_dir, output))
+        throw model::contract_error("output directory must be separate from input and coefficient directories");
+    if (fs::exists(output) && (!fs::is_directory(output) || !fs::is_empty(output)))
+        throw model::contract_error("output directory must be new or empty: " + output.string());
 
-[[nodiscard]] std::string vector_name_from_config_or_path(const std::string& config_text, const fs::path& vector_dir) {
-    if (const std::optional<std::string> value = extract_json_string(config_text, "vector_name")) {
-        return *value;
+    const auto cfg = model::CoreConfig::baseline();
+    const auto w = model::WidthConfig::baseline();
+    const auto x = model::read_memh(input, model::signed_memh_spec(cfg.N, 0U, "x_in"));
+    const auto geometry = model::full_tail_geometry(x.size(), cfg);
+    validate_config(config, &geometry);
+    require_text(config.at("stream_hashes"), "x_in_sha256", model::sha256_memh_signed(x, cfg.N));
+
+    // Frozen coefficient files are read, never regenerated during an ordinary run.
+    model::WindowTable window{};
+    window.cfg = cfg;
+    for (const auto value : model::read_memh(opt.coeff_dir / "window_qw.memh",
+                                            model::unsigned_memh_spec(w.W_Qw, cfg.L, "window_qw")))
+        window.q.push_back(static_cast<std::uint64_t>(value));
+    model::TwiddleTables twiddles{};
+    twiddles.cfg = cfg;
+    const auto re = model::read_memh(opt.coeff_dir / "twiddle_re.memh", model::signed_memh_spec(w.W_tw, cfg.L));
+    const auto im = model::read_memh(opt.coeff_dir / "twiddle_im.memh", model::signed_memh_spec(w.W_tw, cfg.L));
+    const auto ir = model::read_memh(opt.coeff_dir / "twiddle_inv_re.memh", model::signed_memh_spec(w.W_tw, cfg.L));
+    const auto ii = model::read_memh(opt.coeff_dir / "twiddle_inv_im.memh", model::signed_memh_spec(w.W_tw, cfg.L));
+    for (unsigned i = 0; i < cfg.L; ++i) {
+        twiddles.forward.push_back({re[i], im[i]});
+        twiddles.inverse.push_back({ir[i], ii[i]});
     }
-    if (const std::optional<std::string> value = extract_json_string(config_text, "name")) {
-        return *value;
-    }
-    return vector_dir.filename().string();
+    const auto hashes = model::compute_coefficient_hashes(window, twiddles);
+    const auto& declared_hashes = config.at("hashes");
+    require_text(declared_hashes, "window_qw_sha256", hashes.window_qw_sha256);
+    require_text(declared_hashes, "twiddle_re_sha256", hashes.twiddle_re_sha256);
+    require_text(declared_hashes, "twiddle_im_sha256", hashes.twiddle_im_sha256);
+    require_text(declared_hashes, "twiddle_inv_re_sha256", hashes.twiddle_inv_re_sha256);
+    require_text(declared_hashes, "twiddle_inv_im_sha256", hashes.twiddle_inv_im_sha256);
+
+    model::StftWolaRunConfig run_cfg{};
+    run_cfg.core = cfg;
+    run_cfg.thr2 = opt.thr2.value_or(decimal(config.at("configuration").at("THR2").string()));
+    run_cfg.collect_bin_stats = opt.collect_bin_stats || config.at("artifact_rows").has("bin_stats_data_rows");
+    const auto result = model::run_stft_wola_model(x, run_cfg, window, twiddles);
+    model::write_reference_outputs(output, name, x, run_cfg, result, hashes);
+    model::write_text_file(output / "source_config.json", config_text);
+    model::write_json_file(output / "run.json",
+        "{\n  \"schema\": \"trecap_reference_run_v1\",\n  \"status\": \"reference_output\",\n"
+        "  \"input\": " + model::json_quote(fs::absolute(input).generic_string()) +
+        ",\n  \"source_config_sha256\": " + model::json_quote(model::sha256_bytes(config_text)) +
+        ",\n  \"coefficient_directory\": " + model::json_quote(fs::absolute(opt.coeff_dir).generic_string()) +
+        ",\n  \"threshold_override\": " + model::json_bool(opt.thr2.has_value()) + "\n}");
+    std::cout << "reference: " << name << " Ns=" << geometry.Ns << " Ny=" << geometry.Ny
+              << " frames=" << geometry.Nframes << " THR2=" << run_cfg.thr2 << '\n';
 }
 
-void print_usage(std::ostream& os) {
-    os << "phase2_golden_model - T-RECAP Phase 2 STFT/WOLA golden runner\n\n";
-    os << "Suite mode:\n";
-    os << "  phase2_golden_model --vectors artifacts/test_vectors --out artifacts/golden\n\n";
-    os << "Single-vector mode:\n";
-    os << "  phase2_golden_model --input artifacts/test_vectors/<name>/x_in.memh \\\n";
-    os << "      --test-vector-dir artifacts/test_vectors/<name> \\\n";
-    os << "      --golden-dir artifacts/golden/<name> --vector-name <name> --thr2 0\n\n";
-    os << "Options:\n";
-    os << "  --vectors DIR           Run every vector directory under DIR.\n";
-    os << "  --out DIR               Golden output root for suite mode.\n";
-    os << "  --vector-dir DIR        Single vector directory containing x_in.memh/config.json.\n";
-    os << "  --input FILE            Single input x_in.memh.\n";
-    os << "  --test-vector-dir DIR   Directory to receive/refresh config.json.\n";
-    os << "  --golden-dir DIR        Directory to receive y_out.memh/frame_stats.csv/metrics.json.\n";
-    os << "  --vector-name NAME      Vector name used in generated JSON.\n";
-    os << "  --thr2 DECIMAL          Raw magnitude-squared threshold.\n";
-    os << "  --collect-bin-stats     Emit bin_stats.csv.\n";
-    os << "  --help                  Show this help.\n";
+void usage() {
+    std::cout << "T-RECAP Phase 2 reference runner (legacy executable name retained)\n"
+                 "  --vector-dir DIR        Input x_in.memh and config.json (read-only)\n"
+                 "  --vectors DIR           Run each vector subdirectory, sorted by name\n"
+                 "  --input FILE            Input file; defaults to vector-dir/x_in.memh\n"
+                 "  --test-vector-dir DIR   Alias of --vector-dir\n"
+                 "  --coeff-dir DIR         Frozen coefficient files (default artifacts/coefficients)\n"
+                 "  --out DIR               Output root (default runs/reference_outputs)\n"
+                 "  --output-dir DIR        Exact output directory for a single vector\n"
+                 "  --golden-dir DIR        Legacy alias of --output-dir\n"
+                 "  --vector-name NAME      Must match config.json\n"
+                 "  --thr2 DECIMAL          Explicit threshold override, recorded in output only\n"
+                 "  --collect-bin-stats     Include canonical bin statistics\n"
+                 "Input config is required; baseline mismatches and nonempty outputs are rejected.\n";
 }
 
-[[nodiscard]] Options parse_args(const int argc, char** argv) {
-    Options opt{};
+Options parse_args(int argc, char** argv) {
+    Options opt;
+    std::set<std::string> seen;
     for (int i = 1; i < argc; ++i) {
-        const std::string arg{argv[i]};
-        const auto require_value = [&i, argc, argv, &arg]() -> std::string {
-            if ((i + 1) >= argc) {
-                throw trecap::golden::contract_error("missing value after " + arg);
-            }
-            ++i;
-            return std::string{argv[i]};
+        std::string arg = argv[i];
+        if (arg == "--help" || arg == "-h") { usage(); std::exit(0); }
+        if (arg == "--test-vector-dir") arg = "--vector-dir";
+        if (arg == "--golden-dir") arg = "--output-dir";
+        if (!seen.insert(arg).second) throw model::contract_error("duplicate option: " + arg);
+        auto value = [&]() -> std::string {
+            if (++i >= argc) throw model::contract_error("missing value after " + arg);
+            return argv[i];
         };
-        if (arg == "--help" || arg == "-h") {
-            print_usage(std::cout);
-            std::exit(0);
-        } else if (arg == "--vectors") {
-            opt.vectors_root = fs::path{require_value()};
-        } else if (arg == "--out") {
-            opt.out_root = fs::path{require_value()};
-        } else if (arg == "--vector-dir") {
-            opt.vector_dir = fs::path{require_value()};
-        } else if (arg == "--input") {
-            opt.input = fs::path{require_value()};
-        } else if (arg == "--test-vector-dir") {
-            opt.vector_dir = fs::path{require_value()};
-        } else if (arg == "--golden-dir") {
-            opt.golden_dir = fs::path{require_value()};
-        } else if (arg == "--vector-name") {
-            opt.vector_name = require_value();
-        } else if (arg == "--thr2") {
-            opt.thr2 = parse_u64_decimal(require_value(), "THR2");
-        } else if (arg == "--collect-bin-stats") {
-            opt.collect_bin_stats = true;
-            opt.collect_bin_stats_set = true;
-        } else {
-            throw trecap::golden::contract_error("unknown argument: " + arg);
-        }
+        if (arg == "--vectors") opt.vectors_root = value();
+        else if (arg == "--out") opt.out_root = value();
+        else if (arg == "--vector-dir") opt.vector_dir = value();
+        else if (arg == "--input") opt.input = value();
+        else if (arg == "--output-dir") opt.output_dir = value();
+        else if (arg == "--coeff-dir") opt.coeff_dir = value();
+        else if (arg == "--vector-name") opt.vector_name = value();
+        else if (arg == "--thr2") opt.thr2 = decimal(value());
+        else if (arg == "--collect-bin-stats") opt.collect_bin_stats = true;
+        else throw model::contract_error("unknown option: " + arg);
     }
+    if (!opt.vectors_root.empty() &&
+        (!opt.input.empty() || !opt.vector_dir.empty() || !opt.output_dir.empty() || !opt.vector_name.empty()))
+        throw model::contract_error("suite mode cannot use single-vector options");
     return opt;
 }
-
-void run_one_vector(const fs::path& input_path,
-                    const fs::path& vector_dir,
-                    const fs::path& golden_dir,
-                    const std::string& vector_name_arg,
-                    const std::optional<std::uint64_t> thr2_arg,
-                    const bool collect_arg,
-                    const bool collect_arg_is_set) {
-    const trecap::golden::CoreConfig cfg = trecap::golden::CoreConfig::baseline();
-    const std::string config_text = maybe_config_text(vector_dir);
-    const std::uint64_t thr2 = thr2_arg.value_or(thr2_from_config_or_zero(config_text));
-    const bool collect_bin_stats = collect_arg_is_set ? collect_arg : collect_bin_stats_from_config(config_text);
-    const std::string vector_name = vector_name_arg.empty() ? vector_name_from_config_or_path(config_text, vector_dir)
-                                                           : vector_name_arg;
-
-    const std::vector<std::int64_t> x = trecap::golden::read_memh(input_path,
-                                                                  trecap::golden::signed_memh_spec(cfg.N, 0U, "x_in"));
-    if (x.empty()) {
-        throw trecap::golden::contract_error("x_in.memh has zero samples; Revision J requires Ns > 0");
-    }
-
-    const trecap::golden::WindowTable window = trecap::golden::WindowTable::generated(cfg);
-    const trecap::golden::TwiddleTables twiddles = trecap::golden::TwiddleTables::generated(cfg);
-    const trecap::golden::CoefficientHashes coeff_hashes = trecap::golden::compute_coefficient_hashes(window, twiddles);
-
-    trecap::golden::StftWolaRunConfig run_cfg{};
-    run_cfg.core = cfg;
-    run_cfg.thr2 = thr2;
-    run_cfg.collect_bin_stats = collect_bin_stats;
-
-    const trecap::golden::StftWolaResult result = trecap::golden::run_stft_wola_model(x, run_cfg, window, twiddles);
-    if (thr2 == 0U && !trecap::golden::no_suppression_invariant_holds(result.metrics)) {
-        throw trecap::golden::contract_error("THR2=0 invariant failed: at least one eligible bin was suppressed");
-    }
-
-    trecap::golden::write_vector_artifacts(vector_dir, golden_dir, vector_name, x, run_cfg, result, coeff_hashes);
-    const trecap::golden::ArtifactCheckResult rows = trecap::golden::check_vector_artifact_rows(vector_dir,
-                                                                                                  golden_dir,
-                                                                                                  result.geometry,
-                                                                                                  collect_bin_stats,
-                                                                                                  cfg);
-    trecap::golden::throw_if_failed(rows);
-
-    std::cout << "golden: " << vector_name << " Ns=" << result.geometry.Ns << " Ny=" << result.geometry.Ny
-              << " frames=" << result.geometry.Nframes << " THR2=" << thr2 << " bin_stats="
-              << (collect_bin_stats ? "yes" : "no") << '\n';
-}
-
-void run_suite(const Options& opt) {
-    if (!fs::exists(opt.vectors_root)) {
-        throw trecap::golden::contract_error("vector root does not exist: " + opt.vectors_root.string());
-    }
-    std::uint64_t count = 0U;
-    for (const fs::directory_entry& entry : fs::directory_iterator(opt.vectors_root)) {
-        if (!entry.is_directory()) {
-            continue;
-        }
-        const fs::path vector_dir = entry.path();
-        const fs::path input = vector_dir / "x_in.memh";
-        if (!fs::exists(input)) {
-            continue;
-        }
-        const std::string config_text = maybe_config_text(vector_dir);
-        const std::string name = vector_name_from_config_or_path(config_text, vector_dir);
-        const fs::path golden_dir = opt.out_root / name;
-        run_one_vector(input, vector_dir, golden_dir, name, opt.thr2, opt.collect_bin_stats, opt.collect_bin_stats_set);
-        ++count;
-    }
-    if (count == 0U) {
-        throw trecap::golden::contract_error("no vector directories containing x_in.memh under " + opt.vectors_root.string());
-    }
-}
-
 }  // namespace
 
-int main(const int argc, char** argv) {
+int main(int argc, char** argv) {
     try {
-        const Options opt = parse_args(argc, argv);
+        const auto opt = parse_args(argc, argv);
         if (!opt.vectors_root.empty()) {
-            run_suite(opt);
-            return 0;
+            std::vector<fs::path> dirs;
+            std::set<std::string> names;
+            for (const auto& entry : fs::directory_iterator(opt.vectors_root)) {
+                if (entry.is_directory() && fs::exists(entry.path() / "x_in.memh")) {
+                    const auto config = read_json(entry.path() / "config.json");
+                    validate_config(config);
+                    if (!names.insert(vector_name(config)).second)
+                        throw model::contract_error("duplicate vector_name in suite");
+                    dirs.push_back(entry.path());
+                }
+            }
+            if (dirs.empty()) throw model::contract_error("no vector inputs found");
+            std::sort(dirs.begin(), dirs.end());
+            for (const auto& dir : dirs) run_one(opt, dir, dir / "x_in.memh");
+        } else {
+            const auto dir = opt.vector_dir.empty() ? opt.input.parent_path() : opt.vector_dir;
+            if (dir.empty()) throw model::contract_error("--vector-dir or --input is required");
+            run_one(opt, dir, opt.input.empty() ? dir / "x_in.memh" : opt.input, opt.output_dir);
         }
-
-        fs::path vector_dir = opt.vector_dir;
-        if (!opt.input.empty() && vector_dir.empty()) {
-            vector_dir = opt.input.parent_path();
-        }
-        fs::path input = opt.input;
-        if (input.empty() && !vector_dir.empty()) {
-            input = vector_dir / "x_in.memh";
-        }
-        if (input.empty() || vector_dir.empty()) {
-            print_usage(std::cerr);
-            throw trecap::golden::contract_error("single-vector mode requires --input/--vector-dir");
-        }
-        fs::path golden_dir = opt.golden_dir;
-        if (golden_dir.empty()) {
-            const std::string config_text = maybe_config_text(vector_dir);
-            const std::string name = opt.vector_name.empty() ? vector_name_from_config_or_path(config_text, vector_dir)
-                                                            : opt.vector_name;
-            golden_dir = opt.out_root / name;
-        }
-        run_one_vector(input,
-                       vector_dir,
-                       golden_dir,
-                       opt.vector_name,
-                       opt.thr2,
-                       opt.collect_bin_stats,
-                       opt.collect_bin_stats_set);
         return 0;
-    } catch (const std::exception& e) {
-        std::cerr << "ERROR: " << e.what() << '\n';
+    } catch (const std::exception& error) {
+        std::cerr << "ERROR: " << error.what() << '\n';
         return 2;
     }
 }

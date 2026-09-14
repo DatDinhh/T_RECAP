@@ -139,20 +139,20 @@
         "serial_result_bits": 12,
         "serial_command_bits": 6,
         "result_bit_order": "B11_to_B0_MSB_first",
-                "sdo_transition_edge": "B11_valid_after_conversion_then_B10_to_B0_change_after_falling_ADC_SCLK",
+        "sdo_transition_edge": "B11_valid_after_conversion_then_B10_to_B0_change_after_falling_ADC_SCLK",
         "sdo_capture_event": "fabric_clock_event_that_raises_ADC_SCLK_after_DOUT_synchronizer",
         "sdi_capture_edge_at_device": "rising_ADC_SCLK",
         "acquisition_guard_cycles": 12,
         "seventh_sclk_rise_to_next_convst_min_cycles": 122,
         "seventh_sclk_rise_to_next_convst_min_ns": 2440,
         "device_acquisition_time_min_ns": 240,
-                "transaction_cycles": 334,
-                "transaction_time_ns": 6680,
-                "reentry_recovery_cycles_after_enable_or_abort": 92,
-                "reentry_recovery_time_ns": 1840,
-                "all_timing_parameters_checked_with_wide_cross_multiplied_arithmetic": true,
-                "unsupported_well_formed_parameter_configuration_behavior": "fail_closed_idle_pins_no_requests_no_samples",
-                "degenerate_zero_width_parameter_overrides_are_outside_module_abi": true
+        "transaction_cycles": 334,
+        "transaction_time_ns": 6680,
+        "reentry_recovery_cycles_after_enable_or_abort": 92,
+        "reentry_recovery_time_ns": 1840,
+        "all_timing_parameters_checked_with_wide_cross_multiplied_arithmetic": true,
+        "unsupported_well_formed_parameter_configuration_behavior": "fail_closed_idle_pins_no_requests_no_samples",
+        "degenerate_zero_width_parameter_overrides_are_outside_module_abi": true
       }
     },
     "channel_command_contract": {
@@ -166,9 +166,9 @@
           "SLP"
         ],
         "operating_mode": "single_ended_unipolar_awake",
-                "sleep_bit_always_zero": true,
-                "sleep_wakeup_delay_applicable": false,
-                "unsupported_input_mode_polarity_or_sleep_command": "reject_set_protocol_error_no_transaction",
+        "sleep_bit_always_zero": true,
+        "sleep_wakeup_delay_applicable": false,
+        "unsupported_input_mode_polarity_or_sleep_command": "reject_set_protocol_error_no_transaction",
         "command_formula": "{1,channel[0],channel[2],channel[1],1,0}",
         "channel_commands": [
           {
@@ -253,7 +253,10 @@
         "continuous_select_level": 0,
         "manual_request_source": "key_press_pulse[2]",
         "requests_while_busy": "reject_set_sticky_fault",
-        "disabled_source_can_start_transactions": false
+        "disabled_source_can_start_transactions": false,
+        "manual_samples_enter_mathematical_core": false,
+        "manual_conversion_visibility": "HEX5_3_eligible_count_low12_HEX2_0_raw_code_when_SW9_8_00",
+        "sampling_mode_change_restarts_dsp_epoch": true
       }
     },
     "cdc_contract": {
@@ -282,25 +285,26 @@
         "adapter_instance": "u_adc_adapter",
         "source_mux_instance": "u_source_mux",
         "source_mode": "TSRC_ADC_LIVE",
-        "wrapper_enable": "active_source_mode_equals_TSRC_ADC_LIVE",
-                "board_channel_latch_guard_cycles_before_request_input": 1,
-                "wrapper_reentry_recovery_cycles_before_request_acceptance": 92,
-                "requests_during_reentry_recovery": "reject_set_request_overrun_sticky",
+        "wrapper_enable": "active_source_mode_equals_TSRC_ADC_LIVE_and_not_sampling_mode_change",
+        "board_channel_latch_guard_cycles_before_request_input": 1,
+        "wrapper_reentry_recovery_cycles_before_request_acceptance": 92,
+        "requests_during_reentry_recovery": "reject_set_request_overrun_sticky",
         "adapter_enable": "active_source_mode_equals_TSRC_ADC_LIVE",
         "adapter_has_single_entry_ready_valid_buffer": true,
         "adapter_drop_counter_arithmetic": "saturating_unsigned",
         "source_mux_routes_adc_only_when_selected": true,
-        "telemetry_sample_rate_binding": "TSRC_ADC_LIVE_100000_otherwise_48000",
+        "telemetry_sample_rate_binding": "ADC_continuous_100000_manual_0_otherwise_48000",
         "telemetry_adc_sample_rate_hz": 100000,
         "telemetry_non_adc_sample_rate_hz": 48000,
         "adc_may_block_bram_replay_or_audio_milestones": false,
-        "bram_replay_remains_correctness_authority": true
+        "bram_replay_remains_correctness_authority": true,
+        "telemetry_manual_sample_rate_hz": 0
       }
     },
     "fault_contract": {
       "const": {
-                "request_overrun_sticky_event": "scheduler_or_manual_request_attempt_occurs_during_reentry_recovery_or_while_protocol_state_not_idle",
-                "protocol_error_sticky_event": "illegal_state_or_unsupported_protocol_configuration_or_unsupported_runtime_command",
+        "request_overrun_sticky_event": "scheduler_or_manual_request_attempt_occurs_during_reentry_recovery_or_while_protocol_state_not_idle",
+        "protocol_error_sticky_event": "illegal_state_or_unsupported_protocol_configuration_or_unsupported_runtime_command",
         "clear_sticky_input": "clear_sticky_i",
         "clear_sticky_does_not_clear_lifetime_sample_count": true,
         "wrapper_faults_are_not_aliased_to_unrelated_reserved_csr_bits": true,
@@ -343,8 +347,8 @@
         "ADC_CS_N is the legacy board alias for active-high LTC2308 CONVST and shall idle low.",
         "This contract is limited to DE1-SoC Rev-H with LTC2308 and makes no cross-revision AD7928 or other ADC compatibility claim.",
         "SLP remains zero in every supported command, so no reset-pin state or 200 ms sleep-wakeup path is assumed.",
-                "Every result is tagged by the previously shifted command; the first old-configuration result is never published as a new-channel sample.",
-                "After reset, disable, or abort, the wrapper shall wait at least 92 fabric cycles before accepting a new conversion request; an early request is rejected and sticky-attributed.",
+        "Every result is tagged by the previously shifted command; the first old-configuration result is never published as a new-channel sample.",
+        "After reset, disable, or abort, the wrapper shall wait at least 92 fabric cycles before accepting a new conversion request; an early request is rejected and sticky-attributed.",
         "ADC_DOUT is synchronized before capture, while sample data and valid remain registered together in the 50 MHz fabric domain.",
         "The ADC wrapper and adapter enter the source mux only through TSRC_ADC_LIVE and cannot bypass source selection.",
         "BRAM replay remains the correctness and artifact-comparison authority and ADC completion cannot block BRAM replay or LINE-IN milestones.",

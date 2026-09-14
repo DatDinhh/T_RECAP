@@ -1,6 +1,6 @@
 # AUTO-GENERATED - DO NOT EDIT
 # Generator: scripts/gen_filelists.py
-# Generator version: r1.4.0
+# Generator version: r1.4.1
 # Filelist: standalone normalized-source core plus non-stalling telemetry composition
 # Expected source files are active entries by default; compile targets fail if missing.
 

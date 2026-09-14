@@ -187,7 +187,7 @@ EXPECTED_GRAPH: dict[str, object] = {
     "bridge_reset_source": "clk_0.clk_reset",
     "csr_bridge": {
         "instance": "trecap_csr_bridge",
-        "component_type": "altera_avalon_mm_bridge",
+        "component_type": "trecap_avalon_csr_bridge",
         "upstream": "hps_0.h2f_lw_axi_master",
         "slave_interface": "trecap_csr_bridge.s0",
         "exported_master_interface": "trecap_csr_bridge.m0",
@@ -276,6 +276,10 @@ def build_expected_abi() -> dict[str, dict[str, object]]:
         "input",
         1,
         "clk_50_clk",
+        "hps_f2h_cold_reset_req_reset_n",
+        "hps_f2h_debug_reset_req_reset_n",
+        "hps_f2h_warm_reset_req_reset_n",
+        "trecap_f2h_sdram0_debugaccess",
         "reset_n_reset_n",
         "memory_oct_rzqin",
         "hps_io_hps_io_emac1_inst_RXD0",
@@ -295,6 +299,7 @@ def build_expected_abi() -> dict[str, dict[str, object]]:
         "trecap_f2h_sdram0_read",
         "trecap_f2h_sdram0_write",
     )
+    add("input", 28, "hps_f2h_stm_hw_events_stm_hwevents")
     add("input", 2, "trecap_csr_lw_master_response")
     add("input", 8, "trecap_f2h_sdram0_byteenable")
     add("input", 1, "trecap_f2h_sdram0_burstcount")
@@ -383,8 +388,8 @@ def build_expected_abi() -> dict[str, dict[str, object]]:
     add("inout", 4, "memory_mem_dqs", "memory_mem_dqs_n")
     add("inout", 32, "memory_mem_dq")
 
-    if len(ports) != 94:
-        raise RuntimeError(f"expected ABI inventory has {len(ports)} ports, not 94")
+    if len(ports) != 99:
+        raise RuntimeError(f"expected ABI inventory has {len(ports)} ports, not 99")
     return ports
 
 
@@ -392,6 +397,11 @@ EXPECTED_ABI = build_expected_abi()
 
 EXPECTED_SYSTEM_BINDINGS: dict[str, str] = {
     "clk_50_clk": "clk_50_i",
+    "hps_f2h_cold_reset_req_reset_n": "1'b1",
+    "hps_f2h_debug_reset_req_reset_n": "1'b1",
+    "hps_f2h_warm_reset_req_reset_n": "1'b1",
+    "hps_f2h_stm_hw_events_stm_hwevents": "28'b0",
+    "trecap_f2h_sdram0_debugaccess": "1'b0",
     "reset_n_reset_n": "bridge_reset_n_i",
     "h2f_reset_reset_n": "h2f_reset_n_o",
     "trecap_csr_lw_master_address": "csr_avs_address_o",
@@ -421,7 +431,8 @@ EXPECTED_TCL_CONFIG: dict[str, str] = {
     "h2f_lw_master_export_internal": "trecap_csr_bridge.m0",
     "f2h_sdram0_export_internal": "trecap_f2h_sdram_bridge.s0",
     "csr_bridge_instance": "trecap_csr_bridge",
-    "csr_bridge_component_type": "altera_avalon_mm_bridge",
+    "csr_bridge_component_type": "trecap_avalon_csr_bridge",
+    "csr_bridge_component_version": "1.0",
     "csr_bridge_slave_interface": "trecap_csr_bridge.s0",
     "csr_bridge_master_interface": "trecap_csr_bridge.m0",
     "csr_bridge_upstream_interface": "hps_0.h2f_lw_axi_master",
@@ -1133,6 +1144,8 @@ def main() -> int:
     generator = read_text(root, QSYS_GENERATOR_REL, errors)
     config = read_text(root, QSYS_CONFIG_REL, errors)
     qsys = read_text(root, QSYS_REL, errors)
+    for name in ("trecap_avalon_csr_bridge_hw.tcl", "trecap_avalon_csr_bridge.sv"):
+        read_text(root, Path("platform/de1soc/qsys/ip/trecap_csr_bridge") / name, errors)
 
     if wrapper:
         check_wrapper(wrapper, errors)

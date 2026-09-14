@@ -12,7 +12,6 @@
 
 // T-RECAP CSR interface. addr is a byte offset inside the CSR window, not an HPS virtual address.
 interface trecap_csr_if
-  import trecap_csr_pkg::*;
 #(
     parameter int unsigned ADDR_W = 12,
     parameter int unsigned DATA_W = 32
@@ -20,6 +19,8 @@ interface trecap_csr_if
     input logic clk,
     input logic rst_n
 );
+  import trecap_csr_pkg::*;
+
 
     localparam int unsigned DATA_BYTES       = DATA_W / 8;
     localparam int unsigned CSR_WINDOW_BYTES = TCSR_PACKET_FIFO_DROP_COUNT_OFFSET + 4;

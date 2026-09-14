@@ -95,6 +95,10 @@ namespace eval ::trecap_hps_config {
         hps_memory_export                  memory
         hps_memory_export_role             end
         h2f_reset_export                   h2f_reset
+        f2h_cold_reset_req_export          hps_f2h_cold_reset_req
+        f2h_debug_reset_req_export         hps_f2h_debug_reset_req
+        f2h_warm_reset_req_export          hps_f2h_warm_reset_req
+        f2h_stm_hw_events_export           hps_f2h_stm_hw_events
         h2f_reset_export_direction         source
         export_hps_io                      1
 
@@ -108,8 +112,8 @@ namespace eval ::trecap_hps_config {
         csr_leaf_byte_addr_width            12
 
         csr_bridge_instance                trecap_csr_bridge
-        csr_bridge_component_type          altera_avalon_mm_bridge
-        csr_bridge_component_version       20.1
+        csr_bridge_component_type          trecap_avalon_csr_bridge
+        csr_bridge_component_version       1.0
         csr_bridge_clock_interface         trecap_csr_bridge.clk
         csr_bridge_reset_interface         trecap_csr_bridge.reset
         csr_bridge_slave_interface         trecap_csr_bridge.s0
@@ -543,8 +547,8 @@ proc ::trecap_hps_config::validate {} {
 
     foreach {key expected} {
         csr_bridge_instance                trecap_csr_bridge
-        csr_bridge_component_type          altera_avalon_mm_bridge
-        csr_bridge_component_version       20.1
+        csr_bridge_component_type          trecap_avalon_csr_bridge
+        csr_bridge_component_version       1.0
         csr_bridge_clock_interface         trecap_csr_bridge.clk
         csr_bridge_reset_interface         trecap_csr_bridge.reset
         csr_bridge_slave_interface         trecap_csr_bridge.s0

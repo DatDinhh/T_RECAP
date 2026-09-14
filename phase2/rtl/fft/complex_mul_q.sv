@@ -10,12 +10,11 @@
 `default_nettype none
 
 module trecap_complex_mul_q
-  import trecap_core_pkg::*;
 #(
-    parameter int unsigned A_W             = T_CAN_W,
-    parameter int unsigned B_W             = T_TWIDDLE_W,
-    parameter int unsigned OUT_W           = T_CAN_W,
-    parameter int unsigned FRAC_SHIFT      = T_FRAC_F,
+    parameter int unsigned A_W             = trecap_core_pkg::T_CAN_W,
+    parameter int unsigned B_W             = trecap_core_pkg::T_TWIDDLE_W,
+    parameter int unsigned OUT_W           = trecap_core_pkg::T_CAN_W,
+    parameter int unsigned FRAC_SHIFT      = trecap_core_pkg::T_FRAC_F,
     parameter bit          REGISTER_OUTPUT = 1'b1
 ) (
     input  logic                         clk,
@@ -40,6 +39,8 @@ module trecap_complex_mul_q
     output logic                         input_accept_pulse_o,
     output logic                         output_accept_pulse_o
 );
+  import trecap_core_pkg::*;
+
 
     localparam int unsigned PROD_W = A_W + B_W;
     localparam int unsigned SUM_W  = PROD_W + 2;

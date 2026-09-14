@@ -12,14 +12,15 @@
 
 // T-RECAP core tap interface. These are already-computed observations, not a control path.
 interface trecap_core_tap_if
-  import trecap_core_pkg::*;
-  import trecap_iface_pkg::*;
 #(
-    parameter int unsigned BIN_IDX_W = (T_UNIQUE_BINS <= 1) ? 1 : $clog2(T_UNIQUE_BINS)
+    parameter int unsigned BIN_IDX_W = (trecap_core_pkg::T_UNIQUE_BINS <= 1) ? 1 : $clog2(trecap_core_pkg::T_UNIQUE_BINS)
 ) (
     input logic clk,
     input logic rst_n
 );
+  import trecap_core_pkg::*;
+  import trecap_iface_pkg::*;
+
 
     trecap_core_tap_sample_t sample;
     trecap_core_tap_frame_t  frame;

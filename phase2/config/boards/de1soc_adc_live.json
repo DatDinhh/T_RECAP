@@ -41,10 +41,30 @@
     "board_input_range_volts": "0_to_4.096",
     "io_standard": "3.3-V LVTTL",
     "pins": [
-      {"top_port": "ADC_CS_N", "package_pin": "PIN_AJ4", "device_signal": "CONVST", "direction": "fpga_output"},
-      {"top_port": "ADC_DIN", "package_pin": "PIN_AK4", "device_signal": "SDI", "direction": "fpga_output"},
-      {"top_port": "ADC_DOUT", "package_pin": "PIN_AK3", "device_signal": "SDO", "direction": "fpga_input"},
-      {"top_port": "ADC_SCLK", "package_pin": "PIN_AK2", "device_signal": "SCK", "direction": "fpga_output"}
+      {
+        "top_port": "ADC_CS_N",
+        "package_pin": "PIN_AJ4",
+        "device_signal": "CONVST",
+        "direction": "fpga_output"
+      },
+      {
+        "top_port": "ADC_DIN",
+        "package_pin": "PIN_AK4",
+        "device_signal": "SDI",
+        "direction": "fpga_output"
+      },
+      {
+        "top_port": "ADC_DOUT",
+        "package_pin": "PIN_AK3",
+        "device_signal": "SDO",
+        "direction": "fpga_input"
+      },
+      {
+        "top_port": "ADC_SCLK",
+        "package_pin": "PIN_AK2",
+        "device_signal": "SCK",
+        "direction": "fpga_output"
+      }
     ],
     "adc_cs_n_name_is_active_low_chip_select": false,
     "adc_cs_n_electrical_role": "active_high_CONVST_idle_low"
@@ -85,21 +105,60 @@
     "degenerate_zero_width_parameter_overrides_are_outside_module_abi": true
   },
   "channel_command_contract": {
-    "command_bit_order": ["S/D", "O/S", "S1", "S0", "UNI", "SLP"],
+    "command_bit_order": [
+      "S/D",
+      "O/S",
+      "S1",
+      "S0",
+      "UNI",
+      "SLP"
+    ],
     "operating_mode": "single_ended_unipolar_awake",
     "sleep_bit_always_zero": true,
     "sleep_wakeup_delay_applicable": false,
     "unsupported_input_mode_polarity_or_sleep_command": "reject_set_protocol_error_no_transaction",
     "command_formula": "{1,channel[0],channel[2],channel[1],1,0}",
     "channel_commands": [
-      {"channel": 0, "command_binary": "100010", "command_hex": "0x22"},
-      {"channel": 1, "command_binary": "110010", "command_hex": "0x32"},
-      {"channel": 2, "command_binary": "100110", "command_hex": "0x26"},
-      {"channel": 3, "command_binary": "110110", "command_hex": "0x36"},
-      {"channel": 4, "command_binary": "101010", "command_hex": "0x2a"},
-      {"channel": 5, "command_binary": "111010", "command_hex": "0x3a"},
-      {"channel": 6, "command_binary": "101110", "command_hex": "0x2e"},
-      {"channel": 7, "command_binary": "111110", "command_hex": "0x3e"}
+      {
+        "channel": 0,
+        "command_binary": "100010",
+        "command_hex": "0x22"
+      },
+      {
+        "channel": 1,
+        "command_binary": "110010",
+        "command_hex": "0x32"
+      },
+      {
+        "channel": 2,
+        "command_binary": "100110",
+        "command_hex": "0x26"
+      },
+      {
+        "channel": 3,
+        "command_binary": "110110",
+        "command_hex": "0x36"
+      },
+      {
+        "channel": 4,
+        "command_binary": "101010",
+        "command_hex": "0x2a"
+      },
+      {
+        "channel": 5,
+        "command_binary": "111010",
+        "command_hex": "0x3a"
+      },
+      {
+        "channel": 6,
+        "command_binary": "101110",
+        "command_hex": "0x2e"
+      },
+      {
+        "channel": 7,
+        "command_binary": "111110",
+        "command_hex": "0x3e"
+      }
     ],
     "default_channel": 0,
     "default_command_binary": "100010",
@@ -138,7 +197,10 @@
     "continuous_select_level": 0,
     "manual_request_source": "key_press_pulse[2]",
     "requests_while_busy": "reject_set_sticky_fault",
-    "disabled_source_can_start_transactions": false
+    "disabled_source_can_start_transactions": false,
+    "manual_samples_enter_mathematical_core": false,
+    "manual_conversion_visibility": "HEX5_3_eligible_count_low12_HEX2_0_raw_code_when_SW9_8_00",
+    "sampling_mode_change_restarts_dsp_epoch": true
   },
   "cdc_contract": {
     "controller_clock_domain": "clk_fabric_50mhz",
@@ -146,7 +208,11 @@
     "adc_sclk_role": "registered_protocol_output_only",
     "asynchronous_input": "ADC_DOUT",
     "dout_synchronizer_stages": 2,
-    "dout_synchronizer_attributes": ["async_reg", "preserve", "SYNCHRONIZER_IDENTIFICATION_FORCED"],
+    "dout_synchronizer_attributes": [
+      "async_reg",
+      "preserve",
+      "SYNCHRONIZER_IDENTIFICATION_FORCED"
+    ],
     "minimum_sclk_half_div_relative_to_sync_stages": "SCLK_HALF_DIV_greater_than_or_equal_to_DOUT_SYNC_STAGES_plus_1",
     "raw_adc_dout_direct_payload_capture_permitted": false,
     "sample_data_and_valid_registered_together_in_fabric_domain": true,
@@ -159,7 +225,7 @@
     "adapter_instance": "u_adc_adapter",
     "source_mux_instance": "u_source_mux",
     "source_mode": "TSRC_ADC_LIVE",
-    "wrapper_enable": "active_source_mode_equals_TSRC_ADC_LIVE",
+    "wrapper_enable": "active_source_mode_equals_TSRC_ADC_LIVE_and_not_sampling_mode_change",
     "board_channel_latch_guard_cycles_before_request_input": 1,
     "wrapper_reentry_recovery_cycles_before_request_acceptance": 92,
     "requests_during_reentry_recovery": "reject_set_request_overrun_sticky",
@@ -167,11 +233,12 @@
     "adapter_has_single_entry_ready_valid_buffer": true,
     "adapter_drop_counter_arithmetic": "saturating_unsigned",
     "source_mux_routes_adc_only_when_selected": true,
-    "telemetry_sample_rate_binding": "TSRC_ADC_LIVE_100000_otherwise_48000",
+    "telemetry_sample_rate_binding": "ADC_continuous_100000_manual_0_otherwise_48000",
     "telemetry_adc_sample_rate_hz": 100000,
     "telemetry_non_adc_sample_rate_hz": 48000,
     "adc_may_block_bram_replay_or_audio_milestones": false,
-    "bram_replay_remains_correctness_authority": true
+    "bram_replay_remains_correctness_authority": true,
+    "telemetry_manual_sample_rate_hz": 0
   },
   "fault_contract": {
     "request_overrun_sticky_event": "scheduler_or_manual_request_attempt_occurs_during_reentry_recovery_or_while_protocol_state_not_idle",

@@ -1,6 +1,6 @@
 # AUTO-GENERATED - DO NOT EDIT
 # Generator: scripts/gen_filelists.py
-# Generator version: r1.4.0
+# Generator version: r1.4.1
 # Filelist: Step-11 BRAM replay through exact core completion and HPS-visible DDR transport
 # Expected source files are active entries by default; compile targets fail if missing.
 

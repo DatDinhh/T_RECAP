@@ -257,15 +257,19 @@ zero, and exports `trecap_csr_bridge.m0` as `trecap_csr_lw_master`. Qsys owns th
 AXI-to-Avalon protocol conversion. The hand-written class `[1]` wrapper and board
 top own the typed SystemVerilog connection.
 
-`board_connectivity_complete` remains false because source connectivity is not
-hardware evidence. Completion still requires a Quartus 20.1 normalized graph,
-generated `system` HDL/QIP, `system.sopcinfo`, a successful Quartus compile, and
-board bring-up evidence.
+The historical `board_connectivity_complete=false` checkpoint did not establish
+hardware operation. Actual Platform Designer generation and native11 placement/
+routing now exist, but they do not replace physical CSR read/write evidence or
+functional verification. Standard Edition evaluation mode has not produced a
+programmable SOF. Current source-revision results are recorded in
+[architecture_implementation.md](architecture_implementation.md), with the
+required build gates in [build_order.md](build_order.md).
 
 ## Evidence boundary
 
-Steps 5 and 6 are source-implementation milestones. The following evidence is
-explicitly recorded as absent:
+Steps 5 and 6 were source-implementation milestones. The following list preserves
+the evidence recorded as absent at those historical checkpoints; it is not a
+current inventory of generated files or native build reports:
 
 - no functional testbench or behavioral verification result;
 - no Platform Designer generation/normalization result;

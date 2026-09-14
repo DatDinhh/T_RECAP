@@ -67,10 +67,10 @@ Thumbs.db
 .ipynb_checkpoints/
 
 # Do not accidentally commit old Phase 1 root dumps
-x.memh
-y.memh
-sup.memh
-metrics.json
+/x.memh
+/y.memh
+/sup.memh
+/metrics.json
 waves.vcd
 waves.wlf
 transcript

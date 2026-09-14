@@ -1,448 +1,96 @@
-# Quartus build and FPGA programming bring-up
+# Quartus build and FPGA programming
 
-File class: **[1] hand-written bring-up document**.
+We build the physical DE1-SoC image from the maintained RTL, shared contracts and Platform Designer source. The default BRAM replay profile targets the Cyclone V `5CSEMA5F31C6` at a 50 MHz fabric clock. The build records its profile, generated platform, fitted pins, timing results and image hash so a programming run can identify the exact image it used.
 
-This document defines how the Phase 2 DE1-SoC FPGA image is built and programmed during bring-up. It is intentionally limited to implementation build/programming hygiene. It is not a verification plan and it is not a replacement for BRAM replay signoff.
+The [integrated specification](../specs/README.md) defines the interfaces. The [build guide](../architecture/build_order.md) gives the complete command sequence and native-tool compatibility notes. Functional verification and physical source characterization remain separate project work.
 
-## Authority
+## Current implementation evidence
 
-The active integrated Phase 2 specification under `docs/specs/` is the authority. This file follows the repository rule that active SystemVerilog builds consume generated filelists and that DE1-SoC platform ownership is under:
+Quartus Standard 20.1.1 Build 720 has generated the real HPS system and fitted the BRAM profile. The current native-12 I/O placement uses 20,280 of 32,070 ALMs, 55 of 397 memory blocks and 36 of 87 DSP blocks. All 209 board-top pins match the source contracts, and the required fitted timing gate passes at all four available operating corners. See the [implementation results](../results/fpga_implementation.md) for resources, per-corner margins and source identities.
 
-```text
-constraints/de1soc/                                         [1]
-platform/de1soc/                                            [1]
-rtl/platform/de1soc/                                        [1]/[2]
-rtl/top/                                                    [1]
-filelists/                                                  [2]
+The installed Standard Edition remains in Evaluation Mode: warning 292011 prevents `.sof` generation even though Assembler returns zero. The final continuation is therefore recorded as `incomplete_no_sof`, with passing pin and timing results. No FPGA programming or board execution has occurred.
+
+The connected board was visible as `DE-SoC [USB-1]`, with HPS ID `4BA00477` in position 1 and FPGA ID `02D120DD` in position 2. This inventory establishes cable visibility only. The programming helper checks the current chain again before selecting the FPGA.
+
+## Tool and source ownership
+
+The native flow uses Quartus Standard 20.1.x, the matching Cyclone V device package and Python with `scripts/requirements-source.txt`. The exercised version is 20.1.1 Build 720. Installation paths are arguments or local environment settings, never repository constants.
+
+A valid license is required for the installed Standard Edition to create the image. A separate [Quartus Prime Lite 20.1.1 installation](https://www.altera.com/downloads/fpga-development-tools/quartus-prime-lite-edition-design-software-version-20-1-1-windows) is a license-free Cyclone V option; it is not the toolchain used for the recorded native results. Downloading and selecting another edition does not replace a new build and its reports.
+
+| Source | Responsibility |
+| --- | --- |
+| `config/profiles/` | Paired FPGA parameters and HPS runtime configuration |
+| `platform/de1soc/qsys/platform_designer.tcl` | HPS platform construction and pinned configuration |
+| `platform/de1soc/qsys/system.qsys` | Normalized Platform Designer source |
+| `platform/de1soc/quartus/trecap_de1soc.qpf` | Physical board project |
+| `constraints/de1soc/de1soc.qsf` | Device, top, source/QIP/SDC includes |
+| `constraints/de1soc/pin_assignments.tcl` | FPGA board pins and I/O settings |
+| `constraints/de1soc/hps_peripheral_io.tcl` | Dedicated HPS peripheral I/O standards |
+| `constraints/de1soc/*.sdc` | Fabric, clock/reset, peripheral and CDC timing |
+| `filelists/quartus_de1soc.qsf.inc` | Generated RTL file list |
+
+Generated vendor HDL, databases, reports and images belong in ignored build/run directories. We retain vendor HDL unchanged. The generated HPS DDR assignment script owns its electrical/OCT settings; the source pin ledger independently checks the fitted package locations.
+
+## Build on Windows
+
+From the repository root, use the actual local installation path:
+
+```powershell
+.\scripts\quartus\build_de1soc.ps1 `
+    -QuartusRoot '<Quartus installation>/quartus' `
+    -Python python `
+    -Profile config/profiles/de1soc_bram_replay.json `
+    -RunDirectory runs/quartus/windows/<run-id>
 ```
 
-The root `Makefile` is the command surface for staged bring-up.
+The run directory must be empty. The wrapper checks generated source contracts, resolves the profile, constructs and generates the platform, checks its actual exports/address map, then runs:
 
-## Provenance tags
+1. Analysis and Synthesis.
+2. Generated HPS DDR electrical-assignment capture from the mapped netlist.
+3. Fitter and the 209-pin comparison.
+4. Assembler and explicit fresh-image detection.
+5. TimeQuest and the fitted timing gate at every available corner.
 
-```text
-[0] imported from the Phase 2 reference-model zip, or generated by that reference model
-[1] hand-written implementation, documentation, or config source file
-[2] generated file; do not edit by hand
+`-GenerateOnly` stops after platform generation and interface checks. `-SkipPlatformGenerate` reuses existing normalized Qsys and generated HDL, but still captures fresh HPS readbacks and checks the generated interface/address contracts. These two switches are mutually exclusive.
+
+A previous `.sof` is preserved in the new run before compilation so an old image cannot appear to be a successful new assembly. If assembly emits no nonempty image, the wrapper continues timing diagnostics and ultimately reports failure. A completed build requires a fresh image, matching pins and passing timing; an assembler exit code alone is insufficient.
+
+For Bash, use `scripts/quartus/build_de1soc.sh` and the environment/arguments documented in the [build guide](../architecture/build_order.md). The root Makefile wraps the staged source and board targets.
+
+## Timing evidence
+
+The fitted gate requires the actual 50 MHz fabric clock, the derived audio PLL clock, codec BCLK, setup/hold/recovery/removal margins, bounded ADC/I2C routes and audio FIFO crossings. It also retains the raw clock-coverage report. Reviewed hard-HPS model nodes are identified by exact primitive groups; any unrecognized clockless fabric node remains a failure.
+
+DDR has an additional generated microtiming report. Its current-corner margins and assumptions must pass before the four calibrated postamble model nodes can be classified. A broad HPS timing waiver is not used. The [physical timing contract](../architecture/physical_timing.md) records each allocation, pin source and exception; the [build guide](../architecture/build_order.md) records the vendor-source evidence.
+
+These are implementation checks. Positive timing margins do not establish arithmetic correctness, analog performance or sustained HPS/DDR/Ethernet operation.
+
+## Program the completed image
+
+Use the explicit image and the successful manifest from the same build:
+
+```powershell
+.\scripts\quartus\program_sof.ps1 `
+    -QuartusRoot '<Quartus installation>/quartus' `
+    -Sof platform/de1soc/quartus/output_files/trecap_de1soc.sof `
+    -BuildManifest runs/quartus/windows/<run-id>/build_manifest.json `
+    -Cable 'DE-SoC [USB-1]' `
+    -DeviceIndex 2
 ```
 
-This file is `[1]`.
+The helper checks the selected image against the completed build and its pin/timing reports, inventories the cable, and programs device 2 through JTAG. It records the image hash, inventory, command and outcome in a separate run directory. This loads volatile FPGA configuration; it does not write flash or prepare an SD card.
 
-## Related files
+Quartus GUI can open the same `.qpf`, but the authoritative build uses the resolved profile and captured DDR-assignment includes recorded in its manifest. A separate GUI session must load those same settings. Its presence on screen is not evidence that compilation or programming completed.
 
-```text
-Makefile                                                    [1]
-CMakeLists.txt                                              [1]
-docs/architecture/build_order.md                            [1]
-docs/architecture/dependency_rules.md                       [1]
-docs/architecture/generated_header_flow.md                  [1]
-docs/architecture/clock_reset_plan.md                       [1]
-docs/architecture/memory_map.md                             [1]
-docs/bringup/de1_soc_connections.md                         [1]
-docs/bringup/bram_replay_signoff.md                         [1]
-docs/bringup/adc_bringup.md                                 [1]
-config/profiles/de1soc_adc_demo.json                        [1]
-filelists/rtl_core_plus_fft.f                               [2]
-filelists/rtl_de1soc_full.f                                 [2]
-filelists/quartus_de1soc.qsf.inc                            [2]
-constraints/de1soc/de1soc.qsf                               [1]
-constraints/de1soc/de1soc.sdc                               [1]
-constraints/de1soc/clocks.sdc                               [1]
-constraints/de1soc/pin_assignments.tcl                      [1]
-platform/de1soc/qsys/platform_designer.tcl                  [1]
-platform/de1soc/qsys/system.qsys                            [1]
-platform/de1soc/qsys/system.sopcinfo                        [2]
-rtl/platform/de1soc/platform_designer_wrapper.sv             [1]
-rtl/top/trecap_source_core_integration.sv                    [1]
-rtl/top/trecap_de1soc_full_top.sv                            [1]
-rtl/platform/de1soc/audio_pll_wrapper.sv                     [1]
-rtl/platform/de1soc/audio_codec_i2c_init.sv                  [1]
-rtl/platform/de1soc/audio_codec_wrapper.sv                   [1]
-rtl/platform/de1soc/adc_wrapper.sv                           [1]
-rtl/platform/de1soc/de1_soc_trecap_top.sv                    [1]
-```
+## HPS and system operation
 
-The FPGA/board implementation is source-connected through Step 17: the physical
-board top uses real source adapters, the guarded source mux, the mathematical
-core, real valid-only taps, and real source/core safe boundaries. It also uses
-one active 50 MHz `clk_fabric`, one `clock_reset_ctrl`-owned canonical
-`rst_n_platform`, exact-average fractional clock-enable pulses, synchronous
-telemetry soft clear, the Step-11 post-core STATUS-to-DDR completion boundary,
-and the Step-12 producer/consumer ring-ownership contract. Step 13 additionally
-completes the checked-in HPS transport source from the frozen CSR/reserved-DDR
-interfaces through UDP. Step 14 appends generated CSR minor-1.8 counter/replay
-controls and the checked-in versioned PC/HPS command source path; it remains a
-source milestone rather than a Quartus claim. The sole official Linux reservation source is
-`platform/de1soc/linux/trecap_reserved_memory.dtsi`. Neither source milestone is
-Quartus, accepted functional-simulation, TimeQuest, compiled-DTB, active-DTB,
-HPS `/dev/mem`, Ethernet, systemd, Linux boot/runtime, FPGA execution, or
-hardware evidence. Step 16 adds source-level 12.288 MHz audio PLL, WM8731
-FPGA-I2C initialization, 48 kS/s/16-bit codec-master I2S, async-FIFO CDC,
-dedicated audio counters, and an explicit LINE-IN profile. Generated Platform
-Designer products, full Quartus/TimeQuest reports, physical BRAM replay, I2C ACK
-and audio-clock measurements remain to be established below. Step 17 adds the
-pinned Rev-H LTC2308 source contract at 100 ksample/s with 2.5 MHz registered
-SCLK, synchronized DOUT, epoch-latched channel command, first-result discard,
-signed normalization/accounting, and an explicit ADC profile. That source does
-not establish post-fit ADC I/O timing, measured serial waveforms, analog/channel
-behavior, or live-board samples.
+The image and HPS runtime must agree on the CSR ABI, reserved-DDR geometry, source profile and ownership lifecycle. The checked-in Linux recipe still needs the matched kernel, DTB and module built and deployed. The driver owns noncached ring access and GPIO48 codec-mux permission; FPGA programming alone does not establish those services.
 
-## Build-stage rule
+After the matched platform is deployed, follow the [HPS bring-up guide](hps_ethernet_bringup.md), then the [dashboard guide](pc_dashboard_bringup.md). BRAM is the baseline source; LINE-IN and optional ADC each have their own physical setup and operation requirements. The separate BRAM/source verification procedures are not executed by the build or programming helpers.
 
-Do not jump straight to the full DE1-SoC build. Use the staged order:
+## Run records
 
-```text
-R0  repo skeleton checks
-R1  generated headers and filelists
-R2  coefficients/vectors/reference outputs
-R4  RTL common/interfaces/source/core skeleton
-R5  FFT/STFT/WOLA core
-C0  core compile and BRAM replay
-S7  source-to-core integration source and contract checks
-R8  DE1-SoC Platform Designer + constraints
-T0  transport/full board image
-```
+Windows builds retain `build_manifest.json`, stage logs, generated-platform/profile records, `fitted_pins.json` and `fitted-timing/fitted_timing.tsv` under their chosen run directory. Failed builds retain the available diagnostics and the failing stage. Successful builds additionally identify the fresh `.sof` by path, size and SHA-256. Programming uses another run directory with its own manifest.
 
-For a new bug, always ask which stage last passed. “The board does not work” is not a useful bug report.
-
-## Tool assumptions
-
-This repo does not hard-code one lab machine path. The following tools must be discoverable through environment variables or shell PATH:
-
-```text
-quartus_sh
-quartus_map
-quartus_fit
-quartus_asm
-quartus_sta
-quartus_pgm
-jtagconfig
-```
-
-The root `Makefile` exposes these as variables where appropriate:
-
-```makefile
-QUARTUS_SH  ?= quartus_sh
-QUARTUS_PGM ?= quartus_pgm
-```
-
-Do not commit absolute paths such as a personal `C:\intelFPGA_lite\...` path into source files. Local paths belong in private shell profile files or untracked run notes.
-
-## Pre-programming checklist
-
-Before any board programming attempt:
-
-```bash
-make help
-make show-config
-make check-layout
-make lint-basic
-```
-
-Before a core-only Quartus smoke build:
-
-```bash
-make gen-headers
-make check-generated
-make rtl-filelist
-make coeffs
-make vectors
-make golden
-make check-artifacts
-make compile-core
-```
-
-The target name `make golden` is retained for spec-compatible command naming. In the current repo vocabulary it runs the imported `sw/reference_model/` flow until the model and artifacts are frozen as final signoff authority.
-
-Before a full DE1-SoC build:
-
-```bash
-make compile-telemetry
-make compile-hps-bridge
-make quartus-de1soc
-```
-
-If `make compile-core` does not pass, do not try to hide that by building the board top.
-
-## Expected Quartus project inputs
-
-A clean full DE1-SoC build consumes these source categories:
-
-| Category | Path | Owner | Hand edit? |
-| --- | --- | --- | --- |
-| Root orchestration | `Makefile` | implementation | yes |
-| Source/core integration | `rtl/top/trecap_source_core_integration.sv` | implementation | yes; pin-agnostic |
-| Logical transport top | `rtl/top/trecap_de1soc_full_top.sv` | implementation | yes; no physical board pins |
-| Physical Quartus board top | `rtl/platform/de1soc/de1_soc_trecap_top.sv` | implementation | yes |
-| Clock/reset wrapper | `rtl/platform/de1soc/clock_reset_ctrl.sv` | implementation | yes; sole fabric reset-conditioning owner |
-| Typed Platform Designer wrapper | `rtl/platform/de1soc/platform_designer_wrapper.sv` | implementation | yes; generated `system` HDL remains vendor-owned |
-| QSF constraints | `constraints/de1soc/de1soc.qsf` | implementation | yes |
-| SDC constraints | `constraints/de1soc/*.sdc` | implementation | yes |
-| Pin assignments | `constraints/de1soc/pin_assignments.tcl` | implementation | yes |
-| Platform system | `platform/de1soc/qsys/system.qsys` | implementation/vendor | stable source yes, generated output no |
-| SOPC info | `platform/de1soc/qsys/system.sopcinfo` | generated | no |
-| Quartus file include | `filelists/quartus_de1soc.qsf.inc` | generated | no |
-
-Do not manually edit generated filelists to make Quartus “find” a file. Fix `scripts/gen_filelists.py` or the source tree instead.
-
-## Top-module selection
-
-Use explicit build tops instead of changing one monolithic demo top repeatedly.
-
-| Stage | Top | Expected dependency boundary |
-| --- | --- | --- |
-| Core-only | `trecap_core_only_top.sv` | `rtl/include`, `rtl/common`, `rtl/interfaces`, `rtl/core`, `rtl/fft`. |
-| BRAM replay | `trecap_core_bram_replay_top.sv` | Core plus `trecap_bram_replay_source.sv` and artifact ROM/BRAM contents. |
-| Core + telemetry | `trecap_core_telemetry_top.sv` | Core plus packetizers/FIFO, no HPS DDR writer. |
-| Source/core integration | `trecap_source_core_integration.sv` | Normalized sources, guarded source epochs, exact replay tail, core, and valid-only taps; no board pins. |
-| Logical transport | `trecap_de1soc_full_top.sv` | Telemetry/HPS/DDR integration without physical board pins. |
-| Full DE1-SoC | `de1_soc_trecap_top.sv` | Physical Quartus top binding source/core, logical transport, Platform Designer, and board pins. |
-
-`trecap_ddr_ring_writer.sv` belongs only to `rtl/hps_bridge/`. If Quartus finds a DDR writer under `rtl/telemetry/`, the repo layout is wrong.
-
-## Core-only Quartus smoke build
-
-Use this to catch synthesis-only problems before Platform Designer is introduced.
-
-```bash
-make quartus-core-smoke
-```
-
-Expected behavior:
-
-```text
-[ ] Generated packages compile first.
-[ ] Interfaces compile before modules that use them.
-[ ] `rtl/core/` does not import telemetry, HPS bridge, Ethernet, or board pins.
-[ ] Frozen coefficient ROM paths are explicit.
-[ ] No board-specific Platform Designer module is required.
-```
-
-If this target does not exist yet, document that in `runs/quartus_core_smoke/<run_id>/notes.md`. Do not silently skip the stage in project status.
-
-## Full DE1-SoC Quartus build
-
-The full build is entered only after C0 is stable.
-
-```bash
-make quartus-de1soc
-```
-
-The implementation-specific script is expected at:
-
-```text
-scripts/quartus/build_de1soc.sh                             [1]
-```
-
-A clean script should:
-
-```text
-1. check that generated filelists exist;
-2. check that Platform Designer source/generation state is documented;
-3. run Quartus project generation or open the existing project;
-4. include `filelists/quartus_de1soc.qsf.inc`;
-5. source `constraints/de1soc/pin_assignments.tcl`;
-6. include `constraints/de1soc/*.sdc`;
-7. build physical top `de1_soc_trecap_top` (which instantiates `trecap_source_core_integration` and `trecap_de1soc_full_top`);
-8. copy the resulting `.sof`, `.sta.rpt`, `.fit.rpt`, and `.map.rpt` into `runs/quartus/`.
-```
-
-## Programming through command line
-
-First check the programmer cable:
-
-```bash
-jtagconfig
-```
-
-Then program the `.sof`. Example shape:
-
-```bash
-quartus_pgm -m JTAG -o "p;path/to/output_files/trecap_de1soc_full.sof"
-```
-
-The root target should eventually wrap this:
-
-```bash
-make program-sof SOF=path/to/output_files/trecap_de1soc_full.sof
-```
-
-Do not program a `.sof` when you cannot say which git commit, top module, profile, and artifact set produced it.
-
-## Programming through Quartus GUI
-
-GUI programming is acceptable for early lab use, but the run must still be reproducible.
-
-Record:
-
-```text
-Quartus project path:
-SOF path:
-top module:
-git commit:
-filelist hash or generated manifest:
-operator:
-date:
-board label:
-result:
-```
-
-Do not rely on a GUI-only project state that is not committed or documented.
-
-## Post-programming sanity checks
-
-Immediately after programming:
-
-```text
-[ ] Board remains powered and stable.
-[ ] Reset behavior is documented for this top.
-[ ] If a visible heartbeat exists, it toggles.
-[ ] If C0 BRAM replay self-check exists, its pass/fail output is readable.
-[ ] If full DE1-SoC top is used, HPS UART is still accessible.
-[ ] If full DE1-SoC top is used, HPS can read CSR ID/VERSION before enabling telemetry.
-```
-
-For full image programming, the first HPS-side operation is not “start dashboard.” It is CSR smoke:
-
-```bash
-python scripts/bringup/smoke_csr.py --config sw/hps/config/trecap_hps_config.json
-```
-
-The checked-in script performs the first bounded CSR smoke read; it still requires a
-generated/programmed HPS system and the board-specific transport configured by the HPS profile.
-
-## Timing and warning policy
-
-A build is not clean just because Quartus emits a `.sof`.
-
-Minimum report triage:
-
-```text
-[ ] No unconstrained clocks.
-[ ] Reset constraints match `clock_reset_plan.md`.
-[ ] CDC assumptions match `cdc_plan.md`.
-[ ] Only `CLOCK_50` clocks active fabric logic; alternate board clocks remain reserved.
-[ ] Sample/STATUS/METRICS/heartbeat enables are not reported as clocks.
-[ ] Every fabric owner consumes the same canonical `rst_n_platform` release.
-[ ] The 12.288 MHz `AUD_XCK` PLL output is recognized; Step-18 external BCLK/LRCK timing remains explicitly pending until reviewed.
-[ ] No missing SDC file.
-[ ] No accidental latch warnings in hand-written RTL.
-[ ] No width truncation warnings in generated packages unless explicitly documented.
-[ ] No inferred memory changed into unintended registers due to wrong style.
-[ ] No Platform Designer address map changed without updating `platform/de1soc/address_map/address_map.md`.
-```
-
-Warnings that are waived must be listed in the run notes with a reason. Do not bury waivers in screenshots.
-
-## Platform Designer generated-file policy
-
-Platform Designer files are split into two classes:
-
-```text
-source/control files: platform_designer.tcl, hps_config.tcl, system.qsys        [1]
-typed repository wrapper: rtl/platform/de1soc/platform_designer_wrapper.sv      [1]
-generated artifacts: system.sopcinfo, system HDL/QIP, generated interconnect    [2]
-```
-
-Generated Platform Designer HDL must not be hand-edited. The hand-written typed
-wrapper is a separate reviewed source file and must not be overwritten by generation.
-
-## Address-map dependency
-
-A full DE1-SoC build is incomplete without address documentation:
-
-```text
-platform/de1soc/address_map/address_map.md                  [1]
-platform/de1soc/address_map/hps_bridge_regions.json         [1]
-sw/hps/config/trecap_hps_config.json                        [1]
-```
-
-The `.sof` and HPS software must agree on:
-
-```text
-CSR base from HPS view
-CSR span
-FPGA-visible ring base convention
-HPS physical ring base convention
-ring size
-bridge width / burst limitation if relevant
-```
-
-Never write a Linux userspace virtual address into `RING_BASE_LO` or `RING_BASE_HI`.
-
-## Artifact and ROM path policy
-
-`window_rom.sv` and `twiddle_rom.sv` consume frozen artifact files. The RTL must not generate sine, cosine, or window coefficients internally.
-
-Expected coefficient paths:
-
-```text
-artifacts/coefficients/window_qw.memh
-artifacts/coefficients/twiddle_re.memh
-artifacts/coefficients/twiddle_im.memh
-artifacts/coefficients/twiddle_inv_re.memh
-artifacts/coefficients/twiddle_inv_im.memh
-artifacts/coefficients/coeff_manifest.json
-```
-
-If Quartus cannot locate a `.memh`, fix the project file assignments or ROM parameter paths. Do not paste coefficients into RTL.
-
-## Forbidden programming shortcuts
-
-```text
-Do not program old Phase 1 `t_recap_demo_top.sv` as Phase 2.
-Do not bypass generated filelists with a hand-ordered list in the GUI.
-Do not hard-code CSR offsets in HPS C or Python to “match the board.”
-Do not move `trecap_ddr_ring_writer.sv` into telemetry.
-Do not use a successful full-board `.sof` as proof that BRAM replay signoff passed.
-Do not enable live audio/Ethernet to compensate for an unproven core.
-```
-
-## Bring-up result directory
-
-Each Quartus build/programming run should write or manually collect:
-
-```text
-runs/quartus/<run_id>/
-  build_manifest.json
-  trecap_de1soc_full.sof
-  quartus_map.rpt
-  quartus_fit.rpt
-  quartus_sta.rpt
-  timing_summary.txt
-  warnings_review.md
-  programming_log.txt
-  board_run_notes.md
-```
-
-`runs/` is ignored by default. Important release artifacts can be copied into a formal release package later.
-
-## Troubleshooting
-
-| Symptom | Likely cause | Correct response |
-| --- | --- | --- |
-| Quartus cannot find generated package | `make gen-headers` not run or filelist stale | Run `make gen-headers && make rtl-filelist`; do not hand edit filelist. |
-| Package compile order error | Generated filelist order bug | Fix `scripts/gen_filelists.py`. |
-| Pin assignment conflict | Board top/QSF mismatch | Fix `constraints/de1soc/pin_assignments.tcl`. |
-| Unconstrained clock | Missing/incorrect SDC | Fix `constraints/de1soc/*.sdc`. |
-| HPS wrapper ports changed | Platform Designer regenerated without wrapper update | Regenerate/document wrapper and update top integration. |
-| Program succeeds but HPS CSR read fails | Address map or Platform Designer bridge issue | Run CSR smoke before UDP/dashboard. |
-| UDP dashboard silent | HPS/network issue | Use `hps_ethernet_bringup.md`, not Quartus debug first. |
-
-## Acceptance checklist
-
-This document is satisfied when:
-
-```text
-[ ] The programmed `.sof` can be traced to git commit, top module, filelists, profile, and artifact set.
-[ ] `make compile-core` passes before any full DE1-SoC build is treated as meaningful.
-[ ] Full build consumes generated filelists, not ad-hoc source ordering.
-[ ] Platform Designer generated outputs are not hand-edited.
-[ ] Board pin, clock, reset, and address-map ownership is documented.
-[ ] FPGA/board/HPS/PC command source checks through Step 14 are not presented as
-    host-test execution, native RTL simulation, Quartus, TimeQuest,
-    compiled-DTB, active-DTB, HPS Linux/runtime, Ethernet, systemd, or hardware
-    evidence.
-[ ] Programming instructions cover both CLI and GUI paths.
-[ ] The doc states that `.sof` success is not correctness signoff.
-```
+Keep generated files and personal installation paths out of Git. Publish selected, sanitized implementation results with a release when they are available; do not present source compilation, a successful fit or cable detection as a completed system demonstration.

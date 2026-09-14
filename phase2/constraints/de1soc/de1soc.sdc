@@ -5,13 +5,13 @@
 # Owner: T-RECAP Phase 2 implementation.
 #
 # Purpose:
-#   Provide a conservative one-clock timing baseline for the pin-agnostic logical top
+#   Provide the fabric-clock timing baseline for the pin-agnostic logical top
 #   and the implemented board-facing DE1-SoC source/core/Platform Designer hierarchy.
 #
 # Scope:
 #   - Creates a 50 MHz baseline fabric clock for the logical clk port and/or the
 #     CLOCK_50 board-wrapper port when present.
-#   - Cuts only asynchronous reset assertion paths and documented synchronizer first-stage
+#   - Cuts asynchronous reset assertion paths and documented single-bit synchronizer first-stage
 #     CDC endpoints.
 #   - Gives zero-delay internal-interface constraints to current abstract virtual pins so
 #     early smoke builds expose unconstrained-interface mistakes without inventing board timing.
@@ -19,7 +19,7 @@
 # Non-scope:
 #   - This is not a final Platform Designer timing closure file.
 #   - The Step-16 audio PLL clock is derived from the instantiated PLL; codec-master BCLK/LRCK
-#     external I/O delays and ADC/HPS generated clocks are not guessed here.
+#     external I/O timing is owned by clocks.sdc; generated HPS clocks come from its QIP.
 #   - Board package pin assignments are not timing constraints; they belong in
 #     constraints/de1soc/pin_assignments.tcl.
 
@@ -28,39 +28,39 @@
 # -----------------------------------------------------------------------------
 
 proc trecap_ports {pattern} {
-    return [get_ports -quiet $pattern]
+    return [get_ports -nowarn $pattern]
 }
 
 proc trecap_regs {pattern} {
-    return [get_registers -quiet $pattern]
+    return [get_registers -nowarn $pattern]
 }
 
 proc trecap_create_clock_if_port {clock_name period_ns port_pattern} {
     set ports [trecap_ports $port_pattern]
-    if {[llength $ports] > 0} {
+    if {[get_collection_size $ports] > 0} {
         create_clock -name $clock_name -period $period_ns $ports
     }
 }
 
 proc trecap_set_input_delay_if_ports {clock_name delay_ns port_patterns} {
-    if {[llength [get_clocks -quiet $clock_name]] == 0} {
+    if {[get_collection_size [get_clocks -nowarn $clock_name]] == 0} {
         return
     }
     foreach pattern $port_patterns {
         set ports [trecap_ports $pattern]
-        if {[llength $ports] > 0} {
+        if {[get_collection_size $ports] > 0} {
             set_input_delay -clock $clock_name $delay_ns $ports
         }
     }
 }
 
 proc trecap_set_output_delay_if_ports {clock_name delay_ns port_patterns} {
-    if {[llength [get_clocks -quiet $clock_name]] == 0} {
+    if {[get_collection_size [get_clocks -nowarn $clock_name]] == 0} {
         return
     }
     foreach pattern $port_patterns {
         set ports [trecap_ports $pattern]
-        if {[llength $ports] > 0} {
+        if {[get_collection_size $ports] > 0} {
             set_output_delay -clock $clock_name $delay_ns $ports
         }
     }
@@ -69,7 +69,7 @@ proc trecap_set_output_delay_if_ports {clock_name delay_ns port_patterns} {
 proc trecap_false_path_from_ports {port_patterns} {
     foreach pattern $port_patterns {
         set ports [trecap_ports $pattern]
-        if {[llength $ports] > 0} {
+        if {[get_collection_size $ports] > 0} {
             set_false_path -from $ports
         }
     }
@@ -78,7 +78,7 @@ proc trecap_false_path_from_ports {port_patterns} {
 proc trecap_false_path_to_regs {reg_patterns} {
     foreach pattern $reg_patterns {
         set regs [trecap_regs $pattern]
-        if {[llength $regs] > 0} {
+        if {[get_collection_size $regs] > 0} {
             set_false_path -to $regs
         }
     }
@@ -94,7 +94,7 @@ trecap_create_clock_if_port clk      20.000 clk
 trecap_create_clock_if_port CLOCK_50 20.000 CLOCK_50
 
 # The instantiated Step-16 audio PLL is handled by derive_pll_clocks below. Optional aliases and
-# external codec-master BCLK/LRCK timing remain deferred until Quartus freezes real clock names.
+# external codec-master BCLK/LRCK timing is defined in clocks.sdc.
 
 # -----------------------------------------------------------------------------
 # Reset constraints
@@ -117,33 +117,31 @@ trecap_false_path_from_ports {
 # cut asynchronous launch-to-first-stage analysis.  Do not use this section as a substitute
 # for real CDC design.  Multi-bit crossings still require async FIFO, snapshot/commit, or
 # another documented CDC mechanism.
+# Use instance suffixes, which match both instance-only TimeQuest names and
+# report names containing entity prefixes. Reset chains are explicitly scoped.
 trecap_false_path_to_regs {
-    *|trecap_reset_sync:*|sync_q[0]
-    *|clock_reset_ctrl:*|u_platform_reset_sync*|sync_q[0]
-    *|clock_reset_ctrl:*|key_sync_q[*][0]
-    *|clock_reset_ctrl:*|sw_sync_q[*][0]
-    *|trecap_sync_pulse:*|src_ack_sync_q[0]
-    *|trecap_sync_pulse:*|dst_event_sync_q[0]
-    *|trecap_sync_bus_snapshot:*|src_req_sync_q[0]
-    *|trecap_sync_bus_snapshot:*|src_ack_sync_q[0]
-    *|trecap_sync_bus_snapshot:*|dst_done_sync_q[0]
-    *|trecap_async_fifo:*|rd_gray_sync_wr_q[0]
-    *|trecap_async_fifo:*|wr_gray_sync_rd_q[0]
-    *|audio_pll_wrapper:*|pll_locked_sync_q[0]
-    *|audio_codec_wrapper:*|u_bclk_rx_reset_sync*|sync_q[0]
-    *|audio_codec_wrapper:*|u_bclk_tx_reset_sync*|sync_q[0]
-    *|audio_codec_wrapper:*|bclk_codec_ready_sync_q[0]
-    *|audio_codec_wrapper:*|bclk_capture_enable_sync_q[0]
-    *|audio_codec_wrapper:*|bclk_tx_codec_ready_sync_q[0]
-    *|audio_codec_wrapper:*|bclk_lineout_enable_sync_q[0]
-    *|audio_codec_wrapper:*|bclk_tx_epoch_sync_q[0]
-    *|audio_codec_wrapper:*|clk_bclk_seen_sync_q[0]
-    *|audio_codec_wrapper:*|clk_lrck_seen_sync_q[0]
-    *|de1_soc_trecap_top:*|audio_i2c_bus_grant_sync_q[0]
+    *u_platform_reset_sync|sync_q[0]
+    *u_bclk_rx_reset_sync|sync_q[0]
+    *u_bclk_tx_reset_sync|sync_q[0]
+    *g_sync_top_reset|u_reset_sync|sync_q[0]
+    *|key_sync_q[*][0]
+    *|sw_sync_q[*][0]
+    *|src_ack_sync_q[0]
+    *|dst_event_sync_q[0]
+    *|src_req_sync_q[0]
+    *|dst_done_sync_q[0]
+    *|pll_locked_sync_q[0]
+    *|bclk_codec_ready_sync_q[0]
+    *|bclk_capture_enable_sync_q[0]
+    *|bclk_tx_codec_ready_sync_q[0]
+    *|bclk_lineout_enable_sync_q[0]
+    *|bclk_tx_epoch_sync_q[0]
+    *|clk_bclk_seen_sync_q[0]
+    *|clk_lrck_seen_sync_q[0]
 }
 
 # Only synchronizer first stages are cut. Multi-bit audio payloads cross only through Gray-pointer
-# async FIFOs; live AUD_BCLK/LRCK I/O timing remains a Step-18/TimeQuest and board-evidence gate.
+# async FIFOs; clocks.sdc constrains their pointer delay/skew and external codec I/O.
 # ADC_SCLK remains a protocol output and is not an internal RTL clock.
 
 # -----------------------------------------------------------------------------
@@ -264,7 +262,7 @@ trecap_set_output_delay_if_ports clk 0.000 $trecap_logical_outputs
 # -----------------------------------------------------------------------------
 
 # Derive the Step-16 peripheral audio PLL clock without introducing a fabric/core clock domain.
-# Generated Platform Designer timing and external audio/ADC I/O timing still require Step-18 review.
+# Platform Designer QIP owns its timing; clocks.sdc supplies physical audio/ADC constraints.
 derive_pll_clocks
 
 # Let TimeQuest derive baseline clock uncertainty from the device timing models.

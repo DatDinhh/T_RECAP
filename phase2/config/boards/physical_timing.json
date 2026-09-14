@@ -1,0 +1,85 @@
+{
+  "schema": "trecap_de1soc_physical_timing_v1",
+  "status": "source design allocations; fitted timing and board measurements pending",
+  "board": "Terasic DE1-SoC Rev H",
+  "fabric_hz": 50000000,
+  "audio": {
+    "mclk_hz": 12288000,
+    "sample_rate_hz": 48000,
+    "bclk_hz": 3072000,
+    "bclk_period_ns": 325.520833,
+    "codec_master": true,
+    "codec_launch_edge": "falling",
+    "fpga_receive_edge": "rising",
+    "fpga_dac_launch_edge": "falling",
+    "codec_dac_capture_edge": "rising",
+    "adcdat_delay_ns": {
+      "min": 0,
+      "max": 35
+    },
+    "lrck_delay_ns": {
+      "min": 0,
+      "max": 10
+    },
+    "dac_setup_ns": 10,
+    "dac_hold_ns": 10,
+    "board_skew_allocation_ns": 2,
+    "clock_uncertainty_allocation_ns": 0.5,
+    "mclk_compile_tolerance_ppm": 100,
+    "mclk_sta_query_precision_ns": 0.001,
+    "mclk_quantization_note": "100 ppm is the engineering acceptance allocation for PLL synthesis quantization around nominal 12.288 MHz; board oscillator tolerance is separate. Native Quartus 20.1 inferred 50 MHz * 519 / 64 / 33 = 12.286931818 MHz (about -86.93 ppm), reporting an 81.387 ns output period. At a 256:1 codec divider this corresponds to about 47995.827 samples/s. The 1 ps STA query precision allowance is separate and does not relax the 50 MHz core period or I/O route limits."
+  },
+  "audio_cdc": {
+    "gray_max_delay_ns": 20,
+    "gray_max_skew_ns": 10,
+    "payload_max_delay_ns": 20,
+    "fifo_storage": "logic, asynchronous read; pointer publication before payload consumption"
+  },
+  "adc": {
+    "serial_clock_hz": 2500000,
+    "half_period_ns": 200,
+    "convst_high_fabric_cycles": 2,
+    "first_sclk_rise_fabric_cycles": 92,
+    "transaction_fabric_cycles": 334,
+    "request_period_fabric_cycles": 500,
+    "output_route_allocation_ns": 5,
+    "input_route_allocation_ns": 10,
+    "board_round_trip_allocation_ns": 2,
+    "device_return_allocation_ns": 100,
+    "synchronizer_and_sample_allocation_ns": 60,
+    "return_total_allocation_ns": 177,
+    "return_margin_ns": 23,
+    "device_delay_note": "100ns is an engineering allocation at board OVDD for falling-SCK-to-valid SDO and first-bit publication after conversion; it is not a guaranteed data-sheet maximum and needs physical qualification under actual supply/load conditions. Rev C lists12.5ns clock-to-SDO at OVDD=5V.",
+    "required_return_guard_ns": 20,
+    "return_margin_after_guard_ns": 3,
+    "maximum_input_allocation_with_guard_ns": 13,
+    "first_bit_conversion_allocation_ns": 1600,
+    "first_bit_sample_time_ns": 1840,
+    "first_bit_total_allocation_ns": 1777,
+    "first_bit_margin_ns": 63,
+    "first_bit_margin_after_guard_ns": 43,
+    "return_budget_note": "Subsequent bits: output5 + board2 + device100 + input10 + sync/read60 =177ns within the200ns falling-to-consume interval. Retain a20ns guard, leaving3ns unallocated; this guard limits input allocation to13ns, so10ns is an engineered half-fabric-cycle allocation rather than a fitted-delay threshold. First bit conservatively adds1600ns conversion time and fits1777ns within1840ns, with63ns raw margin."
+  },
+  "i2c": {
+    "bus_hz": 100000,
+    "half_period_ns": 5000,
+    "fpga_route_allocation_ns": 20,
+    "board_settling_allocation_ns": 300,
+    "ack_sync_and_sample_allocation_ns": 60,
+    "clock_stretching_supported": false
+  },
+  "sources": [
+    {
+      "title": "WM8731 data sheet Rev4.9, pp15-16 and19",
+      "url": "https://www.mouser.com/datasheet/2/76/WM8731_v4_9-1141834.pdf"
+    },
+    {
+      "title": "LTC2308 RevC, timing characteristics p5",
+      "url": "https://www.analog.com/media/en/technical-documentation/data-sheets/2308fc.pdf"
+    },
+    {
+      "title": "Intel Timing Analyzer: constraining CDC paths",
+      "url": "https://www.intel.com/content/www/us/en/docs/programmable/683243/25-1/constraining-cdc-paths.html"
+    }
+  ]
+}

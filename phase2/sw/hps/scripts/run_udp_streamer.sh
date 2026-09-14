@@ -18,6 +18,9 @@ DEFAULT_CONFIG="${HPS_DIR}/config/trecap_hps_config.json"
 DEFAULT_BINARY="${REPO_ROOT}/build/hps/bin/trecap_udp_streamer"
 
 CONFIG="${DEFAULT_CONFIG}"
+CONFIG_EXPLICIT=0
+BUILD_PROFILE=""
+PROFILE_JSON=""
 BINARY="${DEFAULT_BINARY}"
 BUILD_MODE="auto"
 DRY_RUN=0
@@ -58,6 +61,7 @@ Build/check and launch the T-RECAP Phase 2 HPS userspace UDP streamer.
 Default behavior is safe STATUS-only bring-up.
 
 Options:
+  --profile <path>               Apply selected build profile and its telemetry preset.
   --config <path>                Runtime config JSON. Default: sw/hps/config/trecap_hps_config.json
   --binary <path>                Streamer binary. Default: build/hps/bin/trecap_udp_streamer
   --build                        Always run make -C sw/hps build first.
@@ -142,9 +146,15 @@ append_arg_with_value() {
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
+    --profile)
+      [[ $# -ge 2 ]] || die "--profile requires a path"
+      BUILD_PROFILE="$2"
+      shift 2
+      ;;
     --config)
       [[ $# -ge 2 ]] || die "--config requires a path"
       CONFIG="$2"
+      CONFIG_EXPLICIT=1
       shift 2
       ;;
     --binary)
@@ -249,6 +259,19 @@ if [[ "${SKIP_DDR_CHECK}" -eq 1 && "${DRY_RUN}" -eq 0 && "${PRE_FLIGHT_ONLY}" -e
 fi
 
 require_cmd python3
+if [[ -n "${BUILD_PROFILE}" ]]; then
+  resolver="${REPO_ROOT}/scripts/resolve_runtime_profile.py"
+  require_file "${resolver}"
+  PROFILE_JSON="$(python3 "${resolver}" --root "${REPO_ROOT}" --profile "${BUILD_PROFILE}")" || die "profile resolution failed"
+  profile_args_text="$(python3 "${resolver}" --root "${REPO_ROOT}" --profile "${BUILD_PROFILE}" --format hps-args)" || die "profile argument resolution failed"
+  readarray -t profile_args <<< "${profile_args_text}"
+  # Explicit CLI controls follow the profile and are recorded in the launch manifest.
+  STREAM_ARGS=("${profile_args[@]}" "${STREAM_ARGS[@]}")
+  STREAM_PROFILE_SET=1
+  if [[ "${CONFIG_EXPLICIT}" -eq 0 ]]; then
+    CONFIG="$(python3 "${resolver}" --root "${REPO_ROOT}" --profile "${BUILD_PROFILE}" --format hps-config)" || die "profile runtime config resolution failed"
+  fi
+fi
 require_file "${CONFIG}"
 
 if [[ "${STREAM_PROFILE_SET}" -eq 0 && "${DUMMY_UDP_COUNTER}" -eq 0 ]]; then
@@ -370,6 +393,7 @@ PY_IOMEM
 log "repo root: ${REPO_ROOT}"
 log "HPS dir:   ${HPS_DIR}"
 log "config:    ${CONFIG}"
+[[ -z "${BUILD_PROFILE}" ]] || log "profile:   ${BUILD_PROFILE}"
 log "binary:    ${BINARY}"
 log "log dir:   ${LOG_DIR}"
 
@@ -398,6 +422,9 @@ if [[ "${DRY_RUN}" -eq 0 ]]; then
   require_file "${BINARY}"
   [[ -x "${BINARY}" ]] || die "binary is not executable: ${BINARY}"
   mkdir -p "${LOG_DIR}"
+  if [[ -n "${PROFILE_JSON}" ]]; then
+    printf '%s\n' "${PROFILE_JSON}" >"${LOG_DIR}/effective_runtime.json"
+  fi
 fi
 
 cmd=("${BINARY}" --config "${CONFIG}" "${STREAM_ARGS[@]}" "${EXTRA_ARGS[@]}")
@@ -432,6 +459,7 @@ manifest_file="${LOG_DIR}/launch_manifest.txt"
   printf 'repo_root=%s\n' "${REPO_ROOT}"
   printf 'hps_dir=%s\n' "${HPS_DIR}"
   printf 'config=%s\n' "${CONFIG}"
+  printf 'profile=%s\n' "${BUILD_PROFILE}"
   printf 'binary=%s\n' "${BINARY}"
   printf 'command='
   printf '%q ' "${cmd[@]}"

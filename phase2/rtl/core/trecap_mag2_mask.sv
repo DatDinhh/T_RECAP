@@ -21,13 +21,11 @@
 `default_nettype none
 
 module trecap_mag2_mask
-  import trecap_core_pkg::*;
-  import trecap_iface_pkg::*;
 #(
-    parameter int unsigned L      = T_FFT_L,
-    parameter int unsigned P      = T_FFT_P,
-    parameter int unsigned DATA_W = T_CAN_W,
-    parameter int unsigned MAG2_W = T_MAG2_W
+    parameter int unsigned L      = trecap_core_pkg::T_FFT_L,
+    parameter int unsigned P      = trecap_core_pkg::T_FFT_P,
+    parameter int unsigned DATA_W = trecap_core_pkg::T_CAN_W,
+    parameter int unsigned MAG2_W = trecap_core_pkg::T_MAG2_W
 ) (
     input  logic                         clk,
     input  logic                         rst_n,
@@ -62,9 +60,12 @@ module trecap_mag2_mask
 
     output logic                         frame_stats_valid_o,
     output logic [63:0]                  frame_stats_frame_idx_o,
-    output trecap_frame_stats_t          frame_stats_o,
+    output trecap_iface_pkg::trecap_frame_stats_t          frame_stats_o,
     output logic                         overflow_sticky_o
 );
+  import trecap_core_pkg::*;
+  import trecap_iface_pkg::*;
+
 
     localparam logic [P-1:0] LAST_BIN = P'(L - 1);
     localparam logic [P-1:0] NYQ_BIN  = P'(L / 2);
@@ -100,7 +101,6 @@ module trecap_mag2_mask
     logic [SQUARE_W-1:0]          im_square_u;
     logic signed [SQUARE_W-1:0]   re_operand_wide_s;
     logic signed [SQUARE_W-1:0]   im_operand_wide_s;
-    logic [SUM_W-1:0]             mag2_full;
     logic [MAG2_W-1:0]            mag2_value;
     logic                         mag2_width_overflow;
 
@@ -114,6 +114,8 @@ module trecap_mag2_mask
     logic [METRIC_ADD_W-1:0]      weighted_mag2_ext;
     logic [METRIC_ADD_W-1:0]      eligible_total_addend_ext;
     logic [METRIC_ADD_W-1:0]      eligible_kept_addend_ext;
+    logic [METRIC_ADD_W-1:0]      total_sum_candidate_ext;
+    logic [METRIC_ADD_W-1:0]      kept_sum_candidate_ext;
     logic [METRIC_ADD_W-1:0]      total_add_ext;
     logic [METRIC_ADD_W-1:0]      kept_add_ext;
     logic                         total_add_overflow;
@@ -153,9 +155,9 @@ module trecap_mag2_mask
     assign frame_stats_o.eligible_total_mag2_lo   = eligible_total_mag2_lo_q;
     assign frame_stats_o.mag2_truncated           = mag2_truncated_q;
 
-    // Full-precision square and sum.  With DATA_W=28 and MAG2_W=56, the legal
-    // Revision-J canonical range fits in MAG2_W bits; the extra SUM_W bit catches
-    // any unexpected out-of-contract arithmetic range.
+    // Full-precision signed squares. The full signed DATA_W input range is
+    // preserved, including the most-negative value; no FFT amplitude bound is
+    // assumed. The generate branch below proves the required unsigned sum width.
     // A SystemVerilog multiply otherwise inherits the operand width.  Squaring
     // two DATA_W values directly can therefore discard the upper DATA_W product
     // bits before assignment to SQUARE_W.  Widen one signed operand explicitly
@@ -168,11 +170,30 @@ module trecap_mag2_mask
         $unsigned(re_operand_wide_s * $signed(in_re_i));
     assign im_square_u =
         $unsigned(im_operand_wide_s * $signed(in_im_i));
-    assign mag2_full   = {{(SUM_W-SQUARE_W){1'b0}}, re_square_u} +
-                         {{(SUM_W-SQUARE_W){1'b0}}, im_square_u};
-
-    assign mag2_width_overflow = |mag2_full[SUM_W-1:MAG2_W];
-    assign mag2_value          = mag2_width_overflow ? {MAG2_W{1'b1}} : mag2_full[MAG2_W-1:0];
+    generate
+        if (MAG2_W >= SQUARE_W) begin : g_full_signed_range
+            logic [SQUARE_W-1:0] bounded_mag2_sum;
+            // |x| <= 2^(DATA_W-1), so x*x <= 2^(2*DATA_W-2): each
+            // square fits SQUARE_W-1 unsigned bits. Their sum is at most
+            // 2^(2*DATA_W-1) and fits SQUARE_W unsigned bits, even when
+            // both operands are the most-negative signed input. Discarding
+            // the proven-zero square MSBs avoids an unused extra carry and
+            // its high-fanout saturation selection on the full-width path.
+            assign bounded_mag2_sum = {1'b0, re_square_u[SQUARE_W-2:0]} +
+                                      {1'b0, im_square_u[SQUARE_W-2:0]};
+            assign mag2_width_overflow = 1'b0;
+            assign mag2_value = MAG2_W'(bounded_mag2_sum);
+        end else begin : g_narrow_mag2
+            logic [SUM_W-1:0] mag2_full;
+            // Retain exact saturation when the selected magnitude width is
+            // narrower than the proven full signed-input sum width.
+            assign mag2_full = {{(SUM_W-SQUARE_W){1'b0}}, re_square_u} +
+                               {{(SUM_W-SQUARE_W){1'b0}}, im_square_u};
+            assign mag2_width_overflow = |mag2_full[SUM_W-1:MAG2_W];
+            assign mag2_value = mag2_width_overflow ? {MAG2_W{1'b1}} :
+                                                    mag2_full[MAG2_W-1:0];
+        end
+    endgenerate
 
     assign self_conj_bin_comb = (in_bin_idx_i == '0) || (in_bin_idx_i == NYQ_BIN);
     assign protected_bin_comb = in_unique_i &&
@@ -199,13 +220,24 @@ module trecap_mag2_mask
     assign eligible_total_addend_ext = eligible_comb ? weighted_mag2_ext : '0;
     assign eligible_kept_addend_ext  = (eligible_comb && !mask_comb) ? weighted_mag2_ext : '0;
 
-    assign total_add_ext = {1'b0, eligible_total_mag2_lo_q} + eligible_total_addend_ext;
-    assign kept_add_ext  = {1'b0, eligible_kept_mag2_lo_q}  + eligible_kept_addend_ext;
+    // Calculate both possible accumulation results before selecting whether this
+    // bin contributes. In particular, the late magnitude/threshold comparison
+    // must not gate an operand of the 65-bit carry chain. Selecting after the
+    // addition preserves the low-64 result and overflow on the same input beat.
+    // The first-bin branch below still uses the selected addend, not these sums.
+    assign total_sum_candidate_ext = {1'b0, eligible_total_mag2_lo_q} + weighted_mag2_ext;
+    assign kept_sum_candidate_ext  = {1'b0, eligible_kept_mag2_lo_q}  + weighted_mag2_ext;
+    assign total_add_ext = eligible_comb ? total_sum_candidate_ext :
+                                          {1'b0, eligible_total_mag2_lo_q};
+    assign kept_add_ext  = (eligible_comb && !mask_comb) ? kept_sum_candidate_ext :
+                                                         {1'b0, eligible_kept_mag2_lo_q};
 
     assign total_addend_overflow = |eligible_total_addend_ext[METRIC_ADD_W-1:64];
     assign kept_addend_overflow  = |eligible_kept_addend_ext[METRIC_ADD_W-1:64];
-    assign total_add_overflow    = total_add_ext[64] | total_addend_overflow;
-    assign kept_add_overflow     = kept_add_ext[64]  | kept_addend_overflow;
+    assign total_add_overflow = eligible_comb &&
+                               (total_sum_candidate_ext[64] | weighted_mag2_ext[64]);
+    assign kept_add_overflow  = (eligible_comb && !mask_comb) &&
+                               (kept_sum_candidate_ext[64] | weighted_mag2_ext[64]);
 
     always_comb begin
         sequence_error_comb = 1'b0;

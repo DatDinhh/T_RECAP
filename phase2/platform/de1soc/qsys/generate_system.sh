@@ -121,6 +121,8 @@ else
   REPO_ROOT="$(cd "${REPO_ROOT}" && pwd)"
 fi
 cd "${REPO_ROOT}"
+# Keep the standard vendor catalog and add the source-owned CSR bridge.
+IP_SEARCH_PATH="${REPO_ROOT}/platform/de1soc/qsys/ip/trecap_csr_bridge/*,$"
 if [[ ! -f Makefile || ! -d spec/generated || ! -d platform/de1soc/qsys ]]; then
   echo "ERROR: ${REPO_ROOT} is not the T_RECAP_Phase2 repository root" >&2
   exit 2
@@ -210,7 +212,8 @@ run_check "${PYTHON_BIN}" "${ADDRESS_CHECKER}" --repo-root "${REPO_ROOT}"
 run_check "${PYTHON_BIN}" "${CSR_ADAPTER_CHECKER}" --repo-root "${REPO_ROOT}"
 run_check "${PYTHON_BIN}" "${PLATFORM_WRAPPER_CHECKER}" --repo-root "${REPO_ROOT}"
 if [[ ${SKIP_CONTRACT_CHECKS} -eq 0 ]]; then
-  [[ -f scripts/check_generated.py ]] && run_check "${PYTHON_BIN}" scripts/check_generated.py --quiet
+  # Header generation parity is separate from the optional legacy tests.
+  run_check "${PYTHON_BIN}" scripts/gen_headers.py --check --quiet
   [[ -f scripts/gen_filelists.py ]] && run_check "${PYTHON_BIN}" scripts/gen_filelists.py --check --quiet
 else
   warn "skipping generic generated-contract checks by request"
@@ -262,8 +265,19 @@ else
       have_cmd "${QSYS_GENERATE_BIN}" || fail "qsys-generate is required: ${QSYS_GENERATE_BIN}"
     fi
     run_logged "${VERSION_FILE}" "${QUARTUS_SH_BIN}" --version
-    grep -q '20\.1' "${VERSION_FILE}" || fail "this flow is pinned to Quartus 20.1; see ${VERSION_FILE}"
-    grep -qi 'Standard Edition' "${VERSION_FILE}" || fail "this flow is pinned to Quartus Prime Standard Edition; see ${VERSION_FILE}"
+    "${PYTHON_BIN}" - "${VERSION_FILE}" <<'PY'
+import sys
+from pathlib import Path
+from scripts.write_platform_generation_manifest import quartus_identity, supported_quartus_identity
+
+version_text = Path(sys.argv[1]).read_text(encoding="utf-8", errors="replace")
+identity = quartus_identity(version_text)
+if not supported_quartus_identity(identity):
+    raise SystemExit(
+        "This flow requires Quartus Prime 20.1.x Standard or Lite Edition; see " + sys.argv[1]
+    )
+print("Selected Quartus " + identity["release"] + " " + identity["edition"])
+PY
   else
     say_cmd "${QUARTUS_SH_BIN}" --version
   fi
@@ -276,12 +290,12 @@ else
     if [[ ${DRY_RUN} -eq 1 ]]; then
       run_check "${TCLSH_BIN}" "${PD_TCL}" "${construct_args[@]}" --dry-run
       qsys_tcl_cmd="$(qsys_tcl_command_for_argv "${construct_args[@]}")"
-      say_cmd "${QSYS_SCRIPT_BIN}" "--package-version=${QSYS_PACKAGE_VERSION}" \
+      say_cmd "${QSYS_SCRIPT_BIN}" "--search-path=${IP_SEARCH_PATH}" "--package-version=${QSYS_PACKAGE_VERSION}" \
         "--cmd=${qsys_tcl_cmd}" "--script=${PD_TCL}"
     else
       qsys_tcl_cmd="$(qsys_tcl_command_for_argv "${construct_args[@]}")"
       run_logged "${RUN_DIR}/qsys_construct.log" "${QSYS_SCRIPT_BIN}" \
-        "--package-version=${QSYS_PACKAGE_VERSION}" "--cmd=${qsys_tcl_cmd}" "--script=${PD_TCL}"
+        "--search-path=${IP_SEARCH_PATH}" "--package-version=${QSYS_PACKAGE_VERSION}" "--cmd=${qsys_tcl_cmd}" "--script=${PD_TCL}"
       [[ "$(qsys_state)" == "quartus_normalized" ]] || fail "qsys-script did not replace the bootstrap with normalized system.qsys"
       required_file "${READBACK_FILE}"
     fi
@@ -301,11 +315,11 @@ else
       readback_args=(--mode capture-readback --repo-root "${REPO_ROOT}" --readback-output "${READBACK_FILE}")
       qsys_tcl_cmd="$(qsys_tcl_command_for_argv "${readback_args[@]}")"
       if [[ ${DRY_RUN} -eq 1 ]]; then
-        say_cmd "${QSYS_SCRIPT_BIN}" "--package-version=${QSYS_PACKAGE_VERSION}" \
+        say_cmd "${QSYS_SCRIPT_BIN}" "--search-path=${IP_SEARCH_PATH}" "--package-version=${QSYS_PACKAGE_VERSION}" \
           "--cmd=${qsys_tcl_cmd}" "--script=${PD_TCL}"
       else
         run_logged "${RUN_DIR}/qsys_readback.log" "${QSYS_SCRIPT_BIN}" \
-          "--package-version=${QSYS_PACKAGE_VERSION}" "--cmd=${qsys_tcl_cmd}" "--script=${PD_TCL}"
+          "--search-path=${IP_SEARCH_PATH}" "--package-version=${QSYS_PACKAGE_VERSION}" "--cmd=${qsys_tcl_cmd}" "--script=${PD_TCL}"
         required_file "${READBACK_FILE}"
       fi
     fi
@@ -320,7 +334,7 @@ else
       fi
     fi
     run_logged "${RUN_DIR}/qsys_generate.log" "${QSYS_GENERATE_BIN}" "${SYSTEM_QSYS}" \
-      --synthesis=VERILOG "--output-directory=${GENERATED_DIR}"
+      --synthesis=VERILOG "--search-path=${IP_SEARCH_PATH}" "--output-directory=${GENERATED_DIR}"
     if [[ ${DRY_RUN} -eq 0 ]]; then
       run_check "${PYTHON_BIN}" "${ADDRESS_CHECKER}" \
         --repo-root "${REPO_ROOT}" --require-sopcinfo

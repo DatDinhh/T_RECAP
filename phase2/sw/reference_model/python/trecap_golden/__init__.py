@@ -1,14 +1,11 @@
 # SPDX-License-Identifier: MIT
-"""Python automation package for the T-RECAP Phase 2 golden-model repository.
+"""Python tools for the T-RECAP fixed-point reference model.
 
-Generated configuration modules are intentionally not imported at package import
- time.  A clean source checkout may contain only empty generated-output
- directories; commands that require generated constants must run the generation
- flow first.
+The trecap_golden package name is retained for compatibility. Source bindings are
+checked in and regenerated with scripts/gen_config.py after contract changes.
 """
 
 from __future__ import annotations
 
 __version__ = "0.1.0"
-
 __all__ = ["__version__"]

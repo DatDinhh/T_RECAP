@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: MIT
+// Include after the board DTS and its Cyclone V SoC includes; static boot-time DT only.
+#include "trecap_reserved_memory.dtsi"
+
+/ {
+    trecap_platform: trecap-platform@ff200000 {
+        reg = <0xff200000 0x00001000>; // Existing lightweight-bridge CSR aperture
+        compatible = "trecap,de1soc-platform-v1";
+        memory-region = <&trecap_telemetry_ring>;
+        codec-mux-gpios = <&portb 19 0>; // HPS_GPIO48, active-high raw select; 0 grants FPGA
+        status = "okay";
+    };
+};
+
+&gpio1 { status = "okay"; };

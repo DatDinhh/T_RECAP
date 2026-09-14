@@ -116,7 +116,11 @@
     "metrics_clear_request_source": "clear_metrics_pulse",
     "metrics_clear_request_latched": true,
     "metrics_clear_apply_boundary": "core_config_safe_boundary_o",
-    "repeated_pending_metrics_clear_requests_coalesce": true
+    "repeated_pending_metrics_clear_requests_coalesce": true,
+    "threshold_snapshot_event": "scheduler_to_input_ring_frame_accept",
+    "threshold_retirement_event": "last_canonical_bin_accepted_by_mask",
+    "threshold_metadata_queue_depth": 4,
+    "threshold_metadata_includes_frame_index": true
   },
   "observability_contract": {
     "tap_source": "trecap_core_top",
@@ -190,5 +194,33 @@
     "Source/core and transport shall share clk_fabric and the already synchronized rst_n_platform in this implementation.",
     "Replay done shall mean final source-token acceptance and shall not be represented as exact or quiescent core completion.",
     "Source-only checks shall not claim RTL compile, functional verification, Quartus compile, live-source readiness, or hardware signoff."
-  ]
+  ],
+  "live_source_health_contract": {
+    "owner": "rtl/top/trecap_source_core_integration.sv",
+    "csr_authority": "spec/generated/csr_map.json",
+    "documentation": "docs/architecture/source_health.md",
+    "hps_operator": "sw/hps/scripts/source_health.py",
+    "loss_policy": "stop_invalidate_epoch_explicit_rearm",
+    "fault_causes": [
+      "raw_sequence_gap",
+      "adapter_drop",
+      "wrapper_drop",
+      "readiness_loss",
+      "sample_timeout",
+      "wrapper_protocol"
+    ],
+    "fabric_clock_hz": 50000000,
+    "post_stop_settle_cycles": 4096,
+    "first_sample_timeout_cycles": 50000000,
+    "running_sample_timeout_cycles": 4096,
+    "audio_stop_acknowledgement": "capture_enable_bclk_rx_returned_through_two_fabric_flops",
+    "adc_stop_acknowledgement": "adc_busy_low",
+    "manual_adc_is_periodic_core_input": false,
+    "counter_width_bits": 64,
+    "counters_saturate": true,
+    "counter_clear_owner": "fabric_hard_reset_only",
+    "snapshot_words": 31,
+    "rearm_changes_transport_state": false,
+    "normalization_arithmetic_changed": false
+  }
 }

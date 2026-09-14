@@ -12,9 +12,9 @@
     "canonicalization": "trecap_address_map_semantic_projection_v1",
     "canonical_sha256": "255dbdc684c53b515011a3fe30bd8cf89c636628addb3caff728f2c2a306e4b7",
     "pinned_source_sha256": {
-      "platform/de1soc/qsys/system_blueprint.xml": "09390970f8536f9cc78b638914ef0d4b44bc2927471df57fffe3268171b4dc6f",
-      "spec/generated/csr_map.json": "bf565e83f882f68752601dfacaacd3f37146f811dcc0b399ccc46649fe656f2c",
-      "sw/hps/config/trecap_hps_config.json": "90616a8c601b7d8a3a5bd0bd0e187d1d5f0c5306b6cb57d1a4ce8ef83c91f834"
+      "spec/generated/csr_map.json": "32cfca2bb4d1df15b11ba3ab9422b88921441a45c97ecd2a0c7b12b6d4763778",
+      "sw/hps/config/trecap_hps_config.json": "90616a8c601b7d8a3a5bd0bd0e187d1d5f0c5306b6cb57d1a4ce8ef83c91f834",
+      "platform/de1soc/qsys/system_blueprint.xml": "77c9ce04ddfe82ab220dc693d966c18571312a87e46308b33c3d5c591029543d"
     }
   },
   "board_profile": {
@@ -96,10 +96,22 @@
     "hps_memory": "hps_0.memory"
   },
   "required_clock_connections": [
-    {"source": "clk_0.clk", "sink": "hps_0.f2h_sdram0_clock"},
-    {"source": "clk_0.clk", "sink": "hps_0.h2f_axi_clock"},
-    {"source": "clk_0.clk", "sink": "hps_0.f2h_axi_clock"},
-    {"source": "clk_0.clk", "sink": "hps_0.h2f_lw_axi_clock"}
+    {
+      "source": "clk_0.clk",
+      "sink": "hps_0.f2h_sdram0_clock"
+    },
+    {
+      "source": "clk_0.clk",
+      "sink": "hps_0.h2f_axi_clock"
+    },
+    {
+      "source": "clk_0.clk",
+      "sink": "hps_0.f2h_axi_clock"
+    },
+    {
+      "source": "clk_0.clk",
+      "sink": "hps_0.h2f_lw_axi_clock"
+    }
   ],
   "bridges": {
     "csr_bridge": {

@@ -42,7 +42,11 @@
       "direction": "open_drain_inout"
     },
     "external_board_pullups_required": true,
-    "internal_weak_pullup_assignment_permitted": false
+    "internal_weak_pullup_assignment_permitted": false,
+    "fabric_may_sample_dedicated_hps_mux_pin": false,
+    "fabric_codec_grant_source": "PLATFORM_CONTROL.codec_fpga_grant",
+    "codec_grant_software_owner": "trecap_platform_kernel_driver",
+    "codec_grant_requires_gpio_low_readback": true
   },
   "audio_pll_contract": {
     "reference_clock": "CLOCK_50",
@@ -67,18 +71,66 @@
     "configuration_done_requires_all_register_writes_acked": true,
     "configuration_error_is_sticky": true,
     "register_sequence": [
-      {"register": 15, "value": "0x000", "purpose": "software_reset"},
-      {"register": 9, "value": "0x000", "purpose": "inactive_during_configuration"},
-      {"register": 0, "value": "0x017", "purpose": "left_line_input_unmuted_0db"},
-      {"register": 1, "value": "0x017", "purpose": "right_line_input_unmuted_0db"},
-      {"register": 2, "value": "0x079", "purpose": "left_headphone_output_0db"},
-      {"register": 3, "value": "0x079", "purpose": "right_headphone_output_0db"},
-      {"register": 4, "value": "0x012", "purpose": "analog_path_linein_and_dac"},
-      {"register": 5, "value": "0x000", "purpose": "digital_path_unmuted"},
-      {"register": 6, "value": "0x002", "purpose": "required_codec_blocks_powered_microphone_off"},
-      {"register": 7, "value": "0x042", "purpose": "codec_master_16bit_i2s"},
-      {"register": 8, "value": "0x000", "purpose": "normal_48khz_at_12_288mhz"},
-      {"register": 9, "value": "0x001", "purpose": "activate_last"}
+      {
+        "register": 15,
+        "value": "0x000",
+        "purpose": "software_reset"
+      },
+      {
+        "register": 9,
+        "value": "0x000",
+        "purpose": "inactive_during_configuration"
+      },
+      {
+        "register": 0,
+        "value": "0x017",
+        "purpose": "left_line_input_unmuted_0db"
+      },
+      {
+        "register": 1,
+        "value": "0x017",
+        "purpose": "right_line_input_unmuted_0db"
+      },
+      {
+        "register": 2,
+        "value": "0x079",
+        "purpose": "left_headphone_output_0db"
+      },
+      {
+        "register": 3,
+        "value": "0x079",
+        "purpose": "right_headphone_output_0db"
+      },
+      {
+        "register": 4,
+        "value": "0x012",
+        "purpose": "analog_path_linein_and_dac"
+      },
+      {
+        "register": 5,
+        "value": "0x000",
+        "purpose": "digital_path_unmuted"
+      },
+      {
+        "register": 6,
+        "value": "0x002",
+        "purpose": "required_codec_blocks_powered_microphone_off"
+      },
+      {
+        "register": 7,
+        "value": "0x042",
+        "purpose": "codec_master_16bit_i2s"
+      },
+      {
+        "register": 8,
+        "value": "0x000",
+        "purpose": "normal_48khz_at_12_288mhz"
+      },
+      {
+        "register": 9,
+        "value": "0x001",
+        "purpose": "activate_last"
+      }
     ]
   },
   "serial_audio_contract": {

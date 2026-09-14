@@ -236,6 +236,30 @@ std::string vector_config_json(const std::string_view vector_name,
     return os.str();
 }
 
+void write_reference_outputs(const std::filesystem::path& output_dir,
+                             const std::string_view vector_name,
+                             std::span<const std::int64_t> x,
+                             const StftWolaRunConfig& run_cfg,
+                             const StftWolaResult& result,
+                             const CoefficientHashes& coeff_hashes) {
+    const CoreConfig cfg = run_cfg.core;
+    if (result.y.size() != result.geometry.Ny || x.size() != result.geometry.Ns) {
+        throw contract_error("reference result length does not match geometry");
+    }
+    std::filesystem::create_directories(output_dir);
+    write_memh(output_dir / "y_out.memh", result.y, signed_memh_spec(cfg.N, result.geometry.Ny, "y_out"));
+    write_frame_stats_csv(output_dir / "frame_stats.csv", result.frame_stats);
+    if (!result.bin_stats.empty()) {
+        write_bin_stats_csv(output_dir / "bin_stats.csv", result.bin_stats, cfg);
+    }
+    const VectorArtifactHashes hashes = compute_stream_hashes(x, result.y, cfg);
+    write_json_file(output_dir / "config.json",
+                    vector_config_json(vector_name, cfg, result.geometry, run_cfg.thr2, coeff_hashes, hashes,
+                                       !result.bin_stats.empty()));
+    write_json_file(output_dir / "metrics.json",
+                    metrics_json(vector_name, cfg, result.geometry, run_cfg.thr2, result.metrics, coeff_hashes, hashes));
+}
+
 void write_vector_artifacts(const std::filesystem::path& test_vector_dir,
                             const std::filesystem::path& golden_dir,
                             const std::string_view vector_name,

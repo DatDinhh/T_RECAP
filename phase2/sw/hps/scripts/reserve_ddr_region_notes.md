@@ -4,11 +4,11 @@ File class: `[1]` hand-written HPS bring-up documentation.
 
 ## Evidence boundary
 
-The repository contains the canonical reservation source, but it does not know
-which board DTS or DTB is selected by a particular SD-card image. Presence of
-the `.dtsi` in a source archive is not Linux boot or runtime evidence. Do not
-run live telemetry until the fragment is integrated into the active board DTB
-and the live system checks below pass.
+The selected source baseline supplies `socfpga_cyclone5_trecap.dts`, its static
+reservation/platform includes, and the Linux 6.12.109 platform driver. The
+installed boot image must select the matching built DTB. Source presence is not
+Linux boot or runtime evidence; live telemetry requires the actual reservation
+and driver device described below.
 
 ## Frozen interval
 
@@ -57,26 +57,24 @@ bootloader state and gives the final FDT one auditable source of truth.
 
 ## Integrate into the active board DTB
 
-1. On the target image, identify the board model/compatible string and the DTB
-   selected by U-Boot. Do not infer the name from this repository.
-2. Include `trecap_reserved_memory.dtsi` from the matching board `.dts`. If
-   that board already declares `/reserved-memory`, merge only the T-RECAP child
-   while preserving the same one-cell address/size encoding.
-3. Build DTBs with the kernel/BSP toolchain for that exact image.
-4. Inspect the output DTB before installation:
+Follow [the Linux build/install recipe](../../../platform/de1soc/linux/README.md)
+to stage the static board DTS, build the matching kernel/DTB/module, and install
+the application and services. The board DTS includes `trecap_platform.dtsi` and
+its reservation; the platform node references that exact region and gives the
+driver ownership of GPIO48 codec selection.
 
-   ```sh
-   fdtget -tx active-board.dtb /reserved-memory/trecap-ring@3e000000 reg
-   fdtget -p active-board.dtb /reserved-memory/trecap-ring@3e000000
-   ```
-
-   `reg` must be `3e000000 02000000`. The property list must contain `no-map`
-   and must not contain `reusable`.
-5. Keep the old DTB as a recovery entry, install the inspected DTB, select it in
-   the bootloader, and reboot.
-
-The reservation must be present in the FDT before Linux starts. A configfs
-overlay applied after boot cannot reserve pages that Linux may already use.
+Select `socfpga_cyclone5_trecap.dtb` in the board boot flow and retain a recovery
+boot entry. The reservation must be in the FDT before Linux starts. A configfs
+overlay applied after boot cannot reserve pages Linux may already use. The
+compatible FPGA image and bridges must also be established before CSR access.
+Start `trecap_platform.service` before the streamer; it creates `/dev/trecap-ring`
+and holds the FPGA codec-bus grant. The driver validates the platform CSR ABI,
+acquires GPIO48 output-low with readback, then asserts `PLATFORM_CONTROL`; cleanup
+revokes that grant before returning the GPIO high. See
+[platform_grant.md](../../../docs/architecture/platform_grant.md). No userspace
+GPIO48 export is required.
+The source baseline uses static boot, without driver hot-unbind or live DT node
+removal while a ring mapping exists.
 
 ## Verify the live system
 
@@ -99,11 +97,20 @@ not a pass.
 
 ## Cache/coherency rule
 
-The HPS reader must see committed FPGA writes through a non-cacheable, strongly
-ordered, DMA-coherent, or explicitly cache-invalidated mapping. The controlled
-bring-up path uses a read-only, synchronous `/dev/mem` mapping; kernel policy may
-still prohibit it. If strict devmem or cache attributes cannot be proved, use a
-kernel driver rather than weakening the reservation.
+The ring reader opens `/dev/trecap-ring` with `O_RDONLY | O_CLOEXEC` and checks
+`TRECAP_RING_GET_INFO` against the shared ABI in
+`sw/hps/include/trecap_ring_device.h`: ABI version 1, exactly the read-only and
+noncached flags, physical base `0x3e000000`, size `0x02000000`, and zero reserved
+field. It then maps the complete aperture with `PROT_READ | MAP_SHARED` at file
+offset zero. The driver rejects writable/executable, partial, private, or nonzero-
+offset mappings and sets `pgprot_noncached`; userspace does not infer cache
+attributes from `O_SYNC`. Cached ring mapping remains forbidden.
+
+The device admits one open consumer. The reader retains its file descriptor until
+after unmapping, so another process cannot acquire the ring during its lifetime.
+The mapping does not grant ownership of FPGA producer state: `W`, `Rd`, reset,
+commit, and whole-record rules in the ownership contract still apply. CSR access remains the existing
+read/write `/dev/mem` device mapping.
 
 Repeated sequences, stale headers, or impossible payload sizes after apparently
 successful FPGA writes are reasons to stop and inspect mapping attributes.
@@ -125,7 +132,7 @@ boot Linux, run the directed RTL test, invoke Quartus, or test hardware.
 ```text
 1. Integrate and inspect the reservation in the active board DTB.
 2. Boot Linux and capture live-tree, /proc/iomem, and boot-log evidence.
-3. Configure the direct-link static IP.
+3. Load the matching platform driver, confirm /dev/trecap-ring, and configure the direct-link static IP.
 4. Build the HPS streamer and run its non-live config check.
 5. Start STATUS-only streaming.
 6. Enable WAVE, METRICS, and spectra only after STATUS is stable.
@@ -143,7 +150,9 @@ unauthenticated command UDP port beyond an isolated lab network.
 | Immediate HPS crash or filesystem corruption | Linux still owns ring pages | live DT node and `/proc/iomem` |
 | Repeated or stale records | wrong cache attributes | mapping policy or kernel driver |
 | Malformed record near ring end | WRAP/boundary or cache fault | `W`/`Rd`, WRAP tail, mapping policy |
-| `/dev/mem` map rejected | strict devmem or permissions | kernel configuration and driver path |
+| Ring open rejected | missing driver, access denied, or another consumer | platform service, `/dev/trecap-ring`, and existing streamer |
+| Ring ioctl/mmap rejected | ABI, geometry, flags, or map permissions mismatch | matching driver/application build and runtime JSON |
+| CSR `/dev/mem` map rejected | strict devmem or raw-I/O permissions | selected kernel configuration and CSR service permissions |
 | No UDP telemetry | network/interface mismatch | static IP, peer, firewall, UDP port |
 
 ## Acceptance questions

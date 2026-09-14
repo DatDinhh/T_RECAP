@@ -141,8 +141,18 @@ Local request controls are:
 
 ```text
 SW[7] = 0  exact-average continuous conversion requests
-SW[7] = 1  one debounced request from KEY[2]
+SW[7] = 1  one debounced diagnostic-only request from KEY[2]
 ```
+
+Manual conversions do not enter the mathematical core. With `SW[9:8]=00`,
+HEX5..3 show the low 12 bits of the eligible raw-sample count and HEX2..0 show the
+latest raw code. The first request after enable/abort primes the converter and is
+discarded. FPGA telemetry reports `sample_rate_hz=0` while manual diagnostics are
+selected; the dashboard labels that as no periodic DSP stream.
+
+Changing SW[7] clears the source/core epoch and briefly disables the controller,
+which aborts any in-flight conversion and primes the pipeline again. This does not
+change the channel latched on ADC-source entry and does not reset transport.
 
 Requests arriving while the wrapper is busy are not queued. They set the
 overrun diagnostic instead.
@@ -194,10 +204,14 @@ No sample-data async FIFO is required for this ADC implementation:
   on the fabric edge that generates the selected SCLK edge; and
 - synchronized board controls are latched before they affect an ADC epoch.
 
-This does not waive external I/O timing. Step 18 must constrain the generated
-serial output relationship and `ADC_DOUT` input timing. If a later design places
-the ADC controller or adapter in another domain, it must add a reviewed atomic
-CDC path; independent bit synchronizers are forbidden.
+The implemented external timing policy is in
+[physical_timing.md](../architecture/physical_timing.md): a 10 ns absolute
+`ADC_DOUT` pin-to-first-stage budget and 5 ns registered-output data-path budgets,
+with a mandatory fitted gate defined in [build_order.md](../architecture/build_order.md).
+These allocations require their full serial return-budget assumptions and do not
+establish physical converter operation. If a later design places the ADC controller
+or adapter in another domain, it must add a reviewed atomic CDC path; independent
+bit synchronizers are forbidden.
 
 Selecting `adc_live` through the generated source-mode commit is the only legal
 route to the core. On a real mode change, the transition guard blanks acceptance,
@@ -241,8 +255,7 @@ config/profiles/de1soc_adc_demo.json
 
 The profile freezes `adc_live`, LTC2308, channel selection at ADC-epoch entry,
 100 ksample/s, 2.5 MHz SCLK, 12-bit unsigned input, unsigned-midscale recentering,
-DC blocking disabled, and the physical DE1-SoC top. A JSON profile does not
-reconfigure synthesized hardware by itself; the build/profile checker must bind
+DC blocking disabled, and the physical DE1-SoC top. The profile resolver binds
 the matching RTL constants.
 
 The default board profile remains `de1soc_bram_replay`. The ADC profile does not

@@ -242,7 +242,7 @@ script-ci: ## Run scripts/ci_entrypoint.sh quick mode.
 	@scripts/ci_entrypoint.sh quick
 
 .PHONY: gen-config
-gen-config: ## Generate derived config files from spec schemas.
+gen-config: ## Generate C++/Python reference bindings from spec/generated/core_config.json.
 	@if [[ -f scripts/gen_config.py ]]; then \
 		$(PYTHON) scripts/gen_config.py; \
 	else \
@@ -273,12 +273,15 @@ vectors-suite: ## Generate input vectors selected by SUITE=path, default smoke s
 		echo "ERROR: tools/gen_vectors.py missing; vector generator not implemented yet."; exit 2; \
 	fi
 
+.PHONY: reference
+reference: golden ## Run the reference model into a new output directory.
+
 .PHONY: golden
-golden: build ## Run the C++ golden model through the suite orchestrator and emit output artifacts.
+golden: build ## Legacy alias: run the reference model into runs/reference_outputs, preserving inputs.
 	@if [[ -f tools/run_suite.py && -x $(BUILD_DIR)/phase2_golden_model ]]; then \
-		PYTHONPATH=python $(PYTHON) -m trecap_golden.cli.run_suite --vectors artifacts/test_vectors --out artifacts/golden --golden-exe $(BUILD_DIR)/phase2_golden_model; \
+		PYTHONPATH=python $(PYTHON) -m trecap_golden.cli.run_suite --vectors artifacts/test_vectors --out $(RUNS_DIR)/reference_outputs --golden-exe $(BUILD_DIR)/phase2_golden_model; \
 	elif [[ -x $(BUILD_DIR)/phase2_golden_model ]]; then \
-		$(BUILD_DIR)/phase2_golden_model --vectors artifacts/test_vectors --out artifacts/golden; \
+		$(BUILD_DIR)/phase2_golden_model --vectors artifacts/test_vectors --out $(RUNS_DIR)/reference_outputs; \
 	else \
 		echo "ERROR: golden runner missing; run make build or implement tools/run_suite.py."; exit 2; \
 	fi
@@ -286,7 +289,7 @@ golden: build ## Run the C++ golden model through the suite orchestrator and emi
 .PHONY: golden-suite
 golden-suite: build ## Run the C++ golden model for vectors selected by SUITE=path.
 	@if [[ -f tools/run_suite.py && -x $(BUILD_DIR)/phase2_golden_model ]]; then \
-		PYTHONPATH=python $(PYTHON) -m trecap_golden.cli.run_suite --vectors artifacts/test_vectors --out artifacts/golden --golden-exe $(BUILD_DIR)/phase2_golden_model --suite $(SUITE); \
+		PYTHONPATH=python $(PYTHON) -m trecap_golden.cli.run_suite --vectors artifacts/test_vectors --out $(RUNS_DIR)/reference_outputs --golden-exe $(BUILD_DIR)/phase2_golden_model --suite $(SUITE); \
 	else \
 		echo "ERROR: golden runner missing; run make build or implement tools/run_suite.py."; exit 2; \
 	fi

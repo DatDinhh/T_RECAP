@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: MIT
+[Unit]
+Description=T-RECAP reserved-ring device and codec bus owner
+After=local-fs.target
+Before=trecap_udp_streamer.service
+ConditionPathExists=/sys/firmware/devicetree/base/trecap-platform@ff200000
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/modprobe trecap_platform
+ExecStartPost=/usr/bin/test -c /dev/trecap-ring
+RemainAfterExit=yes
+# Keep the driver/GPIO grant throughout the boot. Reprogramming FPGA requires a
+# stopped streamer and a reboot into the matched FPGA/kernel/DTB combination.
+
+[Install]
+WantedBy=multi-user.target

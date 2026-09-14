@@ -650,12 +650,17 @@ $QuartusVersionText = [System.IO.File]::ReadAllText($VersionLog)
 if ($QuartusVersionText -notmatch '(?i)\bQuartus\b') {
     throw "quartus_sh --version did not identify Quartus; see $VersionLog"
 }
-if ($QuartusVersionText -notmatch '(?i)\b20\.1(?:\.\d+)?\b') {
-    throw "This flow requires Quartus release 20.1; see $VersionLog"
+$QuartusIdentityMatch = [regex]::Match($QuartusVersionText,
+    '(?im)^\s*(?:Quartus\s+Prime\s+)?Version\s+(?<release>20\.1(?:\.\d+)?)\s+Build\s+\d+\b[^\r\n]*?\b(?<edition>Standard|Lite)\s+Edition\b')
+if (!$QuartusIdentityMatch.Success) {
+    throw "This flow requires Quartus Prime 20.1.x Standard or Lite Edition; see $VersionLog"
 }
-if ($QuartusVersionText -notmatch '(?i)\bStandard Edition\b') {
-    throw "This flow requires Quartus Prime Standard Edition 20.1; see $VersionLog"
+$QuartusObservedEdition = if ($QuartusIdentityMatch.Groups['edition'].Value -ieq 'Lite') {
+    'Lite Edition'
+} else {
+    'Standard Edition'
 }
+Write-Host ("Selected Quartus {0} {1}" -f $QuartusIdentityMatch.Groups['release'].Value, $QuartusObservedEdition)
 
 Run-NativeLogged -Exe $PythonExe -Args @(
     $HpsCheck,

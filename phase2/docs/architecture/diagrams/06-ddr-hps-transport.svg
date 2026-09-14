@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1132" viewBox="0 0 1600 1132" role="img" aria-labelledby="title desc">
+<title id="title">DDR transport and pointer ownership</title>
+<desc id="desc">FPGA produces committed records; Linux consumes them from a reserved, noncached ring.</desc>
+<rect x="0" y="0" width="1600" height="1132" rx="0" fill="#FCFCFE" stroke="none" stroke-width="1.3"/>
+<rect x="48" y="42" width="7" height="83" rx="3" fill="#8066A9" stroke="none" stroke-width="1.3"/>
+<text x="75" y="57" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#586A80" text-anchor="start">T-RECAP   /   ARCHITECTURE ATLAS</text>
+<text x="75" y="104" font-family="DejaVu Sans, Arial, sans-serif" font-size="39" font-weight="700" fill="#26364B" text-anchor="start">DDR transport and pointer ownership</text>
+<text x="75" y="139" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="400" fill="#586A80" text-anchor="start">FPGA produces committed records; Linux consumes them from a reserved, noncached ring.</text>
+<text x="1525" y="83" font-family="DejaVu Sans, Arial, sans-serif" font-size="35" font-weight="700" fill="#8066A9" text-anchor="end">06</text>
+<polyline points="48,163 1552,163" fill="none" stroke="#D8E0EA" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="55" y="195" width="1010" height="407" rx="22" fill="#FFFFFF" stroke="#D8E0EA" stroke-width="1.3"/>
+<rect x="56" y="196" width="1008" height="45" rx="21" fill="#DFECFA" stroke="none" stroke-width="1.3"/>
+<rect x="56" y="220" width="1008" height="21" rx="0" fill="#DFECFA" stroke="none" stroke-width="1.3"/>
+<text x="77" y="225" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" fill="#4D78A8" text-anchor="start">FPGA PRODUCER / 50 MHz</text>
+<rect x="81" y="275" width="275" height="138" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="80" y="272" width="275" height="138" rx="14" fill="#F8E0E8" stroke="#A66882" stroke-width="1.15"/>
+<text x="97" y="302" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Record builder</text>
+<text x="97" y="331" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Header32 + payload +</text>
+<text x="97" y="353" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">padding</text>
+<text x="97" y="375" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">64-bit DDR write stream</text>
+<text x="97" y="395" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#A66882" text-anchor="start">trecap_ddr_record_builder</text>
+<rect x="401" y="275" width="290" height="138" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="400" y="272" width="290" height="138" rx="14" fill="#DFECFA" stroke="#4D78A8" stroke-width="1.15"/>
+<text x="417" y="302" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Ring writer + master</text>
+<text x="417" y="331" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Free-space / WRAP decisions</text>
+<text x="417" y="353" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Waitrequest; record commit</text>
+<text x="417" y="379" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4D78A8" text-anchor="start">trecap_ddr_ring_writer</text>
+<text x="417" y="395" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4D78A8" text-anchor="start">trecap_avmm_write_master</text>
+<rect x="736" y="275" width="305" height="138" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="735" y="272" width="305" height="138" rx="14" fill="#DFECFA" stroke="#4D78A8" stroke-width="1.15"/>
+<text x="752" y="302" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Platform address guard</text>
+<text x="752" y="331" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Address64 / data64 / BE8</text>
+<text x="752" y="353" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Require address &lt; 0x40000000</text>
+<text x="752" y="395" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4D78A8" text-anchor="start">platform_designer_wrapper</text>
+<polyline points="355,341.0 400,341.0" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="400,341.0 390.0,336.5 390.0,345.5" fill="#708299"/>
+<polyline points="690,341.0 735,341.0" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="735,341.0 725.0,336.5 725.0,345.5" fill="#708299"/>
+<rect x="80" y="451" width="960" height="122" rx="13" fill="#EBEFF4" stroke="none" stroke-width="1.3"/>
+<text x="99" y="480" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#65778A" text-anchor="start">WRITE RESPONSE SEMANTICS</text>
+<text x="99" y="506" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">The wrapper returns registered OKAY / SLVERR for local validation and generated-bus acceptance. OKAY does not</text>
+<text x="99" y="528" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">indicate physical DRAM completion. Publish W only after the record write sequence succeeds.</text>
+<rect x="1121" y="275" width="410" height="138" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="1120" y="272" width="410" height="138" rx="14" fill="#DFECFA" stroke="#4D78A8" stroke-width="1.15"/>
+<text x="1137" y="302" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Generated HPS DDR path</text>
+<text x="1137" y="331" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Avalon bridge: address32 / data64</text>
+<text x="1137" y="353" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">f2h_sdram0 -&gt; hard DDR controller</text>
+<text x="1137" y="395" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4D78A8" text-anchor="start">trecap_f2h_sdram_bridge</text>
+<polyline points="1040,341.0 1120,341.0" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1120,341.0 1110.0,336.5 1110.0,345.5" fill="#708299"/>
+<rect x="1052.537109375" y="317" width="54.92578125" height="21" rx="4" fill="#FCFCFE" stroke="none" stroke-width="1.3"/>
+<text x="1080" y="332" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#708299" text-anchor="middle">1 beat</text>
+<rect x="1121" y="478" width="410" height="127" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="1120" y="475" width="410" height="127" rx="14" fill="#DFECFA" stroke="#4D78A8" stroke-width="1.15"/>
+<text x="1137" y="505" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Reserved DDR ring: 32 MiB</text>
+<text x="1137" y="534" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">0x3E000000 &lt;= address &lt; 0x40000000</text>
+<text x="1137" y="556" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Inside the 1 GiB HPS DDR3 space</text>
+<polyline points="1325.0,410 1325.0,475" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1325.0,475 1329.5,465.0 1320.5,465.0" fill="#708299"/>
+<rect x="55" y="640" width="730" height="360" rx="22" fill="#FFFFFF" stroke="#D8E0EA" stroke-width="1.3"/>
+<rect x="56" y="641" width="728" height="45" rx="21" fill="#DFECFA" stroke="none" stroke-width="1.3"/>
+<rect x="56" y="665" width="728" height="21" rx="0" fill="#DFECFA" stroke="none" stroke-width="1.3"/>
+<text x="77" y="670" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" fill="#4D78A8" text-anchor="start">MONOTONIC 64-BIT OWNERS</text>
+<rect x="81" y="719" width="295" height="116" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="80" y="716" width="295" height="116" rx="14" fill="#DFECFA" stroke="#4D78A8" stroke-width="1.15"/>
+<text x="97" y="746" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Producer W</text>
+<text x="97" y="775" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">FPGA owns publication</text>
+<text x="97" y="797" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">HPS reads coherent snapshot</text>
+<text x="97" y="817" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4D78A8" text-anchor="start">trecap_ring_pointer_ctrl</text>
+<rect x="461" y="719" width="295" height="116" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="460" y="716" width="295" height="116" rx="14" fill="#F7ECD5" stroke="#9C7D3F" stroke-width="1.15"/>
+<text x="477" y="746" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Consumer Rd</text>
+<text x="477" y="775" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">HPS commits consumed extent</text>
+<text x="477" y="797" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">FPGA reads committed pointer</text>
+<text x="477" y="817" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#9C7D3F" text-anchor="start">ring_reader.c / csr_map.c</text>
+<text x="418" y="748" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#4D78A8" text-anchor="middle">W snapshot</text>
+<polyline points="375,770 460,770" fill="none" stroke="#8066A9" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="8,6"/>
+<polygon points="460,770 450.0,765.5 450.0,774.5" fill="#8066A9"/>
+<text x="418" y="807" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#9C7D3F" text-anchor="middle">Rd commit</text>
+<polyline points="460,791 375,791" fill="none" stroke="#8066A9" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="8,6"/>
+<polygon points="375,791 385.0,795.5 385.0,786.5" fill="#8066A9"/>
+<text x="81" y="870" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">64-byte record alignment + 64-byte guard; no record straddles end.</text>
+<text x="81" y="899" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">WRAP consumes the remaining tail and is not sent over UDP.</text>
+<text x="81" y="925" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="400" fill="#4D78A8" text-anchor="start">Init: disable/drain -&gt; transport reset -&gt; ring config -&gt; Rd=0.</text>
+<text x="81" y="950" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="400" fill="#4D78A8" text-anchor="start">Check W=0; enable the writer and telemetry.</text>
+<text x="81" y="979" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#586A80" text-anchor="start">Physical / FPGA bus addresses are distinct from userspace pointers.</text>
+<rect x="866" y="691" width="330" height="145" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="865" y="688" width="330" height="145" rx="14" fill="#F7ECD5" stroke="#9C7D3F" stroke-width="1.15"/>
+<text x="882" y="718" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Linux ring mapping</text>
+<text x="882" y="747" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Read-only /dev/trecap-ring</text>
+<text x="882" y="769" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Noncached mmap; one consumer</text>
+<text x="882" y="802" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#9C7D3F" text-anchor="start">platform/de1soc/linux/driver/</text>
+<text x="882" y="818" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#9C7D3F" text-anchor="start">trecap_platform.c</text>
+<rect x="1241" y="691" width="290" height="145" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="1240" y="688" width="290" height="145" rx="14" fill="#F7ECD5" stroke="#9C7D3F" stroke-width="1.15"/>
+<text x="1257" y="718" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">HPS ring reader</text>
+<text x="1257" y="747" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Validate committed records</text>
+<text x="1257" y="769" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">UDP copy; omit DDR padding</text>
+<text x="1257" y="818" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#9C7D3F" text-anchor="start">trecap_udp_streamer</text>
+<polyline points="1325,602 1325,641 1029,641 1029,688" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1029,688 1033.5,678.0 1024.5,678.0" fill="#708299"/>
+<rect x="1088.74560546875" y="617" width="110.5087890625" height="21" rx="4" fill="#FCFCFE" stroke="none" stroke-width="1.3"/>
+<text x="1144" y="632" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#708299" text-anchor="middle">mapped bytes</text>
+<polyline points="1195,760.5 1240,760.5" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1240,760.5 1230.0,756.0 1230.0,765.0" fill="#708299"/>
+<rect x="866" y="909" width="665" height="93" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="865" y="906" width="665" height="93" rx="14" fill="#F7ECD5" stroke="#9C7D3F" stroke-width="1.15"/>
+<text x="882" y="936" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">PC dashboard / UDP port 5005</text>
+<text x="882" y="965" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Typed records; sequence / loss tracking; wave, spectrum and metrics</text>
+<text x="882" y="984" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#9C7D3F" text-anchor="start">sw/pc_dashboard/</text>
+<polyline points="1385,833 1385,870 1197,870 1197,906" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1197,906 1201.5,896.0 1192.5,896.0" fill="#708299"/>
+<rect x="1203.22802734375" y="848" width="169.5439453125" height="21" rx="4" fill="#FCFCFE" stroke="none" stroke-width="1.3"/>
+<text x="1288" y="863" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#708299" text-anchor="middle">UDP header + payload</text>
+<polyline points="48,1034 1552,1034" fill="none" stroke="#D8E0EA" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="65" y="1052" width="14" height="14" rx="4" fill="#DDF2E9" stroke="#407D6C" stroke-width="0.8"/>
+<text x="88" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">Sources</text>
+<rect x="250" y="1052" width="14" height="14" rx="4" fill="#EBE4FA" stroke="#8066A9" stroke-width="0.8"/>
+<text x="273" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">DSP / configuration</text>
+<rect x="570" y="1052" width="14" height="14" rx="4" fill="#F8E0E8" stroke="#A66882" stroke-width="0.8"/>
+<text x="593" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">Telemetry</text>
+<rect x="780" y="1052" width="14" height="14" rx="4" fill="#F7ECD5" stroke="#9C7D3F" stroke-width="0.8"/>
+<text x="803" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">HPS / host</text>
+<rect x="1000" y="1052" width="14" height="14" rx="4" fill="#DFECFA" stroke="#4D78A8" stroke-width="0.8"/>
+<text x="1023" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">Platform / memory</text>
+<polyline points="1290,1059 1328,1059" fill="none" stroke="#708299" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1337" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#586A80" text-anchor="start">data</text>
+<polyline points="1412,1059 1450,1059" fill="none" stroke="#8066A9" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="7,5"/>
+<text x="1459" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#586A80" text-anchor="start">control</text>
+<text x="65" y="1090" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#586A80" text-anchor="start">SOURCE: trecap_ddr_ring_writer.sv  |  platform_designer_wrapper.sv  |  de1soc_hps_transport.md</text>
+<text x="65" y="1114" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#586A80" text-anchor="start">Architecture source snapshot 2026-09-14  /  Implementation structure; hardware operation is a separate milestone.</text>
+<text x="1535" y="1114" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#586A80" text-anchor="end">T-RECAP  /  06</text>
+</svg>

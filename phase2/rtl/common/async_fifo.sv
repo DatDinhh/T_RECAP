@@ -73,7 +73,7 @@ module trecap_async_fifo #(
         ? 64'hffff_ffff_ffff_ffff
         : (64'd1 << ADDR_W_SAFE);
 
-    (* ramstyle = "no_rw_check" *) logic [DATA_W-1:0] mem [0:DEPTH_SAFE-1];
+    (* ramstyle = "logic" *) logic [DATA_W-1:0] mem [0:DEPTH_SAFE-1];
 
     logic [PTR_W-1:0] wr_bin_q;
     logic [PTR_W-1:0] wr_gray_q;

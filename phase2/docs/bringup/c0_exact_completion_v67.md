@@ -1,5 +1,7 @@
 # C0 busy, frame count, and exact completion v67
 
+> Historical design note. Revision-specific results and open items below belong to that development stage; they are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
+
 File class: **[1] hand-written bring-up and verification note**.
 
 ## Scope
@@ -155,7 +157,7 @@ ModelSim/Questa superset runner:
 ```powershell
 & ".\scripts\windows\run_c0_golden_v70.ps1" `
   -Repo (Resolve-Path ".").Path `
-  -ModelSimExe "D:\Quartus\modelsim_ase\win32aloem\modelsim.exe"
+  -ModelSimExe "$env:MODELSIM_EXE"
 ```
 
 Required sentinels:
@@ -190,7 +192,7 @@ wrong-index, and extra-output fault branches are checked by the dependency-free
 behavioral model in this revision; they are not yet forced into the native RTL
 testbench.
 
-ModelSim/Questa was not available in the construction environment. A native
+ModelSim/Questa was not available for that historical revision. A native
 runner result is required before treating v67 as Intel-simulator evidence.
 
 ## Explicitly deferred

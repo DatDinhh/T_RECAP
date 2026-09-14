@@ -18,11 +18,6 @@
 //   system HDL remains a required build product, with no safe-idle substitute. All mathematical
 //   processing stays in rtl/core/; this board file owns only physical and integration wiring.
 module de1_soc_trecap_top
-  import trecap_core_pkg::*;
-  import trecap_csr_pkg::*;
-  import trecap_packet_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_build_pkg::*;
 #(
     parameter int unsigned CSR_AVMM_ADDR_W     = 21,
     parameter int unsigned CSR_ADDR_W          = 12,
@@ -30,7 +25,7 @@ module de1_soc_trecap_top
     parameter int unsigned PAYLOAD_DATA_W      = 32,
     parameter int unsigned PAYLOAD_KEEP_W      = (PAYLOAD_DATA_W + 7) / 8,
     parameter int unsigned PACKET_FIFO_RECORDS = 8,
-    parameter int unsigned PACKET_FIFO_BYTES   = TPKT_UDP_MAX_BYTES,
+    parameter int unsigned PACKET_FIFO_BYTES   = trecap_packet_pkg::TPKT_UDP_MAX_BYTES,
     parameter int unsigned AVMM_ADDR_W         = 64,
     parameter int unsigned AVMM_DATA_W         = 64,
     parameter int unsigned AVMM_BYTEEN_W       = (AVMM_DATA_W + 7) / 8,
@@ -44,10 +39,11 @@ module de1_soc_trecap_top
     parameter int unsigned STATUS_TICK_HZ      = 10,
     parameter int unsigned METRICS_TICK_HZ     = 30,
     parameter int unsigned HEARTBEAT_TOGGLE_HZ = 2,
-    parameter string       REPLAY_X_MEMH_FILE  = "artifacts/test_vectors/zero_Ns4096_thr0/x_in.memh",
+    parameter              REPLAY_X_MEMH_FILE  = "artifacts/test_vectors/zero_Ns4096_thr0/x_in.memh",
     parameter int unsigned REPLAY_MEM_DEPTH    = 4096,
     parameter int unsigned REPLAY_INPUT_SAMPLES = 4096,
     parameter int unsigned AUDIO_SAMPLE_W      = 16,
+    parameter bit          AUDIO_LINEOUT_ALLOWED = 1'b0,
     parameter int unsigned AUDIO_MCLK_HZ       = 12_288_000,
     parameter int unsigned AUDIO_I2C_BUS_HZ    = 100_000,
     parameter int unsigned ADC_BITS            = 12,
@@ -59,7 +55,7 @@ module de1_soc_trecap_top
     parameter int unsigned ADC_CONVERSION_WAIT_CYCLES   = 80,
     parameter int unsigned ADC_ACQUISITION_GUARD_CYCLES = 12,
     parameter logic [2:0] ADC_DEFAULT_CHANNEL           = 3'd0,
-    parameter int unsigned BIN_IDX_W           = (T_UNIQUE_BINS <= 1) ? 1 : $clog2(T_UNIQUE_BINS)
+    parameter int unsigned BIN_IDX_W           = (trecap_core_pkg::T_UNIQUE_BINS <= 1) ? 1 : $clog2(trecap_core_pkg::T_UNIQUE_BINS)
 ) (
     input  logic       CLOCK_50,
     input  logic       CLOCK2_50,
@@ -150,6 +146,12 @@ module de1_soc_trecap_top
     input  wire        ADC_DOUT,
     output logic       ADC_SCLK
 );
+  import trecap_core_pkg::*;
+  import trecap_csr_pkg::*;
+  import trecap_packet_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_build_pkg::*;
+
 
     logic clk_fabric;
     logic rst_n_platform;
@@ -197,10 +199,6 @@ module de1_soc_trecap_top
     logic                         audio_mclk;
     logic                         audio_pll_locked;
     logic                         audio_pll_config_supported;
-    (* async_reg = "true" *)
-    (* preserve = "true" *)
-    (* altera_attribute = "-name SYNCHRONIZER_IDENTIFICATION FORCED" *)
-    logic [1:0]                   audio_i2c_bus_grant_sync_q;
     logic                         audio_i2c_bus_grant;
     logic                         audio_i2c_prerequisites;
     logic                         audio_i2c_prerequisites_d_q;
@@ -221,6 +219,7 @@ module de1_soc_trecap_top
     logic [3:0]                   audio_i2c_register_index;
     logic                         audio_codec_ready;
     logic [63:0]                  audio_rx_overflow_count;
+    logic                         audio_rx_overflow_count_advanced;
     logic [63:0]                  audio_tx_overflow_count;
     logic [63:0]                  audio_tx_underflow_count;
 
@@ -235,6 +234,15 @@ module de1_soc_trecap_top
     logic                         adc_source_enable;
     logic                         adc_source_enable_d_q;
     logic                         adc_epoch_ready;
+    logic                         adc_manual_mode_d_q;
+    logic                         adc_sampling_mode_change;
+    logic                         source_live_enable;
+    logic                         source_health_rearm;
+    logic [991:0]                 source_health;
+    logic                         audio_capture_stopped;
+    logic [63:0]                  adc_request_drop_count;
+    logic                         adc_request_drop_count_advanced;
+    logic                         adc_config_supported;
     logic                         adc_continuous_enable;
     logic                         adc_manual_request;
     logic [2:0]                   adc_channel_active_q;
@@ -574,49 +582,51 @@ module de1_soc_trecap_top
     // selects continuous (0) versus debounced KEY[2] one-shot (1) ADC requests, and SW[9:8]
     // selects the hexadecimal display page. The ADC channel is sampled only on entry to ADC mode;
     // changing switches within an ADC source epoch cannot mix channels in one core history.
-    assign audio_capture_enable = (active_source_mode == TSRC_AUDIO_WRAPPER) &&
+    assign audio_capture_enable = source_live_enable && (active_source_mode == TSRC_AUDIO_WRAPPER) &&
                                   audio_codec_ready;
-    assign audio_lineout_monitor_enable = sw_sync[3] && !source_discontinuity &&
+    assign audio_lineout_monitor_enable = AUDIO_LINEOUT_ALLOWED && sw_sync[3] && !source_discontinuity &&
                                           audio_codec_ready;
     assign core_y_audio_scaled = $signed(AUDIO_SAMPLE_W'(core_y_data)) <<<
         ((AUDIO_SAMPLE_W > T_SAMPLE_W) ? (AUDIO_SAMPLE_W - T_SAMPLE_W) : 0);
 
     assign adc_source_enable = (active_source_mode == TSRC_ADC_LIVE);
-    assign adc_epoch_ready = adc_source_enable && adc_source_enable_d_q;
+    assign adc_sampling_mode_change = adc_source_enable && adc_source_enable_d_q &&
+                                      (sw_sync[7] != adc_manual_mode_d_q);
+    assign adc_epoch_ready = adc_source_enable && adc_source_enable_d_q &&
+                             !adc_sampling_mode_change;
+    // Button-paced conversions are board diagnostics, not uniformly sampled DSP input.
     assign adc_continuous_enable = adc_epoch_ready && !sw_sync[7];
     assign adc_manual_request = adc_epoch_ready && sw_sync[7] && key_press_pulse[2];
     assign adc_command = ltc2308_single_ended_command(adc_channel_active_q);
-    // STATUS/METRICS metadata must describe the selected physical source.  BRAM replay,
-    // diagnostic, and codec LINE-IN use the canonical 48-kHz rate; LTC2308 uses 100 kS/s.
+    // Zero means no periodic DSP stream while ADC manual diagnostics are selected.
+    // Continuous LTC2308 is 100 kS/s; BRAM, diagnostic generator and LINE-IN are 48 kS/s.
     assign telemetry_sample_rate_hz = adc_source_enable ?
-                                      ADC_SAMPLE_RATE_HZ_U32 : SAMPLE_RATE_HZ_U32;
+        ((sw_sync[7] || !source_live_enable) ? 32'd0 : ADC_SAMPLE_RATE_HZ_U32) :
+        (((active_source_mode == TSRC_AUDIO_WRAPPER) && !source_live_enable) ? 32'd0 : SAMPLE_RATE_HZ_U32);
 
     always_ff @(posedge clk_fabric or negedge rst_n_platform) begin
         if (!rst_n_platform) begin
             adc_source_enable_d_q <= 1'b0;
+            adc_manual_mode_d_q <= 1'b0;
             adc_channel_active_q <= ADC_DEFAULT_CHANNEL;
         end else begin
             adc_source_enable_d_q <= adc_source_enable;
+            adc_manual_mode_d_q <= sw_sync[7];
             if (adc_source_enable && !adc_source_enable_d_q) begin
                 adc_channel_active_q <= sw_sync[6:4];
             end
         end
     end
 
-    // The board codec-control mux belongs to HPS GPIO48. Low selects the FPGA I2C pins; the FPGA
-    // observes that grant but never drives HPS_I2C_CONTROL. Unknown/floating ownership therefore
-    // fails closed and prevents both I2C activity and live-sample admission.
+    // GPIO48 remains a dedicated HPS pin. The kernel reports its confirmed
+    // output-low ownership through PLATFORM_CONTROL; no hard HPS pin is tapped
+    // into fabric. The CSR grant resets low and shares this fabric clock domain.
     always_ff @(posedge clk_fabric or negedge rst_n_platform) begin
         if (!rst_n_platform) begin
-            audio_i2c_bus_grant_sync_q <= '0;
             audio_i2c_prerequisites_d_q <= 1'b0;
         end else begin
-            audio_i2c_bus_grant_sync_q <= {
-                audio_i2c_bus_grant_sync_q[0],
-                ~HPS_I2C_CONTROL
-            };
             if (clear_sticky_flags_w1c[TCSR_OVERFLOW_FLAGS_SOURCE_MODE_ERROR_LSB] ||
-                !audio_i2c_prerequisites) begin
+                source_health_rearm || !audio_i2c_prerequisites) begin
                 audio_i2c_prerequisites_d_q <= 1'b0;
             end else begin
                 audio_i2c_prerequisites_d_q <= 1'b1;
@@ -624,7 +634,6 @@ module de1_soc_trecap_top
         end
     end
 
-    assign audio_i2c_bus_grant = audio_i2c_bus_grant_sync_q[1];
     assign audio_i2c_prerequisites = audio_pll_locked &&
                                       audio_pll_config_supported &&
                                       audio_i2c_bus_grant;
@@ -661,7 +670,7 @@ module de1_soc_trecap_top
         .enable_i(audio_pll_locked && audio_pll_config_supported),
         .bus_grant_i(audio_i2c_bus_grant),
         .start_i(audio_i2c_start),
-        .clear_sticky_i(clear_sticky_flags_w1c[TCSR_OVERFLOW_FLAGS_SOURCE_MODE_ERROR_LSB]),
+        .clear_sticky_i(clear_sticky_flags_w1c[TCSR_OVERFLOW_FLAGS_SOURCE_MODE_ERROR_LSB] || source_health_rearm),
         .start_ready_o(audio_i2c_start_ready),
         .start_accept_pulse_o(audio_i2c_start_accept),
         .start_reject_pulse_o(audio_i2c_start_reject),
@@ -690,8 +699,9 @@ module de1_soc_trecap_top
         .codec_ready_i(audio_codec_ready),
         .audio_mclk_i(audio_mclk),
         .enable_i(audio_capture_enable),
-        .clear_sticky_i(clear_sticky_flags_w1c[TCSR_OVERFLOW_FLAGS_SOURCE_MODE_ERROR_LSB]),
+        .clear_sticky_i(clear_sticky_flags_w1c[TCSR_OVERFLOW_FLAGS_SOURCE_MODE_ERROR_LSB] || source_health_rearm),
         .lineout_enable_i(audio_lineout_monitor_enable),
+        .capture_stopped_o(audio_capture_stopped),
         .lineout_flush_i(source_discontinuity),
         .lineout_left_i(core_y_audio_scaled),
         .lineout_right_i(core_y_audio_scaled),
@@ -714,6 +724,7 @@ module de1_soc_trecap_top
         .bclk_seen_sticky_o(audio_bclk_seen_sticky),
         .lrck_seen_sticky_o(audio_lrck_seen_sticky),
         .audio_rx_overflow_count_o(audio_rx_overflow_count),
+        .audio_rx_overflow_count_advanced_o(audio_rx_overflow_count_advanced),
         .audio_tx_overflow_count_o(audio_tx_overflow_count),
         .audio_tx_underflow_count_o(audio_tx_underflow_count)
     );
@@ -732,8 +743,8 @@ module de1_soc_trecap_top
     ) u_adc_wrapper (
         .clk(clk_fabric),
         .rst_n(rst_n_platform),
-        .enable_i(adc_source_enable),
-        .clear_sticky_i(clear_sticky_flags_w1c[TCSR_OVERFLOW_FLAGS_SOURCE_MODE_ERROR_LSB]),
+        .enable_i(adc_source_enable && !adc_sampling_mode_change && (sw_sync[7] || source_live_enable)),
+        .clear_sticky_i(clear_sticky_flags_w1c[TCSR_OVERFLOW_FLAGS_SOURCE_MODE_ERROR_LSB] || source_health_rearm),
         .continuous_enable_i(adc_continuous_enable),
         .sample_request_i(adc_manual_request),
         .command_i(adc_command),
@@ -742,6 +753,9 @@ module de1_soc_trecap_top
         .sample_raw_o(adc_sample_raw),
         .sample_centered_preview_o(adc_centered_preview),
         .sample_count_o(adc_sample_count),
+        .request_drop_count_o(adc_request_drop_count),
+        .request_drop_count_advanced_o(adc_request_drop_count_advanced),
+        .config_supported_o(adc_config_supported),
         .busy_o(adc_busy),
         .transaction_done_pulse_o(adc_transaction_done),
         .request_overrun_sticky_o(adc_request_overrun_sticky),
@@ -839,6 +853,10 @@ module de1_soc_trecap_top
         .REPLAY_INPUT_SAMPLES(REPLAY_INPUT_SAMPLES),
         .AUDIO_SAMPLE_W(AUDIO_SAMPLE_W),
         .ADC_BITS(ADC_BITS),
+        // Matches the board's fixed diagnostic_period_i connection below.
+        .DIAGNOSTIC_PERIOD_FIXED(256),
+        // Both wrappers and the supervisor share clk_fabric and rst_n_platform.
+        .USE_WRAPPER_DROP_ADVANCE(1'b1),
         .RESET_SOURCE_MODE(TSRC_BRAM_REPLAY)
     ) u_source_core_integration (
         .clk(clk_fabric),
@@ -847,9 +865,26 @@ module de1_soc_trecap_top
         // KEY[3] is the board-local replay/core/E2E abort and rearm. It does not flush telemetry:
         // doing so during a multi-beat record could strand the ring writer. The next admitted
         // replay performs its telemetry-only flush after transport_epoch_idle proves that safe.
-        // KEY[2] remains the frozen ADC manual-request control; CSR telemetry soft reset remains
-        // transport-only per the frozen control contract.
-        .clear_i(key_press_pulse[3] || csr_replay_rearm),
+        // Changing manual/continuous ADC operation starts a fresh DSP epoch. The ADC
+        // wrapper is disabled for that edge to abort/prime its command pipeline too.
+        // KEY[2] is diagnostic-only; CSR telemetry soft reset remains transport-only.
+        .clear_i(key_press_pulse[3] || csr_replay_rearm || adc_sampling_mode_change),
+        .source_rearm_i(source_health_rearm),
+        .audio_ready_i(audio_codec_ready),
+        .audio_stopped_i(audio_capture_stopped),
+        .adc_ready_i(adc_config_supported && !sw_sync[7]),
+        .adc_stopped_i(!adc_busy),
+        .live_periodic_i((active_source_mode == TSRC_AUDIO_WRAPPER) ||
+                         ((active_source_mode == TSRC_ADC_LIVE) && !sw_sync[7])),
+        .live_sample_rate_hz_i((active_source_mode == TSRC_ADC_LIVE) ? ADC_SAMPLE_RATE_HZ_U32 : SAMPLE_RATE_HZ_U32),
+        .audio_wrapper_drop_count_i(audio_rx_overflow_count),
+        .adc_wrapper_drop_count_i(adc_request_drop_count),
+        .audio_wrapper_drop_advanced_i(audio_rx_overflow_count_advanced),
+        .adc_wrapper_drop_advanced_i(adc_request_drop_count_advanced),
+        .audio_wrapper_protocol_i(audio_codec_init_error_sticky || audio_i2c_unsupported),
+        .adc_wrapper_protocol_i(adc_protocol_error_sticky),
+        .live_source_enable_o(source_live_enable),
+        .source_health_o(source_health),
         .thr2_i(ctrl.thr2_active),
         .requested_source_mode_i(ctrl.source_mode),
         .source_mode_apply_pulse_i(source_mode_apply_pulse),
@@ -992,6 +1027,9 @@ module de1_soc_trecap_top
         .source_safe_boundary_i(source_core_safe_boundary),
         .source_discontinuity_i(source_discontinuity),
         .actual_source_mode_i(active_source_mode),
+        .source_health_i(source_health),
+        .source_rearm_pulse_o(source_health_rearm),
+        .codec_fpga_grant_o(audio_i2c_bus_grant),
         .source_transition_busy_i(source_switch_pending || source_discontinuity),
         .replay_start_ready_i(replay_start_ready &&
                               (replay_request_origin_q == REPLAY_ORIGIN_NONE) &&
@@ -1133,7 +1171,8 @@ module de1_soc_trecap_top
 
     always_comb begin
         unique case (sw_sync[9:8])
-            2'b00: display_word = core_sample_count[23:0];
+            2'b00: display_word = (adc_source_enable && sw_sync[7]) ?
+                {adc_sample_count[11:0], adc_sample_raw} : core_sample_count[23:0];
             2'b01: display_word = core_frame_count[23:0];
             2'b10: display_word = status[23:0];
             2'b11: display_word = {overflow_flags[7:0], packet_fifo_drop_count[15:0]};

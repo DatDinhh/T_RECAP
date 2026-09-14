@@ -10,16 +10,12 @@
 `default_nettype none
 
 module trecap_source_core_integration
-  import trecap_core_pkg::*;
-  import trecap_csr_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_build_pkg::*;
 #(
-    parameter int unsigned SAMPLE_W                 = T_SAMPLE_W,
-    parameter int unsigned L                        = T_FFT_L,
-    parameter int unsigned P                        = T_FFT_P,
-    parameter int unsigned BIN_IDX_W                = (T_UNIQUE_BINS <= 1) ? 1 : $clog2(T_UNIQUE_BINS),
-    parameter string       X_MEMH_FILE              = "artifacts/test_vectors/zero_Ns4096_thr0/x_in.memh",
+    parameter int unsigned SAMPLE_W                 = trecap_core_pkg::T_SAMPLE_W,
+    parameter int unsigned L                        = trecap_core_pkg::T_FFT_L,
+    parameter int unsigned P                        = trecap_core_pkg::T_FFT_P,
+    parameter int unsigned BIN_IDX_W                = (trecap_core_pkg::T_UNIQUE_BINS <= 1) ? 1 : $clog2(trecap_core_pkg::T_UNIQUE_BINS),
+    parameter              X_MEMH_FILE              = "artifacts/test_vectors/zero_Ns4096_thr0/x_in.memh",
     parameter int unsigned REPLAY_MEM_DEPTH         = 4096,
     parameter int unsigned REPLAY_INPUT_SAMPLES     = 4096,
     parameter bit          REPLAY_START_ON_RESET_RELEASE = 1'b0,
@@ -27,12 +23,16 @@ module trecap_source_core_integration
     parameter int unsigned AUDIO_SAMPLE_W           = 16,
     parameter bit          AUDIO_SELECT_RIGHT       = 1'b0,
     parameter int unsigned ADC_BITS                 = 12,
-    parameter trecap_source_mode_e RESET_SOURCE_MODE = TSRC_BRAM_REPLAY,
-    parameter string       WINDOW_FILE              = TBUILD_WINDOW_QW_MEMH,
-    parameter string       TWIDDLE_RE_FILE          = TBUILD_TWIDDLE_RE_MEMH,
-    parameter string       TWIDDLE_IM_FILE          = TBUILD_TWIDDLE_IM_MEMH,
-    parameter string       TWIDDLE_INV_RE_FILE      = TBUILD_TWIDDLE_INV_RE_MEMH,
-    parameter string       TWIDDLE_INV_IM_FILE      = TBUILD_TWIDDLE_INV_IM_MEMH
+    parameter trecap_iface_pkg::trecap_source_mode_e RESET_SOURCE_MODE = trecap_iface_pkg::TSRC_BRAM_REPLAY,
+    parameter              WINDOW_FILE              = trecap_build_pkg::TBUILD_WINDOW_QW_MEMH,
+    parameter              TWIDDLE_RE_FILE          = trecap_build_pkg::TBUILD_TWIDDLE_RE_MEMH,
+    parameter              TWIDDLE_IM_FILE          = trecap_build_pkg::TBUILD_TWIDDLE_IM_MEMH,
+    parameter              TWIDDLE_INV_RE_FILE      = trecap_build_pkg::TBUILD_TWIDDLE_INV_RE_MEMH,
+    parameter              TWIDDLE_INV_IM_FILE      = trecap_build_pkg::TBUILD_TWIDDLE_INV_IM_MEMH,
+    parameter int unsigned DIAGNOSTIC_PERIOD_FIXED  = 0,
+    // Enable only when producer pulses equal current_count > previous_count in clk.
+    // Default retains the generic counter-input contract for other integrations.
+    parameter bit          USE_WRAPPER_DROP_ADVANCE = 1'b0
 ) (
     input  logic                         clk,
     input  logic                         rst_n,
@@ -40,11 +40,28 @@ module trecap_source_core_integration
     // Datapath/source-epoch clear. It deliberately preserves the CSR-selected mux mode;
     // coordinated control-plane and mux-mode reset is owned by shared rst_n.
     input  logic                         clear_i,
+    // Physical source readiness/stop acknowledgement and loss accounting are in clk.
+    input  logic                         source_rearm_i,
+    input  logic                         audio_ready_i,
+    input  logic                         audio_stopped_i,
+    input  logic                         adc_ready_i,
+    input  logic                         adc_stopped_i,
+    input  logic                         live_periodic_i,
+    input  logic [31:0]                  live_sample_rate_hz_i,
+    input  logic [63:0]                  audio_wrapper_drop_count_i,
+    input  logic [63:0]                  adc_wrapper_drop_count_i,
+    // Optional same-edge counter-advance evidence; requires the shared rst_n.
+    input  logic                         audio_wrapper_drop_advanced_i,
+    input  logic                         adc_wrapper_drop_advanced_i,
+    input  logic                         audio_wrapper_protocol_i,
+    input  logic                         adc_wrapper_protocol_i,
+    output logic                         live_source_enable_o,
+    output logic [991:0]                 source_health_o,
 
     // Active values and post-safe-boundary apply pulse from the CSR bank. The CSR layer has
     // already validated the enum and waited for source_safe_boundary_o before asserting apply.
-    input  trecap_thr2_t                 thr2_i,
-    input  trecap_source_mode_e          requested_source_mode_i,
+    input  trecap_iface_pkg::trecap_thr2_t                 thr2_i,
+    input  trecap_iface_pkg::trecap_source_mode_e          requested_source_mode_i,
     input  logic                         source_mode_apply_pulse_i,
     input  logic                         clear_metrics_pulse_i,
     input  logic [31:0]                  clear_sticky_flags_w1c_i,
@@ -57,8 +74,8 @@ module trecap_source_core_integration
     // request separate so every denied explicit start still produces reject evidence.
     input  logic                         replay_start_admit_i,
     input  logic [2:0]                   diagnostic_mode_i,
-    input  logic signed [T_SAMPLE_W-1:0] diagnostic_constant_i,
-    input  logic signed [T_SAMPLE_W-1:0] diagnostic_amplitude_i,
+    input  logic signed [trecap_core_pkg::T_SAMPLE_W-1:0] diagnostic_constant_i,
+    input  logic signed [trecap_core_pkg::T_SAMPLE_W-1:0] diagnostic_amplitude_i,
     input  logic [31:0]                  diagnostic_period_i,
 
     input  logic                         audio_sample_valid_i,
@@ -77,19 +94,19 @@ module trecap_source_core_integration
     // tie y_ready_i high unless it provides an explicitly non-telemetry core-output sink.
     output logic                         y_valid_o,
     input  logic                         y_ready_i,
-    output trecap_sample_t               y_sample_o,
+    output trecap_iface_pkg::trecap_sample_t               y_sample_o,
     output logic signed [SAMPLE_W-1:0]   y_data_o,
     output logic [63:0]                  y_sample_idx_o,
 
     // Valid-only core observation taps. No ready/backpressure returns from telemetry.
-    output trecap_core_tap_sample_t      tap_sample_o,
-    output trecap_core_tap_frame_t       tap_frame_o,
+    output trecap_iface_pkg::trecap_core_tap_sample_t      tap_sample_o,
+    output trecap_iface_pkg::trecap_core_tap_frame_t       tap_frame_o,
     output logic                         tap_bin_valid_o,
     output logic [63:0]                  tap_bin_frame_idx_o,
     output logic [BIN_IDX_W-1:0]         tap_bin_idx_o,
-    output logic signed [T_CAN_W-1:0]    tap_bin_re_o,
-    output logic signed [T_CAN_W-1:0]    tap_bin_im_o,
-    output logic [T_MAG2_W-1:0]          tap_bin_mag2_o,
+    output logic signed [trecap_core_pkg::T_CAN_W-1:0]    tap_bin_re_o,
+    output logic signed [trecap_core_pkg::T_CAN_W-1:0]    tap_bin_im_o,
+    output logic [trecap_core_pkg::T_MAG2_W-1:0]          tap_bin_mag2_o,
     output logic                         tap_bin_pre_mask_o,
     output logic                         tap_bin_mask_o,
     output logic                         tap_bin_eligible_o,
@@ -102,8 +119,8 @@ module trecap_source_core_integration
     // Exact event applied to the core metric epoch after any required boundary wait. Telemetry
     // aggregate state must use this pulse, never the earlier raw CSR command pulse.
     output logic                         clear_metrics_apply_pulse_o,
-    output trecap_source_mode_e          active_source_mode_o,
-    output trecap_source_mode_e          pending_source_mode_o,
+    output trecap_iface_pkg::trecap_source_mode_e          active_source_mode_o,
+    output trecap_iface_pkg::trecap_source_mode_e          pending_source_mode_o,
     output logic                         source_switch_pending_o,
     output logic                         source_switch_apply_pulse_o,
     output logic                         source_discontinuity_pulse_o,
@@ -150,6 +167,11 @@ module trecap_source_core_integration
     output logic [31:0]                  external_overflow_flags_set_o,
     output logic                         external_csr_reject_pulse_o
 );
+  import trecap_core_pkg::*;
+  import trecap_csr_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_build_pkg::*;
+
 
     // Widen before geometry arithmetic so parameter expressions cannot overflow at 32 bits.
     localparam longint unsigned REPLAY_INPUT_U64 = longint'(REPLAY_INPUT_SAMPLES);
@@ -205,6 +227,27 @@ module trecap_source_core_integration
     logic mode_is_audio_w;
     logic mode_is_diagnostic_w;
     logic mode_change_request_w;
+    logic live_fault_q, live_started_q, live_wait_stop_q;
+    logic live_ready_w, live_stopped_w, live_mode_w, live_raw_valid_w;
+    logic [63:0] live_raw_sequence_w, live_expected_sequence_q;
+    // Store last + 1 on the original raw-sample update edge, modulo 2^64.
+    // The live fault path then compares directly without an incrementer.
+    // Reset seeds 0 + 1; every guard/fault/idle branch retains this state.
+    logic [31:0] live_fault_reason_q, live_fault_reason_w;
+    logic live_fault_event_w, live_guard_reset_w;
+    logic [25:0] live_timeout_q;
+    logic [12:0] live_settle_q;
+    logic [63:0] live_epoch_q;
+    logic [63:0] health_audio_raw_q, health_adc_raw_q;
+    logic [63:0] health_audio_admitted_q, health_adc_admitted_q;
+    logic [63:0] health_audio_accepted_q, health_adc_accepted_q;
+    logic [63:0] health_audio_drop_q, health_adc_drop_q;
+    logic [63:0] health_audio_wrapper_drop_q, health_adc_wrapper_drop_q;
+    logic [63:0] health_gap_q, health_ready_loss_q, health_timeout_q;
+    logic [63:0] prior_audio_wrapper_drop_q, prior_adc_wrapper_drop_q;
+    logic audio_adapter_admit_w, adc_adapter_admit_w;
+    logic audio_wrapper_drop_advanced_w, adc_wrapper_drop_advanced_w;
+    logic audio_adapter_drop_w, adc_adapter_drop_w;
     logic transition_guard_w;
     logic source_epoch_clear_w;
     logic datapath_epoch_clear_level_w;
@@ -280,6 +323,141 @@ module trecap_source_core_integration
     logic [63:0] replay_metric_commit_count_q;
     logic        replay_completion_error_sticky_q;
 
+    // A physical-time stream cannot silently close a missing-sample gap. Stop,
+    // invalidate the epoch, then require an explicit restart acknowledgement.
+    function automatic logic [63:0] health_sat_add(input logic [63:0] a, b);
+        logic [64:0] sum;
+        sum = {1'b0, a} + {1'b0, b};
+        return sum[64] ? 64'hffff_ffff_ffff_ffff : sum[63:0];
+    endfunction
+    assign live_mode_w = mode_is_audio_w || mode_is_adc_w;
+    assign live_ready_w = mode_is_audio_w ? audio_ready_i : adc_ready_i;
+    assign live_stopped_w = mode_is_audio_w ? audio_stopped_i : adc_stopped_i;
+    assign live_raw_valid_w = mode_is_audio_w ? audio_sample_valid_i : adc_sample_valid_i;
+    assign live_raw_sequence_w = mode_is_audio_w ? audio_sample_count_i : adc_sample_count_i;
+    assign live_guard_reset_w = clear_i || mode_change_request_w || source_rearm_i || !enable_i;
+    assign live_source_enable_o = rst_n && enable_i && live_mode_w && live_periodic_i &&
+        !live_fault_q && !live_wait_stop_q && (live_settle_q == 0) && live_ready_w;
+    always_comb begin
+        live_fault_reason_w = 32'd0;
+        if (live_mode_w && live_periodic_i && !live_guard_reset_w && !live_fault_q &&
+            !live_wait_stop_q && (live_settle_q == 0)) begin
+            if (live_started_q && live_raw_valid_w &&
+                (live_raw_sequence_w != live_expected_sequence_q))
+                live_fault_reason_w[TCSR_SOURCE_HEALTH_FAULT_SEQUENCE_GAP_LSB] = 1'b1;
+            if ((mode_is_audio_w && audio_adapter_drop_w) ||
+                (mode_is_adc_w && adc_adapter_drop_w)) live_fault_reason_w[TCSR_SOURCE_HEALTH_FAULT_ADAPTER_DROP_LSB] = 1'b1;
+            if ((mode_is_audio_w && audio_wrapper_drop_advanced_w) ||
+                (mode_is_adc_w && adc_wrapper_drop_advanced_w))
+                live_fault_reason_w[TCSR_SOURCE_HEALTH_FAULT_WRAPPER_DROP_LSB] = 1'b1;
+            if (live_started_q && !live_ready_w) live_fault_reason_w[TCSR_SOURCE_HEALTH_FAULT_READINESS_LOSS_LSB] = 1'b1;
+            // Startup allows codec initialization; after the first sample the bound is 81.92 us.
+            if ((!live_started_q && live_timeout_q >= 26'd50_000_000) ||
+                (live_started_q && live_timeout_q >= 26'd4096))
+                live_fault_reason_w[TCSR_SOURCE_HEALTH_FAULT_SAMPLE_TIMEOUT_LSB] = 1'b1;
+            if ((mode_is_audio_w && audio_wrapper_protocol_i) ||
+                (mode_is_adc_w && adc_wrapper_protocol_i)) live_fault_reason_w[TCSR_SOURCE_HEALTH_FAULT_WRAPPER_PROTOCOL_LSB] = 1'b1;
+        end
+    end
+    assign live_fault_event_w = |live_fault_reason_w;
+
+    // Board producers publish these flags on the counter-update edge. This avoids
+    // a wide counter comparison before same-cycle fail-stop, without delaying it.
+    // Counter deltas below remain the lifetime-accounting authority in both modes.
+    assign audio_wrapper_drop_advanced_w = USE_WRAPPER_DROP_ADVANCE ?
+        audio_wrapper_drop_advanced_i : (audio_wrapper_drop_count_i > prior_audio_wrapper_drop_q);
+    assign adc_wrapper_drop_advanced_w = USE_WRAPPER_DROP_ADVANCE ?
+        adc_wrapper_drop_advanced_i : (adc_wrapper_drop_count_i > prior_adc_wrapper_drop_q);
+
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            live_fault_q <= 1'b0; live_fault_reason_q <= 0; live_started_q <= 1'b0;
+            live_wait_stop_q <= 1'b1; live_settle_q <= 13'd4096;
+            live_timeout_q <= 0; live_expected_sequence_q <= 64'd1; live_epoch_q <= 0;
+            prior_audio_wrapper_drop_q <= 0; prior_adc_wrapper_drop_q <= 0;
+            health_audio_raw_q <= 0; health_adc_raw_q <= 0;
+            health_audio_admitted_q <= 0; health_adc_admitted_q <= 0;
+            health_audio_accepted_q <= 0; health_adc_accepted_q <= 0;
+            health_audio_drop_q <= 0; health_adc_drop_q <= 0;
+            health_audio_wrapper_drop_q <= 0; health_adc_wrapper_drop_q <= 0;
+            health_gap_q <= 0; health_ready_loss_q <= 0; health_timeout_q <= 0;
+        end else begin
+            // Lifetime supervisor counters survive source, telemetry, and diagnostic clears.
+            prior_audio_wrapper_drop_q <= audio_wrapper_drop_count_i;
+            prior_adc_wrapper_drop_q <= adc_wrapper_drop_count_i;
+            if (audio_wrapper_drop_count_i > prior_audio_wrapper_drop_q)
+                health_audio_wrapper_drop_q <= health_sat_add(health_audio_wrapper_drop_q,
+                    audio_wrapper_drop_count_i - prior_audio_wrapper_drop_q);
+            if (adc_wrapper_drop_count_i > prior_adc_wrapper_drop_q)
+                health_adc_wrapper_drop_q <= health_sat_add(health_adc_wrapper_drop_q,
+                    adc_wrapper_drop_count_i - prior_adc_wrapper_drop_q);
+            if (audio_sample_valid_i) health_audio_raw_q <= health_sat_add(health_audio_raw_q, 64'd1);
+            if (adc_sample_valid_i) health_adc_raw_q <= health_sat_add(health_adc_raw_q, 64'd1);
+            if (audio_adapter_admit_w) health_audio_admitted_q <= health_sat_add(health_audio_admitted_q, 64'd1);
+            if (adc_adapter_admit_w) health_adc_admitted_q <= health_sat_add(health_adc_admitted_q, 64'd1);
+            if (audio_adapter_drop_w) health_audio_drop_q <= health_sat_add(health_audio_drop_q, 64'd1);
+            if (adc_adapter_drop_w) health_adc_drop_q <= health_sat_add(health_adc_drop_q, 64'd1);
+            if (core_sample_valid_w && core_sample_ready_w && mode_is_audio_w)
+                health_audio_accepted_q <= health_sat_add(health_audio_accepted_q, 64'd1);
+            if (core_sample_valid_w && core_sample_ready_w && mode_is_adc_w)
+                health_adc_accepted_q <= health_sat_add(health_adc_accepted_q, 64'd1);
+            if (live_guard_reset_w) begin
+                live_fault_q <= 1'b0; live_fault_reason_q <= 0; live_started_q <= 1'b0;
+                live_wait_stop_q <= 1'b1; live_settle_q <= 13'd4096; live_timeout_q <= 0;
+                if (source_rearm_i || mode_change_request_w || (datapath_epoch_clear_level_w && !datapath_epoch_clear_prior_q))
+                    live_epoch_q <= health_sat_add(live_epoch_q, 64'd1);
+            end else if (live_fault_event_w) begin
+                live_fault_q <= 1'b1; live_fault_reason_q <= live_fault_reason_w;
+                live_started_q <= 1'b0; live_wait_stop_q <= 1'b1;
+                live_epoch_q <= health_sat_add(live_epoch_q, 64'd1);
+                if (live_fault_reason_w[TCSR_SOURCE_HEALTH_FAULT_SEQUENCE_GAP_LSB]) health_gap_q <= health_sat_add(health_gap_q, 64'd1);
+                if (live_fault_reason_w[TCSR_SOURCE_HEALTH_FAULT_READINESS_LOSS_LSB]) health_ready_loss_q <= health_sat_add(health_ready_loss_q, 64'd1);
+                if (live_fault_reason_w[TCSR_SOURCE_HEALTH_FAULT_SAMPLE_TIMEOUT_LSB]) health_timeout_q <= health_sat_add(health_timeout_q, 64'd1);
+            end else begin
+                if (live_stopped_w) live_wait_stop_q <= 1'b0;
+                if (!live_wait_stop_q && live_settle_q != 0)
+                    live_settle_q <= live_settle_q - 1'b1;
+                if (live_mode_w && live_periodic_i && !live_fault_q &&
+                    !live_wait_stop_q && (live_settle_q == 0)) begin
+                    if (live_raw_valid_w && live_ready_w) begin
+                        live_started_q <= 1'b1;
+                        live_expected_sequence_q <= live_raw_sequence_w + 64'd1;
+                        live_timeout_q <= 0;
+                    end else if (live_timeout_q != 26'h3ff_ffff) live_timeout_q <= live_timeout_q + 1'b1;
+                end else live_timeout_q <= 0;
+            end
+        end
+    end
+
+    always_comb begin
+        source_health_o = '0;
+        source_health_o[TCSR_SOURCE_HEALTH_STATUS_PRESENT_LSB] = 1'b1;
+        source_health_o[TCSR_SOURCE_HEALTH_STATUS_LIVE_LSB] = live_mode_w;
+        source_health_o[TCSR_SOURCE_HEALTH_STATUS_PERIODIC_LSB] = live_periodic_i && live_mode_w;
+        source_health_o[TCSR_SOURCE_HEALTH_STATUS_READY_LSB] = live_mode_w && live_ready_w;
+        source_health_o[TCSR_SOURCE_HEALTH_STATUS_RUNNING_LSB] = live_source_enable_o && live_started_q;
+        source_health_o[TCSR_SOURCE_HEALTH_STATUS_FAULT_LSB] = live_fault_q;
+        source_health_o[TCSR_SOURCE_HEALTH_STATUS_WAITING_STOP_LSB] = live_wait_stop_q;
+        source_health_o[TCSR_SOURCE_HEALTH_STATUS_SETTLING_LSB] = (live_settle_q != 0);
+        source_health_o[TCSR_SOURCE_HEALTH_STATUS_SOURCE_MODE_MSB:TCSR_SOURCE_HEALTH_STATUS_SOURCE_MODE_LSB] = active_source_mode_o;
+        source_health_o[32 +: 32] = live_fault_reason_q;
+        source_health_o[64 +: 32] = live_source_enable_o ? live_sample_rate_hz_i : 32'd0;
+        source_health_o[96 +: 64] = live_epoch_q;
+        source_health_o[160 +: 64] = health_audio_raw_q;
+        source_health_o[224 +: 64] = health_adc_raw_q;
+        source_health_o[288 +: 64] = health_audio_admitted_q;
+        source_health_o[352 +: 64] = health_adc_admitted_q;
+        source_health_o[416 +: 64] = health_audio_accepted_q;
+        source_health_o[480 +: 64] = health_adc_accepted_q;
+        source_health_o[544 +: 64] = health_audio_drop_q;
+        source_health_o[608 +: 64] = health_adc_drop_q;
+        source_health_o[672 +: 64] = health_audio_wrapper_drop_q;
+        source_health_o[736 +: 64] = health_adc_wrapper_drop_q;
+        source_health_o[800 +: 64] = health_gap_q;
+        source_health_o[864 +: 64] = health_ready_loss_q;
+        source_health_o[928 +: 64] = health_timeout_q;
+    end
+
     assign mode_is_bram_w = (active_source_mode_o == TSRC_BRAM_REPLAY);
     assign mode_is_adc_w = (active_source_mode_o == TSRC_ADC_LIVE);
     assign mode_is_audio_w = (active_source_mode_o == TSRC_AUDIO_WRAPPER);
@@ -291,8 +469,11 @@ module trecap_source_core_integration
                                    (requested_source_mode_i != active_source_mode_o);
     assign datapath_epoch_clear_level_w = clear_i || !enable_i;
     assign source_epoch_clear_w = datapath_epoch_clear_level_w || mode_change_request_w ||
+                                  source_rearm_i || live_fault_event_w ||
                                   mux_switch_apply_w || mux_discontinuity_w;
     assign transition_guard_w = datapath_epoch_clear_level_w || mode_change_request_w ||
+                                source_rearm_i || live_fault_event_w ||
+                                (live_mode_w && !live_source_enable_o) ||
                                 mux_switch_apply_w || mux_discontinuity_w ||
                                 audio_discontinuity_w || adc_discontinuity_w ||
                                 diagnostic_discontinuity_w || replay_start_accept_w;
@@ -300,6 +481,7 @@ module trecap_source_core_integration
     // registered discontinuity evidence on the following cycle; that evidence extends the guard
     // and source clear, but must not stretch the public/core discontinuity pulse to two cycles.
     assign source_discontinuity_pulse_o = mode_change_request_w || replay_start_accept_w ||
+        source_rearm_i || live_fault_event_w ||
         (datapath_epoch_clear_level_w && !datapath_epoch_clear_prior_q);
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -329,13 +511,16 @@ module trecap_source_core_integration
     assign source_handshake_w = mux_sample_valid_w && mux_sample_ready_w;
 
     // A held beat makes the source boundary unsafe. An empty selected source or an actual accepted
-    // beat is safe; pending/transition states suppress the boundary returned to the CSR bank.
-    assign source_safe_boundary_o = rst_n && !clear_i && !transition_guard_w &&
+    // beat is safe. A stopped live source is also switchable once its adapter is empty;
+    // otherwise manual diagnostics or unavailable hardware could trap the selected source.
+    assign source_safe_boundary_o = rst_n && !clear_i &&
+        (!transition_guard_w || (live_mode_w && !live_source_enable_o)) &&
                                     !source_switch_pending_o &&
                                     (!mux_sample_valid_w || source_handshake_w);
     assign core_config_safe_boundary_o = rst_n && !clear_i &&
         (frame_boundary_pulse_o ||
-         (!core_busy_o && !y_valid_o && !transition_guard_w));
+         (!core_busy_o && !y_valid_o &&
+          (!transition_guard_w || (live_mode_w && !live_source_enable_o))));
 
     // Queue a raw CLEAR_METRICS request until the true frame boundary or structural core idle.
     // Repeated requests while pending coalesce into one safe apply event.
@@ -466,8 +651,8 @@ module trecap_source_core_integration
         .sample_valid_o(audio_sample_valid_w),
         .sample_data_o(),
         .sample_idx_o(),
-        .input_accept_pulse_o(),
-        .input_drop_pulse_o(),
+        .input_accept_pulse_o(audio_adapter_admit_w),
+        .input_drop_pulse_o(audio_adapter_drop_w),
         .output_accept_pulse_o(),
         .clipped_hi_pulse_o(),
         .clipped_lo_pulse_o(),
@@ -503,8 +688,8 @@ module trecap_source_core_integration
         .sample_valid_o(adc_sample_valid_w),
         .sample_data_o(),
         .sample_idx_o(),
-        .input_accept_pulse_o(),
-        .input_drop_pulse_o(),
+        .input_accept_pulse_o(adc_adapter_admit_w),
+        .input_drop_pulse_o(adc_adapter_drop_w),
         .output_accept_pulse_o(),
         .clipped_hi_pulse_o(),
         .clipped_lo_pulse_o(),
@@ -523,7 +708,9 @@ module trecap_source_core_integration
         .config_error_sticky_o(adc_config_error_w)
     );
 
-    trecap_diagnostic_source u_diagnostic_source (
+    trecap_diagnostic_source #(
+        .DIAGNOSTIC_PERIOD_FIXED(DIAGNOSTIC_PERIOD_FIXED)
+    ) u_diagnostic_source (
         .clk(clk),
         .rst_n(rst_n),
         .enable_i(enable_i && mode_is_diagnostic_w && !transition_guard_w),
@@ -849,7 +1036,7 @@ module trecap_source_core_integration
                                   adc_clip_hi_w || adc_clip_lo_w || adc_config_error_w ||
                                   build_contract_error_o ||
                                   replay_completion_error_sticky_o;
-    assign source_fault_sticky_o = source_fault_level_w;
+    assign source_fault_sticky_o = source_fault_level_w || live_fault_q;
 
     wire unused_source_events = mux_switch_accept_w ^ mux_output_accept_w ^ replay_done_pulse_w;
     wire unused_tail_status = tail_drain_active_w ^ tail_drain_accept_w ^ tail_drain_done_w ^

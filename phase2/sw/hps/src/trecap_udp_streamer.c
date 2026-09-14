@@ -808,7 +808,10 @@ static void trecap_streamer_make_status_inputs(trecap_streamer_state_t *state,
     inputs->fpga.sample_count = core_counts.sample_count;
     inputs->fpga.frame_count = core_counts.frame_count;
     inputs->fpga.source_mode = state->active_source_mode;
-    inputs->fpga.sample_rate_hz = state->cli.sample_rate_hz;
+    /* Synthesized HPS STATUS cannot infer physical cadence or ADC manual mode from
+     * the current CSR ABI. Zero means rate unavailable; normal FPGA STATUS owns
+     * the actual cadence. The separate dummy-UDP generator retains its CLI rate. */
+    inputs->fpga.sample_rate_hz = 0u;
     inputs->fpga.packet_enable = state->active_packet_enable;
     inputs->fpga.dma_drop_count = csr_counters.dma_drop_count;
     inputs->fpga.overflow_flags = overflow_flags;

@@ -8,18 +8,16 @@
 `default_nettype none
 
 module trecap_core_top
-  import trecap_core_pkg::*;
-  import trecap_iface_pkg::*;
 #(
-    parameter int unsigned SAMPLE_W      = T_SAMPLE_W,
-    parameter int unsigned L             = T_FFT_L,
-    parameter int unsigned P             = T_FFT_P,
-    parameter int unsigned BIN_IDX_W     = (T_UNIQUE_BINS <= 1) ? 1 : $clog2(T_UNIQUE_BINS),
-    parameter string       WINDOW_FILE   = "artifacts/coefficients/window_qw.memh",
-    parameter string       TWIDDLE_RE_FILE = "artifacts/coefficients/twiddle_re.memh",
-    parameter string       TWIDDLE_IM_FILE = "artifacts/coefficients/twiddle_im.memh",
-    parameter string       TWIDDLE_INV_RE_FILE = "artifacts/coefficients/twiddle_inv_re.memh",
-    parameter string       TWIDDLE_INV_IM_FILE = "artifacts/coefficients/twiddle_inv_im.memh"
+    parameter int unsigned SAMPLE_W      = trecap_core_pkg::T_SAMPLE_W,
+    parameter int unsigned L             = trecap_core_pkg::T_FFT_L,
+    parameter int unsigned P             = trecap_core_pkg::T_FFT_P,
+    parameter int unsigned BIN_IDX_W     = (trecap_core_pkg::T_UNIQUE_BINS <= 1) ? 1 : $clog2(trecap_core_pkg::T_UNIQUE_BINS),
+    parameter              WINDOW_FILE   = "artifacts/coefficients/window_qw.memh",
+    parameter              TWIDDLE_RE_FILE = "artifacts/coefficients/twiddle_re.memh",
+    parameter              TWIDDLE_IM_FILE = "artifacts/coefficients/twiddle_im.memh",
+    parameter              TWIDDLE_INV_RE_FILE = "artifacts/coefficients/twiddle_inv_re.memh",
+    parameter              TWIDDLE_INV_IM_FILE = "artifacts/coefficients/twiddle_inv_im.memh"
 ) (
     input  logic                         clk,
     input  logic                         rst_n,
@@ -30,11 +28,11 @@ module trecap_core_top
 
     // Signed N-bit source stream after source selection/adaptation.  Backpressure here belongs
     // only to core-local buffering; external observer or transport layers must not drive it.
-    input  trecap_sample_t               sample_i,
+    input  trecap_iface_pkg::trecap_sample_t               sample_i,
     input  logic                         sample_valid_i,
     output logic                         sample_ready_o,
 
-    input  logic [T_MAG2_W-1:0]          thr2_i,
+    input  logic [trecap_core_pkg::T_MAG2_W-1:0]          thr2_i,
     input  logic                         source_discontinuity_i,
 
     // Finite-stream geometry and pure tail ticks. active_frame_count_i limits scheduler work;
@@ -50,19 +48,19 @@ module trecap_core_top
     // Core output stream for C0 replay/signoff harnesses.  This is y[n] after exact D alignment.
     output logic                         y_valid_o,
     input  logic                         y_ready_i,
-    output trecap_sample_t               y_sample_o,
+    output trecap_iface_pkg::trecap_sample_t               y_sample_o,
     output logic signed [SAMPLE_W-1:0]   y_data_o,
     output logic [63:0]                  y_sample_idx_o,
 
     // Valid-only observation taps. No ready/backpressure returns from observer logic.
-    output trecap_core_tap_sample_t      tap_sample_o,
-    output trecap_core_tap_frame_t       tap_frame_o,
+    output trecap_iface_pkg::trecap_core_tap_sample_t      tap_sample_o,
+    output trecap_iface_pkg::trecap_core_tap_frame_t       tap_frame_o,
     output logic                         tap_bin_valid_o,
     output logic [63:0]                  tap_bin_frame_idx_o,
     output logic [BIN_IDX_W-1:0]         tap_bin_idx_o,
-    output logic signed [T_CAN_W-1:0]    tap_bin_re_o,
-    output logic signed [T_CAN_W-1:0]    tap_bin_im_o,
-    output logic [T_MAG2_W-1:0]          tap_bin_mag2_o,
+    output logic signed [trecap_core_pkg::T_CAN_W-1:0]    tap_bin_re_o,
+    output logic signed [trecap_core_pkg::T_CAN_W-1:0]    tap_bin_im_o,
+    output logic [trecap_core_pkg::T_MAG2_W-1:0]          tap_bin_mag2_o,
     output logic                         tap_bin_pre_mask_o,
     output logic                         tap_bin_mask_o,
     output logic                         tap_bin_eligible_o,
@@ -86,6 +84,9 @@ module trecap_core_top
     output logic                         saturation_sticky_o,
     output logic                         protocol_error_sticky_o
 );
+  import trecap_core_pkg::*;
+  import trecap_iface_pkg::*;
+
 
     // Implementation-local delay history. This is deliberately pinned here rather than added to
     // the mathematical generated configuration: it is a buffering/resource choice, not a change
@@ -107,6 +108,21 @@ module trecap_core_top
 
     logic frame_valid_w;
     logic frame_ready_w;
+    logic input_ring_frame_ready_w;
+
+    // Thresholds belong to admitted frames, not to a later live CSR level. The
+    // ordered metadata queue spans the FFT/canonicalizer latency without changing
+    // any fixed-point operation. Full capacity backpressures only frame admission.
+    localparam int unsigned FRAME_CONFIG_DEPTH = 4;
+    localparam int unsigned FRAME_CONFIG_PTR_W = $clog2(FRAME_CONFIG_DEPTH);
+    logic [T_MAG2_W-1:0] frame_thr2_q [0:FRAME_CONFIG_DEPTH-1];
+    logic [63:0] frame_config_idx_q [0:FRAME_CONFIG_DEPTH-1];
+    logic [FRAME_CONFIG_PTR_W-1:0] frame_config_wr_q, frame_config_rd_q;
+    logic [FRAME_CONFIG_PTR_W:0] frame_config_count_q;
+    logic frame_config_room_w, frame_config_match_w;
+    logic frame_config_push_w, frame_config_pop_w;
+    logic frame_config_protocol_q;
+    logic mask_input_ready_w;
     logic [63:0] frame_idx_w;
     logic [63:0] frame_trigger_sample_idx_w;
 
@@ -233,6 +249,45 @@ module trecap_core_top
     assign sample_ready_o = input_ring_sample_ready_w && delay_x_ready_w;
     assign delay_x_valid_w = sample_valid_i && input_ring_sample_ready_w;
     assign sample_accept_w = sample_valid_i && sample_ready_o;
+    assign frame_config_match_w = (frame_config_count_q != '0) &&
+        (frame_config_idx_q[frame_config_rd_q] == canon_frame_idx_w);
+    assign canon_ready_w = mask_input_ready_w && frame_config_match_w;
+    assign frame_config_pop_w = canon_valid_w && canon_ready_w && canon_last_w;
+    assign frame_config_room_w = (frame_config_count_q < FRAME_CONFIG_DEPTH) ||
+                                 frame_config_pop_w;
+    assign frame_ready_w = input_ring_frame_ready_w && frame_config_room_w;
+    assign frame_config_push_w = frame_valid_w && frame_ready_w;
+
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            frame_config_wr_q <= '0;
+            frame_config_rd_q <= '0;
+            frame_config_count_q <= '0;
+            frame_config_protocol_q <= 1'b0;
+        end else if (clear_i || source_discontinuity_i) begin
+            frame_config_wr_q <= '0;
+            frame_config_rd_q <= '0;
+            frame_config_count_q <= '0;
+            frame_config_protocol_q <= 1'b0;
+        end else begin
+            if (clear_sticky_i) frame_config_protocol_q <= 1'b0;
+            if (canon_valid_w && !frame_config_match_w)
+                frame_config_protocol_q <= 1'b1;
+            if (frame_config_push_w) begin
+                frame_thr2_q[frame_config_wr_q] <= thr2_i;
+                frame_config_idx_q[frame_config_wr_q] <= frame_idx_w;
+                frame_config_wr_q <= frame_config_wr_q + 1'b1;
+            end
+            if (frame_config_pop_w)
+                frame_config_rd_q <= frame_config_rd_q + 1'b1;
+            unique case ({frame_config_push_w, frame_config_pop_w})
+                2'b10: frame_config_count_q <= frame_config_count_q + 1'b1;
+                2'b01: frame_config_count_q <= frame_config_count_q - 1'b1;
+                default: begin end
+            endcase
+        end
+    end
+
     assign core_sample_count_o = delay_x_count_w;
     assign core_frame_count_o = scheduler_frame_count_w;
     assign core_error_sample_count_o = delay_y_count_w;
@@ -246,7 +301,7 @@ module trecap_core_top
     // FFT, IFFT, and WOLA all have legal internal states with no output valid asserted.
     // The public output buffer is included so a held final y beat cannot look complete.
     assign core_busy_o = rst_n &&
-                         (sample_accept_w || accepted_sample_valid_w ||
+                         ((frame_config_count_q != '0) || sample_accept_w || accepted_sample_valid_w ||
                           frame_valid_w || input_ring_busy_w ||
                           frame_sample_valid_w || analysis_busy_w || window_valid_w ||
                           fft_busy_w || fft_valid_w ||
@@ -276,7 +331,7 @@ module trecap_core_top
                                  wola_saturation_w;
     assign protocol_error_sticky_o = frame_scheduler_error_w | analysis_protocol_w | fft_protocol_w |
                                      canon_protocol_w | builder_protocol_w | ifft_protocol_w |
-                                     wola_protocol_w | delay_protocol_w;
+                                     wola_protocol_w | delay_protocol_w | frame_config_protocol_q;
     always_comb begin : p_core_overflow_map
         overflow_flags_o = 32'd0;
         if (delay_overflow_flags_w[0] || saturation_sticky_o ||
@@ -304,8 +359,8 @@ module trecap_core_top
         .sample_accept_pulse_o( accepted_sample_valid_w ),
         .accepted_sample_o( accepted_sample_w ),
         .accepted_sample_idx_o( accepted_sample_idx_w ),
-        .frame_req_valid_i( frame_valid_w ),
-        .frame_req_ready_o( frame_ready_w ),
+        .frame_req_valid_i( frame_valid_w && frame_config_room_w ),
+        .frame_req_ready_o( input_ring_frame_ready_w ),
         .frame_req_frame_idx_i( frame_idx_w ),
         .frame_req_trigger_sample_idx_i( frame_trigger_sample_idx_w ),
         .frame_sample_valid_o( frame_sample_valid_w ),
@@ -452,9 +507,9 @@ module trecap_core_top
         .clear_i( clear_i | source_discontinuity_i ),
         .clear_metrics_i( clear_metrics_i ),
         .clear_sticky_i( clear_sticky_i ),
-        .thr2_i( thr2_i ),
-        .in_valid_i( canon_valid_w ),
-        .in_ready_o( canon_ready_w ),
+        .thr2_i( frame_thr2_q[frame_config_rd_q] ),
+        .in_valid_i( canon_valid_w && frame_config_match_w ),
+        .in_ready_o( mask_input_ready_w ),
         .in_frame_idx_i( canon_frame_idx_w ),
         .in_bin_idx_i( canon_bin_idx_w ),
         .in_re_i( canon_re_w ),

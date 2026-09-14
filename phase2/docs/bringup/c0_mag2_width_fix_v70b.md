@@ -1,5 +1,7 @@
 # C0 full-width canonical magnitude-squared fix v70b
 
+> Historical design note. Revision-specific results and open items below belong to that development stage; they are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
+
 File class: **[1] hand-written bring-up and verification note**.
 
 ## Native failure

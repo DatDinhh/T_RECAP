@@ -68,6 +68,15 @@ struct VectorArtifactHashes final {
                                              const VectorArtifactHashes& stream_hashes,
                                              bool has_bin_stats);
 
+// Runtime results only. The caller owns immutable inputs and their provenance.
+void write_reference_outputs(const std::filesystem::path& output_dir,
+                             std::string_view vector_name,
+                             std::span<const std::int64_t> x,
+                             const StftWolaRunConfig& run_cfg,
+                             const StftWolaResult& result,
+                             const CoefficientHashes& coeff_hashes);
+
+// Explicit legacy artifact generation; this API writes the input bundle.
 void write_vector_artifacts(const std::filesystem::path& test_vector_dir,
                             const std::filesystem::path& golden_dir,
                             std::string_view vector_name,

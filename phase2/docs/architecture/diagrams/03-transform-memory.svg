@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1132" viewBox="0 0 1600 1132" role="img" aria-labelledby="title desc">
+<title id="title">Transform engines and storage</title>
+<desc id="desc">Separate iterative FFT and IFFT engines reuse one registered butterfly per engine.</desc>
+<rect x="0" y="0" width="1600" height="1132" rx="0" fill="#FCFCFE" stroke="none" stroke-width="1.3"/>
+<rect x="48" y="42" width="7" height="83" rx="3" fill="#8066A9" stroke="none" stroke-width="1.3"/>
+<text x="75" y="57" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#586A80" text-anchor="start">T-RECAP   /   ARCHITECTURE ATLAS</text>
+<text x="75" y="104" font-family="DejaVu Sans, Arial, sans-serif" font-size="39" font-weight="700" fill="#26364B" text-anchor="start">Transform engines and storage</text>
+<text x="75" y="139" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="400" fill="#586A80" text-anchor="start">Separate iterative FFT and IFFT engines reuse one registered butterfly per engine.</text>
+<text x="1525" y="83" font-family="DejaVu Sans, Arial, sans-serif" font-size="35" font-weight="700" fill="#8066A9" text-anchor="end">03</text>
+<polyline points="48,163 1552,163" fill="none" stroke="#D8E0EA" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="55" y="194" width="725" height="424" rx="22" fill="#FFFFFF" stroke="#D8E0EA" stroke-width="1.3"/>
+<rect x="56" y="195" width="723" height="45" rx="21" fill="#EBE4FA" stroke="none" stroke-width="1.3"/>
+<rect x="56" y="219" width="723" height="21" rx="0" fill="#EBE4FA" stroke="none" stroke-width="1.3"/>
+<text x="77" y="224" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" fill="#8066A9" text-anchor="start">EACH TRANSFORM ENGINE</text>
+<rect x="81" y="273" width="195" height="128" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="80" y="270" width="195" height="128" rx="14" fill="#EBE4FA" stroke="#8066A9" stroke-width="1.15"/>
+<text x="97" y="300" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Load</text>
+<text x="97" y="329" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Bit-reversed input</text>
+<text x="97" y="351" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">256 accepts</text>
+<rect x="321" y="273" width="225" height="128" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="320" y="270" width="225" height="128" rx="14" fill="#DFECFA" stroke="#4D78A8" stroke-width="1.15"/>
+<text x="337" y="300" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Frame RAM</text>
+<text x="337" y="329" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Synchronous M10K</text>
+<text x="337" y="351" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Two complex ports</text>
+<rect x="591" y="273" width="165" height="128" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="590" y="270" width="165" height="128" rx="14" fill="#EBE4FA" stroke="#8066A9" stroke-width="1.15"/>
+<text x="607" y="300" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Output</text>
+<text x="607" y="329" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Natural order</text>
+<text x="607" y="351" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">2 clocks/bin</text>
+<rect x="291" y="462" width="305" height="132" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="290" y="459" width="305" height="132" rx="14" fill="#EBE4FA" stroke="#8066A9" stroke-width="1.15"/>
+<text x="307" y="489" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Registered butterfly</text>
+<text x="307" y="518" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">8 stages x 128 butterflies</text>
+<text x="307" y="540" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">7 edges per butterfly</text>
+<text x="307" y="576" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#8066A9" text-anchor="start">trecap_fft_stage</text>
+<rect x="81" y="462" width="160" height="132" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="80" y="459" width="160" height="132" rx="14" fill="#DFECFA" stroke="#4D78A8" stroke-width="1.15"/>
+<text x="97" y="489" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Twiddles</text>
+<text x="97" y="518" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">2 x 256 x 17</text>
+<text x="97" y="540" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Frozen Q15</text>
+<polyline points="275,334.0 320,334.0" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="320,334.0 310.0,329.5 310.0,338.5" fill="#708299"/>
+<polyline points="545,334.0 590,334.0" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="590,334.0 580.0,329.5 580.0,338.5" fill="#708299"/>
+<polyline points="240,525.0 290,525.0" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="290,525.0 280.0,520.5 280.0,529.5" fill="#708299"/>
+<polyline points="378,398 378,433 370,433 370,459" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="370,459 374.5,449.0 365.5,449.0" fill="#708299"/>
+<polyline points="510,459 510,421 492,421 492,398" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="492,398 487.5,408.0 496.5,408.0" fill="#708299"/>
+<rect x="815" y="194" width="730" height="424" rx="22" fill="#FFFFFF" stroke="#D8E0EA" stroke-width="1.3"/>
+<rect x="816" y="195" width="728" height="45" rx="21" fill="#DFECFA" stroke="none" stroke-width="1.3"/>
+<rect x="816" y="219" width="728" height="21" rx="0" fill="#DFECFA" stroke="none" stroke-width="1.3"/>
+<text x="837" y="224" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" fill="#4D78A8" text-anchor="start">WIDTHS + ENGINE SERVICE</text>
+<text x="844" y="274" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#586A80" text-anchor="start">QUANTITY</text>
+<text x="1188" y="274" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="700" fill="#8066A9" text-anchor="start">FFT</text>
+<text x="1380" y="274" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="700" fill="#8066A9" text-anchor="start">IFFT</text>
+<polyline points="839,324 1520,324" fill="none" stroke="#D8E0EA" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="844" y="311" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Work RAM geometry</text>
+<text x="1165" y="311" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">256 x 56</text>
+<text x="1370" y="311" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">256 x 72</text>
+<polyline points="839,363 1520,363" fill="none" stroke="#D8E0EA" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="844" y="350" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Data / twiddle component</text>
+<text x="1165" y="350" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">28 / 17 bits</text>
+<text x="1370" y="350" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">36 / 17 bits</text>
+<polyline points="839,402 1520,402" fill="none" stroke="#D8E0EA" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="844" y="389" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Four signed products</text>
+<text x="1165" y="389" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">45 bits each</text>
+<text x="1370" y="389" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">53 bits each</text>
+<polyline points="839,441 1520,441" fill="none" stroke="#D8E0EA" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="844" y="428" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Full product sum</text>
+<text x="1165" y="428" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">47 bits</text>
+<text x="1370" y="428" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">55 bits</text>
+<polyline points="839,480 1520,480" fill="none" stroke="#D8E0EA" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="844" y="467" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Butterfly sum</text>
+<text x="1165" y="467" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">30 bits</text>
+<text x="1370" y="467" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">38 bits</text>
+<polyline points="839,519 1520,519" fill="none" stroke="#D8E0EA" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="844" y="506" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Final stage shift</text>
+<text x="1165" y="506" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">1 bit</text>
+<text x="1370" y="506" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">0 bits</text>
+<text x="844" y="576" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#8066A9" text-anchor="start">256 load + 7168 compute + 512 output = 7936 clocks</text>
+<text x="844" y="600" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#586A80" text-anchor="start">Local count assumes a complete, available frame and a ready output.</text>
+<rect x="55" y="648" width="1490" height="169" rx="22" fill="#FFFFFF" stroke="#D8E0EA" stroke-width="1.3"/>
+<rect x="56" y="649" width="1488" height="45" rx="21" fill="#EBE4FA" stroke="none" stroke-width="1.3"/>
+<rect x="56" y="673" width="1488" height="21" rx="0" fill="#EBE4FA" stroke="none" stroke-width="1.3"/>
+<text x="77" y="678" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" fill="#8066A9" text-anchor="start">SEVEN-EDGE BUTTERFLY TRANSACTION</text>
+<rect x="78" y="714" width="186" height="79" rx="12" fill="#EBE4FA" stroke="none" stroke-width="1.3"/>
+<text x="91" y="739" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" fill="#8066A9" text-anchor="start">1</text>
+<text x="121" y="739" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#26364B" text-anchor="start">RAM + ROM</text>
+<text x="121" y="765" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#26364B" text-anchor="start">read</text>
+<polyline points="264,754 283,754" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="283,754 273.0,749.5 273.0,758.5" fill="#708299"/>
+<rect x="288" y="714" width="186" height="79" rx="12" fill="#EBE4FA" stroke="none" stroke-width="1.3"/>
+<text x="301" y="739" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" fill="#8066A9" text-anchor="start">2</text>
+<text x="331" y="739" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#26364B" text-anchor="start">Four DSP</text>
+<text x="331" y="765" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#26364B" text-anchor="start">products</text>
+<polyline points="474,754 493,754" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="493,754 483.0,749.5 483.0,758.5" fill="#708299"/>
+<rect x="498" y="714" width="186" height="79" rx="12" fill="#EBE4FA" stroke="none" stroke-width="1.3"/>
+<text x="511" y="739" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" fill="#8066A9" text-anchor="start">3</text>
+<text x="541" y="739" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#26364B" text-anchor="start">Full complex</text>
+<text x="541" y="765" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#26364B" text-anchor="start">sum / difference</text>
+<polyline points="684,754 703,754" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="703,754 693.0,749.5 693.0,758.5" fill="#708299"/>
+<rect x="708" y="714" width="186" height="79" rx="12" fill="#EBE4FA" stroke="none" stroke-width="1.3"/>
+<text x="721" y="739" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" fill="#8066A9" text-anchor="start">4</text>
+<text x="751" y="739" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#26364B" text-anchor="start">Q15 product</text>
+<text x="751" y="765" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#26364B" text-anchor="start">round + saturate</text>
+<polyline points="894,754 913,754" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="913,754 903.0,749.5 903.0,758.5" fill="#708299"/>
+<rect x="918" y="714" width="186" height="79" rx="12" fill="#EBE4FA" stroke="none" stroke-width="1.3"/>
+<text x="931" y="739" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" fill="#8066A9" text-anchor="start">5</text>
+<text x="961" y="739" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#26364B" text-anchor="start">A + product</text>
+<text x="961" y="765" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#26364B" text-anchor="start">A - product</text>
+<polyline points="1104,754 1123,754" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1123,754 1113.0,749.5 1113.0,758.5" fill="#708299"/>
+<rect x="1128" y="714" width="186" height="79" rx="12" fill="#EBE4FA" stroke="none" stroke-width="1.3"/>
+<text x="1141" y="739" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" fill="#8066A9" text-anchor="start">6</text>
+<text x="1171" y="739" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#26364B" text-anchor="start">Stage result</text>
+<text x="1171" y="765" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#26364B" text-anchor="start">round + saturate</text>
+<polyline points="1314,754 1333,754" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1333,754 1323.0,749.5 1323.0,758.5" fill="#708299"/>
+<rect x="1338" y="714" width="186" height="79" rx="12" fill="#EBE4FA" stroke="none" stroke-width="1.3"/>
+<text x="1351" y="739" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" fill="#8066A9" text-anchor="start">7</text>
+<text x="1381" y="739" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#26364B" text-anchor="start">Write A / B</text>
+<text x="1381" y="765" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#26364B" text-anchor="start">advance index</text>
+<rect x="55" y="847" width="465" height="152" rx="13" fill="#DFECFA" stroke="none" stroke-width="1.3"/>
+<text x="74" y="876" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#4D78A8" text-anchor="start">SYNCHRONOUS STORE OWNERSHIP</text>
+<text x="74" y="902" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Load, compute and output phases do not overlap</text>
+<text x="74" y="924" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">inside one engine. Reset invalidates ownership;</text>
+<text x="74" y="946" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">frame RAM payload is not bulk reset.</text>
+<rect x="545" y="847" width="485" height="152" rx="13" fill="#DFECFA" stroke="none" stroke-width="1.3"/>
+<text x="564" y="876" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#4D78A8" text-anchor="start">OTHER CORE STORES</text>
+<text x="564" y="902" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Canonicalizer 256 x 56; input history 512 x 76; delayed</text>
+<text x="564" y="924" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">history 1024 x 76; WOLA frame 256 x 36 and OLA ring</text>
+<text x="564" y="946" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">384 x 37.</text>
+<rect x="1055" y="847" width="490" height="152" rx="13" fill="#EBEFF4" stroke="none" stroke-width="1.3"/>
+<text x="1074" y="876" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#65778A" text-anchor="start">FIXED COEFFICIENT PROVENANCE</text>
+<text x="1074" y="902" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Analysis window: combinational 256 x 16 ROM.</text>
+<text x="1074" y="924" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Synthesis: separate synchronous 256 x 16 M10K.</text>
+<text x="1074" y="946" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Twiddles: 256 x 17 per component; frozen artifacts.</text>
+<polyline points="48,1034 1552,1034" fill="none" stroke="#D8E0EA" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="65" y="1052" width="14" height="14" rx="4" fill="#DDF2E9" stroke="#407D6C" stroke-width="0.8"/>
+<text x="88" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">Sources</text>
+<rect x="250" y="1052" width="14" height="14" rx="4" fill="#EBE4FA" stroke="#8066A9" stroke-width="0.8"/>
+<text x="273" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">DSP / configuration</text>
+<rect x="570" y="1052" width="14" height="14" rx="4" fill="#F8E0E8" stroke="#A66882" stroke-width="0.8"/>
+<text x="593" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">Telemetry</text>
+<rect x="780" y="1052" width="14" height="14" rx="4" fill="#F7ECD5" stroke="#9C7D3F" stroke-width="0.8"/>
+<text x="803" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">HPS / host</text>
+<rect x="1000" y="1052" width="14" height="14" rx="4" fill="#DFECFA" stroke="#4D78A8" stroke-width="0.8"/>
+<text x="1023" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">Platform / memory</text>
+<polyline points="1290,1059 1328,1059" fill="none" stroke="#708299" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1337" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#586A80" text-anchor="start">data</text>
+<polyline points="1412,1059 1450,1059" fill="none" stroke="#8066A9" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="7,5"/>
+<text x="1459" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#586A80" text-anchor="start">control</text>
+<text x="65" y="1090" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#586A80" text-anchor="start">SOURCE: trecap_fft_stage.sv  |  transform_microarchitecture.md  |  storage_schedule.md</text>
+<text x="65" y="1114" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#586A80" text-anchor="start">Architecture source snapshot 2026-09-14  /  Implementation structure; hardware operation is a separate milestone.</text>
+<text x="1535" y="1114" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#586A80" text-anchor="end">T-RECAP  /  03</text>
+</svg>

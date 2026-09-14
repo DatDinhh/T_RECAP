@@ -15,7 +15,6 @@
 // monitor samples cross clk -> AUD_BCLK through a second async FIFO so WOLA output bursts cannot
 // backpressure the mathematical core.
 module audio_codec_wrapper
-  import trecap_core_pkg::*;
 #(
     parameter int unsigned AUDIO_SAMPLE_W        = 16,
     parameter int unsigned SAMPLE_RATE_HZ        = 48_000,
@@ -37,6 +36,7 @@ module audio_codec_wrapper
     input  logic                             clear_sticky_i,
 
     input  logic                             lineout_enable_i,
+    output logic                             capture_stopped_o,
     input  logic                             lineout_flush_i,
     input  logic signed [AUDIO_SAMPLE_W-1:0] lineout_left_i,
     input  logic signed [AUDIO_SAMPLE_W-1:0] lineout_right_i,
@@ -62,9 +62,13 @@ module audio_codec_wrapper
     output logic                             bclk_seen_sticky_o,
     output logic                             lrck_seen_sticky_o,
     output logic [63:0]                      audio_rx_overflow_count_o,
+    // clk-domain pulse aligned with a strictly positive RX counter change.
+    output logic                             audio_rx_overflow_count_advanced_o,
     output logic [63:0]                      audio_tx_overflow_count_o,
     output logic [63:0]                      audio_tx_underflow_count_o
 );
+  import trecap_core_pkg::*;
+
 
     localparam int unsigned SYNC_SAFE = (SYNC_STAGES < 2) ? 2 : SYNC_STAGES;
     localparam int unsigned DELAY_W = (I2S_DELAY_BITS <= 1) ? 1 : $clog2(I2S_DELAY_BITS + 1);
@@ -553,8 +557,17 @@ module audio_codec_wrapper
     // -------------------------------------------------------------------------
     // Fabric-domain outputs, activity, sticky diagnostics, and saturating counters.
     // -------------------------------------------------------------------------
-    (* async_reg = "true" *)
-    (* preserve = "true" *)
+    // Return a physical receive-domain stop acknowledgement. Rearm must observe
+    // this after disabling capture; a stopped BCLK cannot falsely acknowledge it.
+    (* async_reg = "true", preserve = "true" *)
+    logic [1:0] capture_enable_ack_q;
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) capture_enable_ack_q <= '0;
+        else capture_enable_ack_q <= {capture_enable_ack_q[0], capture_enable_bclk_rx};
+    end
+    assign capture_stopped_o = !capture_enable_ack_q[1];
+
+    (* async_reg = "true", preserve = "true" *)
     logic [SYNC_SAFE-1:0] clk_bclk_seen_sync_q;
 
     (* async_reg = "true" *)
@@ -579,12 +592,14 @@ module audio_codec_wrapper
             bclk_seen_sticky_o <= 1'b0;
             lrck_seen_sticky_o <= 1'b0;
             audio_rx_overflow_count_o <= 64'd0;
+            audio_rx_overflow_count_advanced_o <= 1'b0;
             audio_tx_overflow_count_o <= 64'd0;
             audio_tx_underflow_count_o <= 64'd0;
         end else begin
             clk_bclk_seen_sync_q <= {clk_bclk_seen_sync_q[SYNC_SAFE-2:0], bclk_seen_source_q};
             clk_lrck_seen_sync_q <= {clk_lrck_seen_sync_q[SYNC_SAFE-2:0], lrck_seen_source_q};
             audio_sample_valid_o <= 1'b0;
+            audio_rx_overflow_count_advanced_o <= 1'b0;
 
             if (clear_sticky_i) begin
                 frame_overrun_sticky_o <= 1'b0;
@@ -607,6 +622,9 @@ module audio_codec_wrapper
             if (rx_overflow_event_dst) begin
                 frame_overrun_sticky_o <= 1'b1;
                 audio_rx_overflow_count_o <= sat_inc64(audio_rx_overflow_count_o);
+                // This later event update intentionally wins over a same-edge clear,
+                // using the old counter value, exactly like the counter assignment.
+                audio_rx_overflow_count_advanced_o <= !(&audio_rx_overflow_count_o);
             end
             if (tx_fifo_wr_overflow_pulse) begin
                 lineout_overrun_sticky_o <= 1'b1;

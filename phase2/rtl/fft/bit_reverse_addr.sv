@@ -9,9 +9,8 @@
 `default_nettype none
 
 module trecap_bit_reverse_addr
-  import trecap_core_pkg::*;
 #(
-    parameter int unsigned ADDR_W          = T_FFT_P,
+    parameter int unsigned ADDR_W          = trecap_core_pkg::T_FFT_P,
     parameter bit          REGISTER_OUTPUT = 1'b0
 ) (
     input  logic                clk,
@@ -24,6 +23,8 @@ module trecap_bit_reverse_addr
     output logic                valid_o,
     output logic [ADDR_W-1:0]   addr_o
 );
+  import trecap_core_pkg::*;
+
 
     function automatic logic [ADDR_W-1:0] reverse_bits(input logic [ADDR_W-1:0] value);
         logic [ADDR_W-1:0] reversed;

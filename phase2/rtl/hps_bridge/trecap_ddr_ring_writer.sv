@@ -17,10 +17,6 @@
 // normal records through an Avalon-MM style master, and commits W only after all bus writes for the
 // record have completed.
 module trecap_ddr_ring_writer
-  import trecap_csr_pkg::*;
-  import trecap_packet_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_build_pkg::*;
 #(
     parameter int unsigned RECORD_DATA_W = 32,
     parameter int unsigned RECORD_KEEP_W = (RECORD_DATA_W + 7) / 8,
@@ -29,9 +25,9 @@ module trecap_ddr_ring_writer
     parameter int unsigned AVMM_BYTEEN_W = (AVMM_DATA_W + 7) / 8,
     parameter int unsigned AVMM_BURSTCOUNT_W = 1,
     parameter int unsigned RECORD_BYTES_MAX =
-        (((TPKT_UDP_MAX_BYTES + TPKT_DDR_ALIGN_BYTES - 1) / TPKT_DDR_ALIGN_BYTES) *
-         TPKT_DDR_ALIGN_BYTES),
-    parameter int unsigned GUARD_BYTES = TCSR_RING_GUARD_BYTES_MIN,
+        (((trecap_packet_pkg::TPKT_UDP_MAX_BYTES + trecap_packet_pkg::TPKT_DDR_ALIGN_BYTES - 1) / trecap_packet_pkg::TPKT_DDR_ALIGN_BYTES) *
+         trecap_packet_pkg::TPKT_DDR_ALIGN_BYTES),
+    parameter int unsigned GUARD_BYTES = trecap_csr_pkg::TCSR_RING_GUARD_BYTES_MIN,
     parameter logic [31:0] RING_SIZE_MIN_BYTES = 32'h0010_0000
 ) (
     input  logic                       clk,
@@ -41,8 +37,8 @@ module trecap_ddr_ring_writer
     // Clear only transport diagnostic counters. Writer state, absolute W/Rd pointers, sequence,
     // and sticky fault evidence remain in the current transport epoch.
     input  logic                       counter_clear_i,
-    input  trecap_hps_bridge_ctrl_t    ctrl_i,
-    input  trecap_ring_config_t        ring_config_i,
+    input  trecap_iface_pkg::trecap_hps_bridge_ctrl_t    ctrl_i,
+    input  trecap_iface_pkg::trecap_ring_config_t        ring_config_i,
     input  logic                       ring_config_commit_pulse_i,
 
     input  logic                       ring_rd_commit_valid_i,
@@ -61,7 +57,7 @@ module trecap_ddr_ring_writer
     // Formatted record payload stream from rtl/telemetry/trecap_packet_fifo.sv.
     input  logic                       record_valid_i,
     output logic                       record_ready_o,
-    input  trecap_record_meta_t        record_meta_i,
+    input  trecap_iface_pkg::trecap_record_meta_t        record_meta_i,
     input  logic [RECORD_DATA_W-1:0]   record_payload_data_i,
     input  logic [RECORD_KEEP_W-1:0]   record_payload_keep_i,
     input  logic                       record_payload_last_i,
@@ -106,6 +102,11 @@ module trecap_ddr_ring_writer
     output logic                       malformed_pulse_o,
     output logic                       oversized_pulse_o
 );
+  import trecap_csr_pkg::*;
+  import trecap_packet_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_build_pkg::*;
+
 
     localparam logic [63:0] HEADER_BYTES_64 = TPKT_HEADER_BYTES;
     localparam logic [63:0] DDR_ALIGN_MASK_64 = TPKT_DDR_ALIGN_BYTES - 1;

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document freezes the custom radix-2 FFT/IFFT behavior used by the Phase 2 golden model. The FFT is not interchangeable with a library FFT unless the library path is proven bit-identical under the same integer ordering, scaling, twiddle, width, and rounding rules.
+This document freezes the custom radix-2 FFT/IFFT behavior used by the Phase 2 reference model. The FFT is not interchangeable with a library FFT unless the library path is proven bit-identical under the same integer ordering, scaling, twiddle, width, and rounding rules.
 
 ## Baseline transform shape
 

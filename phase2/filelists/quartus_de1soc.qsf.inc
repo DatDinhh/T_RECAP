@@ -1,73 +1,75 @@
 # AUTO-GENERATED - DO NOT EDIT
 # Generator: scripts/gen_filelists.py
-# Generator version: r1.4.0
+# Generator version: r1.4.1
 # Include this from the DE1-SoC Quartus project after project-specific QSF settings.
+# Resolve relative to this include, independent of the Quartus project directory.
+set trecap_filelist_root [file normalize [file join [file dirname [info script]] ..]]
 
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/include/generated/trecap_core_pkg.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/include/generated/trecap_csr_pkg.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/include/generated/trecap_packet_pkg.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/include/generated/trecap_iface_pkg.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/include/trecap_math_pkg.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/include/trecap_build_pkg.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/round_sat.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/reset_sync.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/sync_pulse.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/sync_bus_snapshot.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/skid_buffer.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/simple_dual_port_ram.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/true_dual_port_ram.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/sync_fifo.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/common/async_fifo.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/interfaces/trecap_sample_if.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/interfaces/trecap_frame_if.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/interfaces/trecap_core_tap_if.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/interfaces/trecap_record_if.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/interfaces/trecap_csr_if.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/interfaces/trecap_avmm_if.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/sources/trecap_bram_replay_source.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/sources/trecap_diagnostic_source.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/sources/trecap_source_mux.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/sources/trecap_audio_adapter.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/sources/trecap_adc_adapter.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/fft/complex_mul_q.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/fft/bit_reverse_addr.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/fft/twiddle_rom.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/fft/trecap_fft_stage.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/fft/trecap_fft256.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/fft/trecap_ifft256.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/core/trecap_input_ring.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/core/trecap_frame_scheduler.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/core/window_rom.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/core/trecap_analysis_window.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/core/trecap_hermitian_canonicalizer.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/core/trecap_mag2_mask.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/core/trecap_spectrum_mask_builder.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/core/trecap_synthesis_wola.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/core/trecap_delay_error_metrics.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/core/trecap_core_top.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/telemetry/trecap_packet_scheduler.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/telemetry/trecap_wave_packetizer.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/telemetry/trecap_spec_packetizer.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/telemetry/trecap_metrics_packetizer.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/telemetry/trecap_status_packetizer.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/telemetry/trecap_priority_dropper.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/telemetry/trecap_packet_fifo.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/telemetry/trecap_telemetry_top.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/hps_bridge/trecap_csr_shadow_commit.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/hps_bridge/trecap_avmm_csr_adapter.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/hps_bridge/trecap_csr_bank.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/hps_bridge/trecap_ring_pointer_ctrl.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/hps_bridge/trecap_ddr_record_builder.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/hps_bridge/trecap_avmm_write_master.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/hps_bridge/trecap_ddr_ring_writer.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/hps_bridge/trecap_hps_bridge_top.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/top/trecap_source_core_integration.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/top/trecap_de1soc_full_top.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/top/trecap_bram_replay_e2e_supervisor.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/platform/de1soc/platform_designer_wrapper.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/platform/de1soc/clock_reset_ctrl.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/platform/de1soc/audio_pll_wrapper.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/platform/de1soc/audio_codec_i2c_init.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/platform/de1soc/audio_codec_wrapper.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/platform/de1soc/adc_wrapper.sv
-set_global_assignment -name SYSTEMVERILOG_FILE rtl/platform/de1soc/de1_soc_trecap_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/include/generated/trecap_core_pkg.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/include/generated/trecap_csr_pkg.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/include/generated/trecap_packet_pkg.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/include/generated/trecap_iface_pkg.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/include/trecap_math_pkg.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/include/trecap_build_pkg.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/common/round_sat.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/common/reset_sync.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/common/sync_pulse.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/common/sync_bus_snapshot.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/common/skid_buffer.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/common/simple_dual_port_ram.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/common/true_dual_port_ram.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/common/sync_fifo.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/common/async_fifo.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/interfaces/trecap_sample_if.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/interfaces/trecap_frame_if.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/interfaces/trecap_core_tap_if.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/interfaces/trecap_record_if.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/interfaces/trecap_csr_if.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/interfaces/trecap_avmm_if.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/sources/trecap_bram_replay_source.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/sources/trecap_diagnostic_source.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/sources/trecap_source_mux.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/sources/trecap_audio_adapter.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/sources/trecap_adc_adapter.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/fft/complex_mul_q.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/fft/bit_reverse_addr.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/fft/twiddle_rom.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/fft/trecap_fft_stage.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/fft/trecap_fft256.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/fft/trecap_ifft256.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/core/trecap_input_ring.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/core/trecap_frame_scheduler.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/core/window_rom.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/core/trecap_analysis_window.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/core/trecap_hermitian_canonicalizer.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/core/trecap_mag2_mask.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/core/trecap_spectrum_mask_builder.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/core/trecap_synthesis_wola.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/core/trecap_delay_error_metrics.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/core/trecap_core_top.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/telemetry/trecap_packet_scheduler.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/telemetry/trecap_wave_packetizer.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/telemetry/trecap_spec_packetizer.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/telemetry/trecap_metrics_packetizer.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/telemetry/trecap_status_packetizer.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/telemetry/trecap_priority_dropper.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/telemetry/trecap_packet_fifo.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/telemetry/trecap_telemetry_top.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/hps_bridge/trecap_csr_shadow_commit.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/hps_bridge/trecap_avmm_csr_adapter.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/hps_bridge/trecap_csr_bank.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/hps_bridge/trecap_ring_pointer_ctrl.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/hps_bridge/trecap_ddr_record_builder.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/hps_bridge/trecap_avmm_write_master.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/hps_bridge/trecap_ddr_ring_writer.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/hps_bridge/trecap_hps_bridge_top.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/top/trecap_source_core_integration.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/top/trecap_de1soc_full_top.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/top/trecap_bram_replay_e2e_supervisor.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/platform/de1soc/platform_designer_wrapper.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/platform/de1soc/clock_reset_ctrl.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/platform/de1soc/audio_pll_wrapper.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/platform/de1soc/audio_codec_i2c_init.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/platform/de1soc/audio_codec_wrapper.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/platform/de1soc/adc_wrapper.sv}]
+set_global_assignment -name SYSTEMVERILOG_FILE [file join $trecap_filelist_root {rtl/platform/de1soc/de1_soc_trecap_top.sv}]

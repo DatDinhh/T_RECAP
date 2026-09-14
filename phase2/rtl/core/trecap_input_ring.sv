@@ -12,13 +12,12 @@
 `default_nettype none
 
 module trecap_input_ring
-  import trecap_core_pkg::*;
 #(
-    parameter int unsigned SAMPLE_W = T_SAMPLE_W,
-    parameter int unsigned L        = T_FFT_L,
+    parameter int unsigned SAMPLE_W = trecap_core_pkg::T_SAMPLE_W,
+    parameter int unsigned L        = trecap_core_pkg::T_FFT_L,
     // 2*L keeps the most recent frame plus conservative C0 look-ahead storage. It is kept
     // power-of-two so positive sample_idx low bits form the physical address.
-    parameter int unsigned DEPTH    = 2*T_FFT_L,
+    parameter int unsigned DEPTH    = 2*trecap_core_pkg::T_FFT_L,
     parameter int unsigned ADDR_W   = (DEPTH <= 1) ? 1 : $clog2(DEPTH),
     parameter int unsigned OFFSET_W = (L <= 1) ? 1 : $clog2(L)
 ) (
@@ -52,73 +51,74 @@ module trecap_input_ring
     output logic                         busy_o,
     output logic                         overflow_sticky_o
 );
+  import trecap_core_pkg::*;
 
-    localparam logic [OFFSET_W-1:0] LAST_OFFSET  = L - 1;
-    localparam logic signed [64:0]   L_MINUS_ONE = L - 1;
 
-    logic signed [SAMPLE_W-1:0] sample_mem [0:DEPTH-1];
-    logic [63:0]                idx_mem    [0:DEPTH-1];
-    logic                       valid_mem  [0:DEPTH-1];
+    localparam logic [OFFSET_W-1:0] LAST_OFFSET = OFFSET_W'(L - 1);
+    localparam logic signed [64:0] L_MINUS_ONE = 65'(L - 1);
+    localparam int unsigned RAM_W = 64 + SAMPLE_W;
 
-    logic [63:0]                accepted_count_q;
-    logic                       frame_active_q;
-    logic [63:0]                frame_idx_q;
-    logic signed [64:0]         frame_start_idx_q;
-    logic [OFFSET_W-1:0]        frame_offset_q;
-    logic                       have_last_sample_idx_q;
-    logic [63:0]                last_sample_idx_q;
+    // One M10K simple-dual-port word contains the sample and its absolute tag.
+    // Only the small validity bitmap is reset. Payload/tag RAM has no reset mux.
+    (* ramstyle = "M10K" *) logic [RAM_W-1:0] sample_mem [0:DEPTH-1];
+    logic [DEPTH-1:0] valid_bits_q;
+    logic [RAM_W-1:0] read_word_q;
 
-    logic                       out_valid_q;
+    logic frame_active_q;
+    logic [63:0] frame_idx_q;
+    logic signed [64:0] frame_start_idx_q;
+    logic [OFFSET_W-1:0] frame_offset_q;
+    logic have_last_sample_idx_q;
+    logic [63:0] last_sample_idx_q;
+
+    // A read request owns this metadata until its synchronous RAM response is
+    // copied into the output holding register. At most one read is outstanding.
+    logic read_pending_q;
+    logic read_zero_q;
+    logic read_entry_present_q;
+    logic signed [64:0] read_idx_q;
+    logic [OFFSET_W-1:0] read_offset_q;
+    logic [63:0] read_frame_idx_q;
+    logic read_last_q;
+    logic read_tag_ok;
+
+    logic out_valid_q;
     logic signed [SAMPLE_W-1:0] out_sample_q;
-    logic signed [64:0]         out_sample_idx_s_q;
-    logic [OFFSET_W-1:0]        out_offset_q;
-    logic [63:0]                out_frame_idx_q;
-    logic                       out_last_q;
+    logic signed [64:0] out_sample_idx_s_q;
+    logic [OFFSET_W-1:0] out_offset_q;
+    logic [63:0] out_frame_idx_q;
+    logic out_last_q;
 
-    logic                       sample_accept;
-    logic                       frame_req_accept;
-    logic                       frame_sample_accept;
-    logic                       load_next_beat;
+    logic sample_accept;
+    logic frame_req_accept;
+    logic frame_sample_accept;
+    logic issue_read;
+    logic signed [64:0] read_sample_idx_s;
+    logic read_is_zero_extended;
+    logic [ADDR_W-1:0] write_addr;
+    logic [ADDR_W-1:0] read_addr;
 
-    logic signed [64:0]         read_sample_idx_s;
-    logic                       read_is_zero_extended;
-    logic [ADDR_W-1:0]          write_addr;
-    logic [ADDR_W-1:0]          read_addr;
-    logic                       read_entry_valid;
-    logic signed [SAMPLE_W-1:0] read_sample_comb;
-
+    assign sample_ready_o = rst_n && enable_i && !clear_i &&
+                            !frame_req_valid_i && !frame_active_q &&
+                            !read_pending_q && !out_valid_q;
+    assign frame_req_ready_o = rst_n && enable_i && !clear_i &&
+                               !frame_active_q && !read_pending_q && !out_valid_q;
     assign sample_accept = sample_valid_i && sample_ready_o;
     assign frame_req_accept = frame_req_valid_i && frame_req_ready_o;
     assign frame_sample_accept = frame_sample_valid_o && frame_sample_ready_i;
 
-    // Conservative C0 admission control.
-    //
-    // A new frame becomes due every H accepted samples, while this single-port extractor can
-    // require at least L clocks (and arbitrarily longer under downstream backpressure) to
-    // deliver one frame. Therefore the source must not continue advancing while a frame request
-    // is pending or an extraction beat is outstanding. The BRAM replay source is a compliant
-    // ready/valid producer and holds its sample/index stable while this ready is low.
-    //
-    // The scheduler observes sample_accept_pulse_o one clock after the source handshake, so at
-    // most one post-boundary look-ahead sample can be accepted before frame_req_valid_i rises.
-    // That sample is newer than the requested frame and is safe because DEPTH >= 2*L.
-    assign sample_ready_o = enable_i && !clear_i &&
-                            !frame_req_valid_i && !frame_active_q && !out_valid_q;
-    assign frame_req_ready_o = enable_i && !clear_i && !frame_active_q && !out_valid_q;
-
+    // Source admission stops for the entire extraction, so a synchronous read
+    // never races a ring overwrite. The scheduler may have accepted one newer
+    // look-ahead sample before presenting the request; DEPTH >= 2*L covers it.
     assign write_addr = sample_idx_i[ADDR_W-1:0];
     assign read_sample_idx_s = frame_start_idx_q + $signed(65'(frame_offset_q));
     assign read_is_zero_extended = (read_sample_idx_s < 65'sd0);
     assign read_addr = read_sample_idx_s[ADDR_W-1:0];
-    assign read_entry_valid = read_is_zero_extended ||
-                              (valid_mem[read_addr] && (idx_mem[read_addr] == read_sample_idx_s[63:0]));
-    // A positive-index tag miss is a fatal correctness condition for signoff. Keep simulation
-    // progressing with a deterministic zero rather than leaking a newer sample that reused the
-    // same physical address; overflow_sticky_o records the violation below.
-    assign read_sample_comb = read_is_zero_extended ? '0 :
-                              (read_entry_valid ? sample_mem[read_addr] : '0);
-
-    assign load_next_beat = enable_i && frame_active_q && (!out_valid_q || frame_sample_ready_i);
+    assign issue_read = rst_n && enable_i && !clear_i && frame_active_q &&
+                        !read_pending_q && (!out_valid_q || frame_sample_ready_i);
+    assign read_tag_ok = read_zero_q ||
+                         (read_entry_present_q &&
+                          (read_word_q[RAM_W-1 -: 64] == read_idx_q[63:0]));
 
     assign frame_sample_valid_o = out_valid_q;
     assign frame_sample_o = out_sample_q;
@@ -126,78 +126,88 @@ module trecap_input_ring
     assign frame_sample_offset_o = out_offset_q;
     assign frame_sample_frame_idx_o = out_frame_idx_q;
     assign frame_sample_last_o = out_last_q;
-    assign busy_o = frame_active_q || out_valid_q;
+    assign busy_o = frame_active_q || read_pending_q || out_valid_q;
+
+    // Intel simple-dual-port inference template: one write address, one
+    // registered read address/data operation, and no reset on either RAM port.
+    always_ff @(posedge clk) begin : p_sample_memory
+        if (sample_accept) begin
+            sample_mem[write_addr] <= {sample_idx_i, $unsigned(sample_i)};
+        end
+        if (issue_read && !read_is_zero_extended) begin
+            read_word_q <= sample_mem[read_addr];
+        end
+    end
 
     always_ff @(posedge clk or negedge rst_n) begin : p_input_ring
-        integer i;
         if (!rst_n) begin
-            accepted_count_q          <= 64'd0;
-            frame_active_q            <= 1'b0;
-            frame_idx_q               <= 64'd0;
-            frame_start_idx_q         <= 65'sd0;
-            frame_offset_q            <= '0;
-            have_last_sample_idx_q    <= 1'b0;
-            last_sample_idx_q         <= 64'd0;
-            out_valid_q               <= 1'b0;
-            out_sample_q              <= '0;
-            out_sample_idx_s_q        <= 65'sd0;
-            out_offset_q              <= '0;
-            out_frame_idx_q           <= 64'd0;
-            out_last_q                <= 1'b0;
-            sample_accept_pulse_o     <= 1'b0;
-            accepted_sample_o         <= '0;
-            accepted_sample_idx_o     <= 64'd0;
-            overflow_sticky_o         <= 1'b0;
-            for (i = 0; i < DEPTH; i = i + 1) begin
-                valid_mem[i] <= 1'b0;
-                idx_mem[i] <= 64'd0;
-            end
+            valid_bits_q <= '0;
+            frame_active_q <= 1'b0;
+            frame_idx_q <= '0;
+            frame_start_idx_q <= '0;
+            frame_offset_q <= '0;
+            have_last_sample_idx_q <= 1'b0;
+            last_sample_idx_q <= '0;
+            read_pending_q <= 1'b0;
+            read_zero_q <= 1'b0;
+            read_entry_present_q <= 1'b0;
+            read_idx_q <= '0;
+            read_offset_q <= '0;
+            read_frame_idx_q <= '0;
+            read_last_q <= 1'b0;
+            out_valid_q <= 1'b0;
+            out_sample_q <= '0;
+            out_sample_idx_s_q <= '0;
+            out_offset_q <= '0;
+            out_frame_idx_q <= '0;
+            out_last_q <= 1'b0;
+            sample_accept_pulse_o <= 1'b0;
+            accepted_sample_o <= '0;
+            accepted_sample_idx_o <= '0;
+            overflow_sticky_o <= 1'b0;
         end else begin
             sample_accept_pulse_o <= 1'b0;
-
             if (clear_i) begin
-                accepted_count_q       <= 64'd0;
-                frame_active_q         <= 1'b0;
-                frame_idx_q            <= 64'd0;
-                frame_start_idx_q      <= 65'sd0;
-                frame_offset_q         <= '0;
+                valid_bits_q <= '0;
+                frame_active_q <= 1'b0;
+                frame_idx_q <= '0;
+                frame_start_idx_q <= '0;
+                frame_offset_q <= '0;
                 have_last_sample_idx_q <= 1'b0;
-                last_sample_idx_q      <= 64'd0;
-                out_valid_q            <= 1'b0;
-                out_sample_q           <= '0;
-                out_sample_idx_s_q     <= 65'sd0;
-                out_offset_q           <= '0;
-                out_frame_idx_q        <= 64'd0;
-                out_last_q             <= 1'b0;
-                accepted_sample_o      <= '0;
-                accepted_sample_idx_o  <= 64'd0;
-                overflow_sticky_o      <= 1'b0;
-                for (i = 0; i < DEPTH; i = i + 1) begin
-                    valid_mem[i] <= 1'b0;
-                    idx_mem[i] <= 64'd0;
-                end
+                last_sample_idx_q <= '0;
+                read_pending_q <= 1'b0;
+                read_zero_q <= 1'b0;
+                read_entry_present_q <= 1'b0;
+                read_idx_q <= '0;
+                read_offset_q <= '0;
+                read_frame_idx_q <= '0;
+                read_last_q <= 1'b0;
+                out_valid_q <= 1'b0;
+                out_sample_q <= '0;
+                out_sample_idx_s_q <= '0;
+                out_offset_q <= '0;
+                out_frame_idx_q <= '0;
+                out_last_q <= 1'b0;
+                accepted_sample_o <= '0;
+                accepted_sample_idx_o <= '0;
+                overflow_sticky_o <= 1'b0;
             end else begin
-                if (clear_sticky_i) begin
-                    overflow_sticky_o <= 1'b0;
-                end
+                if (clear_sticky_i) overflow_sticky_o <= 1'b0;
 
                 if (sample_accept) begin
-                    sample_mem[write_addr] <= sample_i;
-                    idx_mem[write_addr] <= sample_idx_i;
-                    valid_mem[write_addr] <= 1'b1;
+                    valid_bits_q[write_addr] <= 1'b1;
                     accepted_sample_o <= sample_i;
                     accepted_sample_idx_o <= sample_idx_i;
                     sample_accept_pulse_o <= 1'b1;
-                    accepted_count_q <= accepted_count_q + 64'd1;
-
-                    if (have_last_sample_idx_q && (sample_idx_i != (last_sample_idx_q + 64'd1))) begin
+                    if (have_last_sample_idx_q &&
+                        (sample_idx_i != (last_sample_idx_q + 64'd1))) begin
                         overflow_sticky_o <= 1'b1;
                     end
                     have_last_sample_idx_q <= 1'b1;
                     last_sample_idx_q <= sample_idx_i;
                 end
 
-                if (frame_sample_accept && !load_next_beat) begin
+                if (frame_sample_accept) begin
                     out_valid_q <= 1'b0;
                     out_last_q <= 1'b0;
                 end
@@ -209,36 +219,41 @@ module trecap_input_ring
                     frame_offset_q <= '0;
                 end
 
-                if (load_next_beat) begin
-                    out_valid_q <= 1'b1;
-                    out_sample_q <= read_sample_comb;
-                    out_sample_idx_s_q <= read_sample_idx_s;
-                    out_offset_q <= frame_offset_q;
-                    out_frame_idx_q <= frame_idx_q;
-                    out_last_q <= (frame_offset_q == LAST_OFFSET);
-
-                    if (!read_entry_valid) begin
-                        // Positive-index samples must have been pushed into the ring. Missing
-                        // entries indicate an impossible frame request, source discontinuity, or
-                        // ring overwrite caused by a core-local scheduling violation. Emit zero
-                        // to preserve stream progress and flag the error.
-                        overflow_sticky_o <= 1'b1;
-                    end
-
+                if (issue_read) begin
+                    read_pending_q <= 1'b1;
+                    read_zero_q <= read_is_zero_extended;
+                    read_entry_present_q <= valid_bits_q[read_addr];
+                    read_idx_q <= read_sample_idx_s;
+                    read_offset_q <= frame_offset_q;
+                    read_frame_idx_q <= frame_idx_q;
+                    read_last_q <= (frame_offset_q == LAST_OFFSET);
                     if (frame_offset_q == LAST_OFFSET) begin
                         frame_active_q <= 1'b0;
                         frame_offset_q <= '0;
                     end else begin
-                        frame_offset_q <= frame_offset_q + {{(OFFSET_W-1){1'b0}}, 1'b1};
+                        frame_offset_q <= frame_offset_q + 1'b1;
                     end
                 end
 
+                if (read_pending_q) begin
+                    read_pending_q <= 1'b0;
+                    out_valid_q <= 1'b1;
+                    out_sample_q <= (read_zero_q || !read_tag_ok)
+                                    ? '0 : $signed(read_word_q[SAMPLE_W-1:0]);
+                    out_sample_idx_s_q <= read_idx_q;
+                    out_offset_q <= read_offset_q;
+                    out_frame_idx_q <= read_frame_idx_q;
+                    out_last_q <= read_last_q;
+                    if (!read_tag_ok) overflow_sticky_o <= 1'b1;
+                end
+
                 if (!enable_i) begin
-                    if (frame_active_q || out_valid_q) begin
+                    if (frame_active_q || read_pending_q || out_valid_q)
                         overflow_sticky_o <= 1'b1;
-                    end
                     frame_active_q <= 1'b0;
+                    read_pending_q <= 1'b0;
                     out_valid_q <= 1'b0;
+                    out_last_q <= 1'b0;
                     frame_offset_q <= '0;
                 end
             end
@@ -247,26 +262,14 @@ module trecap_input_ring
 
 `ifndef SYNTHESIS
     initial begin
-        if (SAMPLE_W != T_SAMPLE_W) begin
+        if (SAMPLE_W != T_SAMPLE_W)
             $fatal(1, "trecap_input_ring: SAMPLE_W must match generated T_SAMPLE_W");
-        end
-        if (L != T_FFT_L) begin
+        if (L != T_FFT_L)
             $fatal(1, "trecap_input_ring: L must match generated T_FFT_L");
-        end
-        if ((DEPTH < (2*L)) || ((DEPTH & (DEPTH - 1)) != 0)) begin
+        if ((DEPTH < (2*L)) || ((DEPTH & (DEPTH - 1)) != 0))
             $fatal(1, "trecap_input_ring: DEPTH must be a power of two and at least 2*L");
-        end
-    end
-
-    always_ff @(posedge clk) begin
-        if (rst_n && !clear_i) begin
-            if ((frame_req_valid_i || frame_active_q || out_valid_q) && sample_ready_o) begin
-                $error("trecap_input_ring: sample_ready_o asserted while frame storage is reserved");
-            end
-            if (load_next_beat && !read_entry_valid) begin
-                $error("trecap_input_ring: requested positive-index sample is absent or overwritten");
-            end
-        end
+        if (ADDR_W != $clog2(DEPTH))
+            $fatal(1, "trecap_input_ring: ADDR_W must equal clog2(DEPTH)");
     end
 `endif
 

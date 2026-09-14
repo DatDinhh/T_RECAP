@@ -1,0 +1,130 @@
+{
+  "schema": "trecap_architecture_atlas_v1",
+  "snapshot_date": "2026-09-14",
+  "scope": "Architecture documentation only; no functional execution",
+  "pages": [
+    {
+      "number": 1,
+      "title": "System architecture",
+      "svg": "01-system-overview.svg",
+      "source_refs": [
+        "rtl/platform/de1soc/de1_soc_trecap_top.sv",
+        "rtl/top/trecap_de1soc_full_top.sv",
+        "docs/architecture/architecture_design.md"
+      ]
+    },
+    {
+      "number": 2,
+      "title": "DSP datapath and frame ownership",
+      "svg": "02-dsp-pipeline.svg",
+      "source_refs": [
+        "rtl/core/trecap_core_top.sv",
+        "spec/generated/core_config.json",
+        "docs/architecture/storage_schedule.md"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Transform engines and storage",
+      "svg": "03-transform-memory.svg",
+      "source_refs": [
+        "rtl/fft/trecap_fft_stage.sv",
+        "docs/architecture/transform_microarchitecture.md",
+        "docs/architecture/storage_schedule.md"
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Sample sources and stream epochs",
+      "svg": "04-sources-epochs.svg",
+      "source_refs": [
+        "rtl/top/trecap_source_core_integration.sv",
+        "rtl/sources/trecap_source_mux.sv",
+        "docs/architecture/source_health.md"
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Observation and telemetry records",
+      "svg": "05-telemetry.svg",
+      "source_refs": [
+        "rtl/telemetry/trecap_telemetry_top.sv",
+        "rtl/telemetry/trecap_packet_fifo.sv",
+        "spec/generated/packet_layouts.json"
+      ]
+    },
+    {
+      "number": 6,
+      "title": "DDR transport and pointer ownership",
+      "svg": "06-ddr-hps-transport.svg",
+      "source_refs": [
+        "rtl/hps_bridge/trecap_ddr_ring_writer.sv",
+        "rtl/platform/de1soc/platform_designer_wrapper.sv",
+        "docs/architecture/de1soc_hps_transport.md"
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Commands, CSRs and safe configuration",
+      "svg": "07-control-plane.svg",
+      "source_refs": [
+        "docs/architecture/de1soc_command_path.md",
+        "rtl/hps_bridge/trecap_csr_bank.sv",
+        "docs/architecture/platform_grant.md"
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Clock, reset and CDC boundaries",
+      "svg": "08-clocks-reset-cdc.svg",
+      "source_refs": [
+        "rtl/platform/de1soc/de1_soc_trecap_top.sv",
+        "rtl/platform/de1soc/audio_codec_wrapper.sv",
+        "config/boards/physical_timing.json"
+      ]
+    }
+  ],
+  "source_sha256": {
+    "config/boards/de1soc_hps_transport.json": "30cd73b4a39ea4020a4fb3a1955b0fa01c427104b7c8b8013f4d018f638fc8e8",
+    "config/boards/physical_timing.json": "0fb3d6ece92593457ba1baa162db6963c8e53b752f17bbc9a30446840e1f017f",
+    "config/profiles/de1soc_adc_demo.json": "b17fefc3952269e5314331ca3f2ebdbb2d07c71722337327379acf7e4deb1157",
+    "config/profiles/de1soc_bram_replay.json": "d179ecfea87c9fcac4d203e0e199f22979ceb714dca33b44faf8d3e2e653d583",
+    "config/profiles/de1soc_linein_demo.json": "5d23112313783fc5ec5d038b405081178ba953803319eb060f6f1fc2208bb029",
+    "docs/architecture/architecture_design.md": "3ea6c976a04d07f9a14e2f28a1a9c3e187e8a6c6cfa58bc6674567e75b95c7c3",
+    "docs/architecture/de1soc_command_path.md": "d5970dc8d56350be8470291bfabcc695ff4f54f85cf5c91d8e23b1e245449e12",
+    "docs/architecture/de1soc_ddr_ring_ownership.md": "e4ea2a1738ead30d5fef5f5531887a11a9bc3f30748d0d34c1190205ddd5ed6f",
+    "docs/architecture/de1soc_hps_transport.md": "f73b21f366969739ce83e0d42fb019e1f34c61624c2026210c78f238ce796935",
+    "docs/architecture/platform_grant.md": "8a9e330951bb0ab1460b58f5430df17b542aeb30e930d7b0aeb0fcc1761e1a5a",
+    "docs/architecture/source_health.md": "94d0ba2cb749a499189a09c0e496c1c0983d5266c0b314be8d0e417189c1594a",
+    "docs/architecture/storage_schedule.md": "476cb7a7f67cb292b785fa242f4d93fd7dc93a0b247253055e289818f5f58655",
+    "docs/architecture/transform_microarchitecture.md": "80c54f7c4132afa60c583908abbeb58bf059444c9de35389f6fe23526acdfe3d",
+    "platform/de1soc/address_map/hps_bridge_regions.json": "4c2bad6c21996efdd1e18b42200134c74ee9d805402494e01bcfa112502be699",
+    "platform/de1soc/linux/driver/trecap_platform.c": "a5f8ff4b9bac9c6dca141ffd672ddf82036c98769217cf2682fbc8f5deaba75b",
+    "platform/de1soc/qsys/system.qsys": "b3101b69f042d319c0c9686db3c0566feeb6de9013d963826058bc8cba776141",
+    "rtl/common/async_fifo.sv": "65c1a44b5ac734d4f006cb1cb7fd0bc0906413e33fac0851824b9e3d8106abb6",
+    "rtl/core/trecap_analysis_window.sv": "62798c5bfed8076c54568986bd6df6d57b430e9aacb97efb582364974620c6ad",
+    "rtl/core/trecap_core_top.sv": "44ab78f15ab83a13de90109e2772159dbac0efc1fccf66791d9c70657fe76f6b",
+    "rtl/core/trecap_delay_error_metrics.sv": "b3e38afded03db95e974028d52c8c56929ce9a401eba27483aec2cff5cd548f4",
+    "rtl/core/trecap_mag2_mask.sv": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d",
+    "rtl/core/trecap_spectrum_mask_builder.sv": "695d9bd8c51c3ee97412854d37a4c5f5b953f793cb05a4a76f83d305e05fe3e0",
+    "rtl/core/trecap_synthesis_wola.sv": "39b6b6f7d61f10772203161d0cd0a780581f2292be40a177f207b85d9b435bcc",
+    "rtl/fft/trecap_fft_stage.sv": "0f8795941f9843e1f266cc0ee9d310c4be52d3103e6d750abb455f49880472d1",
+    "rtl/hps_bridge/trecap_csr_bank.sv": "905f2bc9fa25006dc2dbdcb08fd325171fe4313778dc0d586bc7012778bb0c86",
+    "rtl/hps_bridge/trecap_ddr_ring_writer.sv": "66b4790a6a52de58fc5cfe6260405ee42830776fb7c68d53615954f9ec61186b",
+    "rtl/platform/de1soc/adc_wrapper.sv": "11a68c7510a1ec116af5ae93698e94b3cc36ed0d9d16e2ba50dfc207ca86130d",
+    "rtl/platform/de1soc/audio_codec_wrapper.sv": "38ca6c472c568d3a3a746c75a7fc9de362af07c2bce155a83b10a9f534dde8eb",
+    "rtl/platform/de1soc/de1_soc_trecap_top.sv": "515d4ad7b35d79ac2a22d8ec9fe114463dd453517af3e6e42a838e00d6090efe",
+    "rtl/platform/de1soc/platform_designer_wrapper.sv": "3123d253447c91903e41c646049a3f4c837ff871f3ca493b3019382d00934c4e",
+    "rtl/sources/trecap_audio_adapter.sv": "b0f54a05c661c47e311a76198f65d36d2f62b3fac223ac2fbf36f5d73e37eba7",
+    "rtl/sources/trecap_source_mux.sv": "efe7cfa8bd750c2daa68187582b2ed3f919ed0e65907f809af6f549fcb9ccf8f",
+    "rtl/telemetry/trecap_packet_fifo.sv": "1e750cdf950c4e782cf491e70086ccecf615060f3ae886e1919e02641d14377b",
+    "rtl/telemetry/trecap_telemetry_top.sv": "179d34c74e5c0dd9995fd2816538b72a9b6b9140b0580230853c59b9fd1b2594",
+    "rtl/top/trecap_de1soc_full_top.sv": "c111801c37cb5a13bd807d43d33f6d529e28379a8cecd95f5172c6c359349904",
+    "rtl/top/trecap_source_core_integration.sv": "0677af80af9cb5a19e42e57ccbfcd312324183ec428651b34ef0ed747ad4df77",
+    "spec/generated/core_config.json": "bcecf65648099883ae02def17de56ab4140a611434bf93de314c542d9b14438a",
+    "spec/generated/packet_layouts.json": "7ad8de7979927e623d885b9ba499b1eb5d546207791160655153f9accf78b48f",
+    "sw/hps/config/trecap_hps_config.json": "90616a8c601b7d8a3a5bd0bd0e187d1d5f0c5306b6cb57d1a4ce8ef83c91f834",
+    "sw/pc_dashboard/configs/dashboard_direct_link.json": "e3334203206d1e3b859f2734a7ffafcf482d58ffc266483ed64003defee019a5"
+  },
+  "layout_warnings": []
+}

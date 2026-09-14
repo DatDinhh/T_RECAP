@@ -30,17 +30,12 @@
 // Packetizer/FIFO module ports are frozen here so later packetizer files can be written against a
 // stable top-level contract.
 module trecap_telemetry_top
-  import trecap_core_pkg::*;
-  import trecap_csr_pkg::*;
-  import trecap_packet_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_build_pkg::*;
 #(
     parameter int unsigned PAYLOAD_DATA_W       = 32,
     parameter int unsigned PAYLOAD_KEEP_W       = (PAYLOAD_DATA_W + 7) / 8,
     parameter int unsigned PACKET_FIFO_RECORDS  = 8,
-    parameter int unsigned PACKET_FIFO_BYTES    = TPKT_UDP_MAX_BYTES,
-    parameter int unsigned BIN_IDX_W            = (T_UNIQUE_BINS <= 1) ? 1 : $clog2(T_UNIQUE_BINS),
+    parameter int unsigned PACKET_FIFO_BYTES    = trecap_packet_pkg::TPKT_UDP_MAX_BYTES,
+    parameter int unsigned BIN_IDX_W            = (trecap_core_pkg::T_UNIQUE_BINS <= 1) ? 1 : $clog2(trecap_core_pkg::T_UNIQUE_BINS),
     parameter bit          CLEAR_COUNTERS_ON_SOFT_RESET = 1'b1
 ) (
     input  logic                       clk,
@@ -68,18 +63,18 @@ module trecap_telemetry_top
     // packetizers, the packet FIFO, the scheduler, or transport drop counters.
     input  logic                       metrics_clear_i,
 
-    input  trecap_hps_bridge_ctrl_t    ctrl_i,
+    input  trecap_iface_pkg::trecap_hps_bridge_ctrl_t    ctrl_i,
 
     // Valid-only core sample and frame taps. No ready signal is returned.
-    input  trecap_core_tap_sample_t    tap_sample_i,
-    input  trecap_core_tap_frame_t     tap_frame_i,
+    input  trecap_iface_pkg::trecap_core_tap_sample_t    tap_sample_i,
+    input  trecap_iface_pkg::trecap_core_tap_frame_t     tap_frame_i,
 
     // Unique-bin stream for SPEC packetizers. This is valid-only and may be dropped by the
     // spectrum packetizer if its local buffer cannot accept the bin event.
     input  logic                       tap_bin_valid_i,
     input  logic [63:0]                tap_bin_frame_idx_i,
     input  logic [BIN_IDX_W-1:0]       tap_bin_idx_i,
-    input  logic [T_MAG2_W-1:0]        tap_bin_mag2_i,
+    input  logic [trecap_core_pkg::T_MAG2_W-1:0]        tap_bin_mag2_i,
     input  logic                       tap_bin_mask_i,
     input  logic                       tap_bin_eligible_i,
     input  logic                       tap_bin_last_i,
@@ -109,7 +104,7 @@ module trecap_telemetry_top
     // Formatted record stream toward rtl/hps_bridge/.
     output logic                       record_valid_o,
     input  logic                       record_ready_i,
-    output trecap_record_meta_t        record_meta_o,
+    output trecap_iface_pkg::trecap_record_meta_t        record_meta_o,
     output logic [PAYLOAD_DATA_W-1:0]  record_payload_data_o,
     output logic [PAYLOAD_KEEP_W-1:0]  record_payload_keep_o,
     output logic                       record_payload_last_o,
@@ -124,6 +119,12 @@ module trecap_telemetry_top
     output logic                       scheduler_disabled_drop_o,
     output logic                       scheduler_illegal_drop_o
 );
+  import trecap_core_pkg::*;
+  import trecap_csr_pkg::*;
+  import trecap_packet_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_build_pkg::*;
+
 
     logic packet_enable_legal;
     logic spec_mode_legal;

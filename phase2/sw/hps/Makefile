@@ -83,6 +83,7 @@ HPS_PUBLIC_HEADERS := \
   $(INC_DIR)/trecap_hps_config.h \
   $(INC_DIR)/csr_map.h \
   $(INC_DIR)/ring_reader.h \
+  $(INC_DIR)/trecap_ring_device.h \
   $(INC_DIR)/udp_sender.h \
   $(INC_DIR)/command_server.h \
   $(INC_DIR)/command_bridge.h \

@@ -20,11 +20,6 @@
 // preserves explicit safe-boundary and snapshot/commit hooks so a later split-clock integration can
 // insert CDC wrappers at this boundary without moving DDR-writer ownership into rtl/telemetry/.
 module trecap_hps_bridge_top
-  import trecap_core_pkg::*;
-  import trecap_csr_pkg::*;
-  import trecap_packet_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_build_pkg::*;
 #(
     parameter int unsigned CSR_AVMM_ADDR_W     = 21,
     parameter int unsigned CSR_ADDR_W          = 12,
@@ -35,7 +30,7 @@ module trecap_hps_bridge_top
     parameter int unsigned AVMM_DATA_W         = 64,
     parameter int unsigned AVMM_BYTEEN_W       = (AVMM_DATA_W + 7) / 8,
     parameter int unsigned AVMM_BURSTCOUNT_W   = 1,
-    parameter int unsigned GUARD_BYTES         = TCSR_RING_GUARD_BYTES_MIN,
+    parameter int unsigned GUARD_BYTES         = trecap_csr_pkg::TCSR_RING_GUARD_BYTES_MIN,
     parameter logic [31:0] RING_SIZE_MIN_BYTES = 32'h0010_0000
 ) (
     input  logic                         clk,
@@ -62,8 +57,11 @@ module trecap_hps_bridge_top
     // in this single-clock baseline.  Later split-clock builds shall synchronize them before entry.
     input  logic                         frame_boundary_i,
     input  logic                         source_safe_boundary_i,
-    input  trecap_source_mode_e          actual_source_mode_i,
+    input  trecap_iface_pkg::trecap_source_mode_e          actual_source_mode_i,
     input  logic                         source_transition_busy_i,
+    input  logic [991:0]             source_health_i,
+    output logic                    source_rearm_pulse_o,
+    output logic                    codec_fpga_grant_o,
     input  logic                         transport_epoch_idle_i,
 
     input  logic                         replay_start_ready_i,
@@ -87,7 +85,7 @@ module trecap_hps_bridge_top
     // beats of one record.  This top never returns a ready signal to the mathematical core.
     input  logic                         record_valid_i,
     output logic                         record_ready_o,
-    input  trecap_record_meta_t          record_meta_i,
+    input  trecap_iface_pkg::trecap_record_meta_t          record_meta_i,
     input  logic [RECORD_DATA_W-1:0]     record_payload_data_i,
     input  logic [RECORD_KEEP_W-1:0]     record_payload_keep_i,
     input  logic                         record_payload_last_i,
@@ -114,8 +112,8 @@ module trecap_hps_bridge_top
     input  logic [1:0]                   avm_response_i,
 
     // Active controls exported to the core/telemetry/source integration layer.
-    output trecap_hps_bridge_ctrl_t      ctrl_o,
-    output trecap_ring_config_t          ring_config_o,
+    output trecap_iface_pkg::trecap_hps_bridge_ctrl_t      ctrl_o,
+    output trecap_iface_pkg::trecap_ring_config_t          ring_config_o,
     output logic                         telemetry_soft_reset_pulse_o,
     output logic                         clear_metrics_pulse_o,
     output logic                         counter_clear_pulse_o,
@@ -171,6 +169,12 @@ module trecap_hps_bridge_top
     output logic                         packet_fifo_full_status_o,
     output logic                         packet_fifo_overflow_status_o
 );
+  import trecap_core_pkg::*;
+  import trecap_csr_pkg::*;
+  import trecap_packet_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_build_pkg::*;
+
 
     trecap_hps_bridge_ctrl_t ctrl_w;
     trecap_ring_config_t     ring_config_w;
@@ -340,6 +344,9 @@ module trecap_hps_bridge_top
         .ring_rd_commit_ready_i(writer_ring_rd_commit_ready),
         .actual_source_mode_i(actual_source_mode_i),
         .source_transition_busy_i(source_transition_busy_i),
+        .source_health_i(source_health_i),
+        .source_rearm_pulse_o(source_rearm_pulse_o),
+        .codec_fpga_grant_o(codec_fpga_grant_o),
         .transport_epoch_idle_i(transport_epoch_idle_i),
         .replay_start_ready_i(replay_start_ready_i),
         .replay_request_busy_i(replay_request_busy_i),

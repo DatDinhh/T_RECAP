@@ -332,7 +332,7 @@
       ],
       "properties": {
         "instance": {"type": "string", "minLength": 1},
-        "component_type": {"const": "altera_avalon_mm_bridge"},
+        "component_type": {"enum": ["trecap_avalon_csr_bridge", "altera_avalon_mm_bridge"]},
         "address_units": {"const": "SYMBOLS"},
         "address_width_bits": {"type": "integer", "minimum": 1},
         "data_width_bits": {"enum": [32, 64]},
@@ -372,6 +372,7 @@
             {
               "properties": {
                 "instance": {"const": "trecap_csr_bridge"},
+                "component_type": {"const": "trecap_avalon_csr_bridge"},
                 "upstream": {"const": "hps_0.h2f_lw_axi_master"},
                 "slave_interface": {"const": "trecap_csr_bridge.s0"},
                 "exported_master_interface": {"const": "trecap_csr_bridge.m0"},
@@ -389,6 +390,7 @@
             {
               "properties": {
                 "instance": {"const": "trecap_f2h_sdram_bridge"},
+                "component_type": {"const": "altera_avalon_mm_bridge"},
                 "exported_slave_interface": {"const": "trecap_f2h_sdram_bridge.s0"},
                 "master_interface": {"const": "trecap_f2h_sdram_bridge.m0"},
                 "downstream": {"const": "hps_0.f2h_sdram0_data"},
@@ -435,8 +437,8 @@
         "sopcinfo_file": {"const": "platform/de1soc/qsys/system.sopcinfo"},
         "expected_flattened_abi": {
           "type": "object",
-          "minProperties": 94,
-          "maxProperties": 94,
+          "minProperties": 99,
+          "maxProperties": 99,
           "propertyNames": {"pattern": "^[A-Za-z_][A-Za-z0-9_]*$"},
           "additionalProperties": {"$ref": "#/$defs/portDefinition"}
         }

@@ -19,7 +19,7 @@ FrameAnalysisResult process_frame_analysis_mask(std::span<const std::int64_t> fr
     window.validate();
     twiddles.validate();
     const CoreConfig cfg = window.cfg;
-    if (twiddles.cfg.L != cfg.L || twiddles.cfg.F != cfg.F || twiddles.cfg.P != cfg.P) {
+    if (twiddles.cfg != cfg) {
         throw contract_error("window and twiddle core configs are incompatible");
     }
 
@@ -42,6 +42,9 @@ void process_frame_synthesis_wola(std::span<const ComplexI64> masked_spectrum,
     window.validate();
     twiddles.validate();
     const CoreConfig cfg = window.cfg;
+    if (twiddles.cfg != cfg || ola.config() != cfg) {
+        throw contract_error("synthesis tables and OLA ring must share one core config");
+    }
     if (masked_spectrum.size() != cfg.L) {
         throw contract_error("synthesis masked spectrum length must equal L");
     }
@@ -73,10 +76,10 @@ StftWolaResult run_stft_wola_model(std::span<const std::int64_t> x,
     if (x.empty()) {
         throw contract_error("Revision J signoff vectors require Ns > 0");
     }
-    if (window.cfg.L != cfg.L || window.cfg.F != cfg.F || window.cfg.N != cfg.N) {
+    if (window.cfg != cfg) {
         throw contract_error("window table does not match run core config");
     }
-    if (twiddles.cfg.L != cfg.L || twiddles.cfg.F != cfg.F || twiddles.cfg.P != cfg.P) {
+    if (twiddles.cfg != cfg) {
         throw contract_error("twiddle tables do not match run core config");
     }
     if (!threshold_is_legal(run_cfg.thr2, WidthConfig::from_core(cfg).W_mag2)) {

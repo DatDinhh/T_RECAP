@@ -1,5 +1,7 @@
 # C0 delayed-x history and metric alignment v70
 
+> Historical design note. Revision-specific results and open items below belong to that development stage; they are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
+
 File class: **[1] hand-written bring-up and verification note**.
 
 ## Scope
@@ -169,7 +171,7 @@ Run:
 ```powershell
 & ".\scripts\windows\run_c0_golden_v70.ps1" `
   -Repo (Resolve-Path ".").Path `
-  -ModelSimExe "D:\Quartus\modelsim_ase\win32aloem\modelsim.exe" `
+  -ModelSimExe "$env:MODELSIM_EXE" `
   -PythonExe "python"
 ```
 
@@ -193,7 +195,7 @@ C0_GOLDEN_SUITE_PASS vectors=1
 ## Evidence boundary
 
 The dependency-free model and a locally lowered CXXRTL execution both run in
-the construction environment. The CXXRTL run exercises 2,304 x samples, 2,688
+that historical tool environment. The CXXRTL run exercises 2,304 x samples, 2,688
 y samples, more than two RAM wraps, a full FIFO, a 41-clock output stall,
 metric equality, fail-stop, sticky-clear resistance, and full-clear recovery.
 Slang/Yosys also elaborates the complete BRAM-replay core and reports zero

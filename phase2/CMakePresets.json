@@ -1,0 +1,49 @@
+{
+  "version": 5,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 24,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "host",
+      "displayName": "Reference library and CLI (no tests)",
+      "binaryDir": "${sourceDir}/build/host",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "TRECAP_BUILD_REFERENCE_MODEL": "ON",
+        "TRECAP_BUILD_HPS": "OFF",
+        "TRECAP_BUILD_TESTS": "OFF",
+        "BUILD_TESTING": "OFF",
+        "TRECAP_BUILD_TOOLS": "ON"
+      }
+    },
+    {
+      "name": "hps",
+      "displayName": "Reference and Linux HPS transport (no tests)",
+      "inherits": "host",
+      "binaryDir": "${sourceDir}/build/hps-host",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "TRECAP_BUILD_HPS": "ON"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "host",
+      "configurePreset": "host",
+      "configuration": "Release"
+    },
+    {
+      "name": "hps",
+      "configurePreset": "hps",
+      "configuration": "Release"
+    }
+  ]
+}

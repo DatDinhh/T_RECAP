@@ -22,23 +22,9 @@
 # Helper procs
 # -----------------------------------------------------------------------------
 
-proc trecap_qsf_has_get_ports {} {
-    return [expr {[llength [info commands get_ports]] > 0}]
-}
-
-proc trecap_qsf_port_exists {port_name} {
-    # In Quartus assignment Tcl context, get_ports is often unavailable before analysis.
-    # In that context we still emit assignments; Quartus will bind them when the port exists.
-    if {![trecap_qsf_has_get_ports]} {
-        return 1
-    }
-    return [expr {[llength [get_ports -quiet $port_name]] > 0}]
-}
-
+# Assignments are loaded before a timing netlist exists. Emit the fixed board
+# ports unconditionally; Quartus binds and checks them during compilation.
 proc trecap_pin {pin_name port_name {io_standard "3.3-V LVTTL"}} {
-    if {![trecap_qsf_port_exists $port_name]} {
-        return
-    }
     set_location_assignment $pin_name -to $port_name
     if {![string equal $io_standard ""]} {
         set_instance_assignment -name IO_STANDARD $io_standard -to $port_name
@@ -46,9 +32,6 @@ proc trecap_pin {pin_name port_name {io_standard "3.3-V LVTTL"}} {
 }
 
 proc trecap_pullup {port_name} {
-    if {![trecap_qsf_port_exists $port_name]} {
-        return
-    }
     set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to $port_name
 }
 
@@ -195,3 +178,17 @@ trecap_pin PIN_AK2 ADC_SCLK
 # Designer/HPS integration document explicitly requires it.
 
 # End of constraints/de1soc/pin_assignments.tcl
+
+# Keep the asynchronous ADC input's first sampling register at its I/O cell.
+# The post-fit data-path gate retains the 10 ns input budget; this is a packing
+# request, not a timing exception or a guarantee of placement.
+set_instance_assignment -name FAST_INPUT_REGISTER ON -to {u_adc_wrapper|adc_dout_sync_q[0]}
+
+# Keep the three existing ADC output registers in their I/O cells. This requests
+# placement only; it adds no protocol stage and retains the full 0..5 ns
+# register-to-pad check, including the 3.3-V I/O buffer delay. Internal SCLK
+# feedback remains timed even if the Fitter uses a separate register copy.
+foreach adc_output_port {ADC_SCLK ADC_CS_N ADC_DIN} {
+    set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to $adc_output_port
+}
+unset adc_output_port

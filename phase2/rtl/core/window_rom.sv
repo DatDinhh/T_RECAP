@@ -9,12 +9,11 @@
 `default_nettype none
 
 module window_rom
-  import trecap_core_pkg::*;
 #(
-    parameter int unsigned DEPTH           = T_FFT_L,
+    parameter int unsigned DEPTH           = trecap_core_pkg::T_FFT_L,
     parameter int unsigned ADDR_W          = (DEPTH <= 1) ? 1 : $clog2(DEPTH),
-    parameter int unsigned DATA_W          = T_QW_W,
-    parameter string       INIT_FILE       = "artifacts/coefficients/window_qw.memh",
+    parameter int unsigned DATA_W          = trecap_core_pkg::T_QW_W,
+    parameter              INIT_FILE       = "artifacts/coefficients/window_qw.memh",
     parameter bit          REGISTER_OUTPUT = 1'b0
 ) (
     input  logic                    clk,
@@ -29,6 +28,8 @@ module window_rom
     output logic [DATA_W-1:0]       coeff_o,
     output logic                    addr_oob_o
 );
+  import trecap_core_pkg::*;
+
 
     localparam int unsigned DEPTH_SAFE = (DEPTH == 0) ? 1 : DEPTH;
     localparam logic [ADDR_W:0] DEPTH_LIMIT = DEPTH_SAFE;

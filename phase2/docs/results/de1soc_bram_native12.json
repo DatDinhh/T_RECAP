@@ -1,0 +1,952 @@
+{
+  "schema": "trecap_physical_implementation_result_v1",
+  "scope": "Source compilation, fitted resources, package pins and physical timing only; no functional simulation or board-operation claim.",
+  "run": "runs/quartus/windows/20260913-bram-12/fitter-io-02",
+  "completed_utc": "2026-09-14T03:52:18.1245587Z",
+  "tool_version": "20.1.1 Build 720 11/11/2020 SJ Standard Edition",
+  "device": "5CSEMA5F31C6",
+  "top_level": "de1_soc_trecap_top",
+  "profile": {
+    "path": "config/profiles/de1soc_bram_replay.json",
+    "sha256": "d179ecfea87c9fcac4d203e0e199f22979ceb714dca33b44faf8d3e2e653d583"
+  },
+  "provenance": {
+    "mapped_parent_run": "runs/quartus/windows/20260913-bram-12",
+    "pre_map_source_snapshot": {
+      "path": "runs/quartus/native-20260913/native12-maintained-source.json",
+      "sha256": "beafe64f484507747c4faf45dbbf163fff97a7c9350324ae66c8932d2e7083db",
+      "size_bytes": 118328
+    },
+    "pre_map_source_archive": {
+      "path": "runs/quartus/native-20260913/native12-maintained-source.zip",
+      "sha256": "976c8afe864cdc44d010d10dabc7fcb6fc78cf145601397f4cbda64511e64abe",
+      "size_bytes": 2645062
+    },
+    "rtl_and_filelist_entries_reused_unchanged": 91,
+    "fit_and_continuation_input_sha256": {
+      "constraints/de1soc/clocks.sdc": "beb5281474d1f6a02ea709ede7eca55b8f4da6fb04a5c61c2b0f4692b866ab62",
+      "constraints/de1soc/de1soc.qsf": "3e0d030b1a6c7f86655109d6ac06df4e4a4eb756407c1c34c41b52a65283d420",
+      "constraints/de1soc/de1soc.sdc": "c5d975dfbb13529fa1b2c6296f834b39ca1f7df9d8bbfb3e74f84bdd8eeaa49d",
+      "constraints/de1soc/hps_peripheral_io.tcl": "edd314814b81a68f1458e028bbfe99b9d7067d2853acca5f8640e7ff3c1ee0c3",
+      "constraints/de1soc/hps_peripheral_timing.sdc": "ad6c78e07e9a74c3c9f790fc03c0958ab9b9fc4ad702e78d33a592bc8ea642bc",
+      "constraints/de1soc/pin_assignments.tcl": "2ef78fb00ae90392a9fc80949336811516c82685627d3ceb39e5e373d6186743",
+      "platform/de1soc/quartus/trecap_de1soc.qsf": "e8ef7690c3b75c7f47f04ed637f231f38d79ab32424a86817ebadfc496091936",
+      "runs/quartus/windows/20260913-bram-12/hps_ddr_assignments.qsf": "5b5adec2679cccad9daca13fec9d76b6b4cd898e199fce77dc59a61cd086e0a5",
+      "runs/quartus/windows/20260913-bram-12/profile_parameters.qsf": "efb786e2fbc8df204e32d7e2df963a0b711add9e84206978273bb23db2389ea0",
+      "scripts/quartus/check_fitted_timing.tcl": "50ae70ed168c6758e130c2ea2e034a4f0a6a55dc419979d4cfeecbc6ebb2e480"
+    },
+    "source_identity_note": "Map provenance uses the pre-map archived source. I/O packing refit inputs were recorded before fit and rechecked by the post-fit continuation; current workspace bytes are not substituted."
+  },
+  "resources": {
+    "alms": {
+      "used": 20280,
+      "available": 32070,
+      "reported_percent": 63
+    },
+    "registers": 29115,
+    "pins": {
+      "used": 209,
+      "available": 457,
+      "reported_percent": 46
+    },
+    "ram_blocks": {
+      "used": 55,
+      "available": 397,
+      "reported_percent": 14
+    },
+    "block_memory_bits": {
+      "used": 368256,
+      "available": 4065280,
+      "reported_percent": 9
+    },
+    "dsp_blocks": {
+      "used": 36,
+      "available": 87,
+      "reported_percent": 41
+    }
+  },
+  "pins": {
+    "status": "PASS",
+    "checked_signal_bits": 209,
+    "groups": {
+      "hps_ddr": {
+        "expected": 72,
+        "passed": 72,
+        "failed": 0
+      },
+      "hps_peripheral": {
+        "expected": 55,
+        "passed": 55,
+        "failed": 0
+      },
+      "fpga": {
+        "expected": 82,
+        "passed": 82,
+        "failed": 0
+      }
+    }
+  },
+  "timing": {
+    "gate_status": "PASS",
+    "operating_conditions_checked": 4,
+    "failure_checks": [],
+    "corners": [
+      {
+        "corner": "Slow 1100mV 85C Model",
+        "global_slack_ns": {
+          "setup": {
+            "status": "PASS",
+            "value_ns": 1.73
+          },
+          "hold": {
+            "status": "PASS",
+            "value_ns": 0.055
+          },
+          "recovery": {
+            "status": "PASS",
+            "value_ns": 3.375
+          },
+          "removal": {
+            "status": "PASS",
+            "value_ns": 0.47
+          }
+        },
+        "clock_50_slack_ns": {
+          "setup": {
+            "status": "PASS",
+            "value_ns": 1.999
+          },
+          "hold": {
+            "status": "PASS",
+            "value_ns": 0.055
+          }
+        },
+        "adc_data_paths_ns": {
+          "ADC_SCLK": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 2.916
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 2.968
+            },
+            "required_range": [
+              0,
+              5
+            ]
+          },
+          "ADC_CS_N": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 2.887
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 2.938
+            },
+            "required_range": [
+              0,
+              5
+            ]
+          },
+          "ADC_DIN": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 2.882
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 2.929
+            },
+            "required_range": [
+              0,
+              5
+            ]
+          },
+          "ADC_DOUT": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 1.644
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 2.129
+            },
+            "required_range": [
+              0,
+              10
+            ]
+          }
+        },
+        "ddr_microtiming_margin_ns": {
+          "Address Command": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.603
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.587
+            }
+          },
+          "Bus Turnaround Time": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 3.333
+            },
+            "hold": {
+              "status": "ABSENT",
+              "value_ns": null
+            }
+          },
+          "Core": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 1.73
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.143
+            }
+          },
+          "Core Recovery/Removal": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 3.375
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.47
+            }
+          },
+          "DQS vs CK": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.627
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.314
+            }
+          },
+          "Postamble": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.488727656915
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.488727656915
+            }
+          },
+          "Read Capture": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.232875347143
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.185625347143
+            }
+          },
+          "Write": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.242756461915
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.242756461915
+            }
+          }
+        },
+        "clock_coverage": {
+          "unclassified_no_clock": {
+            "status": "PASS",
+            "count": 0
+          },
+          "invalid_generated_clock": {
+            "status": "PASS",
+            "count": 0
+          }
+        },
+        "max_skew_slack_ns": {
+          "status": "PASS",
+          "value_ns": 6.4
+        }
+      },
+      {
+        "corner": "Slow 1100mV 0C Model",
+        "global_slack_ns": {
+          "setup": {
+            "status": "PASS",
+            "value_ns": 1.727
+          },
+          "hold": {
+            "status": "PASS",
+            "value_ns": 0.054
+          },
+          "recovery": {
+            "status": "PASS",
+            "value_ns": 3.468
+          },
+          "removal": {
+            "status": "PASS",
+            "value_ns": 0.46
+          }
+        },
+        "clock_50_slack_ns": {
+          "setup": {
+            "status": "PASS",
+            "value_ns": 2.279
+          },
+          "hold": {
+            "status": "PASS",
+            "value_ns": 0.054
+          }
+        },
+        "adc_data_paths_ns": {
+          "ADC_SCLK": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 2.708
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 2.746
+            },
+            "required_range": [
+              0,
+              5
+            ]
+          },
+          "ADC_CS_N": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 2.678
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 2.716
+            },
+            "required_range": [
+              0,
+              5
+            ]
+          },
+          "ADC_DIN": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 2.669
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 2.707
+            },
+            "required_range": [
+              0,
+              5
+            ]
+          },
+          "ADC_DOUT": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 1.654
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 2.134
+            },
+            "required_range": [
+              0,
+              10
+            ]
+          }
+        },
+        "ddr_microtiming_margin_ns": {
+          "Address Command": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.59
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.585
+            }
+          },
+          "Bus Turnaround Time": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 3.36
+            },
+            "hold": {
+              "status": "ABSENT",
+              "value_ns": null
+            }
+          },
+          "Core": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 1.727
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.162
+            }
+          },
+          "Core Recovery/Removal": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 3.468
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.46
+            }
+          },
+          "DQS vs CK": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.633
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.353
+            }
+          },
+          "Postamble": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.475479375
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.475479375
+            }
+          },
+          "Read Capture": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.24927916
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.20202916
+            }
+          },
+          "Write": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.25373802
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.25373802
+            }
+          }
+        },
+        "clock_coverage": {
+          "unclassified_no_clock": {
+            "status": "PASS",
+            "count": 0
+          },
+          "invalid_generated_clock": {
+            "status": "PASS",
+            "count": 0
+          }
+        },
+        "max_skew_slack_ns": {
+          "status": "PASS",
+          "value_ns": 6.393
+        }
+      },
+      {
+        "corner": "Fast 1100mV 0C Model",
+        "global_slack_ns": {
+          "setup": {
+            "status": "PASS",
+            "value_ns": 2.11
+          },
+          "hold": {
+            "status": "PASS",
+            "value_ns": 0.051
+          },
+          "recovery": {
+            "status": "PASS",
+            "value_ns": 3.825
+          },
+          "removal": {
+            "status": "PASS",
+            "value_ns": 0.272
+          }
+        },
+        "clock_50_slack_ns": {
+          "setup": {
+            "status": "PASS",
+            "value_ns": 10.386
+          },
+          "hold": {
+            "status": "PASS",
+            "value_ns": 0.051
+          }
+        },
+        "adc_data_paths_ns": {
+          "ADC_SCLK": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 1.94
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 1.958
+            },
+            "required_range": [
+              0,
+              5
+            ]
+          },
+          "ADC_CS_N": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 1.91
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 1.928
+            },
+            "required_range": [
+              0,
+              5
+            ]
+          },
+          "ADC_DIN": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 1.918
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 1.932
+            },
+            "required_range": [
+              0,
+              5
+            ]
+          },
+          "ADC_DOUT": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 0.754
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 1.53
+            },
+            "required_range": [
+              0,
+              10
+            ]
+          }
+        },
+        "ddr_microtiming_margin_ns": {
+          "Address Command": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.597
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.676
+            }
+          },
+          "Bus Turnaround Time": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 3.482
+            },
+            "hold": {
+              "status": "ABSENT",
+              "value_ns": null
+            }
+          },
+          "Core": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 2.11
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.077
+            }
+          },
+          "Core Recovery/Removal": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 3.825
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.473
+            }
+          },
+          "DQS vs CK": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.687
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.478
+            }
+          },
+          "Postamble": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.596110375
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.596110375
+            }
+          },
+          "Read Capture": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.37045775
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.32320775
+            }
+          },
+          "Write": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.326096
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.326096
+            }
+          }
+        },
+        "clock_coverage": {
+          "unclassified_no_clock": {
+            "status": "PASS",
+            "count": 0
+          },
+          "invalid_generated_clock": {
+            "status": "PASS",
+            "count": 0
+          }
+        },
+        "max_skew_slack_ns": {
+          "status": "PASS",
+          "value_ns": 7.459
+        }
+      },
+      {
+        "corner": "Fast 1100mV 85C Model",
+        "global_slack_ns": {
+          "setup": {
+            "status": "PASS",
+            "value_ns": 2.11
+          },
+          "hold": {
+            "status": "PASS",
+            "value_ns": 0.048
+          },
+          "recovery": {
+            "status": "PASS",
+            "value_ns": 3.727
+          },
+          "removal": {
+            "status": "PASS",
+            "value_ns": 0.306
+          }
+        },
+        "clock_50_slack_ns": {
+          "setup": {
+            "status": "PASS",
+            "value_ns": 9.32
+          },
+          "hold": {
+            "status": "PASS",
+            "value_ns": 0.048
+          }
+        },
+        "adc_data_paths_ns": {
+          "ADC_SCLK": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 2.137
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 2.164
+            },
+            "required_range": [
+              0,
+              5
+            ]
+          },
+          "ADC_CS_N": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 2.107
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 2.134
+            },
+            "required_range": [
+              0,
+              5
+            ]
+          },
+          "ADC_DIN": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 2.128
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 2.15
+            },
+            "required_range": [
+              0,
+              5
+            ]
+          },
+          "ADC_DOUT": {
+            "minimum": {
+              "status": "PASS",
+              "value_ns": 0.788
+            },
+            "maximum": {
+              "status": "PASS",
+              "value_ns": 1.517
+            },
+            "required_range": [
+              0,
+              10
+            ]
+          }
+        },
+        "ddr_microtiming_margin_ns": {
+          "Address Command": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.629
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.642
+            }
+          },
+          "Bus Turnaround Time": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 3.469
+            },
+            "hold": {
+              "status": "ABSENT",
+              "value_ns": null
+            }
+          },
+          "Core": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 2.11
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.084
+            }
+          },
+          "Core Recovery/Removal": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 3.727
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.497
+            }
+          },
+          "DQS vs CK": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.69
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.45
+            }
+          },
+          "Postamble": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.590804375
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.590804375
+            }
+          },
+          "Read Capture": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.36966525
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.32241525
+            }
+          },
+          "Write": {
+            "setup": {
+              "status": "PASS",
+              "value_ns": 0.3117615
+            },
+            "hold": {
+              "status": "PASS",
+              "value_ns": 0.3117615
+            }
+          }
+        },
+        "clock_coverage": {
+          "unclassified_no_clock": {
+            "status": "PASS",
+            "count": 0
+          },
+          "invalid_generated_clock": {
+            "status": "PASS",
+            "count": 0
+          }
+        },
+        "max_skew_slack_ns": {
+          "status": "PASS",
+          "value_ns": 7.126
+        }
+      }
+    ]
+  },
+  "image": {
+    "assembler_exit_code": 0,
+    "fresh_sof_produced": false,
+    "evaluation_mode_warning_292011": true,
+    "programming_performed": false,
+    "limitation": "Assembler emitted no fresh SOF; Evaluation Mode/license restriction remains."
+  },
+  "continuation_status": "incomplete_no_sof",
+  "stage_exit_codes": {
+    "fitted-pins": 0,
+    "quartus-asm": 0,
+    "quartus-sta": 0,
+    "fitted-timing-gate": 0
+  },
+  "raw_evidence": [
+    {
+      "path": "runs/quartus/native-20260913/native12-maintained-source.json",
+      "sha256": "beafe64f484507747c4faf45dbbf163fff97a7c9350324ae66c8932d2e7083db",
+      "size_bytes": 118328
+    },
+    {
+      "path": "runs/quartus/native-20260913/native12-maintained-source.zip",
+      "sha256": "976c8afe864cdc44d010d10dabc7fcb6fc78cf145601397f4cbda64511e64abe",
+      "size_bytes": 2645062
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/build_manifest.json",
+      "sha256": "1ffc9c2f2c1c4f4be6ff45dc078aef3919938814a5e321a5bc6a60e915d639fc",
+      "size_bytes": 14542
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/fitter-io-02/manifest.json",
+      "sha256": "87ce793088ac3acd2bd3175e40f81e0b207bfc2a4f7e74002877f7e311f042fd",
+      "size_bytes": 1806
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/fitted-pins.log",
+      "sha256": "3ea919f826667c2fbca702b01949dfee2a135e375e5691014458a0ff81bedfaa",
+      "size_bytes": 148
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/fitted-timing-gate.log",
+      "sha256": "6f59371a92cc237e44ca03506f7a1dd9edd604e709d348cf41de735c2bb23e6b",
+      "size_bytes": 844891
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/fitted-timing/corner_001_ddr_summary.csv",
+      "sha256": "34cb677c543ee5dca04a20858cdccf91653ea5a7a716cf3247932e16828bcbc0",
+      "size_bytes": 564
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/fitted-timing/corner_002_ddr_summary.csv",
+      "sha256": "7be59481e799799dd8921bb31c2ab1f450df0e815d541e20b6ae8702d1c21e90",
+      "size_bytes": 400
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/fitted-timing/corner_003_ddr_summary.csv",
+      "sha256": "73ee01c30fdb2ac8f89b3442041068ac6bcc73716d5c84a1706c717cbac89975",
+      "size_bytes": 401
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/fitted-timing/corner_004_ddr_summary.csv",
+      "sha256": "3cdc0443d099e3c35e093fbb2934eaa73265a7d837db3634a454d3dee31cd487",
+      "size_bytes": 407
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/fitted-timing/fitted_timing.tsv",
+      "sha256": "c8ef51b0c6b76b0e6376ba564f3a6575db676cc09bb096989f79c68f8bd610c6",
+      "size_bytes": 57448
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/fitted_pins.json",
+      "sha256": "56f25aa768a7b5d8cc19eb27e1f6695d1af6a79bf0aae62df746c9c9e3e98343",
+      "size_bytes": 107053
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/implementation-reports/trecap_de1soc.fit.rpt",
+      "sha256": "275b664716ed11b226c976dc8145d8f24205df7351705c05921cd390478232c7",
+      "size_bytes": 5687135
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/implementation-reports/trecap_de1soc.fit.summary",
+      "sha256": "e6ec5c8ad5b5b76b5b0bac698a75dfd9c917ad85a474c5feea9a002dbd702a4b",
+      "size_bytes": 715
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/implementation-reports/trecap_de1soc.pin",
+      "sha256": "2bf2515c11dc8400cc0b7eec4561d781089bf5d963385b869ad916f8cd02bda2",
+      "size_bytes": 105537
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/quartus-asm.log",
+      "sha256": "d3d90e60ecd9ae55a5c79e2a1c9ba06bd799cefdd85fb8a42abdb6d8e37fcbdc",
+      "size_bytes": 2063
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/quartus-sta.log",
+      "sha256": "2b7612f94b2bf12d35ca737bd208925b2ca469d93bdf5a89f931c436af410b78",
+      "size_bytes": 258353
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/recovery_manifest.json",
+      "sha256": "5895862982f7932bd59825d635b4adec7abac5c9075f5f60945644a880e8274b",
+      "size_bytes": 80373
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/implementation-reports/trecap_de1soc.map.rpt",
+      "sha256": "f129de9d47b94e1458538ab56080d8a9fbb18de3580bc0bb085120f1cbc4b63f",
+      "size_bytes": 4937032
+    },
+    {
+      "path": "runs/quartus/windows/20260913-bram-12/quartus-map.log",
+      "sha256": "bc87849a308b75d715fdab10b26d13f9000173e212fb87c7c7e481321e11f2ef",
+      "size_bytes": 514513
+    }
+  ]
+}

@@ -39,10 +39,6 @@
 //   64  uint32 packet_fifo_drop_count
 //   68  uint32 reserved
 module trecap_status_packetizer
-  import trecap_core_pkg::*;
-  import trecap_csr_pkg::*;
-  import trecap_packet_pkg::*;
-  import trecap_iface_pkg::*;
 #(
     parameter int unsigned PAYLOAD_DATA_W = 32,
     parameter int unsigned PAYLOAD_KEEP_W = (PAYLOAD_DATA_W + 7) / 8
@@ -54,7 +50,7 @@ module trecap_status_packetizer
 
     input  logic                       enable_i,
     input  logic                       status_tick_i,
-    input  trecap_hps_bridge_ctrl_t    ctrl_i,
+    input  trecap_iface_pkg::trecap_hps_bridge_ctrl_t    ctrl_i,
     input  logic [63:0]                core_sample_count_i,
     input  logic [63:0]                core_frame_count_i,
     input  logic [31:0]                sample_rate_hz_i,
@@ -66,13 +62,18 @@ module trecap_status_packetizer
 
     output logic                       out_valid_o,
     input  logic                       out_ready_i,
-    output trecap_record_meta_t        out_meta_o,
+    output trecap_iface_pkg::trecap_record_meta_t        out_meta_o,
     output logic [PAYLOAD_DATA_W-1:0]  out_payload_data_o,
     output logic [PAYLOAD_KEEP_W-1:0]  out_payload_keep_o,
     output logic                       out_payload_last_o,
 
     output logic                       drop_pulse_o
 );
+  import trecap_core_pkg::*;
+  import trecap_csr_pkg::*;
+  import trecap_packet_pkg::*;
+  import trecap_iface_pkg::*;
+
 
     localparam int unsigned PAYLOAD_BYTE_W = PAYLOAD_KEEP_W;
     localparam int unsigned STATUS_BYTES   = TPKT_PAYLOAD_STATUS_BYTES;
@@ -217,7 +218,10 @@ module trecap_status_packetizer
 
     always_comb begin
         out_valid_o = !formatter_reset_i && (state_q == ST_EMIT);
-        out_meta_o = out_valid_o ? meta_q : '0;
+        // Inactive fields are don't-care; consumers transact only when valid.
+        // Keep valid/flush gating out of downstream payload-size arithmetic.
+        out_meta_o = meta_q;
+        out_meta_o.valid = out_valid_o && meta_q.valid;
         out_payload_data_o = '0;
         out_payload_keep_o = '0;
         out_payload_last_o = 1'b0;

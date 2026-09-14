@@ -696,11 +696,16 @@ def check_csr_contract(
 
     c_header = read_text(root, C_HEADER_REL, errors)
     sv_header = read_text(root, SV_HEADER_REL, errors)
+    # Accept the former stdint macro and the kernel-compatible unsigned
+    # literal spelling. Match a complete definition so expressions cannot be
+    # mistaken for a plain register offset.
     c_offsets = {
-        name: int(value, 16)
-        for name, value in re.findall(
-            r"#define\s+TCSR_([A-Z0-9_]+)_OFFSET\s+UINT32_C\(0x([0-9a-fA-F]+)\)",
+        name: int(legacy_value or unsigned_value, 16)
+        for name, legacy_value, unsigned_value in re.findall(
+            r"^[ \t]*#define[ \t]+TCSR_([A-Z0-9_]+)_OFFSET[ \t]+"
+            r"(?:UINT32_C\(0x([0-9a-fA-F]+)\)|0x([0-9a-fA-F]+)[uU])[ \t]*$",
             c_header,
+            flags=re.MULTILINE,
         )
     }
     sv_offsets = {
@@ -908,6 +913,12 @@ def check_blueprint(root: Path, address_map: Mapping[str, Any], errors: list[str
         EXPECTED_EXPORTS["h2f_reset"]: EXPECTED_INTERNAL_INTERFACES["h2f_reset"],
         EXPECTED_EXPORTS["hps_io"]: EXPECTED_INTERNAL_INTERFACES["hps_io"],
         EXPECTED_EXPORTS["hps_memory"]: EXPECTED_INTERNAL_INTERFACES["hps_memory"],
+        # Enabled HPS preset inputs are exported and tied inactive by the
+        # wrapper. They do not add address regions to the frozen memory map.
+        "hps_f2h_cold_reset_req": "hps_0.f2h_cold_reset_req",
+        "hps_f2h_debug_reset_req": "hps_0.f2h_debug_reset_req",
+        "hps_f2h_warm_reset_req": "hps_0.f2h_warm_reset_req",
+        "hps_f2h_stm_hw_events": "hps_0.f2h_stm_hw_events",
     }
     require_equal(errors, "blueprint export/internal map", exports, expected_export_internal)
     clocks = {

@@ -37,11 +37,6 @@
 //   sample/frame/FFT/IFFT/WOLA/metrics logic. A packetizer that cannot buffer an event must drop
 //   that telemetry event and increment PACKET_FIFO_DROP_COUNT through the telemetry top.
 module trecap_packet_scheduler
-  import trecap_core_pkg::*;
-  import trecap_csr_pkg::*;
-  import trecap_packet_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_build_pkg::*;
 #(
     parameter bit STATUS_PREEMPTS_WHEN_IDLE = 1'b1
 ) (
@@ -53,32 +48,32 @@ module trecap_packet_scheduler
 
     input  logic                telemetry_enable_i,
     input  logic [31:0]         packet_enable_i,
-    input  trecap_spec_mode_e   spec_mode_i,
+    input  trecap_iface_pkg::trecap_spec_mode_e   spec_mode_i,
 
     input  logic                wave_valid_i,
     output logic                wave_ready_o,
-    input  trecap_record_meta_t wave_meta_i,
+    input  trecap_iface_pkg::trecap_record_meta_t wave_meta_i,
     input  logic                wave_payload_last_i,
 
     input  logic                spec_valid_i,
     output logic                spec_ready_o,
-    input  trecap_record_meta_t spec_meta_i,
+    input  trecap_iface_pkg::trecap_record_meta_t spec_meta_i,
     input  logic                spec_payload_last_i,
 
     input  logic                metrics_valid_i,
     output logic                metrics_ready_o,
-    input  trecap_record_meta_t metrics_meta_i,
+    input  trecap_iface_pkg::trecap_record_meta_t metrics_meta_i,
     input  logic                metrics_payload_last_i,
 
     input  logic                status_valid_i,
     output logic                status_ready_o,
-    input  trecap_record_meta_t status_meta_i,
+    input  trecap_iface_pkg::trecap_record_meta_t status_meta_i,
     input  logic                status_payload_last_i,
 
     output logic                out_valid_o,
     input  logic                out_ready_i,
     output logic [3:0]          out_sel_onehot_o,
-    output trecap_record_meta_t out_meta_o,
+    output trecap_iface_pkg::trecap_record_meta_t out_meta_o,
 
     // Per-candidate terminal drain events preserve exact drop counting when multiple disabled or
     // malformed records complete local draining on the same clock. Bit order is
@@ -89,6 +84,12 @@ module trecap_packet_scheduler
     output logic                illegal_candidate_drop_o,
     output logic                scheduler_backpressure_o
 );
+  import trecap_core_pkg::*;
+  import trecap_csr_pkg::*;
+  import trecap_packet_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_build_pkg::*;
+
 
     typedef enum logic [2:0] {
         SEL_NONE    = 3'd0,

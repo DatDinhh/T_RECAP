@@ -15,12 +15,13 @@
 //   * The upstream scheduler provides one payload beat stream per record.
 //   * in_meta_i is sampled on the first accepted beat and must describe the full record.
 //   * Payload bytes are packed according to in_payload_keep_i, low byte first.
-//   * The FIFO captures the full record into a temporary buffer and admits it atomically at the
+//   * The FIFO captures the full record into a reserved RAM slot and admits it atomically at the
 //     record boundary. Malformed or oversized records are drained and counted as one drop.
 //
 // Output side:
 //   * The HPS-bridge record builder sees a ready/valid byte stream with metadata stable for all
-//     beats of one record.
+//     valid beats of one record. When out_valid_o is low, out_meta_o.valid is low and the other
+//     metadata fields are inactive values from the output register; consumers must ignore them.
 //   * No DDR header, sequence allocation, 64-byte padding, WRAP marker, Avalon, HPS, or UDP logic
 //     is implemented here; those belong in rtl/hps_bridge/ and sw/hps/.
 //
@@ -32,14 +33,11 @@
 //   * The output head is not evictable while it is being presented to the downstream ready/valid
 //     interface, preserving output stability.
 module trecap_packet_fifo
-  import trecap_packet_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_build_pkg::*;
 #(
     parameter int unsigned PAYLOAD_DATA_W    = 32,
     parameter int unsigned PAYLOAD_KEEP_W    = (PAYLOAD_DATA_W + 7) / 8,
     parameter int unsigned RECORD_DEPTH      = 8,
-    parameter int unsigned PAYLOAD_BYTES_MAX = TPKT_UDP_MAX_BYTES
+    parameter int unsigned PAYLOAD_BYTES_MAX = trecap_packet_pkg::TPKT_UDP_MAX_BYTES
 ) (
     input  logic                       clk,
     input  logic                       rst_n,
@@ -49,14 +47,14 @@ module trecap_packet_fifo
 
     input  logic                       in_valid_i,
     output logic                       in_ready_o,
-    input  trecap_record_meta_t        in_meta_i,
+    input  trecap_iface_pkg::trecap_record_meta_t        in_meta_i,
     input  logic [PAYLOAD_DATA_W-1:0]  in_payload_data_i,
     input  logic [PAYLOAD_KEEP_W-1:0]  in_payload_keep_i,
     input  logic                       in_payload_last_i,
 
     output logic                       out_valid_o,
     input  logic                       out_ready_i,
-    output trecap_record_meta_t        out_meta_o,
+    output trecap_iface_pkg::trecap_record_meta_t        out_meta_o,
     output logic [PAYLOAD_DATA_W-1:0]  out_payload_data_o,
     output logic [PAYLOAD_KEEP_W-1:0]  out_payload_keep_o,
     output logic                       out_payload_last_o,
@@ -65,60 +63,84 @@ module trecap_packet_fifo
     output logic                       full_o,
     output logic                       overflow_sticky_o
 );
+  import trecap_packet_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_build_pkg::*;
+
 
     localparam int unsigned BEAT_BYTES = PAYLOAD_KEEP_W;
     localparam int unsigned STORE_BYTES = (PAYLOAD_BYTES_MAX < 1) ? 1 : PAYLOAD_BYTES_MAX;
-    localparam int unsigned STORE_W = STORE_BYTES * 8;
+    localparam int unsigned WORDS_PER_SLOT = (STORE_BYTES + BEAT_BYTES - 1) / BEAT_BYTES;
+    localparam int unsigned SLOT_COUNT = RECORD_DEPTH + 1;
+    localparam int unsigned SLOT_W = (SLOT_COUNT <= 1) ? 1 : $clog2(SLOT_COUNT);
+    localparam int unsigned STORE_WORDS = SLOT_COUNT * WORDS_PER_SLOT;
+    localparam int unsigned RAM_ADDR_W = (STORE_WORDS <= 1) ? 1 : $clog2(STORE_WORDS);
     localparam int unsigned COUNT_W = (RECORD_DEPTH <= 1) ? 1 : $clog2(RECORD_DEPTH + 1);
     localparam int unsigned IDX_W = (RECORD_DEPTH <= 1) ? 1 : $clog2(RECORD_DEPTH);
-    localparam int unsigned LEN_W = (STORE_BYTES <= 1) ? 1 : $clog2(STORE_BYTES + 1);
-    localparam logic [15:0] BEAT_BYTES_U16 = BEAT_BYTES;
-    localparam logic [15:0] STORE_BYTES_U16 = (STORE_BYTES > 65535) ? 16'hffff : STORE_BYTES;
-    localparam logic [COUNT_W-1:0] RECORD_DEPTH_COUNT = RECORD_DEPTH;
-
-    typedef logic [STORE_W-1:0] payload_store_t;
+    localparam logic [15:0] BEAT_BYTES_U16 = 16'(BEAT_BYTES);
+    localparam logic [COUNT_W-1:0] RECORD_DEPTH_COUNT = COUNT_W'(RECORD_DEPTH);
 
     typedef enum logic [1:0] {
-        FSTATE_IDLE    = 2'd0,
-        FSTATE_CAPTURE = 2'd1,
-        FSTATE_ADMIT   = 2'd2
+        FSTATE_IDLE, FSTATE_CAPTURE, FSTATE_ADMIT
     } fifo_state_e;
-
     fifo_state_e fifo_state_q;
 
+    // One flat simple-dual-port M10K payload store: RECORD_DEPTH resident
+    // slots plus one reserved capture slot. Admission and eviction move only
+    // metadata/slot identifiers; no record payload is copied or shifted.
+    (* ramstyle = "M10K" *) logic [PAYLOAD_DATA_W-1:0] payload_mem [0:STORE_WORDS-1];
+    logic [PAYLOAD_DATA_W-1:0] payload_read_q;
+    logic [SLOT_COUNT-1:0] slot_used_q;
+    logic free_slot_valid;
+    logic [SLOT_W-1:0] free_slot;
+    logic [SLOT_W-1:0] tmp_slot_q;
+    logic [SLOT_W-1:0] q_slot [RECORD_DEPTH];
     trecap_record_meta_t q_meta [RECORD_DEPTH];
-    logic [15:0]         q_payload_len [RECORD_DEPTH];
-    payload_store_t      q_payload [RECORD_DEPTH];
-    logic [COUNT_W-1:0]  q_count_q;
+    logic [15:0] q_payload_len [RECORD_DEPTH];
+    logic [COUNT_W-1:0] q_count_q;
 
     trecap_record_meta_t tmp_meta_q;
-    logic [15:0]         tmp_payload_len_q;
-    payload_store_t      tmp_payload_q;
-    logic                tmp_bad_q;
+    logic [15:0] tmp_payload_len_q;
+    logic tmp_bad_q;
+    logic input_accept;
+    logic [15:0] input_beat_bytes;
+    logic [15:0] input_byte_offset;
+    logic [16:0] input_total_bytes;
+    logic input_store_enable;
+    logic [RAM_ADDR_W-1:0] input_store_addr;
 
-    logic [15:0]         out_offset_q;
+    logic [15:0] out_offset_q;
+    logic output_read_request;
+    logic [15:0] output_read_offset;
+    logic [RAM_ADDR_W-1:0] output_read_addr;
+    logic output_read_pending_q;
+    trecap_record_meta_t read_meta_q;
+    logic [PAYLOAD_KEEP_W-1:0] read_keep_q;
+    logic read_last_q;
+    logic output_valid_q;
+    trecap_record_meta_t output_meta_q;
+    logic [PAYLOAD_DATA_W-1:0] output_data_q;
+    logic [PAYLOAD_KEEP_W-1:0] output_keep_q;
+    logic output_last_q;
+    logic output_accept;
+    logic output_last_accept;
+    logic [15:0] output_beat_bytes;
 
-    logic [RECORD_DEPTH-1:0]              resident_valid;
-    logic [RECORD_DEPTH-1:0]              resident_evictable;
-    logic [(RECORD_DEPTH*2)-1:0]          resident_priority_flat;
-
-    logic                                 tmp_meta_legal;
-    logic                                 tmp_malformed;
-    logic [1:0]                           tmp_priority;
-    logic                                 storage_available;
-    logic                                 dropper_admit;
-    logic                                 dropper_admit_without_evict;
-    logic                                 dropper_admit_with_evict;
-    logic                                 dropper_evict_valid;
-    logic [IDX_W-1:0]                     dropper_evict_index;
-    logic [1:0]                           dropper_evict_priority;
-    logic                                 dropper_drop_incoming;
-    logic                                 dropper_lower_priority_available;
-
-    logic                                 output_accept;
-    logic                                 output_last_accept;
-    logic [15:0]                          output_beat_bytes;
-
+    logic [RECORD_DEPTH-1:0] resident_valid;
+    logic [RECORD_DEPTH-1:0] resident_evictable;
+    logic [(RECORD_DEPTH*2)-1:0] resident_priority_flat;
+    logic tmp_meta_legal;
+    logic tmp_malformed;
+    logic [1:0] tmp_priority;
+    logic storage_available;
+    logic dropper_admit;
+    logic dropper_admit_without_evict;
+    logic dropper_admit_with_evict;
+    logic dropper_evict_valid;
+    logic [IDX_W-1:0] dropper_evict_index;
+    logic [1:0] dropper_evict_priority;
+    logic dropper_drop_incoming;
+    logic dropper_lower_priority_available;
     function automatic logic [15:0] count_keep_bytes(input logic [PAYLOAD_KEEP_W-1:0] keep);
         logic [15:0] count;
 
@@ -162,30 +184,6 @@ module trecap_packet_fifo
         end
         return 1'b1;
     endfunction : beat_keep_legal
-
-    function automatic payload_store_t insert_payload_beat(
-        input payload_store_t                  current_payload,
-        input logic [15:0]                     byte_offset,
-        input logic [PAYLOAD_DATA_W-1:0]       beat_data,
-        input logic [PAYLOAD_KEEP_W-1:0]       beat_keep
-    );
-        payload_store_t next_payload;
-        int unsigned write_count;
-        int unsigned target_index;
-
-        next_payload = current_payload;
-        write_count = 0;
-        for (int unsigned i = 0; i < PAYLOAD_KEEP_W; i++) begin
-            if (beat_keep[i]) begin
-                target_index = int'(byte_offset) + write_count;
-                if (target_index < STORE_BYTES) begin
-                    next_payload[(target_index * 8) +: 8] = beat_data[(i * 8) +: 8];
-                end
-                write_count++;
-            end
-        end
-        return next_payload;
-    endfunction : insert_payload_beat
 
     function automatic bit meta_legal_for_fifo(
         input trecap_record_meta_t meta,
@@ -235,28 +233,6 @@ module trecap_packet_fifo
         return fixed;
     endfunction : sanitized_meta
 
-    function automatic logic [15:0] min_u16(input logic [15:0] a, input logic [15:0] b);
-        return (a < b) ? a : b;
-    endfunction : min_u16
-
-    function automatic logic [PAYLOAD_DATA_W-1:0] payload_data_at(
-        input payload_store_t payload,
-        input logic [15:0]    offset,
-        input logic [15:0]    payload_len
-    );
-        logic [PAYLOAD_DATA_W-1:0] data;
-        int unsigned source_index;
-
-        data = '0;
-        for (int unsigned i = 0; i < PAYLOAD_KEEP_W; i++) begin
-            source_index = int'(offset) + i;
-            if (source_index < int'(payload_len)) begin
-                data[(i * 8) +: 8] = payload[(source_index * 8) +: 8];
-            end
-        end
-        return data;
-    endfunction : payload_data_at
-
     function automatic logic [PAYLOAD_KEEP_W-1:0] payload_keep_at(
         input logic [15:0] offset,
         input logic [15:0] payload_len
@@ -274,32 +250,79 @@ module trecap_packet_fifo
         return keep;
     endfunction : payload_keep_at
 
-    assign in_ready_o = !flush_i &&
-                        ((fifo_state_q == FSTATE_IDLE) || (fifo_state_q == FSTATE_CAPTURE));
-    assign storage_available = (q_count_q < RECORD_DEPTH_COUNT);
-    assign full_o = !flush_i && !storage_available;
+    function automatic logic [RAM_ADDR_W-1:0] slot_word_address(
+        input logic [SLOT_W-1:0] slot,
+        input logic [15:0] byte_offset
+    );
+        return RAM_ADDR_W'(int'(slot) * WORDS_PER_SLOT + int'(byte_offset) / BEAT_BYTES);
+    endfunction
 
-    assign out_valid_o = !flush_i && (q_count_q != '0);
-    assign out_meta_o = out_valid_o ? q_meta[0] : '0;
-    assign out_payload_data_o = out_valid_o ? payload_data_at(q_payload[0], out_offset_q, q_payload_len[0]) : '0;
-    assign out_payload_keep_o = out_valid_o ? payload_keep_at(out_offset_q, q_payload_len[0]) : '0;
-    assign out_payload_last_o = out_valid_o ? ((q_payload_len[0] - out_offset_q) <= BEAT_BYTES_U16) : 1'b0;
-    assign output_beat_bytes = out_valid_o ? min_u16(BEAT_BYTES_U16, q_payload_len[0] - out_offset_q) : 16'd0;
+    always_comb begin
+        free_slot_valid = 1'b0;
+        free_slot = '0;
+        for (int unsigned i = 0; i < SLOT_COUNT; i++) begin
+            if (!slot_used_q[i] && !free_slot_valid) begin
+                free_slot_valid = 1'b1;
+                free_slot = SLOT_W'(i);
+            end
+        end
+    end
+
+    assign in_ready_o = rst_n && !flush_i &&
+                        (((fifo_state_q == FSTATE_IDLE) && free_slot_valid) ||
+                         (fifo_state_q == FSTATE_CAPTURE));
+    assign input_accept = in_valid_i && in_ready_o;
+    assign input_beat_bytes = count_keep_bytes(in_payload_keep_i);
+    assign input_byte_offset = (fifo_state_q == FSTATE_IDLE) ? 16'd0 : tmp_payload_len_q;
+    assign input_total_bytes = {1'b0, input_byte_offset} + {1'b0, input_beat_bytes};
+    assign input_store_enable = input_accept &&
+                                ((fifo_state_q == FSTATE_IDLE) || !tmp_bad_q) &&
+                                beat_keep_legal(in_payload_keep_i, in_payload_last_i) &&
+                                (input_total_bytes <= STORE_BYTES);
+    assign input_store_addr = slot_word_address(
+        (fifo_state_q == FSTATE_IDLE) ? free_slot : tmp_slot_q, input_byte_offset);
+    assign storage_available = (q_count_q < RECORD_DEPTH_COUNT);
+    assign full_o = rst_n && !flush_i && !storage_available;
+
+    assign out_valid_o = rst_n && !flush_i && output_valid_q;
+    // Keep late flush/valid control out of downstream payload-length arithmetic. Only the
+    // validity field is qualified; inactive metadata cannot authorize a record transaction.
+    always_comb begin
+        out_meta_o = output_meta_q;
+        out_meta_o.valid = out_valid_o && output_meta_q.valid;
+    end
+    assign out_payload_data_o = out_valid_o ? output_data_q : '0;
+    assign out_payload_keep_o = out_valid_o ? output_keep_q : '0;
+    assign out_payload_last_o = out_valid_o && output_last_q;
+    assign output_beat_bytes = count_keep_bytes(output_keep_q);
     assign output_accept = out_valid_o && out_ready_i;
-    assign output_last_accept = output_accept && out_payload_last_o;
+    assign output_last_accept = output_accept && output_last_q;
+
+    // A RAM read reserves the output register before it can stall. A nonlast
+    // accepted beat can issue its successor on the same edge. The queue head
+    // stays protected during both read latency and downstream backpressure.
+    assign output_read_request = rst_n && !flush_i && (q_count_q != '0) &&
+                                 !output_read_pending_q &&
+                                 (!output_valid_q || (output_accept && !output_last_q));
+    assign output_read_offset = output_valid_q
+                                ? out_offset_q + output_beat_bytes : out_offset_q;
+    assign output_read_addr = slot_word_address(q_slot[0], output_read_offset);
+
+    always_ff @(posedge clk) begin : p_payload_storage
+        if (input_store_enable) payload_mem[input_store_addr] <= in_payload_data_i;
+        if (output_read_request) payload_read_q <= payload_mem[output_read_addr];
+    end
 
     always_comb begin
         for (int unsigned i = 0; i < RECORD_DEPTH; i++) begin
             resident_valid[i] = (i < q_count_q);
-            resident_evictable[i] = resident_valid[i] && !(out_valid_o && (i == 0));
+            resident_evictable[i] = resident_valid[i] && (i != 0);
             resident_priority_flat[(i * 2) +: 2] = q_meta[i].drop_priority;
         end
     end
-
     assign tmp_meta_legal = meta_legal_for_fifo(tmp_meta_q, tmp_payload_len_q);
     assign tmp_malformed = tmp_bad_q || !tmp_meta_legal;
     assign tmp_priority = trecap_packet_drop_priority(tmp_meta_q.packet_type);
-
     trecap_priority_dropper #(
         .RECORD_DEPTH(RECORD_DEPTH),
         .PRIORITY_W(2)
@@ -321,142 +344,147 @@ module trecap_packet_fifo
         .lower_priority_available_o(dropper_lower_priority_available)
     );
 
-    always_ff @(posedge clk or negedge rst_n) begin
+    always_ff @(posedge clk or negedge rst_n) begin : p_packet_fifo
         if (!rst_n) begin
             fifo_state_q <= FSTATE_IDLE;
+            slot_used_q <= '0;
             q_count_q <= '0;
-            out_offset_q <= 16'd0;
+            tmp_slot_q <= '0;
             tmp_meta_q <= '0;
-            tmp_payload_len_q <= 16'd0;
-            tmp_payload_q <= '0;
+            tmp_payload_len_q <= '0;
             tmp_bad_q <= 1'b0;
+            out_offset_q <= '0;
+            output_read_pending_q <= 1'b0;
+            read_meta_q <= '0;
+            read_keep_q <= '0;
+            read_last_q <= 1'b0;
+            output_valid_q <= 1'b0;
+            output_meta_q <= '0;
+            output_data_q <= '0;
+            output_keep_q <= '0;
+            output_last_q <= 1'b0;
             drop_pulse_o <= 1'b0;
             overflow_sticky_o <= 1'b0;
-
             for (int unsigned i = 0; i < RECORD_DEPTH; i++) begin
                 q_meta[i] <= '0;
-                q_payload_len[i] <= 16'd0;
-                q_payload[i] <= '0;
+                q_payload_len[i] <= '0;
+                q_slot[i] <= '0;
             end
         end else if (flush_i) begin
+            // Slot ownership and response validity define the epoch. RAM is
+            // deliberately untouched; a slot is published only after all of
+            // its declared payload bytes have been written in the new epoch.
             fifo_state_q <= FSTATE_IDLE;
+            slot_used_q <= '0;
             q_count_q <= '0;
-            out_offset_q <= 16'd0;
+            tmp_slot_q <= '0;
             tmp_meta_q <= '0;
-            tmp_payload_len_q <= 16'd0;
-            tmp_payload_q <= '0;
+            tmp_payload_len_q <= '0;
             tmp_bad_q <= 1'b0;
+            out_offset_q <= '0;
+            output_read_pending_q <= 1'b0;
+            output_valid_q <= 1'b0;
+            output_meta_q <= '0;
+            output_data_q <= '0;
+            output_keep_q <= '0;
+            output_last_q <= 1'b0;
             drop_pulse_o <= 1'b0;
             overflow_sticky_o <= 1'b0;
-
-            for (int unsigned i = 0; i < RECORD_DEPTH; i++) begin
-                q_meta[i] <= '0;
-                q_payload_len[i] <= 16'd0;
-                q_payload[i] <= '0;
-            end
         end else begin
             drop_pulse_o <= 1'b0;
-
-            // Downstream consumption. This block owns output record stability; record eviction never
-            // targets queue entry 0 while out_valid_o is asserted.
             if (output_accept) begin
-                if (out_payload_last_o) begin
+                output_valid_q <= 1'b0;
+                if (output_last_q) begin
+                    slot_used_q[q_slot[0]] <= 1'b0;
                     for (int unsigned i = 0; i < RECORD_DEPTH - 1; i++) begin
                         if (i < (q_count_q - 1'b1)) begin
                             q_meta[i] <= q_meta[i + 1];
                             q_payload_len[i] <= q_payload_len[i + 1];
-                            q_payload[i] <= q_payload[i + 1];
+                            q_slot[i] <= q_slot[i + 1];
                         end
                     end
-                    if (q_count_q != '0) begin
-                        q_meta[q_count_q - 1'b1] <= '0;
-                        q_payload_len[q_count_q - 1'b1] <= 16'd0;
-                        q_payload[q_count_q - 1'b1] <= '0;
-                        q_count_q <= q_count_q - 1'b1;
-                    end
-                    out_offset_q <= 16'd0;
-                end else begin
-                    out_offset_q <= out_offset_q + output_beat_bytes;
+                    q_count_q <= q_count_q - 1'b1;
+                    out_offset_q <= '0;
+                end else out_offset_q <= out_offset_q + output_beat_bytes;
+            end
+
+            if (output_read_request) begin
+                output_read_pending_q <= 1'b1;
+                read_meta_q <= q_meta[0];
+                read_keep_q <= payload_keep_at(output_read_offset, q_payload_len[0]);
+                read_last_q <= ((q_payload_len[0] - output_read_offset) <= BEAT_BYTES_U16);
+            end
+            if (output_read_pending_q) begin
+                output_read_pending_q <= 1'b0;
+                output_valid_q <= 1'b1;
+                output_meta_q <= read_meta_q;
+                output_keep_q <= read_keep_q;
+                output_last_q <= read_last_q;
+                for (int unsigned i = 0; i < BEAT_BYTES; i++) begin
+                    output_data_q[(i * 8) +: 8] <= read_keep_q[i]
+                                                  ? payload_read_q[(i * 8) +: 8] : 8'd0;
                 end
             end
 
-            unique case (fifo_state_q)
+            case (fifo_state_q)
                 FSTATE_IDLE: begin
-                    if (in_valid_i && in_ready_o) begin
+                    if (input_accept) begin
+                        tmp_slot_q <= free_slot;
+                        slot_used_q[free_slot] <= 1'b1;
                         tmp_meta_q <= in_meta_i;
-                        tmp_payload_q <= insert_payload_beat('0, 16'd0, in_payload_data_i, in_payload_keep_i);
-                        tmp_payload_len_q <= count_keep_bytes(in_payload_keep_i);
+                        tmp_payload_len_q <= input_beat_bytes;
                         tmp_bad_q <= !beat_keep_legal(in_payload_keep_i, in_payload_last_i) ||
-                                     (count_keep_bytes(in_payload_keep_i) > STORE_BYTES_U16);
+                                     (input_total_bytes > STORE_BYTES);
                         fifo_state_q <= in_payload_last_i ? FSTATE_ADMIT : FSTATE_CAPTURE;
                     end
                 end
-
                 FSTATE_CAPTURE: begin
-                    if (in_valid_i && in_ready_o) begin
-                        tmp_payload_q <= insert_payload_beat(
-                            tmp_payload_q,
-                            tmp_payload_len_q,
-                            in_payload_data_i,
-                            in_payload_keep_i
-                        );
+                    if (input_accept) begin
+                        tmp_payload_len_q <= input_total_bytes[16] ? 16'hffff : input_total_bytes[15:0];
                         tmp_bad_q <= tmp_bad_q ||
                                      !beat_keep_legal(in_payload_keep_i, in_payload_last_i) ||
-                                     ((tmp_payload_len_q + count_keep_bytes(in_payload_keep_i)) > STORE_BYTES_U16);
-                        tmp_payload_len_q <= tmp_payload_len_q + count_keep_bytes(in_payload_keep_i);
-                        if (in_payload_last_i) begin
-                            fifo_state_q <= FSTATE_ADMIT;
-                        end
+                                     (input_total_bytes > STORE_BYTES);
+                        if (in_payload_last_i) fifo_state_q <= FSTATE_ADMIT;
                     end
                 end
-
                 FSTATE_ADMIT: begin
-                    // If the output head is being popped this cycle, wait one cycle so admission sees
-                    // the post-pop queue state. This avoids falsely evicting or dropping when a slot is
-                    // about to become free.
+                    // Observe a coincident head pop before making the admission
+                    // decision. Only small queue metadata is compacted here.
                     if (!output_last_accept) begin
                         if (dropper_admit_without_evict) begin
                             q_meta[q_count_q] <= sanitized_meta(tmp_meta_q);
                             q_payload_len[q_count_q] <= tmp_payload_len_q;
-                            q_payload[q_count_q] <= tmp_payload_q;
+                            q_slot[q_count_q] <= tmp_slot_q;
                             q_count_q <= q_count_q + 1'b1;
                         end else if (dropper_admit_with_evict && dropper_evict_valid) begin
-                            // Remove the selected resident, compact the queue, and append the incoming
-                            // record at the tail. The evicted resident counts as one pre-writer drop.
+                            slot_used_q[q_slot[dropper_evict_index]] <= 1'b0;
                             for (int unsigned i = 0; i < RECORD_DEPTH - 1; i++) begin
                                 if ((i >= dropper_evict_index) && (i < (q_count_q - 1'b1))) begin
                                     q_meta[i] <= q_meta[i + 1];
                                     q_payload_len[i] <= q_payload_len[i + 1];
-                                    q_payload[i] <= q_payload[i + 1];
+                                    q_slot[i] <= q_slot[i + 1];
                                 end
                             end
                             q_meta[q_count_q - 1'b1] <= sanitized_meta(tmp_meta_q);
                             q_payload_len[q_count_q - 1'b1] <= tmp_payload_len_q;
-                            q_payload[q_count_q - 1'b1] <= tmp_payload_q;
+                            q_slot[q_count_q - 1'b1] <= tmp_slot_q;
                             drop_pulse_o <= 1'b1;
                             overflow_sticky_o <= 1'b1;
                         end else begin
-                            // Malformed record, oversized record, or no lower-priority resident could
-                            // be evicted. The completed incoming record is shed as one telemetry drop.
+                            slot_used_q[tmp_slot_q] <= 1'b0;
                             drop_pulse_o <= 1'b1;
                             overflow_sticky_o <= 1'b1;
                         end
-
                         tmp_meta_q <= '0;
-                        tmp_payload_len_q <= 16'd0;
-                        tmp_payload_q <= '0;
+                        tmp_payload_len_q <= '0;
                         tmp_bad_q <= 1'b0;
                         fifo_state_q <= FSTATE_IDLE;
                     end
                 end
-
-                default: begin
-                    fifo_state_q <= FSTATE_IDLE;
-                end
+                default: fifo_state_q <= FSTATE_IDLE;
             endcase
         end
     end
-
 `ifndef SYNTHESIS
     initial begin
         if (PAYLOAD_DATA_W < 8) begin
@@ -470,6 +498,9 @@ module trecap_packet_fifo
         end
         if (RECORD_DEPTH < 1) begin
             $fatal(1, "trecap_packet_fifo: RECORD_DEPTH must be at least 1");
+        end
+        if ((PAYLOAD_BYTES_MAX < 1) || (PAYLOAD_BYTES_MAX > 65535)) begin
+            $fatal(1, "trecap_packet_fifo: payload capacity must fit its 16-bit byte-count contract");
         end
         if (PAYLOAD_BYTES_MAX < (TPKT_UDP_MAX_BYTES - TPKT_HEADER_BYTES)) begin
             $warning(

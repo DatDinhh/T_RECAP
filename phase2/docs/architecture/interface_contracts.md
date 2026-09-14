@@ -6,7 +6,7 @@ This document defines implementation-facing contracts between the T-RECAP Phase 
 
 ## Authority
 
-The active integrated spec is the authority. This document restates the interface rules in implementation form and aligns them with the R0 repository files already written.
+The integrated specification defines the baseline. This document expresses the interface rules used by the current implementation.
 
 This document does not define verification monitors or scoreboards.
 
@@ -210,8 +210,11 @@ releases. Step 16 drives peripheral-only `AUD_XCK` at 12.288 MHz, programs the
 WM8731 at `0x1a` over open-drain FPGA I2C, and gates the 48 kS/s, signed 16-bit,
 codec-master I2S path on qualified lock, FPGA bus grant, and configuration done.
 `HPS_I2C_CONTROL` must remain low while the FPGA owns the bus; FPGA logic never
-drives it. External audio timing remains Step-18 work and Quartus/TimeQuest,
-I2C ACK, measured-clock, and live-audio evidence remain Step-20 work.
+drives it. The [physical timing contract](physical_timing.md) supplies the audio
+I/O and CDC constraints; the exercised BRAM-profile native12 fit passed their
+required checks. See the [implementation results](../results/fpga_implementation.md)
+for the complete gate outcome. Physical I2C ACKs, measured clocks and live-audio
+operation remain unqualified.
 
 ## Core statistics payload shape
 

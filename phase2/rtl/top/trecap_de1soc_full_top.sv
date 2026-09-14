@@ -31,11 +31,6 @@
 // the source/core integration, and the generated Platform Designer system to this logical top.
 // Keeping this file pin-agnostic prevents board-demo logic from entering rtl/core/.
 module trecap_de1soc_full_top
-  import trecap_core_pkg::*;
-  import trecap_csr_pkg::*;
-  import trecap_packet_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_build_pkg::*;
 #(
     parameter int unsigned CSR_AVMM_ADDR_W            = 21,
     parameter int unsigned CSR_ADDR_W                 = 12,
@@ -43,17 +38,17 @@ module trecap_de1soc_full_top
     parameter int unsigned PAYLOAD_DATA_W             = 32,
     parameter int unsigned PAYLOAD_KEEP_W             = (PAYLOAD_DATA_W + 7) / 8,
     parameter int unsigned PACKET_FIFO_RECORDS        = 8,
-    parameter int unsigned PACKET_FIFO_BYTES          = TPKT_UDP_MAX_BYTES,
+    parameter int unsigned PACKET_FIFO_BYTES          = trecap_packet_pkg::TPKT_UDP_MAX_BYTES,
     parameter int unsigned AVMM_ADDR_W                = 64,
     parameter int unsigned AVMM_DATA_W                = 64,
     parameter int unsigned AVMM_BYTEEN_W              = (AVMM_DATA_W + 7) / 8,
     parameter int unsigned AVMM_BURSTCOUNT_W          = 1,
-    parameter int unsigned GUARD_BYTES                = TCSR_RING_GUARD_BYTES_MIN,
+    parameter int unsigned GUARD_BYTES                = trecap_csr_pkg::TCSR_RING_GUARD_BYTES_MIN,
     parameter logic [31:0] RING_SIZE_MIN_BYTES        = 32'h0010_0000,
     parameter bit          SYNC_TOP_RESET_DEASSERTION = 1'b1,
     parameter int unsigned RESET_SYNC_STAGES          = 2,
     parameter bit          CLEAR_COUNTERS_ON_SOFT_RESET = 1'b1,
-    parameter int unsigned BIN_IDX_W                  = (T_UNIQUE_BINS <= 1) ? 1 : $clog2(T_UNIQUE_BINS)
+    parameter int unsigned BIN_IDX_W                  = (trecap_core_pkg::T_UNIQUE_BINS <= 1) ? 1 : $clog2(trecap_core_pkg::T_UNIQUE_BINS)
 ) (
     input  logic                         clk,
 
@@ -93,12 +88,12 @@ module trecap_de1soc_full_top
 
     // Valid-only observation taps from the core/source integration.  This top deliberately has no
     // ready output returning to the mathematical core.
-    input  trecap_core_tap_sample_t      tap_sample_i,
-    input  trecap_core_tap_frame_t       tap_frame_i,
+    input  trecap_iface_pkg::trecap_core_tap_sample_t      tap_sample_i,
+    input  trecap_iface_pkg::trecap_core_tap_frame_t       tap_frame_i,
     input  logic                         tap_bin_valid_i,
     input  logic [63:0]                  tap_bin_frame_idx_i,
     input  logic [BIN_IDX_W-1:0]         tap_bin_idx_i,
-    input  logic [T_MAG2_W-1:0]          tap_bin_mag2_i,
+    input  logic [trecap_core_pkg::T_MAG2_W-1:0]          tap_bin_mag2_i,
     input  logic                         tap_bin_mask_i,
     input  logic                         tap_bin_eligible_i,
     input  logic                         tap_bin_last_i,
@@ -111,8 +106,11 @@ module trecap_de1soc_full_top
     input  logic                         frame_boundary_i,
     input  logic                         source_safe_boundary_i,
     input  logic                         source_discontinuity_i,
-    input  trecap_source_mode_e          actual_source_mode_i,
+    input  trecap_iface_pkg::trecap_source_mode_e          actual_source_mode_i,
     input  logic                         source_transition_busy_i,
+    input  logic [991:0]             source_health_i,
+    output logic                    source_rearm_pulse_o,
+    output logic                    codec_fpga_grant_o,
 
     // Existing replay owner feedback used by the Step-14 CSR command/result extension.
     input  logic                         replay_start_ready_i,
@@ -150,8 +148,8 @@ module trecap_de1soc_full_top
     // Active controls and command/apply events exported to the source/core/platform integration.
     // clear_metrics_pulse_o is the raw accepted CSR W1P; the source/core layer may queue it and
     // returns the exact applied event through clear_metrics_apply_pulse_i above.
-    output trecap_hps_bridge_ctrl_t      ctrl_o,
-    output trecap_ring_config_t          ring_config_o,
+    output trecap_iface_pkg::trecap_hps_bridge_ctrl_t      ctrl_o,
+    output trecap_iface_pkg::trecap_ring_config_t          ring_config_o,
     output logic                         telemetry_soft_reset_pulse_o,
     output logic                         clear_metrics_pulse_o,
     output logic                         counter_clear_pulse_o,
@@ -227,6 +225,12 @@ module trecap_de1soc_full_top
     // idle so an accepted start cannot outrun the formatter-flush quiescence proof.
     output logic                         transport_epoch_idle_stable_o
 );
+  import trecap_core_pkg::*;
+  import trecap_csr_pkg::*;
+  import trecap_packet_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_build_pkg::*;
+
 
     logic rst_n_local;
 
@@ -479,6 +483,9 @@ module trecap_de1soc_full_top
         .source_safe_boundary_i(source_safe_boundary_i),
         .actual_source_mode_i(actual_source_mode_i),
         .source_transition_busy_i(source_transition_busy_i),
+        .source_health_i(source_health_i),
+        .source_rearm_pulse_o(source_rearm_pulse_o),
+        .codec_fpga_grant_o(codec_fpga_grant_o),
         .transport_epoch_idle_i(transport_epoch_idle_o),
         .replay_start_ready_i(replay_start_ready_i),
         .replay_request_busy_i(replay_request_busy_i),

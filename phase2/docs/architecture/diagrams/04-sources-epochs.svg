@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1132" viewBox="0 0 1600 1132" role="img" aria-labelledby="title desc">
+<title id="title">Sample sources and stream epochs</title>
+<desc id="desc">Four physical or synthetic sources share one normalized interface and one DSP history owner.</desc>
+<rect x="0" y="0" width="1600" height="1132" rx="0" fill="#FCFCFE" stroke="none" stroke-width="1.3"/>
+<rect x="48" y="42" width="7" height="83" rx="3" fill="#8066A9" stroke="none" stroke-width="1.3"/>
+<text x="75" y="57" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#586A80" text-anchor="start">T-RECAP   /   ARCHITECTURE ATLAS</text>
+<text x="75" y="104" font-family="DejaVu Sans, Arial, sans-serif" font-size="39" font-weight="700" fill="#26364B" text-anchor="start">Sample sources and stream epochs</text>
+<text x="75" y="139" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="400" fill="#586A80" text-anchor="start">Four physical or synthetic sources share one normalized interface and one DSP history owner.</text>
+<text x="1525" y="83" font-family="DejaVu Sans, Arial, sans-serif" font-size="35" font-weight="700" fill="#8066A9" text-anchor="end">04</text>
+<polyline points="48,163 1552,163" fill="none" stroke="#D8E0EA" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="80" y="218" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#407D6C" text-anchor="start">MODE 0 / REPLAY</text>
+<text x="460" y="218" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#407D6C" text-anchor="start">MODE 1 / ADC</text>
+<text x="840" y="218" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#407D6C" text-anchor="start">MODE 2 / AUDIO</text>
+<text x="1220" y="218" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#407D6C" text-anchor="start">MODE 3 / DIAGNOSTIC</text>
+<rect x="81" y="248" width="300" height="133" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="80" y="245" width="300" height="133" rx="14" fill="#DDF2E9" stroke="#407D6C" stroke-width="1.15"/>
+<text x="97" y="275" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Frozen input ROM</text>
+<text x="97" y="304" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">4096 x signed 12-bit</text>
+<text x="97" y="326" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">48 ksample/s default tick</text>
+<text x="97" y="363" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#407D6C" text-anchor="start">trecap_bram_replay_source</text>
+<rect x="461" y="248" width="300" height="133" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="460" y="245" width="300" height="133" rx="14" fill="#DDF2E9" stroke="#407D6C" stroke-width="1.15"/>
+<text x="477" y="275" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">LTC2308 controller</text>
+<text x="477" y="304" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Unsigned 12-bit, 100 kS/s</text>
+<text x="477" y="326" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">2.5 MHz registered serial clock</text>
+<text x="477" y="363" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#407D6C" text-anchor="start">adc_wrapper</text>
+<rect x="841" y="248" width="300" height="133" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="840" y="245" width="300" height="133" rx="14" fill="#DDF2E9" stroke="#407D6C" stroke-width="1.15"/>
+<text x="857" y="275" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">WM8731 receiver</text>
+<text x="857" y="304" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">I2S stereo; nominal 48 kframe/s</text>
+<text x="857" y="326" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">RX async FIFO: 8 x 96 bits</text>
+<text x="857" y="363" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#407D6C" text-anchor="start">audio_codec_wrapper</text>
+<rect x="1221" y="248" width="300" height="133" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="1220" y="245" width="300" height="133" rx="14" fill="#DDF2E9" stroke="#407D6C" stroke-width="1.15"/>
+<text x="1237" y="275" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Pattern generator</text>
+<text x="1237" y="304" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Ramp / impulse / constant</text>
+<text x="1237" y="326" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Alternating / LFSR / periodic</text>
+<text x="1237" y="363" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#407D6C" text-anchor="start">trecap_diagnostic_source</text>
+<rect x="81" y="447" width="300" height="150" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="80" y="444" width="300" height="150" rx="14" fill="#DDF2E9" stroke="#407D6C" stroke-width="1.15"/>
+<text x="97" y="474" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Replay sequencer</text>
+<text x="97" y="503" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Finite input + paced zero flush</text>
+<text x="97" y="525" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Explicit start / completion</text>
+<text x="97" y="579" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#407D6C" text-anchor="start">trecap_source_core_integration</text>
+<rect x="461" y="447" width="300" height="150" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="460" y="444" width="300" height="150" rx="14" fill="#DDF2E9" stroke="#407D6C" stroke-width="1.15"/>
+<text x="477" y="474" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">ADC normalization</text>
+<text x="477" y="503" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Raw - 2048 -&gt; signed 12-bit</text>
+<text x="477" y="525" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">1 pending sample; sequence64</text>
+<text x="477" y="579" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#407D6C" text-anchor="start">trecap_adc_adapter</text>
+<rect x="841" y="447" width="300" height="150" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="840" y="444" width="300" height="150" rx="14" fill="#DDF2E9" stroke="#407D6C" stroke-width="1.15"/>
+<text x="857" y="474" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Audio normalization</text>
+<text x="857" y="503" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Select left; 1 pending sample</text>
+<text x="857" y="525" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Round &gt;&gt;4; saturate to 12 bits</text>
+<text x="857" y="579" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#407D6C" text-anchor="start">trecap_audio_adapter</text>
+<rect x="1221" y="447" width="300" height="150" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="1220" y="444" width="300" height="150" rx="14" fill="#DDF2E9" stroke="#407D6C" stroke-width="1.15"/>
+<text x="1237" y="474" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Diagnostic selection</text>
+<text x="1237" y="503" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">SW[2:0]; 48 ksample/s</text>
+<text x="1237" y="525" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Amplitude / pattern controls</text>
+<text x="1237" y="579" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#407D6C" text-anchor="start">trecap_diagnostic_source</text>
+<polyline points="230.0,378 230.0,444" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="230.0,444 234.5,434.0 225.5,434.0" fill="#708299"/>
+<polyline points="610.0,378 610.0,444" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="610.0,444 614.5,434.0 605.5,434.0" fill="#708299"/>
+<polyline points="990.0,378 990.0,444" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="990.0,444 994.5,434.0 985.5,434.0" fill="#708299"/>
+<polyline points="1370.0,378 1370.0,444" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1370.0,444 1374.5,434.0 1365.5,434.0" fill="#708299"/>
+<rect x="454" y="680" width="690" height="107" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="453" y="677" width="690" height="107" rx="14" fill="#DDF2E9" stroke="#407D6C" stroke-width="1.15"/>
+<text x="470" y="707" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">4:1 mux -&gt; selected-stream analysis / tail routing</text>
+<text x="470" y="736" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">{sample[11:0], sample_index[63:0], valid} / ready</text>
+<text x="470" y="769" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#407D6C" text-anchor="start">trecap_source_mux</text>
+<polyline points="230.0,594 230.0,633 798,633 798,677" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="798,677 802.5,667.0 793.5,667.0" fill="#708299"/>
+<polyline points="610.0,594 610.0,633 798,633 798,677" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="798,677 802.5,667.0 793.5,667.0" fill="#708299"/>
+<polyline points="990.0,594 990.0,633 798,633 798,677" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="798,677 802.5,667.0 793.5,667.0" fill="#708299"/>
+<polyline points="1370.0,594 1370.0,633 798,633 798,677" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="798,677 802.5,667.0 793.5,667.0" fill="#708299"/>
+<rect x="454" y="866" width="690" height="132" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="453" y="863" width="690" height="132" rx="14" fill="#EBE4FA" stroke="#8066A9" stroke-width="1.15"/>
+<text x="470" y="893" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">One mathematical core</text>
+<text x="470" y="922" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Frame history and delayed reference accept together</text>
+<text x="470" y="944" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Board y_ready = 1; source changes invalidate DSP epoch</text>
+<text x="470" y="980" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#8066A9" text-anchor="start">trecap_core_top</text>
+<polyline points="798.0,784 798.0,863" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="798.0,863 802.5,853.0 793.5,853.0" fill="#708299"/>
+<rect x="685.07763671875" y="816" width="225.8447265625" height="21" rx="4" fill="#FCFCFE" stroke="none" stroke-width="1.3"/>
+<text x="798" y="831" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#708299" text-anchor="middle">signed 12-bit + absolute index</text>
+<rect x="65" y="677" width="340" height="146" rx="13" fill="#F7ECD5" stroke="none" stroke-width="1.3"/>
+<text x="84" y="706" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#9C7D3F" text-anchor="start">MANUAL ADC MODE</text>
+<text x="84" y="732" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">SW[7]=1 + KEY[2]: raw conversion</text>
+<text x="84" y="754" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">diagnostics only. No sample enters</text>
+<text x="84" y="776" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">STFT/WOLA; periodic DSP rate is</text>
+<text x="84" y="798" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">zero.</text>
+<rect x="65" y="850" width="340" height="145" rx="13" fill="#EBEFF4" stroke="none" stroke-width="1.3"/>
+<text x="84" y="879" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#65778A" text-anchor="start">REPLAY GEOMETRY</text>
+<text x="84" y="905" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">After source selection: 4096 input</text>
+<text x="84" y="927" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">samples -&gt; 33 frames; 4608 output</text>
+<text x="84" y="949" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">samples. Final 384 tokens go only to</text>
+<text x="84" y="971" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">WOLA drain.</text>
+<rect x="1190" y="677" width="345" height="146" rx="13" fill="#F7ECD5" stroke="none" stroke-width="1.3"/>
+<text x="1209" y="706" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#9C7D3F" text-anchor="start">RECOVERY SEQUENCE</text>
+<text x="1209" y="732" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Capture stop acknowledged -&gt; settle</text>
+<text x="1209" y="754" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">4096 clocks -&gt; first sample -&gt; run.</text>
+<text x="1209" y="776" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Sequence/drop/timeout faults stop</text>
+<text x="1209" y="798" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">the epoch.</text>
+<rect x="1190" y="850" width="345" height="145" rx="13" fill="#EBEFF4" stroke="none" stroke-width="1.3"/>
+<text x="1209" y="879" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#65778A" text-anchor="start">OPTIONAL LINE-OUT</text>
+<text x="1209" y="905" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">y -&gt; mono L/R -&gt; TX FIFO 512 x 33 -&gt;</text>
+<text x="1209" y="927" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">DAC. Best effort; disabled in all</text>
+<text x="1209" y="949" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">shipped build profiles.</text>
+<polyline points="48,1034 1552,1034" fill="none" stroke="#D8E0EA" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="65" y="1052" width="14" height="14" rx="4" fill="#DDF2E9" stroke="#407D6C" stroke-width="0.8"/>
+<text x="88" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">Sources</text>
+<rect x="250" y="1052" width="14" height="14" rx="4" fill="#EBE4FA" stroke="#8066A9" stroke-width="0.8"/>
+<text x="273" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">DSP / configuration</text>
+<rect x="570" y="1052" width="14" height="14" rx="4" fill="#F8E0E8" stroke="#A66882" stroke-width="0.8"/>
+<text x="593" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">Telemetry</text>
+<rect x="780" y="1052" width="14" height="14" rx="4" fill="#F7ECD5" stroke="#9C7D3F" stroke-width="0.8"/>
+<text x="803" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">HPS / host</text>
+<rect x="1000" y="1052" width="14" height="14" rx="4" fill="#DFECFA" stroke="#4D78A8" stroke-width="0.8"/>
+<text x="1023" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">Platform / memory</text>
+<polyline points="1290,1059 1328,1059" fill="none" stroke="#708299" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1337" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#586A80" text-anchor="start">data</text>
+<polyline points="1412,1059 1450,1059" fill="none" stroke="#8066A9" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="7,5"/>
+<text x="1459" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#586A80" text-anchor="start">control</text>
+<text x="65" y="1090" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#586A80" text-anchor="start">SOURCE: trecap_source_core_integration.sv  |  trecap_source_mux.sv  |  source_health.md</text>
+<text x="65" y="1114" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#586A80" text-anchor="start">Architecture source snapshot 2026-09-14  /  Implementation structure; hardware operation is a separate milestone.</text>
+<text x="1535" y="1114" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#586A80" text-anchor="end">T-RECAP  /  04</text>
+</svg>

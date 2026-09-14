@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document freezes the baseline storage and internal width schedule for the custom radix-2 Phase 2 golden model. Widths are part of the contract. They are not performance suggestions.
+This document freezes the baseline storage and internal width schedule for the custom radix-2 Phase 2 reference model. Widths are part of the contract. They are not performance suggestions.
 
 A mismatch in width can produce a one-bit difference after rounding, which then changes masks, WOLA output, metrics, and final hashes.
 

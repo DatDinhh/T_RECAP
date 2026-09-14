@@ -260,7 +260,7 @@
           "const": "prime_and_discard_previous_configuration"
         },
         "sampling_mode_select": {
-          "const": "sw7_low_continuous_high_key2_manual"
+          "const": "sw7_low_continuous_high_key2_diagnostic_only"
         },
         "continuous_sample_rate_hz": {"const": 100000},
         "serial_clock_hz": {"const": 2500000},

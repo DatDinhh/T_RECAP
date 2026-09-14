@@ -27,10 +27,15 @@ The following source connections exist:
 - the generated HPS reset output participates in fabric reset release without being connected to
   an HPS reset sink.
 
-This is a source implementation milestone only. The checked-in `system.qsys` is still a
-hand-written bootstrap, not a Quartus-normalized Qsys file. Generated `system.v`/`system.sv`,
-`system.qip`, and `system.sopcinfo` are not checked in. No Quartus compile, functional verification,
-or hardware signoff is claimed.
+At the historical Step-5/6 source checkpoint, `system.qsys` was a hand-written
+bootstrap and there was no Quartus-normalized graph or generated implementation.
+Generated `system.v`/`system.sv`, `system.qip`, and `system.sopcinfo` remain build
+products rather than checked-in vendor sources. Actual generation and native11
+placement/routing have since completed. Later source revisions need their own
+reports; [architecture_implementation.md](architecture_implementation.md) records
+current results and [build_order.md](build_order.md) defines the build gates.
+Standard Edition evaluation mode has not produced a programmable SOF, and no
+functional verification or physical board operation is established.
 
 ## Source and generated ownership
 
@@ -59,10 +64,24 @@ HPS h2f lightweight AXI manager
   -> trecap_csr_bank
 ```
 
-`trecap_csr_bridge` is an `altera_avalon_mm_bridge`. Its source contract freezes symbol/byte
-addressing, address width 21, data width 32, symbol width 8, maximum burst size 1, maximum pending
-responses 1, automatic address-width reduction disabled, and response support enabled. The bridge
-is mapped at lightweight-aperture offset zero.
+`trecap_csr_bridge` uses the source-owned `trecap_avalon_csr_bridge` component, version 1.0,
+in `platform/de1soc/qsys/ip/trecap_csr_bridge/`. Its eleven configuration parameters are restricted
+to the implemented profile: symbol/byte addressing, address width 21, data width 32, symbol width
+8, maximum burst size 1, one pending read or write response, no command/response pipeline,
+no line-wrapping, and no automatic address-width reduction. The bridge is mapped at
+lightweight-aperture offset zero.
+
+The bridge wires each command and completion signal directly through. The downstream
+`trecap_avmm_csr_adapter` serializes transactions and produces the actual completion status.
+Both interfaces declare `writeresponsevalid`, so Platform Designer can preserve late write
+`SLVERR`/`DECERR` status instead of acknowledging the request before the CSR operation completes.
+This boundary has no state, added cycles, or debug-access bypass.
+
+The installed Intel 20.1 `altera_avalon_mm_bridge` exposes a two-bit `response` but no
+`writeresponsevalid`. Its use on the CSR path would make the interconnect synthesize successful
+write responses at acceptance. Delaying `waitrequest` alone would still lose the write error code.
+The source component therefore carries the complete response protocol explicitly. Its Qsys
+descriptor is loaded through the project IP search path; generated HDL remains a build product.
 
 The wrapper preserves all of this Avalon-MM agent ABI:
 
@@ -174,15 +193,22 @@ writer together. The board top does not own a second fabric reset synchronizer.
 ## Frozen generated-system ABI
 
 The expected generated module name is `system`, instantiated as
-`u_platform_designer_system`. The exact 94-port flattened ABI is frozen in
+`u_platform_designer_system`. The exact 99-port flattened ABI is frozen in
 `generated_system_contract.expected_flattened_abi` in the JSON contract. It contains:
 
 - `clk_50_clk`, `reset_n_reset_n`, and `h2f_reset_reset_n`;
+- three preserved HPS fabric reset-request inputs, each with role `reset_n` and tied to inactive
+  `1'b1`, plus the 28-bit `hps_f2h_stm_hw_events_stm_hwevents` input tied to zero;
 - the complete `memory_mem_*` HPS DDR conduit;
 - EMAC1, QSPI, SDIO, USB1, SPIM1, UART0, I2C0, I2C1, and the seven frozen GPIO pins under
   `hps_io_hps_io_*`;
 - the complete `trecap_csr_lw_master_*` Avalon interface; and
-- the write-capable `trecap_f2h_sdram0_*` Avalon interface, including its unused read signals.
+- the write-capable `trecap_f2h_sdram0_*` Avalon interface, including its unused read signals
+  and the bridge's `debugaccess` input tied to `1'b0`.
+
+The three reset-request ties are independent of the fabric reset. They must never be connected to
+`rst_n_platform`, which would feed HPS reset back into its own reset requests. The STM and reset
+exports satisfy the enabled HPS preset without changing any of its 476 writable parameter values.
 
 The ABI is checked twice: the source checker compares the wrapper's named `system` connections
 with the contract, and `--require-generated` parses the actual generated module header and checks
@@ -218,7 +244,10 @@ The board-build wrapper preserves that order on a clean checkout:
 then runs `--require-generated` only after the HDL, QIP, and SOPCINFO presence checks and before
 Quartus compilation. The generated-artifact gate must never run in the pre-generation block.
 
-Before those later evidence steps are reviewed, these values remain false:
+Historical Step-5/6 source-checkpoint snapshot, retained verbatim below. These
+values describe that checkpoint, not the presence of ignored generated products
+or the results of subsequent native builds. Current run evidence is recorded in
+build manifests and [architecture_implementation.md](architecture_implementation.md):
 
 ```text
 generated_system_present = false

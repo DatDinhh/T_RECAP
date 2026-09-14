@@ -19,11 +19,10 @@
 `default_nettype none
 
 module trecap_spectrum_mask_builder
-  import trecap_core_pkg::*;
 #(
-    parameter int unsigned L      = T_FFT_L,
-    parameter int unsigned P      = T_FFT_P,
-    parameter int unsigned DATA_W = T_CAN_W
+    parameter int unsigned L      = trecap_core_pkg::T_FFT_L,
+    parameter int unsigned P      = trecap_core_pkg::T_FFT_P,
+    parameter int unsigned DATA_W = trecap_core_pkg::T_CAN_W
 ) (
     input  logic                         clk,
     input  logic                         rst_n,
@@ -50,6 +49,8 @@ module trecap_spectrum_mask_builder
 
     output logic                         protocol_error_sticky_o
 );
+  import trecap_core_pkg::*;
+
 
     localparam int unsigned UNIQUE_BINS  = (L / 2) + 1;
     localparam int unsigned UNIQUE_IDX_W = (UNIQUE_BINS <= 1) ? 1 : $clog2(UNIQUE_BINS);

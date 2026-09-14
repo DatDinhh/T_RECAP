@@ -11,9 +11,6 @@
 `default_nettype none
 
 module trecap_audio_adapter
-  import trecap_core_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_math_pkg::*;
 #(
     parameter int unsigned AUDIO_SAMPLE_W          = 16,
     // 0 selects left channel; 1 selects right channel. Stereo averaging is intentionally absent
@@ -41,9 +38,9 @@ module trecap_audio_adapter
     // Ready/valid signed T-RECAP source stream. sample_idx counts samples admitted to this
     // adapter's core stream, not raw audio frames. Dropped raw audio frames do not create gaps.
     input  logic                         sample_ready_i,
-    output trecap_sample_t               sample_o,
+    output trecap_iface_pkg::trecap_sample_t               sample_o,
     output logic                         sample_valid_o,
-    output logic signed [T_SAMPLE_W-1:0] sample_data_o,
+    output logic signed [trecap_core_pkg::T_SAMPLE_W-1:0] sample_data_o,
     output logic [63:0]                  sample_idx_o,
 
     // One-cycle pulses for source-mux/platform diagnostics.
@@ -68,6 +65,10 @@ module trecap_audio_adapter
     output logic                         clipped_lo_sticky_o,
     output logic                         config_error_sticky_o
 );
+  import trecap_core_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_math_pkg::*;
+
 
     localparam int signed AUDIO_TO_CORE_SHIFT = AUDIO_SAMPLE_W - T_SAMPLE_W;
     localparam int unsigned DROP_COUNT_SAFE_W = (DROP_COUNT_W == 0) ? 1 : DROP_COUNT_W;

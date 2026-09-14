@@ -9,19 +9,16 @@
 `default_nettype none
 
 module trecap_core_only_top
-  import trecap_core_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_build_pkg::*;
 #(
-    parameter int unsigned SAMPLE_W            = T_SAMPLE_W,
-    parameter int unsigned L                   = T_FFT_L,
-    parameter int unsigned P                   = T_FFT_P,
-    parameter int unsigned BIN_IDX_W           = (T_UNIQUE_BINS <= 1) ? 1 : $clog2(T_UNIQUE_BINS),
-    parameter string       WINDOW_FILE         = TBUILD_WINDOW_QW_MEMH,
-    parameter string       TWIDDLE_RE_FILE     = TBUILD_TWIDDLE_RE_MEMH,
-    parameter string       TWIDDLE_IM_FILE     = TBUILD_TWIDDLE_IM_MEMH,
-    parameter string       TWIDDLE_INV_RE_FILE = TBUILD_TWIDDLE_INV_RE_MEMH,
-    parameter string       TWIDDLE_INV_IM_FILE = TBUILD_TWIDDLE_INV_IM_MEMH
+    parameter int unsigned SAMPLE_W            = trecap_core_pkg::T_SAMPLE_W,
+    parameter int unsigned L                   = trecap_core_pkg::T_FFT_L,
+    parameter int unsigned P                   = trecap_core_pkg::T_FFT_P,
+    parameter int unsigned BIN_IDX_W           = (trecap_core_pkg::T_UNIQUE_BINS <= 1) ? 1 : $clog2(trecap_core_pkg::T_UNIQUE_BINS),
+    parameter              WINDOW_FILE         = trecap_build_pkg::TBUILD_WINDOW_QW_MEMH,
+    parameter              TWIDDLE_RE_FILE     = trecap_build_pkg::TBUILD_TWIDDLE_RE_MEMH,
+    parameter              TWIDDLE_IM_FILE     = trecap_build_pkg::TBUILD_TWIDDLE_IM_MEMH,
+    parameter              TWIDDLE_INV_RE_FILE = trecap_build_pkg::TBUILD_TWIDDLE_INV_RE_MEMH,
+    parameter              TWIDDLE_INV_IM_FILE = trecap_build_pkg::TBUILD_TWIDDLE_INV_IM_MEMH
 ) (
     input  logic                         clk,
     input  logic                         rst_n,
@@ -31,27 +28,27 @@ module trecap_core_only_top
     input  logic                         clear_sticky_i,
     input  logic                         clear_metrics_i,
 
-    input  trecap_sample_t               sample_i,
+    input  trecap_iface_pkg::trecap_sample_t               sample_i,
     input  logic                         sample_valid_i,
     output logic                         sample_ready_o,
 
-    input  logic [T_MAG2_W-1:0]          thr2_i,
+    input  logic [trecap_core_pkg::T_MAG2_W-1:0]          thr2_i,
     input  logic                         source_discontinuity_i,
 
     output logic                         y_valid_o,
     input  logic                         y_ready_i,
-    output trecap_sample_t               y_sample_o,
+    output trecap_iface_pkg::trecap_sample_t               y_sample_o,
     output logic signed [SAMPLE_W-1:0]   y_data_o,
     output logic [63:0]                  y_sample_idx_o,
 
-    output trecap_core_tap_sample_t      tap_sample_o,
-    output trecap_core_tap_frame_t       tap_frame_o,
+    output trecap_iface_pkg::trecap_core_tap_sample_t      tap_sample_o,
+    output trecap_iface_pkg::trecap_core_tap_frame_t       tap_frame_o,
     output logic                         tap_bin_valid_o,
     output logic [63:0]                  tap_bin_frame_idx_o,
     output logic [BIN_IDX_W-1:0]         tap_bin_idx_o,
-    output logic signed [T_CAN_W-1:0]    tap_bin_re_o,
-    output logic signed [T_CAN_W-1:0]    tap_bin_im_o,
-    output logic [T_MAG2_W-1:0]          tap_bin_mag2_o,
+    output logic signed [trecap_core_pkg::T_CAN_W-1:0]    tap_bin_re_o,
+    output logic signed [trecap_core_pkg::T_CAN_W-1:0]    tap_bin_im_o,
+    output logic [trecap_core_pkg::T_MAG2_W-1:0]          tap_bin_mag2_o,
     output logic                         tap_bin_pre_mask_o,
     output logic                         tap_bin_mask_o,
     output logic                         tap_bin_eligible_o,
@@ -72,6 +69,10 @@ module trecap_core_only_top
     output logic                         protocol_error_sticky_o,
     output logic                         build_contract_error_o
 );
+  import trecap_core_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_build_pkg::*;
+
 
     assign build_contract_error_o = !TBUILD_CONTRACT_OK;
 

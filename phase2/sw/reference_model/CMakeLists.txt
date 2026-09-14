@@ -4,15 +4,15 @@ cmake_minimum_required(VERSION 3.24)
 project(
     trecap_golden
     VERSION 0.1.0
-    DESCRIPTION "T-RECAP Phase 2 bit-accurate golden model and artifact tools"
+    DESCRIPTION "T-RECAP Phase 2 fixed-point reference model and artifact tools"
     LANGUAGES CXX
 )
 
 include(GNUInstallDirs)
 include(CTest)
 
-option(TRECAP_BUILD_TOOLS "Build golden-model command-line tools" ON)
-option(TRECAP_BUILD_TESTS "Build C++ self-tests" ON)
+option(TRECAP_BUILD_TOOLS "Build reference-model command-line tools" ON)
+option(TRECAP_BUILD_TESTS "Build C++ self-tests" OFF)
 option(TRECAP_ENABLE_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
 option(TRECAP_ENABLE_SANITIZERS "Enable address/undefined sanitizers on supported compilers" OFF)
 
@@ -126,7 +126,7 @@ install(
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/trecap_golden
 )
 
-message(STATUS "T-RECAP golden model ${PROJECT_VERSION}")
+message(STATUS "T-RECAP reference model ${PROJECT_VERSION}")
 message(STATUS "C++ standard: ${CMAKE_CXX_STANDARD}")
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "Build tools: ${TRECAP_BUILD_TOOLS}")

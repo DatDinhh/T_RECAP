@@ -258,8 +258,9 @@ module clock_reset_ctrl #(
         if ((STATUS_TICK_HZ < 1) || (STATUS_TICK_HZ >= FABRIC_CLK_HZ)) begin
             $error("clock_reset_ctrl: STATUS_TICK_HZ must be in [1, FABRIC_CLK_HZ)");
         end
-        if ((METRICS_TICK_HZ < 1) || (METRICS_TICK_HZ >= FABRIC_CLK_HZ)) begin
-            $error("clock_reset_ctrl: METRICS_TICK_HZ must be in [1, FABRIC_CLK_HZ)");
+        // Zero disables the metrics clock-enable for a STATUS-only profile.
+        if (METRICS_TICK_HZ >= FABRIC_CLK_HZ) begin
+            $error("clock_reset_ctrl: METRICS_TICK_HZ must be in [0, FABRIC_CLK_HZ)");
         end
         if ((HEARTBEAT_TOGGLE_HZ < 1) || (HEARTBEAT_TOGGLE_HZ >= FABRIC_CLK_HZ)) begin
             $error("clock_reset_ctrl: HEARTBEAT_TOGGLE_HZ must be in [1, FABRIC_CLK_HZ)");

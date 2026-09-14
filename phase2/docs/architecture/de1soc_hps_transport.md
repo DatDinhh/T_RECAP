@@ -5,7 +5,7 @@
 Step 13 completes the checked-in HPS transport source path from the frozen CSR
 and reserved DDR interfaces to Revision-G UDP telemetry. The repository now has
 a deterministic RAM-backed host test for the consumer and packetization logic.
-That test does not prove an active DTB reservation, HPS `/dev/mem` mappings,
+That test does not prove an active DTB reservation, HPS CSR/device mappings,
 physical Ethernet, systemd deployment, FPGA execution, Quartus compilation, or
 board behavior. Those evidence fields remain false in
 `config/boards/de1soc_hps_transport.json`.
@@ -17,19 +17,49 @@ Normal streaming uses the exact frozen windows:
 | Resource | Contract |
 | --- | --- |
 | CSR | physical `0xff200000`, span 4096 bytes, read/write synchronous `/dev/mem` mapping |
-| DDR ring | `[0x3e000000, 0x40000000)`, 32 MiB, read-only `O_SYNC` `/dev/mem` mapping |
+| DDR ring | `[0x3e000000, 0x40000000)`, 32 MiB, exclusive read-only noncached `/dev/trecap-ring` mapping |
 | Record alignment | 64 bytes |
 | UDP maximum | 1200 bytes, including the 32-byte telemetry header |
 
-Before normal `/dev/mem` access, the binary fails closed unless the live device
+Before live resource access, the binary fails closed unless the live device
 tree contains `/reserved-memory/trecap-ring@3e000000` with exact big-endian
 `reg=3e00000002000000`, has `no-map`, lacks `reusable`, and `/proc/iomem` is
 readable, unmasked, and shows no `System RAM` overlap. Source presence of the
 Step-12 `.dtsi` is not treated as live reservation evidence.
 
-Cached ring access remains forbidden because the userspace implementation has
-no cache-invalidation mechanism. A future kernel driver may provide a different
-coherency contract; it must not silently weaken this one.
+The ring reader opens `/dev/trecap-ring` with `O_RDONLY | O_CLOEXEC` and checks
+`TRECAP_RING_GET_INFO` against the shared ABI in
+`sw/hps/include/trecap_ring_device.h`: ABI version 1, exactly the read-only and
+noncached flags, physical base `0x3e000000`, size `0x02000000`, and zero reserved
+field. It then maps the complete aperture with `PROT_READ | MAP_SHARED` at file
+offset zero. The driver rejects writable/executable, partial, private, or nonzero-
+offset mappings and sets `pgprot_noncached`; userspace does not infer cache
+attributes from `O_SYNC`. Cached ring mapping remains forbidden.
+
+The device admits one open consumer. The reader retains its file descriptor until
+after unmapping, so another process cannot acquire the ring during its lifetime.
+The mapping does not grant ownership of FPGA producer state: `W`, `Rd`, reset,
+commit, and whole-record rules below still apply. CSR access remains the existing
+read/write `/dev/mem` device mapping.
+
+Our selected source baseline is Linux 6.12.109 with the static
+`socfpga_cyclone5_trecap.dtb`, the matching `trecap_platform.ko`, and HPS
+application. The board DTS includes `trecap_platform.dtsi`, which includes the
+canonical reservation and binds the platform driver. Build and offline-install
+instructions are in [the Linux source baseline](../../platform/de1soc/linux/README.md).
+The compatible FPGA image and bridge setup must be established by the boot flow
+before the HPS application accesses CSRs.
+
+`trecap_platform.service` loads the driver before `trecap_udp_streamer.service`.
+The driver owns HPS_GPIO48 through `portb` offset 19. After output-low readback,
+it asserts the FPGA-visible `PLATFORM_CONTROL` grant; teardown clears that CSR
+before driving the GPIO high. It validates the exact CSR resource and platform
+capability before acquisition. See [platform grant](platform_grant.md) for ordering and reset
+semantics. No competing userspace GPIO owner is part of this design. Merely stopping the oneshot service does not unload the driver
+or release that grant. This is a static-boot lifecycle: no live DT node removal
+or driver hot-unbind while mapped. Use the matching FPGA/kernel/DTB combination
+on the next boot when changing the image or address map.
+
 
 ## Reset, configure, and arm state machine
 

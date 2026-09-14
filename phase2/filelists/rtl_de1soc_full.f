@@ -1,6 +1,6 @@
 # AUTO-GENERATED - DO NOT EDIT
 # Generator: scripts/gen_filelists.py
-# Generator version: r1.4.0
+# Generator version: r1.4.1
 # Filelist: full DE1-SoC real board-top integration compile order
 # Expected source files are active entries by default; compile targets fail if missing.
 

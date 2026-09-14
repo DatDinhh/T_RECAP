@@ -3,21 +3,16 @@
 # File class: [1] hand-written HPS runtime service.
 #
 # This unit is for the installed HPS runtime, not for source-tree development.
-# Build and install the streamer first:
-#
-#   make -C /opt/trecap/T_RECAP_Phase2/sw/hps install
-#   install -m 0644 \
-#     /opt/trecap/T_RECAP_Phase2/sw/hps/systemd/trecap_udp_streamer.service \
-#     /etc/systemd/system/trecap_udp_streamer.service
-#   systemctl daemon-reload
-#   systemctl enable --now trecap_udp_streamer.service
+# Build, install the kernel platform driver, and install both units using
+# platform/de1soc/linux/README.md. Enable after the intended DTB and FPGA image
+# are installed; source checkout and installation do not start this service.
 #
 # Runtime customization belongs in a systemd drop-in or in:
 #   /etc/default/trecap_udp_streamer
 #
 # Default launch policy is STATUS-only. That is intentional. Full WAVE/SPEC/
 # METRICS should be enabled only after CSR, DDR ring, UDP, and PC parser bring-up
-# have already passed. Example full-demo override:
+# are operational. Example full-demo override:
 #
 #   TRECAP_PROFILE=--full-demo
 #   TRECAP_EXTRA_ARGS="--wave-decim 2 --spec-mode 1 --spec-shift 16"
@@ -29,13 +24,13 @@
 [Unit]
 Description=T-RECAP Phase 2 HPS DDR-ring UDP telemetry streamer
 Documentation=file:/etc/trecap/trecap_hps_config.json
-Documentation=file:/opt/trecap/T_RECAP_Phase2/docs/bringup/hps_ethernet_bringup.md
-Documentation=file:/opt/trecap/T_RECAP_Phase2/sw/hps/scripts/reserve_ddr_region_notes.md
 Wants=network-online.target
-After=local-fs.target network-online.target
+Requires=trecap_platform.service
+After=local-fs.target network-online.target trecap_platform.service
 ConditionPathExists=/usr/local/bin/trecap_udp_streamer
 ConditionPathExists=/etc/trecap/trecap_hps_config.json
 ConditionPathExists=/dev/mem
+ConditionPathExists=/dev/trecap-ring
 StartLimitIntervalSec=60
 StartLimitBurst=3
 
@@ -62,6 +57,7 @@ EnvironmentFile=-/etc/default/trecap_udp_streamer
 ExecStartPre=/usr/bin/test -x /usr/local/bin/trecap_udp_streamer
 ExecStartPre=/usr/bin/test -r ${TRECAP_CONFIG}
 ExecStartPre=/usr/bin/test -c /dev/mem
+ExecStartPre=/usr/bin/test -c /dev/trecap-ring
 ExecStartPre=/usr/local/bin/trecap_udp_streamer --config ${TRECAP_CONFIG} --dry-run --quiet
 ExecStart=/usr/local/bin/trecap_udp_streamer --config ${TRECAP_CONFIG} $TRECAP_PROFILE $TRECAP_MALFORMED_POLICY $TRECAP_EXTRA_ARGS
 
@@ -85,9 +81,8 @@ RuntimeDirectory=trecap
 StateDirectory=trecap
 LogsDirectory=trecap
 
-# The current userspace prototype maps CSR and DDR through /dev/mem. Keep the
-# service root-only and grant only the raw-I/O capability needed for that path.
-# A later DMA-coherent kernel-driver path should remove /dev/mem and tighten this.
+# CSRs use /dev/mem; the reserved DDR aperture uses the read-only platform driver.
+# The service retains root and raw-I/O capability for CSR ownership.
 NoNewPrivileges=true
 CapabilityBoundingSet=CAP_SYS_RAWIO
 AmbientCapabilities=CAP_SYS_RAWIO
@@ -95,6 +90,7 @@ PrivateTmp=true
 PrivateDevices=false
 DevicePolicy=closed
 DeviceAllow=/dev/mem rw
+DeviceAllow=/dev/trecap-ring r
 RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
 
 # Filesystem hardening. Runtime/config paths are kept narrow; source trees,

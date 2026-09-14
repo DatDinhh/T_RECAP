@@ -459,11 +459,22 @@ def validate_board_top(text: str) -> None:
     ):
         require_same_binding(audio_ports, producer_port, source_ports, consumer_port)
     for producer_port, consumer_port in (
-        ("sample_valid_o", "adc_sample_valid_i"),
         ("sample_raw_o", "adc_sample_raw_i"),
         ("sample_count_o", "adc_sample_count_i"),
     ):
         require_same_binding(adc_ports, producer_port, source_ports, consumer_port)
+    # Raw valid reaches the supervisor so its physical-sample accounting is complete.
+    # Manual ADC isolation is owned by readiness/periodic source admission there.
+    require_same_binding(adc_ports, "sample_valid_o", source_ports, "adc_sample_valid_i")
+    require_equal(
+        source_ports.get("adc_ready_i"), "adc_config_supported&&!sw_sync[7]",
+        "manual ADC supervisor readiness gate",
+    )
+    require_equal(
+        source_ports.get("live_periodic_i"),
+        "(active_source_mode==TSRC_AUDIO_WRAPPER)||((active_source_mode==TSRC_ADC_LIVE)&&!sw_sync[7])",
+        "manual ADC supervisor periodic-source gate",
+    )
 
     tap_bindings = (
         ("tap_sample_o", "tap_sample_i"),
@@ -517,9 +528,9 @@ def validate_board_top(text: str) -> None:
         )
     for token in (
         "assignaudio_capture_enable=(active_source_mode==TSRC_AUDIO_WRAPPER)&&audio_codec_ready;",
-        "assignaudio_lineout_monitor_enable=sw_sync[3]&&!source_discontinuity&&audio_codec_ready;",
+        "assignaudio_lineout_monitor_enable=AUDIO_LINEOUT_ALLOWED&&sw_sync[3]&&!source_discontinuity&&audio_codec_ready;",
         "assignadc_source_enable=(active_source_mode==TSRC_ADC_LIVE);",
-        "assignadc_epoch_ready=adc_source_enable&&adc_source_enable_d_q;",
+        "assignadc_epoch_ready=adc_source_enable&&adc_source_enable_d_q&&!adc_sampling_mode_change;",
         "assignadc_continuous_enable=adc_epoch_ready&&!sw_sync[7];",
         "assignadc_manual_request=adc_epoch_ready&&sw_sync[7]&&key_press_pulse[2];",
         "assignadc_command=ltc2308_single_ended_command(adc_channel_active_q);",

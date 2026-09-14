@@ -10,11 +10,9 @@
 `default_nettype none
 
 module trecap_delay_error_metrics
-  import trecap_core_pkg::*;
-  import trecap_iface_pkg::*;
 #(
-    parameter int unsigned SAMPLE_W = T_SAMPLE_W,
-    parameter int unsigned DELAY_D  = T_DELAY_D,
+    parameter int unsigned SAMPLE_W = trecap_core_pkg::T_SAMPLE_W,
+    parameter int unsigned DELAY_D  = trecap_core_pkg::T_DELAY_D,
     parameter int unsigned ERR_W    = 16,
     parameter int unsigned DEPTH    = 1024,
     parameter int unsigned ADDR_W   = (DEPTH <= 1) ? 1 : $clog2(DEPTH)
@@ -38,11 +36,11 @@ module trecap_delay_error_metrics
 
     output logic                         y_out_valid_o,
     input  logic                         y_out_ready_i,
-    output trecap_sample_t               y_sample_o,
+    output trecap_iface_pkg::trecap_sample_t               y_sample_o,
     output logic signed [SAMPLE_W-1:0]   y_sample_data_o,
     output logic [63:0]                  y_sample_idx_o,
 
-    output trecap_core_tap_sample_t      tap_sample_o,
+    output trecap_iface_pkg::trecap_core_tap_sample_t      tap_sample_o,
     output logic                         tap_sample_valid_o,
 
     output logic [63:0]                  accepted_x_count_o,
@@ -60,6 +58,9 @@ module trecap_delay_error_metrics
     output logic                         protocol_error_sticky_o,
     output logic                         output_backpressure_sticky_o
 );
+  import trecap_core_pkg::*;
+  import trecap_iface_pkg::*;
+
 
     localparam int unsigned RAM_W      = 64 + SAMPLE_W;
     localparam int unsigned ERR_FULL_W = SAMPLE_W + 1;
@@ -165,10 +166,10 @@ module trecap_delay_error_metrics
     // suppress ready. Full history never borrows same-cycle pop credit, which prevents a
     // same-address read/write dependency at pointer wrap.
     assign x_ready_o =
-        enable_i && !clear_i && !fail_stop_q &&
+        rst_n && enable_i && !clear_i && !fail_stop_q &&
         !history_full && (next_x_idx_q != COUNT_MAX) && x_index_ok;
     assign y_ready_o =
-        enable_i && !clear_i && !clear_metrics_i && !fail_stop_q &&
+        rst_n && enable_i && !clear_i && !clear_metrics_i && !fail_stop_q &&
         pending_slot_available && (next_y_idx_q != COUNT_MAX) &&
         y_index_ok && y_history_relation_ok;
 
@@ -190,29 +191,40 @@ module trecap_delay_error_metrics
     assign history_rd_idx = history_rd_data[RAM_W-1 -: 64];
     assign history_rd_sample = $signed(history_rd_data[SAMPLE_W-1:0]);
 
-    trecap_simple_dual_port_ram #(
-        .DATA_W( RAM_W ),
-        .DEPTH( DEPTH ),
-        .ADDR_W( ADDR_W ),
-        .WRITE_FIRST( 1'b0 ),
-        .CLEAR_RD_DATA_ON_RESET( 1'b1 ),
-        .CLEAR_RD_DATA_ON_IDLE( 1'b0 ),
-        .INIT_FILE( "" )
-    ) u_history_ram (
-        .clk( clk ),
-        .rst_n( rst_n ),
-        .wr_en_i( history_push ),
-        .wr_addr_i( write_ptr_q ),
-        .wr_data_i( history_wr_data ),
-        .rd_en_i( history_pop ),
-        .rd_addr_i( read_ptr_q ),
-        .rd_data_o( history_rd_data ),
-        .rd_valid_o( history_rd_valid ),
-        .rd_wr_same_addr_o( history_rd_wr_same_addr ),
-        .wr_oob_o( history_wr_oob ),
-        .rd_oob_o( history_rd_oob )
-    );
+    // One 1024 x (64 + SAMPLE_W) simple-dual-port M10K history store. Data and
+    // read-data registers have no reset; occupancy/pending-valid reset starts a new epoch.
+    // The control path never reads an empty FIFO and never credits a simultaneous pop
+    // when full, so a valid request cannot read and write the same physical address.
+    (* ramstyle = "M10K" *) logic [RAM_W-1:0] history_mem [0:DEPTH-1];
 
+    always_ff @(posedge clk) begin : p_history_storage
+        if (rst_n && history_push && (write_ptr_q < DEPTH)) begin
+            history_mem[write_ptr_q] <= history_wr_data;
+        end
+        if (rst_n && history_pop && (read_ptr_q < DEPTH)) begin
+            history_rd_data <= history_mem[read_ptr_q];
+        end
+    end
+
+    always_ff @(posedge clk or negedge rst_n) begin : p_history_response
+        if (!rst_n) begin
+            history_rd_valid <= 1'b0;
+            history_rd_wr_same_addr <= 1'b0;
+            history_wr_oob <= 1'b0;
+            history_rd_oob <= 1'b0;
+        end else if (clear_i) begin
+            history_rd_valid <= 1'b0;
+            history_rd_wr_same_addr <= 1'b0;
+            history_wr_oob <= 1'b0;
+            history_rd_oob <= 1'b0;
+        end else begin
+            history_rd_valid <= history_pop && (read_ptr_q < DEPTH);
+            history_rd_wr_same_addr <= history_push && history_pop &&
+                                      (write_ptr_q == read_ptr_q);
+            history_wr_oob <= history_push && (write_ptr_q >= DEPTH);
+            history_rd_oob <= history_pop && (read_ptr_q >= DEPTH);
+        end
+    end
     assign pending_xref_idx = pending_y_idx_q - DELAY_D;
     assign pending_history_tag_ok =
         history_rd_valid && (history_rd_idx == pending_xref_idx);
@@ -264,7 +276,7 @@ module trecap_delay_error_metrics
     // A pending history tag mismatch or impossible error saturation is an alignment/arithmetic
     // contract failure. Do not forward or accumulate the corrupt sample.
     assign pending_commit =
-        enable_i && !clear_i && !clear_metrics_i && !fail_stop_q &&
+        rst_n && enable_i && !clear_i && !clear_metrics_i && !fail_stop_q &&
         pending_y_valid_q && output_slot_available &&
         pending_history_ready && !err_sat;
 

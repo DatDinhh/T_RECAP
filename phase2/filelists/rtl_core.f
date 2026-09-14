@@ -1,6 +1,6 @@
 # AUTO-GENERATED - DO NOT EDIT
 # Generator: scripts/gen_filelists.py
-# Generator version: r1.4.0
+# Generator version: r1.4.1
 # Filelist: core skeleton without standalone FFT file ownership
 # Expected source files are active entries by default; compile targets fail if missing.
 

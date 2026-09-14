@@ -25,15 +25,10 @@
 // order, or cannot complete a full 0..T_UNIQUE_BINS-1 frame, it drops that spectrum frame and
 // reports one drop_pulse_o. The STFT/WOLA core keeps running.
 module trecap_spec_packetizer
-  import trecap_core_pkg::*;
-  import trecap_packet_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_math_pkg::*;
-  import trecap_build_pkg::*;
 #(
     parameter int unsigned PAYLOAD_DATA_W = 32,
     parameter int unsigned PAYLOAD_KEEP_W = (PAYLOAD_DATA_W + 7) / 8,
-    parameter int unsigned BIN_IDX_W      = (T_UNIQUE_BINS <= 1) ? 1 : $clog2(T_UNIQUE_BINS)
+    parameter int unsigned BIN_IDX_W      = (trecap_core_pkg::T_UNIQUE_BINS <= 1) ? 1 : $clog2(trecap_core_pkg::T_UNIQUE_BINS)
 ) (
     input  logic                       clk,
     input  logic                       rst_n,
@@ -42,27 +37,33 @@ module trecap_spec_packetizer
     input  logic                       formatter_reset_i,
 
     input  logic                       enable_i,
-    input  trecap_spec_mode_e          spec_mode_i,
+    input  trecap_iface_pkg::trecap_spec_mode_e          spec_mode_i,
     input  logic [5:0]                 spec_shift_i,
-    input  trecap_core_tap_frame_t     tap_frame_i,
+    input  trecap_iface_pkg::trecap_core_tap_frame_t     tap_frame_i,
 
     input  logic                       tap_bin_valid_i,
     input  logic [63:0]                tap_bin_frame_idx_i,
     input  logic [BIN_IDX_W-1:0]       tap_bin_idx_i,
-    input  logic [T_MAG2_W-1:0]        tap_bin_mag2_i,
+    input  logic [trecap_core_pkg::T_MAG2_W-1:0]        tap_bin_mag2_i,
     input  logic                       tap_bin_mask_i,
     input  logic                       tap_bin_eligible_i,
     input  logic                       tap_bin_last_i,
 
     output logic                       out_valid_o,
     input  logic                       out_ready_i,
-    output trecap_record_meta_t        out_meta_o,
+    output trecap_iface_pkg::trecap_record_meta_t        out_meta_o,
     output logic [PAYLOAD_DATA_W-1:0]  out_payload_data_o,
     output logic [PAYLOAD_KEEP_W-1:0]  out_payload_keep_o,
     output logic                       out_payload_last_o,
 
     output logic                       drop_pulse_o
 );
+  import trecap_core_pkg::*;
+  import trecap_packet_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_math_pkg::*;
+  import trecap_build_pkg::*;
+
 
     localparam int unsigned BYTES_PER_BEAT = PAYLOAD_KEEP_W;
     localparam int unsigned UNIQUE_BINS = T_UNIQUE_BINS;
@@ -114,6 +115,9 @@ module trecap_spec_packetizer
     trecap_packet_type_e     packet_type_comb;
     logic [1:0]              packet_priority_comb;
     logic [15:0]             nbin_comb;
+    logic [5:0]              compression_shift;
+    logic [15:0]             compressed_bin_low;
+    logic                    compressed_bin_overflow;
     logic [15:0]             compressed_bin;
     logic                    incoming_bin_observed;
     logic                    busy_frame_open_after_event;
@@ -125,7 +129,7 @@ module trecap_spec_packetizer
         bin_order_valid = bin_index_valid && (int'(tap_bin_idx_i) == int'(expected_bin_q));
         bin_frame_valid = (state_q == ST_IDLE) ? 1'b1 : (tap_bin_frame_idx_i == frame_idx_q);
         bin_complete_valid = tap_bin_last_i && (int'(tap_bin_idx_i) == LAST_BIN_INDEX);
-        compressed_bin = clip_mag2_to_u16(tap_bin_mag2_i, (state_q == ST_IDLE) ? shift_clamped : spec_shift_q);
+        compression_shift = (state_q == ST_IDLE) ? shift_clamped : spec_shift_q;
         incoming_bin_observed = tap_bin_valid_i && enable_i && mode_legal;
         busy_frame_open_after_event = dropping_busy_frame_q;
         if ((state_q == ST_SEND) && incoming_bin_observed) begin
@@ -134,15 +138,36 @@ module trecap_spec_packetizer
     end
 
     function automatic int unsigned bucket_for_bin(input int unsigned bin_idx);
-        return (((bin_idx + 1) * SPEC64_BUCKETS) - 1) / UNIQUE_BINS;
+        // Capture callers admit only 0 <= bin_idx < UNIQUE_BINS. For 129/64,
+        // bins 2q and 2q+1 map to q (q=0..63), with bin 128 also in bucket 63.
+        // This constant geometry branch removes the baseline combinational /129 divider.
+        if ((UNIQUE_BINS == 129) && (SPEC64_BUCKETS == 64)) begin
+            bucket_for_bin = (bin_idx >= 128) ? 32'd63 : (bin_idx >> 1);
+        end else begin
+            bucket_for_bin = (((bin_idx + 1) * SPEC64_BUCKETS) - 1) / UNIQUE_BINS;
+        end
     endfunction : bucket_for_bin
 
-    function automatic logic [15:0] clip_mag2_to_u16(
-        input logic [T_MAG2_W-1:0] mag2,
-        input logic [5:0]          shift
-    );
-        return trecap_clip16_after_shift(trecap_math_uwide_t'(mag2), int'(shift));
-    endfunction : clip_mag2_to_u16
+    generate
+        if ((T_MAG2_W > 16) && (T_MAG2_W <= TMATH_WIDE_W)) begin : g_native_compression_width
+            logic [T_MAG2_W-1:0] shifted_mag2;
+            // A logical shift of the unsigned input is identical to shifting
+            // its zero extension. Share this result between the low comparison
+            // and high-bit overflow reduction; neither waits for clipping.
+            assign shifted_mag2 = tap_bin_mag2_i >> compression_shift;
+            assign compressed_bin_low = shifted_mag2[15:0];
+            assign compressed_bin_overflow = |shifted_mag2[T_MAG2_W-1:16];
+        end else begin : g_generic_compression_width
+            trecap_math_uwide_t shifted_mag2;
+            // Preserve the original helper cast for smaller or wider generated
+            // formats, including its truncation above TMATH_WIDE_W. The six-bit
+            // shift is always less than the 128-bit helper width.
+            assign shifted_mag2 = trecap_math_uwide_t'(tap_bin_mag2_i) >> compression_shift;
+            assign compressed_bin_low = shifted_mag2[15:0];
+            assign compressed_bin_overflow = |shifted_mag2[TMATH_WIDE_W-1:16];
+        end
+    endgenerate
+    assign compressed_bin = compressed_bin_overflow ? 16'hffff : compressed_bin_low;
 
     function automatic logic [7:0] get_u16_byte(
         input logic [15:0] value,
@@ -252,7 +277,7 @@ module trecap_spec_packetizer
         end
     endtask : clear_payload_state
 
-    task automatic capture_current_bin;
+    task automatic capture_current_bin(input bit first_bin);
         int unsigned bin;
         int unsigned bucket;
         begin
@@ -260,18 +285,30 @@ module trecap_spec_packetizer
             bucket = bucket_for_bin(bin);
 
             spec129_mag_q[bin] <= compressed_bin;
-            if (tap_bin_mask_i) begin
-                spec129_mask_byte_q[bin / 8][bin % 8] <= 1'b1;
-            end
-
-            if (compressed_bin > spec64_mag_q[bucket]) begin
+            if (first_bin) begin
+                // The first-bin caller also clears storage on this edge. Seed every
+                // overlapping field directly; nonblocking reads still see the old frame.
+                spec129_mask_byte_q[bin / 8] <= tap_bin_mask_i ? (8'd1 << (bin % 8)) : 8'd0;
                 spec64_mag_q[bucket] <= compressed_bin;
-            end
-            if (tap_bin_mask_i) begin
-                spec64_suppressed_q[bucket] <= spec64_suppressed_q[bucket] + 8'd1;
-            end
-            if (tap_bin_eligible_i) begin
-                spec64_eligible_q[bucket] <= spec64_eligible_q[bucket] + 8'd1;
+                spec64_suppressed_q[bucket] <= tap_bin_mask_i ? 8'd1 : 8'd0;
+                spec64_eligible_q[bucket] <= tap_bin_eligible_i ? 8'd1 : 8'd0;
+            end else begin
+                if (tap_bin_mask_i) begin
+                    spec129_mask_byte_q[bin / 8][bin % 8] <= 1'b1;
+                end
+                // Overflow and the low-16 comparison run in parallel. An
+                // overflowing bin contributes ffff, the maximum bucket value;
+                // rewriting an already-ffff bucket is harmless and avoids a
+                // serial clip mux followed by a second magnitude comparison.
+                if (compressed_bin_overflow || (compressed_bin_low > spec64_mag_q[bucket])) begin
+                    spec64_mag_q[bucket] <= compressed_bin;
+                end
+                if (tap_bin_mask_i) begin
+                    spec64_suppressed_q[bucket] <= spec64_suppressed_q[bucket] + 8'd1;
+                end
+                if (tap_bin_eligible_i) begin
+                    spec64_eligible_q[bucket] <= spec64_eligible_q[bucket] + 8'd1;
+                end
             end
         end
     endtask : capture_current_bin
@@ -383,7 +420,7 @@ module trecap_spec_packetizer
                                 expected_bin_q <= BIN_COUNT_W'(1);
                                 byte_offset_q <= '0;
                                 clear_payload_state();
-                                capture_current_bin();
+                                capture_current_bin(1'b1);
 
                                 if (tap_bin_last_i) begin
                                     if (bin_complete_valid) begin
@@ -405,7 +442,7 @@ module trecap_spec_packetizer
 
                         ST_COLLECT: begin
                             if (bin_frame_valid && bin_order_valid) begin
-                                capture_current_bin();
+                                capture_current_bin(1'b0);
                                 if (tap_bin_last_i) begin
                                     if (bin_complete_valid) begin
                                         state_q <= ST_SEND;

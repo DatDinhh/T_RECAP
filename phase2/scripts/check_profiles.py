@@ -682,7 +682,7 @@ def validate_input_block(
             "default_channel": 0,
             "channel_change_policy": "leave_and_reenter_adc_source",
             "first_result_policy": "prime_and_discard_previous_configuration",
-            "sampling_mode_select": "sw7_low_continuous_high_key2_manual",
+            "sampling_mode_select": "sw7_low_continuous_high_key2_diagnostic_only",
             "continuous_sample_rate_hz": 100_000,
             "serial_clock_hz": 2_500_000,
             "dc_block_enable": False,

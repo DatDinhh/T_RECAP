@@ -3,7 +3,17 @@
 File class: **[1] hand-written platform address-map contract**  
 Project: **T_RECAP_Phase2**  
 Board: **DE1-SoC**  
-Current integration stage: **Step 7 source-to-core integration source implemented / RTL compile, functional verification, generated Quartus, and hardware evidence pending**
+Current integration includes the source-to-core path, actual vendor IP generation,
+and native11 placement/routing. Later source revisions require their own build
+reports. Standard Edition evaluation mode has not produced a programmable SOF;
+functional verification and physical board operation remain pending. See
+[implementation status](../../../docs/architecture/architecture_implementation.md)
+and [build flow](../../../docs/architecture/build_order.md).
+
+Historical Step-7 checkpoint: source-to-core integration was implemented while
+RTL compilation, generated Quartus products, functional verification, and
+hardware evidence were still pending. The numbered checkpoint notes below retain
+that historical scope.
 
 ## Step 2 source freeze
 

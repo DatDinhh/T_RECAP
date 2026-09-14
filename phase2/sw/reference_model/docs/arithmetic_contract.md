@@ -2,9 +2,9 @@
 
 ## Purpose
 
-This document defines the integer behavior that the C++ golden model must implement exactly. The goal is to remove every ambiguity that normally causes mismatch between software, RTL, and artifact checkers.
+This document defines the integer behavior that the C++ reference model must implement exactly. The goal is to remove every ambiguity that normally causes mismatch between software, RTL, and artifact checkers.
 
-The arithmetic contract is not optional. Any helper function that changes these rules changes the golden truth.
+The arithmetic contract is not optional. Any helper function that changes these rules changes the reference arithmetic.
 
 ## Numeric domains
 
@@ -23,7 +23,7 @@ SN = [-2048, 2047]
 
 All input stream samples `x[n]` and final output stream samples `y[n]` are signed `N`-bit values.
 
-Internal values use wider signed or unsigned integer domains defined in `fixed_point_widths.md`. Internal wraparound is not allowed in the visible golden-model contract.
+Internal values use wider signed or unsigned integer domains defined in `fixed_point_widths.md`. Internal wraparound is not allowed in the visible reference-model contract.
 
 ## Saturation
 
@@ -190,7 +190,7 @@ Legal baseline threshold range:
 W_mag2 = 56
 ```
 
-Out-of-range threshold values are illegal for signoff. A wrapper may clamp or reject them, but the core golden contract uses legal values only.
+Out-of-range threshold values are illegal for signoff. A wrapper may clamp or reject them, but the core reference contract uses legal values only.
 
 ## Protection rules
 

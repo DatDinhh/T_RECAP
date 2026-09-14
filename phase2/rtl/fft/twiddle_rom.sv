@@ -10,17 +10,18 @@
 `default_nettype none
 
 module trecap_twiddle_rom
-  import trecap_core_pkg::*;
 #(
-    parameter int unsigned DEPTH                  = T_FFT_L,
+    parameter int unsigned DEPTH                  = trecap_core_pkg::T_FFT_L,
     parameter int unsigned ADDR_W                 = (DEPTH <= 1) ? 1 : $clog2(DEPTH),
-    parameter int unsigned TWIDDLE_W              = T_TWIDDLE_W,
-    parameter string       FWD_RE_FILE            = "artifacts/coefficients/twiddle_re.memh",
-    parameter string       FWD_IM_FILE            = "artifacts/coefficients/twiddle_im.memh",
-    parameter string       INV_RE_FILE            = "artifacts/coefficients/twiddle_inv_re.memh",
-    parameter string       INV_IM_FILE            = "artifacts/coefficients/twiddle_inv_im.memh",
+    parameter int unsigned TWIDDLE_W              = trecap_core_pkg::T_TWIDDLE_W,
+    parameter              FWD_RE_FILE            = "artifacts/coefficients/twiddle_re.memh",
+    parameter              FWD_IM_FILE            = "artifacts/coefficients/twiddle_im.memh",
+    parameter              INV_RE_FILE            = "artifacts/coefficients/twiddle_inv_re.memh",
+    parameter              INV_IM_FILE            = "artifacts/coefficients/twiddle_inv_im.memh",
     parameter bit          USE_INVERSE_FILES      = 1'b1,
-    parameter bit          REGISTER_OUTPUT        = 1'b1
+    parameter bit          REGISTER_OUTPUT        = 1'b1,
+    parameter bit          FIXED_DIRECTION        = 1'b0,
+    parameter bit          INVERSE_DIRECTION      = 1'b0
 ) (
     input  logic                              clk,
     input  logic                              rst_n,
@@ -37,42 +38,28 @@ module trecap_twiddle_rom
     output logic signed [TWIDDLE_W-1:0]       tw_im_o,
     output logic                              index_oob_o
 );
+  import trecap_core_pkg::*;
+
 
     localparam int unsigned DEPTH_SAFE = (DEPTH == 0) ? 1 : DEPTH;
     localparam logic [ADDR_W:0] DEPTH_LIMIT = DEPTH_SAFE;
 
-    logic signed [TWIDDLE_W-1:0] fwd_re_mem [0:DEPTH_SAFE-1];
-    logic signed [TWIDDLE_W-1:0] fwd_im_mem [0:DEPTH_SAFE-1];
-    logic signed [TWIDDLE_W-1:0] inv_re_mem [0:DEPTH_SAFE-1];
-    logic signed [TWIDDLE_W-1:0] inv_im_mem [0:DEPTH_SAFE-1];
+    (* ramstyle = "M10K" *) logic signed [TWIDDLE_W-1:0] fwd_re_mem [0:DEPTH_SAFE-1];
+    (* ramstyle = "M10K" *) logic signed [TWIDDLE_W-1:0] fwd_im_mem [0:DEPTH_SAFE-1];
+    (* ramstyle = "M10K" *) logic signed [TWIDDLE_W-1:0] inv_re_mem [0:DEPTH_SAFE-1];
+    (* ramstyle = "M10K" *) logic signed [TWIDDLE_W-1:0] inv_im_mem [0:DEPTH_SAFE-1];
+
+    logic                        selected_inverse;
+    assign selected_inverse = FIXED_DIRECTION ? INVERSE_DIRECTION : inverse_i;
 
     logic                        index_oob_comb;
     logic [ADDR_W:0]             index_ext;
     logic [ADDR_W-1:0]           safe_index;
-    logic signed [TWIDDLE_W-1:0] fwd_re_comb;
-    logic signed [TWIDDLE_W-1:0] fwd_im_comb;
-    logic signed [TWIDDLE_W-1:0] inv_re_file_comb;
-    logic signed [TWIDDLE_W-1:0] inv_im_file_comb;
-    logic signed [TWIDDLE_W-1:0] inv_re_comb;
-    logic signed [TWIDDLE_W-1:0] inv_im_comb;
-    logic signed [TWIDDLE_W-1:0] tw_re_comb;
-    logic signed [TWIDDLE_W-1:0] tw_im_comb;
-
     always_comb begin
         index_ext      = {1'b0, index_i};
         index_oob_comb = (index_ext >= DEPTH_LIMIT);
         safe_index     = index_oob_comb ? '0 : index_i;
     end
-
-    assign fwd_re_comb = fwd_re_mem[safe_index];
-    assign fwd_im_comb = fwd_im_mem[safe_index];
-    assign inv_re_file_comb = inv_re_mem[safe_index];
-    assign inv_im_file_comb = inv_im_mem[safe_index];
-
-    assign inv_re_comb = USE_INVERSE_FILES ? inv_re_file_comb : fwd_re_comb;
-    assign inv_im_comb = USE_INVERSE_FILES ? inv_im_file_comb : -fwd_im_comb;
-    assign tw_re_comb = inverse_i ? inv_re_comb : fwd_re_comb;
-    assign tw_im_comb = inverse_i ? inv_im_comb : fwd_im_comb;
 
     initial begin : init_twiddle_roms
         int unsigned idx;
@@ -99,52 +86,61 @@ module trecap_twiddle_rom
 
     generate
         if (REGISTER_OUTPUT) begin : gen_registered_output
-            logic                        valid_q;
-            logic                        inverse_q;
-            logic [ADDR_W-1:0]           index_q;
-            logic signed [TWIDDLE_W-1:0] tw_re_q;
-            logic signed [TWIDDLE_W-1:0] tw_im_q;
-            logic                        index_oob_q;
+            logic valid_q, inverse_q, index_oob_q;
+            logic [ADDR_W-1:0] index_q;
+            logic signed [TWIDDLE_W-1:0] fwd_re_q, fwd_im_q, inv_re_q, inv_im_q;
 
+            // Direct synchronous reads, with no reset on memory data registers.
+            // Constant engine direction allows the unused coefficient pair to
+            // be removed. Metadata resets separately and qualifies all data.
+            always_ff @(posedge clk) begin
+                if (rst_n && !clear_i && valid_i) begin
+                    fwd_re_q <= fwd_re_mem[safe_index];
+                    fwd_im_q <= fwd_im_mem[safe_index];
+                    inv_re_q <= inv_re_mem[safe_index];
+                    inv_im_q <= inv_im_mem[safe_index];
+                end
+            end
             always_ff @(posedge clk or negedge rst_n) begin
                 if (!rst_n) begin
-                    valid_q     <= 1'b0;
-                    inverse_q   <= 1'b0;
-                    index_q     <= '0;
-                    tw_re_q     <= '0;
-                    tw_im_q     <= '0;
+                    valid_q <= 1'b0;
+                    inverse_q <= 1'b0;
+                    index_q <= '0;
+                    index_oob_q <= 1'b0;
+                end else if (clear_i) begin
+                    valid_q <= 1'b0;
+                    inverse_q <= 1'b0;
+                    index_q <= '0;
                     index_oob_q <= 1'b0;
                 end else begin
-                    if (clear_i) begin
-                        valid_q     <= 1'b0;
-                        inverse_q   <= 1'b0;
-                        index_q     <= '0;
-                        tw_re_q     <= '0;
-                        tw_im_q     <= '0;
-                        index_oob_q <= 1'b0;
-                    end else begin
-                        valid_q     <= valid_i;
-                        inverse_q   <= inverse_i;
-                        index_q     <= index_i;
-                        tw_re_q     <= tw_re_comb;
-                        tw_im_q     <= tw_im_comb;
+                    valid_q <= valid_i;
+                    if (valid_i) begin
+                        inverse_q <= selected_inverse;
+                        index_q <= index_i;
                         index_oob_q <= index_oob_comb;
                     end
                 end
             end
 
-            assign valid_o = valid_q;
-            assign inverse_o = inverse_q;
+            assign valid_o = rst_n && !clear_i && valid_q;
+            assign inverse_o = FIXED_DIRECTION ? INVERSE_DIRECTION : inverse_q;
             assign index_o = index_q;
-            assign tw_re_o = tw_re_q;
-            assign tw_im_o = tw_im_q;
+            assign tw_re_o = (FIXED_DIRECTION ? INVERSE_DIRECTION : inverse_q) &&
+                             USE_INVERSE_FILES ? inv_re_q : fwd_re_q;
+            assign tw_im_o = (FIXED_DIRECTION ? INVERSE_DIRECTION : inverse_q) ?
+                             (USE_INVERSE_FILES ? inv_im_q : -fwd_im_q) : fwd_im_q;
             assign index_oob_o = index_oob_q;
         end else begin : gen_comb_output
+            logic signed [TWIDDLE_W-1:0] fwd_re, fwd_im, inv_re, inv_im;
+            assign fwd_re = fwd_re_mem[safe_index];
+            assign fwd_im = fwd_im_mem[safe_index];
+            assign inv_re = USE_INVERSE_FILES ? inv_re_mem[safe_index] : fwd_re;
+            assign inv_im = USE_INVERSE_FILES ? inv_im_mem[safe_index] : -fwd_im;
             assign valid_o = valid_i;
-            assign inverse_o = inverse_i;
+            assign inverse_o = selected_inverse;
             assign index_o = index_i;
-            assign tw_re_o = tw_re_comb;
-            assign tw_im_o = tw_im_comb;
+            assign tw_re_o = selected_inverse ? inv_re : fwd_re;
+            assign tw_im_o = selected_inverse ? inv_im : fwd_im;
             assign index_oob_o = index_oob_comb;
 
             logic unused_seq_inputs;

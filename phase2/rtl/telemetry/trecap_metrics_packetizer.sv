@@ -31,10 +31,6 @@
 //   48  uint32 max_abs_err
 //   52  uint32 overflow_flags
 module trecap_metrics_packetizer
-  import trecap_core_pkg::*;
-  import trecap_packet_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_build_pkg::*;
 #(
     parameter int unsigned PAYLOAD_DATA_W = 32,
     parameter int unsigned PAYLOAD_KEEP_W = (PAYLOAD_DATA_W + 7) / 8
@@ -48,7 +44,7 @@ module trecap_metrics_packetizer
     input  logic                       formatter_reset_i,
     input  logic                       clear_metrics_i,
     input  logic                       metrics_tick_i,
-    input  trecap_core_tap_frame_t     tap_frame_i,
+    input  trecap_iface_pkg::trecap_core_tap_frame_t     tap_frame_i,
     input  logic [63:0]                core_sum_abs_err_lo_i,
     input  logic [63:0]                core_sum_sq_err_lo_i,
     input  logic [31:0]                core_max_abs_err_i,
@@ -57,13 +53,18 @@ module trecap_metrics_packetizer
 
     output logic                       out_valid_o,
     input  logic                       out_ready_i,
-    output trecap_record_meta_t        out_meta_o,
+    output trecap_iface_pkg::trecap_record_meta_t        out_meta_o,
     output logic [PAYLOAD_DATA_W-1:0]  out_payload_data_o,
     output logic [PAYLOAD_KEEP_W-1:0]  out_payload_keep_o,
     output logic                       out_payload_last_o,
 
     output logic                       drop_pulse_o
 );
+  import trecap_core_pkg::*;
+  import trecap_packet_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_build_pkg::*;
+
 
     localparam int unsigned PAYLOAD_BYTE_W    = PAYLOAD_KEEP_W;
     localparam int unsigned METRICS_BYTES     = TPKT_PAYLOAD_METRICS_BYTES;
@@ -299,7 +300,10 @@ module trecap_metrics_packetizer
 
     always_comb begin
         out_valid_o = (state_q == ST_EMIT);
-        out_meta_o = out_valid_o ? meta_q : '0;
+        // Inactive fields are don't-care; consumers transact only when valid.
+        // Keep valid/flush gating out of downstream payload-size arithmetic.
+        out_meta_o = meta_q;
+        out_meta_o.valid = out_valid_o && meta_q.valid;
         out_payload_data_o = '0;
         out_payload_keep_o = '0;
         out_payload_last_o = 1'b0;

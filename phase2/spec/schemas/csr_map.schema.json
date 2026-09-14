@@ -83,7 +83,8 @@
         },
         "csr_window_span_min_bytes": {
           "type": "integer",
-          "minimum": 256
+          "minimum": 256,
+          "const": 512
         },
         "csr_window_span_recommended_bytes": {
           "type": "integer",
@@ -1255,13 +1256,581 @@
               }
             ]
           }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_CAPABILITY",
+            "offset": 256,
+            "offset_hex": "0x100",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x53480100",
+            "description": "Additive source-health ABI SH version 1. Read before accessing the snapshot page. Existing offsets and UDP layouts are unchanged."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_CONTROL",
+            "offset": 260,
+            "offset_hex": "0x104",
+            "width_bits": 32,
+            "access": "W1P",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000000",
+            "description": "Bit 0 captures every health word atomically; bit 1 rearms the selected live source and invalidates its DSP epoch. Write exactly 1 or 2; zero is a no-op.",
+            "fields": [
+              {
+                "name": "snapshot",
+                "lsb": 0,
+                "msb": 0,
+                "kind": "w1p",
+                "description": "Capture all source-health words on one fabric edge."
+              },
+              {
+                "name": "rearm",
+                "lsb": 1,
+                "msb": 1,
+                "kind": "w1p",
+                "description": "Invalidate DSP epoch, acknowledge fault and wait for wrapper stop before accepting new samples."
+              },
+              {
+                "name": "reserved_31_2",
+                "lsb": 2,
+                "msb": 31,
+                "kind": "reserved",
+                "description": "Write zero."
+              }
+            ]
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_STATUS",
+            "offset": 264,
+            "offset_hex": "0x108",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word STATUS. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset.",
+            "fields": [
+              {
+                "name": "present",
+                "lsb": 0,
+                "msb": 0,
+                "kind": "normal",
+                "description": "Source supervisor connected."
+              },
+              {
+                "name": "live",
+                "lsb": 1,
+                "msb": 1,
+                "kind": "normal",
+                "description": "Selected source is audio or ADC."
+              },
+              {
+                "name": "periodic",
+                "lsb": 2,
+                "msb": 2,
+                "kind": "normal",
+                "description": "Selected source requests periodic DSP acquisition."
+              },
+              {
+                "name": "ready",
+                "lsb": 3,
+                "msb": 3,
+                "kind": "normal",
+                "description": "Physical selected source is ready."
+              },
+              {
+                "name": "running",
+                "lsb": 4,
+                "msb": 4,
+                "kind": "normal",
+                "description": "Live admission enabled and at least one sample received."
+              },
+              {
+                "name": "fault",
+                "lsb": 5,
+                "msb": 5,
+                "kind": "normal",
+                "description": "Fault latched; rearm required."
+              },
+              {
+                "name": "waiting_stop",
+                "lsb": 6,
+                "msb": 6,
+                "kind": "normal",
+                "description": "Waiting for physical wrapper disable acknowledgement."
+              },
+              {
+                "name": "settling",
+                "lsb": 7,
+                "msb": 7,
+                "kind": "normal",
+                "description": "Source stop/flush holdoff active."
+              },
+              {
+                "name": "source_mode",
+                "lsb": 16,
+                "msb": 17,
+                "kind": "normal",
+                "description": "Actual selected source enum."
+              }
+            ]
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_FAULT",
+            "offset": 268,
+            "offset_hex": "0x10C",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word FAULT. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset.",
+            "fields": [
+              {
+                "name": "sequence_gap",
+                "lsb": 0,
+                "msb": 0,
+                "kind": "normal",
+                "description": "Raw acquisition sequence is discontinuous."
+              },
+              {
+                "name": "adapter_drop",
+                "lsb": 1,
+                "msb": 1,
+                "kind": "normal",
+                "description": "A raw sample could not enter its adapter."
+              },
+              {
+                "name": "wrapper_drop",
+                "lsb": 2,
+                "msb": 2,
+                "kind": "normal",
+                "description": "Converter request or audio FIFO overflow."
+              },
+              {
+                "name": "readiness_loss",
+                "lsb": 3,
+                "msb": 3,
+                "kind": "normal",
+                "description": "Physical readiness fell during acquisition."
+              },
+              {
+                "name": "sample_timeout",
+                "lsb": 4,
+                "msb": 4,
+                "kind": "normal",
+                "description": "No first sample within startup timeout, or subsequent sample within gap timeout."
+              },
+              {
+                "name": "wrapper_protocol",
+                "lsb": 5,
+                "msb": 5,
+                "kind": "normal",
+                "description": "Physical wrapper protocol/configuration fault."
+              }
+            ]
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_RATE",
+            "offset": 272,
+            "offset_hex": "0x110",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word RATE. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_EPOCH_LO",
+            "offset": 276,
+            "offset_hex": "0x114",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word EPOCH_LO. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_EPOCH_HI",
+            "offset": 280,
+            "offset_hex": "0x118",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word EPOCH_HI. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_AUDIO_RAW_LO",
+            "offset": 284,
+            "offset_hex": "0x11C",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word AUDIO_RAW_LO. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_AUDIO_RAW_HI",
+            "offset": 288,
+            "offset_hex": "0x120",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word AUDIO_RAW_HI. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_ADC_RAW_LO",
+            "offset": 292,
+            "offset_hex": "0x124",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word ADC_RAW_LO. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_ADC_RAW_HI",
+            "offset": 296,
+            "offset_hex": "0x128",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word ADC_RAW_HI. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_AUDIO_ADMITTED_LO",
+            "offset": 300,
+            "offset_hex": "0x12C",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word AUDIO_ADMITTED_LO. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_AUDIO_ADMITTED_HI",
+            "offset": 304,
+            "offset_hex": "0x130",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word AUDIO_ADMITTED_HI. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_ADC_ADMITTED_LO",
+            "offset": 308,
+            "offset_hex": "0x134",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word ADC_ADMITTED_LO. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_ADC_ADMITTED_HI",
+            "offset": 312,
+            "offset_hex": "0x138",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word ADC_ADMITTED_HI. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_AUDIO_ACCEPTED_LO",
+            "offset": 316,
+            "offset_hex": "0x13C",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word AUDIO_ACCEPTED_LO. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_AUDIO_ACCEPTED_HI",
+            "offset": 320,
+            "offset_hex": "0x140",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word AUDIO_ACCEPTED_HI. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_ADC_ACCEPTED_LO",
+            "offset": 324,
+            "offset_hex": "0x144",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word ADC_ACCEPTED_LO. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_ADC_ACCEPTED_HI",
+            "offset": 328,
+            "offset_hex": "0x148",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word ADC_ACCEPTED_HI. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_AUDIO_ADAPTER_DROP_LO",
+            "offset": 332,
+            "offset_hex": "0x14C",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word AUDIO_ADAPTER_DROP_LO. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_AUDIO_ADAPTER_DROP_HI",
+            "offset": 336,
+            "offset_hex": "0x150",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word AUDIO_ADAPTER_DROP_HI. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_ADC_ADAPTER_DROP_LO",
+            "offset": 340,
+            "offset_hex": "0x154",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word ADC_ADAPTER_DROP_LO. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_ADC_ADAPTER_DROP_HI",
+            "offset": 344,
+            "offset_hex": "0x158",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word ADC_ADAPTER_DROP_HI. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_AUDIO_WRAPPER_DROP_LO",
+            "offset": 348,
+            "offset_hex": "0x15C",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word AUDIO_WRAPPER_DROP_LO. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_AUDIO_WRAPPER_DROP_HI",
+            "offset": 352,
+            "offset_hex": "0x160",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word AUDIO_WRAPPER_DROP_HI. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_ADC_WRAPPER_DROP_LO",
+            "offset": 356,
+            "offset_hex": "0x164",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word ADC_WRAPPER_DROP_LO. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_ADC_WRAPPER_DROP_HI",
+            "offset": 360,
+            "offset_hex": "0x168",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word ADC_WRAPPER_DROP_HI. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_GAP_EVENTS_LO",
+            "offset": 364,
+            "offset_hex": "0x16C",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word GAP_EVENTS_LO. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_GAP_EVENTS_HI",
+            "offset": 368,
+            "offset_hex": "0x170",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word GAP_EVENTS_HI. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_READY_LOSS_LO",
+            "offset": 372,
+            "offset_hex": "0x174",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word READY_LOSS_LO. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_READY_LOSS_HI",
+            "offset": 376,
+            "offset_hex": "0x178",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word READY_LOSS_HI. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_TIMEOUT_EVENTS_LO",
+            "offset": 380,
+            "offset_hex": "0x17C",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word TIMEOUT_EVENTS_LO. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "SOURCE_HEALTH_TIMEOUT_EVENTS_HI",
+            "offset": 384,
+            "offset_hex": "0x180",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_status",
+            "reset": "0x00000000",
+            "description": "Coherent source-health snapshot word TIMEOUT_EVENTS_HI. Counter halves are from one SOURCE_HEALTH_CONTROL snapshot; counters saturate and clear only on fabric reset."
+          }
+        },
+        {
+          "const": {
+            "name": "PLATFORM_CONTROL",
+            "offset": 388,
+            "offset_hex": "0x184",
+            "width_bits": 32,
+            "access": "R/W",
+            "owner": "hps_write_fpga_decode",
+            "reset": "0x00000000",
+            "description": "Kernel platform driver owns bit0 codec_fpga_grant. Assert only after acquiring GPIO48 output-low and confirming pin readback. Revoke before returning GPIO high. Fabric hard reset clears grant; transport/metric/source clears preserve it. Reserved bits reject writes.",
+            "fields": [
+              {
+                "name": "codec_fpga_grant",
+                "lsb": 0,
+                "msb": 0,
+                "kind": "level",
+                "description": "Software-owned codec-bus grant reported through the fabric CSR path. Zero blocks FPGA codec initialization and live audio admission."
+              },
+              {
+                "name": "reserved_31_1",
+                "lsb": 1,
+                "msb": 31,
+                "kind": "reserved",
+                "description": "Write zero; reads return zero."
+              }
+            ]
+          }
+        },
+        {
+          "const": {
+            "name": "PLATFORM_CAPABILITY",
+            "offset": 392,
+            "offset_hex": "0x188",
+            "width_bits": 32,
+            "access": "R",
+            "owner": "fpga_constant",
+            "reset": "0x50470100",
+            "description": "Platform grant capability: PG ABI1. Kernel driver must match this value before accessing PLATFORM_CONTROL. Independent of telemetry packet ABI."
+          }
         }
       ],
       "items": {
         "$ref": "#/$defs/csr_register"
       },
-      "minItems": 38,
-      "maxItems": 38,
+      "minItems": 73,
+      "maxItems": 73,
       "allOf": [
         {
           "contains": {
@@ -1944,7 +2513,7 @@
       "items": {
         "$ref": "#/$defs/multiword_transaction"
       },
-      "minItems": 5,
+      "minItems": 6,
       "allOf": [
         {
           "contains": {
@@ -2015,6 +2584,21 @@
             "properties": {
               "name": {
                 "const": "CORE_COUNTERS"
+              }
+            }
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "const": "SOURCE_HEALTH"
               }
             }
           },
@@ -2381,12 +2965,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "source_commit_pending"},
-                  "lsb": {"const": 9},
-                  "msb": {"const": 9},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "source_commit_pending"
+                  },
+                  "lsb": {
+                    "const": 9
+                  },
+                  "msb": {
+                    "const": 9
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,
@@ -2395,12 +2992,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "actual_source_mode"},
-                  "lsb": {"const": 10},
-                  "msb": {"const": 11},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "actual_source_mode"
+                  },
+                  "lsb": {
+                    "const": 10
+                  },
+                  "msb": {
+                    "const": 11
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,
@@ -2409,12 +3019,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "transport_epoch_idle"},
-                  "lsb": {"const": 12},
-                  "msb": {"const": 12},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "transport_epoch_idle"
+                  },
+                  "lsb": {
+                    "const": 12
+                  },
+                  "msb": {
+                    "const": 12
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,
@@ -2423,12 +3046,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "source_transition_busy"},
-                  "lsb": {"const": 13},
-                  "msb": {"const": 13},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "source_transition_busy"
+                  },
+                  "lsb": {
+                    "const": 13
+                  },
+                  "msb": {
+                    "const": 13
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,
@@ -2437,12 +3073,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "reserved_31_14"},
-                  "lsb": {"const": 14},
-                  "msb": {"const": 31},
-                  "kind": {"const": "reserved"}
+                  "name": {
+                    "const": "reserved_31_14"
+                  },
+                  "lsb": {
+                    "const": 14
+                  },
+                  "msb": {
+                    "const": 31
+                  },
+                  "kind": {
+                    "const": "reserved"
+                  }
                 }
               },
               "minContains": 1,
@@ -2465,12 +3114,24 @@
         "write_semantics"
       ],
       "properties": {
-        "name": {"const": "COUNTER_CLEAR"},
-        "offset": {"const": 140},
-        "offset_hex": {"const": "0x08C"},
-        "access": {"const": "W1P"},
-        "owner": {"const": "hps_write_fpga_decode"},
-        "reset": {"const": "0x00000000"},
+        "name": {
+          "const": "COUNTER_CLEAR"
+        },
+        "offset": {
+          "const": 140
+        },
+        "offset_hex": {
+          "const": "0x08C"
+        },
+        "access": {
+          "const": "W1P"
+        },
+        "owner": {
+          "const": "hps_write_fpga_decode"
+        },
+        "reset": {
+          "const": "0x00000000"
+        },
         "fields": {
           "type": "array",
           "minItems": 2,
@@ -2479,13 +3140,30 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind", "reset", "write_semantics"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind",
+                  "reset",
+                  "write_semantics"
+                ],
                 "properties": {
-                  "name": {"const": "transport_counters"},
-                  "lsb": {"const": 0},
-                  "msb": {"const": 0},
-                  "kind": {"const": "w1p"},
-                  "reset": {"const": 0}
+                  "name": {
+                    "const": "transport_counters"
+                  },
+                  "lsb": {
+                    "const": 0
+                  },
+                  "msb": {
+                    "const": 0
+                  },
+                  "kind": {
+                    "const": "w1p"
+                  },
+                  "reset": {
+                    "const": 0
+                  }
                 }
               },
               "minContains": 1,
@@ -2494,12 +3172,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "reserved_31_1"},
-                  "lsb": {"const": 1},
-                  "msb": {"const": 31},
-                  "kind": {"const": "reserved"}
+                  "name": {
+                    "const": "reserved_31_1"
+                  },
+                  "lsb": {
+                    "const": 1
+                  },
+                  "msb": {
+                    "const": 31
+                  },
+                  "kind": {
+                    "const": "reserved"
+                  }
                 }
               },
               "minContains": 1,
@@ -2522,12 +3213,24 @@
         "write_semantics"
       ],
       "properties": {
-        "name": {"const": "REPLAY_CONTROL"},
-        "offset": {"const": 144},
-        "offset_hex": {"const": "0x090"},
-        "access": {"const": "W1P"},
-        "owner": {"const": "hps_write_fpga_decode"},
-        "reset": {"const": "0x00000000"},
+        "name": {
+          "const": "REPLAY_CONTROL"
+        },
+        "offset": {
+          "const": 144
+        },
+        "offset_hex": {
+          "const": "0x090"
+        },
+        "access": {
+          "const": "W1P"
+        },
+        "owner": {
+          "const": "hps_write_fpga_decode"
+        },
+        "reset": {
+          "const": "0x00000000"
+        },
         "fields": {
           "type": "array",
           "minItems": 3,
@@ -2536,13 +3239,30 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind", "reset", "write_semantics"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind",
+                  "reset",
+                  "write_semantics"
+                ],
                 "properties": {
-                  "name": {"const": "start"},
-                  "lsb": {"const": 0},
-                  "msb": {"const": 0},
-                  "kind": {"const": "w1p"},
-                  "reset": {"const": 0}
+                  "name": {
+                    "const": "start"
+                  },
+                  "lsb": {
+                    "const": 0
+                  },
+                  "msb": {
+                    "const": 0
+                  },
+                  "kind": {
+                    "const": "w1p"
+                  },
+                  "reset": {
+                    "const": 0
+                  }
                 }
               },
               "minContains": 1,
@@ -2551,13 +3271,30 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind", "reset", "write_semantics"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind",
+                  "reset",
+                  "write_semantics"
+                ],
                 "properties": {
-                  "name": {"const": "rearm"},
-                  "lsb": {"const": 1},
-                  "msb": {"const": 1},
-                  "kind": {"const": "w1p"},
-                  "reset": {"const": 0}
+                  "name": {
+                    "const": "rearm"
+                  },
+                  "lsb": {
+                    "const": 1
+                  },
+                  "msb": {
+                    "const": 1
+                  },
+                  "kind": {
+                    "const": "w1p"
+                  },
+                  "reset": {
+                    "const": 0
+                  }
                 }
               },
               "minContains": 1,
@@ -2566,12 +3303,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "reserved_31_2"},
-                  "lsb": {"const": 2},
-                  "msb": {"const": 31},
-                  "kind": {"const": "reserved"}
+                  "name": {
+                    "const": "reserved_31_2"
+                  },
+                  "lsb": {
+                    "const": 2
+                  },
+                  "msb": {
+                    "const": 31
+                  },
+                  "kind": {
+                    "const": "reserved"
+                  }
                 }
               },
               "minContains": 1,
@@ -2593,12 +3343,24 @@
         "fields"
       ],
       "properties": {
-        "name": {"const": "REPLAY_STATUS"},
-        "offset": {"const": 148},
-        "offset_hex": {"const": "0x094"},
-        "access": {"const": "R"},
-        "owner": {"const": "fpga_status"},
-        "reset": {"const": "0x00000000"},
+        "name": {
+          "const": "REPLAY_STATUS"
+        },
+        "offset": {
+          "const": 148
+        },
+        "offset_hex": {
+          "const": "0x094"
+        },
+        "access": {
+          "const": "R"
+        },
+        "owner": {
+          "const": "fpga_status"
+        },
+        "reset": {
+          "const": "0x00000000"
+        },
         "fields": {
           "type": "array",
           "minItems": 13,
@@ -2607,12 +3369,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "pending"},
-                  "lsb": {"const": 0},
-                  "msb": {"const": 0},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "pending"
+                  },
+                  "lsb": {
+                    "const": 0
+                  },
+                  "msb": {
+                    "const": 0
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,
@@ -2621,12 +3396,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "last_accept"},
-                  "lsb": {"const": 1},
-                  "msb": {"const": 1},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "last_accept"
+                  },
+                  "lsb": {
+                    "const": 1
+                  },
+                  "msb": {
+                    "const": 1
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,
@@ -2635,12 +3423,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "last_reject"},
-                  "lsb": {"const": 2},
-                  "msb": {"const": 2},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "last_reject"
+                  },
+                  "lsb": {
+                    "const": 2
+                  },
+                  "msb": {
+                    "const": 2
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,
@@ -2649,12 +3450,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "start_ready"},
-                  "lsb": {"const": 3},
-                  "msb": {"const": 3},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "start_ready"
+                  },
+                  "lsb": {
+                    "const": 3
+                  },
+                  "msb": {
+                    "const": 3
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,
@@ -2663,12 +3477,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "replay_active"},
-                  "lsb": {"const": 4},
-                  "msb": {"const": 4},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "replay_active"
+                  },
+                  "lsb": {
+                    "const": 4
+                  },
+                  "msb": {
+                    "const": 4
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,
@@ -2677,12 +3504,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "replay_path_busy"},
-                  "lsb": {"const": 5},
-                  "msb": {"const": 5},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "replay_path_busy"
+                  },
+                  "lsb": {
+                    "const": 5
+                  },
+                  "msb": {
+                    "const": 5
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,
@@ -2691,12 +3531,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "replay_path_done"},
-                  "lsb": {"const": 6},
-                  "msb": {"const": 6},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "replay_path_done"
+                  },
+                  "lsb": {
+                    "const": 6
+                  },
+                  "msb": {
+                    "const": 6
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,
@@ -2705,12 +3558,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "e2e_busy"},
-                  "lsb": {"const": 7},
-                  "msb": {"const": 7},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "e2e_busy"
+                  },
+                  "lsb": {
+                    "const": 7
+                  },
+                  "msb": {
+                    "const": 7
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,
@@ -2719,12 +3585,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "e2e_done"},
-                  "lsb": {"const": 8},
-                  "msb": {"const": 8},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "e2e_done"
+                  },
+                  "lsb": {
+                    "const": 8
+                  },
+                  "msb": {
+                    "const": 8
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,
@@ -2733,12 +3612,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "error"},
-                  "lsb": {"const": 9},
-                  "msb": {"const": 9},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "error"
+                  },
+                  "lsb": {
+                    "const": 9
+                  },
+                  "msb": {
+                    "const": 9
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,
@@ -2747,12 +3639,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "rearm_required"},
-                  "lsb": {"const": 10},
-                  "msb": {"const": 10},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "rearm_required"
+                  },
+                  "lsb": {
+                    "const": 10
+                  },
+                  "msb": {
+                    "const": 10
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,
@@ -2761,12 +3666,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "reserved_15_11"},
-                  "lsb": {"const": 11},
-                  "msb": {"const": 15},
-                  "kind": {"const": "reserved"}
+                  "name": {
+                    "const": "reserved_15_11"
+                  },
+                  "lsb": {
+                    "const": 11
+                  },
+                  "msb": {
+                    "const": 15
+                  },
+                  "kind": {
+                    "const": "reserved"
+                  }
                 }
               },
               "minContains": 1,
@@ -2775,12 +3693,25 @@
             {
               "contains": {
                 "type": "object",
-                "required": ["name", "lsb", "msb", "kind"],
+                "required": [
+                  "name",
+                  "lsb",
+                  "msb",
+                  "kind"
+                ],
                 "properties": {
-                  "name": {"const": "result_epoch"},
-                  "lsb": {"const": 16},
-                  "msb": {"const": 31},
-                  "kind": {"const": "normal"}
+                  "name": {
+                    "const": "result_epoch"
+                  },
+                  "lsb": {
+                    "const": 16
+                  },
+                  "msb": {
+                    "const": 31
+                  },
+                  "kind": {
+                    "const": "normal"
+                  }
                 }
               },
               "minContains": 1,

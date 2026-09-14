@@ -118,7 +118,7 @@
     "bridge_reset_source": "clk_0.clk_reset",
     "csr_bridge": {
       "instance": "trecap_csr_bridge",
-      "component_type": "altera_avalon_mm_bridge",
+      "component_type": "trecap_avalon_csr_bridge",
       "upstream": "hps_0.h2f_lw_axi_master",
       "slave_interface": "trecap_csr_bridge.s0",
       "exported_master_interface": "trecap_csr_bridge.m0",
@@ -160,6 +160,11 @@
     "sopcinfo_file": "platform/de1soc/qsys/system.sopcinfo",
     "expected_flattened_abi": {
       "clk_50_clk": {"direction": "input", "width_bits": 1},
+      "hps_f2h_cold_reset_req_reset_n": {"direction": "input", "width_bits": 1},
+      "hps_f2h_debug_reset_req_reset_n": {"direction": "input", "width_bits": 1},
+      "hps_f2h_warm_reset_req_reset_n": {"direction": "input", "width_bits": 1},
+      "hps_f2h_stm_hw_events_stm_hwevents": {"direction": "input", "width_bits": 28},
+      "trecap_f2h_sdram0_debugaccess": {"direction": "input", "width_bits": 1},
       "reset_n_reset_n": {"direction": "input", "width_bits": 1},
       "h2f_reset_reset_n": {"direction": "output", "width_bits": 1},
       "memory_mem_a": {"direction": "output", "width_bits": 15},

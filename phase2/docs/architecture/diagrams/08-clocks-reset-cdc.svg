@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1132" viewBox="0 0 1600 1132" role="img" aria-labelledby="title desc">
+<title id="title">Clock, reset and CDC boundaries</title>
+<desc id="desc">The 50 MHz fabric owns numerical processing; external audio serialization crosses through dedicated async FIFOs.</desc>
+<rect x="0" y="0" width="1600" height="1132" rx="0" fill="#FCFCFE" stroke="none" stroke-width="1.3"/>
+<rect x="48" y="42" width="7" height="83" rx="3" fill="#8066A9" stroke="none" stroke-width="1.3"/>
+<text x="75" y="57" font-family="DejaVu Sans, Arial, sans-serif" font-size="15" font-weight="700" fill="#586A80" text-anchor="start">T-RECAP   /   ARCHITECTURE ATLAS</text>
+<text x="75" y="104" font-family="DejaVu Sans, Arial, sans-serif" font-size="39" font-weight="700" fill="#26364B" text-anchor="start">Clock, reset and CDC boundaries</text>
+<text x="75" y="139" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="400" fill="#586A80" text-anchor="start">The 50 MHz fabric owns numerical processing; external audio serialization crosses through dedicated async FIFOs.</text>
+<text x="1525" y="83" font-family="DejaVu Sans, Arial, sans-serif" font-size="35" font-weight="700" fill="#8066A9" text-anchor="end">08</text>
+<polyline points="48,163 1552,163" fill="none" stroke="#D8E0EA" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="55" y="194" width="980" height="584" rx="22" fill="#FFFFFF" stroke="#D8E0EA" stroke-width="1.3"/>
+<rect x="56" y="195" width="978" height="45" rx="21" fill="#DFECFA" stroke="none" stroke-width="1.3"/>
+<rect x="56" y="219" width="978" height="21" rx="0" fill="#DFECFA" stroke="none" stroke-width="1.3"/>
+<text x="77" y="224" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" fill="#4D78A8" text-anchor="start">FABRIC / CLOCK_50 = 50 MHz / 20 ns</text>
+<rect x="1080" y="194" width="465" height="584" rx="22" fill="#FFFFFF" stroke="#D8E0EA" stroke-width="1.3"/>
+<rect x="1081" y="195" width="463" height="45" rx="21" fill="#DDF2E9" stroke="none" stroke-width="1.3"/>
+<rect x="1081" y="219" width="463" height="21" rx="0" fill="#DDF2E9" stroke="none" stroke-width="1.3"/>
+<text x="1102" y="224" font-family="DejaVu Sans, Arial, sans-serif" font-size="18" font-weight="700" fill="#407D6C" text-anchor="start">CODEC + FPGA SERIAL LOGIC</text>
+<rect x="81" y="273" width="355" height="149" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="80" y="270" width="355" height="149" rx="14" fill="#DFECFA" stroke="#4D78A8" stroke-width="1.15"/>
+<text x="97" y="300" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Reset controller</text>
+<text x="97" y="329" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">KEY[0] release held 20 ms</text>
+<text x="97" y="351" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Combine h2f_reset_n; sync release</text>
+<text x="97" y="404" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4D78A8" text-anchor="start">clock_reset_ctrl</text>
+<rect x="506" y="273" width="505" height="149" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="505" y="270" width="505" height="149" rx="14" fill="#DFECFA" stroke="#4D78A8" stroke-width="1.15"/>
+<text x="522" y="300" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">One fabric reset and clock domain</text>
+<text x="522" y="329" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Sources / DSP / telemetry / CSRs / DDR writer</text>
+<text x="522" y="351" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Sample and status ticks are clock enables</text>
+<text x="522" y="404" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4D78A8" text-anchor="start">rst_n_platform / CLOCK_50</text>
+<polyline points="435,344.5 505,344.5" fill="none" stroke="#8066A9" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="8,6"/>
+<polygon points="505,344.5 495.0,340.0 495.0,349.0" fill="#8066A9"/>
+<rect x="596" y="489" width="415" height="112" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="595" y="486" width="415" height="112" rx="14" fill="#DDF2E9" stroke="#407D6C" stroke-width="1.15"/>
+<text x="612" y="516" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">RX async FIFO: 8 x 96</text>
+<text x="612" y="545" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Stereo samples + sequence64</text>
+<text x="612" y="567" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">BCLK rising edge -&gt; fabric50</text>
+<rect x="596" y="639" width="415" height="112" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="595" y="636" width="415" height="112" rx="14" fill="#DDF2E9" stroke="#407D6C" stroke-width="1.15"/>
+<text x="612" y="666" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Optional TX FIFO: 512 x 33</text>
+<text x="612" y="695" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Epoch + duplicated mono L/R</text>
+<text x="612" y="717" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">FIFO read: BCLK rising edge</text>
+<rect x="1106" y="489" width="415" height="112" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="1105" y="486" width="415" height="112" rx="14" fill="#DDF2E9" stroke="#407D6C" stroke-width="1.15"/>
+<text x="1122" y="516" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">FPGA I2S receiver</text>
+<text x="1122" y="545" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Capture at BCLK rising edge</text>
+<text x="1122" y="567" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Nominal 48 kframe/s, 16-bit stereo</text>
+<rect x="1106" y="639" width="415" height="112" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="1105" y="636" width="415" height="112" rx="14" fill="#DDF2E9" stroke="#407D6C" stroke-width="1.15"/>
+<text x="1122" y="666" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">I2S / TX monitor</text>
+<text x="1122" y="695" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Launch data on BCLK falling edge</text>
+<text x="1122" y="717" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Best effort; profile disabled</text>
+<polyline points="1105,542.0 1010,542.0" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1010,542.0 1020.0,546.5 1020.0,537.5" fill="#708299"/>
+<polyline points="1010,692.0 1105,692.0" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1105,692.0 1095.0,687.5 1095.0,696.5" fill="#708299"/>
+<polyline points="802,486 802,419" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="802,419 797.5,429.0 806.5,429.0" fill="#708299"/>
+<rect x="877.994140625" y="457" width="46.01171875" height="21" rx="4" fill="#FCFCFE" stroke="none" stroke-width="1.3"/>
+<text x="901" y="472" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#708299" text-anchor="middle">input</text>
+<polyline points="557,419 557,692 595,692" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="595,692 585.0,687.5 585.0,696.5" fill="#708299"/>
+<rect x="532.958984375" y="599" width="38.08203125" height="21" rx="4" fill="#FCFCFE" stroke="none" stroke-width="1.3"/>
+<text x="552" y="614" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#708299" text-anchor="middle">y[n]</text>
+<rect x="81" y="489" width="425" height="116" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="80" y="486" width="425" height="116" rx="14" fill="#DFECFA" stroke="#4D78A8" stroke-width="1.15"/>
+<text x="97" y="516" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Audio PLL from CLOCK_50</text>
+<text x="97" y="545" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">AUD_XCK nominal 12.288 MHz</text>
+<text x="97" y="567" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Feeds codec; does not clock the DSP</text>
+<text x="97" y="587" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4D78A8" text-anchor="start">audio_pll_wrapper</text>
+<rect x="81" y="639" width="425" height="116" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="80" y="636" width="425" height="116" rx="14" fill="#DFECFA" stroke="#4D78A8" stroke-width="1.15"/>
+<text x="97" y="666" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">Codec I2C initialization</text>
+<text x="97" y="695" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">PLL supported + lock + HPS grant</text>
+<text x="97" y="717" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">100 kHz I2C; codec address 0x1A</text>
+<text x="97" y="737" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#4D78A8" text-anchor="start">audio_codec_i2c_init</text>
+<polyline points="292.5,602 292.5,636" fill="none" stroke="#8066A9" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="8,6"/>
+<polygon points="292.5,636 297.0,626.0 288.0,626.0" fill="#8066A9"/>
+<rect x="1106" y="273" width="415" height="149" rx="14" fill="#EFF1F6" stroke="none" stroke-width="1.3"/>
+<rect x="1105" y="270" width="415" height="149" rx="14" fill="#DDF2E9" stroke="#407D6C" stroke-width="1.15"/>
+<text x="1122" y="300" font-family="DejaVu Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#26364B" text-anchor="start">WM8731 clock generation</text>
+<text x="1122" y="329" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Receives AUD_XCK from FPGA PLL</text>
+<text x="1122" y="351" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Drives BCLK / LRCK</text>
+<text x="1122" y="373" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Nominal BCLK = 3.072 MHz</text>
+<text x="1122" y="404" font-family="DejaVu Sans Mono, Consolas, monospace" font-size="11.5" font-weight="400" fill="#407D6C" text-anchor="start">WM8731 / external board codec</text>
+<polyline points="293,486 293,451 1061,451 1061,344 1105,344" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1105,344 1095.0,339.5 1095.0,348.5" fill="#708299"/>
+<rect x="603.92431640625" y="436" width="76.1513671875" height="21" rx="4" fill="#FCFCFE" stroke="none" stroke-width="1.3"/>
+<text x="642" y="451" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="400" fill="#708299" text-anchor="middle">AUD_XCK</text>
+<polyline points="1312.5,419 1312.5,486" fill="none" stroke="#708299" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+<polygon points="1312.5,486 1317.0,476.0 1308.0,476.0" fill="#708299"/>
+<rect x="55" y="821" width="475" height="177" rx="13" fill="#DFECFA" stroke="none" stroke-width="1.3"/>
+<text x="74" y="850" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#4D78A8" text-anchor="start">ASYNCHRONOUS SINGLE-BIT INPUTS</text>
+<text x="74" y="876" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">ADC_DOUT and I2C ACK data enter preserved 2FF</text>
+<text x="74" y="898" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">fabric synchronizers. ADC_SCLK is a registered output</text>
+<text x="74" y="920" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">from the 50 MHz FSM; it never clocks internal DSP</text>
+<text x="74" y="942" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">logic.</text>
+<rect x="555" y="821" width="485" height="177" rx="13" fill="#DDF2E9" stroke="none" stroke-width="1.3"/>
+<text x="574" y="850" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#407D6C" text-anchor="start">FIFO CROSSING CONTRACT</text>
+<text x="574" y="876" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Gray pointers and BCLK reset release use at least 2</text>
+<text x="574" y="898" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">synchronization stages. Pointer route &lt;= 20 ns; Gray</text>
+<text x="574" y="920" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">skew &lt;= 10 ns; payload route &lt;= 20 ns. FIFO</text>
+<text x="574" y="942" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">ownership transfers payload.</text>
+<rect x="1065" y="821" width="480" height="177" rx="13" fill="#EBEFF4" stroke="none" stroke-width="1.3"/>
+<text x="1084" y="850" font-family="DejaVu Sans, Arial, sans-serif" font-size="17" font-weight="700" fill="#65778A" text-anchor="start">HPS AND PHYSICAL CLOCKS</text>
+<text x="1084" y="876" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">HPS DDR/peripheral clocks remain generated-system</text>
+<text x="1084" y="898" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">owned. No fabric reset feeds back into HPS reset.</text>
+<text x="1084" y="920" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">Audio frequencies are nominal design rates, not board</text>
+<text x="1084" y="942" font-family="DejaVu Sans, Arial, sans-serif" font-size="16" font-weight="400" fill="#26364B" text-anchor="start">measurements.</text>
+<polyline points="48,1034 1552,1034" fill="none" stroke="#D8E0EA" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="65" y="1052" width="14" height="14" rx="4" fill="#DDF2E9" stroke="#407D6C" stroke-width="0.8"/>
+<text x="88" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">Sources</text>
+<rect x="250" y="1052" width="14" height="14" rx="4" fill="#EBE4FA" stroke="#8066A9" stroke-width="0.8"/>
+<text x="273" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">DSP / configuration</text>
+<rect x="570" y="1052" width="14" height="14" rx="4" fill="#F8E0E8" stroke="#A66882" stroke-width="0.8"/>
+<text x="593" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">Telemetry</text>
+<rect x="780" y="1052" width="14" height="14" rx="4" fill="#F7ECD5" stroke="#9C7D3F" stroke-width="0.8"/>
+<text x="803" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">HPS / host</text>
+<rect x="1000" y="1052" width="14" height="14" rx="4" fill="#DFECFA" stroke="#4D78A8" stroke-width="0.8"/>
+<text x="1023" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#586A80" text-anchor="start">Platform / memory</text>
+<polyline points="1290,1059 1328,1059" fill="none" stroke="#708299" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="1337" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#586A80" text-anchor="start">data</text>
+<polyline points="1412,1059 1450,1059" fill="none" stroke="#8066A9" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="7,5"/>
+<text x="1459" y="1064" font-family="DejaVu Sans, Arial, sans-serif" font-size="13" font-weight="400" fill="#586A80" text-anchor="start">control</text>
+<text x="65" y="1090" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#586A80" text-anchor="start">SOURCE: de1_soc_trecap_top.sv  |  audio_codec_wrapper.sv  |  physical_timing.json</text>
+<text x="65" y="1114" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#586A80" text-anchor="start">Architecture source snapshot 2026-09-14  /  Implementation structure; hardware operation is a separate milestone.</text>
+<text x="1535" y="1114" font-family="DejaVu Sans, Arial, sans-serif" font-size="12" font-weight="400" fill="#586A80" text-anchor="end">T-RECAP  /  08</text>
+</svg>

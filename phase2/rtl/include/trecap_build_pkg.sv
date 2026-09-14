@@ -7,15 +7,18 @@
 `default_nettype none
 
 package trecap_build_pkg;
+  // Paths use untyped constant string literals (packed Verilog values).
+  // Quartus20.1 cannot pass dynamic SystemVerilog string values to $readmemh.
+
 
   import trecap_core_pkg::*;
   import trecap_csr_pkg::*;
   import trecap_packet_pkg::*;
   import trecap_iface_pkg::*;
   import trecap_math_pkg::*;
-  localparam string TBUILD_PROJECT_NAME        = "T_RECAP_Phase2";
-  localparam string TBUILD_CONTRACT_REVISION   = "core_rev_j__telemetry_rev_g";
-  localparam string TBUILD_REPOSITORY_PHASE    = "implementation_core_first";
+  localparam        TBUILD_PROJECT_NAME        = "T_RECAP_Phase2";
+  localparam        TBUILD_CONTRACT_REVISION   = "core_rev_j__telemetry_rev_g";
+  localparam        TBUILD_REPOSITORY_PHASE    = "implementation_core_first";
 
   typedef enum logic [2:0] {
     TBUILD_TARGET_CORE_ONLY        = 3'd0,
@@ -33,14 +36,14 @@ package trecap_build_pkg;
 
   // Artifact paths used by ROM wrappers and BRAM replay modules. These are path aliases;
   // the mathematical constants remain generated in trecap_core_pkg.sv.
-  localparam string TBUILD_COEFF_DIR                  = "artifacts/coefficients";
-  localparam string TBUILD_WINDOW_QW_MEMH             = "artifacts/coefficients/window_qw.memh";
-  localparam string TBUILD_TWIDDLE_RE_MEMH            = "artifacts/coefficients/twiddle_re.memh";
-  localparam string TBUILD_TWIDDLE_IM_MEMH            = "artifacts/coefficients/twiddle_im.memh";
-  localparam string TBUILD_TWIDDLE_INV_RE_MEMH        = "artifacts/coefficients/twiddle_inv_re.memh";
-  localparam string TBUILD_TWIDDLE_INV_IM_MEMH        = "artifacts/coefficients/twiddle_inv_im.memh";
-  localparam string TBUILD_TEST_VECTOR_DIR            = "artifacts/test_vectors";
-  localparam string TBUILD_REFERENCE_OUTPUT_DIR       = "artifacts/reference_outputs";
+  localparam        TBUILD_COEFF_DIR                  = "artifacts/coefficients";
+  localparam        TBUILD_WINDOW_QW_MEMH             = "artifacts/coefficients/window_qw.memh";
+  localparam        TBUILD_TWIDDLE_RE_MEMH            = "artifacts/coefficients/twiddle_re.memh";
+  localparam        TBUILD_TWIDDLE_IM_MEMH            = "artifacts/coefficients/twiddle_im.memh";
+  localparam        TBUILD_TWIDDLE_INV_RE_MEMH        = "artifacts/coefficients/twiddle_inv_re.memh";
+  localparam        TBUILD_TWIDDLE_INV_IM_MEMH        = "artifacts/coefficients/twiddle_inv_im.memh";
+  localparam        TBUILD_TEST_VECTOR_DIR            = "artifacts/test_vectors";
+  localparam        TBUILD_REFERENCE_OUTPUT_DIR       = "artifacts/reference_outputs";
 
   // C0 defaults: BRAM replay is the first correctness path and transport starts disabled.
   localparam int unsigned TBUILD_DEFAULT_SOURCE_MODE  = TCSR_SOURCE_MODE_BRAM_REPLAY;
@@ -167,23 +170,54 @@ package trecap_build_pkg;
     return TPKT_WAVE_SAMPLE_OFFSET + (TBUILD_WAVE_TRIPLET_BYTES * nsamp);
   endfunction : trecap_wave_payload_bytes
 
+  localparam int unsigned TBUILD_WAVE_PAYLOAD_W =
+    (TPKT_PAYLOAD_WAVE_MAX_BYTES < 1) ? 1 : $clog2(TPKT_PAYLOAD_WAVE_MAX_BYTES + 1);
+
+  // For an 11-bit even value d, d/2 has five radix-4 digits. Since
+  // 4 == 1 (mod 3), d is divisible by six exactly when their sum is a
+  // multiple of three. The sum is 0..15; all adds are explicitly four bits.
+  // Separate fully assigned function results avoid procedural package locals.
+  function automatic bit trecap_multiple_of_three4(input logic [3:0] digit_sum);
+    case (digit_sum)
+      4'd0, 4'd3, 4'd6, 4'd9, 4'd12, 4'd15:
+        trecap_multiple_of_three4 = 1'b1;
+      default: trecap_multiple_of_three4 = 1'b0;
+    endcase
+  endfunction : trecap_multiple_of_three4
+
+  function automatic bit trecap_multiple_of_six11(input logic [10:0] value);
+    trecap_multiple_of_six11 = !value[0] && trecap_multiple_of_three4(
+      (({2'd0, value[2:1]} + {2'd0, value[4:3]}) +
+       ({2'd0, value[6:5]} + {2'd0, value[8:7]})) + {2'd0, value[10:9]});
+  endfunction : trecap_multiple_of_six11
+
+  function automatic bit trecap_wave_triplets_integral(
+      input logic [TBUILD_WAVE_PAYLOAD_W-1:0] sample_bytes
+  );
+    if ((TBUILD_WAVE_TRIPLET_BYTES == 6) && (TBUILD_WAVE_PAYLOAD_W == 11))
+      trecap_wave_triplets_integral = trecap_multiple_of_six11(11'(sample_bytes));
+    else
+      trecap_wave_triplets_integral =
+        (sample_bytes % TBUILD_WAVE_PAYLOAD_W'(TBUILD_WAVE_TRIPLET_BYTES)) == '0;
+  endfunction : trecap_wave_triplets_integral
+
   function automatic bit trecap_wave_payload_bytes_valid(input int unsigned payload_bytes);
-    int unsigned delta;
-
-    if ((payload_bytes < TPKT_PAYLOAD_WAVE_MIN_BYTES) ||
-        (payload_bytes > TPKT_PAYLOAD_WAVE_MAX_BYTES)) begin
-      return 1'b0;
-    end
-    if (payload_bytes < TPKT_WAVE_SAMPLE_OFFSET) begin
-      return 1'b0;
-    end
-
-    delta = payload_bytes - TPKT_WAVE_SAMPLE_OFFSET;
-    if ((delta % TBUILD_WAVE_TRIPLET_BYTES) != 0) begin
-      return 1'b0;
-    end
-    return ((delta / TBUILD_WAVE_TRIPLET_BYTES) >= TPKT_PAYLOAD_WAVE_NSAMP_MIN) &&
-           ((delta / TBUILD_WAVE_TRIPLET_BYTES) <= TPKT_PAYLOAD_WAVE_NSAMP_MAX);
+    // With an integral triplet count, quotient bounds equal constant byte
+    // bounds. Removing the quotient breaks the divide-by-six segment of the
+    // native 53-level health-to-record-ready timing path.
+    // Full-width range guards reject all out-of-range public inputs before
+    // the narrowed remainder can affect validity. No procedural local is used:
+    // Quartus 20.1 promoted the former partially assigned local to package I/O.
+    trecap_wave_payload_bytes_valid =
+      (payload_bytes >= TPKT_PAYLOAD_WAVE_MIN_BYTES) &&
+      (payload_bytes <= TPKT_PAYLOAD_WAVE_MAX_BYTES) &&
+      (payload_bytes >= TPKT_WAVE_SAMPLE_OFFSET) &&
+      (payload_bytes >=
+       (TPKT_WAVE_SAMPLE_OFFSET + TBUILD_WAVE_TRIPLET_BYTES * TPKT_PAYLOAD_WAVE_NSAMP_MIN)) &&
+      (payload_bytes <=
+       (TPKT_WAVE_SAMPLE_OFFSET + TBUILD_WAVE_TRIPLET_BYTES * TPKT_PAYLOAD_WAVE_NSAMP_MAX)) &&
+      trecap_wave_triplets_integral(TBUILD_WAVE_PAYLOAD_W'(payload_bytes) -
+                                   TBUILD_WAVE_PAYLOAD_W'(TPKT_WAVE_SAMPLE_OFFSET));
   endfunction : trecap_wave_payload_bytes_valid
 
   function automatic bit trecap_payload_bytes_valid(

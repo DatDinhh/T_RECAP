@@ -2,9 +2,9 @@
 
 ## Purpose
 
-This document describes the Phase 2 finite-stream STFT/WOLA selective-suppression operator at the level the golden model must implement. It is not RTL architecture and not telemetry transport.
+This document describes the Phase 2 finite-stream STFT/WOLA selective-suppression operator at the level the reference model must implement. It is not RTL architecture and not telemetry transport.
 
-The golden model consumes a finite signed sample vector `x[0:Ns-1]`, zero-extends it, processes overlapping frames, applies frequency-domain suppression, reconstructs with WOLA, and emits a delayed output vector `y[0:Ny-1]` plus metrics and statistics.
+The reference model consumes a finite signed sample vector `x[0:Ns-1]`, zero-extends it, processes overlapping frames, applies frequency-domain suppression, reconstructs with WOLA, and emits a delayed output vector `y[0:Ny-1]` plus metrics and statistics.
 
 ## Baseline parameters
 
@@ -244,7 +244,7 @@ e[n] = xz[n - D] - y[n]
 
 ## Ring-equivalent executable schedule
 
-The golden model may implement direct arrays or ring buffers. The externally visible sequence must be equivalent to:
+The reference model may implement direct arrays or ring buffers. The externally visible sequence must be equivalent to:
 
 1. read one sample tick, real input until `Ns`, then zero flush;
 2. write sample into input ring;

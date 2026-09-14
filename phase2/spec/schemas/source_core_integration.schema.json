@@ -23,34 +23,102 @@
     "fault_projection_contract",
     "board_binding",
     "evidence_policy",
-    "validation_rules"
+    "validation_rules",
+    "live_source_health_contract"
   ],
   "properties": {
-    "schema": {"const": "trecap_phase2_de1soc_source_core_integration_v1"},
-    "file_class": {"const": "[1] hand-written Step-7 integration contract"},
-    "project": {"const": "T_RECAP_Phase2"},
-    "board": {"const": "de1soc"},
-    "contract_stage": {"const": "step7_source_to_core_integration_source_implemented"},
+    "schema": {
+      "const": "trecap_phase2_de1soc_source_core_integration_v1"
+    },
+    "file_class": {
+      "const": "[1] hand-written Step-7 integration contract"
+    },
+    "project": {
+      "const": "T_RECAP_Phase2"
+    },
+    "board": {
+      "const": "de1soc"
+    },
+    "contract_stage": {
+      "const": "step7_source_to_core_integration_source_implemented"
+    },
     "status": {
       "const": "source_implemented_pending_rtl_compile_functional_verification_quartus_and_hardware_evidence"
     },
-    "implementation_state": {"$ref": "#/$defs/implementationState"},
-    "source_ownership": {"$ref": "#/$defs/sourceOwnership"},
-    "clock_reset_contract": {"$ref": "#/$defs/clockResetContract"},
-    "source_inventory": {"$ref": "#/$defs/sourceInventory"},
-    "stream_contract": {"$ref": "#/$defs/streamContract"},
-    "bram_full_tail_contract": {"$ref": "#/$defs/bramFullTailContract"},
-    "source_switch_contract": {"$ref": "#/$defs/sourceSwitchContract"},
-    "core_config_contract": {"$ref": "#/$defs/coreConfigContract"},
-    "observability_contract": {"$ref": "#/$defs/observabilityContract"},
-    "fault_projection_contract": {"$ref": "#/$defs/faultProjectionContract"},
-    "board_binding": {"$ref": "#/$defs/boardBinding"},
-    "evidence_policy": {"$ref": "#/$defs/evidencePolicy"},
+    "implementation_state": {
+      "$ref": "#/$defs/implementationState"
+    },
+    "source_ownership": {
+      "$ref": "#/$defs/sourceOwnership"
+    },
+    "clock_reset_contract": {
+      "$ref": "#/$defs/clockResetContract"
+    },
+    "source_inventory": {
+      "$ref": "#/$defs/sourceInventory"
+    },
+    "stream_contract": {
+      "$ref": "#/$defs/streamContract"
+    },
+    "bram_full_tail_contract": {
+      "$ref": "#/$defs/bramFullTailContract"
+    },
+    "source_switch_contract": {
+      "$ref": "#/$defs/sourceSwitchContract"
+    },
+    "core_config_contract": {
+      "$ref": "#/$defs/coreConfigContract"
+    },
+    "observability_contract": {
+      "$ref": "#/$defs/observabilityContract"
+    },
+    "fault_projection_contract": {
+      "$ref": "#/$defs/faultProjectionContract"
+    },
+    "board_binding": {
+      "$ref": "#/$defs/boardBinding"
+    },
+    "evidence_policy": {
+      "$ref": "#/$defs/evidencePolicy"
+    },
     "validation_rules": {
       "type": "array",
       "minItems": 12,
       "uniqueItems": true,
-      "items": {"type": "string", "minLength": 1}
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "live_source_health_contract": {
+      "const": {
+        "owner": "rtl/top/trecap_source_core_integration.sv",
+        "csr_authority": "spec/generated/csr_map.json",
+        "documentation": "docs/architecture/source_health.md",
+        "hps_operator": "sw/hps/scripts/source_health.py",
+        "loss_policy": "stop_invalidate_epoch_explicit_rearm",
+        "fault_causes": [
+          "raw_sequence_gap",
+          "adapter_drop",
+          "wrapper_drop",
+          "readiness_loss",
+          "sample_timeout",
+          "wrapper_protocol"
+        ],
+        "fabric_clock_hz": 50000000,
+        "post_stop_settle_cycles": 4096,
+        "first_sample_timeout_cycles": 50000000,
+        "running_sample_timeout_cycles": 4096,
+        "audio_stop_acknowledgement": "capture_enable_bclk_rx_returned_through_two_fabric_flops",
+        "adc_stop_acknowledgement": "adc_busy_low",
+        "manual_adc_is_periodic_core_input": false,
+        "counter_width_bits": 64,
+        "counters_saturate": true,
+        "counter_clear_owner": "fabric_hard_reset_only",
+        "snapshot_words": 31,
+        "rearm_changes_transport_state": false,
+        "normalization_arithmetic_changed": false
+      }
     }
   },
   "$defs": {
@@ -71,17 +139,39 @@
         "hardware_signoff"
       ],
       "properties": {
-        "integration_rtl_implemented": {"const": true},
-        "all_four_normalized_sources_present": {"const": true},
-        "board_audio_and_adc_wrappers_source_connected": {"const": true},
-        "synthetic_board_taps_removed": {"const": true},
-        "real_core_taps_connected_to_transport": {"const": true},
-        "rtl_compile": {"const": false},
-        "functional_verification": {"const": false},
-        "quartus_compile": {"const": false},
-        "live_audio_hardware_ready": {"const": false},
-        "live_adc_hardware_ready": {"const": false},
-        "hardware_signoff": {"const": false}
+        "integration_rtl_implemented": {
+          "const": true
+        },
+        "all_four_normalized_sources_present": {
+          "const": true
+        },
+        "board_audio_and_adc_wrappers_source_connected": {
+          "const": true
+        },
+        "synthetic_board_taps_removed": {
+          "const": true
+        },
+        "real_core_taps_connected_to_transport": {
+          "const": true
+        },
+        "rtl_compile": {
+          "const": false
+        },
+        "functional_verification": {
+          "const": false
+        },
+        "quartus_compile": {
+          "const": false
+        },
+        "live_audio_hardware_ready": {
+          "const": false
+        },
+        "live_adc_hardware_ready": {
+          "const": false
+        },
+        "hardware_signoff": {
+          "const": false
+        }
       }
     },
     "sourceOwnership": {
@@ -101,17 +191,39 @@
         "adc_board_wrapper_rtl"
       ],
       "properties": {
-        "integration_rtl": {"const": "rtl/top/trecap_source_core_integration.sv"},
-        "board_top_rtl": {"const": "rtl/platform/de1soc/de1_soc_trecap_top.sv"},
-        "logical_transport_top_rtl": {"const": "rtl/top/trecap_de1soc_full_top.sv"},
-        "core_rtl": {"const": "rtl/core/trecap_core_top.sv"},
-        "source_mux_rtl": {"const": "rtl/sources/trecap_source_mux.sv"},
-        "bram_source_rtl": {"const": "rtl/sources/trecap_bram_replay_source.sv"},
-        "diagnostic_source_rtl": {"const": "rtl/sources/trecap_diagnostic_source.sv"},
-        "audio_adapter_rtl": {"const": "rtl/sources/trecap_audio_adapter.sv"},
-        "adc_adapter_rtl": {"const": "rtl/sources/trecap_adc_adapter.sv"},
-        "audio_board_wrapper_rtl": {"const": "rtl/platform/de1soc/audio_codec_wrapper.sv"},
-        "adc_board_wrapper_rtl": {"const": "rtl/platform/de1soc/adc_wrapper.sv"}
+        "integration_rtl": {
+          "const": "rtl/top/trecap_source_core_integration.sv"
+        },
+        "board_top_rtl": {
+          "const": "rtl/platform/de1soc/de1_soc_trecap_top.sv"
+        },
+        "logical_transport_top_rtl": {
+          "const": "rtl/top/trecap_de1soc_full_top.sv"
+        },
+        "core_rtl": {
+          "const": "rtl/core/trecap_core_top.sv"
+        },
+        "source_mux_rtl": {
+          "const": "rtl/sources/trecap_source_mux.sv"
+        },
+        "bram_source_rtl": {
+          "const": "rtl/sources/trecap_bram_replay_source.sv"
+        },
+        "diagnostic_source_rtl": {
+          "const": "rtl/sources/trecap_diagnostic_source.sv"
+        },
+        "audio_adapter_rtl": {
+          "const": "rtl/sources/trecap_audio_adapter.sv"
+        },
+        "adc_adapter_rtl": {
+          "const": "rtl/sources/trecap_adc_adapter.sv"
+        },
+        "audio_board_wrapper_rtl": {
+          "const": "rtl/platform/de1soc/audio_codec_wrapper.sv"
+        },
+        "adc_board_wrapper_rtl": {
+          "const": "rtl/platform/de1soc/adc_wrapper.sv"
+        }
       }
     },
     "clockResetContract": {
@@ -126,34 +238,80 @@
         "logical_top_parameter_binding"
       ],
       "properties": {
-        "clock": {"const": "clk_fabric"},
-        "reset": {"const": "rst_n_platform"},
-        "single_clock_source_core_transport_domain": {"const": true},
-        "platform_reset_already_synchronized": {"const": true},
-        "logical_top_second_reset_synchronizer_enabled": {"const": false},
-        "logical_top_parameter_binding": {"const": "SYNC_TOP_RESET_DEASSERTION=0"}
+        "clock": {
+          "const": "clk_fabric"
+        },
+        "reset": {
+          "const": "rst_n_platform"
+        },
+        "single_clock_source_core_transport_domain": {
+          "const": true
+        },
+        "platform_reset_already_synchronized": {
+          "const": true
+        },
+        "logical_top_second_reset_synchronizer_enabled": {
+          "const": false
+        },
+        "logical_top_parameter_binding": {
+          "const": "SYNC_TOP_RESET_DEASSERTION=0"
+        }
       }
     },
     "sourceEntry": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["mode", "normalized_module", "board_wrapper", "pacing"],
+      "required": [
+        "mode",
+        "normalized_module",
+        "board_wrapper",
+        "pacing"
+      ],
       "properties": {
-        "mode": {"type": "string", "pattern": "^TSRC_[A-Z_]+$"},
-        "normalized_module": {"type": "string", "minLength": 1},
-        "board_wrapper": {"type": ["string", "null"]},
-        "pacing": {"enum": ["source_tick_i", "raw_sample_valid"]}
+        "mode": {
+          "type": "string",
+          "pattern": "^TSRC_[A-Z_]+$"
+        },
+        "normalized_module": {
+          "type": "string",
+          "minLength": 1
+        },
+        "board_wrapper": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pacing": {
+          "enum": [
+            "source_tick_i",
+            "raw_sample_valid"
+          ]
+        }
       }
     },
     "sourceInventory": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["bram_replay", "adc_live", "audio_wrapper", "diagnostic"],
+      "required": [
+        "bram_replay",
+        "adc_live",
+        "audio_wrapper",
+        "diagnostic"
+      ],
       "properties": {
-        "bram_replay": {"$ref": "#/$defs/sourceEntry"},
-        "adc_live": {"$ref": "#/$defs/sourceEntry"},
-        "audio_wrapper": {"$ref": "#/$defs/sourceEntry"},
-        "diagnostic": {"$ref": "#/$defs/sourceEntry"}
+        "bram_replay": {
+          "$ref": "#/$defs/sourceEntry"
+        },
+        "adc_live": {
+          "$ref": "#/$defs/sourceEntry"
+        },
+        "audio_wrapper": {
+          "$ref": "#/$defs/sourceEntry"
+        },
+        "diagnostic": {
+          "$ref": "#/$defs/sourceEntry"
+        }
       }
     },
     "streamContract": {
@@ -171,15 +329,33 @@
         "board_core_output_ready_tie"
       ],
       "properties": {
-        "only_legal_path": {"const": "normalized_source_to_trecap_source_mux_to_trecap_core_top"},
-        "source_mux_module": {"const": "trecap_source_mux"},
-        "core_module": {"const": "trecap_core_top"},
-        "ready_owner": {"const": "trecap_core_top"},
-        "telemetry_ready_path_to_core_permitted": {"const": false},
-        "transport_ready_path_to_core_permitted": {"const": false},
-        "synthetic_sources_gate_valid_and_ready_with_source_tick": {"const": true},
-        "live_sources_use_raw_sample_valid": {"const": true},
-        "board_core_output_ready_tie": {"const": 1}
+        "only_legal_path": {
+          "const": "normalized_source_to_trecap_source_mux_to_trecap_core_top"
+        },
+        "source_mux_module": {
+          "const": "trecap_source_mux"
+        },
+        "core_module": {
+          "const": "trecap_core_top"
+        },
+        "ready_owner": {
+          "const": "trecap_core_top"
+        },
+        "telemetry_ready_path_to_core_permitted": {
+          "const": false
+        },
+        "transport_ready_path_to_core_permitted": {
+          "const": false
+        },
+        "synthetic_sources_gate_valid_and_ready_with_source_tick": {
+          "const": true
+        },
+        "live_sources_use_raw_sample_valid": {
+          "const": true
+        },
+        "board_core_output_ready_tie": {
+          "const": 1
+        }
       }
     },
     "bramFullTailContract": {
@@ -203,20 +379,48 @@
         "replay_done_semantics"
       ],
       "properties": {
-        "input_samples_parameter": {"const": "REPLAY_INPUT_SAMPLES"},
-        "frame_count_formula": {"const": "floor((Ns+L-2)/H)"},
-        "tau_last_formula": {"const": "Nframes*H"},
-        "output_samples_formula": {"const": "tau_last+G+L"},
-        "flush_samples_formula": {"const": "Ny-Ns"},
-        "drain_samples_formula": {"const": "G+L"},
-        "analysis_condition": {"const": "sample_idx<tau_last"},
-        "tail_condition": {"const": "sample_idx>=tau_last"},
-        "analysis_and_tail_mutually_exclusive": {"const": true},
-        "tail_bypasses_fft_mask_path": {"const": true},
-        "tail_advances_wola_only": {"const": true},
-        "tail_phase_reports_held_selected_token": {"const": true},
-        "finite_stream_only_in_bram_mode": {"const": true},
-        "replay_restart_requires_source_core_and_y_quiescent": {"const": true},
+        "input_samples_parameter": {
+          "const": "REPLAY_INPUT_SAMPLES"
+        },
+        "frame_count_formula": {
+          "const": "floor((Ns+L-2)/H)"
+        },
+        "tau_last_formula": {
+          "const": "Nframes*H"
+        },
+        "output_samples_formula": {
+          "const": "tau_last+G+L"
+        },
+        "flush_samples_formula": {
+          "const": "Ny-Ns"
+        },
+        "drain_samples_formula": {
+          "const": "G+L"
+        },
+        "analysis_condition": {
+          "const": "sample_idx<tau_last"
+        },
+        "tail_condition": {
+          "const": "sample_idx>=tau_last"
+        },
+        "analysis_and_tail_mutually_exclusive": {
+          "const": true
+        },
+        "tail_bypasses_fft_mask_path": {
+          "const": true
+        },
+        "tail_advances_wola_only": {
+          "const": true
+        },
+        "tail_phase_reports_held_selected_token": {
+          "const": true
+        },
+        "finite_stream_only_in_bram_mode": {
+          "const": true
+        },
+        "replay_restart_requires_source_core_and_y_quiescent": {
+          "const": true
+        },
         "replay_done_semantics": {
           "const": "final_source_token_accepted_not_exact_core_completion"
         }
@@ -241,18 +445,42 @@
         "safe_boundary_definition"
       ],
       "properties": {
-        "requested_mode_source": {"const": "ctrl.source_mode"},
-        "apply_pulse_source": {"const": "source_mode_apply_pulse"},
-        "csr_has_already_waited_for_source_safe_boundary": {"const": true},
-        "mux_safe_to_switch_tie": {"const": 1},
-        "real_mode_change_blanks_stream": {"const": true},
-        "real_mode_change_clears_source_epoch": {"const": true},
-        "real_mode_change_clears_core_alignment_by_discontinuity": {"const": true},
-        "first_new_source_beat_blocked_until_clear_settles": {"const": true},
-        "public_discontinuity_event_width_cycles": {"const": 1},
-        "datapath_clear_preserves_active_source_mode": {"const": true},
-        "coordinated_source_mode_reset": {"const": "rst_n"},
-        "idempotent_commit_causes_discontinuity": {"const": false},
+        "requested_mode_source": {
+          "const": "ctrl.source_mode"
+        },
+        "apply_pulse_source": {
+          "const": "source_mode_apply_pulse"
+        },
+        "csr_has_already_waited_for_source_safe_boundary": {
+          "const": true
+        },
+        "mux_safe_to_switch_tie": {
+          "const": 1
+        },
+        "real_mode_change_blanks_stream": {
+          "const": true
+        },
+        "real_mode_change_clears_source_epoch": {
+          "const": true
+        },
+        "real_mode_change_clears_core_alignment_by_discontinuity": {
+          "const": true
+        },
+        "first_new_source_beat_blocked_until_clear_settles": {
+          "const": true
+        },
+        "public_discontinuity_event_width_cycles": {
+          "const": 1
+        },
+        "datapath_clear_preserves_active_source_mode": {
+          "const": true
+        },
+        "coordinated_source_mode_reset": {
+          "const": "rst_n"
+        },
+        "idempotent_commit_causes_discontinuity": {
+          "const": false
+        },
         "safe_boundary_definition": {
           "const": "accepted_selected_source_beat_or_selected_source_empty_while_not_pending_or_transitioning"
         }
@@ -269,17 +497,49 @@
         "metrics_clear_request_source",
         "metrics_clear_request_latched",
         "metrics_clear_apply_boundary",
-        "repeated_pending_metrics_clear_requests_coalesce"
+        "repeated_pending_metrics_clear_requests_coalesce",
+        "threshold_snapshot_event",
+        "threshold_retirement_event",
+        "threshold_metadata_queue_depth",
+        "threshold_metadata_includes_frame_index"
       ],
       "properties": {
-        "threshold_source": {"const": "ctrl.thr2_active"},
-        "threshold_boundary_source": {"const": "core_config_safe_boundary_o"},
-        "threshold_boundary_definition": {"const": "true_core_frame_boundary_or_structural_core_idle"},
-        "late_tap_frame_valid_is_commit_boundary": {"const": false},
-        "metrics_clear_request_source": {"const": "clear_metrics_pulse"},
-        "metrics_clear_request_latched": {"const": true},
-        "metrics_clear_apply_boundary": {"const": "core_config_safe_boundary_o"},
-        "repeated_pending_metrics_clear_requests_coalesce": {"const": true}
+        "threshold_source": {
+          "const": "ctrl.thr2_active"
+        },
+        "threshold_boundary_source": {
+          "const": "core_config_safe_boundary_o"
+        },
+        "threshold_boundary_definition": {
+          "const": "true_core_frame_boundary_or_structural_core_idle"
+        },
+        "late_tap_frame_valid_is_commit_boundary": {
+          "const": false
+        },
+        "metrics_clear_request_source": {
+          "const": "clear_metrics_pulse"
+        },
+        "metrics_clear_request_latched": {
+          "const": true
+        },
+        "metrics_clear_apply_boundary": {
+          "const": "core_config_safe_boundary_o"
+        },
+        "repeated_pending_metrics_clear_requests_coalesce": {
+          "const": true
+        },
+        "threshold_snapshot_event": {
+          "const": "scheduler_to_input_ring_frame_accept"
+        },
+        "threshold_retirement_event": {
+          "const": "last_canonical_bin_accepted_by_mask"
+        },
+        "threshold_metadata_queue_depth": {
+          "const": 4
+        },
+        "threshold_metadata_includes_frame_index": {
+          "const": true
+        }
       }
     },
     "observabilityContract": {
@@ -294,12 +554,24 @@
         "synthetic_board_tap_generator_permitted"
       ],
       "properties": {
-        "tap_source": {"const": "trecap_core_top"},
-        "tap_destination": {"const": "trecap_de1soc_full_top"},
-        "tap_transport_is_valid_only": {"const": true},
-        "real_core_frame_count_to_csr": {"const": true},
-        "real_core_sample_count_to_csr": {"const": true},
-        "synthetic_board_tap_generator_permitted": {"const": false}
+        "tap_source": {
+          "const": "trecap_core_top"
+        },
+        "tap_destination": {
+          "const": "trecap_de1soc_full_top"
+        },
+        "tap_transport_is_valid_only": {
+          "const": true
+        },
+        "real_core_frame_count_to_csr": {
+          "const": true
+        },
+        "real_core_sample_count_to_csr": {
+          "const": true
+        },
+        "synthetic_board_tap_generator_permitted": {
+          "const": false
+        }
       }
     },
     "faultProjectionContract": {
@@ -317,15 +589,33 @@
         "w1c_source_clear_mask"
       ],
       "properties": {
-        "set_interface_semantics": {"const": "one_cycle_new_fault_pulses"},
-        "sticky_level_directly_drives_set_interface": {"const": false},
-        "edge_detection_required": {"const": true},
-        "w1c_rearms_edge_history": {"const": true},
-        "mapped_masks": {"$ref": "#/$defs/nonemptyUniqueStrings"},
-        "unmapped_live_source_and_protocol_faults_use_dedicated_status": {"const": true},
-        "source_mux_reject_drives_external_csr_reject_pulse": {"const": true},
-        "w1c_core_clear_masks": {"$ref": "#/$defs/nonemptyUniqueStrings"},
-        "w1c_source_clear_mask": {"const": "TCSR_OVERFLOW_FLAGS_SOURCE_MODE_ERROR_MASK"}
+        "set_interface_semantics": {
+          "const": "one_cycle_new_fault_pulses"
+        },
+        "sticky_level_directly_drives_set_interface": {
+          "const": false
+        },
+        "edge_detection_required": {
+          "const": true
+        },
+        "w1c_rearms_edge_history": {
+          "const": true
+        },
+        "mapped_masks": {
+          "$ref": "#/$defs/nonemptyUniqueStrings"
+        },
+        "unmapped_live_source_and_protocol_faults_use_dedicated_status": {
+          "const": true
+        },
+        "source_mux_reject_drives_external_csr_reject_pulse": {
+          "const": true
+        },
+        "w1c_core_clear_masks": {
+          "$ref": "#/$defs/nonemptyUniqueStrings"
+        },
+        "w1c_source_clear_mask": {
+          "const": "TCSR_OVERFLOW_FLAGS_SOURCE_MODE_ERROR_MASK"
+        }
       }
     },
     "boardBinding": {
@@ -344,16 +634,36 @@
         "generated_filelists"
       ],
       "properties": {
-        "integration_instance": {"const": "u_source_core_integration"},
-        "logical_transport_instance": {"const": "u_full_top"},
-        "audio_wrapper_instance": {"const": "u_audio_codec_wrapper"},
-        "adc_wrapper_instance": {"const": "u_adc_wrapper"},
-        "replay_start_control": {"const": "key_press_pulse[1]"},
-        "frame_boundary_binding": {"const": "core_config_safe_boundary"},
-        "source_safe_boundary_binding": {"const": "source_core_safe_boundary"},
-        "overflow_set_binding": {"const": "source_core_overflow_flags_set"},
-        "csr_reject_binding": {"const": "source_core_csr_reject_pulse"},
-        "generated_filelists": {"$ref": "#/$defs/nonemptyUniqueStrings"}
+        "integration_instance": {
+          "const": "u_source_core_integration"
+        },
+        "logical_transport_instance": {
+          "const": "u_full_top"
+        },
+        "audio_wrapper_instance": {
+          "const": "u_audio_codec_wrapper"
+        },
+        "adc_wrapper_instance": {
+          "const": "u_adc_wrapper"
+        },
+        "replay_start_control": {
+          "const": "key_press_pulse[1]"
+        },
+        "frame_boundary_binding": {
+          "const": "core_config_safe_boundary"
+        },
+        "source_safe_boundary_binding": {
+          "const": "source_core_safe_boundary"
+        },
+        "overflow_set_binding": {
+          "const": "source_core_overflow_flags_set"
+        },
+        "csr_reject_binding": {
+          "const": "source_core_csr_reject_pulse"
+        },
+        "generated_filelists": {
+          "$ref": "#/$defs/nonemptyUniqueStrings"
+        }
       }
     },
     "evidencePolicy": {
@@ -371,22 +681,43 @@
         "source_check_is_hardware_signoff"
       ],
       "properties": {
-        "source_checker": {"const": "scripts/check_source_core_integration.py"},
-        "human_document": {"const": "docs/architecture/source_core_integration.md"},
-        "schema_file": {"const": "spec/schemas/source_core_integration.schema.json"},
-        "default_checker_scope": {"const": "source_only"},
-        "source_check_is_rtl_compile": {"const": false},
-        "source_check_is_functional_verification": {"const": false},
-        "source_check_is_quartus_compile": {"const": false},
-        "source_check_is_live_source_hardware_evidence": {"const": false},
-        "source_check_is_hardware_signoff": {"const": false}
+        "source_checker": {
+          "const": "scripts/check_source_core_integration.py"
+        },
+        "human_document": {
+          "const": "docs/architecture/source_core_integration.md"
+        },
+        "schema_file": {
+          "const": "spec/schemas/source_core_integration.schema.json"
+        },
+        "default_checker_scope": {
+          "const": "source_only"
+        },
+        "source_check_is_rtl_compile": {
+          "const": false
+        },
+        "source_check_is_functional_verification": {
+          "const": false
+        },
+        "source_check_is_quartus_compile": {
+          "const": false
+        },
+        "source_check_is_live_source_hardware_evidence": {
+          "const": false
+        },
+        "source_check_is_hardware_signoff": {
+          "const": false
+        }
       }
     },
     "nonemptyUniqueStrings": {
       "type": "array",
       "minItems": 1,
       "uniqueItems": true,
-      "items": {"type": "string", "minLength": 1}
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     }
   }
 }

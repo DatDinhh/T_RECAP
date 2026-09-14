@@ -10,10 +10,8 @@
 `default_nettype none
 
 module trecap_source_mux
-  import trecap_core_pkg::*;
-  import trecap_iface_pkg::*;
 #(
-    parameter trecap_source_mode_e RESET_SOURCE_MODE = TSRC_BRAM_REPLAY,
+    parameter trecap_iface_pkg::trecap_source_mode_e RESET_SOURCE_MODE = trecap_iface_pkg::TSRC_BRAM_REPLAY,
     parameter bit                  ACCEPT_SWITCH_WHEN_OUTPUT_IDLE = 1'b1,
     parameter int unsigned         SWITCH_REJECT_COUNT_W = 32
 ) (
@@ -25,35 +23,35 @@ module trecap_source_mux
 
     // Shadow/commit source-mode control. The CSR layer owns validation/reject policy; this mux
     // still checks for X/unknown values and waits for a safe switch point before changing output.
-    input  trecap_source_mode_e          requested_source_mode_i,
+    input  trecap_iface_pkg::trecap_source_mode_e          requested_source_mode_i,
     input  logic                         source_mode_commit_i,
     input  logic                         safe_to_switch_i,
     input  logic                         force_discontinuity_i,
 
-    input  trecap_sample_t               bram_sample_i,
+    input  trecap_iface_pkg::trecap_sample_t               bram_sample_i,
     input  logic                         bram_sample_valid_i,
     output logic                         bram_sample_ready_o,
 
-    input  trecap_sample_t               adc_sample_i,
+    input  trecap_iface_pkg::trecap_sample_t               adc_sample_i,
     input  logic                         adc_sample_valid_i,
     output logic                         adc_sample_ready_o,
 
-    input  trecap_sample_t               audio_sample_i,
+    input  trecap_iface_pkg::trecap_sample_t               audio_sample_i,
     input  logic                         audio_sample_valid_i,
     output logic                         audio_sample_ready_o,
 
-    input  trecap_sample_t               diagnostic_sample_i,
+    input  trecap_iface_pkg::trecap_sample_t               diagnostic_sample_i,
     input  logic                         diagnostic_sample_valid_i,
     output logic                         diagnostic_sample_ready_o,
 
     input  logic                         sample_ready_i,
-    output trecap_sample_t               sample_o,
+    output trecap_iface_pkg::trecap_sample_t               sample_o,
     output logic                         sample_valid_o,
-    output logic signed [T_SAMPLE_W-1:0] sample_data_o,
+    output logic signed [trecap_core_pkg::T_SAMPLE_W-1:0] sample_data_o,
     output logic [63:0]                  sample_idx_o,
 
-    output trecap_source_mode_e          active_source_mode_o,
-    output trecap_source_mode_e          pending_source_mode_o,
+    output trecap_iface_pkg::trecap_source_mode_e          active_source_mode_o,
+    output trecap_iface_pkg::trecap_source_mode_e          pending_source_mode_o,
     output logic                         pending_switch_o,
     output logic                         switch_accept_pulse_o,
     output logic                         switch_apply_pulse_o,
@@ -66,6 +64,9 @@ module trecap_source_mux
     output logic                         switch_pending_sticky_o,
     output logic                         disabled_sticky_o
 );
+  import trecap_core_pkg::*;
+  import trecap_iface_pkg::*;
+
 
     localparam int unsigned REJECT_COUNT_SAFE_W = (SWITCH_REJECT_COUNT_W == 0) ? 1 : SWITCH_REJECT_COUNT_W;
 

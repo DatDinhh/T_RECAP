@@ -1,5 +1,7 @@
 # C0 exact artifact scoreboard v68
 
+> Historical design note. Revision-specific results and open items below belong to that development stage; they are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
+
 > Historical revision record. Do not use the v68 runner or its old provenance
 > conclusions for the current tree. v69 replaced the import/release integrity
 > layer, and v70b retains that repair plus the current AC9-AC12 scoreboard. Use
@@ -209,13 +211,13 @@ being accepted.
 
 ## Current superseding run
 
-The historical v68 runner is no longer shipped. Run the current v70b superset:
+The historical v68 runner is no longer shipped. Run the retained v70b superset:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process Bypass -Force
 & ".\scripts\windows\run_c0_golden_v70.ps1" `
   -Repo (Resolve-Path ".").Path `
-  -ModelSimExe "D:\Quartus\modelsim_ase\win32aloem\modelsim.exe"
+  -ModelSimExe "$env:MODELSIM_EXE"
 ```
 
 The runner first executes the v65-v67 regressions, then this artifact test. It

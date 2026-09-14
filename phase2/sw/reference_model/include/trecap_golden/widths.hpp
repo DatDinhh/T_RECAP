@@ -5,24 +5,25 @@
 #include <string_view>
 
 #include "trecap_golden/signed_int.hpp"
+#include "trecap_golden/generated/core_config.hpp"
 
 namespace trecap::golden {
 
 inline constexpr std::string_view kContractRevision = "phase2_core_revision_j";
-inline constexpr std::string_view kFftMode = "custom_radix2_dit_bitrev_in_natural_out";
-inline constexpr std::string_view kRoundingMode = "round_nearest_ties_away_from_zero";
-inline constexpr std::string_view kTailPolicyFullTail = "full_tail";
-inline constexpr std::string_view kThresholdMappingRawThr2 = "raw_thr2";
+inline constexpr std::string_view kFftMode = reference_config::FFT_MODE;
+inline constexpr std::string_view kRoundingMode = reference_config::ROUNDING_MODE;
+inline constexpr std::string_view kTailPolicyFullTail = reference_config::TAIL_POLICY;
+inline constexpr std::string_view kThresholdMappingRawThr2 = reference_config::THRESHOLD_MAPPING;
 
-inline constexpr unsigned kSampleWidthN = 12U;
-inline constexpr unsigned kFftLengthL = 256U;
-inline constexpr unsigned kRadixStagesP = 8U;
-inline constexpr unsigned kHopSizeH = 128U;
-inline constexpr unsigned kFractionalBitsF = 15U;
-inline constexpr unsigned kSchedulingCushionG = 128U;
-inline constexpr unsigned kCoreDelayD = kFftLengthL + kSchedulingCushionG;
-inline constexpr bool kProtectDcDefault = true;
-inline constexpr bool kProtectNyquistDefault = false;
+inline constexpr unsigned kSampleWidthN = reference_config::N;
+inline constexpr unsigned kFftLengthL = reference_config::L;
+inline constexpr unsigned kRadixStagesP = reference_config::P;
+inline constexpr unsigned kHopSizeH = reference_config::H;
+inline constexpr unsigned kFractionalBitsF = reference_config::F;
+inline constexpr unsigned kSchedulingCushionG = reference_config::G;
+inline constexpr unsigned kCoreDelayD = reference_config::D;
+inline constexpr bool kProtectDcDefault = reference_config::PROTECT_DC_DEFAULT;
+inline constexpr bool kProtectNyquistDefault = reference_config::PROTECT_NYQ_DEFAULT;
 inline constexpr unsigned kUniqueBinCount = (kFftLengthL / 2U) + 1U;
 
 struct CoreConfig final {
@@ -35,6 +36,8 @@ struct CoreConfig final {
     unsigned D{kCoreDelayD};
     bool protect_dc{kProtectDcDefault};
     bool protect_nyq{kProtectNyquistDefault};
+
+    [[nodiscard]] constexpr bool operator==(const CoreConfig&) const = default;
 
     [[nodiscard]] static constexpr CoreConfig baseline() noexcept {
         return CoreConfig{};
@@ -57,7 +60,7 @@ struct CoreConfig final {
         if (L == 0U || (L & (L - 1U)) != 0U) {
             throw contract_error("FFT length L must be a power of two");
         }
-        if ((1U << P) != L) {
+        if (P >= 32U || (1U << P) != L) {
             throw contract_error("P must satisfy L = 2^P");
         }
         if (H != L / 2U) {

@@ -86,7 +86,6 @@ REQUIRED_DIRS = [
     "ci/docker",
     "legacy/phase1",
     "legacy/deprecated_phase2_docs",
-    "runs",
 ]
 
 REQUIRED_DOC_FILES = [

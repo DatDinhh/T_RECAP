@@ -338,15 +338,49 @@ proc ::trecap_pd::qsys_validate_strict {description args} {
     if {[catch {uplevel 1 $args} validation_messages]} {
         return -code error "$description failed: $validation_messages"
     }
-    foreach validation_message $validation_messages {
-        message error "$description: $validation_message"
+    # Quartus20.1.1 Build720 returns strings with explicit severity prefixes.
+    # Keep the raw messages, reject errors and unknown severities, and accept
+    # only the reviewed non-critical HPS clock-approximation warnings below.
+    set failures 0
+    set debug_count 0
+    set warning_count 0
+    set validation_log {}
+    if {![string equal $opts(readback_output) ""]} {
+        set validation_path "${opts(readback_output)}.validation.log"
+        file mkdir [file dirname $validation_path]
+        # The bundled Quartus Java Tcl interpreter cannot append to a file
+        # that does not exist yet; create it explicitly on the first phase.
+        set validation_mode w
+        if {[file exists $validation_path]} { set validation_mode a }
+        set validation_log [open $validation_path $validation_mode]
+        puts $validation_log "=== $description ==="
     }
-    # Qsys API 16.0 documents only an opaque list of messages and provides no
-    # portable severity accessor. Therefore any returned message is a failure;
-    # an allowlist may be introduced only after capturing this exact Quartus
-    # 20.1 build's raw representation in the next tool-normalization step.
-    if {[llength $validation_messages] != 0} {
-        return -code error "$description returned [llength $validation_messages] validation message(s)"
+    foreach validation_message $validation_messages {
+        if {![string equal $validation_log ""]} { puts $validation_log $validation_message }
+        # System validation prefixes the same HPS messages with the system name.
+        regsub {^Warning: system[.]hps_0: } $validation_message {Warning: hps_0: } validation_message
+        if {[regexp -nocase {^Debug:} $validation_message]} {
+            incr debug_count
+        } elseif {[regexp -nocase {^Info:} $validation_message]} {
+            message info "$description: $validation_message"
+        } elseif {[regexp {^Warning: hps_0: } $validation_message] && (
+            [string first {"Configuration/HPS-to-FPGA user 0 clock frequency" (desired_cfg_clk_mhz) requested 100.0 MHz, but only achieved 97.368421 MHz} $validation_message] >= 0 ||
+            [string first {"QSPI clock frequency" (desired_qspi_clk_mhz) requested 400.0 MHz, but only achieved 370.0 MHz} $validation_message] >= 0 ||
+            [string equal $validation_message {Warning: hps_0: 1 or more output clock frequencies cannot be achieved precisely, consider revising desired output clock frequencies.}]
+        )} {
+            # Neither optional clock drives the50MHz core/CSR/DDR fabric domain.
+            # Their actual vendor-derived values are retained in the readback.
+            incr warning_count
+            message warning "$description: $validation_message"
+        } else {
+            incr failures
+            message error "$description: $validation_message"
+        }
+    }
+    if {![string equal $validation_log ""]} { close $validation_log }
+    message info "$description: $debug_count debug messages, $warning_count reviewed clock warnings, $failures failures"
+    if {$failures != 0} {
+        return -code error "$description returned $failures unaccepted validation message(s)"
     }
     return 1
 }
@@ -382,7 +416,9 @@ proc ::trecap_pd::create_or_load_system {} {
     if {!$opts(dry_run)} { file mkdir [file dirname $qsys_file] }
     qsys_cmd "create system" create_system $system_name
 
-    qsys_cmd "reload Platform Designer IP catalog" reload_ip_catalog
+    # qsys-script receives the source IP search path on its command line.
+    # reload_ip_catalog in Quartus20.1.1 discards that supplied search path;
+    # use the fresh process catalog so the response-capable CSR IP stays visible.
     qsys_cmd "set device family" set_project_property DEVICE_FAMILY [::trecap_hps_config::get device_family]
     qsys_cmd "set target device" set_project_property DEVICE [::trecap_hps_config::get device_part]
     return $qsys_file
@@ -451,9 +487,17 @@ proc ::trecap_pd::semantic_parameter_value {param api_value} {
 }
 
 proc ::trecap_pd::parameter_values_equal {param actual expected} {
-    return [string equal \
-        [semantic_parameter_value $param $actual] \
-        [semantic_parameter_value $param $expected]]
+    set actual [semantic_parameter_value $param $actual]
+    set expected [semantic_parameter_value $param $expected]
+    if {[string equal $actual $expected]} { return 1 }
+    # Numeric IP parameters may be rendered as integer or decimal strings
+    # (clockFrequency is returned as 50000000.0 by Quartus20.1). Compare exact
+    # numeric values without tolerances; enums and lists remain exact strings.
+    set numeric_pattern {^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][+-]?[0-9]+)?$}
+    if {[regexp $numeric_pattern $actual] && [regexp $numeric_pattern $expected]} {
+        return [expr {double($actual) == double($expected)}]
+    }
+    return 0
 }
 
 proc ::trecap_pd::instance_parameter_names {inst} {
@@ -477,10 +521,13 @@ proc ::trecap_pd::set_parameter_strict {inst param expected} {
         return -code error "cannot read $inst.$param: $current"
     }
     set api_expected [qsys_api_value $param $expected]
-    # Apply every required value on each convergence pass. This is a source
-    # contract, not a best-effort patch over vendor defaults.
-    if {[catch {set_instance_parameter_value $inst $param $api_expected} msg]} {
-        return -code error "cannot set required parameter $inst.$param: $msg"
+    # Compare before writing: setting an unchanged HPS parameter still triggers
+    # expensive vendor callbacks in Quartus20.1. Every required value is read
+    # back here and again after complete-system validation, including defaults.
+    if {![parameter_values_equal $param $current $expected]} {
+        if {[catch {set_instance_parameter_value $inst $param $api_expected} msg]} {
+            return -code error "cannot set required parameter $inst.$param: $msg"
+        }
     }
     if {[catch {get_instance_parameter_value $inst $param} actual]} {
         return -code error "cannot read back $inst.$param: $actual"
@@ -675,13 +722,23 @@ proc ::trecap_pd::configure_hps_instance {} {
         lappend expected_writable $param
         if {[lsearch -exact $visible $param] < 0} { lappend missing $param }
     }
-    set unexpected {}
+    # Quartus20.1 get_instance_parameters includes internal/derived cache
+    # parameters that are not serialized as user parameters in a .qsys file.
+    # Require the complete source-owned partition, but do not mistake extra
+    # vendor implementation parameters for writable source configuration.
+    foreach param $expected_all {
+        if {[lsearch -exact $visible $param] < 0 && [lsearch -exact $missing $param] < 0} {
+            lappend missing $param
+        }
+    }
+    if {[llength $missing] != 0} {
+        return -code error "the Quartus HPS inventory lacks required frozen parameters: $missing"
+    }
+    set internal_parameters {}
     foreach param $visible {
-        if {[lsearch -exact $expected_all $param] < 0} { lappend unexpected $param }
+        if {[lsearch -exact $expected_all $param] < 0} { lappend internal_parameters $param }
     }
-    if {[llength $missing] != 0 || [llength $unexpected] != 0} {
-        return -code error "the Quartus HPS writable-parameter inventory does not match the frozen 20.1 partition; missing: $missing; unexpected: $unexpected"
-    }
+    message info "HPS inventory: [llength $expected_all] required snapshot parameters; [llength $internal_parameters] additional vendor implementation parameters"
 
     for {set pass 1} {$pass <= 2} {incr pass} {
         foreach pair [::trecap_hps_config::hps_parameter_pairs] {
@@ -752,6 +809,16 @@ proc ::trecap_pd::build_system_graph {} {
     export_interface_strict [::trecap_hps_config::get f2h_sdram0_export] avalon [::trecap_hps_config::get f2h_sdram0_export_role] [::trecap_hps_config::get f2h_sdram0_export_internal]
     export_interface_strict [::trecap_hps_config::get h2f_reset_export] reset [::trecap_hps_config::get h2f_reset_export_direction] ${hps}.h2f_reset
 
+    # The frozen HPS preset enables fabric reset requests and STM hardware
+    # events. Export every required input; the board wrapper ties these unused
+    # requests inactive instead of leaving required HPS interfaces unconnected.
+    foreach local_reset {f2h_cold_reset_req f2h_debug_reset_req f2h_warm_reset_req} {
+        export_interface_strict [::trecap_hps_config::get ${local_reset}_export] \
+            reset sink ${hps}.${local_reset}
+    }
+    export_interface_strict [::trecap_hps_config::get f2h_stm_hw_events_export] \
+        conduit end ${hps}.f2h_stm_hw_events
+
     qsys_validate_strict "validate complete Platform Designer system" validate_system
 
     # Clock-derived updates can occur only after the complete graph exists.
@@ -801,7 +868,28 @@ proc ::trecap_pd::save_system_source {} {
         return -code error "save_system returned without creating staging file: $staging_file"
     }
     if {[catch {file rename -force $staging_file $qsys_file} msg]} {
-        return -code error "could not atomically replace $qsys_file with validated staging file: $msg"
+        # Quartus20.1's Java Tcl cannot replace an existing file on Windows.
+        # Python os.replace retains atomic replacement on the same filesystem;
+        # never delete the working source first or fall back to a partial copy.
+        set python_cmd {}
+        if {![string equal $opts(python_exe) ""]} {
+            set python_cmd [list $opts(python_exe)]
+        } else {
+            foreach candidate {python3 python} {
+                if {![catch {auto_execok $candidate} resolved] && ![string equal $resolved ""]} {
+                    set python_cmd $resolved
+                    break
+                }
+            }
+        }
+        if {[llength $python_cmd] == 0} {
+            return -code error "atomic replacement requires Python after Tcl rename failed: $msg"
+        }
+        set replace_command $python_cmd
+        lappend replace_command -c {import os, sys; os.replace(sys.argv[1], sys.argv[2])} $staging_file $qsys_file
+        if {[catch {eval exec $replace_command} replace_msg]} {
+            return -code error "could not atomically replace $qsys_file: $replace_msg (Tcl: $msg)"
+        }
     }
     message info "atomically replaced Platform Designer source after clean construction: $qsys_file"
 }
@@ -898,7 +986,6 @@ proc ::trecap_pd::probe_hps_instance {} {
     require_qsys_commands
     # Probe in a process-local scratch system. Never load, delete, or save the
     # checked-in system.qsys from an inventory operation.
-    qsys_cmd "reload Platform Designer IP catalog for probe" reload_ip_catalog
     qsys_cmd "create non-persistent HPS probe system" create_system trecap_hps_probe
     qsys_cmd "set probe device family" set_project_property DEVICE_FAMILY [::trecap_hps_config::get device_family]
     qsys_cmd "set probe target device" set_project_property DEVICE [::trecap_hps_config::get device_part]

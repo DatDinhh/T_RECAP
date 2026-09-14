@@ -32,6 +32,7 @@ private:
 
 class OlaRing final {
 public:
+    [[nodiscard]] const CoreConfig& config() const noexcept { return cfg_; }
     explicit OlaRing(const CoreConfig& core = CoreConfig::baseline());
 
     [[nodiscard]] std::int64_t emit_current_and_advance();

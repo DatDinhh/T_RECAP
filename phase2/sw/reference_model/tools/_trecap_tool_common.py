@@ -26,39 +26,18 @@ if str(_PYTHON_DIR) not in sys.path:
 from trecap_golden.generators import GeneratorError as PackageGeneratorError
 from trecap_golden.generators import generate_samples as package_generate_samples
 
-N = 12
-L = 256
-P = 8
-H = 128
-F = 15
-G = 128
-D = L + G
-PROTECT_DC = 1
-PROTECT_NYQ = 0
-W_QW = F + 1
-W_TW = F + 2
-W_U = N + F
-W_FFT = W_U + 1
-W_FFT_PRE = W_FFT + 1
-W_CAN_PRE = W_FFT + 1
-W_CAN = W_FFT
-W_MAG2 = 2 * W_CAN
-W_IFFT = W_CAN + P
-W_Z = W_IFFT
-W_OLA = W_Z + 1
-UNIQUE_BINS = L // 2 + 1
+from trecap_golden.generated.trecap_config import (
+    N, L, P, H, F, G, D, UNIQUE_BINS, SPEC_REVISION, TELEMETRY_REVISION,
+    PROTECT_DC_DEFAULT as PROTECT_DC, PROTECT_NYQ_DEFAULT as PROTECT_NYQ,
+    W_Qw as W_QW, W_tw as W_TW, W_u as W_U, W_fft as W_FFT,
+    W_fft_pre as W_FFT_PRE, W_can_pre as W_CAN_PRE, W_can as W_CAN,
+    W_mag2 as W_MAG2, W_ifft as W_IFFT, W_z as W_Z, W_ola as W_OLA,
+    ROUNDING_MODE, FFT_MODE, TAIL_POLICY, MEMH_ENCODING, HASH_RULE, THRESHOLD_MAPPING,
+)
 
-SPEC_REVISION = "core_rev_j"
-TELEMETRY_REVISION = "telemetry_rev_g"
 GENERATOR_VERSION = "phase2_generators_revision_j"
 VECTOR_BUNDLE_SCHEMA = "trecap_phase2_vector_bundle_v1"
 GOLDEN_MODEL_VERSION = "trecap_golden_0.1.0"
-ROUNDING_MODE = "round_nearest_ties_away_from_zero"
-FFT_MODE = "custom_radix2_dit_bitrev_in_natural_out"
-TAIL_POLICY = "full_tail"
-MEMH_ENCODING = "fixed_width_lowercase_hex_lf"
-HASH_RULE = "logical_integer_vector_fixed_width_hex_lf"
-THRESHOLD_MAPPING = "raw_thr2"
 ZERO_SHA256 = "0" * 64
 
 FRAME_STATS_HEADER = [

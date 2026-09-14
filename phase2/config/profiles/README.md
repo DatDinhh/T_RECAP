@@ -78,6 +78,25 @@ the real Platform Designer `system.sopcinfo` is generated and reconciled.
   selection latched only on entry to the `adc_live` source epoch. It uses full
   telemetry but does not change the default BRAM-replay profile.
 
-The profiles are validated and recorded by the build entry point. Later architecture steps still
-have to bind the normalized settings to Quartus parameters and HPS CSR initialization; a JSON file
-cannot alter synthesized RTL by itself.
+The build entry point now resolves the profile through `scripts/resolve_runtime_profile.py`,
+applies its generated run-local QSF parameter include, and records `effective_runtime.json`.
+The HPS launcher accepts the same `--profile` and applies the resolved source, packet mask,
+SPEC mode/shift, WAVE decimation, and initial threshold through the existing CSR startup path.
+Telemetry cadence is synthesized: use matching profiles for FPGA build and HPS launch.
+
+```bash
+scripts/quartus/build_de1soc.sh --profile config/profiles/de1soc_linein_demo.json
+sudo sw/hps/scripts/run_udp_streamer.sh --profile config/profiles/de1soc_linein_demo.json --no-build
+```
+
+The Make-based HPS build produces `build/hps/bin/trecap_udp_streamer`, which is the
+launcher's default. For the CMake `hps` preset, use
+`--binary build/hps-host/trecap_udp_streamer --no-build` instead.
+
+A launcher without `--profile` retains STATUS-only startup. Explicit launcher options override
+profile settings and are recorded in the final launch command. Profile selection does not start
+BRAM replay automatically or establish codec-bus ownership. Manual ADC conversions are local
+diagnostics: they do not enter STFT/WOLA and use a zero periodic sample rate in telemetry.
+A metrics cadence of zero disables the metrics tick. Shipped profiles disable LINE-OUT in the
+bitstream, so SW[3] alone cannot turn it on. The current CSR version cannot read back a build
+profile hash; pair the build and launch manifests explicitly.

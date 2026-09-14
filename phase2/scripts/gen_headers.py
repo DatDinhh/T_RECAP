@@ -759,27 +759,33 @@ def gen_iface_pkg(iface: Mapping[str, Any]) -> str:
 
 
 def gen_csr_h(csr: Mapping[str, Any]) -> str:
-    lines = [banner("c"), "#ifndef TRECAP_CSR_H", "#define TRECAP_CSR_H", "", "#include <stdint.h>", "", "#ifdef __cplusplus", 'extern "C" {', "#endif", ""]
+    # Constant-only header is shared with the Linux platform driver.
+    def csr_uint32(value: int, width: int) -> str:
+        if width != 32:
+            raise ValueError("CSR C constants must be 32-bit")
+        return f"0x{value:08x}u"
+
+    lines = [banner("c"), "#ifndef TRECAP_CSR_H", "#define TRECAP_CSR_H", "", "#ifndef __KERNEL__", "#include <stdint.h>", "#endif", "", "#ifdef __cplusplus", 'extern "C" {', "#endif", ""]
     constants = csr.get("constants", {})
     if "ID" in constants:
-        lines.append(f"#define TCSR_ID_VALUE {c_uint(parse_int(constants['ID']['value_hex']), 32)}")
+        lines.append(f"#define TCSR_ID_VALUE {csr_uint32(parse_int(constants['ID']['value_hex']), 32)}")
     version = constants.get("VERSION", {})
     if version:
         lines.append(f"#define TCSR_VERSION_MAJOR {parse_int(version['major'])}u")
         lines.append(f"#define TCSR_VERSION_MINOR {parse_int(version['minor'])}u")
-        lines.append(f"#define TCSR_VERSION_VALUE {c_uint(parse_int(version['packed_hex']), 32)}")
+        lines.append(f"#define TCSR_VERSION_VALUE {csr_uint32(parse_int(version['packed_hex']), 32)}")
     for name in ["THR2_WIDTH_BITS", "SPEC_SHIFT_MAX", "WAVE_DECIM_MIN", "WAVE_DECIM_MAX", "RING_ALIGNMENT_BYTES", "RING_GUARD_BYTES_MIN"]:
         if name in constants:
             lines.append(f"#define TCSR_{sanitize_upper(name)} {parse_int(constants[name])}u")
     lines.append("")
     lines.append("/* CSR register offsets. */")
     for reg in csr["registers"]:
-        lines.append(f"#define {('TCSR_' + sanitize_upper(reg['name']) + '_OFFSET'):<48} {c_uint(parse_int(reg['offset']), 32)}")
+        lines.append(f"#define {('TCSR_' + sanitize_upper(reg['name']) + '_OFFSET'):<48} {csr_uint32(parse_int(reg['offset']), 32)}")
     lines.append("")
     lines.append("/* CSR reset values. */")
     for reg in csr["registers"]:
         if "reset" in reg:
-            lines.append(f"#define {('TCSR_' + sanitize_upper(reg['name']) + '_RESET'):<48} {c_uint(parse_int(reg['reset']), 32)}")
+            lines.append(f"#define {('TCSR_' + sanitize_upper(reg['name']) + '_RESET'):<48} {csr_uint32(parse_int(reg['reset']), 32)}")
     lines.append("")
     lines.append("/* CSR bit positions and masks. */")
     for reg in csr["registers"]:
@@ -790,7 +796,7 @@ def gen_csr_h(csr: Mapping[str, Any]) -> str:
             msb = parse_int(field.get("msb", lsb))
             lines.append(f"#define TCSR_{rn}_{fn}_LSB {lsb}u")
             lines.append(f"#define TCSR_{rn}_{fn}_MSB {msb}u")
-            lines.append(f"#define TCSR_{rn}_{fn}_MASK {c_uint(field_mask(lsb, msb), 32)}")
+            lines.append(f"#define TCSR_{rn}_{fn}_MASK {csr_uint32(field_mask(lsb, msb), 32)}")
     lines.append("")
     lines.append("/* CSR enum mirror values. */")
     for enum_name, values in csr.get("enums", {}).items():

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "trecap-golden"
 version = "0.1.0"
-description = "T-RECAP Phase 2 golden-model artifact tooling"
+description = "T-RECAP Phase 2 fixed-point reference model and artifact tooling"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -14,11 +14,11 @@ authors = [
 ]
 keywords = [
   "fixed-point",
-  "golden-model",
+  "reference-model",
   "stft",
   "wola",
   "fpga",
-  "artifact-signoff"
+  "signal-processing"
 ]
 classifiers = [
   "Development Status :: 2 - Pre-Alpha",

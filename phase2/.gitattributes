@@ -1,0 +1,30 @@
+# Portable source defaults
+* text=auto eol=lf
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+
+# Byte-level reference identities must survive checkout unchanged.
+artifacts/** -text
+spec/** -text
+sw/reference_model/** -text
+rtl/include/generated/** -text
+sw/hps/include/generated/** -text
+sw/pc_dashboard/generated/** -text
+filelists/** -text
+config/reference_import_promotions.json -text
+
+# Preserve source-profile and vendor-preset byte identities.
+config/** -text
+platform/de1soc/qsys/presets/** -text
+
+# Preserve reviewed RTL and normalized Platform Designer byte identities.
+rtl/** -text
+platform/de1soc/qsys/system.qsys -text
+
+# Hash-pinned CRLF source uses CR as part of the line ending.
+* whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Preserve native Qsys bonusData CDATA formatting without editing vendor serialization.
+platform/de1soc/qsys/system.qsys whitespace=-blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

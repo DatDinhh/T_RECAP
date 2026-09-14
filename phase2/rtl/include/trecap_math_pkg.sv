@@ -80,7 +80,7 @@ package trecap_math_pkg;
     rounded_mag = (mag + bias) >> shift;
 
     if (value < '0) begin
-      return -trecap_math_swide_t'(rounded_mag);
+      return -(trecap_math_swide_t'(rounded_mag));
     end
     return trecap_math_swide_t'(rounded_mag);
   endfunction : trecap_rnd_shr

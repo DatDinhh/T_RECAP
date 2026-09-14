@@ -163,6 +163,9 @@ std::vector<std::int64_t> read_memh(const std::filesystem::path& path, const Mem
     std::vector<std::int64_t> values;
     std::string line;
     while (std::getline(in, line)) {
+        if (in.eof()) {
+            throw contract_error("memh final value must end with LF");
+        }
         if (!line.empty() && line.back() == '\r') {
             throw contract_error("memh file uses CRLF; canonical form requires LF only");
         }
@@ -170,6 +173,9 @@ std::vector<std::int64_t> read_memh(const std::filesystem::path& path, const Mem
             throw contract_error("memh file contains a blank line");
         }
         values.push_back(decode_memh_line(line, spec));
+    }
+    if (in.bad() || !in.eof()) {
+        throw contract_error("I/O error while reading memh file: " + path.string());
     }
     if (spec.expected_lines != 0U && static_cast<std::uint64_t>(values.size()) != spec.expected_lines) {
         throw contract_error("memh line count does not match expected value");

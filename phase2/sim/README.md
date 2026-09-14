@@ -1,5 +1,7 @@
 # Step 12 DDR-ring ownership and boundary gate
 
+Windows examples read `MODELSIM_EXE` and `MODELSIM_BIN` from the local shell environment. Set these to the executable and installation directory on the current machine; installation paths are not part of the repository.
+
 Run every simulator-independent Step 12 gate, including the source contract,
 the dependency-free boundary model, repository layout, generated contracts,
 and frozen-artifact checks:
@@ -61,7 +63,7 @@ On Windows, use the fail-closed native runner:
 ```powershell
 & ".\scripts\windows\run_step11_bram_e2e.ps1" `
   -Repo (Resolve-Path ".").Path `
-  -ModelSimBin "D:\Quartus\modelsim_ase\win32aloem"
+  -ModelSimBin "$env:MODELSIM_BIN"
 ```
 
 This repository snapshot contains the testbench and runner source; it does not
@@ -95,7 +97,7 @@ Run the complete native suite on Windows:
 Set-ExecutionPolicy -Scope Process Bypass -Force
 & ".\scripts\windows\run_c0_golden_v70.ps1" `
   -Repo (Resolve-Path ".").Path `
-  -ModelSimExe "D:\Quartus\modelsim_ase\win32aloem\modelsim.exe" `
+  -ModelSimExe "$env:MODELSIM_EXE" `
   -PythonExe "python"
 ```
 
@@ -136,7 +138,7 @@ on Windows:
 Set-ExecutionPolicy -Scope Process Bypass -Force
 & ".\scripts\windows\run_c0_golden_v70.ps1" `
   -Repo (Resolve-Path ".").Path `
-  -ModelSimExe "D:\Quartus\modelsim_ase\win32aloem\modelsim.exe"
+  -ModelSimExe "$env:MODELSIM_EXE"
 ```
 
 The run is valid only if it ends with all four artifact sentinels:
@@ -186,7 +188,7 @@ on Windows:
 Set-ExecutionPolicy -Scope Process Bypass -Force
 & ".\scripts\windows\run_c0_golden_v70.ps1" `
   -Repo (Resolve-Path ".").Path `
-  -ModelSimExe "D:\Quartus\modelsim_ase\win32aloem\modelsim.exe"
+  -ModelSimExe "$env:MODELSIM_EXE"
 ```
 
 The runner first requires `C0_EXACT_COMPLETION_MODEL_PASS`, then all four RTL
@@ -248,7 +250,7 @@ which includes the conservation and tail regressions:
 Set-ExecutionPolicy -Scope Process Bypass -Force
 & ".\scripts\windows\run_c0_golden_v70.ps1" `
   -Repo (Resolve-Path ".").Path `
-  -ModelSimExe "D:\Quartus\modelsim_ase\win32aloem\modelsim.exe"
+  -ModelSimExe "$env:MODELSIM_EXE"
 ```
 
 The runner is fail-closed: compilation alone is insufficient; all three PASS
@@ -298,7 +300,7 @@ Starter Edition, run the current v70b superset:
 Set-ExecutionPolicy -Scope Process Bypass -Force
 & ".\scripts\windows\run_c0_golden_v70.ps1" `
   -Repo (Resolve-Path ".").Path `
-  -ModelSimExe "D:\Quartus\modelsim_ase\win32aloem\modelsim.exe"
+  -ModelSimExe "$env:MODELSIM_EXE"
 ```
 
 The runner compiles and executes the test. A compile-only transcript is not

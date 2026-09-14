@@ -23,8 +23,8 @@ inline constexpr std::uint32_t kGoldenVersionMajor = TRECAP_GOLDEN_VERSION_MAJOR
 inline constexpr std::uint32_t kGoldenVersionMinor = TRECAP_GOLDEN_VERSION_MINOR;
 inline constexpr std::uint32_t kGoldenVersionPatch = TRECAP_GOLDEN_VERSION_PATCH;
 
-inline constexpr std::string_view kSpecRevision = "core_rev_j";
-inline constexpr std::string_view kTelemetryRevision = "telemetry_rev_g";
+inline constexpr std::string_view kSpecRevision = reference_config::SPEC_REVISION;
+inline constexpr std::string_view kTelemetryRevision = reference_config::TELEMETRY_REVISION;
 inline constexpr std::string_view kCoeffManifestSchema = "trecap_phase2_coeff_manifest_v1";
 inline constexpr std::string_view kVectorConfigSchema = "trecap_phase2_vector_config_v1";
 inline constexpr std::string_view kMetricsSchema = "trecap_phase2_metrics_v1";
@@ -33,8 +33,8 @@ inline constexpr std::string_view kArtifactIndexSchema = "trecap_phase2_artifact
 inline constexpr std::string_view kQualityBoundsSchema = "trecap_phase2_quality_bounds_v1";
 inline constexpr std::string_view kFrozenReleaseSchema = "trecap_phase2_frozen_release_manifest_v1";
 
-inline constexpr std::string_view kMemhEncoding = "fixed_width_lowercase_hex_lf";
-inline constexpr std::string_view kHashRule = "logical_integer_vector_fixed_width_hex_lf";
+inline constexpr std::string_view kMemhEncoding = reference_config::MEMH_ENCODING;
+inline constexpr std::string_view kHashRule = reference_config::HASH_RULE;
 inline constexpr std::string_view kQcoefRule = "round_nearest_ties_away_from_zero";
 inline constexpr std::string_view kGeneratorVersion = "phase2_generators_revision_j";
 inline constexpr std::string_view kGoldenModelName = "trecap-golden";

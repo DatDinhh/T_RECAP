@@ -1,9 +1,6 @@
 # SPDX-License-Identifier: MIT
-# AUTO-GENERATED - DO NOT EDIT.
-# Source contract: T-RECAP Phase 2 Core Revision J golden-model baseline.
-# This checked-in generated module mirrors spec/generated/core_config.json for the
-# golden-model-only repository. Regenerate it from the schema/config source once the
-# spec/generated generator layer is populated.
+# Compatibility API over generated scalar bindings. Scalar values are owned by
+# scripts/gen_config.py; helper functions remain hand-written.
 
 """Generated T-RECAP Phase 2 golden-model contract constants.
 
@@ -18,44 +15,13 @@ from dataclasses import dataclass
 from types import MappingProxyType
 from typing import Any, Final
 
-SCHEMA: Final[str] = "trecap_phase2_core_config_v1"
-SPEC_REVISION: Final[str] = "core_rev_j"
-TELEMETRY_REVISION: Final[str] = "telemetry_rev_g"
+# Scalar values are generated from spec/generated/core_config.json.
+from ._core_constants import (
+    SCHEMA, SPEC_REVISION, TELEMETRY_REVISION, N, L, P, H, F, G, D, THR2_DEFAULT, PROTECT_DC_DEFAULT, PROTECT_NYQ_DEFAULT, TAIL_POLICY, FFT_MODE, ROUNDING_MODE, THRESHOLD_MAPPING, MEMH_ENCODING, HASH_RULE, W_Qw, W_tw, W_u, W_fft, W_fft_pre, W_can_pre, W_can, W_mag2, W_ifft, W_z, W_ola, SOURCE_MODES,
+)
+
 GENERATOR_VERSION: Final[str] = "phase2_generators_revision_j"
 GOLDEN_MODEL_VERSION: Final[str] = "0.1.0"
-
-# Core constants.
-N: Final[int] = 12
-L: Final[int] = 256
-P: Final[int] = 8
-H: Final[int] = 128
-F: Final[int] = 15
-G: Final[int] = 128
-D: Final[int] = 384
-
-# Baseline controls.
-THR2_DEFAULT: Final[str] = "0"
-PROTECT_DC_DEFAULT: Final[int] = 1
-PROTECT_NYQ_DEFAULT: Final[int] = 0
-TAIL_POLICY: Final[str] = "full_tail"
-FFT_MODE: Final[str] = "custom_radix2_dit_bitrev_in_natural_out"
-ROUNDING_MODE: Final[str] = "round_nearest_ties_away_from_zero"
-THRESHOLD_MAPPING: Final[str] = "raw_thr2"
-MEMH_ENCODING: Final[str] = "fixed_width_lowercase_hex_lf"
-HASH_RULE: Final[str] = "logical_integer_vector_fixed_width_hex_lf"
-
-# Revision J minimum widths.
-W_Qw: Final[int] = 16
-W_tw: Final[int] = 17
-W_u: Final[int] = 27
-W_fft: Final[int] = 28
-W_fft_pre: Final[int] = 29
-W_can_pre: Final[int] = 29
-W_can: Final[int] = 28
-W_mag2: Final[int] = 56
-W_ifft: Final[int] = 36
-W_z: Final[int] = 36
-W_ola: Final[int] = 37
 
 UNIQUE_BINS: Final[int] = (L // 2) + 1
 ELIGIBLE_UNIQUE_BINS: Final[int] = UNIQUE_BINS - PROTECT_DC_DEFAULT - PROTECT_NYQ_DEFAULT
@@ -333,12 +299,7 @@ def core_config_payload() -> dict[str, Any]:
         },
         "widths": widths(),
         "artifact_contract": artifact_contract(),
-        "source_modes": {
-            "bram_replay": 0,
-            "adc_live": 1,
-            "audio_wrapper": 2,
-            "diagnostic_source": 3,
-        },
+        "source_modes": dict(SOURCE_MODES),
     }
 
 

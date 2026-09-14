@@ -8,6 +8,8 @@
  */
 
 #include "ring_reader.h"
+#include "trecap_ring_device.h"
+#include <sys/ioctl.h>
 
 #include <errno.h>
 #include <fcntl.h>
@@ -196,9 +198,20 @@ trecap_ring_status_t trecap_ring_map_physical(uint64_t ring_base_hps_phys,
         return TRECAP_RING_ERR_ALIGN;
     }
 
-    int fd = open("/dev/mem", O_RDONLY | O_SYNC);
+    int fd = open(TRECAP_RING_DEVICE_PATH, O_RDONLY | O_CLOEXEC);
     if (fd < 0) {
         return TRECAP_RING_ERR_IO;
+    }
+
+    struct trecap_ring_device_info info;
+    memset(&info, 0, sizeof(info));
+    if (ioctl(fd, TRECAP_RING_GET_INFO, &info) != 0 ||
+        info.abi_version != TRECAP_RING_DEVICE_ABI ||
+        info.flags != (TRECAP_RING_MAP_NONCACHED | TRECAP_RING_MAP_READ_ONLY) ||
+        info.physical_base != ring_base_hps_phys || info.size_bytes != ring_size_bytes ||
+        info.reserved != 0u) {
+        (void)close(fd);
+        return TRECAP_RING_ERR_CONFIG;
     }
 
     void *mapped = mmap(NULL,
@@ -206,7 +219,7 @@ trecap_ring_status_t trecap_ring_map_physical(uint64_t ring_base_hps_phys,
                         PROT_READ,
                         MAP_SHARED,
                         fd,
-                        (off_t)ring_base_hps_phys);
+                        (off_t)0);
     if (mapped == MAP_FAILED) {
         const int saved_errno = errno;
         (void)close(fd);

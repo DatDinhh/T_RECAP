@@ -95,7 +95,7 @@ REQUIRED_DIRS := \
   sw/reference_model sw/hps/include/generated sw/hps/src sw/hps/config sw/hps/scripts sw/hps/systemd sw/hps/tests sw/pc_dashboard/generated sw/pc_dashboard/trecap_dashboard \
   artifacts/coefficients artifacts/test_vectors artifacts/reference_outputs artifacts/manifests artifacts/telemetry_captures \
   constraints/de1soc platform/de1soc/qsys platform/de1soc/address_map platform/de1soc/generated_notes platform/de1soc/linux \
-  ci/github ci/docker legacy/phase1 legacy/deprecated_phase2_docs runs
+  ci/github ci/docker legacy/phase1 legacy/deprecated_phase2_docs
 
 # Files that are known Phase 1/root-dump artifacts and must be moved under
 # legacy/phase1/ before this repository is accepted.
@@ -125,7 +125,7 @@ define require_script
 endef
 
 define require_ref_makefile
-	@test -f "$(REFERENCE_DIR)/Makefile" || { echo "ERROR: reference model Makefile missing at $(REFERENCE_DIR)/Makefile"; echo "       Restore an independently verified reference tree under sw/reference_model/ first."; exit 2; }
+	@test -f "$(REFERENCE_DIR)/Makefile" || { echo "ERROR: reference model Makefile missing at $(REFERENCE_DIR)/Makefile"; echo "       Restore the maintained reference source under sw/reference_model/ first."; exit 2; }
 endef
 
 .PHONY: help
@@ -153,7 +153,7 @@ show-config: ## Print root build configuration.
 .PHONY: bootstrap-tree
 bootstrap-tree: ## Create the Phase 2 directory skeleton with .gitkeep files.
 	@for d in $(REQUIRED_DIRS); do mkdir -p "$$d"; done
-	@find docs spec config scripts filelists rtl sw artifacts constraints platform ci legacy runs -type d -empty -exec sh -c 'touch "$$0/.gitkeep"' {} \;
+	@find docs spec config scripts filelists rtl sw artifacts constraints platform ci legacy -type d -empty -exec sh -c 'touch "$$0/.gitkeep"' {} \;
 	@echo "bootstrap-tree: OK"
 
 .PHONY: check-layout
@@ -190,14 +190,17 @@ check-reference-import: ## Verify every vendored/promoted byte and the v3 import
 		--import-manifest artifacts/manifests/reference_import_manifest.json
 
 .PHONY: refresh-reference-import
-refresh-reference-import: ## Rebuild proxy provenance without claiming source-ZIP verification.
-	@$(PYTHON) scripts/reference_import.py refresh-proxy \
-		--repo-root . \
-		--promotion-map "$(REFERENCE_PROMOTION_MAP)" \
-		--proxy-id phase2-revJ-v69-lf-derived-embedded-proxy \
-		--output-manifest "$(REFERENCE_DIR)/import_manifest.json" \
-		--output-manifest artifacts/manifests/reference_import_manifest.json \
-		--replace-manifests
+refresh-reference-import: ## Record the maintained reference source; do not regenerate outputs.
+	@$(PYTHON) scripts/record_source_snapshot.py
+
+.PHONY: source-hygiene
+source-hygiene: ## Check portable source paths, syntax, links, and common credential patterns.
+	@$(PYTHON) scripts/repo_hygiene.py
+
+.PHONY: host-build
+host-build: ## Build the reference library and CLI with tests disabled.
+	@$(CMAKE) --preset host
+	@$(CMAKE) --build --preset host --parallel $(MAKE_JOBS)
 
 .PHONY: check-reference-source-verified
 check-reference-source-verified: ## Signoff gate: require independently verified source-archive provenance.
@@ -548,26 +551,26 @@ quartus-core-smoke: ## Build a reduced core-only Quartus project if the script e
 
 .PHONY: quartus-de1soc
 quartus-de1soc: ## Build the full DE1-SoC Quartus project.
-	@if [[ -x scripts/quartus/build_de1soc.sh ]]; then \
-		scripts/quartus/build_de1soc.sh --project "$(QUARTUS_PROJECT)" --profile "$(PROFILE)"; \
+	@if [[ -f scripts/quartus/build_de1soc.sh ]]; then \
+		bash scripts/quartus/build_de1soc.sh --project "$(QUARTUS_PROJECT)" --profile "$(PROFILE)"; \
 	else \
-		$(QUARTUS_SH) --flow compile $(QUARTUS_PROJECT); \
+		echo "ERROR: scripts/quartus/build_de1soc.sh missing; gated board build is required" >&2; exit 2; \
 	fi
 
 .PHONY: quartus-de1soc-linein
 quartus-de1soc-linein: check-de1soc-linein-profile ## Explicitly build the full board with the Step-16 LINE-IN profile; the default remains BRAM replay.
-	@if [[ -x scripts/quartus/build_de1soc.sh ]]; then \
-		scripts/quartus/build_de1soc.sh --project "$(QUARTUS_PROJECT)" --profile "$(LINEIN_PROFILE)"; \
+	@if [[ -f scripts/quartus/build_de1soc.sh ]]; then \
+		bash scripts/quartus/build_de1soc.sh --project "$(QUARTUS_PROJECT)" --profile "$(LINEIN_PROFILE)"; \
 	else \
-		echo "ERROR: scripts/quartus/build_de1soc.sh missing or not executable"; exit 2; \
+		echo "ERROR: scripts/quartus/build_de1soc.sh missing; gated board build is required" >&2; exit 2; \
 	fi
 
 .PHONY: quartus-de1soc-adc
 quartus-de1soc-adc: check-de1soc-adc-profile ## Explicitly build the full board with the Step-17 ADC-live profile; the default remains BRAM replay.
-	@if [[ -x scripts/quartus/build_de1soc.sh ]]; then \
-		scripts/quartus/build_de1soc.sh --project "$(QUARTUS_PROJECT)" --profile "$(ADC_PROFILE)"; \
+	@if [[ -f scripts/quartus/build_de1soc.sh ]]; then \
+		bash scripts/quartus/build_de1soc.sh --project "$(QUARTUS_PROJECT)" --profile "$(ADC_PROFILE)"; \
 	else \
-		echo "ERROR: scripts/quartus/build_de1soc.sh missing or not executable"; exit 2; \
+		echo "ERROR: scripts/quartus/build_de1soc.sh missing; gated board build is required" >&2; exit 2; \
 	fi
 
 .PHONY: quartus-de1soc-adc-dry-run
@@ -584,13 +587,14 @@ quartus-de1soc-adc-dry-run: check-de1soc-adc-profile check-de1soc-adc-path check
 	fi
 
 .PHONY: program-sof
-program-sof: ## Program the selected DE1-SoC .sof file. Usage: make program-sof SOF=path/to/file.sof
+program-sof: ## Program a completed build into volatile JTAG device 2. Required: SOF=... BUILD_MANIFEST=... CABLE=...
 	@test -n "$(SOF)" || { echo "ERROR: set SOF=path/to/file.sof"; exit 2; }
-	@if [[ -x scripts/quartus/program_sof.sh ]]; then \
-		scripts/quartus/program_sof.sh --sof "$(SOF)"; \
-	else \
-		$(QUARTUS_PGM) -m JTAG -o "p;$(SOF)"; \
-	fi
+	@test -n "$(BUILD_MANIFEST)" || { echo "ERROR: set BUILD_MANIFEST=path/to/successful/build_manifest.json"; exit 2; }
+	@test -n "$(CABLE)" || { echo "ERROR: set CABLE to the exact selected JTAG cable name"; exit 2; }
+	@test -f scripts/quartus/program_sof.sh || { echo "ERROR: gated programming helper is missing"; exit 2; }
+	@QUARTUS_PGM="$(QUARTUS_PGM)" PYTHON="$(PYTHON)" bash scripts/quartus/program_sof.sh \
+		--sof "$(SOF)" --build-manifest "$(BUILD_MANIFEST)" \
+		--cable "$(CABLE)" --device-index 2 --mode JTAG --operation p
 
 # -----------------------------------------------------------------------------
 # R9/R10: HPS software and PC dashboard.

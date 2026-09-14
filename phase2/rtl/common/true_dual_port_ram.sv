@@ -38,7 +38,7 @@ module trecap_true_dual_port_ram #(
     parameter bit          WRITE_FIRST_B          = 1'b0,
     parameter bit          CLEAR_RD_DATA_ON_RESET = 1'b1,
     parameter bit          CLEAR_RD_DATA_ON_IDLE  = 1'b0,
-    parameter string       INIT_FILE              = ""
+    parameter              INIT_FILE              = ""
 ) (
     input  logic              clk_a,
     input  logic              rst_a_n,

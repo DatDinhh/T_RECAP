@@ -4,8 +4,9 @@
 
 Step 12 implements the hand-written ownership contract, one canonical Linux
 reserved-memory source, fail-closed source validation, and a directed RTL test
-source.  It does **not** claim that a board BSP includes the fragment, that the
-selected DTB was compiled or inspected, that Linux booted with the reservation,
+source. The selected static board DTS now includes the reservation and platform
+driver binding. Source implementation does **not** claim that the selected DTB
+was compiled or inspected, that Linux booted with the reservation,
 that the RTL simulation ran, or that Quartus or physical hardware passed.
 
 Those evidence states remain false in
@@ -25,12 +26,13 @@ artifacts exist.
 | Record/pointer alignment | 64 bytes |
 | Current natural alignment | 32 MiB |
 
-The values must agree in all four source views:
+The values must agree in the following source views:
 
 - `platform/de1soc/address_map/hps_bridge_regions.json`;
 - `platform/de1soc/qsys/hps_config.tcl`;
 - `sw/hps/config/trecap_hps_config.json`;
-- `platform/de1soc/linux/trecap_reserved_memory.dtsi`.
+- `platform/de1soc/linux/trecap_reserved_memory.dtsi`;
+- the exact resource admission in `platform/de1soc/linux/driver/trecap_platform.c`.
 
 Step 12 does not alter the Step-4 canonical address-map contract or its frozen
 fingerprint.  It adds the concrete Linux reservation policy around those
@@ -131,35 +133,53 @@ After the complete sequence, the writer is configured and idle with `W=0` and
 sequence zero; the HPS consumer epoch is valid with `Rd=0`.  Enabling before
 the explicit consumer commit is a contract violation.
 
+## Ring mapping and consumer ownership
+
+The ring reader opens `/dev/trecap-ring` with `O_RDONLY | O_CLOEXEC` and checks
+`TRECAP_RING_GET_INFO` against the shared ABI in
+`sw/hps/include/trecap_ring_device.h`: ABI version 1, exactly the read-only and
+noncached flags, physical base `0x3e000000`, size `0x02000000`, and zero reserved
+field. It then maps the complete aperture with `PROT_READ | MAP_SHARED` at file
+offset zero. The driver rejects writable/executable, partial, private, or nonzero-
+offset mappings and sets `pgprot_noncached`; userspace does not infer cache
+attributes from `O_SYNC`. Cached ring mapping remains forbidden.
+
+The device admits one open consumer. The reader retains its file descriptor until
+after unmapping, so another process cannot acquire the ring during its lifetime.
+The mapping does not grant ownership of FPGA producer state: `W`, `Rd`, reset,
+commit, and whole-record rules below still apply. CSR access remains the existing
+read/write `/dev/mem` device mapping.
+
 ## BSP and DTB integration
 
-The `.dtsi` must be included by the board `.dts` that actually produces the DTB
-selected by U-Boot.  The active board source and installed DTB name depend on
-the Linux/BSP image and are intentionally not guessed by this repository.
+Our selected source baseline is Linux 6.12.109 with the static
+`socfpga_cyclone5_trecap.dtb`, the matching `trecap_platform.ko`, and HPS
+application. The board DTS includes `trecap_platform.dtsi`, which includes the
+canonical reservation and binds the platform driver. Build and offline-install
+instructions are in [the Linux source baseline](../../platform/de1soc/linux/README.md).
+The compatible FPGA image and bridge setup must be established by the boot flow
+before the HPS application accesses CSRs.
 
-Integration procedure:
+`trecap_platform.service` loads the driver before `trecap_udp_streamer.service`.
+The driver owns HPS_GPIO48 through `portb` offset 19. After output-low readback,
+it asserts the FPGA-visible `PLATFORM_CONTROL` grant; teardown clears that CSR
+before driving the GPIO high. It validates the exact CSR resource and platform
+capability before acquisition. See [platform grant](platform_grant.md) for ordering and reset
+semantics. No competing userspace GPIO owner is part of this design. Merely stopping the oneshot service does not unload the driver
+or release that grant. This is a static-boot lifecycle: no live DT node removal
+or driver hot-unbind while mapped. Use the matching FPGA/kernel/DTB combination
+on the next boot when changing the image or address map.
 
-1. Identify the active board model, compatible string, and bootloader-selected
-   DTB from the target image.
-2. Include `trecap_reserved_memory.dtsi` in that board source.  If the board
-   already owns `/reserved-memory`, merge the T-RECAP child into that node while
-   retaining the same one-cell address and size geometry.
-3. Build DTBs with the matching kernel/BSP toolchain.
-4. Inspect the new DTB before deployment and keep the previous DTB as a boot
-   fallback.
-5. Select the new DTB, reboot, and capture live-tree and `/proc/iomem` evidence.
-
-A runtime configfs overlay is too late: reserved memory must be described in the
-FDT consumed during early Linux boot.  A bootloader-applied overlay is only
-acceptable if it is applied to the FDT before entering Linux and its final
-flattened tree is inspected; the canonical checked-in source remains this
-fragment.
+The reservation must be present in the FDT consumed during early Linux boot.
+The selected static board DTS already includes it. A runtime configfs overlay
+cannot retroactively reserve pages that Linux may already use. An installed
+image must select the built T-RECAP DTB; a source file alone is not boot evidence.
 
 Example offline inspection of the compiled board DTB:
 
 ```sh
-fdtget -tx active-board.dtb /reserved-memory/trecap-ring@3e000000 reg
-fdtget -p active-board.dtb /reserved-memory/trecap-ring@3e000000
+fdtget -tx socfpga_cyclone5_trecap.dtb /reserved-memory/trecap-ring@3e000000 reg
+fdtget -p socfpga_cyclone5_trecap.dtb /reserved-memory/trecap-ring@3e000000
 ```
 
 The first command must report cells `3e000000 02000000`; the property list must

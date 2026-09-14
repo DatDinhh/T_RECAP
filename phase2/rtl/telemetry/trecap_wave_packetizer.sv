@@ -28,10 +28,6 @@
 // If the packetizer is busy when a selected WAVE sample arrives, the sample is dropped and
 // drop_pulse_o reports that pre-writer telemetry loss.
 module trecap_wave_packetizer
-  import trecap_core_pkg::*;
-  import trecap_packet_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_build_pkg::*;
 #(
     parameter int unsigned PAYLOAD_DATA_W           = 32,
     parameter int unsigned PAYLOAD_KEEP_W           = (PAYLOAD_DATA_W + 7) / 8,
@@ -46,17 +42,22 @@ module trecap_wave_packetizer
 
     input  logic                       enable_i,
     input  logic [15:0]                wave_decim_i,
-    input  trecap_core_tap_sample_t    tap_sample_i,
+    input  trecap_iface_pkg::trecap_core_tap_sample_t    tap_sample_i,
 
     output logic                       out_valid_o,
     input  logic                       out_ready_i,
-    output trecap_record_meta_t        out_meta_o,
+    output trecap_iface_pkg::trecap_record_meta_t        out_meta_o,
     output logic [PAYLOAD_DATA_W-1:0]  out_payload_data_o,
     output logic [PAYLOAD_KEEP_W-1:0]  out_payload_keep_o,
     output logic                       out_payload_last_o,
 
     output logic                       drop_pulse_o
 );
+  import trecap_core_pkg::*;
+  import trecap_packet_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_build_pkg::*;
+
 
     localparam int unsigned BYTES_PER_BEAT = PAYLOAD_KEEP_W;
     localparam int unsigned WAVE_TRIPLET_BYTES = 6;
@@ -141,9 +142,33 @@ module trecap_wave_packetizer
         endcase
     endfunction : get_u64_byte
 
+    // Exact for every 11-bit value n: floor(n/6) = (n*683) >> 12.
+    // Write n=6q+r. Then n*683=4096q+2q+683r. For n<=2047,
+    // the residual is at most4095 (r=5 implies q<=340), so no carry
+    // reaches the quotient. This replaces the serial divider with a constant
+    // product; the field remainder is decoded independently below.
+    function automatic logic [10:0] sample_index11(input logic [10:0] sample_byte);
+        logic [21:0] product;
+        product = {11'd0, sample_byte} * 22'd683;
+        return {1'b0, product[21:12]};
+    endfunction : sample_index11
+
+    function automatic logic [2:0] sample_field11(input logic [10:0] sample_byte);
+        logic [3:0] digit_sum;
+        // sample_byte = 2h+b. Five radix-4 digits give h mod3 because4 mod3=1.
+        digit_sum = (({2'd0, sample_byte[2:1]} + {2'd0, sample_byte[4:3]}) +
+                     ({2'd0, sample_byte[6:5]} + {2'd0, sample_byte[8:7]})) +
+                    {2'd0, sample_byte[10:9]};
+        case (digit_sum)
+            4'd0, 4'd3, 4'd6, 4'd9, 4'd12, 4'd15: return {2'd0, sample_byte[0]};
+            4'd1, 4'd4, 4'd7, 4'd10, 4'd13: return {2'd1, sample_byte[0]};
+            default: return {2'd2, sample_byte[0]};
+        endcase
+    endfunction : sample_field11
+
     function automatic logic [7:0] payload_byte_at(input int unsigned off);
-        int unsigned sample_i;
-        int unsigned field_off;
+        logic [PAYLOAD_OFF_W-1:0] sample_i;
+        logic [PAYLOAD_OFF_W-1:0] field_off;
         logic [15:0] nsamp_u16;
 
         nsamp_u16 = 16'(nsamp_q);
@@ -164,8 +189,21 @@ module trecap_wave_packetizer
             return 8'h00;
         end
 
-        sample_i = (off - WAVE_HEADER_BYTES) / WAVE_TRIPLET_BYTES;
-        field_off = (off - WAVE_HEADER_BYTES) % WAVE_TRIPLET_BYTES;
+        // Keep the public offset check full width before narrowing. Header cases above
+        // establish off >= WAVE_HEADER_BYTES; an oversized offset still returns zero.
+        if (off >= (WAVE_HEADER_BYTES + (NSAMP_MAX * WAVE_TRIPLET_BYTES))) begin
+            return 8'h00;
+        end
+        if ((PAYLOAD_OFF_W == 11) && (WAVE_TRIPLET_BYTES == 6)) begin
+            sample_i = PAYLOAD_OFF_W'(sample_index11(11'(off) - 11'(WAVE_HEADER_BYTES)));
+            field_off = PAYLOAD_OFF_W'(sample_field11(11'(off) - 11'(WAVE_HEADER_BYTES)));
+        end else begin
+            // Retain the general geometry with explicit operand and result widths.
+            sample_i = (PAYLOAD_OFF_W'(off) - PAYLOAD_OFF_W'(WAVE_HEADER_BYTES)) /
+                       PAYLOAD_OFF_W'(WAVE_TRIPLET_BYTES);
+            field_off = (PAYLOAD_OFF_W'(off) - PAYLOAD_OFF_W'(WAVE_HEADER_BYTES)) %
+                        PAYLOAD_OFF_W'(WAVE_TRIPLET_BYTES);
+        end
 
         if (sample_i >= NSAMP_MAX) begin
             return 8'h00;

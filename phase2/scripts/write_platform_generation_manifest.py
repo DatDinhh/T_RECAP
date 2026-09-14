@@ -12,6 +12,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import sys
 from typing import Any
 
@@ -28,6 +29,30 @@ HDL_CANDIDATES = (
 )
 PRESET_REL = Path("platform/de1soc/qsys/presets/terasic_de1soc_revh_qp20_1_hps.tsv")
 EXPECTED_READBACK_COUNT = 44
+QUARTUS_EDITIONS_ALLOWED = ("Standard Edition", "Lite Edition")
+
+
+def quartus_identity(version_text: str | None) -> dict[str, str] | None:
+    """Extract the reported release and edition from quartus_sh --version."""
+    if version_text is None:
+        return None
+    match = re.search(
+        r"^\s*(?:Quartus\s+Prime\s+)?Version\s+(\d+\.\d+(?:\.\d+)?)"
+        r"\s+Build\s+\d+\b[^\r\n]*?\b(Standard|Lite|Pro)\s+Edition\b",
+        version_text,
+        re.IGNORECASE | re.MULTILINE,
+    )
+    if match is None:
+        return None
+    return {"release": match[1], "edition": match[2].title() + " Edition"}
+
+
+def supported_quartus_identity(identity: dict[str, str] | None) -> bool:
+    return bool(
+        identity is not None
+        and re.fullmatch(r"20\.1(?:\.\d+)?", identity["release"])
+        and identity["edition"] in QUARTUS_EDITIONS_ALLOWED
+    )
 
 
 def digest(data: bytes) -> str:
@@ -189,6 +214,7 @@ def main() -> int:
         )
         if version_path.is_file():
             version_text = version_path.read_text(encoding="utf-8", errors="replace").strip()
+    identity = quartus_identity(version_text)
     command_logs = [
         run_file_record(root, path)
         for path in sorted(output.parent.glob("*.log"))
@@ -232,13 +258,9 @@ def main() -> int:
             )
         if not readback["present"] or readback["parameter_count"] != EXPECTED_READBACK_COUNT:
             errors.append("complete 44-parameter HPS readback capture is missing")
-        if (
-            version_text is None
-            or "20.1" not in version_text
-            or "standard edition" not in version_text.lower()
-        ):
+        if not supported_quartus_identity(identity):
             errors.append(
-                "Quartus version provenance is missing or is not release 20.1 Standard Edition"
+                "Quartus version provenance is missing or is not release 20.1.x Standard or Lite Edition"
             )
 
     manifest = {
@@ -263,7 +285,10 @@ def main() -> int:
             "generated_hardware_evidence_required": args.require_generated,
         },
         "quartus_release_required": "20.1",
-        "quartus_edition_required": "Standard Edition",
+        "quartus_edition_required": "Standard Edition or Lite Edition",
+        "quartus_editions_allowed": list(QUARTUS_EDITIONS_ALLOWED),
+        "quartus_release_observed": identity["release"] if identity else None,
+        "quartus_edition_observed": identity["edition"] if identity else None,
         "quartus_version_output": version_text,
         "tools": {
             "qsys_script": args.qsys_script,

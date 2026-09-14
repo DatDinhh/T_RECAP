@@ -11,14 +11,13 @@
 `default_nettype none
 
 module trecap_analysis_window
-  import trecap_core_pkg::*;
 #(
-    parameter int unsigned L            = T_FFT_L,
-    parameter int unsigned P            = T_FFT_P,
-    parameter int unsigned SAMPLE_W     = T_SAMPLE_W,
-    parameter int unsigned WINDOW_W     = T_QW_W,
-    parameter int unsigned OUT_W        = T_U_W,
-    parameter string       WINDOW_FILE  = "artifacts/coefficients/window_qw.memh"
+    parameter int unsigned L            = trecap_core_pkg::T_FFT_L,
+    parameter int unsigned P            = trecap_core_pkg::T_FFT_P,
+    parameter int unsigned SAMPLE_W     = trecap_core_pkg::T_SAMPLE_W,
+    parameter int unsigned WINDOW_W     = trecap_core_pkg::T_QW_W,
+    parameter int unsigned OUT_W        = trecap_core_pkg::T_U_W,
+    parameter              WINDOW_FILE  = "artifacts/coefficients/window_qw.memh"
 ) (
     input  logic                         clk,
     input  logic                         rst_n,
@@ -55,6 +54,8 @@ module trecap_analysis_window
     output logic                         window_oob_sticky_o,
     output logic                         saturation_sticky_o
 );
+  import trecap_core_pkg::*;
+
 
     localparam int unsigned ADDR_W = (L <= 1) ? 1 : $clog2(L);
     localparam logic [ADDR_W-1:0] LAST_OFFSET = ADDR_W'(L - 1);

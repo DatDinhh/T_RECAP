@@ -1,12 +1,15 @@
 # Source-to-core integration contract
 
-> **Step 7 status:** `source_implemented_pending_rtl_compile_functional_verification_quartus_and_hardware_evidence`
+> The checked-in design includes source selection, live continuity supervision, and explicit recovery. Physical results are tracked separately from implementation.
 
 Step 7 replaces the synthetic tap generator that previously lived in the DE1-SoC board top with
 the real source-to-core path. The implementation boundary is
 `rtl/top/trecap_source_core_integration.sv`. It normalizes four source modes, selects exactly one
 through `trecap_source_mux`, drives `trecap_core_top`, and returns the real valid-only core taps,
-safe boundaries, counters, and fault events to the CSR/telemetry hierarchy.
+safe boundaries, counters, and fault events to the CSR/telemetry hierarchy. Its
+live supervisor requires physical stop acknowledgement plus a 4096-clock settle
+interval before capture; missing or refused live samples invalidate the epoch
+instead of compressing physical time.
 
 The machine-readable authority is
 `config/boards/de1soc_source_core_integration.json`; its schema is
@@ -95,6 +98,17 @@ emits its raw sample event in `clk_fabric`.
 | `TSRC_AUDIO_WRAPPER` | `audio_codec_wrapper` then `trecap_audio_adapter` | Raw `audio_sample_valid` | Step-16 source implements 12.288 MHz XCK, WM8731 FPGA-I2C init, 48 kS/s/16-bit codec-master I2S, async-FIFO CDC, and the explicit LINE-IN profile; Step-18 timing and Step-20 hardware evidence remain pending. |
 | `TSRC_DIAGNOSTIC` | `trecap_diagnostic_source` | `source_tick_i` | Source-connected for non-signoff bring-up. |
 
+The diagnostic source and source integration expose `DIAGNOSTIC_PERIOD_FIXED`.
+Its default value, zero, preserves the runtime `diagnostic_period_i` input,
+including period changes between issues and the zero-to-one clamp. A nonzero
+value selects that period at elaboration. Power-of-two fixed periods use a
+64-bit mask on the existing sample index, with no extra state or cycle. The
+DE1-SoC board sets 256, matching its existing fixed period input, so periodic
+impulses occur when the low eight index bits are zero. Counter progression,
+mode changes, clear, disable, and ready/valid stalls are unchanged. This avoids
+a generic 64-by-32-bit combinational remainder operator in the fixed board
+profile while retaining the configurable source API.
+
 BRAM replay and diagnostic sources can hold a valid beat between board sample ticks. Step 7 gates
 both ready and valid acceptance with `source_tick_i`, so neither source silently runs at the
 50 MHz fabric rate. Audio and ADC events carry their own raw sample cadence and are not gated by
@@ -103,6 +117,15 @@ the synthetic tick.
 Every normalized source enters `trecap_source_mux`. Selecting an inactive or not-yet-configured
 live source may correctly produce no core samples; the implementation must not bypass the mux or
 fabricate live data.
+
+The physical source is not backpressured by extraction. The synchronous input ring
+can occupy 513 fabric clocks for one 256-sample frame, slightly longer than the
+500-clock interval between 100 kS/s ADC samples. The selected live adapter retains
+one complete pending sample until the core accepts it; this absorbs that bounded
+phase overlap. A further raw event arriving while the adapter remains full is an
+explicit drop and stops the epoch. Thus buffering capacity and the live fault
+policy remain defined even when downstream core service exceeds its design
+schedule. See [storage_schedule.md](storage_schedule.md) for the memory schedule.
 
 ## Exact BRAM replay and full-tail routing
 
@@ -188,6 +211,20 @@ switching, or holding a pending transition and either:
 
 A free-running sample tick by itself is not a safe-boundary proof.
 
+## Frame-owned threshold metadata
+
+The mathematical core snapshots `{frame_idx, THR2}` at scheduler-to-input-ring
+frame acceptance and retains it until the final canonical bin is accepted by the
+mask stage. Its four-entry metadata queue backpressures frame admission when full;
+it does not permit a frame without a matching threshold entry. Frame mismatch
+sets the core protocol fault and blocks mask admission. Core/source clear and hard
+reset invalidate metadata together with arithmetic history.
+
+The registered boundary pulse follows frame acceptance. A CSR commit on that pulse
+applies to subsequent admitted frames; it cannot alter the frame that raised the
+pulse or any older in-flight frame. STATUS still reports active CSR THR2, not a
+per-frame configuration history. Fixed-point arithmetic and the CSR ABI are unchanged.
+
 ## THR2 and metrics-clear boundaries
 
 `core_config_safe_boundary` is true at a real core frame boundary or while the core pipeline and
@@ -225,10 +262,15 @@ The delayed W1C owner pulse also re-arms the corresponding edge-history bit. If 
 high or faults again on its clear edge, the integration emits a fresh set event after that clear;
 it never reconnects a persistent sticky level directly to the CSR set interface.
 
-Live wrapper drops, clipping, ADC protocol faults, replay configuration faults, and core protocol
-faults do not have honest one-to-one assignments in the frozen CSR bit map. They remain on
-dedicated status outputs and may drive board debug indicators. They are not silently aliased onto
-an unrelated generated bit.
+Live input continuity is exposed by the separate `SOURCE_HEALTH` CSR page at
+0x100–0x180. Its snapshot reports physical readiness, nominal rate, epoch, wrapper
+and adapter drops, raw/admitted/core-accepted counters, and precise fault causes.
+A sequence gap, drop, readiness loss, timeout, or wrapper protocol failure stops
+the selected live epoch and invokes the existing discontinuity clear. Explicit
+rearm uses a separate W1P command; clearing a legacy sticky bit cannot resume a
+faulted live epoch. Clipping, optional LINE-OUT monitor faults, replay configuration
+faults, and core protocol faults retain their dedicated status meanings. See
+[source health and recovery](source_health.md) for the full contract and HPS tool.
 
 W1C clear requests are divided by ownership:
 
@@ -258,9 +300,11 @@ synthetic sample/frame/bin tap generator is forbidden.
 
 The audio source includes the checked-in peripheral PLL, FPGA-side open-drain
 codec initialization, I2S, and FIFO CDC. Audio readiness requires qualified PLL
-lock, `HPS_I2C_CONTROL` low so FPGA has the codec-bus grant, and codec init done;
-the FPGA never drives that HPS mux control. Dedicated saturating 64-bit RX-
-overflow, TX-overflow, and TX-underflow counters remain separate board
+lock, the kernel-owned `PLATFORM_CONTROL.codec_fpga_grant`, and codec init done.
+The driver asserts that CSR only after acquiring GPIO48 low and checking readback;
+the dedicated `HPS_I2C_CONTROL` pin is never driven or sampled by fabric logic.
+See [platform_grant.md](platform_grant.md) for probe, shutdown, and reset ordering. Dedicated saturating 64-bit
+RX-overflow, TX-overflow, and TX-underflow counters remain separate board
 diagnostics. This source structure still does not prove native RTL compilation,
 external timing, Quartus/TimeQuest closure, I2C ACKs, measured clocks, or live
 samples.
@@ -305,3 +349,28 @@ live_audio_hardware_ready  = false
 live_adc_hardware_ready    = false
 hardware_signoff           = false
 ```
+
+## ADC manual diagnostic boundary
+
+The physical board passes ADC raw-valid events into this integration only during
+continuous acquisition. Manual KEY[2] conversions remain board diagnostics and do
+not advance the core. Changing SW[7] generates a coordinated source/core epoch
+clear and aborts/reprimes the ADC transaction pipeline. The active source enum
+stays ADC; STATUS/METRICS report a zero periodic rate during manual operation.
+See `architecture_design.md` for profile application and resource budgets.
+
+## Live-source recovery control
+
+`source_health_i` carries a coherent 31-word status/counter bundle through the
+logical transport and HPS bridge to its dedicated CSR snapshot bank. The reverse
+`source_rearm_pulse_o` command returns directly to source/core integration. Rearm
+clears source and mathematical history, waits for audio-BCLK capture stop or ADC
+idle, then settles and starts a fresh physical sequence baseline. It preserves
+ring ownership and transport controls. Physical wrapper configuration readiness,
+RX overflow/request-drop accounting, and protocol diagnostics are connected by
+the board top. The generic BRAM system ties physical inputs inactive and exposes
+the same capability page with `live=0`.
+
+`sw/hps/scripts/source_health.py` is the HPS snapshot/rearm operator. See
+[source_health.md](source_health.md) for offsets, saturation/reset ownership,
+watchdog bounds, manual ADC semantics, and exact counter interpretation.

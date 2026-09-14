@@ -831,7 +831,10 @@ def _status_lines(status: StatusPoint) -> list[str]:
     return [
         f"latest STATUS         :{diagnostic}{truncated}",
         f"sample / frame count  : {status.sample_count} / {status.frame_count}",
-        f"source / sample rate  : {status.source_mode} / {status.sample_rate}",
+        f"source / sample rate  : {status.source_mode} / "
+        + (f"{status.sample_rate} Hz" if status.sample_rate else
+           ("not reported (HPS diagnostic)" if status.diagnostic else
+            "no periodic DSP stream (diagnostic)")),
         f"packet enable         : 0x{status.packet_enable:08x}",
         f"active THR2           : 0x{status.thr2:014x}",
         f"DDR dma drops         : {status.dma_drop_count}",

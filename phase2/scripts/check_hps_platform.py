@@ -73,6 +73,10 @@ EXPECTED_EXPORTS = {
     **EXPECTED_PRESET_EXPORTS,
     "trecap_csr_lw_master": ("trecap_csr_bridge.m0", "avalon", "start", "master"),
     "trecap_f2h_sdram0": ("trecap_f2h_sdram_bridge.s0", "avalon", "end", "slave"),
+    "hps_f2h_cold_reset_req": ("hps_0.f2h_cold_reset_req", "reset", "end", "sink"),
+    "hps_f2h_debug_reset_req": ("hps_0.f2h_debug_reset_req", "reset", "end", "sink"),
+    "hps_f2h_warm_reset_req": ("hps_0.f2h_warm_reset_req", "reset", "end", "sink"),
+    "hps_f2h_stm_hw_events": ("hps_0.f2h_stm_hw_events", "conduit", "end", "end"),
 }
 
 EXPECTED_TYPED_CONNECTIONS = {
@@ -399,6 +403,10 @@ def check_cfg(root: Path, errors: list[str]) -> dict[str, str]:
         "hps_io_export_role": "end",
         "hps_memory_export_role": "end",
         "h2f_reset_export_direction": "source",
+        "f2h_cold_reset_req_export": "hps_f2h_cold_reset_req",
+        "f2h_debug_reset_req_export": "hps_f2h_debug_reset_req",
+        "f2h_warm_reset_req_export": "hps_f2h_warm_reset_req",
+        "f2h_stm_hw_events_export": "hps_f2h_stm_hw_events",
         "h2f_lw_master_export": "trecap_csr_lw_master",
         "h2f_lw_master_internal": "hps_0.h2f_lw_axi_master",
         "h2f_lw_master_export_internal": "trecap_csr_bridge.m0",
@@ -406,8 +414,8 @@ def check_cfg(root: Path, errors: list[str]) -> dict[str, str]:
         "f2h_sdram0_internal": "hps_0.f2h_sdram0_data",
         "f2h_sdram0_export_internal": "trecap_f2h_sdram_bridge.s0",
         "csr_bridge_instance": "trecap_csr_bridge",
-        "csr_bridge_component_type": "altera_avalon_mm_bridge",
-        "csr_bridge_component_version": "20.1",
+        "csr_bridge_component_type": "trecap_avalon_csr_bridge",
+        "csr_bridge_component_version": "1.0",
         "csr_bridge_upstream_interface": "hps_0.h2f_lw_axi_master",
         "csr_bridge_slave_interface": "trecap_csr_bridge.s0",
         "csr_bridge_master_interface": "trecap_csr_bridge.m0",
@@ -689,8 +697,13 @@ def check_qsys_blueprint(root: Path, errors: list[str]) -> None:
         if instance is None:
             errors.append(f"Platform Designer blueprint lacks {instance_name}")
             continue
-        require_equal(errors, f"{instance_name} kind", instance.get("kind"), "altera_avalon_mm_bridge")
-        require_equal(errors, f"{instance_name} version", instance.get("version"), "20.1")
+        expected_kind, expected_version = (
+            ("trecap_avalon_csr_bridge", "1.0")
+            if instance_name == "trecap_csr_bridge"
+            else ("altera_avalon_mm_bridge", "20.1")
+        )
+        require_equal(errors, f"{instance_name} kind", instance.get("kind"), expected_kind)
+        require_equal(errors, f"{instance_name} version", instance.get("version"), expected_version)
         actual_parameters = {
             item.get("name"): item.get("value") for item in instance.findall("./parameter")
         }
@@ -719,18 +732,30 @@ def check_working_qsys_state(root: Path, errors: list[str]) -> None:
         return
     tag = system.tag.rsplit("}", 1)[-1]
     require_equal(errors, "working Qsys root element", tag, "system")
-    require_equal(errors, "working Qsys system name", system.get("name"), "system")
     is_bootstrap = b"T_RECAP_BOOTSTRAP_QSYS_SOURCE=1" in data
+    system_name = system.get("name")
+    # Quartus 20.1 serializes the filename placeholder, resolved by generation
+    # from the canonical source filename. Bootstrap names remain explicit.
+    if (
+        not is_bootstrap
+        and system_name == "$${FILENAME}"
+        and path.name == "system.qsys"
+        and path.resolve().name == "system.qsys"
+    ):
+        system_name = path.stem
+    require_equal(errors, "working Qsys system name", system_name, "system")
     working_metadata = {
         item.get("key"): item.get("value") for item in system.findall("./metadata")
     }
-    require_equal(
-        errors,
-        "working Qsys transport version",
-        working_metadata.get("transport_version"),
-        "1.8",
-    )
     if is_bootstrap:
+        # Project transport metadata is owned by the bootstrap/configuration;
+        # the vendor-normalized format does not serialize this metadata.
+        require_equal(
+            errors,
+            "working Qsys transport version",
+            working_metadata.get("transport_version"),
+            "1.8",
+        )
         require_equal(
             errors,
             "working Qsys bootstrap schema",
@@ -818,6 +843,59 @@ def check_working_qsys_state(root: Path, errors: list[str]) -> None:
         "trecap_phase2_platform_designer_blueprint_v1",
     }:
         errors.append("working system.qsys claims a hand-written schema without its bootstrap marker")
+    else:
+        # Inspect the vendor XML directly rather than treating the accepted
+        # filename placeholder as evidence of a correctly configured system.
+        parameters = {
+            item.get("name"): item.get("value") for item in system.findall("./parameter")
+        }
+        require_equal(errors, "normalized Qsys device", parameters.get("device"), "5CSEMA5F31C6")
+        require_equal(errors, "normalized Qsys family", parameters.get("deviceFamily"), "Cyclone V")
+        expected_modules = {
+            "clk_0": ("clock_source", "20.1", "1"),
+            "hps_0": ("altera_hps", "20.1", "1"),
+            "trecap_csr_bridge": ("trecap_avalon_csr_bridge", "1.0", "1"),
+            "trecap_f2h_sdram_bridge": ("altera_avalon_mm_bridge", "20.1", "1"),
+        }
+        modules = system.findall("./module")
+        require_equal(errors, "normalized Qsys module count", len(modules), len(expected_modules))
+        require_equal(
+            errors,
+            "normalized Qsys modules",
+            {item.get("name"): (item.get("kind"), item.get("version"), item.get("enabled")) for item in modules},
+            expected_modules,
+        )
+        interfaces = system.findall("./interface")
+        require_equal(errors, "normalized Qsys export count", len(interfaces), len(EXPECTED_EXPORTS))
+        require_equal(
+            errors,
+            "normalized Qsys exports",
+            {item.get("name"): (item.get("internal"), item.get("type"), item.get("dir")) for item in interfaces},
+            {name: definition[:3] for name, definition in EXPECTED_EXPORTS.items()},
+        )
+        expected_connections = {
+            (start, end, "clock") for start, end in EXPECTED_CLOCK_CONNECTIONS
+        } | {
+            (start, end, "clock" if role == "typed_bridge_clock" else "reset" if role == "typed_bridge_reset" else "avalon")
+            for start, end, role, _ in EXPECTED_TYPED_CONNECTIONS
+        }
+        connections = system.findall("./connection")
+        require_equal(errors, "normalized Qsys connection count", len(connections), len(expected_connections))
+        require_equal(
+            errors,
+            "normalized Qsys connections",
+            {(item.get("start"), item.get("end"), item.get("kind")) for item in connections},
+            expected_connections,
+        )
+        for item in connections:
+            if item.get("kind") == "avalon":
+                base = item.find("./parameter[@name='baseAddress']")
+                try:
+                    base_value = parse_int(None if base is None else base.get("value"))
+                except ValueError:
+                    errors.append(f"normalized Qsys connection {item.get('start')} has no valid baseAddress")
+                    continue
+                require_equal(errors, f"normalized Qsys {item.get('start')} baseAddress", base_value, 0)
 
 
 def check_address_parity(root: Path, cfg: dict[str, str], errors: list[str]) -> None:

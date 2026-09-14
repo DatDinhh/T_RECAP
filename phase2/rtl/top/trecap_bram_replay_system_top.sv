@@ -10,17 +10,12 @@
 `default_nettype none
 
 module trecap_bram_replay_system_top
-  import trecap_core_pkg::*;
-  import trecap_csr_pkg::*;
-  import trecap_packet_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_build_pkg::*;
 #(
-    parameter int unsigned SAMPLE_W                   = T_SAMPLE_W,
-    parameter int unsigned L                          = T_FFT_L,
-    parameter int unsigned P                          = T_FFT_P,
-    parameter int unsigned BIN_IDX_W                  = (T_UNIQUE_BINS <= 1) ? 1 : $clog2(T_UNIQUE_BINS),
-    parameter string       X_MEMH_FILE                = "artifacts/test_vectors/zero_Ns4096_thr0/x_in.memh",
+    parameter int unsigned SAMPLE_W                   = trecap_core_pkg::T_SAMPLE_W,
+    parameter int unsigned L                          = trecap_core_pkg::T_FFT_L,
+    parameter int unsigned P                          = trecap_core_pkg::T_FFT_P,
+    parameter int unsigned BIN_IDX_W                  = (trecap_core_pkg::T_UNIQUE_BINS <= 1) ? 1 : $clog2(trecap_core_pkg::T_UNIQUE_BINS),
+    parameter              X_MEMH_FILE                = "artifacts/test_vectors/zero_Ns4096_thr0/x_in.memh",
     parameter int unsigned REPLAY_MEM_DEPTH           = 4096,
     parameter int unsigned REPLAY_INPUT_SAMPLES       = 4096,
     parameter bit          REPLAY_START_ON_RESET_RELEASE = 1'b0,
@@ -32,18 +27,18 @@ module trecap_bram_replay_system_top
     parameter int unsigned PAYLOAD_DATA_W             = 32,
     parameter int unsigned PAYLOAD_KEEP_W             = (PAYLOAD_DATA_W + 7) / 8,
     parameter int unsigned PACKET_FIFO_RECORDS        = 8,
-    parameter int unsigned PACKET_FIFO_BYTES          = TPKT_UDP_MAX_BYTES,
+    parameter int unsigned PACKET_FIFO_BYTES          = trecap_packet_pkg::TPKT_UDP_MAX_BYTES,
     parameter int unsigned AVMM_ADDR_W                = 64,
     parameter int unsigned AVMM_DATA_W                = 64,
     parameter int unsigned AVMM_BYTEEN_W              = (AVMM_DATA_W + 7) / 8,
     parameter int unsigned AVMM_BURSTCOUNT_W          = 1,
-    parameter int unsigned GUARD_BYTES                = TCSR_RING_GUARD_BYTES_MIN,
+    parameter int unsigned GUARD_BYTES                = trecap_csr_pkg::TCSR_RING_GUARD_BYTES_MIN,
     parameter logic [31:0] RING_SIZE_MIN_BYTES        = 32'h0010_0000,
-    parameter string       WINDOW_FILE                = TBUILD_WINDOW_QW_MEMH,
-    parameter string       TWIDDLE_RE_FILE            = TBUILD_TWIDDLE_RE_MEMH,
-    parameter string       TWIDDLE_IM_FILE            = TBUILD_TWIDDLE_IM_MEMH,
-    parameter string       TWIDDLE_INV_RE_FILE        = TBUILD_TWIDDLE_INV_RE_MEMH,
-    parameter string       TWIDDLE_INV_IM_FILE        = TBUILD_TWIDDLE_INV_IM_MEMH
+    parameter              WINDOW_FILE                = trecap_build_pkg::TBUILD_WINDOW_QW_MEMH,
+    parameter              TWIDDLE_RE_FILE            = trecap_build_pkg::TBUILD_TWIDDLE_RE_MEMH,
+    parameter              TWIDDLE_IM_FILE            = trecap_build_pkg::TBUILD_TWIDDLE_IM_MEMH,
+    parameter              TWIDDLE_INV_RE_FILE        = trecap_build_pkg::TBUILD_TWIDDLE_INV_RE_MEMH,
+    parameter              TWIDDLE_INV_IM_FILE        = trecap_build_pkg::TBUILD_TWIDDLE_INV_IM_MEMH
 ) (
     input  logic                         clk,
     input  logic                         rst_n,
@@ -80,7 +75,7 @@ module trecap_bram_replay_system_top
     // Artifact-facing core output. The testbench/board capture sink, never telemetry, owns ready.
     output logic                         y_valid_o,
     input  logic                         y_ready_i,
-    output trecap_sample_t               y_sample_o,
+    output trecap_iface_pkg::trecap_sample_t               y_sample_o,
     output logic signed [SAMPLE_W-1:0]   y_data_o,
     output logic [63:0]                  y_sample_idx_o,
 
@@ -110,8 +105,8 @@ module trecap_bram_replay_system_top
     output logic                         build_contract_error_o,
 
     // HPS-visible transport observations.
-    output trecap_hps_bridge_ctrl_t      ctrl_o,
-    output trecap_ring_config_t          ring_config_o,
+    output trecap_iface_pkg::trecap_hps_bridge_ctrl_t      ctrl_o,
+    output trecap_iface_pkg::trecap_ring_config_t          ring_config_o,
     output logic [31:0]                  status_o,
     output logic [31:0]                  dma_status_o,
     output logic [31:0]                  overflow_flags_o,
@@ -127,6 +122,12 @@ module trecap_bram_replay_system_top
     output logic                         wrap_commit_pulse_o,
     output logic                         full_path_alive_o
 );
+  import trecap_core_pkg::*;
+  import trecap_csr_pkg::*;
+  import trecap_packet_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_build_pkg::*;
+
 
     localparam logic [31:0] SAMPLE_RATE_HZ_U32 = SAMPLE_RATE_HZ;
     localparam logic [1:0] REPLAY_ORIGIN_NONE = 2'd0;
@@ -147,6 +148,8 @@ module trecap_bram_replay_system_top
     logic                    tap_bin_last_w;
 
     logic                    core_frame_boundary_w;
+    logic [991:0] source_health_w;
+    logic source_health_rearm_w;
     logic                    core_config_safe_boundary_w;
     logic                    source_safe_boundary_w;
     logic                    source_discontinuity_w;
@@ -360,6 +363,14 @@ module trecap_bram_replay_system_top
         .rst_n(rst_n),
         .enable_i(enable_i),
         .clear_i(replay_epoch_clear_w),
+        .source_rearm_i(source_health_rearm_w),
+        .audio_ready_i(1'b0), .audio_stopped_i(1'b1),
+        .adc_ready_i(1'b0), .adc_stopped_i(1'b1),
+        .live_periodic_i(1'b0), .live_sample_rate_hz_i(32'd0),
+        .audio_wrapper_drop_count_i(64'd0), .adc_wrapper_drop_count_i(64'd0),
+        .audio_wrapper_drop_advanced_i(1'b0), .adc_wrapper_drop_advanced_i(1'b0),
+        .audio_wrapper_protocol_i(1'b0), .adc_wrapper_protocol_i(1'b0),
+        .live_source_enable_o(), .source_health_o(source_health_w),
         .thr2_i(ctrl_w.thr2_active),
         .requested_source_mode_i(ctrl_w.source_mode),
         .source_mode_apply_pulse_i(source_mode_apply_pulse_w),
@@ -497,6 +508,9 @@ module trecap_bram_replay_system_top
         .source_safe_boundary_i(source_safe_boundary_w),
         .source_discontinuity_i(source_discontinuity_w),
         .actual_source_mode_i(active_source_mode_w),
+        .source_health_i(source_health_w),
+        .source_rearm_pulse_o(source_health_rearm_w),
+        .codec_fpga_grant_o(),
         .source_transition_busy_i(source_switch_pending_w || source_discontinuity_w),
         .replay_start_ready_i(replay_start_ready_w &&
                               (replay_request_origin_q == REPLAY_ORIGIN_NONE) &&

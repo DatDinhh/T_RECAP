@@ -10,9 +10,6 @@
 `default_nettype none
 
 module trecap_adc_adapter
-  import trecap_core_pkg::*;
-  import trecap_iface_pkg::*;
-  import trecap_math_pkg::*;
 #(
     parameter int unsigned ADC_BITS                     = 12,
     // If ADC_BITS is narrower than T_SAMPLE_W, the project profile must explicitly choose a rule.
@@ -45,9 +42,9 @@ module trecap_adc_adapter
     // Ready/valid signed T-RECAP source stream. sample_idx counts samples admitted to this
     // adapter's core stream, not raw ADC transactions. Dropped raw ADC samples do not create gaps.
     input  logic                         sample_ready_i,
-    output trecap_sample_t               sample_o,
+    output trecap_iface_pkg::trecap_sample_t               sample_o,
     output logic                         sample_valid_o,
-    output logic signed [T_SAMPLE_W-1:0] sample_data_o,
+    output logic signed [trecap_core_pkg::T_SAMPLE_W-1:0] sample_data_o,
     output logic [63:0]                  sample_idx_o,
 
     // Observability for source mux/platform bring-up.
@@ -61,7 +58,7 @@ module trecap_adc_adapter
     output logic [63:0]                  source_samples_admitted_o,
     output logic [63:0]                  core_samples_accepted_o,
     output logic [DROP_COUNT_W-1:0]      dropped_sample_count_o,
-    output logic signed [T_SAMPLE_W-1:0] centered_preview_o,
+    output logic signed [trecap_core_pkg::T_SAMPLE_W-1:0] centered_preview_o,
     output logic [63:0]                  last_source_sample_count_o,
     output logic                         dc_block_active_o,
     output logic                         overflow_sticky_o,
@@ -70,6 +67,10 @@ module trecap_adc_adapter
     output logic                         clipped_lo_sticky_o,
     output logic                         config_error_sticky_o
 );
+  import trecap_core_pkg::*;
+  import trecap_iface_pkg::*;
+  import trecap_math_pkg::*;
+
 
     localparam int signed ADC_TO_CORE_SHIFT = ADC_BITS - T_SAMPLE_W;
     localparam int unsigned DROP_COUNT_SAFE_W = (DROP_COUNT_W == 0) ? 1 : DROP_COUNT_W;

@@ -68,7 +68,7 @@ module trecap_round_sat #(
             rounded_mag = (abs_mag + round_bias) >> SHIFT;
 
             if (in_ext < '0) begin
-                rounded_ext = -work_s_t'(rounded_mag);
+                rounded_ext = -(work_s_t'(rounded_mag));
             end else begin
                 rounded_ext = work_s_t'(rounded_mag);
             end

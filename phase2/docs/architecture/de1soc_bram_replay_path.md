@@ -254,24 +254,22 @@ Merely compiling this testbench is not a functional result.
 The contract records `regression_result_recorded=false` until a supported simulator produces a
 real PASS log.
 
-## Reference provenance limitation
+## Reference source and artifact status
 
-The supplied archive observation is:
+The current software reference source is maintained under `sw/reference_model/`.
+Its snapshot and the promoted root artifacts are recorded by the reference-import
+manifests. The included integrated specification is identified in
+[docs/specs/README.md](../specs/README.md).
 
-```text
-file:   trecap-golden-new(1).zip
-sha256: caf0aa0997a9ad9e8b4382eb2a9a1245ee927b161ce030cd8c83fab6ac80363b
-```
+The supplied reference source has been reconciled with the integrated tree.
+Historical archive observations are not the active source identity and are not
+an additional missing-input requirement. Keep provenance claims limited to the
+source snapshot and artifacts actually recorded in the repository.
 
-That hash identifies the uploaded bytes; it does not prove where those bytes originated. More
-importantly, the checked-in `artifacts/manifests/reference_import_manifest.json` still records
-`embedded_proxy_unverified_source_archive`, `source.kind=embedded_proxy`, and
-`source.verified=false`. It does not match a verified import of the uploaded archive.
-
-Therefore the zero and impulse files used here are **development smoke artifacts only**. They are
-useful for wiring, indexing, full-tail, scoreboard, and transport bring-up. They are not final
-reference-model provenance and cannot support algorithm or release signoff until a fail-closed
-archive import establishes a matching verified source chain.
+Zero and impulse development vectors help explain wiring, indexing, full-tail
+behavior, and transport integration. Their existence is not a claim of full
+algorithm coverage or hardware completion. A source reconciliation also does
+not establish new simulation, synthesis, or board results.
 
 ## Source-only check
 

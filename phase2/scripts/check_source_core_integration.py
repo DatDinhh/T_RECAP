@@ -492,7 +492,7 @@ def validate_board_rtl(text: str) -> None:
     require_exact_count(compact, ")u_adc_wrapper(", 1, context)
     require_exact_count(
         compact,
-        ".clear_i(key_press_pulse[3]||csr_replay_rearm)",
+        ".clear_i(key_press_pulse[3]||csr_replay_rearm||adc_sampling_mode_change)",
         2,
         context,
     )
