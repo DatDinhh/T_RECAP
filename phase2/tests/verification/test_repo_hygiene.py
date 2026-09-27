@@ -26,7 +26,9 @@ class PublicationHygiene(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="trecap-hygiene-")
         self.addCleanup(self.temp.cleanup)
-        self.root = Path(self.temp.name)
+        # Match the CLI root contract: Windows TEMP may use a short-name
+        # alias or junction while Markdown destinations use resolve().
+        self.root = Path(self.temp.name).resolve()
 
     def write(self, relative, content):
         path = self.root / relative
