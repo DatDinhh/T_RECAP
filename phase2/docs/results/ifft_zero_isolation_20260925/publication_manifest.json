@@ -1,0 +1,67 @@
+{
+  "schema": "ifft-zero-isolation-publication-1",
+  "status": "PASS_EVIDENCE_ADMISSION_AND_REPORT_GENERATION",
+  "date": "2026-09-25",
+  "conditions": [
+    "masked_baseline",
+    "masked_isolated"
+  ],
+  "threshold2": 100000000000,
+  "trials": 12,
+  "pairs": 6,
+  "sof_sha256": "4fe8b654fc6eba8ddbf8c72b52af3a5fe64feef27f51768b0abdd06cc4c07de6",
+  "paired_power_difference_mW": -0.006171473529548166,
+  "paired_repeatability_95pct_interval_mW": [
+    -0.11873009828196114,
+    0.10638715122286481
+  ],
+  "paired_mean_conditional_timing_envelope_mW": [
+    -25.874779526682268,
+    25.863098224257364
+  ],
+  "paired_mean_energy_conditional_timing_envelope_J": [
+    -3.2450333333333767,
+    2.9273499999999424
+  ],
+  "calibration_uncertainty_included": false,
+  "runtime_cycle_counts_equal": true,
+  "analyzer_sha256": "b4c5d692230372f54a665ab4d6fde34a0b076ad07e02be617c9c1ccf92b962c9",
+  "analysis_copy_transformation": {
+    "source_paths": "Three source paths changed to data-directory-relative filenames",
+    "original_scope": "Whole-board DC boundary; same SOF and different threshold operating points. No automatic savings claim.",
+    "replacement_scope": "Whole-board DC input; same programmed image and fixed threshold; masked IFFT isolation off versus on.",
+    "numeric_results_and_source_hashes": "Unchanged"
+  },
+  "builder_sha256": "4bf6c2bd299ef24044499bd1e3e6edcff067370c55fa85866567d4718eb0e84f",
+  "template_sha256": "c77ea0a429e33c33120a2e41b9f3d5bcf6a21a262b6ddb1f0a2d5f8a6ee40730",
+  "files": {
+    ".gitattributes": "2ea13f7fb279422d90fa29047586980a5b5938bf0e8563e98ddf544e27c8164c",
+    "board_power_timeline.pdf": "faa77cb8c4bbdcd34f9f8e5c61d07f385ada98d4b37d465dc50e0b48418e1eba",
+    "board_power_timeline.png": "fd71010a9c3ada772e76621d9aba0659082c9ea2a030e69e5808b4de4fb61e49",
+    "data/build_verification.json": "18ad7c55b1682dfac5ab3de643c6ead8896d1b65a6d2e786a62cb6d7c63f0a20",
+    "data/clock_sync.jsonl": "dfb13cee9c7928dc69ac0da06623c7edd408cb22f18ce4db9b18c886df2dd009",
+    "data/condition_summary.csv": "714c5f8131b14e2f878e0819f65549670c049450dba37162d87befb703539d5c",
+    "data/fitted_review_public.json": "6e597bd247833e0c51c0211da126dd2a8d8f622e24ea49eaad6163e60442ab79",
+    "data/measurement_analysis.json": "cb074ec718a5d6430c9e73369ccfbb10bc87750018727383f86ad7b6cd8b93bf",
+    "data/meter_configuration.json": "9c454bc0ef7972f97a2c5305abecbc92a92cd0015700b2fabf069176e27e0c75",
+    "data/meter_samples.csv": "3a7b958dcbb33a16e8946abdefd58239faedc65f05bfad33ac973674b74e3a64",
+    "data/paired_power.csv": "52479e811211ee97bfbf029e4e097acc7b0fa0073d974e192bc563158ac2e2ee",
+    "data/power_attempt_public.json": "ea07c1038113ac06c455780ce794dba54ef5b538d8de350d122900ee944fb8ac",
+    "data/profile_cases.csv": "d2a30c20bfc2fa7182581e07fef6b94b130e146aaeaf7307e4002446a2ff53bc",
+    "data/profile_summary.json": "64b1fad593f1f0196b3c359f858ccdf4c7fbe2f53d1fca5dde23fd7ecebb91b0",
+    "data/provenance.csv": "62fbfe569e48a1c59c0066f7a98dbd4b137875a5e87fac1340b9c0b5521e2caf",
+    "data/trial_events.json": "85acba873a9e427347a3cfbd74bf6a399a499eb75b5138f70336587ef2011215",
+    "data/trials.csv": "bbcafd248afbee51f94979909918fc328158a5c0ce276870864cf72684d556df",
+    "data/verification_summary.json": "418f4d99b6485c057e46a997d0379b80f7266be30568288d1435757bf0bd9ec4",
+    "paired_power_difference.pdf": "c09a95c70615e79114991b34bffd50f43f46cb9b413a83fe11c345d94e0055b9",
+    "paired_power_difference.png": "34c8ec134fa819cea7d58a0433093523197bf94192d8d923310e9df2d3784e27",
+    "README.md": "95b7ab68beda1ab3f178b2c5d003f05cb67f9534e4788325f8f5b4e702f12e10",
+    "trial_power_energy.pdf": "ef43b214d16942de83e8a00946a0c0c11ee467ea7bcbbe9b36402233db7414b7",
+    "trial_power_energy.png": "3c227dcf73e3613d8be6b7fe97fc5d5ef63fb2ccb95044ffb1d6cf0dd43ef6ff"
+  },
+  "portable_numerical_reproduction": "PASS: all analysis values and source hashes reproduce exactly; only local source paths and descriptive scope differ",
+  "supplemental_evidence": [
+    "data/fitted_review_public.json",
+    "data/power_attempt_public.json"
+  ]
+}

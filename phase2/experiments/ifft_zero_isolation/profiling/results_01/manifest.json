@@ -1,0 +1,99 @@
+{
+  "schema": "ifft-zero-opportunity-profile-1",
+  "status": "PASS",
+  "cases": 40,
+  "checked_ifft_frames": 360,
+  "ifft_mismatches": 0,
+  "thresholds": [
+    0,
+    100000000,
+    1000000000,
+    10000000000,
+    100000000000,
+    1000000000000,
+    10000000000000,
+    72057594037927935
+  ],
+  "signals": [
+    {
+      "signal": "measured_multitone",
+      "definition": "Original measured 1024-sample multitone; input artifact copied without changes.",
+      "samples": 1024,
+      "input_file": "inputs/measured_multitone.memh",
+      "sha256": "36912af7d556f633a348f0bc294555dd16d1494f540ae542d840071e651b3e9b",
+      "min_sample": -638,
+      "max_sample": 640,
+      "nonzero_samples": 1024
+    },
+    {
+      "signal": "tonal_two_bin",
+      "definition": "1100*sin(2*pi*7*n/256)+350*sin(2*pi*23*n/256), using frozen Q15 inverse twiddle sine and one ties-away Q15 round.",
+      "samples": 1024,
+      "input_file": "inputs/tonal_two_bin.memh",
+      "sha256": "c1be3a82d8197b1c801c25e84c66390a2842195865bf0415e30330ad30e9f214",
+      "min_sample": -1450,
+      "max_sample": 1450,
+      "nonzero_samples": 1016
+    },
+    {
+      "signal": "broadband_xorshift",
+      "definition": "xorshift32 seed0x2468ACE1, shifts13/17/5, each sample=(state mod2801)-1400; deterministic broadband stress, not a physical noise recording.",
+      "samples": 1024,
+      "input_file": "inputs/broadband_xorshift.memh",
+      "sha256": "a49c292d56b22921dbbaef401eb8c9a228b26630e7cc2b94242c9a29be4cf46a",
+      "min_sample": -1395,
+      "max_sample": 1400,
+      "nonzero_samples": 1024
+    },
+    {
+      "signal": "transient_bipolar",
+      "definition": "Impulses x[127]=1536,x[513]=-1024,x[900]=768; x[352:368]=1000,x[368:384]=-1000; remaining samples zero.",
+      "samples": 1024,
+      "input_file": "inputs/transient_bipolar.memh",
+      "sha256": "63b4b6f28207798c416854827e822b7f9ae143ba9a39dfae5650ab3ae7c956ff",
+      "min_sample": -1024,
+      "max_sample": 1536,
+      "nonzero_samples": 35
+    },
+    {
+      "signal": "zero_control",
+      "definition": "All-zero control to distinguish exact arithmetic zeros from threshold suppression flags.",
+      "samples": 1024,
+      "input_file": "inputs/zero_control.memh",
+      "sha256": "11b5f4b033895f19df7522c6191c272372eb971bab3a561a321d582d216d62f9",
+      "min_sample": 0,
+      "max_sample": 0,
+      "nonzero_samples": 0
+    }
+  ],
+  "source_sha256": {
+    "scripts/verification/reference_integer_oracle.py": "78fa9837f51676bed60bec01f7ad9f8fa17faa506c2405dc8b0210801d009374",
+    "rtl/fft/trecap_ifft256.sv": "92c175d4a30da253e9a93e118080261958daa181cf4e6f12560d9524d110bd3c",
+    "rtl/fft/trecap_fft_stage.sv": "0f8795941f9843e1f266cc0ee9d310c4be52d3103e6d750abb455f49880472d1",
+    "rtl/fft/complex_mul_q.sv": "c45b088222549570d2b65719739bed2fff5be7b77bb6d163c4c1a5c3d1148579",
+    "rtl/common/round_sat.sv": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457",
+    "artifacts/coefficients/window_qw.memh": "05bcfd74bea5fe075b56a5b83c9db53ea73c4b0f6d6f45348eda0a14cf41c4ed",
+    "artifacts/coefficients/twiddle_re.memh": "84094f5e7e6bbdde3e4f458e1e5386af2d3c440f6154bcd8fbd415e521377944",
+    "artifacts/coefficients/twiddle_im.memh": "d8b9c42a442e0dcaace24ec76ae28b41c29d7ad4df6e43aed1da0c1df818d1a0",
+    "artifacts/coefficients/twiddle_inv_re.memh": "84094f5e7e6bbdde3e4f458e1e5386af2d3c440f6154bcd8fbd415e521377944",
+    "artifacts/coefficients/twiddle_inv_im.memh": "2ffc1ad332cb48307073a57c8dc5367c95a33210e1f4216f1b96091695f12d20",
+    "artifacts/test_vectors/near_threshold_multitone_Ns1024_thr64/x_in.memh": "36912af7d556f633a348f0bc294555dd16d1494f540ae542d840071e651b3e9b",
+    "artifacts/measurement/multitone/y_dense.memh": "718212b1cbb8fca5a60206b6a9d5b39363ae0cee8945ca792b670c035fd34117",
+    "artifacts/measurement/multitone/y_masked.memh": "a966f60ab30759ac64ac440cc893d74782c1020883cb4fa570ddb32ad0081c8a"
+  },
+  "profiler_sha256": "9f4f59d168130936804828fdc9febe7fcd35bc4ddd4900646ad5a9a118dd1fa4",
+  "geometry": {
+    "L": 256,
+    "stages": 8,
+    "butterflies_per_stage_per_frame": 128,
+    "fractional_bits": 15,
+    "data_width": 36,
+    "per_stage_normalization": false
+  },
+  "mask_rule": "eligible=(k!=0); masked iff eligible and (re*re+im*im)<threshold; conjugate partner uses same mask; Nyquist eligible",
+  "error_reference": "12-bit reconstructed full stream minus input delayed384 samples, zero-padded outside input extent; RMSE denominator output_samples",
+  "counting": "Count operands before each stage/base/j transaction; b is the twiddle-multiplied operand. Counters overlap and must not be added as disjoint savings.",
+  "twiddle_trivial_definition": "Exact Q15 coefficients (+/-32768,0) or (0,+/-32768)",
+  "real_products_definition": "Zero among br*wr,bi*wi,br*wi,bi*wr; four products per butterfly",
+  "scope": "Model-level exact-zero opportunity study. Every iterative frame matches independent recursive oracle. No RTL, timing, area or electrical-energy claim."
+}

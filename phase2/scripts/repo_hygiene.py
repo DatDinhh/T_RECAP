@@ -9,7 +9,10 @@ import os
 from pathlib import Path
 import re
 import sys
+import subprocess
 import tomllib
+import xml.etree.ElementTree as ET
+import zipfile
 from urllib.parse import unquote, urlsplit
 
 IGNORED_DIRS = {
@@ -39,8 +42,52 @@ CONFLICT = re.compile(r"^(?:<<<<<<< |>>>>>>> )")
 LINK = re.compile(r'!?\[[^\]\n]*\]\((?:<([^>\n]+)>|([^\s)]+))(?:\s+"[^"\n]*")?\)')
 
 
+# Local exports already excluded by .gitignore. Only the non-Git source walk
+# skips these exact paths; accidentally tracked copies still fail the Git scan.
+LOCAL_EXPORT_PATHS = {
+    "docs/presentation/T_RECAP_Architecture_Figures_20260922.zip",
+    "docs/presentation/T_RECAP_Reference_Model_Figures_20260922.zip",
+    "docs/presentation/architecture_20260922/data/stalled/architecture.vcd",
+    "docs/presentation/architecture_20260922/data/static/architecture.vcd",
+}
+
+# These text receipts were reviewed for public evidence and intentionally retained.
+PUBLIC_RECEIPT_DIR = "docs/results/hps_cpu_benchmark_20260925/data/qualification"
+# Links in this generator input are relative to the reviewed generated report.
+MARKDOWN_OUTPUT_DIRS = {
+    "experiments/ifft_zero_isolation/study/report_template.md":
+        "docs/results/ifft_zero_isolation_20260925",
+}
+
+
+def git_source_files(root: Path):
+    """Return publishable checkout files; keep tracked ignored files visible."""
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(root), "ls-files", "--cached", "--others",
+             "--exclude-standard", "-z", "--", "."],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False,
+        )
+    except OSError:
+        return None
+    if result.returncode:
+        return None
+    paths = []
+    for raw_name in result.stdout.split(b"\0"):
+        if raw_name:
+            path = root / os.fsdecode(raw_name)
+            # Deleted index entries are not a local source file; Git reviews them.
+            if path.exists() or path.is_symlink():
+                paths.append(path)
+    return sorted(set(paths))
+
+
 def source_files(root: Path):
     """Walk source without following directory links or entering local build trees."""
+    git_paths = git_source_files(root)
+    if git_paths is not None:
+        yield from git_paths
+        return
     for directory, names, filenames in os.walk(root, followlinks=False):
         parent = Path(directory)
         # Quartus products are local build output; their vendor-generated text
@@ -49,6 +96,9 @@ def source_files(root: Path):
             names[:] = [name for name in names if name != "system"]
             filenames = [name for name in filenames if name != "system.sopcinfo"]
         if parent.relative_to(root).as_posix() == "platform/de1soc/quartus":
+            # Quartus emits matched preloader data, including binary .hiof files.
+            # The complete generated handoff stays in local build/run evidence.
+            names[:] = [name for name in names if name != "hps_isw_handoff"]
             # The vendor DDR pin script can leave its diagnostic dump here
             # after a failed/interrupted run; it is not maintained source.
             filenames = [name for name in filenames if name != "hps_sdram_p0_all_pins.txt"]
@@ -60,7 +110,9 @@ def source_files(root: Path):
                 yield path
                 names.remove(name)
         for name in sorted(filenames):
-            yield parent / name
+            path = parent / name
+            if path.relative_to(root).as_posix() not in LOCAL_EXPORT_PATHS:
+                yield path
 
 
 def unique_object(pairs):
@@ -95,6 +147,52 @@ def markdown_links(text):
                 yield number, match.group(1) or match.group(2)
 
 
+def check_presentation(path: Path, report):
+    """Inspect Open XML text and metadata without extracting embedded files."""
+    try:
+        with zipfile.ZipFile(path) as archive:
+            parts = archive.infolist()
+            if len(parts) > 1000 or sum(part.file_size for part in parts) > 50 * 1024 * 1024:
+                report(path, "presentation exceeds the package-review limit")
+                return
+            names = [part.filename for part in parts]
+            if len(names) != len(set(names)):
+                report(path, "presentation contains duplicate package entries")
+            if "[Content_Types].xml" not in names or "ppt/presentation.xml" not in names:
+                report(path, "presentation is missing required Open XML parts")
+            for part in parts:
+                name = part.filename
+                if part.is_dir():
+                    continue
+                if name.startswith("/") or ".." in Path(name).parts or "\\" in name:
+                    report(path, "presentation contains an unsafe package path")
+                    continue
+                if not name.endswith((".xml", ".rels")):
+                    # Images are ordinary presentation assets; embedded programs
+                    # and other opaque payloads need an explicit publication review.
+                    if not (name.startswith("ppt/media/") and Path(name).suffix.lower() in BINARY_SUFFIXES):
+                        report(path, "presentation contains an unreviewed binary part")
+                    continue
+                raw = archive.read(part)
+                tree = ET.fromstring(raw)
+                content = "\n".join(list(tree.itertext()) + [
+                    value for element in tree.iter() for value in element.attrib.values()
+                ])
+                if PERSONAL_PATH.search(content):
+                    report(path, "personal absolute path in presentation XML (value withheld)")
+                if any(pattern.search(line.strip())
+                       for line in content.splitlines() for pattern in SECRET_PATTERNS):
+                    report(path, "possible credential in presentation XML (value withheld)")
+                if name.endswith(".rels"):
+                    for relation in tree:
+                        if relation.get("TargetMode") == "External":
+                            target = relation.get("Target", "")
+                            if urlsplit(target).scheme.lower() not in {"https", "http", "mailto"}:
+                                report(path, "presentation has a local or unsupported external relationship")
+    except (OSError, zipfile.BadZipFile, ET.ParseError, UnicodeError, RuntimeError):
+        report(path, "invalid or unreadable Open XML presentation")
+
+
 def check(root: Path) -> tuple[int, list[str]]:
     issues = []
     seen = {}
@@ -117,7 +215,9 @@ def check(root: Path) -> tuple[int, list[str]]:
             if not path.resolve().is_relative_to(root):
                 report(path, "symlink points outside the repository")
             continue
-        if path.suffix.lower() in LOCAL_SUFFIXES:
+        public_receipt = (path.parent.relative_to(root).as_posix() == PUBLIC_RECEIPT_DIR
+                          and path.suffix.lower() == ".log")
+        if path.suffix.lower() in LOCAL_SUFFIXES and not public_receipt:
             report(path, "local build/output file in the source tree")
             continue
         if path.stat().st_size > 10 * 1024 * 1024:
@@ -126,6 +226,9 @@ def check(root: Path) -> tuple[int, list[str]]:
         if path.name == ".env" or (path.name.startswith(".env.")
                                     and path.name not in {".env.example", ".env.sample"}):
             report(path, "local environment file must stay outside source distribution")
+        if path.suffix.lower() == ".pptx":
+            check_presentation(path, report)
+            continue
         if path.suffix.lower() in BINARY_SUFFIXES:
             continue
         raw = path.read_bytes()
@@ -160,7 +263,8 @@ def check(root: Path) -> tuple[int, list[str]]:
                 parsed = urlsplit(target)
                 if parsed.scheme or parsed.netloc or not parsed.path:
                     continue
-                destination = (path.parent / unquote(parsed.path)).resolve()
+                link_base = root / MARKDOWN_OUTPUT_DIRS[relative] if relative in MARKDOWN_OUTPUT_DIRS else path.parent
+                destination = (link_base / unquote(parsed.path)).resolve()
                 if not destination.is_relative_to(root):
                     report(path, "relative Markdown link escapes the repository", number)
                 elif not destination.exists():

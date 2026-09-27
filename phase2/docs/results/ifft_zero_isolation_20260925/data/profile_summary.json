@@ -1,0 +1,11 @@
+{
+  "cases": 40,
+  "checked_ifft_frames": 360,
+  "ifft_mismatches": 0,
+  "measured_zero_b": 4352,
+  "measured_total_butterflies": 9216,
+  "measured_zero_b_percent": 47.22222222222222,
+  "fixed_threshold_nonzero_workload_min_percent": 1.1827256944444444,
+  "fixed_threshold_nonzero_workload_max_percent": 83.82161458333334,
+  "scope": "Exact zero arithmetic opportunity, not skipped cycles or energy savings"
+}

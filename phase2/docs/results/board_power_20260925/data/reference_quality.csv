@@ -1,0 +1,3 @@
+condition,threshold2,reference_RMSE_full_stream_LSB,reference_max_abs_error_LSB,eligible_bins,suppressed_bins,reference_spectral_retention_ratio
+dense,0,0.0,0,1152,0,1.0
+masked,100000000000,22.71399967531038,211,1152,1072,0.9921089788344556

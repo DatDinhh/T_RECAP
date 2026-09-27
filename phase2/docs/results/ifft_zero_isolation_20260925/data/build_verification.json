@@ -1,0 +1,125 @@
+{
+  "programmed_sof_sha256": "4fe8b654fc6eba8ddbf8c72b52af3a5fe64feef27f51768b0abdd06cc4c07de6",
+  "status": "PASS_REVIEWED_MEASUREMENT_IMAGE",
+  "fabric_clock_hz": 50000000,
+  "protocol": 2,
+  "timing_minima_ns": {
+    "setup": 4.493,
+    "hold": 0.092,
+    "recovery": 11.297,
+    "removal": 2.279
+  },
+  "resources": {
+    "ALMs": 5366,
+    "registers": 7492,
+    "RAM_blocks": 38,
+    "DSP_blocks": 30
+  },
+  "prior_image_resources": {
+    "ALMs": 5276,
+    "registers": 7451,
+    "RAM_blocks": 38,
+    "DSP_blocks": 30
+  },
+  "same_image_runtime_comparison_excludes_added_hardware_cost": true,
+  "fabric_latches": 0,
+  "user_pins_verified": 12,
+  "final_idle": {
+    "duration_ms": 20000,
+    "completed": true,
+    "protocol": 2,
+    "fault_flags": 0
+  },
+  "fitted_review": {
+    "status": "PASS_BOUNDED_FITTED_ADMISSION",
+    "minimum_clock50_slack_ns": {
+      "setup": 4.493,
+      "hold": 0.092,
+      "recovery": 11.297,
+      "removal": 2.279
+    },
+    "resources": {
+      "alms": 5366,
+      "registers": 7492,
+      "block_memory_bits": 272512,
+      "m10k": 38,
+      "dsp": 30,
+      "user_pins": 12
+    },
+    "pins": {
+      "KEY[0]": {
+        "location": "AA14",
+        "direction": "input",
+        "io_standard": "3.3-V LVTTL"
+      },
+      "CLOCK_50": {
+        "location": "AF14",
+        "direction": "input",
+        "io_standard": "3.3-V LVTTL"
+      },
+      "LEDR[0]": {
+        "location": "V16",
+        "direction": "output",
+        "io_standard": "3.3-V LVTTL"
+      },
+      "LEDR[2]": {
+        "location": "V17",
+        "direction": "output",
+        "io_standard": "3.3-V LVTTL"
+      },
+      "LEDR[3]": {
+        "location": "V18",
+        "direction": "output",
+        "io_standard": "3.3-V LVTTL"
+      },
+      "LEDR[1]": {
+        "location": "W16",
+        "direction": "output",
+        "io_standard": "3.3-V LVTTL"
+      },
+      "LEDR[4]": {
+        "location": "W17",
+        "direction": "output",
+        "io_standard": "3.3-V LVTTL"
+      },
+      "LEDR[5]": {
+        "location": "W19",
+        "direction": "output",
+        "io_standard": "3.3-V LVTTL"
+      },
+      "LEDR[7]": {
+        "location": "W20",
+        "direction": "output",
+        "io_standard": "3.3-V LVTTL"
+      },
+      "LEDR[8]": {
+        "location": "W21",
+        "direction": "output",
+        "io_standard": "3.3-V LVTTL"
+      },
+      "LEDR[6]": {
+        "location": "Y19",
+        "direction": "output",
+        "io_standard": "3.3-V LVTTL"
+      },
+      "LEDR[9]": {
+        "location": "Y21",
+        "direction": "output",
+        "io_standard": "3.3-V LVTTL"
+      }
+    },
+    "fitted_structure": {
+      "held_operand_ff_bits": 106,
+      "ifft_mac_atoms": 8,
+      "registered_output_mac_atoms": 4,
+      "combinational_partial_product_mac_atoms": 4,
+      "runtime_mode_ff_retained": true,
+      "zero_result_flag_ff_retained": true,
+      "registered_mac_enable_driver_atoms": [
+        "14367",
+        "14429"
+      ],
+      "enable_driver_isolation_input_atom": "13889"
+    }
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "schema": "trecap-hps-fpga-resident-record-comparison-1",
+  "status": "PASS_MATCHED_WORKLOAD_ADMISSION",
+  "scope": "Physical HPS CPU0 wall time versus historical FPGA fabric time for resident-input complete finite records",
+  "end_to_end_offload_claim": false,
+  "energy_claim": false,
+  "fresh_fpga_measurement_claim": false,
+  "clock_accuracy_calibrated": false,
+  "conditions": {
+    "dense": {
+      "threshold2": 0,
+      "arm_wall_latency_ms": {
+        "n": 30,
+        "minimum": 2.36034,
+        "q1": 2.3690925,
+        "median": 2.3714950000000004,
+        "q3": 2.3749025,
+        "maximum": 2.39148,
+        "mean": 2.3730423333333333,
+        "sample_stdev": 0.006704546930272785
+      },
+      "arm_thread_cpu_latency_ms": {
+        "n": 30,
+        "minimum": 2.36376,
+        "q1": 2.3727875000000003,
+        "median": 2.3758600000000003,
+        "q3": 2.3798825,
+        "maximum": 2.39534,
+        "mean": 2.3771636666666667,
+        "sample_stdev": 0.00672654057899893
+      },
+      "arm_useful_inputs_per_s": {
+        "n": 30,
+        "minimum": 428186.72955659253,
+        "q1": 431175.60968128394,
+        "median": 431795.138841267,
+        "q3": 432233.01761205425,
+        "maximum": 433835.8033164714,
+        "mean": 431516.904706588,
+        "sample_stdev": 1216.2321234758965
+      },
+      "fpga_cycles": 88524,
+      "fpga_nominal_latency_ms": 1.77048,
+      "fpga_nominal_useful_inputs_per_s": 578374.226198545,
+      "arm_median_wall_over_fpga_nominal_time": 1.3394644390221861,
+      "observed_arm_wall_over_fpga_nominal_range": [
+        1.3331638877592515,
+        1.3507523383489224
+      ],
+      "ratio_interpretation": "Above 1 means shorter FPGA service time; below 1 means shorter ARM service time"
+    },
+    "masked": {
+      "threshold2": 100000000000,
+      "arm_wall_latency_ms": {
+        "n": 30,
+        "minimum": 2.31578,
+        "q1": 2.3202599999999998,
+        "median": 2.3223599999999998,
+        "q3": 2.32641,
+        "maximum": 2.34298,
+        "mean": 2.324869,
+        "sample_stdev": 0.007051573240945136
+      },
+      "arm_thread_cpu_latency_ms": {
+        "n": 30,
+        "minimum": 2.31965,
+        "q1": 2.3241,
+        "median": 2.326205,
+        "q3": 2.334205,
+        "maximum": 2.34661,
+        "mean": 2.3290296666666666,
+        "sample_stdev": 0.0072696527846380235
+      },
+      "arm_useful_inputs_per_s": {
+        "n": 30,
+        "minimum": 437050.25224287016,
+        "q1": 440163.2192885893,
+        "median": 440930.7791522085,
+        "q3": 441329.8777391249,
+        "maximum": 442183.6271148382,
+        "mean": 440458.8269356959,
+        "sample_stdev": 1330.967363300646
+      },
+      "fpga_cycles": 88524,
+      "fpga_nominal_latency_ms": 1.77048,
+      "fpga_nominal_useful_inputs_per_s": 578374.226198545,
+      "arm_median_wall_over_fpga_nominal_time": 1.3117120780805203,
+      "observed_arm_wall_over_fpga_nominal_range": [
+        1.3079955718223306,
+        1.3233586372057293
+      ],
+      "ratio_interpretation": "Above 1 means shorter FPGA service time; below 1 means shorter ARM service time"
+    }
+  },
+  "fpga": {
+    "dense": {
+      "condition": "dense",
+      "threshold2": 0,
+      "epochs": 1,
+      "cycles": 88524,
+      "nominal_clock_hz": 50000000,
+      "nominal_wall_s": 0.00177048,
+      "mismatch_count": 0,
+      "fault_flags": 0,
+      "raw_probe_hex": "000000000001584A0000060000000000FFFFFFFF00000000000159CC0000000900000400000000000000060000000001000100090100009254524350",
+      "source_trial_id": "admission_dense",
+      "source_launch_utc_ms": 1790314486691,
+      "source_completion_utc_ms": 1790314486723,
+      "input_sha256": "36912af7d556f633a348f0bc294555dd16d1494f540ae542d840071e651b3e9b",
+      "reference_output_sha256": "718212b1cbb8fca5a60206b6a9d5b39363ae0cee8945ca792b670c035fd34117"
+    },
+    "masked": {
+      "condition": "masked",
+      "threshold2": 100000000000,
+      "epochs": 1,
+      "cycles": 88524,
+      "nominal_clock_hz": 50000000,
+      "nominal_wall_s": 0.00177048,
+      "mismatch_count": 0,
+      "fault_flags": 0,
+      "raw_probe_hex": "0522D8E80001584A0000060000000000FFFFFFFF00000000000159CC00000009000004000000000000000600000000010001000E010003A254524350",
+      "source_trial_id": "admission_masked",
+      "source_launch_utc_ms": 1790314486757,
+      "source_completion_utc_ms": 1790314486897,
+      "input_sha256": "36912af7d556f633a348f0bc294555dd16d1494f540ae542d840071e651b3e9b",
+      "reference_output_sha256": "a966f60ab30759ac64ac440cc893d74782c1020883cb4fa570ddb32ad0081c8a"
+    }
+  },
+  "fpga_provenance": {
+    "jtag_receipts_sha256": "55d8e94919fee57d6d63801e6545f923ba8379919ed62de1f68a4d8ebdbd0a14",
+    "campaign_manifest_sha256": "606c483cd98a7967774f574f9e11665332ae26c1ac6463ab8e9b82b88a46b724",
+    "program_manifest_sha256": "bd5a9c9e2baaf5018a86bf745b12ec67b15be608a35e26ddf1ac02146faa0047",
+    "build_admission_sha256": "4cf28f8cd672eaf3affe5106f31aa7cad828383f83839f547bcdd98f2fec6dde",
+    "source_manifest_sha256": "546972e14584234b09711efb5b06cfdfd1322831e2ad2b2418465adb4febfce8",
+    "sof_sha256": "17f8d795ef46434ef83ccf9f81eb7e9728ab163ba5d3398c8cdec570a4d498d8",
+    "programmed_utc": "2026-09-25T05:33:23.8152716Z",
+    "historical_measurement": true,
+    "fresh_fpga_run_claimed": false,
+    "fabric_clock_calibrated": false
+  },
+  "arm_environment": {
+    "dense": {
+      "compile_architecture": "arm32",
+      "compiler": "13.3.0",
+      "cplusplus": 201703,
+      "build_flags": "not embedded; retain the external build command/manifest",
+      "uname": {
+        "sysname": "Linux",
+        "release": "6.12.33-fma-h1-console",
+        "machine": "armv7l"
+      },
+      "requested_cpu": 0,
+      "requested_affinity_applied_and_read_back": true,
+      "allowed_cpus": [
+        0
+      ],
+      "cpu_at_metadata_collection": 0,
+      "cpuinfo_selected": {
+        "model name": "ARMv7 Processor rev 0 (v7l)",
+        "Features": "half thumb fastmult vfp edsp thumbee neon vfpv3 tls vfpd32 ",
+        "CPU implementer": "0x41",
+        "CPU architecture": "7",
+        "CPU part": "0xc09"
+      }
+    },
+    "masked": {
+      "compile_architecture": "arm32",
+      "compiler": "13.3.0",
+      "cplusplus": 201703,
+      "build_flags": "not embedded; retain the external build command/manifest",
+      "uname": {
+        "sysname": "Linux",
+        "release": "6.12.33-fma-h1-console",
+        "machine": "armv7l"
+      },
+      "requested_cpu": 0,
+      "requested_affinity_applied_and_read_back": true,
+      "allowed_cpus": [
+        0
+      ],
+      "cpu_at_metadata_collection": 0,
+      "cpuinfo_selected": {
+        "model name": "ARMv7 Processor rev 0 (v7l)",
+        "Features": "half thumb fastmult vfp edsp thumbee neon vfpv3 tls vfpd32 ",
+        "CPU implementer": "0x41",
+        "CPU architecture": "7",
+        "CPU part": "0xc09"
+      }
+    }
+  },
+  "physical_platform": "DE1-SoC HPS Cortex-A9",
+  "physical_board_attested_by_acquisition_receipt": true,
+  "clock_metadata": {
+    "source": "Linux debugfs clk_summary, mpuclk entry",
+    "kind": "kernel clock-framework reported rate; not independently calibrated",
+    "before_hz": 925000000,
+    "after_hz": 925000000,
+    "cpufreq_available": false,
+    "governor": null,
+    "temperature_c": null,
+    "thermal_sysfs_available": false,
+    "clocksource_boot_report": "timer1; sched_clock 100 MHz / 10 ns; clock_getres reports 1 ns API resolution, which is not measurement accuracy"
+  },
+  "governor": null,
+  "temperature": null,
+  "provenance": {
+    "board_receipt_sha256": "bd0b0bb16ebbccac00f8c38f6cdd939a49a93786fab37ef84fa38439ea442265",
+    "executable_sha256": "c6242f02a997a883e85d7bc45ee5c8680dd753f4dfa6726ba8da2aeeb1374314",
+    "source_sha256": {
+      "consumer.cpp": "eb2fcb1b3d8fd779dc79c03d0e832b39cccbf8e06b1129b0d218444393ca0f70",
+      "kernel.cpp": "4d58fa7ce238859aa192802b7cf2442ed34082c8e0caf7a32425c5edc32185f5",
+      "kernel.hpp": "67a69752e3964e2f7b207b49c83a0f61c798a766b8e18f60ecd37ce3ba5dae70",
+      "main.cpp": "2b6ea52a4c537d514986df3b014474741c4788a0ff287fb89136a2ef1303995d"
+    },
+    "result_sha256": {
+      "multitone_dense.json": "756ef10ad23d1120e64e89c007215b4bd2212366e936a9baf601e16f1ebdade0",
+      "multitone_masked.json": "f2acbf57e340baaf3aede6fa3915083a8751022f4226ffd1fb1d61d6c45f482d"
+    },
+    "vector_manifest_sha256": "83d49c9bae88cee30342ab6b7c2a8282ac44eeb455a0644066bceedb6fc62976",
+    "analyzer_sha256": "d24adebd6b0a9a3bb5f632fe0c9b611d69e06c361d6ac430e59f795fd20933ba"
+  },
+  "statistics": {
+    "quantiles": "Linear interpolation at (n-1)*p",
+    "intervals": "IQR and observed range, not confidence intervals",
+    "fpga_replicates": "One historical E=1 admission per threshold; no invented distribution"
+  },
+  "timing_boundaries": {
+    "arm": {
+      "wall_clock": "CLOCK_MONOTONIC_RAW",
+      "wall_resolution_ns": 1,
+      "thread_cpu_clock": "CLOCK_THREAD_CPUTIME_ID",
+      "thread_cpu_resolution_ns": 1,
+      "includes": [
+        "per-epoch logical state reset",
+        "all finite input/tail/output work",
+        "one opaque O(1) output consumer per epoch"
+      ],
+      "excludes": [
+        "file I/O",
+        "allocations",
+        "full output comparison",
+        "coefficient validation",
+        "reference quality/telemetry metric aggregation",
+        "host transfers/JTAG"
+      ],
+      "thread_timer_encloses_wall_timer": true
+    },
+    "fpga_includes": [
+      "accepted batch command to terminal checked completion",
+      "batch clear/init",
+      "per-record startup and full tail",
+      "parallel on-chip reference comparison and metrics",
+      "completion/checker drain"
+    ],
+    "fpga_excludes": [
+      "JTAG host latency",
+      "ARM-to-FPGA input transfer",
+      "FPGA-to-ARM output transfer"
+    ]
+  }
+}

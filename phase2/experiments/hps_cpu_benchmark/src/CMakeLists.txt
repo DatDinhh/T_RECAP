@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.16)
+project(trecap_cpu_benchmark LANGUAGES CXX)
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  set(CMAKE_BUILD_TYPE Release CACHE STRING "Build configuration" FORCE)
+endif()
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+add_executable(trecap_cpu_benchmark main.cpp kernel.cpp consumer.cpp)
+target_compile_features(trecap_cpu_benchmark PRIVATE cxx_std_17)
+set_target_properties(trecap_cpu_benchmark PROPERTIES CXX_EXTENSIONS OFF INTERPROCEDURAL_OPTIMIZATION FALSE)
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+  target_compile_options(trecap_cpu_benchmark PRIVATE -Wall -Wextra -Wpedantic -fno-lto)
+  target_link_options(trecap_cpu_benchmark PRIVATE -fno-lto)
+endif()
+# Release defaults to -O3 under GNU/Clang. Auto-vectorization is allowed. Supply
+# board-appropriate architecture/FPU/ABI flags through the toolchain or CXX_FLAGS;
+# this project does not guess the target board, CPU features, or operating rate.
+set(TRECAP_RECORDED_BUILD_FLAGS "${CMAKE_CXX_FLAGS} | configuration=$<CONFIG> | exact flags in compile_commands.json, no LTO, compiler auto-vectorization allowed")
+string(REPLACE "\\" "\\\\" TRECAP_RECORDED_BUILD_FLAGS "${TRECAP_RECORDED_BUILD_FLAGS}")
+string(REPLACE "\"" "\\\"" TRECAP_RECORDED_BUILD_FLAGS "${TRECAP_RECORDED_BUILD_FLAGS}")
+target_compile_definitions(trecap_cpu_benchmark PRIVATE TRECAP_BUILD_FLAGS="${TRECAP_RECORDED_BUILD_FLAGS}")

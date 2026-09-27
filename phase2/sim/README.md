@@ -1,3 +1,7 @@
+# Simulation assets
+
+The current [verification design](../docs/verification/README.md) defines the environments, checker contracts, coverage and signoff rules. [Current runners](../scripts/verification/README.md) and [executed results](../docs/results/verification_baseline_20260915.md) cover the first bounded campaign. The older benches and runners below require admission review; their presence does not establish an executed pass.
+
 # Step 12 DDR-ring ownership and boundary gate
 
 Windows examples read `MODELSIM_EXE` and `MODELSIM_BIN` from the local shell environment. Set these to the executable and installation directory on the current machine; installation paths are not part of the repository.

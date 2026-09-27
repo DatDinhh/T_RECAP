@@ -1,0 +1,45 @@
+{
+  "scope": "Two finite multitone workloads; C++/independent integer output agreement",
+  "input_samples": 1024,
+  "output_samples": 1536,
+  "frames": 9,
+  "input_sha256": "36912af7d556f633a348f0bc294555dd16d1494f540ae542d840071e651b3e9b",
+  "reference_executable_sha256": "56bf01788d597ee58b19ac84ea0c10c85b571b4c57865898febb6162c2416df7",
+  "oracle_sha256": "78fa9837f51676bed60bec01f7ad9f8fa17faa506c2405dc8b0210801d009374",
+  "coefficient_sha256": {
+    "twiddle_im.memh": "d8b9c42a442e0dcaace24ec76ae28b41c29d7ad4df6e43aed1da0c1df818d1a0",
+    "twiddle_inv_im.memh": "2ffc1ad332cb48307073a57c8dc5367c95a33210e1f4216f1b96091695f12d20",
+    "twiddle_inv_re.memh": "84094f5e7e6bbdde3e4f458e1e5386af2d3c440f6154bcd8fbd415e521377944",
+    "twiddle_re.memh": "84094f5e7e6bbdde3e4f458e1e5386af2d3c440f6154bcd8fbd415e521377944",
+    "window_qw.memh": "05bcfd74bea5fe075b56a5b83c9db53ea73c4b0f6d6f45348eda0a14cf41c4ed"
+  },
+  "cases": [
+    {
+      "name": "dense",
+      "threshold": 0,
+      "cpp_oracle_output_mismatches": 0,
+      "output_sha256": "718212b1cbb8fca5a60206b6a9d5b39363ae0cee8945ca792b670c035fd34117",
+      "eligible_bins": 1152,
+      "suppressed_bins": 0,
+      "rmse_full_stream_lsb": 0.0,
+      "max_abs_error_lsb": 0,
+      "spectral_retention_ratio": 1.0
+    },
+    {
+      "name": "masked",
+      "threshold": 100000000000,
+      "cpp_oracle_output_mismatches": 0,
+      "output_sha256": "a966f60ab30759ac64ac440cc893d74782c1020883cb4fa570ddb32ad0081c8a",
+      "eligible_bins": 1152,
+      "suppressed_bins": 1072,
+      "rmse_full_stream_lsb": 22.71399967531038,
+      "max_abs_error_lsb": 211,
+      "spectral_retention_ratio": 0.9921089788344556
+    }
+  ],
+  "limitations": [
+    "This does not qualify the entire input domain.",
+    "Threshold comparisons retain the full FFT/IFFT schedule.",
+    "Spectral retention is not electrical energy saving."
+  ]
+}

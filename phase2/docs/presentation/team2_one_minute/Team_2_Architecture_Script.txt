@@ -1,0 +1,10 @@
+Team #2
+Architecture narration, approximately 60 seconds
+
+Hi, I'm presenting for Team Two. This slide shows the architecture of our T-RECAP project on the DE1-SoC.
+
+Samples come from stored test data or an audio input. The FPGA applies a window and FFT, uses a programmable threshold to suppress selected frequency bins, then reconstructs the signal with an inverse FFT and weighted overlap-add.
+
+A separate telemetry path sends data through DDR memory to the ARM processor without stalling the core. ARM forwards the data over Ethernet to our PC dashboard and configures the FPGA through control registers.
+
+We compare numerical results against an independent reference model. Our next steps are completing system validation and measuring energy use.

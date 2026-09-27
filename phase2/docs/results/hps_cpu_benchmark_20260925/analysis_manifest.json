@@ -1,0 +1,14 @@
+{
+  "schema": "trecap-hps-fpga-timing-publication-1",
+  "status": "PASS",
+  "analyzer_sha256": "d24adebd6b0a9a3bb5f632fe0c9b611d69e06c361d6ac430e59f795fd20933ba",
+  "files": {
+    "arm_trials.csv": "99f1f6de2183526776c56659322183bccc36fe19a8749dcbe99926eda9369300",
+    "comparison_summary.json": "187ed699a140b41d6d263735be05fbf20d89d85ede9575128af8d8b73a77fdc8",
+    "historical_fpga_admissions.json": "0f708fa01b7c91aa07f4a4db7d11401647fbc4b1f8ff1e1f723ad8b60267f5c5",
+    "latency_throughput.pdf": "ee944c10e3ae1cbd6fc084461d6fb3791e2d92e2cc271ec4d2da4054c4b8ec4f",
+    "latency_throughput.png": "74111ab10e0d08d9cb200d8fe963e66ea766392ca146de9a5dac5611036ea577"
+  },
+  "readme_original_sha256": "eafce3a2ab70e0d8a22be8e0f4c41df87bbc821c40be1cafe182e60545b1281d",
+  "readme_note": "README extended with implementation, public data links and repository-relative reproduction instructions; original generated file retained in local evidence."
+}

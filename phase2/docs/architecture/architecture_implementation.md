@@ -20,7 +20,7 @@ The reference model defines a finite stream and full-tail output. The FPGA integ
 | Telemetry | Valid-only taps, nine-slot payload RAM, priority eviction, streamed DDR record construction | DDR/HPS sustained operation and loss measurements |
 | HPS platform | Static Linux 6.12.109 DTS, noncached ring driver, GPIO48 owner, paired services | Matching kernel/DTB/module and target deployment |
 | HPS/dashboard | Transport/control, source-health utility, waveform/spectrum/status/control UI | Main-demo capture and operation on the board |
-| Board timing | Generated vendor IP; 63% ALM; 209 fitted pins checked; required timing, DDR and physical-route checks pass at all four corners | Board measurements and matched HPS/Linux operation |
+| Board timing | Generated vendor IP; 66% ALM; 209 fitted pins checked; required timing, DDR and physical-route checks pass at all four corners | Board measurements and matched HPS/Linux operation |
 
 The baseline architecture implementation is present in source. Production RTL
 elaboration and host compilation check its language/integration boundary; they
@@ -71,9 +71,9 @@ The full interface and failure contracts remain in [interface_contracts.md](inte
 5. Deploy the matched FPGA/kernel/DTB/runtime profile, establish bridge and GPIO ownership, and configure the DDR consumer lifecycle.
 6. Operate the main BRAM profile, then LINE-IN. Optional ADC operation follows its own profile and hardware setup.
 
-Platform Designer generation, full-board placement/routing and the required fitted timing gate have completed with Quartus Standard 20.1.1 Build 720. The current BRAM-profile native-12 I/O placement uses 20,280 of 32,070 ALMs, 55 of 397 memory blocks and 36 of 87 DSP blocks. All 209 fitted pins match their source contracts. The gate passes at all four available operating corners: worst 50 MHz fabric setup slack is +1.999 ns, and the largest ADC output data-path delay is 2.968 ns against its 5 ns allocation. The [implementation results](../results/fpga_implementation.md) retain the current evidence and historical checkpoints.
+The current BRAM profile has completed Platform Designer generation, full-board placement/routing and the required timing gate with Quartus Prime Lite 20.1.1 Build 720. It uses 21,220 of 32,070 ALMs, 55 of 397 memory blocks and 36 of 87 DSP blocks. All 209 fitted pins pass. The four-corner gate passes with minimum CLOCK_50 setup slack +2.333 ns and hold slack +0.002 ns. The archived fresh image was successfully configured into the DE1-SoC FPGA via JTAG. The [Lite deployment report](../results/de1soc_lite_bram_20260915.md) records source, image and tool evidence.
 
-The installed Standard Edition evaluation mode still prevents assembly from producing a `.sof`; the completed timing analysis does not remove that image-generation limitation. No FPGA programming or board execution has occurred. Raw implementation records remain in ignored `runs/quartus/` directories. The matched target software build and deployment still remain.
+Volatile FPGA configuration is complete. HPS boot/runtime deployment and end-to-end board operation remain open; no replay or transport success is inferred from programmer success. Raw records remain in ignored `runs/quartus/` directories. The earlier [Standard Edition result](../results/fpga_implementation.md) is historical.
 
 ## Transport and control behavior
 

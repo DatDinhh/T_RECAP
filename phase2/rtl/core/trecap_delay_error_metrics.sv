@@ -532,8 +532,10 @@ module trecap_delay_error_metrics
             if (history_rd_wr_same_addr) begin
                 $error("trecap_delay_error_metrics: forbidden same-address history read/write");
             end
+            // A validated one-cycle RAM response may have been retained while
+            // the public output was stalled. Either ownership witness is valid.
             if (pending_commit && pending_y_needs_history_q &&
-                !pending_history_tag_ok) begin
+                !pending_history_data_valid_q && !pending_history_tag_ok) begin
                 $error("trecap_delay_error_metrics: committed y without exact delayed-x tag");
             end
         end

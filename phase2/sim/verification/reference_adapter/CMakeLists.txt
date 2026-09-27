@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: MIT
+cmake_minimum_required(VERSION 3.24)
+project(trecap_reference_qualification LANGUAGES CXX)
+enable_testing()
+set(TRECAP_BUILD_TOOLS OFF CACHE BOOL "Build reference tools" FORCE)
+set(TRECAP_BUILD_TESTS ON CACHE BOOL "Build selected existing self-tests" FORCE)
+set(BUILD_TESTING ON CACHE BOOL "Enable reference test registration" FORCE)
+add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/../../../sw/reference_model" reference_model)
+add_executable(reference_api_adapter reference_api_adapter.cpp)
+target_link_libraries(reference_api_adapter PRIVATE trecap_golden)

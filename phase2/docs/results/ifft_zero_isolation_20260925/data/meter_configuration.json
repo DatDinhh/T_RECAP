@@ -1,0 +1,10 @@
+{
+  "shunt_ohms": 0.015,
+  "max_current_A": 10.0,
+  "adc_range": 0,
+  "averaging_samples": 16,
+  "bus_conversion_us": 280,
+  "shunt_conversion_us": 280,
+  "mode": "CONT_BUS_SHUNT",
+  "requested_log_rate_Hz": 10
+}

@@ -1,0 +1,259 @@
+{
+  "status": "INCONCLUSIVE_ACTIVITY_COVERAGE",
+  "numeric_estimate_admitted": false,
+  "admitted_power_delta_mw": null,
+  "scope": "One paired Power Analyzer attempt on isolated copies of the same fitted FPGA image; diagnostic only, separate from board measurements.",
+  "tool": "Quartus Prime Lite 20.1.1 Build 720 Power Analyzer",
+  "fit_identity_sha256": {
+    "trecap_measurement.qsf": "61da65fe43a4676edfdadaa71452aba802800901bfa447a57ee12c9df9b8c4df",
+    "output_files/trecap_measurement.sof": "4fe8b654fc6eba8ddbf8c72b52af3a5fe64feef27f51768b0abdd06cc4c07de6"
+  },
+  "original_qsf_and_sof_unchanged": true,
+  "trace_contract": {
+    "dut_scope": "power_capture_tb.dut",
+    "mapped_entity": "trecap_measurement_engine:u_engine",
+    "epochs": 2,
+    "threshold2": 100000000000,
+    "outputs": 3072,
+    "useful_inputs": 2048,
+    "frames": 18,
+    "batch_cycles": 176662,
+    "mismatches": 0,
+    "baseline_mode": 2,
+    "isolated_mode": 3,
+    "source_manifest_status": "PASS"
+  },
+  "settings": {
+    "power_models": "Final",
+    "device_characteristics": "Typical",
+    "assumed_junction_temperature_c": 25,
+    "vcd_glitch_filter": true,
+    "vectorless_estimation": false,
+    "default_toggle_rate_percent": 12.5,
+    "default_static_probability": 0.5,
+    "activity_window": "Whole RTL capture, including reset and short postamble",
+    "model_boundary": "FPGA fabric and I/O model; excludes HPS power and external board loads"
+  },
+  "jobs": {
+    "baseline": {
+      "tool_exit_code": 0,
+      "tool_status": "Successful",
+      "errors": 0,
+      "warnings": 36,
+      "vcd": {
+        "sha256": "0661ae5b9abfdb8fdf94445be041e2225042fd5b1b6af115830e28b5b0f7db37",
+        "bytes": 673442772
+      },
+      "confidence": "Low: user provided insufficient toggle rate data",
+      "whole_design_activity": {
+        "simulation_percent": 26.2,
+        "default_assignment_percent": 73.7,
+        "combinational_default_assignment_percent": 97.4,
+        "reported_unknown_simulation_time_percent": 0.9
+      },
+      "critical_fitted_activity": {
+        "multiplier_b_operand_nodes": {
+          "count": 108,
+          "activity_source_counts": {
+            "Default assignment": 108
+          }
+        },
+        "multiplier_twiddle_operand_nodes": {
+          "count": 68,
+          "activity_source_counts": {
+            "Default assignment": 68
+          }
+        },
+        "held_b_registers": {
+          "count": 72,
+          "activity_source_counts": {
+            "Simulation (f1)": 72
+          }
+        },
+        "held_twiddle_registers": {
+          "count": 34,
+          "activity_source_counts": {
+            "Simulation (f1)": 34
+          }
+        },
+        "registered_mac_enable_drivers": {
+          "count": 2,
+          "activity_source_counts": {
+            "Default assignment": 2
+          },
+          "default_toggle_mtransitions_per_second": 6.25,
+          "default_static_probability": 0.5
+        }
+      },
+      "coverage_rows": [
+        [
+          "-- Number of signals with Toggle Rate from Simulation",
+          "6240 (26.2%)",
+          "0 (0.0%)",
+          "5835 (77.9%)",
+          "405 (2.5%)"
+        ],
+        [
+          "-- Number of signals with Toggle Rate from Node, entity or clock assignment",
+          "5 (0.0%)",
+          "2 (12.5%)",
+          "0 (0.0%)",
+          "3 (0.0%)"
+        ],
+        [
+          "-- Number of signals with Toggle Rate from Vectorless estimation",
+          "0 (0.0%)",
+          "0 (0.0%)",
+          "0 (0.0%)",
+          "0 (0.0%)"
+        ],
+        [
+          "-- Number of signals with Toggle Rate from Default assignment",
+          "17542 (73.7%)",
+          "3 (18.8%)",
+          "1657 (22.1%)",
+          "15882 (97.4%)"
+        ]
+      ]
+    },
+    "isolated": {
+      "tool_exit_code": 0,
+      "tool_status": "Successful",
+      "errors": 0,
+      "warnings": 36,
+      "vcd": {
+        "sha256": "00e929a40cd2be1aeac2e0fba5b8bc16656688d4c20724a67f3ec995fbf7b62a",
+        "bytes": 678757711
+      },
+      "confidence": "Low: user provided insufficient toggle rate data",
+      "whole_design_activity": {
+        "simulation_percent": 26.2,
+        "default_assignment_percent": 73.7,
+        "combinational_default_assignment_percent": 97.4,
+        "reported_unknown_simulation_time_percent": 0.9
+      },
+      "critical_fitted_activity": {
+        "multiplier_b_operand_nodes": {
+          "count": 108,
+          "activity_source_counts": {
+            "Default assignment": 108
+          }
+        },
+        "multiplier_twiddle_operand_nodes": {
+          "count": 68,
+          "activity_source_counts": {
+            "Default assignment": 68
+          }
+        },
+        "held_b_registers": {
+          "count": 72,
+          "activity_source_counts": {
+            "Simulation (f1)": 72
+          }
+        },
+        "held_twiddle_registers": {
+          "count": 34,
+          "activity_source_counts": {
+            "Simulation (f1)": 34
+          }
+        },
+        "registered_mac_enable_drivers": {
+          "count": 2,
+          "activity_source_counts": {
+            "Default assignment": 2
+          },
+          "default_toggle_mtransitions_per_second": 6.25,
+          "default_static_probability": 0.5
+        }
+      },
+      "coverage_rows": [
+        [
+          "-- Number of signals with Toggle Rate from Simulation",
+          "6240 (26.2%)",
+          "0 (0.0%)",
+          "5835 (77.9%)",
+          "405 (2.5%)"
+        ],
+        [
+          "-- Number of signals with Toggle Rate from Node, entity or clock assignment",
+          "5 (0.0%)",
+          "2 (12.5%)",
+          "0 (0.0%)",
+          "3 (0.0%)"
+        ],
+        [
+          "-- Number of signals with Toggle Rate from Vectorless estimation",
+          "0 (0.0%)",
+          "0 (0.0%)",
+          "0 (0.0%)",
+          "0 (0.0%)"
+        ],
+        [
+          "-- Number of signals with Toggle Rate from Default assignment",
+          "17542 (73.7%)",
+          "3 (18.8%)",
+          "1657 (22.1%)",
+          "15882 (97.4%)"
+        ]
+      ]
+    }
+  },
+  "rejection_reasons": [
+    "All 176 fitted multiplier operand-selection nodes use default activity instead of simulation activity in both runs.",
+    "Both fitted registered-MAC enable driver nodes use default activity in both runs.",
+    "Mapping of all 106 held-operand registers and mode/zero flags confirms the input-file entity mapping, but does not recover the optimized combinational activity.",
+    "The tool reports low confidence and warns that HPS power is omitted (215050).",
+    "A numerical delta from these reports cannot establish the effect of operand isolation."
+  ],
+  "follow_up_limit": "No further mapping retries, new netlist simulations, or vectorless savings claims are included in this attempt.",
+  "raw_evidence": {
+    "paired_power_01/baseline/power.log": {
+      "bytes": 11383,
+      "sha256": "f462a64a6431b92d497f443ec31df615888879cebbb8abbe8f03e27fd8fffac5"
+    },
+    "paired_power_01/baseline/configure.log": {
+      "bytes": 2208,
+      "sha256": "15d30d3bd0e249122f9f68ec2871a7018eb1647698a6853fda939f975f8a625d"
+    },
+    "paired_power_01/baseline/trecap_measurement.qsf": {
+      "bytes": 12488,
+      "sha256": "056e2977bc04ba5c88258d09304d5567b5bc8bdb697fb7979edfc5abc2de9c7a"
+    },
+    "paired_power_01/baseline/output_files/trecap_measurement.pow.rpt": {
+      "bytes": 21096028,
+      "sha256": "29772ecb566af2c399ffc1ea1d0cb2374a6d6e8e238c523f585d408e0c6200ee"
+    },
+    "paired_power_01/baseline/output_files/trecap_measurement.pow.summary": {
+      "bytes": 549,
+      "sha256": "32b96ce6834880531f4c81672738c0191a2739ddbfbd2b0862ee1d46a5db86cd"
+    },
+    "paired_power_01/baseline_critical_activity.json": {
+      "bytes": 127261,
+      "sha256": "ef937d15340258b3f952c9c8b0b6bfb6bcc2ef6efca5ba1b0b9e8bf495cfdfa1"
+    },
+    "paired_power_01/isolated/power.log": {
+      "bytes": 11383,
+      "sha256": "412e3384c513c8ea6f5655144f4812beb17acdede108b52f9f6761cf35ffb7e5"
+    },
+    "paired_power_01/isolated/configure.log": {
+      "bytes": 2208,
+      "sha256": "d2fe147139d6eb57f03a421dce76055c72f5a798e6108d4acfe6cc2a56f8ccae"
+    },
+    "paired_power_01/isolated/trecap_measurement.qsf": {
+      "bytes": 12488,
+      "sha256": "84be79cd53b4baec84e12b5726f3c48432aede12148a927f700519e300baf5fe"
+    },
+    "paired_power_01/isolated/output_files/trecap_measurement.pow.rpt": {
+      "bytes": 21096028,
+      "sha256": "17536a1b5e9c3a01bcd7e2fe94b56d6823332bdb0fa42e60992131cb00cde13d"
+    },
+    "paired_power_01/isolated/output_files/trecap_measurement.pow.summary": {
+      "bytes": 549,
+      "sha256": "3e69f683492984f0aa39713d36e80ecc7b1dae59ff520809e6a6f19ede57b11c"
+    },
+    "paired_power_01/isolated_critical_activity.json": {
+      "bytes": 127261,
+      "sha256": "24ec65dabbdddd08f387d84d39084388f8b4bc4afdaeb1d96c63028aaed789b8"
+    }
+  }
+}

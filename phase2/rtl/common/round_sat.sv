@@ -58,7 +58,8 @@ module trecap_round_sat #(
             //   rnd_shr(v, s) = sgn(v) * floor((abs(v) + 2^(s-1)) / 2^s)
             // for s >= 1. This avoids native arithmetic-shift truncation for
             // negative odd values and matches the reference arithmetic contract.
-            if (in_ext < '0) begin
+            // Both operands must be signed; an unbased '0 changes the comparison.
+            if (in_ext < work_s_t'(0)) begin
                 abs_mag = work_u_t'(-in_ext);
             end else begin
                 abs_mag = work_u_t'(in_ext);
@@ -67,7 +68,7 @@ module trecap_round_sat #(
             round_bias = work_u_t'(1) << ROUND_BIAS_SHIFT;
             rounded_mag = (abs_mag + round_bias) >> SHIFT;
 
-            if (in_ext < '0) begin
+            if (in_ext < work_s_t'(0)) begin
                 rounded_ext = -(work_s_t'(rounded_mag));
             end else begin
                 rounded_ext = work_s_t'(rounded_mag);

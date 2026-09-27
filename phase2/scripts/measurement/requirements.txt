@@ -1,0 +1,3 @@
+# Plotting dependency used for the recorded board-measurement campaign.
+# Hardware orchestration and numerical analysis use Python standard-library modules.
+matplotlib==3.11.2

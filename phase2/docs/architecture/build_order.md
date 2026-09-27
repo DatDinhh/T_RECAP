@@ -12,7 +12,7 @@ The root build files orchestrate the reference library, HPS application, generat
 | Root Makefile | GNU Make with Bash |
 | HPS application | Linux/POSIX build for the DE1-SoC HPS target or supported cross-compiler |
 | PC dashboard | Python and dependencies in `sw/pc_dashboard/pyproject.toml` |
-| FPGA project | Supported Intel Quartus/Platform Designer installation and DE1-SoC board sources |
+| FPGA project | Quartus Prime 20.1.x Lite or licensed Standard, matching Cyclone V device support and Platform Designer |
 
 Windows entry points use CMake for the host library and the provided PowerShell scripts for platform setup. The Bash Makefile is not a native PowerShell script. A host compile of the HPS application is not an HPS deployment.
 
@@ -134,12 +134,17 @@ The compile targets require their configured external tools. Full-board generati
 
 ## Native Windows Quartus build
 
-Use Windows PowerShell 5.1 or PowerShell 7 with Quartus Prime Standard 20.1
-(including the 20.1.1 update) and Python 3.12. Set `QUARTUS_ROOTDIR` to the installed
-Quartus component directory, or replace that argument below with its actual path.
+The [2026-09-15 Lite result](../results/de1soc_lite_bram_20260915.md) records a completed BRAM build, all 209 fitted pins passing, the four-corner timing gate passing, and successful volatile JTAG configuration. These results establish build and configuration evidence; post-program LED behavior and end-to-end board operation remain unobserved. The Standard native-12 results below are historical.
+
+Use Windows PowerShell 5.1 or PowerShell 7 with Quartus Prime 20.1.x Lite or
+licensed Standard (including the 20.1.1 update), matching Cyclone V device support,
+and Python 3.12. The maintained Windows and Bash wrappers accept these two editions
+and record the reported release and edition in the build provenance. Set
+`QUARTUS_ROOTDIR` to the selected installation's Quartus component directory, or
+replace that argument below with its actual path.
 The script also accepts an installation directory containing `quartus` or
 `quartusfpga/quartus`.
-It resolves native tools under that installation and does not require Bash or WSL.
+It resolves native tools under that installation and does not require Bash or WSL. Use the same selected installation for generation, compilation and programming; changing editions requires a fresh build and its own pin, timing and image records.
 
 ```powershell
 .\scripts\quartus\build_de1soc.ps1 `
@@ -188,9 +193,9 @@ It does not invoke models, simulation, negative tests, or the historical verific
 checklist. Tool compilation results must still be distinguished from functional
 or hardware signoff.
 
-### Native synthesis warning review
+### Historical Standard native-12 synthesis warning review
 
-The native-12 synthesis completed with 1,741 warnings and no errors. Its complete
+The recorded Standard 20.1.1 native-12 synthesis completed with 1,741 warnings and no errors. Its complete
 map report contains no divider or remainder megafunctions. WAVE uses 4,965
 combinational ALUTs instead of 9,659, with the same 7,219 dedicated registers and
 four additional DSP blocks. Total DSP use is 36; these synthesis ALUT counts are
@@ -213,8 +218,8 @@ in I/O buffers. It uses 20,280 ALMs (63%), 29,115 registers, 55 M10K blocks and
 36 DSP blocks. The fitted RAM summary identifies FFT/IFFT work memories as M10K
 true-dual-port storage. All 209 pin comparisons and the required timing gate pass
 at all four available operating corners. Worst fabric setup slack is +1.999 ns;
-maximum ADC output data-path delay is 2.968 ns. Evaluation Mode still suppresses
-the SOF, so the continuation remains incomplete for programming. The
+maximum ADC output data-path delay is 2.968 ns. Evaluation Mode suppressed
+the SOF, so that historical continuation remained incomplete for programming. The
 [implementation results](../results/fpga_implementation.md) retain each checkpoint
 and the sanitized evidence record.
 

@@ -27,7 +27,7 @@ Do not include machine-specific absolute paths, credentials, private network det
 
 Distinguish design calculations, implemented source, compiled software, synthesis/timing results, and measured hardware behavior. Report only work actually performed. A reference output, plot, or successful script invocation is not evidence of a working FPGA board.
 
-The current work focuses on architecture and implementation. Verification architecture and hardware evaluation have their own later milestones. Preserve existing diagnostic material as history without treating historical logs or checks as evidence for newly changed source.
+Verification and hardware evaluation have separate milestones. Preserve failed runs, qualify the expected-result source, and identify the exact test scope and source revision. Preserve historical diagnostic material without treating old logs or checks as evidence for newly changed source.
 
 ## Compatibility and releases
 

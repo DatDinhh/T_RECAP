@@ -1,0 +1,3 @@
+# This experiment uses raw-byte source and evidence hashes. Preserve all bytes,
+# including reviewed LF/CRLF endings, through Git add and checkout.
+* -text

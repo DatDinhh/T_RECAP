@@ -1,0 +1,297 @@
+{
+  "schema": "trecap_de1soc_lite_deployment_public_v1",
+  "date": "2026-09-15",
+  "outcome": "PASS_BUILD_AND_VOLATILE_FPGA_CONFIGURATION",
+  "full_system_functional_acceptance": false,
+  "energy_or_acceleration_measured": false,
+  "tool_version": "Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition",
+  "device": "5CSEMA5F31C6",
+  "profile": {
+    "path": "config/profiles/de1soc_bram_replay.json",
+    "sha256": "d179ecfea87c9fcac4d203e0e199f22979ceb714dca33b44faf8d3e2e653d583"
+  },
+  "build": {
+    "run": "runs/quartus/windows/20260915-lite-bram-01",
+    "status": "completed",
+    "started_utc": "2026-09-15T22:50:14.3256190Z",
+    "finished_utc": "2026-09-15T23:26:28.2609195Z",
+    "stages": [
+      {
+        "name": "quartus-version",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "generated-headers",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "generated-filelists",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "hps-platform-source",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "address-map-source",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "profile-source",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "runtime-profile",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "quartus-profile",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "qsys-capture-readback",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "qsys-generate",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "generated-address-map",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "generated-platform-wrapper",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "platform-manifest",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "quartus-map",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "hps-ddr-pin-assignments",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "quartus-fit",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "fitted-pins",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "quartus-asm",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "quartus-sta",
+        "exit_code": 0,
+        "status": "completed"
+      },
+      {
+        "name": "fitted-timing-gate",
+        "exit_code": 0,
+        "status": "completed"
+      }
+    ]
+  },
+  "source_integrity": {
+    "checked_file_count": 173,
+    "changed_files": [],
+    "scope": "Preflight inventory of RTL, constraints, config, filelists, spec, Quartus scripts and project/platform sources; not an inventory of every repository file.",
+    "rtl_modified_during_deployment": false
+  },
+  "resources": {
+    "alms": {
+      "used": 21220,
+      "available": 32070,
+      "reported_percent": 66
+    },
+    "registers": 29452,
+    "pins": {
+      "used": 209,
+      "available": 457
+    },
+    "ram_blocks": {
+      "used": 55,
+      "available": 397
+    },
+    "block_memory_bits": {
+      "used": 368256,
+      "available": 4065280
+    },
+    "dsp_blocks": {
+      "used": 36,
+      "available": 87
+    }
+  },
+  "fitted_pins": {
+    "status": "PASS",
+    "checked_pin_count": 209,
+    "sha256": "cac3ea5a88acf327466038a67b99dbd6c0556f8e7826d7944e37c48f3b8e2681"
+  },
+  "timing": {
+    "status": "PASS",
+    "operating_conditions": [
+      {
+        "corner": "Slow 1100mV 85C Model",
+        "clock_50_setup_ns": 2.391,
+        "clock_50_hold_ns": 0.037,
+        "global_setup_ns": 1.73,
+        "global_hold_ns": 0.037
+      },
+      {
+        "corner": "Slow 1100mV 0C Model",
+        "clock_50_setup_ns": 2.333,
+        "clock_50_hold_ns": 0.002,
+        "global_setup_ns": 1.727,
+        "global_hold_ns": 0.002
+      },
+      {
+        "corner": "Fast 1100mV 0C Model",
+        "clock_50_setup_ns": 10.794,
+        "clock_50_hold_ns": 0.05,
+        "global_setup_ns": 2.11,
+        "global_hold_ns": 0.05
+      },
+      {
+        "corner": "Fast 1100mV 85C Model",
+        "clock_50_setup_ns": 9.786,
+        "clock_50_hold_ns": 0.072,
+        "global_setup_ns": 2.11,
+        "global_hold_ns": 0.072
+      }
+    ],
+    "rows": 276,
+    "failed_rows": 0,
+    "sha256": "e0e3e8f6b440adeda82194c1d111b05ad53c682187bc972f09dd901130c7ade5",
+    "gate_scope": "Required global and fabric slack, applicable generated DDR microtiming, clock coverage/classifications, physical routes and CDC skew.",
+    "profile_exclusions": [
+      "Four audio-TX route checks per corner are absent because lineout is disabled.",
+      "DDR bus-turnaround hold is inapplicable in the vendor model."
+    ],
+    "clock_50_minimum_hold_ns": 0.002
+  },
+  "image": {
+    "path": "runs/quartus/windows/20260915-lite-bram-01/image/trecap_de1soc.sof",
+    "sha256": "b14d7b38f422d0e82c0c22d76e3b298c7602d38e075efdd8148d4f2890d1a9fa",
+    "size_bytes": 7365337,
+    "fresh": true
+  },
+  "programming": {
+    "run": "runs/quartus/program/windows/20260915-lite-bram-01",
+    "status": "completed",
+    "finished_utc": "2026-09-15T23:27:33.6224543Z",
+    "cable": "DE-SoC [USB-1]",
+    "device_index": 2,
+    "hps_idcode": "4BA00477",
+    "fpga_idcode": "02D120DD",
+    "image_sha256": "b14d7b38f422d0e82c0c22d76e3b298c7602d38e075efdd8148d4f2890d1a9fa",
+    "configured_devices": 1,
+    "programmer_errors": 0,
+    "programmer_warnings": 0,
+    "operation": "volatile JTAG FPGA configuration",
+    "flash_or_sd_written": false
+  },
+  "hardware_observation": {
+    "led_state": "not observed",
+    "hps_boot_state": "not established",
+    "bram_completion": "not observed",
+    "ddr_udp_capture": "not observed"
+  },
+  "evidence": {
+    "runs/quartus/windows/20260915-lite-bram-01/build_manifest.json": {
+      "sha256": "e1326b1f74226993882f40a9112f21163ccd1a3d26866767e174c7245f1bf157",
+      "size_bytes": 19200
+    },
+    "runs/quartus/windows/20260915-lite-bram-01/archive_manifest.json": {
+      "sha256": "ab0cc6c66fafac52f3a2f15eb172c5b429a8bd58140c0fc02dad514132ba5ca8",
+      "size_bytes": 6281
+    },
+    "runs/quartus/windows/20260915-lite-bram-01/source_integrity.json": {
+      "sha256": "87be8dc557adb5d9d87139e54506e6237768a96562d86a1acc8325ec6fab9748",
+      "size_bytes": 19723
+    },
+    "runs/quartus/windows/20260915-lite-bram-01/checked-source-snapshot.zip": {
+      "sha256": "d0eff26df5f8b8c6bb375db2e8c623f0dc1e57be2be042f9814b6a3389cf32a1",
+      "size_bytes": 512320
+    },
+    "runs/quartus/windows/20260915-lite-bram-01/fitted_pins.json": {
+      "sha256": "cac3ea5a88acf327466038a67b99dbd6c0556f8e7826d7944e37c48f3b8e2681",
+      "size_bytes": 107049
+    },
+    "runs/quartus/windows/20260915-lite-bram-01/fitted-timing/fitted_timing.tsv": {
+      "sha256": "e0e3e8f6b440adeda82194c1d111b05ad53c682187bc972f09dd901130c7ade5",
+      "size_bytes": 56456
+    },
+    "runs/quartus/windows/20260915-lite-bram-01/implementation-reports/trecap_de1soc.fit.summary": {
+      "sha256": "34b917f63301b7643f70af06cb4b9ff65670e6a3448644e2cd7ac727fb2558dd",
+      "size_bytes": 711
+    },
+    "runs/quartus/windows/20260915-lite-bram-01/implementation-reports/trecap_de1soc.fit.rpt": {
+      "sha256": "a69b3b0281045c02226feea67b1cf98439193165f337c93a25f76f5cee1801cb",
+      "size_bytes": 5752703
+    },
+    "runs/quartus/windows/20260915-lite-bram-01/quartus-map.log": {
+      "sha256": "d767dccf2e42619c16ee74526881628b7ca43265b1a601930cb169cfb14396fc",
+      "size_bytes": 514501
+    },
+    "runs/quartus/windows/20260915-lite-bram-01/quartus-sta.log": {
+      "sha256": "2f291dd17a3c95991be1d6f48f7049a3e703a88b4f44c6139f8af9a6c659af90",
+      "size_bytes": 258198
+    },
+    "runs/quartus/windows/20260915-lite-bram-01/fitted-timing-gate.log": {
+      "sha256": "2dedbbc5400222c9f919bb311f5851d71f003397a371a39073fd633b50343b7c",
+      "size_bytes": 843254
+    },
+    "runs/quartus/windows/20260915-lite-bram-01/quartus-asm.log": {
+      "sha256": "256d83def67366fbbad514771bbe0691edd3410fce45a93ab82a48291a897c27",
+      "size_bytes": 2284
+    },
+    "runs/quartus/program/windows/20260915-lite-bram-01/program_manifest.json": {
+      "sha256": "4500eb7279347f1447d0b89c857d642c52fd8dff06816dc632f3e9d0ef4c5702",
+      "size_bytes": 3473
+    },
+    "runs/quartus/program/windows/20260915-lite-bram-01/program-sof.log": {
+      "sha256": "206c3bdbcc178649ebb1ebe7d55ae23cd78e25d8a08c3c638e6afc2a61db8c5c",
+      "size_bytes": 2236
+    },
+    "runs/quartus/program/windows/20260915-lite-bram-01/jtag-inventory.log": {
+      "sha256": "e4cd941aca5a4b84047bdff4228a182956c2167f3802088f29058b3e58aae162",
+      "size_bytes": 84
+    }
+  },
+  "repository_hygiene": {
+    "inspected_files": 718,
+    "findings": 0,
+    "functional_tests_run": false,
+    "generated_handoff_excluded": true,
+    "maintenance_files_changed": [
+      ".gitignore",
+      "scripts/repo_hygiene.py"
+    ]
+  }
+}

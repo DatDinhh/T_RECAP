@@ -134,8 +134,10 @@ valid merely because a new stream reuses index zero.
 
 For each legal frame, real-part multiplication widths, ties-away-from-zero
 rounding, saturation widths, emit-before-add order, wrap addresses, and output
-indices are unchanged. A nonzero IFFT imaginary residual raises the existing
-protocol status while real-part synthesis continues. Malformed IFFT-input offset/last/frame
+indices are unchanged. The specified synthesis uses only the real IFFT component.
+A valid imaginary residual from fixed-point rounding is numerical diagnostic data
+and does not raise protocol status. Verification compares both IFFT components
+with the qualified reference. Malformed IFFT-input offset/last/frame
 sequences or disabling an active transaction enter a fail-stop state; a full clear
 is required before another epoch can use the partially written workspace.
 

@@ -13,6 +13,15 @@ We organize the documentation around the decisions needed to understand and impl
 | [Implementation plan](architecture/architecture_implementation.md) | Implemented deliverables, build dependencies, remaining platform results |
 | [Repository ownership](architecture/repo_architecture.md) | File ownership, source/generated distinctions, dependency rules |
 | [Build guide](architecture/build_order.md) | Tools and component build sequence |
+| [Verification design](verification/README.md) | Environments, reference qualification, test/assertion catalogs, requirements, coverage and signoff rules |
+| [Verification execution plan](verification/execution_plan.md) | Specification readiness, ordered milestones, dependencies and the first complete core replay |
+| [First verification results](results/verification_baseline_20260915.md) | Executed software/RTL cases, corrected defects, evidence identities and remaining scope |
+| [Finite-boundary verification](results/verification_boundaries_20260915.md) | 80 executed length/threshold/stall cases, baseline regression, checker qualification and exact tail accounting |
+| [Lite FPGA deployment](results/de1soc_lite_bram_20260915.md) | Corrected-source fit, four-corner timing, 209-pin check and successful volatile JTAG configuration |
+| [FPGA-only board-power results](results/board_power_20260925/README.md) | Twelve checked nonzero board trials, paired electrical measurements, plots, portable data and limits |
+| [IFFT operand-isolation study](results/ifft_zero_isolation_20260925/README.md) | Per-stage zero profiles, exact RTL comparison, fitted implementation cost and same-image electrical measurements |
+| [Physical ARM/HPS timing comparison](results/hps_cpu_benchmark_20260925/README.md) | Exact-output CPU qualification, 60 physical timing trials, historical FPGA comparison, plots and reproducible data |
+| [Benchmark and evaluation plan](evaluation/benchmark_plan.md) | Verification milestones, fair CPU/FPGA comparisons, and energy-study decision gates |
 
 ## Detailed design references
 
@@ -38,6 +47,7 @@ The [reference-model documentation](../sw/reference_model/README.md) explains ar
 | Guide | Topic |
 | --- | --- |
 | [Board connections](bringup/de1_soc_connections.md) | Physical connections and signal ownership |
+| [FPGA-only power measurement](bringup/fpga_measurement.md) | Standalone measurement image, exact output checking, synchronized logger and repeatable campaign |
 | [Quartus/platform setup](bringup/quartus_programming.md) | Project generation and board programming workflow |
 | [DDR ring](bringup/ddr_ring_bringup.md) | Reserved memory and producer/consumer lifecycle |
 | [HPS Ethernet](bringup/hps_ethernet_bringup.md) | Direct-link networking and runtime configuration |
@@ -46,7 +56,7 @@ The [reference-model documentation](../sw/reference_model/README.md) explains ar
 | [ADC](bringup/adc_bringup.md) | Optional LTC2308 source and diagnostic operation |
 | [BRAM replay](architecture/de1soc_bram_replay_path.md) | Deterministic source, full-tail completion, transport boundary |
 
-These guides describe implementation and operational procedures. They do not by themselves establish that the procedures have passed on a board. Formal verification design, final timing/resource reports, and measured hardware evaluation are later work.
+These guides describe implementation and operational procedures. They do not by themselves establish that the procedures have passed on a board. Full functional and system signoff remain open. The [Lite deployment result](results/de1soc_lite_bram_20260915.md) records the integrated fitted image and FPGA configuration; the [FPGA-only measurement result](results/board_power_20260925/README.md) records a separate checked core workload and its physical DC-input measurements. [Older implementation results](results/fpga_implementation.md) remain historical.
 
 ## History
 

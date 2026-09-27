@@ -1,0 +1,121 @@
+{
+  "schema": "trecap-hps-physical-benchmark-receipt-1",
+  "status": "PASS_PHYSICAL_BOARD_CAPTURE",
+  "physical_board_attested": true,
+  "platform": "DE1-SoC HPS Cortex-A9",
+  "physical_evidence": "Commands executed through the directly connected HPS UART; reviewed SD kernel/initramfs booted into RAM; archive and binary hashes checked on the physical board and host. No emulated timings admitted.",
+  "captured_utc": "2026-09-25T20:05:01Z",
+  "executable_sha256": "c6242f02a997a883e85d7bc45ee5c8680dd753f4dfa6726ba8da2aeeb1374314",
+  "source_sha256": {
+    "consumer.cpp": "eb2fcb1b3d8fd779dc79c03d0e832b39cccbf8e06b1129b0d218444393ca0f70",
+    "kernel.cpp": "4d58fa7ce238859aa192802b7cf2442ed34082c8e0caf7a32425c5edc32185f5",
+    "kernel.hpp": "67a69752e3964e2f7b207b49c83a0f61c798a766b8e18f60ecd37ce3ba5dae70",
+    "main.cpp": "2b6ea52a4c537d514986df3b014474741c4788a0ff287fb89136a2ef1303995d"
+  },
+  "build": {
+    "compiler": "arm-linux-gnueabihf-g++-13 13.3.0",
+    "flags": [
+      "-std=c++17",
+      "-O3",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-static",
+      "-mcpu=cortex-a9",
+      "-mfpu=neon",
+      "-mfloat-abi=hard",
+      "-fno-lto"
+    ],
+    "translation_units": [
+      "main.cpp",
+      "kernel.cpp",
+      "consumer.cpp"
+    ],
+    "handwritten_neon": false,
+    "compiler_auto_vectorization_allowed": true,
+    "source_to_binary_record": "External build command retained; hashes identify exact source bytes and the resulting static ARM executable."
+  },
+  "vector_manifest_sha256": "83d49c9bae88cee30342ab6b7c2a8282ac44eeb455a0644066bceedb6fc62976",
+  "coefficient_sha256": {
+    "twiddle_im.memh": "d8b9c42a442e0dcaace24ec76ae28b41c29d7ad4df6e43aed1da0c1df818d1a0",
+    "twiddle_inv_im.memh": "2ffc1ad332cb48307073a57c8dc5367c95a33210e1f4216f1b96091695f12d20",
+    "twiddle_inv_re.memh": "84094f5e7e6bbdde3e4f458e1e5386af2d3c440f6154bcd8fbd415e521377944",
+    "twiddle_re.memh": "84094f5e7e6bbdde3e4f458e1e5386af2d3c440f6154bcd8fbd415e521377944",
+    "window_qw.memh": "05bcfd74bea5fe075b56a5b83c9db53ea73c4b0f6d6f45348eda0a14cf41c4ed"
+  },
+  "input_sha256": "36912af7d556f633a348f0bc294555dd16d1494f540ae542d840071e651b3e9b",
+  "expected_output_sha256": {
+    "dense": "718212b1cbb8fca5a60206b6a9d5b39363ae0cee8945ca792b670c035fd34117",
+    "masked": "a966f60ab30759ac64ac440cc893d74782c1020883cb4fa570ddb32ad0081c8a"
+  },
+  "result_sha256": {
+    "multitone_dense.json": "756ef10ad23d1120e64e89c007215b4bd2212366e936a9baf601e16f1ebdade0",
+    "multitone_masked.json": "f2acbf57e340baaf3aede6fa3915083a8751022f4226ffd1fb1d61d6c45f482d"
+  },
+  "clock_metadata": {
+    "source": "Linux debugfs clk_summary, mpuclk entry",
+    "kind": "kernel clock-framework reported rate; not independently calibrated",
+    "before_hz": 925000000,
+    "after_hz": 925000000,
+    "cpufreq_available": false,
+    "governor": null,
+    "temperature_c": null,
+    "thermal_sysfs_available": false,
+    "clocksource_boot_report": "timer1; sched_clock 100 MHz / 10 ns; clock_getres reports 1 ns API resolution, which is not measurement accuracy"
+  },
+  "acquisition": {
+    "cpu": 0,
+    "threads": 1,
+    "epochs_per_trial": 1,
+    "trials_per_condition": 30,
+    "warmup_epochs": 5,
+    "order": [
+      "dense",
+      "masked"
+    ],
+    "input_resident": true,
+    "per_trial_precheck_warms_kernel": true,
+    "board_power_measurement": false,
+    "fpga_reprogrammed_this_campaign": false,
+    "kernel": "6.12.33-fma-h1-console",
+    "boot_environment": "Existing reviewed HPS network initramfs; no FPGA modules loaded; seven FPGA device/manager/bridge nodes disabled in RAM device tree.",
+    "persistent_storage_written": false
+  },
+  "qualification": {
+    "status": "PASS_EXPORTED_FUNCTIONAL_QUALIFICATION",
+    "cases": 20,
+    "exact_cases": 19,
+    "rejected_empty_case": 1,
+    "independently_compared_output_samples": 24448,
+    "report_sha256": "42c0b29d6ab04b1da862801bae5f5eadf2c8228df43eff5280de04b22d224aa6"
+  },
+  "raw_evidence_sha256": {
+    "uart_probe.json": "7dfc19c30280906b71fa00ea09a09826cab26afdec91a91a09d0e068b702300f",
+    "uboot_inventory.json": "4b7c2932c95f171435cfcf2560cde2d17b8218917ac9fab021b2efffb7abf2a7",
+    "network_load_crc.json": "a7d64e2b56cf16b15962f80fe23df9a96015c4b414b13ed84ace575fd8525ab8",
+    "network_dt_gate.json": "aee30e66d2f0fe31693b72e2be2fe6eaef2418ba40c8a7366dc776f693bafb3d",
+    "network_boot.json": "5a2a2db540c553fbec1ec0d215c0601f13af2294ded1ace503a63e2cf4b85593",
+    "linux_inventory.json": "dcdd864909b533a73e2e2c1ac4425f7349fe3ae09bb90744ac6c62ff7763f540",
+    "linux_network.json": "eacf7bd0eea35bb095406a3944cfe6e8447d87608ee9cd069ff5b80840c0dfb5",
+    "verify_upload.json": "5c6d7848365352624b7528f2ec9fddc959d30d307fe39a6389ffdbde9b7cf99a",
+    "board_qualify02.json": "1184029b5526b374cc7a01ef0e26f821dae8cc62b99278f729599387f04f4948",
+    "board_timing.json": "117c05b844b01afd5ee75ce6e57192612b3a329c62d5727d967031c160678100",
+    "listen_results02.json": "eec6fed85b305badfe63245496c0b84453b1dcfbb1a733c1fcb3a30d06a511e5"
+  },
+  "board_export_sha256": "9350ec1008549d8324d2599a8ba41374f0b611a7a1c567c61b1e2e8457553a98",
+  "board_file_sha256": {
+    "cpuinfo.txt": "8c0110454799fd2562c80344f9f42ec738289b29d20afedfcccfab49d1e09963",
+    "clock_before.txt": "b1200f44a2186b829840d7abe14e3690bac00c4234bd107fd91a8bcd05a899e4",
+    "clock_after.txt": "b1200f44a2186b829840d7abe14e3690bac00c4234bd107fd91a8bcd05a899e4",
+    "modules.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "cmdline.txt": "6c618e79bab3785c4a9bee96f1f23c1e34c6a2c355ea055bf2d25d4ea2cbfae9",
+    "uname.txt": "44edfb2beaf07460da48bda66f825ac24f08fb50357a72ef86ad1e62c6411f6a",
+    "hashes.sha256": "c05e9c49533374bb54b23161eb97518692045af8303a1a720455752638f83950"
+  },
+  "boot_images": {
+    "kernel_sha256": "b96fdcce00d56ed09cf0fba8f39fd729c9836b66586c55c83f595c3a5d57c115",
+    "initramfs_sha256": "56694d1f14513d8762cf5150b955dfcf120c4a98f7b215c160c531ca2d0ac807",
+    "device_tree_original_sha256": "a633ed266be4b983bbedf4cdf169357fc4fa9ce5dd03055804519b68193af77c",
+    "device_tree_ram_change": "Disable /soc/accelerator@ff200000; other six FPGA nodes read back disabled."
+  }
+}

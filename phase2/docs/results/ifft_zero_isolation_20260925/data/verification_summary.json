@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "inputs_unchanged": true,
+  "vectors": {
+    "seed": 1511501835,
+    "stage": {
+      "stage_gold.memh": {
+        "vectors": 2304,
+        "saturated": 552,
+        "zero_b": 682
+      },
+      "stage_norm_gold.memh": {
+        "vectors": 2304,
+        "saturated": 2168,
+        "zero_b": 682
+      }
+    },
+    "ifft_frames": 20,
+    "independent_safe_frames": 19,
+    "ifft_saturated_frames": 1
+  },
+  "stage_pass_lines": [
+    "STAGE_CASE_PASS norm=0 width=36 checks=21829 outputs=2328 zero=694 nonzero=1646 saturated=564 aborts=12 stalled_cycles=5385",
+    "STAGE_CASE_PASS norm=1 width=28 checks=21829 outputs=2328 zero=694 nonzero=1646 saturated=2192 aborts=12 stalled_cycles=5385",
+    "STUDY_STAGE_PASS"
+  ],
+  "ifft_pass_lines": [
+    "STUDY_IFFT_PASS checks=286332 outputs=8192 complete_frames=32 aborted_frames=6 owned_frames=38 stalled_cycles=4640 sticky_retention_checks=2"
+  ],
+  "baseline_profile_pass_lines": [
+    "PROFILE_BATCH_PASS trial=0 mode=1 outputs=3072 cycles=176662 checksum=00000000",
+    "PROFILE_BATCH_PASS trial=1 mode=2 outputs=3072 cycles=176662 checksum=00000000",
+    "STUDY_PROFILE_PASS completed_batches=2 checked_cycles=353322"
+  ],
+  "candidate_profile_pass_lines": [
+    "PROFILE_BATCH_PASS trial=0 mode=1 outputs=3072 cycles=176662 checksum=00000000",
+    "PROFILE_BATCH_PASS trial=1 mode=2 outputs=3072 cycles=176662 checksum=00000000",
+    "PROFILE_BATCH_PASS trial=2 mode=3 outputs=3072 cycles=176662 checksum=00000000",
+    "PROFILE_BATCH_PASS trial=3 mode=2 outputs=3072 cycles=176662 checksum=00000000",
+    "STUDY_PROFILE_PASS completed_batches=4 checked_cycles=706644"
+  ],
+  "profile_comparison": {
+    "rows_equal": 288,
+    "fields": [
+      "total_butterflies",
+      "a_complex_zero",
+      "b_complex_zero",
+      "both_complex_zero",
+      "neither_complex_zero"
+    ],
+    "threshold2": [
+      0,
+      100000000000
+    ]
+  },
+  "candidate_profile_comparison": {
+    "rows_equal": 576,
+    "fields": [
+      "total_butterflies",
+      "a_complex_zero",
+      "b_complex_zero",
+      "both_complex_zero",
+      "neither_complex_zero"
+    ],
+    "threshold2": [
+      0,
+      100000000000
+    ]
+  }
+}

@@ -27,6 +27,8 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: '3.12'
+      - name: Check publication hygiene regressions
+        run: python tests/verification/test_repo_hygiene.py
       - name: Check source hygiene
         run: python scripts/repo_hygiene.py
       - name: Install production RTL frontend

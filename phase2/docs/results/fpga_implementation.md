@@ -1,4 +1,6 @@
-# FPGA implementation results
+# FPGA implementation results - historical Standard Edition checkpoints
+
+This page records the Standard Edition checkpoints before the verification RTL corrections. The [15 September Lite result](de1soc_lite_bram_20260915.md) records the newer implementation and successful FPGA configuration. References to the latest fit or pending work below describe this historical checkpoint.
 
 We have completed full-board placement and routing for the BRAM replay profile on the Cyclone V **5CSEMA5F31C6**, using Quartus Prime Standard **20.1.1 Build 720** and its final timing models. The latest fit, **native12 / fitter-io-02**, uses **20,280 of 32,070 ALMs (63%)**. All 209 pins passed the post-fit board comparison. The complete fitted timing gate passed all four operating conditions, including the 50 MHz fabric and ADC output-route bounds. Assembler produced no `.sof` in Evaluation Mode, so the run remains incomplete for programming. These fitted results establish the implemented pin and timing contracts for this profile; they do not establish functional correctness or physical board operation. The [public machine-readable result](de1soc_bram_native12.json) records the values and provenance hashes.
 

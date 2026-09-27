@@ -22,12 +22,13 @@ package trecap_math_pkg;
     trecap_math_swide_t im;
   } trecap_math_complex_swide_t;
 
+  // Keep relational zero operands signed; unbased '0 coerces comparisons unsigned.
   // Return sign(v) using the spec convention: -1, 0, +1.
   function automatic int signed trecap_sgn(input trecap_math_swide_t value);
-    if (value < '0) begin
+    if (value < trecap_math_swide_t'(0)) begin
       return -1;
     end
-    if (value > '0) begin
+    if (value > trecap_math_swide_t'(0)) begin
       return 1;
     end
     return 0;
@@ -36,7 +37,7 @@ package trecap_math_pkg;
   // Unsigned magnitude of a signed wide value. The most-negative input maps to its
   // mathematical magnitude in unsigned two's-complement form.
   function automatic trecap_math_uwide_t trecap_abs_mag(input trecap_math_swide_t value);
-    if (value < '0) begin
+    if (value < trecap_math_swide_t'(0)) begin
       return trecap_math_uwide_t'(-value);
     end
     return trecap_math_uwide_t'(value);
@@ -52,7 +53,7 @@ package trecap_math_pkg;
       return value;
     end
     if (shift >= TMATH_WIDE_W) begin
-      return (value < '0) ? {TMATH_WIDE_W{1'b1}} : '0;
+      return (value < trecap_math_swide_t'(0)) ? {TMATH_WIDE_W{1'b1}} : '0;
     end
     return value >>> shift;
   endfunction : trecap_asr
@@ -79,7 +80,7 @@ package trecap_math_pkg;
     bias = trecap_math_uwide_t'(1) << (shift - 1);
     rounded_mag = (mag + bias) >> shift;
 
-    if (value < '0) begin
+    if (value < trecap_math_swide_t'(0)) begin
       return -(trecap_math_swide_t'(rounded_mag));
     end
     return trecap_math_swide_t'(rounded_mag);

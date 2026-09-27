@@ -86,6 +86,8 @@ output_files/
 *.ko
 # Vendor DDR discovery dump is moved into the run directory by the build adapter.
 platform/de1soc/quartus/hps_sdram_p0_all_pins.txt
+# Generated HPS preloader handoff is archived with its build, not maintained source.
+platform/de1soc/quartus/hps_isw_handoff/
 # Local Quartus crash diagnostic.
 platform/de1soc/quartus/cr_ie_info.json
 platform/de1soc/qsys/*.sopcinfo
@@ -111,3 +113,6 @@ transcript
 *.pcapng
 artifacts/telemetry_captures/*
 !artifacts/telemetry_captures/.gitkeep
+
+# Reviewed, portable functional receipts are publication evidence.
+!docs/results/hps_cpu_benchmark_20260925/data/qualification/*.log

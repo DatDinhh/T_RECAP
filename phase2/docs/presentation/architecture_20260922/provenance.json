@@ -1,0 +1,184 @@
+{
+  "schema": "trecap_architecture_presentation_v1",
+  "team": "Team #2",
+  "figures": [
+    {
+      "id": "01_system_ownership",
+      "title": "System ownership",
+      "caption": "The physical board instantiates one core inside source/core integration. The HPS forwards committed telemetry records and writes controls. Observers have no ready return path into the DSP core. End-to-end HPS/DDR/dashboard board acceptance remains open.",
+      "sources": [
+        "rtl/platform/de1soc/de1_soc_trecap_top.sv",
+        "docs/architecture/architecture_implementation.md"
+      ],
+      "evidence_kind": "RTL structure"
+    },
+    {
+      "id": "02_fixed_point_datapath",
+      "title": "Fixed-point datapath",
+      "caption": "Separate iterative FFT and IFFT engines use the frozen coefficient tables. The core captures THR2 at frame admission. WOLA uses the real IFFT component. Delayed-input history supports error calculation. The offline C++ reference model is not a physical FPGA block.",
+      "sources": [
+        "rtl/core/trecap_core_top.sv",
+        "rtl/include/generated/trecap_core_pkg.sv",
+        "spec/generated/width_config.json"
+      ],
+      "evidence_kind": "RTL structure"
+    },
+    {
+      "id": "03_butterfly_schedule",
+      "title": "Registered butterfly schedule",
+      "caption": "The registered transaction separates multiplication, complex sum, quantization, addition and writeback. Counts include first and last accepted edges. Local transform service is 7936 clocks only under the stated conditions. It is not an end-to-end latency measurement.",
+      "sources": [
+        "docs/architecture/transform_microarchitecture.md",
+        "rtl/fft/trecap_fft_stage.sv"
+      ],
+      "evidence_kind": "RTL schedule"
+    },
+    {
+      "id": "04_storage_geometry",
+      "title": "Storage geometry",
+      "caption": "Large stores use synchronous embedded-memory schedules. Both history stores include sample indices. Selected logical capacities do not include every memory or register and are distinct from fitted device resource totals.",
+      "sources": [
+        "docs/architecture/storage_schedule.md",
+        "docs/architecture/transform_microarchitecture.md"
+      ],
+      "evidence_kind": "RTL structure"
+    },
+    {
+      "id": "05_observed_frame_timing",
+      "title": "Observed frame timing",
+      "caption": "Actual handshakes bound the first frame's interface spans. Engine-state traces identify 7168 compute clocks for each transform. Interface spans include gaps. The burst-driven testbench differs from periodic board sampling, so this is not board latency.",
+      "sources": [
+        "runs/architecture_presentation_20260922/multitone/static/capture/frame_timing.csv"
+      ],
+      "evidence_kind": "RTL simulation"
+    },
+    {
+      "id": "06_output_handshake",
+      "title": "Output handshake",
+      "caption": "Gold marks valid=1 and ready=0. Output index and data remain held until acceptance. The testbench injects stalls at the reusable core output. Physical board telemetry taps cannot drive core ready.",
+      "sources": [
+        "runs/architecture_presentation_20260922/multitone/stalled/capture/cycle_trace.csv"
+      ],
+      "evidence_kind": "RTL simulation"
+    },
+    {
+      "id": "07_rtl_reference_waveforms",
+      "title": "RTL and reference waveforms",
+      "caption": "Every output matches the qualified reference for this multitone case in both static and stalled simulations. The lower graph shows scheduling separately from numerical sample order. It is not a CPU/FPGA speed comparison.",
+      "sources": [
+        "runs/architecture_presentation_20260922/multitone/static/capture/y_accepts.csv",
+        "runs/architecture_presentation_20260922/multitone/stalled/capture/y_accepts.csv",
+        "artifacts/reference_outputs/near_threshold_multitone_Ns1024_thr64/y_out.memh"
+      ],
+      "evidence_kind": "RTL simulation"
+    },
+    {
+      "id": "08_frame_deadline_budget",
+      "title": "Frame deadline budget",
+      "caption": "The source-derived connected bound including metrics allowance is 17673 clocks, rounded to an 18000-clock allocation. At 50 MHz this is 360 microseconds. The recurrent budget excludes finite tail, analog delay and transport. Unbounded external stalls invalidate a finite service guarantee.",
+      "sources": [
+        "docs/architecture/architecture_design.md",
+        "docs/architecture/transform_microarchitecture.md"
+      ],
+      "evidence_kind": "Analytical budget"
+    },
+    {
+      "id": "09_fitted_resources",
+      "title": "Fitted resources",
+      "caption": "The archived Lite build uses 21220 ALMs, 36 DSP blocks and 55 RAM blocks. Percentages use exact reported used/available counts. These are whole-board totals, including interfaces and telemetry, rather than isolated-core costs.",
+      "sources": [
+        "docs/results/de1soc_lite_bram_20260915.json",
+        "runs/quartus/windows/20260915-lite-bram-01/implementation-reports/trecap_de1soc.fit.rpt"
+      ],
+      "evidence_kind": "Quartus fit"
+    },
+    {
+      "id": "10_fitted_timing",
+      "title": "Fitted timing",
+      "caption": "All four explicit fabric-clock timing queries pass. Minimum fabric setup is +2.333 ns and minimum hold is +0.002 ns. That narrow positive hold margin applies to the analyzed model. Global minimum setup is +1.727 ns and differs from the fabric-only number.",
+      "sources": [
+        "docs/results/de1soc_lite_bram_20260915.json",
+        "runs/quartus/windows/20260915-lite-bram-01/fitted-timing/fitted_timing.tsv"
+      ],
+      "evidence_kind": "Quartus static timing"
+    }
+  ],
+  "source_files": {
+    "artifacts/reference_outputs/near_threshold_multitone_Ns1024_thr64/y_out.memh": {
+      "sha256": "718212b1cbb8fca5a60206b6a9d5b39363ae0cee8945ca792b670c035fd34117",
+      "bytes": 6144
+    },
+    "docs/architecture/architecture_design.md": {
+      "sha256": "3ea6c976a04d07f9a14e2f28a1a9c3e187e8a6c6cfa58bc6674567e75b95c7c3",
+      "bytes": 18993
+    },
+    "docs/architecture/architecture_implementation.md": {
+      "sha256": "9550b20a83524b4100041a317ac6074d29819fd007b2e91bc184df55dc5b113c",
+      "bytes": 8263
+    },
+    "docs/architecture/storage_schedule.md": {
+      "sha256": "626cb95f3082010223eb6764170ac097bf5af7e36b61d767cfff95ae79b4e024",
+      "bytes": 25383
+    },
+    "docs/architecture/transform_microarchitecture.md": {
+      "sha256": "80c54f7c4132afa60c583908abbeb58bf059444c9de35389f6fe23526acdfe3d",
+      "bytes": 10066
+    },
+    "docs/results/de1soc_lite_bram_20260915.json": {
+      "sha256": "726f4a5f856e37bfaae263c28b1a6c94bde94ac1cc6203a04d0efab80badb670",
+      "bytes": 9542
+    },
+    "rtl/core/trecap_core_top.sv": {
+      "sha256": "44ab78f15ab83a13de90109e2772159dbac0efc1fccf66791d9c70657fe76f6b",
+      "bytes": 29576
+    },
+    "rtl/fft/trecap_fft_stage.sv": {
+      "sha256": "0f8795941f9843e1f266cc0ee9d310c4be52d3103e6d750abb455f49880472d1",
+      "bytes": 14713
+    },
+    "rtl/include/generated/trecap_core_pkg.sv": {
+      "sha256": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784",
+      "bytes": 2051
+    },
+    "rtl/platform/de1soc/de1_soc_trecap_top.sv": {
+      "sha256": "515d4ad7b35d79ac2a22d8ec9fe114463dd453517af3e6e42a838e00d6090efe",
+      "bytes": 66741
+    },
+    "runs/architecture_presentation_20260922/multitone/stalled/capture/cycle_trace.csv": {
+      "sha256": "a2bdd307ce3761b02aaf15eb6b61b3ce35fbc1f439e42266db673aa33dec57a4",
+      "bytes": 12112205
+    },
+    "runs/architecture_presentation_20260922/multitone/stalled/capture/y_accepts.csv": {
+      "sha256": "ef44f4d58971752283b496824e1d6a267f42f2480c178776aa6fc0d13bc4147e",
+      "bytes": 21309
+    },
+    "runs/architecture_presentation_20260922/multitone/static/capture/frame_timing.csv": {
+      "sha256": "df67e2df9e5a973a6861c5a2ded43a5cacb1e02db818038588466dae202b0697",
+      "bytes": 2665
+    },
+    "runs/architecture_presentation_20260922/multitone/static/capture/y_accepts.csv": {
+      "sha256": "d59e3681aa27bd715249efdab423eafc6bde0e96953b77adf57c99481156b6e6",
+      "bytes": 21309
+    },
+    "runs/quartus/windows/20260915-lite-bram-01/fitted-timing/fitted_timing.tsv": {
+      "sha256": "e0e3e8f6b440adeda82194c1d111b05ad53c682187bc972f09dd901130c7ade5",
+      "bytes": 56456
+    },
+    "runs/quartus/windows/20260915-lite-bram-01/implementation-reports/trecap_de1soc.fit.rpt": {
+      "sha256": "a69b3b0281045c02226feea67b1cf98439193165f337c93a25f76f5cee1801cb",
+      "bytes": 5752703
+    },
+    "spec/generated/width_config.json": {
+      "sha256": "919f3f8d278cb4c027386462defce9bf28a5027cf5b084dfe79928aa461d35ff",
+      "bytes": 374
+    }
+  },
+  "rtl_waveform": {
+    "case": "near_threshold_multitone_Ns1024_thr64",
+    "THR2": 4096,
+    "outputs_per_run": 1536,
+    "static_mismatches": 0,
+    "stalled_mismatches": 0
+  },
+  "matplotlib": "3.11.2"
+}

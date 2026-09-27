@@ -28,3 +28,33 @@ platform/de1soc/qsys/system.qsys -text
 
 # Preserve native Qsys bonusData CDATA formatting without editing vendor serialization.
 platform/de1soc/qsys/system.qsys whitespace=-blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Preserve frozen measurement-source hashes across Git checkout.
+scripts/measurement/requirements.txt -text
+sw/measurement/ina228/device_code.py -text
+sw/measurement/ina228/MEASUREMENT_PROTOCOL.md -text
+sw/measurement/ina228/README.md -text
+docs/results/board_power_20260925/** -text
+
+# Preserve CPU experiment sources, vectors and physical-result byte identities.
+experiments/hps_cpu_benchmark/** -text
+docs/results/hps_cpu_benchmark_20260925/** -text
+
+# Preserve presentation provenance and its byte-pinned source documents.
+docs/presentation/architecture_20260922/** -text
+docs/presentation/reference_model_20260922/** -text
+docs/architecture/architecture_implementation.md -text
+docs/results/de1soc_lite_bram_20260915.json -text
+
+# Matplotlib's serialized paths and frozen acquisition receipts retain whitespace.
+docs/presentation/architecture_20260922/figures/*.svg whitespace=-blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/presentation/reference_model_20260922/figures/*.svg whitespace=-blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/results/hps_cpu_benchmark_20260925/data/clock_*.txt whitespace=-blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+docs/results/hps_cpu_benchmark_20260925/data/cpuinfo.txt whitespace=-blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+
+# Keep archived builder copies and pinned measurement documentation unchanged.
+docs/presentation/architecture_20260922/plot_architecture_presentation.py whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol
+docs/presentation/reference_model_20260922/plot_reference_presentation.py whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol
+scripts/analysis/plot_architecture_presentation.py whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol
+scripts/analysis/plot_reference_presentation.py whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol
+sw/measurement/ina228/README.md whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol

@@ -1,0 +1,67 @@
+                                 enable  prepare  protect                                duty  hardware                            connection
+   clock                          count    count    count        rate   accuracy phase  cycle    enable   consumer                         id
+---------------------------------------------------------------------------------------------------------------------------------------------
+ fma-clock-50-nominal                0       0        0        50000000    0          0     50000      Y   deviceless                      no_connection_id         
+ osc1                                4       4        0        25000000    0          0     50000      Y   timer3@ffd01000                 timer                    
+                                                                                                           timer2@ffd00000                 timer                    
+                                                                                                           deviceless                      no_connection_id         
+    sdram_pll                        0       0        0        800000000   0          0     50000      Y      deviceless                      no_connection_id         
+       h2f_usr2_clk                  0       0        0        133333333   0          0     50000      Y         deviceless                      no_connection_id         
+          h2f_user2_clk              0       0        0        133333333   0          0     50000      ?            deviceless                      no_connection_id         
+       ddr_dq_clk                    0       0        0        400000000   0          0     50000      Y         deviceless                      no_connection_id         
+          ddr_dq_clk_gate            0       0        0        400000000   0          0     50000      ?            deviceless                      no_connection_id         
+       ddr_2x_dqs_clk                0       0        0        800000000   0          0     50000      Y         deviceless                      no_connection_id         
+          ddr_2x_dqs_clk_gate        0       0        0        800000000   0          0     50000      ?            deviceless                      no_connection_id         
+       ddr_dqs_clk                   0       0        0        400000000   0          0     50000      Y         deviceless                      no_connection_id         
+          ddr_dqs_clk_gate           0       0        0        400000000   0          0     50000      ?            deviceless                      no_connection_id         
+    periph_pll                       3       3        0        1000000000  0          0     50000      Y      deviceless                      no_connection_id         
+       h2f_usr1_clk                  0       0        0        1953125     0          0     50000      Y         deviceless                      no_connection_id         
+          h2f_user1_clk              0       0        0        1953125     0          0     50000      ?            deviceless                      no_connection_id         
+       per_base_clk                  2       2        0        200000000   0          0     50000      Y         deviceless                      no_connection_id         
+          gpio_db_clk                0       0        0        32000       0          0     50000      ?            deviceless                      no_connection_id         
+          can1_clk                   0       0        0        40000000    0          0     50000      ?            deviceless                      no_connection_id         
+          can0_clk                   0       0        0        40000000    0          0     50000      ?            deviceless                      no_connection_id         
+          spi_m_clk                  0       0        0        200000000   0          0     50000      ?            deviceless                      no_connection_id         
+          usb_mp_clk                 0       0        0        200000000   0          0     50000      ?            deviceless                      no_connection_id         
+          l4_sp_clk                  3       3        0        100000000   0          0     50000      ?            ffc03000.serial                 no_connection_id         
+                                                                                                                    ffc02000.serial                 no_connection_id         
+                                                                                                                    timer1@ffc09000                 timer                    
+                                                                                                                    timer0@ffc08000                 timer                    
+                                                                                                                    deviceless                      no_connection_id         
+          l4_mp_clk                  1       1        0        100000000   0          0     50000      ?            ff704000.mmc                    biu                      
+                                                                                                                    deviceless                      no_connection_id         
+       per_nand_mmc_clk              1       1        0        200000000   0          0     50000      Y         deviceless                      no_connection_id         
+          nand_x_clk                 0       0        0        200000000   0          0     50000      ?            deviceless                      no_connection_id         
+             nand_clk                0       0        0        50000000    0          0     50000      ?               deviceless                      no_connection_id         
+             nand_ecc_clk            0       0        0        200000000   0          0     50000      ?               deviceless                      no_connection_id         
+          sdmmc_clk                  1       1        0        200000000   0          0     50000      ?            deviceless                      no_connection_id         
+             sdmmc_clk_divided       1       1        0        50000000    0          0     50000      ?               ff704000.mmc                    ciu                      
+                                                                                                                       deviceless                      no_connection_id         
+       per_qsi_clk                   0       0        0        1953125     0          0     50000      Y         deviceless                      no_connection_id         
+       emac1_clk                     1       1        0        250000000   0          0     50000      Y         deviceless                      no_connection_id         
+          emac_1_clk                 1       1        0        250000000   0          0     50000      ?            ff702000.ethernet               stmmaceth                
+                                                                                                                    deviceless                      no_connection_id         
+       emac0_clk                     0       0        0        1953125     0          0     50000      Y         deviceless                      no_connection_id         
+          emac_0_clk                 0       0        0        1953125     0          0     50000      ?            deviceless                      no_connection_id         
+    dbg_base_clk                     0       0        0        6250000     0          0     50000      Y      deviceless                      no_connection_id         
+       dbg_timer_clk                 0       0        0        6250000     0          0     50000      ?         deviceless                      no_connection_id         
+       dbg_trace_clk                 0       0        0        6250000     0          0     50000      ?         deviceless                      no_connection_id         
+       dbg_at_clk                    0       0        0        6250000     0          0     50000      ?         deviceless                      no_connection_id         
+          dbg_clk                    0       0        0        3125000     0          0     50000      ?            deviceless                      no_connection_id         
+    main_pll                         1       2        0        1850000000  0          0     50000      Y      deviceless                      no_connection_id         
+       cfg_h2f_usr0_clk              0       0        0        97368421    0          0     50000      Y         deviceless                      no_connection_id         
+          h2f_user0_clk              0       0        0        97368421    0          0     50000      ?            deviceless                      no_connection_id         
+          cfg_clk                    0       0        0        97368421    0          0     50000      ?            deviceless                      no_connection_id         
+       main_nand_sdmmc_clk           0       0        0        3613281     0          0     50000      Y         deviceless                      no_connection_id         
+       main_qspi_clk                 0       0        0        370000000   0          0     50000      Y         deviceless                      no_connection_id         
+          qspi_clk                   0       0        0        370000000   0          0     50000      ?            deviceless                      no_connection_id         
+       mainclk                       0       1        0        462500000   0          0     50000      Y         deviceless                      no_connection_id         
+          l3_mp_clk                  0       0        0        231250000   0          0     50000      ?            deviceless                      no_connection_id         
+             l3_sp_clk               0       0        0        115625000   0          0     50000      Y               deviceless                      no_connection_id         
+          l3_main_clk                0       0        0        462500000   0          0     50000      Y            deviceless                      no_connection_id         
+          l4_main_clk                0       1        0        462500000   0          0     50000      ?            ffe01000.pdma                   apb_pclk                 
+                                                                                                                    deviceless                      no_connection_id         
+       mpuclk                        1       1        0        925000000   0          0     50000      Y         deviceless                      no_connection_id         
+          mpu_l2_ram_clk             0       0        0        462500000   0          0     50000      Y            deviceless                      no_connection_id         
+          mpu_periph_clk             1       1        0        231250000   0          0     50000      Y            timer@fffec600                  no_connection_id         
+                                                                                                                    deviceless                      no_connection_id         

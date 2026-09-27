@@ -51,6 +51,12 @@ patterns and machine-specific paths, and reports portable-path conflicts. It doe
 not execute project code or functional tests. Pattern scanning has limited coverage;
 review the proposed commit contents as well.
 
+In a Git checkout, the hygiene scan checks tracked files and unignored new
+files; tracked build products remain findings. Reviewed CPU qualification
+logs are still scanned as text, and presentation XML is inspected for local
+paths and credential patterns. Run `python tests/verification/test_repo_hygiene.py`
+to check these publication safeguards with disposable fixtures.
+
 The optional local pre-commit hook runs this same command. Build the software with
 `cmake --preset host` and `cmake --build --preset host`; the presets disable tests.
 The Linux `hps` preset adds the transport executable. The optional pinned
@@ -64,7 +70,11 @@ it does not generate new model outputs or establish numerical correctness.
 
 ## Publication
 
-The repository contains no configured GitHub destination and publishing is a
-separate step. Review the repository root, choose the team's GitHub repository,
-and commit the source using the team's normal Git identity. Do not include local
-build or execution logs as project evidence without describing how they were made.
+The canonical GitHub repository is [DatDinhh/T_RECAP](https://github.com/DatDinhh/T_RECAP),
+with this maintained source tree under `phase2/`. The existing local publication
+checkout is under `build/github-publish-20260914/`, which is ignored by this
+source tree. Preserve its Git history and review the intended `phase2/` diff
+before committing with the team's normal Git identity. Run the source checks
+from the `phase2/` directory. Do not include local build or execution logs as
+project evidence without describing how they were made; the reviewed CPU
+qualification exports are an explicit published-evidence exception.

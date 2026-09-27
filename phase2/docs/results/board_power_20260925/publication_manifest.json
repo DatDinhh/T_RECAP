@@ -1,0 +1,54 @@
+{
+  "schema": "trecap-board-power-publication-1",
+  "date": "2026-09-25",
+  "measurement_scope": "whole-board DC input; same fixed-schedule image, threshold operating points",
+  "pairs": 6,
+  "trials": 12,
+  "sof_sha256": "17f8d795ef46434ef83ccf9f81eb7e9728ab163ba5d3398c8cdec570a4d498d8",
+  "paired_power_difference_mW": -1.896690277519486,
+  "paired_repeatability_95pct_interval_mW": [
+    -2.4008101187887356,
+    -1.3925704362502367
+  ],
+  "paired_mean_conditional_timing_envelope_mW": [
+    -27.798645259933547,
+    24.005930447562385
+  ],
+  "source_hashes": {
+    "analysis": "dc5583f220f313e65081f794e35f26e43ec32b539566f629897bfd497c30212f",
+    "meter_csv": "28ef62f2f1f71fb5e8a0546287c8a1e897eac09ee96c52b7dc05879a4f3da4d7",
+    "campaign_manifest": "606c483cd98a7967774f574f9e11665332ae26c1ac6463ab8e9b82b88a46b724",
+    "capture_summary": "7246a52f8d8d3194eec6c3db089b904691a431b53290360984b6088b7033897d",
+    "device_metadata": "83ef46776a79ef97e1736c8a2ddb781f0a76eced01c5717426af6e51a4dd6f93",
+    "clock_sync": "eb66231bc7b2dd0ac687e37a8646a513f1d2c5ad0650c4c083108a444b41ba6a",
+    "trial_events": "040735a1138556fe2fc6461ecaf77aac23fdf38047e0d949dbb425a9924b62d6",
+    "reference_manifest": "8f990825b5045210810e98e18cefa3ab90fc5802cf03c099228efb0ffbb3f1cf",
+    "program_manifest": "bd5a9c9e2baaf5018a86bf745b12ec67b15be608a35e26ddf1ac02146faa0047",
+    "build_admission": "4cf28f8cd672eaf3affe5106f31aa7cad828383f83839f547bcdd98f2fec6dde",
+    "build_receipt": "e003d5d7fa6af3c4855ee4bb634b0a282436e308f2032721bc7c265cce1cc89e",
+    "fit_summary": "3ff2ef1691e578c2bb0b8fe56e7c07e8ceb9ad267c3d3783da81a5c8a1a1265f",
+    "timing_corners": "01a3596c398a44a6eee5c5de087dc0b516c426e99dc20048887caba07703cbc9",
+    "simulation_qualification": "6335bcc6b524645e551957e439607a71473d3a4ac8e44f6c394276affe0f208c",
+    "simulation_log": "4c987542b0ed785961f5dcf47c9ebec97bec5e326dbb8add01a9acffef20b965",
+    "board_trial_comparison.png": "9eb9674da8ef17f834b648d05da89f0f40fa5d15ab1ad8cb05e1e388ab0b1c43",
+    "board_trial_comparison.pdf": "00251ae7d6e7a35ad7e4e59b77227c309b095666a7ce219f6a3541dac76e4cac"
+  },
+  "files": {
+    "board_power_timeline.pdf": "65e9cbe0532f365890bf7d818ec344311fac012c83a0a429f1ab7781c4554188",
+    "board_power_timeline.png": "4298e8b4d70758a8bfeaa10b9e55ee42fba2f75a713f59c4ff1b36be545e3769",
+    "board_trial_comparison.pdf": "00251ae7d6e7a35ad7e4e59b77227c309b095666a7ce219f6a3541dac76e4cac",
+    "board_trial_comparison.png": "9eb9674da8ef17f834b648d05da89f0f40fa5d15ab1ad8cb05e1e388ab0b1c43",
+    "data/clock_sync.jsonl": "eb66231bc7b2dd0ac687e37a8646a513f1d2c5ad0650c4c083108a444b41ba6a",
+    "data/condition_summary.csv": "bf26ffb2e9dbdf69d550563714257bbdfb5f0244b1f01f656747bee59ea72035",
+    "data/measurement_analysis.json": "4ba6cf917848995482dbd40cbaa1e124b92a80bb604e676783ef22dae77c644a",
+    "data/meter_samples.csv": "28ef62f2f1f71fb5e8a0546287c8a1e897eac09ee96c52b7dc05879a4f3da4d7",
+    "data/paired_power.csv": "b798a1e10b26af447e1e51ae78250c014eba1374e2e1c9d48a38f91cfbccb649",
+    "data/provenance.csv": "15dbb583d5243c4f7e00acdfa0cbf1566f6aa6f8fd8f594f3e175be533b73924",
+    "data/reference_quality.csv": "46be8380ff1c9395705dcad378907d446e0276dbbf076b042611912fcbfb5bbd",
+    "data/trial_events.json": "040735a1138556fe2fc6461ecaf77aac23fdf38047e0d949dbb425a9924b62d6",
+    "data/trials.csv": "077505442a5f92b71fd3c9eba985fcca8f04ce208d7aa3635701af70dc637025",
+    "paired_power_difference.pdf": "81605120f9b645dd93ed929026b51aeb3f09ff70b0f1e289b4ff938409cbb14f",
+    "paired_power_difference.png": "6f60c9911b56392d5defbf0942f7219188fcd06e5316ab859b2625bbd4ad6ef9",
+    "README.md": "600652eb5ebc58b1f87008c91abec22c9e8b4c45ce4b144934f00ac6c516fd37"
+  }
+}

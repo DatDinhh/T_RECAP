@@ -1,0 +1,171 @@
+{
+  "status": "PASS_BOUNDED_FITTED_ADMISSION",
+  "scope": "Read-only pins,reported constraints,timing,resources and fitted isolation cone inventory; no board operation or power estimate",
+  "minimum_clock50_slack_ns": {
+    "setup": 4.493,
+    "hold": 0.092,
+    "recovery": 11.297,
+    "removal": 2.279
+  },
+  "resources": {
+    "alms": 5366,
+    "registers": 7492,
+    "block_memory_bits": 272512,
+    "m10k": 38,
+    "dsp": 30,
+    "user_pins": 12
+  },
+  "pins": {
+    "KEY[0]": {
+      "location": "AA14",
+      "direction": "input",
+      "io_standard": "3.3-V LVTTL"
+    },
+    "CLOCK_50": {
+      "location": "AF14",
+      "direction": "input",
+      "io_standard": "3.3-V LVTTL"
+    },
+    "LEDR[0]": {
+      "location": "V16",
+      "direction": "output",
+      "io_standard": "3.3-V LVTTL"
+    },
+    "LEDR[2]": {
+      "location": "V17",
+      "direction": "output",
+      "io_standard": "3.3-V LVTTL"
+    },
+    "LEDR[3]": {
+      "location": "V18",
+      "direction": "output",
+      "io_standard": "3.3-V LVTTL"
+    },
+    "LEDR[1]": {
+      "location": "W16",
+      "direction": "output",
+      "io_standard": "3.3-V LVTTL"
+    },
+    "LEDR[4]": {
+      "location": "W17",
+      "direction": "output",
+      "io_standard": "3.3-V LVTTL"
+    },
+    "LEDR[5]": {
+      "location": "W19",
+      "direction": "output",
+      "io_standard": "3.3-V LVTTL"
+    },
+    "LEDR[7]": {
+      "location": "W20",
+      "direction": "output",
+      "io_standard": "3.3-V LVTTL"
+    },
+    "LEDR[8]": {
+      "location": "W21",
+      "direction": "output",
+      "io_standard": "3.3-V LVTTL"
+    },
+    "LEDR[6]": {
+      "location": "Y19",
+      "direction": "output",
+      "io_standard": "3.3-V LVTTL"
+    },
+    "LEDR[9]": {
+      "location": "Y21",
+      "direction": "output",
+      "io_standard": "3.3-V LVTTL"
+    }
+  },
+  "warning_counts": {
+    "10335": 10,
+    "10030": 27,
+    "10230": 1541,
+    "10036": 3,
+    "276020": 1,
+    "12241": 1,
+    "13024": 1,
+    "13410": 10,
+    "292013": 1,
+    "15714": 1
+  },
+  "source_qsf_and_sof_unchanged": true,
+  "source_and_report_sha256": {
+    "trecap_measurement.qsf": "61da65fe43a4676edfdadaa71452aba802800901bfa447a57ee12c9df9b8c4df",
+    "output_files/trecap_measurement.sof": "4fe8b654fc6eba8ddbf8c72b52af3a5fe64feef27f51768b0abdd06cc4c07de6",
+    "output_files/trecap_measurement.pin": "922b3f8578fa02afd088990c863641311dfa9704cdc6aef167d1ab3672c6c5e0",
+    "output_files/trecap_measurement.fit.summary": "f9d76e31642afdb9403013b9fab6f2a52ed065cdff13930ad76ae81d73f8aed6",
+    "timing_gate/corners.csv": "519f970736e195b3b8cf7ea9ae8b4c9bf93179910b817fd3d8195f28cf92bd3b",
+    "compile.log": "2a865055a5121d28e5d7e01fc691cfdb749acfb36159a52e6092d54e1bc381b6"
+  },
+  "no_clock_vendor_nodes_by_corner": {
+    "6_slow_1100mv_0c_constraint_checks.rpt": [
+      "altera_internal_jtag~FF_1",
+      "altera_internal_jtag~FF_32",
+      "altera_internal_jtag~FF_33",
+      "altera_internal_jtag~FF_36",
+      "altera_internal_jtag~FF_38",
+      "altera_internal_jtag~FF_39",
+      "altera_internal_jtag~FF_5"
+    ],
+    "6_slow_1100mv_85c_constraint_checks.rpt": [
+      "altera_internal_jtag~FF_1",
+      "altera_internal_jtag~FF_32",
+      "altera_internal_jtag~FF_33",
+      "altera_internal_jtag~FF_36",
+      "altera_internal_jtag~FF_38",
+      "altera_internal_jtag~FF_39",
+      "altera_internal_jtag~FF_5"
+    ],
+    "MIN_fast_1100mv_0c_constraint_checks.rpt": [
+      "altera_internal_jtag~FF_1",
+      "altera_internal_jtag~FF_32",
+      "altera_internal_jtag~FF_33",
+      "altera_internal_jtag~FF_36",
+      "altera_internal_jtag~FF_38",
+      "altera_internal_jtag~FF_39",
+      "altera_internal_jtag~FF_5"
+    ],
+    "MIN_fast_1100mv_85c_constraint_checks.rpt": [
+      "altera_internal_jtag~FF_1",
+      "altera_internal_jtag~FF_32",
+      "altera_internal_jtag~FF_33",
+      "altera_internal_jtag~FF_36",
+      "altera_internal_jtag~FF_38",
+      "altera_internal_jtag~FF_39",
+      "altera_internal_jtag~FF_5"
+    ]
+  },
+  "fitted_structure": {
+    "held_operand_ff_bits": 106,
+    "ifft_mac_atoms": 8,
+    "registered_output_mac_atoms": 4,
+    "combinational_partial_product_mac_atoms": 4,
+    "runtime_mode_ff_retained": true,
+    "zero_result_flag_ff_retained": true,
+    "registered_mac_enable_driver_atoms": [
+      "14367",
+      "14429"
+    ],
+    "enable_driver_isolation_input_atom": "13889",
+    "evidence_directory": "fitted_atoms_01"
+  },
+  "limitations": [
+    "Timing values above apply to CLOCK_50. Reserved JTAG external I/O has no board delay specification.",
+    "Seven nodes without a clock are vendor altera_internal_jtag registers; no user datapath node was identified in that class.",
+    "LED drive strength and slew use tool defaults; all user pin locations and I/O standards are assigned.",
+    "Four IFFT MAC atoms have registered outputs with isolation-dependent enable logic. Four partial-product MAC atoms are combinational; their data operands are isolated, but they have no gated output clock.",
+    "Fitted cone inventory does not establish physical glitch suppression, post-fit functional correctness, or electrical power savings."
+  ],
+  "warning_review": {
+    "10230": "1541 truncation warnings: 1536 expected ROM word narrowing messages plus five fixed-geometry casts.",
+    "10030": "27 unused ROM write-port defaults.",
+    "10335": "10 unsupported async_reg attributes; these attributes are not claimed to affect placement.",
+    "10036": "Three unused helper signals, including the disabled FFT isolation branch.",
+    "276020": "One input-frame RAM read-during-write bypass implementation.",
+    "12241": "One connectivity summary covering three hierarchies.",
+    "13024/13410": "Constant-zero LED outputs.",
+    "292013": "Lite edition LogicLock availability notice.",
+    "15714": "LED output drive/slew defaults; physical locations and I/O standards are assigned."
+  }
+}

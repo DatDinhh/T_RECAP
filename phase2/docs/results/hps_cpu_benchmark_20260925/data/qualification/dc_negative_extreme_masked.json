@@ -1,0 +1,24 @@
+{
+  "schema":"trecap-preallocated-cpu-benchmark-1",
+  "status":"PASS_FUNCTIONAL_ADMISSION",
+  "verify_only":true,
+  "kernel":"scalar-source fixed-point full finite STFT/mask/IFFT/WOLA; compiler auto-vectorization allowed",
+  "contract":{"N":12,"L":256,"H":128,"F":15,"G":128,"D":384,"rounding":"nearest ties away from zero","final_saturation_bits":12,"threshold_comparison":"strict mag2 < threshold; DC protected, Nyquist eligible"},
+  "threshold2":100000000000,
+  "geometry":{"inputs_per_epoch":1024,"frames_per_epoch":9,"tau_last":1152,"outputs_per_epoch":1536},
+  "epochs_per_trial":1,
+  "trials":0,
+  "warmup_epochs":0,
+  "timed_total_epochs":0,
+  "timed_input_samples":0,
+  "timed_output_samples":0,
+  "timed_frames":0,
+  "validation":{"mismatches":0,"full_output_samples_checked_outside_timing":3072,"internal_ranges_checked_outside_timing":true,"timed_kernel_internal_guards":false,"timed_kernel_assumption":"Repeated immutable admitted input, coefficients, and threshold; exact same arithmetic as checked instantiation","last_timed_epoch_checked_each_record":true,"all_timed_epochs_individually_full_checked":true},
+  "timing":{"wall_clock":"CLOCK_MONOTONIC_RAW","wall_resolution_ns":1,"thread_cpu_clock":"CLOCK_THREAD_CPUTIME_ID","thread_cpu_resolution_ns":1,"includes":["per-epoch logical state reset","all finite input/tail/output work","one opaque O(1) output consumer per epoch"],"excludes":["file I/O","allocations","full output comparison","coefficient validation","reference quality/telemetry metric aggregation","host transfers/JTAG"],"thread_timer_encloses_wall_timer":true},
+  "environment":{"compile_architecture":"arm32","execution_label":"arm32_kernel_run_board_identity_not_attested","board_identity_attested":false,"cpu_frequency_hz":null,"frequency_note":"Not measured; do not infer frequency from a target flag","compiler":"13.3.0","cplusplus":201703,"build_flags":"not embedded; retain the external build command/manifest","requested_cpu":0,"requested_affinity_applied_and_read_back":true,"uname":{"sysname":"Linux","release":"6.12.33-fma-h1-console","machine":"armv7l"},"allowed_cpus":[0],"cpu_at_metadata_collection":0,"cpuinfo_selected":{ "model name":"ARMv7 Processor rev 0 (v7l)","Features":"half thumb fastmult vfp edsp thumbee neon vfpv3 tls vfpd32 ","CPU implementer":"0x41","CPU architecture":"7","CPU part":"0xc09"}},
+  "input_files":{"input":"vectors/cases/dc_negative_extreme_masked/input.memh","expected":"vectors/cases/dc_negative_extreme_masked/expected.memh","coefficient_directory":"vectors/sources/artifacts/coefficients","coefficient_names":["window_qw.memh","twiddle_re.memh","twiddle_im.memh","twiddle_inv_re.memh","twiddle_inv_im.memh"],"hashes":"Retain external source/input/executable SHA256 manifest"},
+  "records":[
+
+  ],
+  "final_consumer_checksum":0
+}

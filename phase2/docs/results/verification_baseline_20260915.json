@@ -1,0 +1,774 @@
+{
+  "artifact_admission": {
+    "file_identities": 264,
+    "quality_bound_admission": "BLOCKED_CONTRACT",
+    "status": "PASS_ARTIFACT_ADMISSION_ONLY",
+    "vector_count": 3
+  },
+  "board_qualified": false,
+  "checker_qualification": {
+    "artifact_checker": {
+      "status": "PASS",
+      "tests_run": 31
+    },
+    "capture_checker": {
+      "status": "PASS",
+      "tests_run": 38
+    },
+    "runner_admission": {
+      "status": "PASS",
+      "tests_run": 11
+    }
+  },
+  "core": {
+    "cases": [
+      {
+        "capture_sha256": {
+          "bin_stats.csv": "dd7898ab60aacce76d6fc7727e65f5a7932dd1d091cfc8596b3d5529196390b6",
+          "frame_stats.csv": "ec1008be4adf7ba62dd77b2b4ded760ca06b5607d4b9b483a76dec58eb5ce45b",
+          "ifft_samples.csv": "f37ebb0b2d3bc367b6065a3ce831242e98d8ea1f383b2616bdf12ccddaa4089b",
+          "lifecycle.csv": "39d7eae416a1d32a71bf07971e7ab561a6aff921ad25f3414e98e55df604ba55",
+          "metrics_observed.json": "72b721136bf740289cc9bd613bdec28ab2029a36fced30b8c2671325874746a2",
+          "sample_commits.csv": "8442ca3a12af0bb6aefb2d01c845f6c87f1d8d2bb1f25bad5457eec2e86d7b5b",
+          "source_accepts.csv": "4e061e9187b7998a3e42107fa7fb44257f179b3d88a538af880c76e66a971d04",
+          "y_accepts.csv": "f2cb50429eadef3354f15c264adc61a8c59af023da8ed41d2818584b30626cb0",
+          "y_out.memh": "607bbb9f04d53e20d121aa1b35e140c73ed9eb00260ed22cb38981c4c3eef5d3"
+        },
+        "exact_checks": {
+          "checks_completed": [
+            "exact_y",
+            "exact_frame_statistics",
+            "exact_unique_bin_statistics",
+            "full_tail_geometry",
+            "ten_exact_metrics",
+            "internal_error_accumulators",
+            "frame_bin_metric_consistency",
+            "completion_status",
+            "source_handshake_sequence",
+            "public_y_handshake_sequence",
+            "metric_commit_sequence",
+            "one_epoch_completion_order",
+            "exact_complex_ifft_including_legitimate_residuals"
+          ],
+          "counts": {
+            "bin_rows": 1161,
+            "done_pulses": 1,
+            "frame_rows": 9,
+            "y_rows": 1536
+          },
+          "event_summary": {
+            "analysis_flush_rows": 128,
+            "done_cycle": "88523",
+            "input_rows": 1024,
+            "last_y_accept_cycle": "88522",
+            "minimum_commit_to_accept_cycles": "1",
+            "sample_commit_rows": 1536,
+            "source_rows": 1536,
+            "start_cycle": "388",
+            "tail_drain_rows": 384,
+            "y_accept_rows": 1536
+          },
+          "geometry": {
+            "Nframes": 9,
+            "Ns": 1024,
+            "Ny": 1536,
+            "tau_last": 1152
+          },
+          "ifft_residual": {
+            "exact_complex_comparison": true,
+            "max_abs_imag": "605",
+            "nonzero_imag_rows": 120,
+            "rows": 2304,
+            "status": "PASS"
+          },
+          "metrics": {
+            "eligible_kept_mag2": "9856985107376",
+            "eligible_suppressed_bins": "0",
+            "eligible_total_mag2": "9856985107376",
+            "eligible_unique_bins": "1152",
+            "error_sample_count": "1536",
+            "max_abs_err": "0",
+            "sum_abs_err": "0",
+            "sum_sq_err": "0",
+            "unique_bins": "1161",
+            "unique_suppressed_bins": "0"
+          },
+          "outcome": "PASS"
+        },
+        "exit_code": 0,
+        "outcome": "PASS",
+        "timed_out": false,
+        "variant": "static",
+        "vector": "impulse_Ns1024_thr0"
+      },
+      {
+        "capture_sha256": {
+          "bin_stats.csv": "dd7898ab60aacce76d6fc7727e65f5a7932dd1d091cfc8596b3d5529196390b6",
+          "frame_stats.csv": "ec1008be4adf7ba62dd77b2b4ded760ca06b5607d4b9b483a76dec58eb5ce45b",
+          "ifft_samples.csv": "f37ebb0b2d3bc367b6065a3ce831242e98d8ea1f383b2616bdf12ccddaa4089b",
+          "lifecycle.csv": "b1c7ffd92278785e34173049f65fa289b20308e076bb96d0ede1d535052b3730",
+          "metrics_observed.json": "72b721136bf740289cc9bd613bdec28ab2029a36fced30b8c2671325874746a2",
+          "sample_commits.csv": "d9d8b86413d637ef98d7a374d28ab2906f81cbd49b13ee39f7926fba2cdd62e8",
+          "source_accepts.csv": "7c1d00b40d58b960134aa185ba16e214bc0025f53d9bf976edb553ac235c5a75",
+          "y_accepts.csv": "c9e199d641307ff7ff0eacc5ee25b6c2e891dec49437eb3009fa53e42b9a205e",
+          "y_out.memh": "607bbb9f04d53e20d121aa1b35e140c73ed9eb00260ed22cb38981c4c3eef5d3"
+        },
+        "exact_checks": {
+          "checks_completed": [
+            "exact_y",
+            "exact_frame_statistics",
+            "exact_unique_bin_statistics",
+            "full_tail_geometry",
+            "ten_exact_metrics",
+            "internal_error_accumulators",
+            "frame_bin_metric_consistency",
+            "completion_status",
+            "source_handshake_sequence",
+            "public_y_handshake_sequence",
+            "metric_commit_sequence",
+            "one_epoch_completion_order",
+            "exact_complex_ifft_including_legitimate_residuals"
+          ],
+          "counts": {
+            "bin_rows": 1161,
+            "done_pulses": 1,
+            "frame_rows": 9,
+            "y_rows": 1536
+          },
+          "event_summary": {
+            "analysis_flush_rows": 128,
+            "done_cycle": "88598",
+            "input_rows": 1024,
+            "last_y_accept_cycle": "88597",
+            "minimum_commit_to_accept_cycles": "1",
+            "sample_commit_rows": 1536,
+            "source_rows": 1536,
+            "start_cycle": "388",
+            "tail_drain_rows": 384,
+            "y_accept_rows": 1536
+          },
+          "geometry": {
+            "Nframes": 9,
+            "Ns": 1024,
+            "Ny": 1536,
+            "tau_last": 1152
+          },
+          "ifft_residual": {
+            "exact_complex_comparison": true,
+            "max_abs_imag": "605",
+            "nonzero_imag_rows": 120,
+            "rows": 2304,
+            "status": "PASS"
+          },
+          "metrics": {
+            "eligible_kept_mag2": "9856985107376",
+            "eligible_suppressed_bins": "0",
+            "eligible_total_mag2": "9856985107376",
+            "eligible_unique_bins": "1152",
+            "error_sample_count": "1536",
+            "max_abs_err": "0",
+            "sum_abs_err": "0",
+            "sum_sq_err": "0",
+            "unique_bins": "1161",
+            "unique_suppressed_bins": "0"
+          },
+          "outcome": "PASS"
+        },
+        "exit_code": 0,
+        "outcome": "PASS",
+        "timed_out": false,
+        "variant": "stalled",
+        "vector": "impulse_Ns1024_thr0"
+      },
+      {
+        "capture_sha256": {
+          "bin_stats.csv": "861b59fc04d9642d2bf83650c77a32e1dd90ba96c043e06ed41cfa880fc18489",
+          "frame_stats.csv": "12d8f9857de5cd05c9bd43822653834237155f48b353fef1286f31c246b83396",
+          "ifft_samples.csv": "a174354c603f073f28256c65687de6526f044d06facc21998872b5fa1afd6650",
+          "lifecycle.csv": "1ff83c83c397dd4cdd72eec0f4b0be5e42a760830fdda3ddd4a767361273df10",
+          "sample_commits.csv": "f588d2b79a4d690d942cdf8405919ce1312bd4b74eb49453a26f3a86a2246aaf",
+          "source_accepts.csv": "865524c1fe5dc906cedbfbad955fdc27e242fa477d7340d48118700b07e72d56",
+          "y_accepts.csv": "3d753dbd5809c28ff250cb6163e52fbe6a5785555282272095c577119bec663b",
+          "y_out.memh": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "exit_code": 0,
+        "outcome": "PASS_EXPECTED_REJECTION",
+        "timed_out": false,
+        "variant": "reject_wrong_y",
+        "vector": "impulse_Ns1024_thr0"
+      },
+      {
+        "capture_sha256": {
+          "bin_stats.csv": "b78691a1aa9dda2eae098dd75a7b673461dd385e7689694c0e53cd3d7e2e7822",
+          "frame_stats.csv": "b4c185906337a44f5f040fb9e20ea95b956e3fce49d1c4920d954557a9e013cd",
+          "ifft_samples.csv": "f9356634dc8014feca57d7d2dde2e12cf98ca2cd538ef516eb2bcd3c6c2de5b4",
+          "lifecycle.csv": "39d7eae416a1d32a71bf07971e7ab561a6aff921ad25f3414e98e55df604ba55",
+          "metrics_observed.json": "54c2fddbe13b4a3c3646579286a8ecbec7f673bd36ce7a71dc7a4869edd99bc6",
+          "sample_commits.csv": "7694d11cc3f58b84fc88a304e7689c08be9278398a7a967d7ab29eb6044ee007",
+          "source_accepts.csv": "70f2a888fcadc7cc1ee029096ddfeffface05a13ef31bd0d94117b368ba5c93e",
+          "y_accepts.csv": "d59e3681aa27bd715249efdab423eafc6bde0e96953b77adf57c99481156b6e6",
+          "y_out.memh": "718212b1cbb8fca5a60206b6a9d5b39363ae0cee8945ca792b670c035fd34117"
+        },
+        "exact_checks": {
+          "checks_completed": [
+            "exact_y",
+            "exact_frame_statistics",
+            "exact_unique_bin_statistics",
+            "full_tail_geometry",
+            "ten_exact_metrics",
+            "internal_error_accumulators",
+            "frame_bin_metric_consistency",
+            "completion_status",
+            "source_handshake_sequence",
+            "public_y_handshake_sequence",
+            "metric_commit_sequence",
+            "one_epoch_completion_order",
+            "exact_complex_ifft_including_legitimate_residuals"
+          ],
+          "counts": {
+            "bin_rows": 1161,
+            "done_pulses": 1,
+            "frame_rows": 9,
+            "y_rows": 1536
+          },
+          "event_summary": {
+            "analysis_flush_rows": 128,
+            "done_cycle": "88523",
+            "input_rows": 1024,
+            "last_y_accept_cycle": "88522",
+            "minimum_commit_to_accept_cycles": "1",
+            "sample_commit_rows": 1536,
+            "source_rows": 1536,
+            "start_cycle": "388",
+            "tail_drain_rows": 384,
+            "y_accept_rows": 1536
+          },
+          "geometry": {
+            "Nframes": 9,
+            "Ns": 1024,
+            "Ny": 1536,
+            "tau_last": 1152
+          },
+          "ifft_residual": {
+            "exact_complex_comparison": true,
+            "max_abs_imag": "295",
+            "nonzero_imag_rows": 2226,
+            "rows": 2304,
+            "status": "PASS"
+          },
+          "metrics": {
+            "eligible_kept_mag2": "598073269150016",
+            "eligible_suppressed_bins": "13",
+            "eligible_total_mag2": "598073269204618",
+            "eligible_unique_bins": "1152",
+            "error_sample_count": "1536",
+            "max_abs_err": "0",
+            "sum_abs_err": "0",
+            "sum_sq_err": "0",
+            "unique_bins": "1161",
+            "unique_suppressed_bins": "13"
+          },
+          "outcome": "PASS"
+        },
+        "exit_code": 0,
+        "outcome": "PASS",
+        "timed_out": false,
+        "variant": "static",
+        "vector": "near_threshold_multitone_Ns1024_thr64"
+      },
+      {
+        "capture_sha256": {
+          "bin_stats.csv": "b78691a1aa9dda2eae098dd75a7b673461dd385e7689694c0e53cd3d7e2e7822",
+          "frame_stats.csv": "b4c185906337a44f5f040fb9e20ea95b956e3fce49d1c4920d954557a9e013cd",
+          "ifft_samples.csv": "f9356634dc8014feca57d7d2dde2e12cf98ca2cd538ef516eb2bcd3c6c2de5b4",
+          "lifecycle.csv": "b1c7ffd92278785e34173049f65fa289b20308e076bb96d0ede1d535052b3730",
+          "metrics_observed.json": "54c2fddbe13b4a3c3646579286a8ecbec7f673bd36ce7a71dc7a4869edd99bc6",
+          "sample_commits.csv": "a70784b6207024f663662f310d113c66e8822150d6fb2c18df2ed73a31506014",
+          "source_accepts.csv": "07cd30eb1e608e26d7c80dacb1bfc9709fea28b0da28e1e11312387a38acf6c9",
+          "y_accepts.csv": "ef44f4d58971752283b496824e1d6a267f42f2480c178776aa6fc0d13bc4147e",
+          "y_out.memh": "718212b1cbb8fca5a60206b6a9d5b39363ae0cee8945ca792b670c035fd34117"
+        },
+        "exact_checks": {
+          "checks_completed": [
+            "exact_y",
+            "exact_frame_statistics",
+            "exact_unique_bin_statistics",
+            "full_tail_geometry",
+            "ten_exact_metrics",
+            "internal_error_accumulators",
+            "frame_bin_metric_consistency",
+            "completion_status",
+            "source_handshake_sequence",
+            "public_y_handshake_sequence",
+            "metric_commit_sequence",
+            "one_epoch_completion_order",
+            "exact_complex_ifft_including_legitimate_residuals"
+          ],
+          "counts": {
+            "bin_rows": 1161,
+            "done_pulses": 1,
+            "frame_rows": 9,
+            "y_rows": 1536
+          },
+          "event_summary": {
+            "analysis_flush_rows": 128,
+            "done_cycle": "88598",
+            "input_rows": 1024,
+            "last_y_accept_cycle": "88597",
+            "minimum_commit_to_accept_cycles": "1",
+            "sample_commit_rows": 1536,
+            "source_rows": 1536,
+            "start_cycle": "388",
+            "tail_drain_rows": 384,
+            "y_accept_rows": 1536
+          },
+          "geometry": {
+            "Nframes": 9,
+            "Ns": 1024,
+            "Ny": 1536,
+            "tau_last": 1152
+          },
+          "ifft_residual": {
+            "exact_complex_comparison": true,
+            "max_abs_imag": "295",
+            "nonzero_imag_rows": 2226,
+            "rows": 2304,
+            "status": "PASS"
+          },
+          "metrics": {
+            "eligible_kept_mag2": "598073269150016",
+            "eligible_suppressed_bins": "13",
+            "eligible_total_mag2": "598073269204618",
+            "eligible_unique_bins": "1152",
+            "error_sample_count": "1536",
+            "max_abs_err": "0",
+            "sum_abs_err": "0",
+            "sum_sq_err": "0",
+            "unique_bins": "1161",
+            "unique_suppressed_bins": "13"
+          },
+          "outcome": "PASS"
+        },
+        "exit_code": 0,
+        "outcome": "PASS",
+        "timed_out": false,
+        "variant": "stalled",
+        "vector": "near_threshold_multitone_Ns1024_thr64"
+      }
+    ],
+    "expected_sha256": {
+      "artifacts/test_vectors/impulse_Ns1024_thr0/x_in.memh": "ba664127051e78535aa77e70d3747e1cfdbb658e3479de6b23740bf09d65b0b1",
+      "artifacts/test_vectors/near_threshold_multitone_Ns1024_thr64/x_in.memh": "36912af7d556f633a348f0bc294555dd16d1494f540ae542d840071e651b3e9b",
+      "runs/verification/reference-v1-20260915-05/impulse_Ns1024_thr0/oracle/bin_stats.csv": "dd7898ab60aacce76d6fc7727e65f5a7932dd1d091cfc8596b3d5529196390b6",
+      "runs/verification/reference-v1-20260915-05/impulse_Ns1024_thr0/oracle/frame_stats.csv": "ec1008be4adf7ba62dd77b2b4ded760ca06b5607d4b9b483a76dec58eb5ce45b",
+      "runs/verification/reference-v1-20260915-05/impulse_Ns1024_thr0/oracle/ifft_output.csv": "f37ebb0b2d3bc367b6065a3ce831242e98d8ea1f383b2616bdf12ccddaa4089b",
+      "runs/verification/reference-v1-20260915-05/impulse_Ns1024_thr0/oracle/metrics.json": "91c8b13b58cf3a42b41de8d10452f41aa4e091f03eab1277ec8361c61d1aefdc",
+      "runs/verification/reference-v1-20260915-05/impulse_Ns1024_thr0/oracle/trecap_artifact_expectations_pkg.sv": "89c0a78578a0e5f1842a5e85eb2aa6a55978d6a823e965b8472663dcbfe8e8ed",
+      "runs/verification/reference-v1-20260915-05/impulse_Ns1024_thr0/oracle/y_out.memh": "607bbb9f04d53e20d121aa1b35e140c73ed9eb00260ed22cb38981c4c3eef5d3",
+      "runs/verification/reference-v1-20260915-05/near_threshold_multitone_Ns1024_thr64/oracle/bin_stats.csv": "b78691a1aa9dda2eae098dd75a7b673461dd385e7689694c0e53cd3d7e2e7822",
+      "runs/verification/reference-v1-20260915-05/near_threshold_multitone_Ns1024_thr64/oracle/frame_stats.csv": "b4c185906337a44f5f040fb9e20ea95b956e3fce49d1c4920d954557a9e013cd",
+      "runs/verification/reference-v1-20260915-05/near_threshold_multitone_Ns1024_thr64/oracle/ifft_output.csv": "f9356634dc8014feca57d7d2dde2e12cf98ca2cd538ef516eb2bcd3c6c2de5b4",
+      "runs/verification/reference-v1-20260915-05/near_threshold_multitone_Ns1024_thr64/oracle/metrics.json": "0d65abf9bb76082d83f1447ed33e5f35b267cd761811a33168494f8dab6fd695",
+      "runs/verification/reference-v1-20260915-05/near_threshold_multitone_Ns1024_thr64/oracle/trecap_artifact_expectations_pkg.sv": "23e6ee1d9f04ea6ba5912fc9499019f57400e79847f8367999579fb3d141e1d2",
+      "runs/verification/reference-v1-20260915-05/near_threshold_multitone_Ns1024_thr64/oracle/y_out.memh": "718212b1cbb8fca5a60206b6a9d5b39363ae0cee8945ca792b670c035fd34117"
+    },
+    "identities": {
+      "expected_identity_unchanged": true,
+      "reference_evidence_unchanged": true,
+      "source_identity_unchanged": true,
+      "staged_rom_identity_unchanged": true
+    },
+    "source_sha256": {
+      "filelists/rtl_core_plus_fft.f": "b83edc1e00aa8a924c830220f5b77eb03b8110e8f6ede1aea8bb631cea30ed64",
+      "rtl/common/async_fifo.sv": "65c1a44b5ac734d4f006cb1cb7fd0bc0906413e33fac0851824b9e3d8106abb6",
+      "rtl/common/reset_sync.sv": "fa443befd35b8a12316f6c764b154bbab10c18bdb6dd6e342087752f663923c4",
+      "rtl/common/round_sat.sv": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457",
+      "rtl/common/simple_dual_port_ram.sv": "86b9a342b4e6060192dae32c85f164921e2b055724fc0854958ffea0fcc9fdc4",
+      "rtl/common/skid_buffer.sv": "5d898e6d5ad70812bb9d8a945f39eca4e137709ff172379376167436043f7263",
+      "rtl/common/sync_bus_snapshot.sv": "8b2922810e9b2efc23451f90c61fddc985cbcc2e7a0b2d849f4a30e5a61b432d",
+      "rtl/common/sync_fifo.sv": "2085edcb855a59f0221294927698883fa238ac7b114fffc68bcf33f760352cd8",
+      "rtl/common/sync_pulse.sv": "af29834ff593199d3401e1f294efa85b7bfb20bde58efabf2545863d5c7e3250",
+      "rtl/common/true_dual_port_ram.sv": "e14e08cbad033f1a1efa256fb8826fe1a1ac5a5ced3d1e5df53a1d61fdb20df4",
+      "rtl/core/trecap_analysis_window.sv": "62798c5bfed8076c54568986bd6df6d57b430e9aacb97efb582364974620c6ad",
+      "rtl/core/trecap_core_top.sv": "44ab78f15ab83a13de90109e2772159dbac0efc1fccf66791d9c70657fe76f6b",
+      "rtl/core/trecap_delay_error_metrics.sv": "1f08cbb2131d9ab4f84c90b750c2836046aea966498d035bcec94422b4958e30",
+      "rtl/core/trecap_frame_scheduler.sv": "6d263b88c540605e1bfb728e5b4c1bc87d7f5552a007b178031a198675f5c255",
+      "rtl/core/trecap_hermitian_canonicalizer.sv": "6b1c11ba7badb80c18a71e157346be994cb2cec1c775a4a910f38843d4fa2b4d",
+      "rtl/core/trecap_input_ring.sv": "022be1284812f1cfd98dd39ff178cb3890ec2bd3b8eb047ff2c2814ef5a5c44a",
+      "rtl/core/trecap_mag2_mask.sv": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d",
+      "rtl/core/trecap_spectrum_mask_builder.sv": "695d9bd8c51c3ee97412854d37a4c5f5b953f793cb05a4a76f83d305e05fe3e0",
+      "rtl/core/trecap_synthesis_wola.sv": "7d30dee3679adb15bee54f2ad9762d102b08f54314c280a6f4918b95d277a7aa",
+      "rtl/core/window_rom.sv": "931ec1f72f160384df6cb6c008db22cde6dab1bee94b0b7013843ab44374dcbe",
+      "rtl/fft/bit_reverse_addr.sv": "de4dafca7eae92e6f900d675151dc20dc794e1f66ff9ce40548a7520f3ca6209",
+      "rtl/fft/complex_mul_q.sv": "c45b088222549570d2b65719739bed2fff5be7b77bb6d163c4c1a5c3d1148579",
+      "rtl/fft/trecap_fft256.sv": "a0c710046185fb54bd7281444c57539f9b689e4a6f52f634dba60a259619ef66",
+      "rtl/fft/trecap_fft_stage.sv": "0f8795941f9843e1f266cc0ee9d310c4be52d3103e6d750abb455f49880472d1",
+      "rtl/fft/trecap_ifft256.sv": "92c175d4a30da253e9a93e118080261958daa181cf4e6f12560d9524d110bd3c",
+      "rtl/fft/twiddle_rom.sv": "4f0beb59243898d47eb79857ceb0caf9cf9f753f2ea1d7e942507c4ee6824d7c",
+      "rtl/include/generated/trecap_core_pkg.sv": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784",
+      "rtl/include/generated/trecap_csr_pkg.sv": "3a1b8b968015494077f8627ff541de8120769258461b2d182c3ea4ac944176e1",
+      "rtl/include/generated/trecap_iface_pkg.sv": "d24ab618d901cb92394e190549489cb88caa7444de18731de0923c24446afd68",
+      "rtl/include/generated/trecap_packet_pkg.sv": "97a003c14b93019b5356208ea8be2e76df7435123132440729ea7038cd13b2be",
+      "rtl/include/trecap_build_pkg.sv": "e0871a68fadfb69258df42b0c6544f9927f124963e5a55f055d12815753ff827",
+      "rtl/include/trecap_math_pkg.sv": "3930d84eead3da9b097e26b82678a3e847fe0bb296e52e192c297702f70f7c2a",
+      "rtl/interfaces/trecap_avmm_if.sv": "e57274d6fbbf4a10a25beab30151a89d5f5148a390ce1c946d616cc33146ede9",
+      "rtl/interfaces/trecap_core_tap_if.sv": "a0a55654863fb0ffae27ea3d3be79723c9bcf75cbc44fae578edcfaf5b0ba448",
+      "rtl/interfaces/trecap_csr_if.sv": "a30d6be979bc5b0364226156ad92d188dba23aaea6d568496bea4872e2e21417",
+      "rtl/interfaces/trecap_frame_if.sv": "7f29f0c67f64d30e17c5217748d063047049cbaf89e1b302c456e6e2de6d09c4",
+      "rtl/interfaces/trecap_record_if.sv": "92863fbe1f5e915ba19588b1f19eec3df26a5cc48f0d62b6b54ec60851b9d6af",
+      "rtl/interfaces/trecap_sample_if.sv": "c5756125161ff34612d06f27a192a3ecbaf2f3d572f56e9a58fb7c55efc8da5d",
+      "rtl/sources/trecap_adc_adapter.sv": "fec492a7013e9b18a084dbd618c4af1e02287fa29b9049a393963d5b10138889",
+      "rtl/sources/trecap_audio_adapter.sv": "b0f54a05c661c47e311a76198f65d36d2f62b3fac223ac2fbf36f5d73e37eba7",
+      "rtl/sources/trecap_bram_replay_source.sv": "842e1d90663c297285ccdd9f9cda7969f8ca846994ec27bbf12e07d985758e66",
+      "rtl/sources/trecap_diagnostic_source.sv": "1c355aa2ff32dec15d04d86d8b29f3f952caf146850a5d4cb818128f3c5de9b0",
+      "rtl/sources/trecap_source_mux.sv": "efe7cfa8bd750c2daa68187582b2ed3f919ed0e65907f809af6f549fcb9ccf8f",
+      "rtl/top/trecap_core_bram_replay_top.sv": "5fe42cbe7e787f94ab46d31ed7af264a58bad0d22fefdbaffcd37fe7c85c308f",
+      "rtl/top/trecap_core_only_top.sv": "8af237604db20cd32ecd1442b5918303c959461a843b7c3d67ccac8b048c8d86",
+      "rtl/top/trecap_source_core_integration.sv": "0677af80af9cb5a19e42e57ccbfcd312324183ec428651b34ef0ed747ad4df77",
+      "scripts/verification/core_capture_check.py": "3e8832cc35a307d67e29825adbf2f0ed5d6e534dc1284999bcffb1fa52eb63df",
+      "scripts/verification/core_replay.py": "630c2329db14546c3904076d103ab62b9c6dfc1e65ba7af21e0a86bf725629f5",
+      "scripts/verification/simulator_qualification.py": "69130835a94193ea90b5f0b9b7ff1d566fc6906ed9ddceee221742b980277a75",
+      "sim/filelists/verification_core.f": "e5dac0a032f4987e76f52a04b3a55172011b0a32e998357f32e85f443ab8fd49",
+      "sim/verification/core_exact_scoreboard.sv": "87524384ae1f287656a344a7e8a2f2f14693265dbcd487866b62a94df1f37d9f",
+      "sim/verification/core_finite_replay_tb.sv": "622c179db99c8a181b7802e47e2eb7936a84b0a21abf83225c32d81441f5264a"
+    },
+    "status": "PASS_SELECTED_CORE_CASES"
+  },
+  "date_utc": "2026-09-15",
+  "energy_savings_established": false,
+  "environment": {
+    "cases": 15,
+    "compile_options": [
+      "-sv",
+      "-warning",
+      "2892",
+      "-work",
+      "work"
+    ],
+    "defines": [],
+    "diagnostic_policy": {
+      "2892": "Retain as warning: ANSI input logic under default_nettype none; see installed verror 2892. No assertion diagnostics disabled."
+    },
+    "status": "PASS"
+  },
+  "evidence": {
+    "artifact_checker": {
+      "relative_path": "runs/verification/v0-artifact-admission-20260915/fault-injection-02.json",
+      "sha256": "0bbb0e321705336a2fbd6e045dfe62480b2bacbe5dfc6fc910872a41c4778534"
+    },
+    "artifacts": {
+      "relative_path": "runs/verification/v0-artifact-admission-20260915/admission-02.json",
+      "sha256": "ee6a9bca54d7fe38e7677097e27ff1d46320f1dfea602d02e594365dcb3c6906"
+    },
+    "capture_checker": {
+      "relative_path": "runs/verification/core-capture-check-20260915/impulse-mutations-01.json",
+      "sha256": "4595e584a9c5a67a4d1d3c13a0e4f0e55cc1ed83e52f140d29061d74876aed44"
+    },
+    "core": {
+      "relative_path": "runs/verification/core-20260915T042921Z-22ada5de/summary.json",
+      "sha256": "a9369d199317b763b8d0881d3bff3de2036834621ce076dcad045e19816a63ce"
+    },
+    "environment": {
+      "relative_path": "runs/verification/environment-20260915T041636Z-117e7ae1/summary.json",
+      "sha256": "72016c9f86ad0c945844296ec58c3014ee62bc484bc3527b126cc1a12d6c65a1"
+    },
+    "reference": {
+      "relative_path": "runs/verification/reference-v1-20260915-05/report.json",
+      "sha256": "ccf346f2372eca96be984fb5e7b086b53dcef7af3457786536f196973f8bd167"
+    },
+    "rounding": {
+      "relative_path": "runs/verification/rounding-20260915T041634Z-bdd94ca3/summary.json",
+      "sha256": "9279123a9dd971565d3556b2b7a7c7aba645cf1925683577d9f6db1cc331f45b"
+    },
+    "runner_admission": {
+      "relative_path": "runs/verification/core-runner-admission-20260915/report-final.json",
+      "sha256": "d65a46448f20c05e23a222ef724c19b1c2a0ce425e98d62749a1365a4a2936d2"
+    }
+  },
+  "fixed_findings": [
+    {
+      "before": {
+        "actual": "0",
+        "expected": "-1",
+        "shift": 1,
+        "value": "-1"
+      },
+      "files": [
+        "rtl/common/round_sat.sv",
+        "rtl/include/trecap_math_pkg.sv"
+      ],
+      "id": "VF-001",
+      "resolution": "Compare against an explicitly signed zero.",
+      "summary": "Signed negative rounding compared against unsigned unbased zero."
+    },
+    {
+      "files": [
+        "rtl/core/trecap_synthesis_wola.sv"
+      ],
+      "id": "VF-002",
+      "resolution": "Preserve specified real-part synthesis; residual alone is not a protocol fault. Verify both IFFT components exactly.",
+      "summary": "Valid imaginary IFFT residuals set protocol status and prevented replay completion."
+    },
+    {
+      "files": [
+        "rtl/core/trecap_delay_error_metrics.sv"
+      ],
+      "id": "VF-003",
+      "resolution": "Accept either retained validated data or the current correctly tagged RAM response; datapath unchanged.",
+      "summary": "Simulation assertion rejected a previously validated cached delayed-history response."
+    }
+  ],
+  "full_verification_complete": false,
+  "limitations": [
+    "Two fixed-threshold nonzero vectors, four positive native cases; not the complete normative suite.",
+    "No full parameter-domain, dynamic threshold, arbitrary clear/reset or source-switch signoff.",
+    "No native telemetry/DDR/HPS/PC integration campaign in this milestone.",
+    "Shared frozen integer coefficients; historical generator fingerprints and quality-bound provenance remain unresolved.",
+    "Reference public rounding at shift63 has executable defects outside the selected baseline shifts.",
+    "Prior fitted timing/resource results predate these RTL fixes; rebuild and hardware evidence remain necessary.",
+    "No FPGA programming, physical board verification, acceleration benchmark or electrical energy measurement."
+  ],
+  "reference": {
+    "all_V1_qualified": false,
+    "baseline_scope": "selected static vectors; shifts 0,1,2,15",
+    "checks": [
+      {
+        "name": "existing_cpp_self_tests_supplementary",
+        "records": 8,
+        "status": "PASS"
+      },
+      {
+        "name": "frozen_coefficient_integer_anchors",
+        "records": 10,
+        "status": "PASS"
+      },
+      {
+        "name": "independent_baseline_primitive_comparison",
+        "records": 16540,
+        "status": "PASS"
+      },
+      {
+        "hand_derived": true,
+        "name": "fft_zero",
+        "records": 256,
+        "status": "PASS"
+      },
+      {
+        "hand_derived": true,
+        "name": "fft_delta",
+        "records": 256,
+        "status": "PASS"
+      },
+      {
+        "hand_derived": true,
+        "name": "fft_constant",
+        "records": 256,
+        "status": "PASS"
+      },
+      {
+        "hand_derived": true,
+        "name": "fft_nyquist",
+        "records": 256,
+        "status": "PASS"
+      },
+      {
+        "hand_derived": true,
+        "name": "ifft_dc",
+        "records": 256,
+        "status": "PASS"
+      },
+      {
+        "hand_derived": true,
+        "name": "ifft_imaginary_dc",
+        "records": 256,
+        "status": "PASS"
+      },
+      {
+        "hand_derived": true,
+        "name": "ifft_positive_quarter_rate",
+        "records": 256,
+        "status": "PASS"
+      },
+      {
+        "hand_derived": false,
+        "name": "fft_mixed_signed_rounding",
+        "records": 256,
+        "status": "PASS"
+      },
+      {
+        "hand_derived": false,
+        "name": "ifft_mixed_complex_rounding",
+        "records": 256,
+        "status": "PASS"
+      },
+      {
+        "name": "canonical_ties",
+        "records": 256,
+        "status": "PASS"
+      },
+      {
+        "name": "mask_0",
+        "records": 130,
+        "status": "PASS"
+      },
+      {
+        "name": "mask_24",
+        "records": 130,
+        "status": "PASS"
+      },
+      {
+        "name": "mask_25",
+        "records": 130,
+        "status": "PASS"
+      },
+      {
+        "name": "mask_26",
+        "records": 130,
+        "status": "PASS"
+      },
+      {
+        "name": "mask_72057594037927935",
+        "records": 130,
+        "status": "PASS"
+      },
+      {
+        "bins": 1161,
+        "frames": 9,
+        "frozen_bin_artifact": false,
+        "frozen_records": 1555,
+        "ifft_export_rows": 2304,
+        "ifft_export_sha256": "f37ebb0b2d3bc367b6065a3ce831242e98d8ea1f383b2616bdf12ccddaa4089b",
+        "intermediate_complex_words": 13824,
+        "name": "impulse_Ns1024_thr0",
+        "oracle_artifact_sha256": {
+          "bin_stats.csv": "dd7898ab60aacce76d6fc7727e65f5a7932dd1d091cfc8596b3d5529196390b6",
+          "frame_stats.csv": "ec1008be4adf7ba62dd77b2b4ded760ca06b5607d4b9b483a76dec58eb5ce45b",
+          "ifft_output.csv": "f37ebb0b2d3bc367b6065a3ce831242e98d8ea1f383b2616bdf12ccddaa4089b",
+          "metrics.json": "91c8b13b58cf3a42b41de8d10452f41aa4e091f03eab1277ec8361c61d1aefdc",
+          "trecap_artifact_expectations_pkg.sv": "89c0a78578a0e5f1842a5e85eb2aa6a55978d6a823e965b8472663dcbfe8e8ed",
+          "y_out.memh": "607bbb9f04d53e20d121aa1b35e140c73ed9eb00260ed22cb38981c4c3eef5d3"
+        },
+        "outputs": 1536,
+        "records": 16541,
+        "status": "PASS",
+        "threshold": "0"
+      },
+      {
+        "bins": 1161,
+        "frames": 9,
+        "frozen_bin_artifact": true,
+        "frozen_records": 2716,
+        "ifft_export_rows": 2304,
+        "ifft_export_sha256": "f9356634dc8014feca57d7d2dde2e12cf98ca2cd538ef516eb2bcd3c6c2de5b4",
+        "intermediate_complex_words": 13824,
+        "name": "near_threshold_multitone_Ns1024_thr64",
+        "oracle_artifact_sha256": {
+          "bin_stats.csv": "b78691a1aa9dda2eae098dd75a7b673461dd385e7689694c0e53cd3d7e2e7822",
+          "frame_stats.csv": "b4c185906337a44f5f040fb9e20ea95b956e3fce49d1c4920d954557a9e013cd",
+          "ifft_output.csv": "f9356634dc8014feca57d7d2dde2e12cf98ca2cd538ef516eb2bcd3c6c2de5b4",
+          "metrics.json": "0d65abf9bb76082d83f1447ed33e5f35b267cd761811a33168494f8dab6fd695",
+          "trecap_artifact_expectations_pkg.sv": "23e6ee1d9f04ea6ba5912fc9499019f57400e79847f8367999579fb3d141e1d2",
+          "y_out.memh": "718212b1cbb8fca5a60206b6a9d5b39363ae0cee8945ca792b670c035fd34117"
+        },
+        "outputs": 1536,
+        "records": 16541,
+        "status": "PASS",
+        "threshold": "4096"
+      },
+      {
+        "name": "checker_negative_witnesses",
+        "records": 13,
+        "status": "PASS"
+      }
+    ],
+    "input_identity_unchanged": true,
+    "public_api_findings": [
+      {
+        "actual": 0,
+        "baseline_impact": "not exercised by baseline shifts 0/1/15",
+        "expected": -1,
+        "operation": "rnd_shr",
+        "shift": 63,
+        "source": "sw/reference_model/include/trecap_golden/rounding.hpp",
+        "status": "UNRESOLVED_DEFECT",
+        "value": "-9223372036854775808"
+      },
+      {
+        "actual": 0,
+        "baseline_impact": "not exercised by baseline shifts 0/1/15",
+        "expected": 1,
+        "operation": "rnd_shr",
+        "shift": 63,
+        "source": "sw/reference_model/include/trecap_golden/rounding.hpp",
+        "status": "UNRESOLVED_DEFECT",
+        "value": "4611686018427387904"
+      },
+      {
+        "actual": 0,
+        "baseline_impact": "not exercised by baseline shifts 0/1/15",
+        "expected": 1,
+        "operation": "rnd_shr",
+        "shift": 63,
+        "source": "sw/reference_model/include/trecap_golden/rounding.hpp",
+        "status": "UNRESOLVED_DEFECT",
+        "value": "9223372036854775807"
+      }
+    ],
+    "status": "PASS_BOUNDED_BASELINE_WITH_PUBLIC_API_FINDINGS"
+  },
+  "rounding": {
+    "cases": [
+      {
+        "case": "positive",
+        "outcome": "PASS"
+      },
+      {
+        "case": "corrupt_expectation",
+        "outcome": "PASS"
+      },
+      {
+        "case": "corrupt_helper",
+        "outcome": "PASS"
+      }
+    ],
+    "scope": {
+      "comparisons": 33132,
+      "input_cases": 8283,
+      "input_width": 64,
+      "no_full_parameter_coverage_claim": true,
+      "output_width": 12,
+      "package_helpers": [
+        "sgn",
+        "abs_mag",
+        "asr >=128",
+        "rnd_shr then sat_signed"
+      ],
+      "shifts": [
+        0,
+        1,
+        4,
+        15
+      ]
+    },
+    "status": "PASS"
+  },
+  "schema": "trecap_verification_first_campaign_v1",
+  "simulator": "Model Technology ModelSim - INTEL FPGA STARTER EDITION vsim 2020.1 Simulator 2020.02 Feb 28 2020",
+  "status": "PASS_SELECTED_BASELINE_CAMPAIGNS",
+  "supplementary_source_elaboration": {
+    "defines": [
+      "SYNTHESIS"
+    ],
+    "errors": 0,
+    "external_vendor_modules": [
+      "altera_pll",
+      "system"
+    ],
+    "non_error_diagnostics": 322,
+    "relative_path": "runs/verification/production-elaboration-20260915/diagnostics.txt",
+    "report_sha256": "51b36a0d5f3f05eebfb9c5eaf05a673a23b2ebc8afcde8cf57be0c107814842a",
+    "scope": "Production board source composition; separate from functional simulation",
+    "status": "PASS_SOURCE_ELABORATION_ONLY",
+    "tool": "pyslang 11.0.0"
+  }
+}

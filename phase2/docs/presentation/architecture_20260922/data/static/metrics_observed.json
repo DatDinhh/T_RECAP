@@ -1,0 +1,40 @@
+{
+  "schema": "trecap_phase2_rtl_metrics_observed_v1",
+  "vector_name": "near_threshold_multitone_Ns1024_thr64",
+  "counts": {
+    "y_rows": 1536,
+    "frame_rows": 9,
+    "bin_rows": 1161,
+    "done_pulses": 1
+  },
+  "suppression_totals": {
+    "eligible_suppressed_bins": "13",
+    "eligible_unique_bins": "1152",
+    "unique_bins": "1161",
+    "unique_suppressed_bins": "13"
+  },
+  "spectral_totals": {
+    "eligible_kept_mag2": "598073269150016",
+    "eligible_total_mag2": "598073269204618"
+  },
+  "time_domain_errors": {
+    "error_sample_count": "1536",
+    "max_abs_err": "0",
+    "sum_abs_err": "0",
+    "sum_sq_err": "0"
+  },
+  "internal_metrics": {
+    "error_sample_count": "1536",
+    "max_abs_err": "0",
+    "sum_abs_err": "0",
+    "sum_sq_err": "0"
+  },
+  "status": {
+    "completion_error_sticky": 0,
+    "core_overflow_flags": "0",
+    "metric_overflow_sticky": 0,
+    "protocol_error_sticky": 0,
+    "saturation_sticky": 0,
+    "top_overflow_flags": "0"
+  }
+}

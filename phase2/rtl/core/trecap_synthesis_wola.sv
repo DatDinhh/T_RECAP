@@ -356,9 +356,10 @@ module trecap_synthesis_wola
                             end
                         end
                         if (in_accept) begin
-                            // Preserve real-part synthesis even when finite-width IFFT
-                            // leaves an imaginary residual; expose it as protocol status.
-                            if (in_im_i != '0) protocol_error_sticky_o <= 1'b1;
+                            // The fixed-point contract synthesizes the real component.
+                            // Stage rounding can leave a valid imaginary residual; it is
+                            // numerical diagnostic data, not a stream protocol violation.
+                            // Verification compares both IFFT components independently.
                             if (!input_token_good) begin
                                 protocol_error_sticky_o <= 1'b1;
                                 state_q <= STATE_FAULT;
