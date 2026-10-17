@@ -8,7 +8,9 @@ The [main project README](https://github.com/DatDinhh/T_RECAP#readme) explains t
 
 The **TSH2 finite-file profile** retains the FFT, tunable squared-magnitude threshold, and IFFT/WOLA reconstruction. It additionally exports sparse spectral powers so a compatible host consumer can avoid processing omitted bins. Evaluation measures waveform distortion, spectral packet bytes, and host consumer time separately.
 
-![Current TSH2 architecture](docs/project_overview/figures/current_architecture.png)
+![Current TSH2 architecture](docs/architecture/tsh2/01-system.png)
+
+The [current eight-view TSH2 atlas](docs/architecture/tsh2/README.md) details finite frames, transform storage, epoch/feed-drain sequencing, TSP1/Y outputs, TCP/HPS/MMIO, configuration/backpressure and clock/reset/verification boundaries.
 
 A laptop uploads complete PCM input to the ARM HPS over TCP. The HPS buffers it and interleaves MMIO writes to the FPGA's input FIFO with reads from waveform and spectral output FIFOs. The FPGA produces reconstructed samples and phase-free TSP1 powers; the HPS returns both outputs. Laptop software validates and visualizes them, then computes spectral features or monitoring events.
 
@@ -29,12 +31,13 @@ The [results guide](docs/project_overview/README.md) separates current physical 
 | Goal | Start here |
 |---|---|
 | Understand the application and view results | [Main README](https://github.com/DatDinhh/T_RECAP#readme), [figures and provenance](docs/project_overview/README.md) |
+| Explore the current architecture in detail | [Eight-view TSH2 atlas](docs/architecture/tsh2/README.md) |
 | Review the DV methodology and outcome | [Verification portfolio](verification/README.md), [academic PDF and LaTeX](docs/verification/portfolio/README.md) |
 | Run reproducible off-board RTL tests | [Portable TSH2 package](verification/tsh2/README.md) |
 | Inspect physical run evidence | [58-case campaign ledger](docs/results/verification_20261017/README.md) |
 | Read the actual finite-file application source | [TSH2 workbench archive](profiles/tsh2/README.md) |
 | Build the shared numerical model | [C++ reference model](sw/reference_model/README.md) |
-| Explore the original broad architecture | [Historical atlas](docs/architecture/diagrams/README.md), [design](docs/architecture/architecture_design.md), [specification](docs/specs/README.md) |
+| Explore the original broad architecture | [Historical atlas, 2026-09-14](docs/architecture/diagrams/README.md), [design](docs/architecture/architecture_design.md), [specification](docs/specs/README.md) |
 | View a recorded demonstration | [Spectral Studio repository](https://github.com/DatDinhh/trecap-spectral-studio) |
 
 ## Reproduce portable verification

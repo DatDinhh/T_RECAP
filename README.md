@@ -31,7 +31,67 @@ These are different measurement boundaries. A smaller spectral packet is not a s
 
 ## Current architecture
 
-![Current finite-file TSH2 architecture](phase2/docs/project_overview/figures/current_architecture.png)
+![Current finite-file TSH2 architecture](phase2/docs/architecture/tsh2/01-system.png)
+
+The [current TSH2 architecture atlas](phase2/docs/architecture/tsh2/README.md) expands this overview into eight source-bound views. Each plate describes the finite-file TCP/MMIO implementation and names its verification boundary.
+
+| View | What it explains | Vector |
+|---|---|---|
+| [1. System overview](phase2/docs/architecture/tsh2/01-system.png) | Laptop, HPS and FPGA responsibilities in the finite-file path | [SVG](phase2/docs/architecture/tsh2/01-system.svg) |
+| [2. DSP and finite frames](phase2/docs/architecture/tsh2/02-dsp-finite-frames.png) | Windowing, FFT, threshold, IFFT/WOLA and finite-stream geometry | [SVG](phase2/docs/architecture/tsh2/02-dsp-finite-frames.svg) |
+| [3. Transform engines and memory](phase2/docs/architecture/tsh2/03-transform-memory.png) | Iterative transform engines and their local storage | [SVG](phase2/docs/architecture/tsh2/03-transform-memory.svg) |
+| [4. Finite epoch and feed/drain](phase2/docs/architecture/tsh2/04-finite-epoch-feed-drain.png) | Start, input feeding, output draining and full-tail completion | [SVG](phase2/docs/architecture/tsh2/04-finite-epoch-feed-drain.svg) |
+| [5. TSP1 and waveform outputs](phase2/docs/architecture/tsh2/05-tsp1-y-outputs.png) | Separate sparse spectral powers and reconstructed samples | [SVG](phase2/docs/architecture/tsh2/05-tsp1-y-outputs.svg) |
+| [6. TCP, HPS and MMIO](phase2/docs/architecture/tsh2/06-tcp-hps-mmio.png) | Finite host transaction, Linux RAM and adapter FIFO access | [SVG](phase2/docs/architecture/tsh2/06-tcp-hps-mmio.svg) |
+| [7. Configuration and backpressure](phase2/docs/architecture/tsh2/07-configuration-backpressure.png) | Idle configuration, ready/valid flow control and spectral credit | [SVG](phase2/docs/architecture/tsh2/07-configuration-backpressure.svg) |
+| [8. Clock, reset and verification boundaries](phase2/docs/architecture/tsh2/08-clock-reset-verification.png) | Clock/reset ownership, checked behavior and remaining scope | [SVG](phase2/docs/architecture/tsh2/08-clock-reset-verification.svg) |
+
+<details>
+<summary>Expand the seven detailed architecture views</summary>
+
+### 2. DSP and finite frames
+
+Windowing, FFT, threshold, IFFT/WOLA and finite-stream geometry.
+
+![DSP and finite frames](phase2/docs/architecture/tsh2/02-dsp-finite-frames.png)
+
+### 3. Transform engines and memory
+
+Iterative transform engines and their local storage.
+
+![Transform engines and memory](phase2/docs/architecture/tsh2/03-transform-memory.png)
+
+### 4. Finite epoch and feed/drain
+
+Start, input feeding, output draining and full-tail completion.
+
+![Finite epoch and feed/drain](phase2/docs/architecture/tsh2/04-finite-epoch-feed-drain.png)
+
+### 5. TSP1 and waveform outputs
+
+Separate sparse spectral powers and reconstructed samples.
+
+![TSP1 and waveform outputs](phase2/docs/architecture/tsh2/05-tsp1-y-outputs.png)
+
+### 6. TCP, HPS and MMIO
+
+Finite host transaction, Linux RAM and adapter FIFO access.
+
+![TCP, HPS and MMIO](phase2/docs/architecture/tsh2/06-tcp-hps-mmio.png)
+
+### 7. Configuration and backpressure
+
+Idle configuration, ready/valid flow control and spectral credit.
+
+![Configuration and backpressure](phase2/docs/architecture/tsh2/07-configuration-backpressure.png)
+
+### 8. Clock, reset and verification boundaries
+
+Clock/reset ownership, checked behavior and remaining scope.
+
+![Clock, reset and verification boundaries](phase2/docs/architecture/tsh2/08-clock-reset-verification.png)
+
+</details>
 
 1. **Laptop:** prepare signed 12-bit PCM samples and choose `THR2` for the run.
 2. **ARM HPS on the board:** receive the complete file over TCP into Linux RAM, then interleave MMIO input writes with waveform and spectral FIFO reads.
@@ -41,7 +101,15 @@ These are different measurement boundaries. A smaller spectral packet is not a s
 
 The **waveform output contains reconstructed samples**. The **TSP1 output contains squared magnitudes without phase**, so it cannot reconstruct audio by itself. The finite TCP service returns sparse records; the lower-level adapter also supports dense records for verification.
 
-The current profile is named **TSH2**. It uses ready/valid waveform flow control and spectral-record credit to preserve state while the host feeds and drains data. Its elapsed FPGA counter includes host-induced stalls. The earlier DDR-ring/UDP architecture is retained as [historical design material](phase2/docs/architecture/diagrams/README.md), with separate implementation and acceptance status.
+The current profile is named **TSH2**. It uses ready/valid waveform flow control and spectral-record credit to preserve state while the host feeds and drains data. Its elapsed FPGA counter includes host-induced stalls. The [historical architecture atlas](phase2/docs/architecture/diagrams/README.md) preserves the broader DDR-ring/UDP source snapshot dated 2026-09-14. Its interfaces and acceptance scope are separate from current TSH2 verification.
+
+| Architecture scope | Current TSH2 atlas | Historical atlas, 2026-09-14 |
+|---|---|---|
+| Input | Complete PCM file through HPS-fed MMIO FIFO | BRAM replay, LINE-IN, ADC and diagnostic source architecture |
+| Transport | TCP to HPS Linux RAM, then interleaved MMIO feed/drain | Reserved-DDR ring and HPS UDP forwarding |
+| Outputs | Separate reconstructed Y samples and TSP1 spectral powers | WAVE, spectrum, metrics and status telemetry records |
+| Qualification | Registered finite-file RTL and physical-capture checks | Historical design snapshot with its own bring-up and acceptance scope |
+
 
 | Parameter | Current verified profile |
 |---|---|

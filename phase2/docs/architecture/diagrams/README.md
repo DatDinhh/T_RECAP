@@ -1,6 +1,10 @@
-# Architecture atlas
+# Historical architecture atlas (2026-09-14)
 
-We use these eight plates to explain how T-RECAP processes samples, observes the result, and connects the FPGA to Linux and the PC. The pastel groups identify responsibilities; each plate names the corresponding source modules and contracts.
+**Historical source snapshot: 2026-09-14. These eight plates describe the broader DDR-ring/UDP architecture, not the current TSH2 finite-file TCP/MMIO profile. Current TSH2 verification does not qualify every interface shown here.**
+
+Use the [current eight-view TSH2 atlas](../tsh2/README.md) for the maintained finite-file application. The original SVGs, PNGs, PDF and source snapshot manifest below are preserved unchanged. This page and the HTML viewer identify their historical scope.
+
+The plates retain the original sample-source, telemetry, DDR, Linux and PC responsibilities. Their technical descriptions below belong to this historical snapshot; each plate names the corresponding source modules and contracts.
 
 [Browse the atlas](index.html) · [Download the vector PDF](trecap-architecture-atlas.pdf) · [Source snapshot manifest](atlas_manifest.json)
 
@@ -73,7 +77,9 @@ The source/DSP/telemetry/CSR/writer fabric runs at **50 MHz**. Sample and teleme
 
 The atlas describes implemented source architecture. Functional board runtime and matched HPS/Linux deployment remain pending milestones; diagrams are not evidence that those paths have operated end to end. Build, pin and timing evidence is recorded separately in the [implementation results](../../results/fpga_implementation.md).
 
-## Regenerating the atlas
+## Historical generator and reproduction
+
+The generator below belongs to this historical atlas. Use the matching historical source revision and a separate output directory when reproducing it; do not overwrite the preserved accepted images, PDF or manifest as part of a current TSH2 update. The current atlas has its own generator. The legacy generator's HTML banner keeps this historical notice visible in future viewer output.
 
 From the repository root, install ReportLab in the chosen Python environment and run the source-owned generator:
 

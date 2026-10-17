@@ -1,0 +1,2876 @@
+{
+  "schema": "trecap-current-tsh2-editable-plates-v1",
+  "profile": "TSH2",
+  "source_snapshot_date": "2026-10-17",
+  "source_id": "39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed",
+  "original_sof_sha256": "f96bc5a35adf08711a5f392baf9f8cbf5ec65a17211a58117bdb53f62acbb7ab",
+  "scope": "Source-derived current finite-file architecture. No new synthesis, simulation or hardware measurements.",
+  "sources": [
+    {
+      "id": "S01",
+      "path": "profiles/tsh2/work/trecap_stream8_v01/CONTRACT.md",
+      "sha256": "73af404e631860483433b1df3e0fb53f7ea66bdc1f87319b5e519aec89181f13"
+    },
+    {
+      "id": "S02",
+      "path": "profiles/tsh2/work/trecap_stream8_v01/rtl/trecap_stream_adapter.sv",
+      "sha256": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305"
+    },
+    {
+      "id": "S03",
+      "path": "profiles/tsh2/work/trecap_stream8_v01/rtl/stream_fifo.sv",
+      "sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b"
+    },
+    {
+      "id": "S04",
+      "path": "profiles/tsh2/work/trecap_laptop_fpga_v01/service/service.c",
+      "sha256": "a65a1be11abe2e3f01c9d80f1bd3c167a1094881b301bfbc48870bf7496ba24c"
+    },
+    {
+      "id": "S05",
+      "path": "profiles/tsh2/work/trecap_laptop_fpga_v01/service/PROTOCOL.md",
+      "sha256": "e6ae0f1abf6f65b1ac75d3fe5fc64f8c987665de3ad9eb20ef59286a406bb65e"
+    },
+    {
+      "id": "S06",
+      "path": "profiles/tsh2/work/trecap_cpu_fpga_bench_v01/host02/tsh2_client.c",
+      "sha256": "36e2805f050fbd3635f536933f23fceb81567ff2824437786a04ff219020074a"
+    },
+    {
+      "id": "S07",
+      "path": "profiles/tsh2/work/trecap_stream8_v01/build/build.py",
+      "sha256": "5c96269d2de2049672c06361303ae27a16d7feb36de711089b37c734a93af40f"
+    },
+    {
+      "id": "S08",
+      "path": "profiles/tsh2/README.md",
+      "sha256": "2dbd78a0d9e5313cfe8348e2b5988130970530a28e83be4d6ddb07e2b7711cba"
+    },
+    {
+      "id": "S09",
+      "path": "profiles/tsh2/source_lineage.json",
+      "sha256": "1782e4315bab8e9a2b64fb181de8560a4454b83820dca608611dfbb4e8324eee"
+    },
+    {
+      "id": "S10",
+      "path": "verification/tsh2/admission.json",
+      "sha256": "ab03815268a28dd644ffd51ca908f2eae1c028bb4ff5410004b64b36e66536d4"
+    },
+    {
+      "id": "S11",
+      "path": "verification/tsh2/fixture_tools.py",
+      "sha256": "f018048a6a8c1a9314321e42b13a154add6054c6aacd232802bc24e3fa6f1b49"
+    },
+    {
+      "id": "S12",
+      "path": "profiles/tsh2/work/trecap_jtag_readback_v01/physical/validate_tsp1.py",
+      "sha256": "75e4745c2342f710c390f4f6199d99bd516eb85876b6d88de7a5dd3c4f1ad351"
+    },
+    {
+      "id": "S13",
+      "path": "verification/tsh2/README.md",
+      "sha256": "3b866f96fc7f7ea53f6971599b75a6146743186359cf8f895078ca758a983b0c"
+    },
+    {
+      "id": "S14",
+      "path": "verification/README.md",
+      "sha256": "e1ca8360cf4427282fec0fa0980513a7e68bb20372b6720e1afc1fe2431e4d46"
+    },
+    {
+      "id": "S15",
+      "path": "docs/results/verification_20261017/README.md",
+      "sha256": "2797554bec9b43dc36e708258b7574b38f36d99fcf392539cb7d9ae202c3ad53"
+    },
+    {
+      "id": "S16",
+      "path": "docs/results/verification_20261017/source_bindings/fitted_source_manifest.json",
+      "sha256": "5e2b53504f08ac46e5182d160b9a720b419a6627984c26d7890a02f204b33dfd"
+    },
+    {
+      "id": "S17",
+      "path": "verification/tsh2/rtl/trecap_pcm_stream_source.sv",
+      "sha256": "79e402d7314b6540aea813bab2a42efa4d3107a34a63d61ff5ea3549bb4101f7"
+    },
+    {
+      "id": "S18",
+      "path": "verification/tsh2/rtl/trecap_pcm_stream_top.sv",
+      "sha256": "2d8e7794a5629cf88e9d47ee0f2dd68ab28d1b73e3c071d701e2d5e3ab1780d2"
+    },
+    {
+      "id": "S19",
+      "path": "verification/tsh2/rtl/trecap_core_export_observed.sv",
+      "sha256": "a3e887bb2383ab6ca11d5a1d1f8eef184f9f855510171cfb531588448a9fada9"
+    },
+    {
+      "id": "S20",
+      "path": "verification/tsh2/rtl/trecap_core_pkg.sv",
+      "sha256": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784"
+    },
+    {
+      "id": "S21",
+      "path": "verification/tsh2/rtl/trecap_input_ring.sv",
+      "sha256": "022be1284812f1cfd98dd39ff178cb3890ec2bd3b8eb047ff2c2814ef5a5c44a"
+    },
+    {
+      "id": "S22",
+      "path": "verification/tsh2/rtl/trecap_frame_scheduler.sv",
+      "sha256": "6d263b88c540605e1bfb728e5b4c1bc87d7f5552a007b178031a198675f5c255"
+    },
+    {
+      "id": "S23",
+      "path": "verification/tsh2/rtl/trecap_analysis_window.sv",
+      "sha256": "62798c5bfed8076c54568986bd6df6d57b430e9aacb97efb582364974620c6ad"
+    },
+    {
+      "id": "S24",
+      "path": "verification/tsh2/rtl/trecap_fft256.sv",
+      "sha256": "a0c710046185fb54bd7281444c57539f9b689e4a6f52f634dba60a259619ef66"
+    },
+    {
+      "id": "S25",
+      "path": "verification/tsh2/rtl/trecap_ifft256.sv",
+      "sha256": "92c175d4a30da253e9a93e118080261958daa181cf4e6f12560d9524d110bd3c"
+    },
+    {
+      "id": "S26",
+      "path": "verification/tsh2/rtl/trecap_fft_stage.sv",
+      "sha256": "0f8795941f9843e1f266cc0ee9d310c4be52d3103e6d750abb455f49880472d1"
+    },
+    {
+      "id": "S27",
+      "path": "verification/tsh2/rtl/round_sat.sv",
+      "sha256": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457"
+    },
+    {
+      "id": "S28",
+      "path": "verification/tsh2/rtl/twiddle_rom.sv",
+      "sha256": "4f0beb59243898d47eb79857ceb0caf9cf9f753f2ea1d7e942507c4ee6824d7c"
+    },
+    {
+      "id": "S29",
+      "path": "verification/tsh2/rtl/trecap_hermitian_canonicalizer.sv",
+      "sha256": "6b1c11ba7badb80c18a71e157346be994cb2cec1c775a4a910f38843d4fa2b4d"
+    },
+    {
+      "id": "S30",
+      "path": "verification/tsh2/rtl/trecap_mag2_mask.sv",
+      "sha256": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d"
+    },
+    {
+      "id": "S31",
+      "path": "verification/tsh2/rtl/trecap_spectrum_mask_builder.sv",
+      "sha256": "695d9bd8c51c3ee97412854d37a4c5f5b953f793cb05a4a76f83d305e05fe3e0"
+    },
+    {
+      "id": "S32",
+      "path": "verification/tsh2/rtl/trecap_synthesis_wola.sv",
+      "sha256": "7d30dee3679adb15bee54f2ad9762d102b08f54314c280a6f4918b95d277a7aa"
+    },
+    {
+      "id": "S33",
+      "path": "verification/tsh2/rtl/trecap_delay_error_metrics.sv",
+      "sha256": "1f08cbb2131d9ab4f84c90b750c2836046aea966498d035bcec94422b4958e30"
+    },
+    {
+      "id": "S34",
+      "path": "verification/tsh2/rtl/trecap_spectral_exporter.sv",
+      "sha256": "7a041daa6f32486e3f3e2c4bfdb95b9a5dc6277f6b0f4ba7f525fcb082a258be"
+    }
+  ],
+  "archived_source_bindings": [
+    {
+      "id": "A01",
+      "artifact_id": "archive:workspace/outputs/trecap_stream8_v01/build01/sources/trecap_hps_top.sv",
+      "original_sha256": "cce69d7a6395d93c8a487e36b8db8e4288e5b2e9613f205dfd84b1f380d96447",
+      "public_binding": "docs/results/verification_20261017/source_bindings/fitted_source_manifest.json",
+      "manifest_entry": "sources/trecap_hps_top.sv",
+      "scope": "Original retained source was reviewed separately; public check verifies only its hash entry in the published fitted manifest."
+    },
+    {
+      "id": "A02",
+      "artifact_id": "archive:workspace/outputs/trecap_stream8_v01/build01/sources/platform_designer_wrapper.sv",
+      "original_sha256": "3123d253447c91903e41c646049a3f4c837ff871f3ca493b3019382d00934c4e",
+      "public_binding": "docs/results/verification_20261017/source_bindings/fitted_source_manifest.json",
+      "manifest_entry": "sources/platform_designer_wrapper.sv",
+      "scope": "Original retained source was reviewed separately; public check verifies only its hash entry in the published fitted manifest."
+    }
+  ],
+  "source_aliases": {
+    "contract": "S01",
+    "adapter": "S02",
+    "fifo": "S03",
+    "service": "S04",
+    "protocol": "S05",
+    "host": "S06",
+    "build": "S07",
+    "profile": "S08",
+    "profile_lineage": "S09",
+    "admission": "S10",
+    "encoder": "S11",
+    "decoder": "S12",
+    "dv_readme": "S13",
+    "verification_scope": "S14",
+    "evidence": "S15",
+    "fitted_manifest": "S16",
+    "source": "S17",
+    "stream": "S18",
+    "core": "S19",
+    "params": "S20",
+    "ring": "S21",
+    "scheduler": "S22",
+    "analysis": "S23",
+    "fft": "S24",
+    "ifft": "S25",
+    "butterfly": "S26",
+    "round": "S27",
+    "twiddle": "S28",
+    "canonical": "S29",
+    "mask": "S30",
+    "builder": "S31",
+    "wola": "S32",
+    "metrics": "S33",
+    "exporter": "S34",
+    "board_top": "A01",
+    "platform_wrapper": "A02"
+  },
+  "plates": [
+    {
+      "number": 1,
+      "slug": "01-system",
+      "title": "Current TSH2 system architecture",
+      "subtitle": "One finite file, one numerical epoch, two separately returned output streams.",
+      "source_ids": [
+        "S01",
+        "S04",
+        "S06",
+        "S02",
+        "S18",
+        "S19",
+        "S34",
+        "A01"
+      ],
+      "review_notes": [
+        "The two HPS activities are one serialized service, not two processors or two FPGA cores.",
+        "No live codec input, UDP transport, online software-DSP replacement or board programming belongs in this plate."
+      ],
+      "review_callouts": [
+        "50 MHz fabric; unpaced finite-file input at nominal 48 kHz sample interpretation.",
+        "HPS RAM buffers are ordinary CPU memory. The FPGA-to-DDR ring writer is not active.",
+        "TSP1 has powers without phase. Audio reconstruction comes from the separate Y path."
+      ],
+      "nodes": [
+        {
+          "id": "input",
+          "rect": [
+            90,
+            315,
+            340,
+            180
+          ],
+          "title": "Prepared finite file",
+          "body": [
+            "384,000 signed12 samples",
+            "PCM in int32 little endian",
+            "Select THR2 before START"
+          ],
+          "tone": "mint"
+        },
+        {
+          "id": "viewer",
+          "rect": [
+            90,
+            735,
+            340,
+            180
+          ],
+          "title": "Validate and inspect",
+          "body": [
+            "Waveform / spectra",
+            "Exact reference checks",
+            "Sparse monitor features"
+          ],
+          "tone": "sand"
+        },
+        {
+          "id": "hps",
+          "rect": [
+            500,
+            495,
+            340,
+            220
+          ],
+          "title": "Finite TCP service",
+          "body": [
+            "Full input in HPS RAM",
+            "One CPU service feeds and",
+            "drains the same finite epoch"
+          ],
+          "tone": "sand",
+          "code": "service.c + frozen host02"
+        },
+        {
+          "id": "adapter",
+          "rect": [
+            910,
+            495,
+            340,
+            220
+          ],
+          "title": "TSH2 MMIO adapter",
+          "body": [
+            "256-sample input FIFO",
+            "Separate Y / TSP1 FIFOs",
+            "Config, status, exact counts"
+          ],
+          "tone": "blue",
+          "code": "trecap_stream_adapter"
+        },
+        {
+          "id": "core",
+          "rect": [
+            1320,
+            315,
+            390,
+            190
+          ],
+          "title": "Numerical core",
+          "body": [
+            "Window, FFT, Hermitian mask",
+            "IFFT and WOLA reconstruction"
+          ],
+          "tone": "lav",
+          "code": "trecap_core_export_observed"
+        },
+        {
+          "id": "export",
+          "rect": [
+            1320,
+            735,
+            390,
+            190
+          ],
+          "title": "Spectral exporter",
+          "body": [
+            "129 unique bins per frame",
+            "Sparse powers without phase"
+          ],
+          "tone": "rose",
+          "code": "trecap_spectral_exporter"
+        }
+      ],
+      "edges": [
+        {
+          "from": "input",
+          "to": "hps",
+          "fromPort": "right",
+          "toPort": "top",
+          "kind": "data",
+          "labelWidth": 230,
+          "via": [
+            [
+              670,
+              405
+            ]
+          ],
+          "label": "TCP request",
+          "labelAt": [
+            550,
+            373
+          ]
+        },
+        {
+          "from": "hps",
+          "to": "viewer",
+          "fromPort": "bottom",
+          "toPort": "right",
+          "kind": "data",
+          "via": [
+            [
+              670,
+              825
+            ]
+          ],
+          "label": "TCP reply",
+          "labelAt": [
+            670,
+            758
+          ]
+        },
+        {
+          "from": "hps",
+          "to": "adapter",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data",
+          "fromOffset": -40,
+          "toOffset": -40,
+          "labelWidth": 65,
+          "label": "writes",
+          "labelAt": [
+            875,
+            536
+          ]
+        },
+        {
+          "from": "adapter",
+          "to": "hps",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data",
+          "fromOffset": 40,
+          "toOffset": 40,
+          "labelWidth": 65,
+          "label": "reads",
+          "labelAt": [
+            875,
+            661
+          ]
+        },
+        {
+          "from": "adapter",
+          "to": "core",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data",
+          "fromOffset": -40,
+          "labelWidth": 60,
+          "via": [
+            [
+              1285,
+              565
+            ],
+            [
+              1285,
+              410
+            ]
+          ],
+          "label": "PCM",
+          "labelAt": [
+            1285,
+            470
+          ]
+        },
+        {
+          "from": "core",
+          "to": "adapter",
+          "fromPort": "bottom",
+          "toPort": "right",
+          "kind": "data",
+          "toOffset": 30,
+          "labelWidth": 180,
+          "via": [
+            [
+              1515,
+              575
+            ],
+            [
+              1285,
+              575
+            ],
+            [
+              1285,
+              635
+            ]
+          ],
+          "label": "Y ready/valid",
+          "labelAt": [
+            1425,
+            545
+          ]
+        },
+        {
+          "from": "core",
+          "to": "export",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "tap",
+          "labelWidth": 260,
+          "label": "Canonical-bin taps",
+          "labelAt": [
+            1515,
+            645
+          ]
+        },
+        {
+          "from": "export",
+          "to": "adapter",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data",
+          "toOffset": 60,
+          "labelWidth": 65,
+          "via": [
+            [
+              1285,
+              830
+            ],
+            [
+              1285,
+              665
+            ]
+          ],
+          "label": "TSP1",
+          "labelAt": [
+            1285,
+            744
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "rect": [
+            65,
+            980,
+            810,
+            115
+          ],
+          "title": "Finite, unpaced correctness path",
+          "body": "One file and full tail per START. 48 kHz is the sample interpretation, not a real-time throughput claim.",
+          "tone": "mint"
+        },
+        {
+          "rect": [
+            925,
+            980,
+            810,
+            115
+          ],
+          "title": "Active boundary",
+          "body": "Ordinary HPS RAM buffers; no active FPGA DDR ring, UDP or live codec. TSP1 cannot reconstruct audio without the separate Y path.",
+          "tone": "sand"
+        }
+      ],
+      "panels": [
+        {
+          "rect": [
+            65,
+            235,
+            390,
+            720
+          ],
+          "title": "LAPTOP CPU",
+          "tone": "sand"
+        },
+        {
+          "rect": [
+            475,
+            235,
+            390,
+            720
+          ],
+          "title": "ARM HPS CPU",
+          "tone": "sand"
+        },
+        {
+          "rect": [
+            885,
+            235,
+            850,
+            720
+          ],
+          "title": "FPGA FABRIC / NOMINAL 50 MHz",
+          "tone": "blue"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "slug": "02-dsp-finite-frames",
+      "title": "DSP datapath and finite-frame ownership",
+      "subtitle": "The same 256 / 128 geometry drives arithmetic, threshold ownership and the exact full tail.",
+      "source_ids": [
+        "S20",
+        "S19",
+        "S21",
+        "S22",
+        "S23",
+        "S29",
+        "S30",
+        "S31",
+        "S32",
+        "S33",
+        "S18"
+      ],
+      "review_notes": [
+        "Full finite geometry: frames=floor((Ns+254)/128), tau_last=128*frames, Ny=tau_last+384.",
+        "The packet path receives pre-mask power plus the mask decision; sparse output omits masked bins, dense output writes zero for them.",
+        "Core metric logic exists, but the current TSH2 hardware protocol does not export the broader original per-frame METRICS/WAVE telemetry records.",
+        "Delayed-reference history participates in input ready/acceptance; this is not a valid-only observation tap."
+      ],
+      "review_callouts": [
+        "Ns=384,000; frames=3,001; analysis tokens=384,128; full Y=384,512.",
+        "Frame 0 covers conceptual sample indices -128 through 127; its left half is zero.",
+        "THR2 equality is retained. Nyquist is eligible. The frame snapshot prevents mixed thresholds."
+      ],
+      "nodes": [
+        {
+          "id": "samples",
+          "rect": [
+            75,
+            260,
+            350,
+            180
+          ],
+          "title": "Finite sample tokens",
+          "body": [
+            "Indexed signed12 PCM",
+            "Then analysis-zero tokens"
+          ],
+          "tone": "mint"
+        },
+        {
+          "id": "ring",
+          "rect": [
+            505,
+            260,
+            350,
+            180
+          ],
+          "title": "Ring + scheduler",
+          "body": [
+            "256-sample window",
+            "Hop: 128 accepted tokens"
+          ],
+          "tone": "mint",
+          "code": "input_ring / frame_scheduler"
+        },
+        {
+          "id": "window",
+          "rect": [
+            935,
+            260,
+            350,
+            180
+          ],
+          "title": "Analysis window",
+          "body": [
+            "x[i] * unsigned16 Qw[i]",
+            "27-bit real; no downshift"
+          ],
+          "tone": "lav",
+          "code": "trecap_analysis_window"
+        },
+        {
+          "id": "fft",
+          "rect": [
+            1365,
+            260,
+            350,
+            180
+          ],
+          "title": "FFT256",
+          "body": [
+            "28-bit complex components",
+            "Eight radix-2 stages, each /2"
+          ],
+          "tone": "lav",
+          "code": "trecap_fft256"
+        },
+        {
+          "id": "ifft",
+          "rect": [
+            75,
+            520,
+            350,
+            180
+          ],
+          "title": "IFFT256",
+          "body": [
+            "36-bit complex components",
+            "Inverse twiddles; no stage /2"
+          ],
+          "tone": "lav",
+          "code": "trecap_ifft256"
+        },
+        {
+          "id": "builder",
+          "rect": [
+            505,
+            520,
+            350,
+            180
+          ],
+          "title": "Masked spectrum",
+          "body": [
+            "One decision controls both",
+            "conjugate partners"
+          ],
+          "tone": "lav",
+          "code": "spectrum_mask_builder"
+        },
+        {
+          "id": "mask",
+          "rect": [
+            935,
+            520,
+            350,
+            180
+          ],
+          "title": "Magnitude + THR2",
+          "body": [
+            "u56 Re^2 + Im^2",
+            "Mask if eligible power < THR2"
+          ],
+          "tone": "lav",
+          "code": "trecap_mag2_mask"
+        },
+        {
+          "id": "canon",
+          "rect": [
+            1365,
+            520,
+            350,
+            180
+          ],
+          "title": "Hermitian pairing",
+          "body": [
+            "Pair-average k with 256-k",
+            "DC / Nyquist imaginary = 0"
+          ],
+          "tone": "lav",
+          "code": "hermitian_canonicalizer"
+        },
+        {
+          "id": "wola",
+          "rect": [
+            75,
+            780,
+            350,
+            180
+          ],
+          "title": "Synthesis WOLA",
+          "body": [
+            "Emit 128 mature samples",
+            "Then add the new frame"
+          ],
+          "tone": "lav",
+          "code": "trecap_synthesis_wola"
+        },
+        {
+          "id": "metrics",
+          "rect": [
+            505,
+            780,
+            350,
+            180
+          ],
+          "title": "Delay context + Y",
+          "body": [
+            "384-sample reference delay",
+            "Held signed12 Y + index"
+          ],
+          "tone": "blue",
+          "code": "trecap_delay_error_metrics"
+        },
+        {
+          "id": "tail",
+          "rect": [
+            935,
+            780,
+            350,
+            180
+          ],
+          "title": "Pure tail drain",
+          "body": [
+            "384 WOLA-only ticks",
+            "No dummy FFT frames"
+          ],
+          "tone": "mint"
+        },
+        {
+          "id": "tap",
+          "rect": [
+            1365,
+            780,
+            350,
+            180
+          ],
+          "title": "Canonical-bin taps",
+          "body": [
+            "129 rows per frame",
+            "Power, mask, frame/bin, THR2"
+          ],
+          "tone": "rose"
+        }
+      ],
+      "edges": [
+        {
+          "from": "samples",
+          "to": "ring",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "ring",
+          "to": "window",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "window",
+          "to": "fft",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "fft",
+          "to": "canon",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "canon",
+          "to": "mask",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data"
+        },
+        {
+          "from": "mask",
+          "to": "builder",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data"
+        },
+        {
+          "from": "builder",
+          "to": "ifft",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data"
+        },
+        {
+          "from": "ifft",
+          "to": "wola",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "wola",
+          "to": "metrics",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "mask",
+          "to": "tap",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "tap",
+          "via": [
+            [
+              1110,
+              740
+            ],
+            [
+              1540,
+              740
+            ]
+          ],
+          "label": "Accepted unique bins",
+          "labelAt": [
+            1360,
+            712
+          ]
+        },
+        {
+          "from": "samples",
+          "to": "metrics",
+          "fromPort": "left",
+          "toPort": "top",
+          "kind": "data",
+          "labelWidth": 360,
+          "via": [
+            [
+              45,
+              350
+            ],
+            [
+              45,
+              740
+            ],
+            [
+              680,
+              740
+            ]
+          ],
+          "label": "Reference history handshake",
+          "labelAt": [
+            420,
+            712
+          ]
+        },
+        {
+          "from": "tail",
+          "to": "wola",
+          "fromPort": "bottom",
+          "toPort": "bottom",
+          "kind": "control",
+          "via": [
+            [
+              1110,
+              980
+            ],
+            [
+              250,
+              980
+            ]
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "rect": [
+            65,
+            1005,
+            810,
+            100
+          ],
+          "title": "Exact finite geometry",
+          "body": "384,000 PCM -> 384,128 analysis tokens -> 3,001 frames -> 384,512 Y.",
+          "tone": "mint",
+          "bodySize": 13.2,
+          "titleSize": 14
+        },
+        {
+          "rect": [
+            925,
+            1005,
+            810,
+            100
+          ],
+          "title": "Threshold ownership",
+          "body": "DC is protected; Nyquist is eligible; equality is retained. First frame covers indices -128..127 with a zero left half.",
+          "tone": "lav",
+          "bodySize": 13.2,
+          "titleSize": 14
+        }
+      ],
+      "panels": []
+    },
+    {
+      "number": 3,
+      "slug": "03-transform-memory",
+      "title": "FFT / IFFT engines and storage",
+      "subtitle": "Two separate iterative engines reuse a radix-2 butterfly and explicitly scheduled synchronous work RAM.",
+      "source_ids": [
+        "S20",
+        "S24",
+        "S25",
+        "S26",
+        "S27",
+        "S28"
+      ],
+      "review_notes": [
+        "This diagram is a template instantiated independently by FFT and IFFT; it is not one RAM shared by both engines.",
+        "The registered butterfly has five arithmetic register stages and a held result. Engine source describes seven-clock butterfly transactions; this is not a whole-frame or network latency claim.",
+        "RAM contents/read registers are not asynchronously cleared. All locations are loaded before compute; read and write schedules do not overlap, and the two butterfly addresses differ.",
+        "Use no arithmetic throughput or 48 kHz real-time acceptance claim derived solely from this structural schedule."
+      ],
+      "review_callouts": [
+        "Eight radix-2 stages x 128 butterflies = 1,024 butterflies per transform.",
+        "Forward FFT divides by 2 at every stage; inverse FFT does not. Do not reverse these scaling labels.",
+        "Round-to-nearest, ties away from zero, followed by signed saturation."
+      ],
+      "nodes": [
+        {
+          "id": "load",
+          "rect": [
+            75,
+            280,
+            470,
+            180
+          ],
+          "title": "Natural-order input",
+          "body": [
+            "All 256 complex values",
+            "are loaded before compute"
+          ],
+          "tone": "mint"
+        },
+        {
+          "id": "bitrev",
+          "rect": [
+            650,
+            280,
+            470,
+            180
+          ],
+          "title": "Bit-reversed load",
+          "body": [
+            "Permutation at RAM write",
+            "Output returns natural order"
+          ],
+          "tone": "lav"
+        },
+        {
+          "id": "ram",
+          "rect": [
+            1225,
+            280,
+            470,
+            180
+          ],
+          "title": "Per-engine work RAM",
+          "body": [
+            "FFT: 256 x 56 bits",
+            "IFFT: 256 x 72 bits",
+            "Packed complex, dual port"
+          ],
+          "tone": "blue"
+        },
+        {
+          "id": "fsm",
+          "rect": [
+            75,
+            540,
+            470,
+            180
+          ],
+          "title": "Engine controller",
+          "body": [
+            "LOAD -> READ -> START",
+            "WAIT -> output READ/SEND"
+          ],
+          "tone": "lav"
+        },
+        {
+          "id": "tw",
+          "rect": [
+            650,
+            540,
+            470,
+            180
+          ],
+          "title": "Registered twiddles",
+          "body": [
+            "Signed17 coefficients, F=15",
+            "Forward / inverse tables"
+          ],
+          "tone": "blue",
+          "code": "trecap_twiddle_rom"
+        },
+        {
+          "id": "mul",
+          "rect": [
+            1225,
+            540,
+            470,
+            180
+          ],
+          "title": "Complex products",
+          "body": [
+            "Four registered multiplies",
+            "Full-precision product sums"
+          ],
+          "tone": "lav"
+        },
+        {
+          "id": "out",
+          "rect": [
+            75,
+            800,
+            470,
+            180
+          ],
+          "title": "Natural-order output",
+          "body": [
+            "Registered RAM readout",
+            "Held through downstream stall"
+          ],
+          "tone": "rose"
+        },
+        {
+          "id": "hold",
+          "rect": [
+            650,
+            800,
+            470,
+            180
+          ],
+          "title": "Held butterfly result",
+          "body": [
+            "Ready/valid acceptance",
+            "Two distinct result addresses"
+          ],
+          "tone": "lav"
+        },
+        {
+          "id": "quant",
+          "rect": [
+            1225,
+            800,
+            470,
+            180
+          ],
+          "title": "Round / add / round",
+          "body": [
+            "Twiddle product shift15",
+            "Add/subtract; output scaling"
+          ],
+          "tone": "lav",
+          "code": "fft_stage / round_sat"
+        }
+      ],
+      "edges": [
+        {
+          "from": "load",
+          "to": "bitrev",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "bitrev",
+          "to": "ram",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data",
+          "labelWidth": 75,
+          "label": "load",
+          "labelAt": [
+            1172,
+            337
+          ]
+        },
+        {
+          "from": "fsm",
+          "to": "ram",
+          "fromPort": "top",
+          "toPort": "bottom",
+          "kind": "control",
+          "labelWidth": 360,
+          "via": [
+            [
+              310,
+              495
+            ],
+            [
+              1460,
+              495
+            ]
+          ],
+          "label": "Port addresses / enables",
+          "labelAt": [
+            870,
+            470
+          ]
+        },
+        {
+          "from": "fsm",
+          "to": "tw",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "control",
+          "labelWidth": 75,
+          "label": "index",
+          "labelAt": [
+            600,
+            600
+          ]
+        },
+        {
+          "from": "tw",
+          "to": "mul",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data",
+          "labelWidth": 80,
+          "label": "twiddle",
+          "labelAt": [
+            1172,
+            600
+          ]
+        },
+        {
+          "from": "ram",
+          "to": "mul",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "mul",
+          "to": "quant",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "quant",
+          "to": "hold",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data"
+        },
+        {
+          "from": "hold",
+          "to": "ram",
+          "fromPort": "top",
+          "toPort": "left",
+          "kind": "data",
+          "labelWidth": 260,
+          "via": [
+            [
+              885,
+              760
+            ],
+            [
+              1175,
+              760
+            ],
+            [
+              1175,
+              370
+            ]
+          ],
+          "label": "Two result writes",
+          "labelAt": [
+            1090,
+            735
+          ]
+        },
+        {
+          "from": "ram",
+          "to": "out",
+          "fromPort": "top",
+          "toPort": "left",
+          "kind": "data",
+          "labelWidth": 340,
+          "via": [
+            [
+              1460,
+              235
+            ],
+            [
+              45,
+              235
+            ],
+            [
+              45,
+              890
+            ]
+          ],
+          "label": "Sequential RAM readout",
+          "labelAt": [
+            845,
+            210
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "rect": [
+            65,
+            1000,
+            810,
+            105
+          ],
+          "title": "Separate FFT and IFFT instances",
+          "body": "Each engine owns its own RAM and butterfly. Eight stages x 128 butterflies = 1,024 butterflies per transform.",
+          "tone": "blue",
+          "bodySize": 13.2,
+          "titleSize": 14
+        },
+        {
+          "rect": [
+            925,
+            1000,
+            810,
+            105
+          ],
+          "title": "Scaling and storage discipline",
+          "body": "FFT divides by 2 per stage; IFFT does not. Ties round away from zero, then saturate. Work RAM is reloaded, not asynchronously cleared.",
+          "tone": "lav",
+          "bodySize": 13.2,
+          "titleSize": 14
+        }
+      ],
+      "panels": []
+    },
+    {
+      "number": 4,
+      "slug": "04-finite-epoch-feed-drain",
+      "title": "Finite epoch, sample ownership and completion",
+      "subtitle": "Host pauses preserve overlap/history; a completed core can still leave output bytes for the host to drain.",
+      "source_ids": [
+        "S01",
+        "S02",
+        "S17",
+        "S18",
+        "S22",
+        "S32",
+        "S06"
+      ],
+      "review_notes": [
+        "The real PCM, analysis flush and WOLA drain phases are logical token domains, not wall-clock intervals.",
+        "For input lengths other than 384000 in admitted simulations, calculate the geometry rather than assuming 128 analysis zeros.",
+        "The HPS controller interleaves reads/writes throughout RUN and continues draining after DONE. It never waits to upload all PCM into the 256-entry fabric FIFO first."
+      ],
+      "review_callouts": [
+        "One START owns the entire file and full tail. Chunk boundaries do not create reset or new epochs.",
+        "DONE means production complete, not that the host or laptop has received every byte.",
+        "CLEAR drops ownership and sticky faults but preserves the epoch counter; hardware reset resets epoch."
+      ],
+      "nodes": [
+        {
+          "id": "start",
+          "rect": [
+            75,
+            300,
+            350,
+            210
+          ],
+          "title": "IDLE -> START",
+          "body": [
+            "Configure THR2 and mode",
+            "No PCM preload",
+            "START increments epoch"
+          ],
+          "tone": "lav"
+        },
+        {
+          "id": "init",
+          "rect": [
+            505,
+            300,
+            350,
+            210
+          ],
+          "title": "Initialize ownership",
+          "body": [
+            "CLEAR_CORE -> WAIT_INIT",
+            "ISSUE_START -> WAIT_ACCEPT"
+          ],
+          "tone": "lav"
+        },
+        {
+          "id": "pcm",
+          "rect": [
+            935,
+            300,
+            350,
+            210
+          ],
+          "title": "Real PCM tokens",
+          "body": [
+            "384,000 samples",
+            "Indices 0..383999",
+            "Gaps preserve stream state"
+          ],
+          "tone": "mint"
+        },
+        {
+          "id": "flush",
+          "rect": [
+            1365,
+            300,
+            350,
+            210
+          ],
+          "title": "Analysis-zero tokens",
+          "body": [
+            "128 zero tokens",
+            "Indices 384000..384127",
+            "Completes frame 3,001"
+          ],
+          "tone": "mint"
+        },
+        {
+          "id": "host",
+          "rect": [
+            75,
+            710,
+            350,
+            210
+          ],
+          "title": "Host drains leftovers",
+          "body": [
+            "Verify full read totals",
+            "No drops; stable epoch",
+            "Final status checked"
+          ],
+          "tone": "sand"
+        },
+        {
+          "id": "done",
+          "rect": [
+            505,
+            710,
+            350,
+            210
+          ],
+          "title": "DONE, no faults",
+          "body": [
+            "Input: 384,000",
+            "Y: 384,512",
+            "Emitted frames: 3,001"
+          ],
+          "tone": "lav"
+        },
+        {
+          "id": "export",
+          "rect": [
+            935,
+            710,
+            350,
+            210
+          ],
+          "title": "Exporter drain",
+          "body": [
+            "All records committed to FIFO",
+            "Core quiescent, exact totals",
+            "No partial packed word"
+          ],
+          "tone": "rose"
+        },
+        {
+          "id": "tail",
+          "rect": [
+            1365,
+            710,
+            350,
+            210
+          ],
+          "title": "WOLA-only drain",
+          "body": [
+            "384 pure tail ticks",
+            "Indices 384128..384511",
+            "No extra FFT / mask work"
+          ],
+          "tone": "mint"
+        }
+      ],
+      "edges": [
+        {
+          "from": "start",
+          "to": "init",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "control",
+          "labelWidth": 70,
+          "label": "START",
+          "labelAt": [
+            465,
+            370
+          ]
+        },
+        {
+          "from": "init",
+          "to": "pcm",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "control"
+        },
+        {
+          "from": "pcm",
+          "to": "flush",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "flush",
+          "to": "tail",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data",
+          "labelWidth": 270,
+          "label": "Final analysis frame",
+          "labelAt": [
+            1540,
+            590
+          ]
+        },
+        {
+          "from": "tail",
+          "to": "export",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data"
+        },
+        {
+          "from": "export",
+          "to": "done",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "control"
+        },
+        {
+          "from": "done",
+          "to": "host",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "control"
+        }
+      ],
+      "notes": [
+        {
+          "rect": [
+            75,
+            565,
+            1210,
+            110
+          ],
+          "title": "Feed and drain throughout RUN",
+          "body": "The HPS interleaves PCM writes with Y and spectral reads. Chunk boundaries do not reset the core or start new epochs.",
+          "tone": "sand",
+          "bodySize": 15
+        },
+        {
+          "rect": [
+            65,
+            980,
+            810,
+            115
+          ],
+          "title": "Production completion is not host reception",
+          "body": "DONE can leave FIFO data unread. The host continues draining and verifies output totals before explicit CLEAR.",
+          "tone": "rose"
+        },
+        {
+          "rect": [
+            925,
+            980,
+            810,
+            115
+          ],
+          "title": "Ownership reset versus hardware reset",
+          "body": "CLEAR preserves the epoch counter; hardware reset resets it. These are logical token phases, not measured wall-clock intervals.",
+          "tone": "lav"
+        }
+      ],
+      "panels": []
+    },
+    {
+      "number": 5,
+      "slug": "05-tsp1-y-outputs",
+      "title": "Two output paths: reconstructed Y and spectral TSP1",
+      "subtitle": "Waveform samples and spectral powers have different semantics, buffering and byte counts.",
+      "source_ids": [
+        "S02",
+        "S03",
+        "S34",
+        "S11",
+        "S12",
+        "S05"
+      ],
+      "review_notes": [
+        "Header offsets: magic0, version4, encoding6, config8, payload length12, frame16, threshold24, entry count32, flags34, reserved36, checksum40; payload begins48.",
+        "Checksum covers header bytes0..39 and payload/padding, excluding the stored checksum itself. It is FNV-1a64, not CRC.",
+        "Sparse K=129 at threshold zero yields1080bytes/frame, larger than dense952. Do not imply sparse always saves bytes.",
+        "Packet bytes count only the spectral representation. Y has384512*4=1538048 bytes in the full run, separately returned. TSP1 has no phase and cannot reconstruct the waveform by itself.",
+        "No legacy32-byte telemetry header, SPEC129 compression shift, METRICS, STATUS UDP record or DDR64-byte alignment belongs here."
+      ],
+      "review_callouts": [
+        "Sparse: 48 + 8K bytes/frame. Each entry is bin index8 + power56; DC is always present, so 1 <= K <= 129.",
+        "Dense: 129 x 7 power bytes + header + 1 zero pad byte = 952 bytes/frame.",
+        "Finite TCP service selects sparse. The lower-level adapter and tests also support dense."
+      ],
+      "nodes": [
+        {
+          "id": "wola",
+          "rect": [
+            80,
+            290,
+            370,
+            180
+          ],
+          "title": "Reconstructed Y",
+          "body": [
+            "Signed12 sample + index",
+            "Held ready/valid"
+          ],
+          "tone": "lav"
+        },
+        {
+          "id": "yfifo",
+          "rect": [
+            580,
+            290,
+            370,
+            180
+          ],
+          "title": "Y FIFO",
+          "body": [
+            "1,024 x 32-bit words",
+            "Sign-extended samples"
+          ],
+          "tone": "blue",
+          "code": "stream_fifo"
+        },
+        {
+          "id": "hps",
+          "rect": [
+            1250,
+            290,
+            430,
+            180
+          ],
+          "title": "Same HPS controller",
+          "body": [
+            "Read Y at 0x044",
+            "Read spectral words at 0x040",
+            "Return full Y, then TSP1"
+          ],
+          "tone": "sand"
+        },
+        {
+          "id": "taps",
+          "rect": [
+            80,
+            570,
+            340,
+            190
+          ],
+          "title": "Canonical-bin taps",
+          "body": [
+            "129 valid-only rows",
+            "u56 power + mask + identity"
+          ],
+          "tone": "rose"
+        },
+        {
+          "id": "capture",
+          "rect": [
+            500,
+            570,
+            340,
+            190
+          ],
+          "title": "Frame capture RAM",
+          "body": [
+            "4 slots x 129 x 64 bits",
+            "Hold slot through final byte"
+          ],
+          "tone": "blue"
+        },
+        {
+          "id": "format",
+          "rect": [
+            920,
+            570,
+            340,
+            190
+          ],
+          "title": "TSP1 formatter",
+          "body": [
+            "48-byte header; little endian",
+            "FNV-1a64; align to 8 bytes"
+          ],
+          "tone": "rose"
+        },
+        {
+          "id": "pack",
+          "rect": [
+            1340,
+            570,
+            340,
+            190
+          ],
+          "title": "Byte-to-word packer",
+          "body": [
+            "Four accepted bytes",
+            "form one little-endian word"
+          ],
+          "tone": "rose"
+        },
+        {
+          "id": "sfifo",
+          "rect": [
+            1340,
+            825,
+            340,
+            140
+          ],
+          "title": "Spectral FIFO",
+          "body": [
+            "1,024 words x 32 bits",
+            "Full: hold word's 4th byte"
+          ],
+          "tone": "blue",
+          "bodySize": 14.3,
+          "titleSize": 17
+        }
+      ],
+      "edges": [
+        {
+          "from": "wola",
+          "to": "yfifo",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "yfifo",
+          "to": "hps",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data",
+          "labelWidth": 260,
+          "label": "Y words / 0x044",
+          "labelAt": [
+            1100,
+            350
+          ]
+        },
+        {
+          "from": "taps",
+          "to": "capture",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "tap"
+        },
+        {
+          "from": "capture",
+          "to": "format",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "format",
+          "to": "pack",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data",
+          "labelWidth": 65,
+          "label": "bytes",
+          "labelAt": [
+            1300,
+            630
+          ]
+        },
+        {
+          "from": "pack",
+          "to": "sfifo",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "sfifo",
+          "to": "hps",
+          "fromPort": "right",
+          "toPort": "right",
+          "kind": "data",
+          "labelWidth": 70,
+          "via": [
+            [
+              1750,
+              895
+            ],
+            [
+              1750,
+              380
+            ]
+          ],
+          "label": "0x040",
+          "labelAt": [
+            1745,
+            495
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "rect": [
+            80,
+            825,
+            1170,
+            140
+          ],
+          "title": "Power packets are separate from waveform samples",
+          "body": "TSP1 stores squared magnitudes without phase. Full Y is 384,512 x 4 = 1,538,048 bytes and remains a separate output. The TCP service selects sparse; the adapter also supports dense.",
+          "tone": "sand",
+          "bodySize": 15
+        },
+        {
+          "rect": [
+            65,
+            1000,
+            810,
+            105
+          ],
+          "title": "Sparse record: 48 + 8K bytes",
+          "body": "Each entry is bin8 + power56. DC is retained, so 1 <= K <= 129. At K=129, sparse is 1,080 bytes per frame.",
+          "tone": "rose",
+          "bodySize": 13.2,
+          "titleSize": 14
+        },
+        {
+          "rect": [
+            925,
+            1000,
+            810,
+            105
+          ],
+          "title": "Dense record: 952 bytes",
+          "body": "48-byte header + 129 x 7-byte powers + one pad byte. Sparse does not always save bytes. Byte counts do not describe WAV compression.",
+          "tone": "blue",
+          "bodySize": 13.2,
+          "titleSize": 14
+        }
+      ],
+      "panels": []
+    },
+    {
+      "number": 6,
+      "slug": "06-tcp-hps-mmio",
+      "title": "Laptop TCP, HPS software and MMIO transport",
+      "subtitle": "Complete input reception precedes accelerator execution; the response carries both full outputs.",
+      "source_ids": [
+        "S04",
+        "S05",
+        "S06",
+        "S02",
+        "A01",
+        "A02"
+      ],
+      "review_notes": [
+        "Request magic0x31515254; header< I Q I >: magic, threshold, input byte count. Reply magic0x31535254; header< I I I I Q Q Q >: magic,status,Y bytes,TSP1 bytes,epoch,board wall ns,board thread CPU ns.",
+        "Socket upload/reply and idle accept have10s deadlines; controller has45s epoch deadline; process alarm60s. A blocked MMIO bus cannot be interrupted by its own polling deadline.",
+        "Failed requests terminate the service without automatic retry/MMIO recovery. Exact reference gold is not uploaded to the FPGA.",
+        "Do not draw FPGA-to-HPS DMA, a reserved DDR ring or UDP. HPS uses physical DDR for normal Linux RAM, which is not the old FPGA ring-writer architecture.",
+        "Do not print historical private IP/boot/runtime ownership values in the plate. Port/protocol details are descriptive, not deployment instructions."
+      ],
+      "review_callouts": [
+        "One request per connection; a bounded number of requests is served serially.",
+        "The service invokes the frozen host02 timed controller and selects sparse mode1.",
+        "Board wall/thread timers exclude TCP input receipt and reply send. Laptop end-to-end timing has a different boundary."
+      ],
+      "nodes": [
+        {
+          "id": "request",
+          "rect": [
+            75,
+            300,
+            350,
+            210
+          ],
+          "title": "Laptop request",
+          "body": [
+            "16-byte header",
+            "1,536,000 PCM bytes",
+            "Half-close write side"
+          ],
+          "tone": "sand",
+          "bodySize": 14.8
+        },
+        {
+          "id": "receive",
+          "rect": [
+            505,
+            300,
+            350,
+            210
+          ],
+          "title": "Exact admission",
+          "body": [
+            "Magic, length, THR2 range",
+            "Exact EOF; signed12 values",
+            "Reject extra / missing bytes"
+          ],
+          "tone": "sand",
+          "bodySize": 14.8
+        },
+        {
+          "id": "ram",
+          "rect": [
+            935,
+            300,
+            350,
+            210
+          ],
+          "title": "Resident HPS buffers",
+          "body": [
+            "Full input already in RAM",
+            "Outputs prefaulted",
+            "CPU0; exclusive /dev/mem"
+          ],
+          "tone": "blue",
+          "bodySize": 14.8
+        },
+        {
+          "id": "loop",
+          "rect": [
+            1365,
+            300,
+            350,
+            210
+          ],
+          "title": "Feed / drain loop",
+          "body": [
+            "Poll status and levels",
+            "Up to 64 spectral, 64 Y,",
+            "then 64 PCM per iteration"
+          ],
+          "tone": "sand",
+          "bodySize": 14.8
+        },
+        {
+          "id": "laptop",
+          "rect": [
+            75,
+            710,
+            350,
+            210
+          ],
+          "title": "Laptop consumer",
+          "body": [
+            "Decode / compare / inspect",
+            "Exact checks happen after",
+            "the hardware operation"
+          ],
+          "tone": "sand",
+          "bodySize": 14.8
+        },
+        {
+          "id": "reply",
+          "rect": [
+            505,
+            710,
+            350,
+            210
+          ],
+          "title": "Complete TCP reply",
+          "body": [
+            "40-byte header",
+            "Full Y int32le first",
+            "Then complete sparse TSP1"
+          ],
+          "tone": "sand",
+          "bodySize": 14.8
+        },
+        {
+          "id": "adapter",
+          "rect": [
+            935,
+            710,
+            350,
+            210
+          ],
+          "title": "TSH2 aperture",
+          "body": [
+            "Identity / SOURCE_ID / config",
+            "PCM append and output pops",
+            "Aligned32, single-beat bus"
+          ],
+          "tone": "lav",
+          "bodySize": 14.8
+        },
+        {
+          "id": "bridge",
+          "rect": [
+            1365,
+            710,
+            350,
+            210
+          ],
+          "title": "Lightweight bridge",
+          "body": [
+            "4 KiB mapping at 0xFF200000",
+            "CPU MMIO + barriers",
+            "Avalon-MM requests / replies"
+          ],
+          "tone": "blue",
+          "bodySize": 14.8
+        }
+      ],
+      "edges": [
+        {
+          "from": "request",
+          "to": "receive",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "receive",
+          "to": "ram",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "ram",
+          "to": "loop",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "loop",
+          "to": "bridge",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data",
+          "fromOffset": -40,
+          "toOffset": -40,
+          "labelWidth": 100,
+          "label": "MMIO",
+          "labelAt": [
+            1450,
+            596
+          ]
+        },
+        {
+          "from": "bridge",
+          "to": "loop",
+          "fromPort": "top",
+          "toPort": "bottom",
+          "kind": "data",
+          "fromOffset": 40,
+          "toOffset": 40,
+          "labelWidth": 120,
+          "label": "responses",
+          "labelAt": [
+            1660,
+            596
+          ]
+        },
+        {
+          "from": "bridge",
+          "to": "adapter",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data",
+          "fromOffset": -35,
+          "toOffset": -35
+        },
+        {
+          "from": "adapter",
+          "to": "bridge",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data",
+          "fromOffset": 35,
+          "toOffset": 35
+        },
+        {
+          "from": "loop",
+          "to": "reply",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data",
+          "labelWidth": 340,
+          "via": [
+            [
+              1540,
+              680
+            ],
+            [
+              680,
+              680
+            ]
+          ],
+          "label": "After exact totals checks",
+          "labelAt": [
+            1035,
+            650
+          ]
+        },
+        {
+          "from": "reply",
+          "to": "laptop",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data",
+          "labelWidth": 65,
+          "label": "TCP",
+          "labelAt": [
+            465,
+            780
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "rect": [
+            75,
+            555,
+            1190,
+            100
+          ],
+          "title": "Timing boundaries differ",
+          "body": "Board wall / thread timers enclose the frozen controller only. TCP input receipt and reply transmission are outside those timers.",
+          "tone": "sand",
+          "bodySize": 14.2,
+          "titleSize": 14
+        },
+        {
+          "rect": [
+            65,
+            980,
+            810,
+            115
+          ],
+          "title": "Bounded, serialized service",
+          "body": "One request per connection; bounded requests served serially. Failed requests end the service without automatic retry or MMIO recovery.",
+          "tone": "sand"
+        },
+        {
+          "rect": [
+            925,
+            980,
+            810,
+            115
+          ],
+          "title": "Ordinary CPU transport",
+          "body": "No FPGA DMA, reserved DDR ring or UDP path is active. Reference gold is not uploaded to the FPGA. This view is descriptive, not deployment guidance.",
+          "tone": "blue"
+        }
+      ],
+      "panels": []
+    },
+    {
+      "number": 7,
+      "slug": "07-configuration-backpressure",
+      "title": "Control, backpressure and fault containment",
+      "subtitle": "Waveform ready/valid and source admission credit protect state across host stalls.",
+      "source_ids": [
+        "S01",
+        "S02",
+        "S17",
+        "S18",
+        "S19",
+        "S34",
+        "S03",
+        "S30"
+      ],
+      "review_notes": [
+        "START only in IDLE, with no faults or preloaded PCM. CLEAR=1 is explicit; epoch increments on START and survives CLEAR.",
+        "All bus requests require exactly one of read/write, byteenable15, burstcount1 and aligned address; invalid registers, busy config writes and malformed PCM latch bus fault.",
+        "Hardware watchdog defaults to3,000,000,000 fabric cycles (60s at50MHz). Elapsed fabric cycles include host-induced stalls and are not isolated FFT timing.",
+        "Exporter has four storage slots but active-source credit intentionally bounds the triggered-not-emitted frame count to one. Do not show four concurrently admitted frames in this profile."
+      ],
+      "review_callouts": [
+        "Taps remain valid-only. Export pressure throttles future source hops, not the tap interface itself.",
+        "The adapter responds with an error to illegal empty/full accesses; it does not wait indefinitely for data or space.",
+        "THR2 is fixed for the entire active TSH2 epoch, even though the shared core has per-frame configuration ownership."
+      ],
+      "nodes": [
+        {
+          "id": "config",
+          "rect": [
+            75,
+            250,
+            470,
+            170
+          ],
+          "title": "IDLE-only settings",
+          "body": [
+            "THR2: low32 + upper24",
+            "Sparse mode 0 / 1",
+            "START command = 2"
+          ],
+          "tone": "lav",
+          "bodySize": 14.6,
+          "titleSize": 17
+        },
+        {
+          "id": "frame",
+          "rect": [
+            650,
+            250,
+            470,
+            170
+          ],
+          "title": "Frame-owned THR2",
+          "body": [
+            "Index + threshold snapshot",
+            "TSH2 keeps THR2 fixed",
+            "for the entire active epoch"
+          ],
+          "tone": "lav",
+          "bodySize": 14.6,
+          "titleSize": 17
+        },
+        {
+          "id": "credit",
+          "rect": [
+            1225,
+            250,
+            470,
+            170
+          ],
+          "title": "Next-hop credit",
+          "body": [
+            "sample_idx <",
+            "(emitted_frames + 1) * 128",
+            "At most one un-emitted frame"
+          ],
+          "tone": "lav",
+          "bodySize": 14.6,
+          "titleSize": 17
+        },
+        {
+          "id": "source",
+          "rect": [
+            75,
+            500,
+            470,
+            170
+          ],
+          "title": "Finite PCM source",
+          "body": [
+            "Ready/valid tokens",
+            "Stalls preserve index,",
+            "overlap and WOLA history"
+          ],
+          "tone": "mint",
+          "bodySize": 14.6,
+          "titleSize": 17
+        },
+        {
+          "id": "core",
+          "rect": [
+            650,
+            500,
+            470,
+            170
+          ],
+          "title": "Numerical core",
+          "body": [
+            "Enable remains high",
+            "Taps are valid-only",
+            "Y has native ready/valid"
+          ],
+          "tone": "lav",
+          "bodySize": 14.6,
+          "titleSize": 17
+        },
+        {
+          "id": "exp",
+          "rect": [
+            1225,
+            500,
+            470,
+            170
+          ],
+          "title": "Exporter + FIFO",
+          "body": [
+            "Final accepted record byte",
+            "advances emitted_frames",
+            "Word-boundary backpressure"
+          ],
+          "tone": "rose",
+          "bodySize": 14.6,
+          "titleSize": 17
+        },
+        {
+          "id": "host",
+          "rect": [
+            75,
+            750,
+            470,
+            170
+          ],
+          "title": "Host feed / drain",
+          "body": [
+            "Read to release occupancy",
+            "Write only when PCM ready"
+          ],
+          "tone": "sand",
+          "bodySize": 14.6,
+          "titleSize": 17
+        },
+        {
+          "id": "fault",
+          "rect": [
+            650,
+            750,
+            470,
+            170
+          ],
+          "title": "Sticky fault causes",
+          "body": [
+            "Bus / core / exporter",
+            "Count and watchdog",
+            "Explicit CLEAR for recovery"
+          ],
+          "tone": "rose",
+          "bodySize": 14.6,
+          "titleSize": 17
+        },
+        {
+          "id": "y",
+          "rect": [
+            1225,
+            750,
+            470,
+            170
+          ],
+          "title": "Y FIFO",
+          "body": [
+            "Full FIFO withholds y_ready",
+            "Held sample and index",
+            "until downstream acceptance"
+          ],
+          "tone": "blue",
+          "bodySize": 14.6,
+          "titleSize": 17
+        }
+      ],
+      "edges": [
+        {
+          "from": "config",
+          "to": "frame",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "control",
+          "labelWidth": 75,
+          "label": "THR2",
+          "labelAt": [
+            600,
+            305
+          ]
+        },
+        {
+          "from": "frame",
+          "to": "core",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "control"
+        },
+        {
+          "from": "credit",
+          "to": "source",
+          "fromPort": "top",
+          "toPort": "left",
+          "kind": "control",
+          "labelWidth": 360,
+          "via": [
+            [
+              1460,
+              225
+            ],
+            [
+              45,
+              225
+            ],
+            [
+              45,
+              585
+            ]
+          ],
+          "label": "Analysis-token admission",
+          "labelAt": [
+            880,
+            202
+          ]
+        },
+        {
+          "from": "source",
+          "to": "core",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "core",
+          "to": "exp",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "tap",
+          "labelWidth": 70,
+          "label": "taps",
+          "labelAt": [
+            1170,
+            555
+          ]
+        },
+        {
+          "from": "exp",
+          "to": "credit",
+          "fromPort": "top",
+          "toPort": "bottom",
+          "kind": "control",
+          "labelWidth": 200,
+          "label": "emitted counter",
+          "labelAt": [
+            1580,
+            451
+          ]
+        },
+        {
+          "from": "core",
+          "to": "y",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data",
+          "fromOffset": -20,
+          "toOffset": -20,
+          "labelWidth": 35,
+          "via": [
+            [
+              1175,
+              565
+            ],
+            [
+              1175,
+              815
+            ]
+          ],
+          "label": "Y",
+          "labelAt": [
+            1195,
+            695
+          ]
+        },
+        {
+          "from": "y",
+          "to": "core",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "control",
+          "fromOffset": 25,
+          "toOffset": 25,
+          "labelWidth": 70,
+          "via": [
+            [
+              1150,
+              860
+            ],
+            [
+              1150,
+              610
+            ]
+          ],
+          "label": "ready",
+          "labelAt": [
+            1150,
+            710
+          ]
+        },
+        {
+          "from": "host",
+          "to": "y",
+          "fromPort": "bottom",
+          "toPort": "bottom",
+          "kind": "control",
+          "labelWidth": 270,
+          "via": [
+            [
+              310,
+              945
+            ],
+            [
+              1460,
+              945
+            ]
+          ],
+          "label": "Host pops Y words",
+          "labelAt": [
+            480,
+            923
+          ]
+        },
+        {
+          "from": "host",
+          "to": "exp",
+          "fromPort": "right",
+          "toPort": "right",
+          "kind": "control",
+          "labelWidth": 340,
+          "via": [
+            [
+              590,
+              835
+            ],
+            [
+              590,
+              715
+            ],
+            [
+              1740,
+              715
+            ],
+            [
+              1740,
+              585
+            ]
+          ],
+          "label": "Host pops spectral words",
+          "labelAt": [
+            1440,
+            689
+          ]
+        },
+        {
+          "from": "core",
+          "to": "fault",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "control",
+          "labelWidth": 220,
+          "label": "fault reporting",
+          "labelAt": [
+            885,
+            696
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "rect": [
+            65,
+            985,
+            810,
+            110
+          ],
+          "title": "Admission credit is not tap ready/valid",
+          "body": "Export pressure limits future source hops. Four exporter slots do not mean four concurrently admitted frames in the active profile.",
+          "tone": "lav",
+          "bodySize": 13.5
+        },
+        {
+          "rect": [
+            925,
+            985,
+            810,
+            110
+          ],
+          "title": "Illegal accesses fail explicitly",
+          "body": "Full/empty illegal MMIO accesses return an error and latch a fault. Hardware watchdog: 3,000,000,000 cycles; elapsed cycles include host stalls.",
+          "tone": "rose",
+          "bodySize": 13.5
+        }
+      ],
+      "panels": []
+    },
+    {
+      "number": 8,
+      "slug": "08-clock-reset-verification",
+      "title": "Clock, reset and verification boundaries",
+      "subtitle": "Active clock/reset structure and distinct evidence scopes. Dotted evidence links are not hardware signals.",
+      "source_ids": [
+        "A01",
+        "A02",
+        "S02",
+        "S17",
+        "S24",
+        "S25",
+        "S32",
+        "S10",
+        "S16",
+        "S14",
+        "S15",
+        "S13"
+      ],
+      "review_notes": [
+        "The retained board top uses HPS reset only; KEY does not cancel a pending bus response. A copied TSH1 comment does not change its instantiated TSH2 adapter.",
+        "No formal CDC/RDC, metastability proof, exhaustive code-coverage closure, PVT qualification or industrial certification is claimed.",
+        "Public portable tests cover the unchanged stream/core/exporter closure at Ns1024 and use synthetic fixtures. The broader accepted campaign includes two full384000 simulations and58physical epochs, but these are distinct evidence scopes.",
+        "Functional simulations omit SYNTHESIS and use procedural assertions/checkers, not a UVM or concurrent-SVA environment. Source-bound fit/timing is historical; creating these diagrams performs no new synthesis, simulation or hardware run.",
+        "The public repository omits generated vendor IP and full fitted build artifacts. Board wrapper clock/reset details were checked against retained sources whose hashes match the published fitted source manifest."
+      ],
+      "review_callouts": [
+        "No active codec RX/TX asynchronous FIFOs in this profile. Do not copy the old audio-clock diagram.",
+        "Payload RAM is generally not asynchronously reset: ownership is cleared; transform RAM is reloaded; WOLA OLA storage is explicitly scrubbed.",
+        "Representative VCD clock is10ns in simulation; physical fabric constraint is20ns. A VCD is not a board latency measurement."
+      ],
+      "nodes": [
+        {
+          "id": "clock",
+          "rect": [
+            75,
+            290,
+            440,
+            180
+          ],
+          "title": "CLOCK_50",
+          "body": [
+            "Nominal / constrained 50 MHz",
+            "Adapter, source, DSP, exporter",
+            "and synchronous FIFOs"
+          ],
+          "tone": "blue",
+          "bodySize": 14.8
+        },
+        {
+          "id": "reset",
+          "rect": [
+            680,
+            290,
+            440,
+            180
+          ],
+          "title": "HPS h2f_reset_n",
+          "body": [
+            "Asynchronous reset source",
+            "from the retained platform"
+          ],
+          "tone": "blue",
+          "bodySize": 14.8
+        },
+        {
+          "id": "platform",
+          "rect": [
+            1285,
+            290,
+            440,
+            180
+          ],
+          "title": "Generated HPS platform",
+          "body": [
+            "CPU, Ethernet and DDR clocks",
+            "remain platform-owned",
+            "F2SDRAM writes tied inactive"
+          ],
+          "tone": "blue",
+          "bodySize": 14.8
+        },
+        {
+          "id": "clear",
+          "rect": [
+            75,
+            580,
+            440,
+            180
+          ],
+          "title": "CLEAR / epoch init",
+          "body": [
+            "Clear ownership and counts",
+            "Transform RAM loads per frame",
+            "Explicitly scrub WOLA RAM"
+          ],
+          "tone": "lav",
+          "bodySize": 14.8
+        },
+        {
+          "id": "sync",
+          "rect": [
+            680,
+            580,
+            440,
+            180
+          ],
+          "title": "3-stage reset release",
+          "body": [
+            "Asynchronous assertion",
+            "Release after 3 clock edges"
+          ],
+          "tone": "blue",
+          "bodySize": 14.8,
+          "code": "trecap_hps_top.reset_release"
+        },
+        {
+          "id": "fabric",
+          "rect": [
+            1285,
+            580,
+            440,
+            180
+          ],
+          "title": "Active TSH2 fabric",
+          "body": [
+            "One fabric clock domain",
+            "Adapter / source / DSP",
+            "Exporter + synchronous FIFOs"
+          ],
+          "tone": "lav",
+          "bodySize": 14.8
+        },
+        {
+          "id": "rtl",
+          "rect": [
+            75,
+            900,
+            790,
+            170
+          ],
+          "title": "Functional RTL evidence",
+          "body": [
+            "Directed, full-length and seeded simulations; exact scoreboards",
+            "Procedural checks, not UVM or concurrent SVA",
+            "10 ns simulation clock is not board timing"
+          ],
+          "tone": "gray",
+          "bodySize": 14.8
+        },
+        {
+          "id": "physical",
+          "rect": [
+            935,
+            900,
+            790,
+            170
+          ],
+          "title": "Source-bound physical evidence",
+          "body": [
+            "58 checked epochs; registered image and source manifest",
+            "Historical fit/timing evidence; no new runs in this atlas",
+            "No formal CDC/RDC or full-platform sign-off"
+          ],
+          "tone": "gray",
+          "bodySize": 14.8
+        }
+      ],
+      "edges": [
+        {
+          "from": "platform",
+          "to": "reset",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "control",
+          "labelWidth": 150,
+          "label": "h2f_reset_n",
+          "labelAt": [
+            1200,
+            345
+          ]
+        },
+        {
+          "from": "reset",
+          "to": "sync",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "control",
+          "labelWidth": 180,
+          "label": "async reset",
+          "labelAt": [
+            1015,
+            510
+          ]
+        },
+        {
+          "from": "clock",
+          "to": "sync",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "clock",
+          "labelWidth": 90,
+          "via": [
+            [
+              600,
+              380
+            ],
+            [
+              600,
+              670
+            ]
+          ],
+          "label": "clock",
+          "labelAt": [
+            600,
+            485
+          ]
+        },
+        {
+          "from": "clock",
+          "to": "fabric",
+          "fromPort": "right",
+          "toPort": "top",
+          "kind": "clock",
+          "labelWidth": 180,
+          "via": [
+            [
+              600,
+              380
+            ],
+            [
+              600,
+              540
+            ],
+            [
+              1505,
+              540
+            ]
+          ],
+          "label": "CLOCK_50",
+          "labelAt": [
+            1350,
+            511
+          ]
+        },
+        {
+          "from": "sync",
+          "to": "fabric",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "control",
+          "labelWidth": 140,
+          "label": "reset_n",
+          "labelAt": [
+            1200,
+            635
+          ]
+        },
+        {
+          "from": "clear",
+          "to": "fabric",
+          "fromPort": "bottom",
+          "toPort": "bottom",
+          "kind": "control",
+          "labelWidth": 510,
+          "via": [
+            [
+              295,
+              830
+            ],
+            [
+              1505,
+              830
+            ]
+          ],
+          "label": "Synchronous ownership / initialization",
+          "labelAt": [
+            860,
+            801
+          ]
+        },
+        {
+          "from": "rtl",
+          "to": "fabric",
+          "fromPort": "top",
+          "toPort": "bottom",
+          "kind": "tap",
+          "toOffset": -130,
+          "labelWidth": 260,
+          "via": [
+            [
+              470,
+              865
+            ],
+            [
+              1375,
+              865
+            ]
+          ],
+          "label": "Functional checks",
+          "labelAt": [
+            700,
+            838
+          ]
+        },
+        {
+          "from": "physical",
+          "to": "fabric",
+          "fromPort": "top",
+          "toPort": "bottom",
+          "kind": "tap",
+          "toOffset": 130,
+          "via": [
+            [
+              1330,
+              880
+            ],
+            [
+              1635,
+              880
+            ]
+          ]
+        }
+      ],
+      "notes": [],
+      "panels": []
+    }
+  ]
+}

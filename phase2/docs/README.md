@@ -7,6 +7,7 @@ Start with the [main project README](https://github.com/DatDinhh/T_RECAP#readme)
 | Document | Purpose |
 |---|---|
 | [Current Phase 2 entry point](../README.md) | Profile responsibilities, source map and reproducible checks |
+| [Current TSH2 architecture atlas](architecture/tsh2/README.md) | Eight views of the finite-file datapath, storage, control, transport and verification boundaries |
 | [Overview results and figures](project_overview/README.md) | Physical audio comparisons, host timing boundaries, claims audit and provenance |
 | [Verification portfolio](../verification/README.md) | Methodology, executed evidence and sign-off limits |
 | [Academic report and LaTeX](verification/portfolio/README.md) | Sixteen-page report with editable source |
@@ -23,7 +24,7 @@ The remaining sections document shared components and the original broad Phase 2
 | [Project overview](../README.md) | Engineering question, contribution, scope, current status |
 | [Specification index](specs/README.md) | Included normative PDF, revision identity, document precedence |
 | [Architecture design](architecture/architecture_design.md) | Datapath choices, scheduling, capacity budgets, design boundaries |
-| [Architecture atlas](architecture/diagrams/README.md) | Eight detailed diagrams with a viewer and SVG, PNG and PDF downloads |
+| [Historical architecture atlas, 2026-09-14](architecture/diagrams/README.md) | Preserved broad DDR/UDP architecture snapshot; separate from current TSH2 verification |
 | [Implementation plan](architecture/architecture_implementation.md) | Implemented deliverables, build dependencies, remaining platform results |
 | [Repository ownership](architecture/repo_architecture.md) | File ownership, source/generated distinctions, dependency rules |
 | [Build guide](architecture/build_order.md) | Tools and component build sequence |

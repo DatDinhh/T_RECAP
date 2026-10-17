@@ -1,0 +1,576 @@
+{
+  "schema": "trecap-current-tsh2-atlas-v1",
+  "profile": "TSH2",
+  "scope": "Source-derived architecture documentation; no new hardware or simulation execution",
+  "generator": {
+    "file": "build_atlas.py",
+    "sha256": "75cd2db934f0e2cc29d20fbd11918131219c425eea8df63acfa486c091039886",
+    "matplotlib": "3.11.2"
+  },
+  "definitions": {
+    "file": "atlas_definitions.json",
+    "sha256": "3ddc66258d1d7632d64f6edc0a63682b7e02d2124a85c54895e2a7c924470648"
+  },
+  "sources": [
+    {
+      "id": "S01",
+      "path": "profiles/tsh2/work/trecap_stream8_v01/CONTRACT.md",
+      "sha256": "73af404e631860483433b1df3e0fb53f7ea66bdc1f87319b5e519aec89181f13"
+    },
+    {
+      "id": "S02",
+      "path": "profiles/tsh2/work/trecap_stream8_v01/rtl/trecap_stream_adapter.sv",
+      "sha256": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305"
+    },
+    {
+      "id": "S03",
+      "path": "profiles/tsh2/work/trecap_stream8_v01/rtl/stream_fifo.sv",
+      "sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b"
+    },
+    {
+      "id": "S04",
+      "path": "profiles/tsh2/work/trecap_laptop_fpga_v01/service/service.c",
+      "sha256": "a65a1be11abe2e3f01c9d80f1bd3c167a1094881b301bfbc48870bf7496ba24c"
+    },
+    {
+      "id": "S05",
+      "path": "profiles/tsh2/work/trecap_laptop_fpga_v01/service/PROTOCOL.md",
+      "sha256": "e6ae0f1abf6f65b1ac75d3fe5fc64f8c987665de3ad9eb20ef59286a406bb65e"
+    },
+    {
+      "id": "S06",
+      "path": "profiles/tsh2/work/trecap_cpu_fpga_bench_v01/host02/tsh2_client.c",
+      "sha256": "36e2805f050fbd3635f536933f23fceb81567ff2824437786a04ff219020074a"
+    },
+    {
+      "id": "S07",
+      "path": "profiles/tsh2/work/trecap_stream8_v01/build/build.py",
+      "sha256": "5c96269d2de2049672c06361303ae27a16d7feb36de711089b37c734a93af40f"
+    },
+    {
+      "id": "S08",
+      "path": "profiles/tsh2/README.md",
+      "sha256": "2dbd78a0d9e5313cfe8348e2b5988130970530a28e83be4d6ddb07e2b7711cba"
+    },
+    {
+      "id": "S09",
+      "path": "profiles/tsh2/source_lineage.json",
+      "sha256": "1782e4315bab8e9a2b64fb181de8560a4454b83820dca608611dfbb4e8324eee"
+    },
+    {
+      "id": "S10",
+      "path": "verification/tsh2/admission.json",
+      "sha256": "ab03815268a28dd644ffd51ca908f2eae1c028bb4ff5410004b64b36e66536d4"
+    },
+    {
+      "id": "S11",
+      "path": "verification/tsh2/fixture_tools.py",
+      "sha256": "f018048a6a8c1a9314321e42b13a154add6054c6aacd232802bc24e3fa6f1b49"
+    },
+    {
+      "id": "S12",
+      "path": "profiles/tsh2/work/trecap_jtag_readback_v01/physical/validate_tsp1.py",
+      "sha256": "75e4745c2342f710c390f4f6199d99bd516eb85876b6d88de7a5dd3c4f1ad351"
+    },
+    {
+      "id": "S13",
+      "path": "verification/tsh2/README.md",
+      "sha256": "3b866f96fc7f7ea53f6971599b75a6146743186359cf8f895078ca758a983b0c"
+    },
+    {
+      "id": "S14",
+      "path": "verification/README.md",
+      "sha256": "e1ca8360cf4427282fec0fa0980513a7e68bb20372b6720e1afc1fe2431e4d46"
+    },
+    {
+      "id": "S15",
+      "path": "docs/results/verification_20261017/README.md",
+      "sha256": "2797554bec9b43dc36e708258b7574b38f36d99fcf392539cb7d9ae202c3ad53"
+    },
+    {
+      "id": "S16",
+      "path": "docs/results/verification_20261017/source_bindings/fitted_source_manifest.json",
+      "sha256": "5e2b53504f08ac46e5182d160b9a720b419a6627984c26d7890a02f204b33dfd"
+    },
+    {
+      "id": "S17",
+      "path": "verification/tsh2/rtl/trecap_pcm_stream_source.sv",
+      "sha256": "79e402d7314b6540aea813bab2a42efa4d3107a34a63d61ff5ea3549bb4101f7"
+    },
+    {
+      "id": "S18",
+      "path": "verification/tsh2/rtl/trecap_pcm_stream_top.sv",
+      "sha256": "2d8e7794a5629cf88e9d47ee0f2dd68ab28d1b73e3c071d701e2d5e3ab1780d2"
+    },
+    {
+      "id": "S19",
+      "path": "verification/tsh2/rtl/trecap_core_export_observed.sv",
+      "sha256": "a3e887bb2383ab6ca11d5a1d1f8eef184f9f855510171cfb531588448a9fada9"
+    },
+    {
+      "id": "S20",
+      "path": "verification/tsh2/rtl/trecap_core_pkg.sv",
+      "sha256": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784"
+    },
+    {
+      "id": "S21",
+      "path": "verification/tsh2/rtl/trecap_input_ring.sv",
+      "sha256": "022be1284812f1cfd98dd39ff178cb3890ec2bd3b8eb047ff2c2814ef5a5c44a"
+    },
+    {
+      "id": "S22",
+      "path": "verification/tsh2/rtl/trecap_frame_scheduler.sv",
+      "sha256": "6d263b88c540605e1bfb728e5b4c1bc87d7f5552a007b178031a198675f5c255"
+    },
+    {
+      "id": "S23",
+      "path": "verification/tsh2/rtl/trecap_analysis_window.sv",
+      "sha256": "62798c5bfed8076c54568986bd6df6d57b430e9aacb97efb582364974620c6ad"
+    },
+    {
+      "id": "S24",
+      "path": "verification/tsh2/rtl/trecap_fft256.sv",
+      "sha256": "a0c710046185fb54bd7281444c57539f9b689e4a6f52f634dba60a259619ef66"
+    },
+    {
+      "id": "S25",
+      "path": "verification/tsh2/rtl/trecap_ifft256.sv",
+      "sha256": "92c175d4a30da253e9a93e118080261958daa181cf4e6f12560d9524d110bd3c"
+    },
+    {
+      "id": "S26",
+      "path": "verification/tsh2/rtl/trecap_fft_stage.sv",
+      "sha256": "0f8795941f9843e1f266cc0ee9d310c4be52d3103e6d750abb455f49880472d1"
+    },
+    {
+      "id": "S27",
+      "path": "verification/tsh2/rtl/round_sat.sv",
+      "sha256": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457"
+    },
+    {
+      "id": "S28",
+      "path": "verification/tsh2/rtl/twiddle_rom.sv",
+      "sha256": "4f0beb59243898d47eb79857ceb0caf9cf9f753f2ea1d7e942507c4ee6824d7c"
+    },
+    {
+      "id": "S29",
+      "path": "verification/tsh2/rtl/trecap_hermitian_canonicalizer.sv",
+      "sha256": "6b1c11ba7badb80c18a71e157346be994cb2cec1c775a4a910f38843d4fa2b4d"
+    },
+    {
+      "id": "S30",
+      "path": "verification/tsh2/rtl/trecap_mag2_mask.sv",
+      "sha256": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d"
+    },
+    {
+      "id": "S31",
+      "path": "verification/tsh2/rtl/trecap_spectrum_mask_builder.sv",
+      "sha256": "695d9bd8c51c3ee97412854d37a4c5f5b953f793cb05a4a76f83d305e05fe3e0"
+    },
+    {
+      "id": "S32",
+      "path": "verification/tsh2/rtl/trecap_synthesis_wola.sv",
+      "sha256": "7d30dee3679adb15bee54f2ad9762d102b08f54314c280a6f4918b95d277a7aa"
+    },
+    {
+      "id": "S33",
+      "path": "verification/tsh2/rtl/trecap_delay_error_metrics.sv",
+      "sha256": "1f08cbb2131d9ab4f84c90b750c2836046aea966498d035bcec94422b4958e30"
+    },
+    {
+      "id": "S34",
+      "path": "verification/tsh2/rtl/trecap_spectral_exporter.sv",
+      "sha256": "7a041daa6f32486e3f3e2c4bfdb95b9a5dc6277f6b0f4ba7f525fcb082a258be"
+    }
+  ],
+  "archived_source_bindings": [
+    {
+      "id": "A01",
+      "artifact_id": "archive:workspace/outputs/trecap_stream8_v01/build01/sources/trecap_hps_top.sv",
+      "original_sha256": "cce69d7a6395d93c8a487e36b8db8e4288e5b2e9613f205dfd84b1f380d96447",
+      "public_binding": "docs/results/verification_20261017/source_bindings/fitted_source_manifest.json",
+      "manifest_entry": "sources/trecap_hps_top.sv",
+      "scope": "Original retained source was reviewed separately; public check verifies only its hash entry in the published fitted manifest."
+    },
+    {
+      "id": "A02",
+      "artifact_id": "archive:workspace/outputs/trecap_stream8_v01/build01/sources/platform_designer_wrapper.sv",
+      "original_sha256": "3123d253447c91903e41c646049a3f4c837ff871f3ca493b3019382d00934c4e",
+      "public_binding": "docs/results/verification_20261017/source_bindings/fitted_source_manifest.json",
+      "manifest_entry": "sources/platform_designer_wrapper.sv",
+      "scope": "Original retained source was reviewed separately; public check verifies only its hash entry in the published fitted manifest."
+    }
+  ],
+  "plates": [
+    {
+      "number": 1,
+      "title": "Current TSH2 system architecture",
+      "slug": "01-system",
+      "source_ids": [
+        "S01",
+        "S04",
+        "S06",
+        "S02",
+        "S18",
+        "S19",
+        "S34",
+        "A01"
+      ]
+    },
+    {
+      "number": 2,
+      "title": "DSP datapath and finite-frame ownership",
+      "slug": "02-dsp-finite-frames",
+      "source_ids": [
+        "S20",
+        "S19",
+        "S21",
+        "S22",
+        "S23",
+        "S29",
+        "S30",
+        "S31",
+        "S32",
+        "S33",
+        "S18"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "FFT / IFFT engines and storage",
+      "slug": "03-transform-memory",
+      "source_ids": [
+        "S20",
+        "S24",
+        "S25",
+        "S26",
+        "S27",
+        "S28"
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Finite epoch, sample ownership and completion",
+      "slug": "04-finite-epoch-feed-drain",
+      "source_ids": [
+        "S01",
+        "S02",
+        "S17",
+        "S18",
+        "S22",
+        "S32",
+        "S06"
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Two output paths: reconstructed Y and spectral TSP1",
+      "slug": "05-tsp1-y-outputs",
+      "source_ids": [
+        "S02",
+        "S03",
+        "S34",
+        "S11",
+        "S12",
+        "S05"
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Laptop TCP, HPS software and MMIO transport",
+      "slug": "06-tcp-hps-mmio",
+      "source_ids": [
+        "S04",
+        "S05",
+        "S06",
+        "S02",
+        "A01",
+        "A02"
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Control, backpressure and fault containment",
+      "slug": "07-configuration-backpressure",
+      "source_ids": [
+        "S01",
+        "S02",
+        "S17",
+        "S18",
+        "S19",
+        "S34",
+        "S03",
+        "S30"
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Clock, reset and verification boundaries",
+      "slug": "08-clock-reset-verification",
+      "source_ids": [
+        "A01",
+        "A02",
+        "S02",
+        "S17",
+        "S24",
+        "S25",
+        "S32",
+        "S10",
+        "S16",
+        "S14",
+        "S15",
+        "S13"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "01-system.png",
+      "repo_path": "docs/architecture/tsh2/01-system.png",
+      "sha256": "78f79f5ee794696145d006a866636e9b9e779aef3bf2b54071b225d7235cd644",
+      "bytes": 367602,
+      "plate": 1
+    },
+    {
+      "file": "01-system.svg",
+      "repo_path": "docs/architecture/tsh2/01-system.svg",
+      "sha256": "afc77d9a3a68084ff6b2511139b838f05c8872ecfc599377c3aa643e9a55971f",
+      "bytes": 30137,
+      "plate": 1
+    },
+    {
+      "file": "02-dsp-finite-frames.png",
+      "repo_path": "docs/architecture/tsh2/02-dsp-finite-frames.png",
+      "sha256": "a6176af0dfab3204c01df05725f12f56b0095ee1e034a1638e1c5803da1404c6",
+      "bytes": 402886,
+      "plate": 2
+    },
+    {
+      "file": "02-dsp-finite-frames.svg",
+      "repo_path": "docs/architecture/tsh2/02-dsp-finite-frames.svg",
+      "sha256": "c29761711a063cdc6705707e67dd2291fe776fe24ac013d62c474187130c0f80",
+      "bytes": 33879,
+      "plate": 2
+    },
+    {
+      "file": "03-transform-memory.png",
+      "repo_path": "docs/architecture/tsh2/03-transform-memory.png",
+      "sha256": "3adf78e0ad64f1e3c00bfae14bdaf22cd5f443daa43b0015c05c77bffb3200ec",
+      "bytes": 388964,
+      "plate": 3
+    },
+    {
+      "file": "03-transform-memory.svg",
+      "repo_path": "docs/architecture/tsh2/03-transform-memory.svg",
+      "sha256": "3ba9b7db61533679b8e107c754cd79ec5c89b2495af19f33f6e57c9f2d181811",
+      "bytes": 29611,
+      "plate": 3
+    },
+    {
+      "file": "04-finite-epoch-feed-drain.png",
+      "repo_path": "docs/architecture/tsh2/04-finite-epoch-feed-drain.png",
+      "sha256": "88eb6269df4291bda844d2df4857058c2c73fa78125aa6fbe29ca63732830e21",
+      "bytes": 394684,
+      "plate": 4
+    },
+    {
+      "file": "04-finite-epoch-feed-drain.svg",
+      "repo_path": "docs/architecture/tsh2/04-finite-epoch-feed-drain.svg",
+      "sha256": "42ac24d3d724416131e4f76c024297030798cec242151b6cef64c0f345883ee7",
+      "bytes": 26200,
+      "plate": 4
+    },
+    {
+      "file": "05-tsp1-y-outputs.png",
+      "repo_path": "docs/architecture/tsh2/05-tsp1-y-outputs.png",
+      "sha256": "f39c3086630288bc47b5971297884cf1695721cb063420b79fb7572449c73758",
+      "bytes": 384775,
+      "plate": 5
+    },
+    {
+      "file": "05-tsp1-y-outputs.svg",
+      "repo_path": "docs/architecture/tsh2/05-tsp1-y-outputs.svg",
+      "sha256": "3aaada3c1a2d111546ab6b140b5e86e6266fc6a883e74fb4d9676f7efd2c0c98",
+      "bytes": 25785,
+      "plate": 5
+    },
+    {
+      "file": "06-tcp-hps-mmio.png",
+      "repo_path": "docs/architecture/tsh2/06-tcp-hps-mmio.png",
+      "sha256": "775020e7f4ac12c5c7fea9989ad09b657a013f175e1d26959cb8c0473a64d6d0",
+      "bytes": 412983,
+      "plate": 6
+    },
+    {
+      "file": "06-tcp-hps-mmio.svg",
+      "repo_path": "docs/architecture/tsh2/06-tcp-hps-mmio.svg",
+      "sha256": "8621ba8aedbb25cbe14e604a6623a90cdb12a75213a26576336d6a339dab2846",
+      "bytes": 28108,
+      "plate": 6
+    },
+    {
+      "file": "07-configuration-backpressure.png",
+      "repo_path": "docs/architecture/tsh2/07-configuration-backpressure.png",
+      "sha256": "023e48c9fb850e842a69627696b68014061e083d438f67bae05d00c25c5daead",
+      "bytes": 409291,
+      "plate": 7
+    },
+    {
+      "file": "07-configuration-backpressure.svg",
+      "repo_path": "docs/architecture/tsh2/07-configuration-backpressure.svg",
+      "sha256": "88e59c2524b1ea03d782ee68be7774a5670a42d743f879becb384684ad92c146",
+      "bytes": 33215,
+      "plate": 7
+    },
+    {
+      "file": "08-clock-reset-verification.png",
+      "repo_path": "docs/architecture/tsh2/08-clock-reset-verification.png",
+      "sha256": "87531fe9e54529ec003686e8216bb23f9c0e3448f02bab809258e06dc5c6c9ae",
+      "bytes": 368303,
+      "plate": 8
+    },
+    {
+      "file": "08-clock-reset-verification.svg",
+      "repo_path": "docs/architecture/tsh2/08-clock-reset-verification.svg",
+      "sha256": "9843652285062a0d7797a1b2fd2d1b5d02bc478b8ca3601fab2181107c4283f6",
+      "bytes": 27233,
+      "plate": 8
+    }
+  ],
+  "layout_audit": [
+    {
+      "plate": 1,
+      "status": "PASS",
+      "nodes": 6,
+      "edges": 8,
+      "text_items": 43,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+    },
+    {
+      "plate": 2,
+      "status": "PASS",
+      "nodes": 12,
+      "edges": 12,
+      "text_items": 51,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+    },
+    {
+      "plate": 3,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 10,
+      "text_items": 42,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+    },
+    {
+      "plate": 4,
+      "status": "PASS",
+      "nodes": 8,
+      "edges": 7,
+      "text_items": 36,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+    },
+    {
+      "plate": 5,
+      "status": "PASS",
+      "nodes": 8,
+      "edges": 7,
+      "text_items": 38,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+    },
+    {
+      "plate": 6,
+      "status": "PASS",
+      "nodes": 8,
+      "edges": 9,
+      "text_items": 38,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+    },
+    {
+      "plate": 7,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 11,
+      "text_items": 43,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+    },
+    {
+      "plate": 8,
+      "status": "PASS",
+      "nodes": 8,
+      "edges": 8,
+      "text_items": 36,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+    }
+  ],
+  "publication_review": {
+    "status": "PASS",
+    "scope": "Visual inspection of all eight final PNGs for legibility, overlap and clipping; source semantics separately reviewed",
+    "reviewed_plates": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "reviewers": [
+      "renderer author",
+      "independent root reviewer"
+    ],
+    "method": "Final author inspection of all eight PNGs; independent root inspection of all eight compositions and approval of the final plate 4 wording adjustment",
+    "source_spec_sha256": "23aa806175467c544d641b1a5afc2d0e3060a0525c39233ec4338ef7802cb23f",
+    "generator_manifest_sha256_before_review_supplement": "cdc5a0c5bb0826d4e39a8ae7d24f11cf63483b8f02026ae43474a3443deb78fb",
+    "supplement": "Only visual-review fields added after rendering; all image, generator, definition and source hashes preserved"
+  }
+}
