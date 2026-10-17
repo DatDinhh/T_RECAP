@@ -105,7 +105,9 @@ Clock/reset ownership, checked behavior and remaining scope.
 
 The **waveform output contains reconstructed samples**. The **TSP1 output contains squared magnitudes without phase**, so it cannot reconstruct audio by itself. The finite TCP service returns sparse records. The lower-level adapter also supports dense records for verification.
 
-The current implementation is called **TSH2**, an internal name for the finite-file FPGA application profile and its host register interface. It uses ready/valid waveform flow control and spectral-record credit to preserve state while the host feeds and drains data. Its elapsed FPGA counter includes host-induced stalls. The [historical architecture atlas](phase2/docs/architecture/diagrams/README.md) preserves the broader DDR-ring/UDP source snapshot dated 2026-09-14. Its interfaces and acceptance scope are separate from current TSH2 verification.
+The current implementation is **TSH2**, short for **T-RECAP Signal-processing Hardware, version 2**. Its host interface exposes memory-mapped control/status registers and FIFO data ports. Software on the board's ARM HPS uses them to configure and start processing, transfer audio samples and results, and inspect progress and faults.
+
+The FPGA implementation uses ready/valid waveform flow control and spectral-record credit to preserve state while the host feeds and drains data. Its elapsed FPGA counter includes host-induced stalls. The [historical architecture atlas](phase2/docs/architecture/diagrams/README.md) preserves the broader DDR-ring/UDP source snapshot dated 2026-09-14. Its interfaces and acceptance scope are separate from current TSH2 verification.
 
 | Architecture scope | Current TSH2 atlas | Historical atlas, 2026-09-14 |
 |---|---|---|
@@ -241,20 +243,32 @@ Read the [academic LaTeX supplement](phase2/docs/verification/uvm_formal/README.
 
 ## Terms and abbreviations
 
-Start here if you are new to the project. **TSH2 is an implementation name, THR2 is a threshold setting, and TSP1 is an output format.** They refer to different things.
+Start here if you are new to the project. **TSH2 identifies the FPGA implementation and its host interface, THR2 is a threshold setting, and TSP1 is an output format.** They refer to different things.
 
-In one sentence: the **TSH2** FPGA profile applies **THR2** to FFT-bin power, exports retained spectral powers in **TSP1** packets, and separately produces reconstructed audio **Y**.
+In one sentence: the **TSH2** FPGA implementation applies **THR2** to FFT-bin power, exports retained spectral powers in **TSP1** packets, and separately produces reconstructed audio **Y**.
 
 ### Project names and output labels
 
 | Term | Meaning in this repository |
 |---|---|
 | **T-RECAP** | Threshold-based Reduction and Encoding for Controlled Audio Processing. |
-| **TSH2** | The internal identifier for the current finite-file FPGA application profile and its host register interface. A *profile* is a particular implementation with a defined configuration and interface. The repository does not document a long-form expansion of the letters T/S/H. |
-| **TSH1** | The earlier FPGA profile used for the historical 1,024-sample resident-compute comparison. Its timing results must not be read as current TSH2 measurements. |
+| **TSH2** | T-RECAP Signal-processing Hardware, version 2. The current finite-file FPGA implementation and its host interface. HPS software uses this interface to configure processing, transfer samples and results, and inspect status and faults. |
+| **TSH1** | T-RECAP Signal-processing Hardware, version 1. The earlier Phase 2 implementation used for the historical 1,024-sample resident-compute comparison. Its timing results must not be read as current TSH2 measurements. |
 | **THR2** | The threshold applied to squared FFT magnitude: `Re(X)^2 + Im(X)^2`. It is expressed in the implementation's fixed-point power units, not percent, decibels or sound-pressure level. Values below it are suppressed. Equality is retained, and DC is protected. |
 | **TSP1** | The project's version-1 spectral packet format. It carries frame metadata and power values, with retained-bin indices in sparse mode. It omits phase, so these packets alone cannot reconstruct the audio. |
 | **Y** | The reconstructed time-domain audio output from the IFFT/WOLA path. This sample stream is separate from TSP1 spectral packets. |
+
+### How software uses TSH2
+
+TSH1 and TSH2 are both Phase 2 implementations. The number identifies an implementation/interface version, not a project phase. TSH2 names the current hardware implementation and the interface used to access it. The signal-processing operations are FFT, thresholding and IFFT/WOLA.
+
+Software on the board's ARM HPS uses **memory-mapped registers and FIFO data ports** to:
+
+- Configure the threshold and output mode while idle, then issue START or CLEAR commands.
+- Write input PCM samples and read the separate reconstructed waveform and spectral outputs.
+- Read progress counters, FIFO availability, completion status and fault flags.
+
+These addresses expose hardware functions. A write to the PCM port queues a sample. A valid read from an output port removes the next word from that FIFO. The laptop communicates with the HPS over TCP, and the HPS performs these accesses to the FPGA.
 
 For the exact interfaces, see the [TSH2 contract](phase2/profiles/tsh2/work/trecap_stream8_v01/CONTRACT.md) and [output architecture](phase2/docs/architecture/tsh2/README.md).
 

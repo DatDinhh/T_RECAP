@@ -19,6 +19,19 @@ The objective is to reduce the spectral data a compatible host must receive and 
 
 The name describes the implemented functions. It does not establish electrical energy savings, faster computation than the laptop CPU, AI inference acceleration or qualified live microphone operation. The current fixed-point precision remains fixed. See the [results and measurement boundaries](project_overview/README.md) and [current architecture](architecture/tsh2/README.md).
 
+## Hardware implementation and interface names
+
+The documentation adopts **TSH** as **T-RECAP Signal-processing Hardware**. This is the naming convention agreed when clarifying the glossary, rather than a recovered expansion from the original source comments.
+
+- **TSH1** means version 1, the earlier Phase 2 implementation used for the historical 1,024-sample resident-compute comparison.
+- **TSH2** means version 2, the current finite-file implementation with input and output FIFOs that the HPS feeds and drains throughout a run.
+
+Both implementations belong to Phase 2. These version numbers do not refer to the project's phases. The separate Phase 1 demonstration uses a Haar transform.
+
+The TSH2 interface provides memory-mapped control/status registers and FIFO data ports. HPS software uses it to configure and command processing, transfer samples and results, and inspect counters and faults. The FFT, thresholding and IFFT/WOLA datapath performs the signal processing. The laptop accesses the system through the HPS TCP service.
+
+This naming clarification preserves the existing identifiers, interface versions, register addresses, packet formats and numerical behavior. The original contracts and verification evidence retain their recorded bytes.
+
 ## Relationship to earlier documents
 
 The former expansion was *Transform-domain Representation and Energy-aware Computation Accelerator with Controlled Precision*. It remains in original specification material and historical records as part of their identity, rather than as the current project name.
