@@ -1,0 +1,56 @@
+{
+  "case": {
+    "id": "mask_rules_prove",
+    "top": "mask_formal",
+    "harness": "mask_formal.sv",
+    "files": [
+      "trecap_core_pkg.sv",
+      "trecap_iface_pkg.sv",
+      "trecap_mag2_mask.sv"
+    ],
+    "parameters": {},
+    "frontend": "slang",
+    "mode": "prove",
+    "depth": 8,
+    "engine": "smtbmc z3",
+    "timeout": 120,
+    "scope": "actual default 28-bit inputs and56-bit magnitude: threshold/DC/unique rules and ready/valid; no multiplication or metric correctness claim"
+  },
+  "observed_status": "ERROR",
+  "expected_status": "PASS",
+  "acceptance": "FAIL",
+  "exit_code": 16,
+  "timed_out": false,
+  "cleanup": "not required",
+  "input_identity_unchanged": true,
+  "negative_signature_matched": false,
+  "elapsed_seconds": 1.796,
+  "command": [
+    "external-tool:oss-cad-suite/bin/sby",
+    "-d",
+    "result",
+    "case.sby"
+  ],
+  "sources": [
+    {
+      "path": "verification/tsh2/rtl/trecap_core_pkg.sv",
+      "sha256": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784",
+      "copy_name": "trecap_core_pkg.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_iface_pkg.sv",
+      "sha256": "d24ab618d901cb92394e190549489cb88caa7444de18731de0923c24446afd68",
+      "copy_name": "trecap_iface_pkg.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_mag2_mask.sv",
+      "sha256": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d",
+      "copy_name": "trecap_mag2_mask.sv"
+    }
+  ],
+  "harness_sha256": "8efff4fa2a7df10e10dd3aa26cd0da25df02419f50e205f5ed1ca4c15d9326de",
+  "configuration_sha256": "4125fa9232d318df25e4bce320a0a9cf29f7f29e787bcef789ef6d2695b00d24",
+  "traces": [],
+  "stdout_sha256": "25de119e9398d3e8dee62f636013f9e115a17aa765a8a10fb0dc090b4ab99544",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

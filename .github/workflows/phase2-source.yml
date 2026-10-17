@@ -43,6 +43,12 @@ jobs:
         run: ctest --preset verify
       - name: Check portable DV package and qualify its scoreboards
         run: python verification/tsh2/run.py --check-package
+      - name: Check UVM source package integrity
+        run: python verification/uvm/run.py --check-package
+      - name: Check formal package and recorded execution integrity
+        run: python verification/formal/run.py --repo-root . --check-package
+      - name: Check UVM and formal report integrity
+        run: python docs/verification/uvm_formal/check_bundle.py
       - name: Check published evidence integrity
         run: python docs/results/verification_20261017/export_public_evidence.py --check docs/results/verification_20261017
       - name: Check overview figures and result integrity

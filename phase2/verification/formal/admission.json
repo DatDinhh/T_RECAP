@@ -1,0 +1,51 @@
+{
+  "schema": "trecap-local-formal-admission-v1",
+  "DUT_modified": false,
+  "sources": [
+    {
+      "path": "profiles/tsh2/work/trecap_stream8_v01/rtl/stream_fifo.sv",
+      "sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b",
+      "copy_name": "stream_fifo.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/round_sat.sv",
+      "sha256": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457",
+      "copy_name": "round_sat.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_mag2_mask.sv",
+      "sha256": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d",
+      "copy_name": "trecap_mag2_mask.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_core_pkg.sv",
+      "sha256": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784",
+      "copy_name": "trecap_core_pkg.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_iface_pkg.sv",
+      "sha256": "d24ab618d901cb92394e190549489cb88caa7444de18731de0923c24446afd68",
+      "copy_name": "trecap_iface_pkg.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_packet_pkg.sv",
+      "sha256": "97a003c14b93019b5356208ea8be2e76df7435123132440729ea7038cd13b2be",
+      "copy_name": "trecap_packet_pkg.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_hermitian_canonicalizer.sv",
+      "sha256": "6b1c11ba7badb80c18a71e157346be994cb2cec1c775a4a910f38843d4fa2b4d",
+      "copy_name": "trecap_hermitian_canonicalizer.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_synthesis_wola.sv",
+      "sha256": "7d30dee3679adb15bee54f2ad9762d102b08f54314c280a6f4918b95d277a7aa",
+      "copy_name": "trecap_synthesis_wola.sv"
+    },
+    {
+      "path": "profiles/tsh2/work/trecap_stream8_v01/rtl/trecap_stream_adapter.sv",
+      "sha256": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305",
+      "copy_name": "trecap_stream_adapter.sv"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+SBY  2:39:01 [result] Copy 'archive:formal/attempts/final06/round_negative_no_saturation/round_sat.sv' to 'archive:formal/attempts/final06/round_negative_no_saturation/result/src/round_sat.sv'.
+SBY  2:39:01 [result] Copy 'archive:formal/attempts/final06/round_negative_no_saturation/round_formal.sv' to 'archive:formal/attempts/final06/round_negative_no_saturation/result/src/round_formal.sv'.
+SBY  2:39:01 [result] engine_0: smtbmc z3
+SBY  2:39:01 [result] base: starting process "cd result/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY  2:39:02 [result] base: finished (returncode=0)
+SBY  2:39:02 [result] prep: starting process "cd result/model; yosys -ql design_prep.log design_prep.ys"
+SBY  2:39:02 [result] prep: finished (returncode=0)
+SBY  2:39:02 [result] smt2: starting process "cd result/model; yosys -ql design_smt2.log design_smt2.ys"
+SBY  2:39:02 [result] smt2: finished (returncode=0)
+SBY  2:39:02 [result] engine_0: starting process "cd result; yosys-smtbmc -s z3 --presat --noprogress -t 1  --append 0 --dump-vcd engine_0/trace.vcd --dump-yw engine_0/trace.yw --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2"
+SBY  2:39:03 [result] engine_0: ##   0:00:00  Solver: z3
+SBY  2:39:03 [result] engine_0: ##   0:00:00  Checking assumptions in step 0..
+SBY  2:39:03 [result] engine_0: ##   0:00:00  Checking assertions in step 0..
+SBY  2:39:03 [result] engine_0: ##   0:00:00  BMC failed!
+SBY  2:39:03 [result] engine_0: ##   0:00:00  Value for anyconst round_formal.value_i (round_formal.sv:3.42-3.49): 128
+SBY  2:39:03 [result] engine_0: ##   0:00:00  Assert failed in round_formal: a_deliberately_false_no_saturation
+SBY  2:39:03 [result] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace.vcd
+SBY  2:39:03 [result] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace_tb.v
+SBY  2:39:03 [result] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace.smtc
+SBY  2:39:03 [result] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace.yw
+SBY  2:39:03 [result] engine_0: ##   0:00:00  Status: failed
+SBY  2:39:03 [result] engine_0: finished (returncode=1)
+SBY  2:39:03 [result] engine_0: Status returned by engine: FAIL
+SBY  2:39:03 [result] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:01 (1)
+SBY  2:39:03 [result] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  2:39:03 [result] summary: engine_0 (smtbmc z3) returned FAIL
+SBY  2:39:03 [result] summary: counterexample trace: result/engine_0/trace.vcd
+SBY  2:39:03 [result] summary:   failed assertion round_formal.a_deliberately_false_no_saturation at round_formal.sv:25.23-25.77
+SBY  2:39:03 [result] DONE (FAIL, rc=2)

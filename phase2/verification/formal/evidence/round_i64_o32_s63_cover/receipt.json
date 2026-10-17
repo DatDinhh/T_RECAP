@@ -1,0 +1,74 @@
+{
+  "case": {
+    "id": "round_i64_o32_s63_cover",
+    "top": "round_formal",
+    "harness": "round_formal.sv",
+    "files": [
+      "round_sat.sv"
+    ],
+    "parameters": {
+      "IN_W": 64,
+      "OUT_W": 32,
+      "SHIFT": 63,
+      "NEGATIVE": 0
+    },
+    "mode": "cover",
+    "depth": 1,
+    "engine": "smtbmc z3",
+    "timeout": 90,
+    "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job"
+  },
+  "observed_status": "PASS",
+  "expected_status": "PASS",
+  "acceptance": "PASS",
+  "exit_code": 0,
+  "host_deadline_exceeded": false,
+  "cleanup": "not required",
+  "input_identity_unchanged": true,
+  "negative_signature_matched": false,
+  "elapsed_seconds": 3.812,
+  "command": [
+    "external-tool:oss-cad-suite/bin/sby",
+    "-d",
+    "result",
+    "case.sby"
+  ],
+  "sources": [
+    {
+      "path": "verification/tsh2/rtl/round_sat.sv",
+      "sha256": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457",
+      "copy_name": "round_sat.sv"
+    }
+  ],
+  "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366",
+  "configuration_sha256": "ddb497a6f967cb576f74c93c6bdb5786a9cae36a70930518bf7ddffcbd9af436",
+  "traces": [
+    {
+      "path": "result/engine_0/trace0.vcd",
+      "sha256": "663665e22527473f522ba0ecd9cfeb4751dcf718583a09ecf56b66eefce9dff7",
+      "bytes": 2213
+    },
+    {
+      "path": "result/engine_0/trace1.vcd",
+      "sha256": "5232a649890bc5ac126fe41d9b07b006a86c13c5893baa2a4470ca0e186ac758",
+      "bytes": 2213
+    },
+    {
+      "path": "result/engine_0/trace2.vcd",
+      "sha256": "da679a72f41cb2180d3d066f36be1a89e115bcb4d958a0ed906b6e221a225040",
+      "bytes": 2213
+    },
+    {
+      "path": "result/engine_0/trace3.vcd",
+      "sha256": "811678735220253392acb73ccfad0bb85a3cab1d9fea3d1dadd4b5711aebe500",
+      "bytes": 2213
+    },
+    {
+      "path": "result/engine_0/trace4.vcd",
+      "sha256": "08c5a39aaae5428ddb4cbb903b6cc7d39fc5791ec22450e3b38ba7322df7e999",
+      "bytes": 2213
+    }
+  ],
+  "stdout_sha256": "3aaf45551ae846ef90c3f0cd1170deeef0ecc412ff28f919ad4e73c3410aafa9",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

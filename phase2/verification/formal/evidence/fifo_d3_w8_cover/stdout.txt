@@ -1,0 +1,82 @@
+SBY  2:37:14 [result] Copy 'archive:formal/attempts/final06/fifo_d3_w8_cover/stream_fifo.sv' to 'archive:formal/attempts/final06/fifo_d3_w8_cover/result/src/stream_fifo.sv'.
+SBY  2:37:14 [result] Copy 'archive:formal/attempts/final06/fifo_d3_w8_cover/fifo_formal.sv' to 'archive:formal/attempts/final06/fifo_d3_w8_cover/result/src/fifo_formal.sv'.
+SBY  2:37:14 [result] engine_0: smtbmc z3
+SBY  2:37:14 [result] base: starting process "cd result/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY  2:37:14 [result] base: finished (returncode=0)
+SBY  2:37:14 [result] prep: starting process "cd result/model; yosys -ql design_prep.log design_prep.ys"
+SBY  2:37:15 [result] prep: finished (returncode=0)
+SBY  2:37:15 [result] smt2: starting process "cd result/model; yosys -ql design_smt2.log design_smt2.ys"
+SBY  2:37:15 [result] smt2: finished (returncode=0)
+SBY  2:37:15 [result] engine_0: starting process "cd result; yosys-smtbmc -s z3 --presat -c --noprogress -t 24  --append 0 --dump-vcd engine_0/trace%.vcd --dump-yw engine_0/trace%.yw --dump-vlogtb engine_0/trace%_tb.v --dump-smtc engine_0/trace%.smtc model/design_smt2.smt2"
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Solver: z3
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Checking cover reachability in step 0..
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Checking cover reachability in step 1..
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Checking cover reachability in step 2..
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Reached cover statement in step 2 at fifo_formal: c_empty_both_requested
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace0.vcd
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace0_tb.v
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace0.smtc
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace0.yw
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Checking cover reachability in step 2..
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Checking cover reachability in step 3..
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Reached cover statement in step 3 at fifo_formal: c_simultaneous_accepted
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace1.vcd
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace1_tb.v
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace1.smtc
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace1.yw
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Checking cover reachability in step 3..
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Checking cover reachability in step 4..
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Reached cover statement in step 4 at fifo_formal: c_clear_recovery
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace2.vcd
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace2_tb.v
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace2.smtc
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace2.yw
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Checking cover reachability in step 4..
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Checking cover reachability in step 5..
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Reached cover statement in step 5 at fifo_formal: c_reset_recovery
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace3.vcd
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace3_tb.v
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace3.smtc
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace3.yw
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Checking cover reachability in step 5..
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Reached cover statement in step 5 at fifo_formal: c_full
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Reached cover statement in step 5 at fifo_formal: c_full_both_requested
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace4.vcd
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace4_tb.v
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace4.smtc
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace4.yw
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Checking cover reachability in step 5..
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Checking cover reachability in step 6..
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Checking cover reachability in step 7..
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Reached cover statement in step 7 at fifo_formal: c_write_and_read_wrap
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace5.vcd
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace5_tb.v
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace5.smtc
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace5.yw
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Checking cover reachability in step 7..
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Checking cover reachability in step 8..
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Reached cover statement in step 8 at fifo_formal: c_empty_after_full
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace6.vcd
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace6_tb.v
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace6.smtc
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace6.yw
+SBY  2:37:16 [result] engine_0: ##   0:00:00  Status: passed
+SBY  2:37:16 [result] engine_0: finished (returncode=0)
+SBY  2:37:16 [result] engine_0: Status returned by engine: pass
+SBY  2:37:16 [result] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:02 (2)
+SBY  2:37:16 [result] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  2:37:16 [result] summary: engine_0 (smtbmc z3) returned pass
+SBY  2:37:16 [result] summary: cover trace: result/engine_0/trace0.vcd
+SBY  2:37:16 [result] summary:   reached cover statement fifo_formal.c_empty_both_requested at fifo_formal.sv:53.13-53.70 step 2
+SBY  2:37:16 [result] summary: cover trace: result/engine_0/trace1.vcd
+SBY  2:37:16 [result] summary:   reached cover statement fifo_formal.c_simultaneous_accepted at fifo_formal.sv:51.13-51.56 step 3
+SBY  2:37:16 [result] summary: cover trace: result/engine_0/trace2.vcd
+SBY  2:37:16 [result] summary:   reached cover statement fifo_formal.c_clear_recovery at fifo_formal.sv:55.13-55.71 step 4
+SBY  2:37:16 [result] summary: cover trace: result/engine_0/trace3.vcd
+SBY  2:37:16 [result] summary:   reached cover statement fifo_formal.c_reset_recovery at fifo_formal.sv:56.13-56.82 step 5
+SBY  2:37:16 [result] summary: cover trace: result/engine_0/trace4.vcd
+SBY  2:37:16 [result] summary:   reached cover statement fifo_formal.c_full at fifo_formal.sv:49.13-49.34 step 5
+SBY  2:37:16 [result] summary:   reached cover statement fifo_formal.c_full_both_requested at fifo_formal.sv:52.13-52.68 step 5
+SBY  2:37:16 [result] summary: and 2 further traces
+SBY  2:37:16 [result] summary: see result/PASS for a complete summary
+SBY  2:37:16 [result] DONE (PASS, rc=0)

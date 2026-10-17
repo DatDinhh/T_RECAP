@@ -1,0 +1,204 @@
+{
+  "schema": "trecap-uvm-formal-independent-review-plan-v1",
+  "status": "PRE_OUTCOME_ACCEPTANCE_CRITERIA",
+  "scope": "Supplemental verification for admitted current TSH2 source. No hardware, new numerical algorithm, full-project closure or physical signoff.",
+  "baseline": {
+    "source_id": "39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed",
+    "portable_dut_files": 26,
+    "portable_input_samples": 1024,
+    "portable_y_samples_per_epoch": 1536,
+    "portable_frames_per_epoch": 9,
+    "portable_tap_rows_per_epoch": 1161,
+    "previous_framework": "Procedural SystemVerilog and Python/C++ scoreboards; no executed UVM or formal claim.",
+    "original_requirements": {
+      "total": 46,
+      "partial_active_profile": 30,
+      "excluded_active_profile": 16
+    },
+    "disposition_rule": "New evidence supplements applicable portions. A framework name or a local proof does not automatically close an original requirement."
+  },
+  "gates": [
+    {
+      "id": "UF-G01",
+      "name": "Source and tool admission",
+      "required": "Bind exact DUT, harness, fixture and oracle bytes; tool/version/executable and UVM-library identities; file order, parameters, defines and top. Stock UVM and an actual executed formal engine are required for their respective claims. Preserve failed attempts. No silent regenerated oracle or modified DUT."
+    },
+    {
+      "id": "UF-G02",
+      "name": "UVM architecture and execution",
+      "required": "Executed UVM sequence items, sequence/sequencer-driver interaction, independent passive monitor, analysis-port scoreboard, environment/test phases and objections/report handling. Trace actual accepted DUT transfers, not sequence intent. Compile the functional DUT without SYNTHESIS. Record UVM error/fatal counts, exact completion and simulator exit."
+    },
+    {
+      "id": "UF-G03",
+      "name": "Meaningful UVM matrix",
+      "required": "Execute THR2 zero and 100000000 in dense and sparse modes with recorded seeds or distinct backpressure schedules. Check source preservation, full Y values/indices, canonical tap fields, packet bytes/order, exact finite completion and held final Y under stalls. Reuse independently qualified immutable fixtures and clearly identify that oracle reuse."
+    },
+    {
+      "id": "UF-G04",
+      "name": "UVM checker qualification",
+      "required": "Positive trace and deliberate wrong expected output must both execute. The negative run must fail at the expected scoreboard/report ID with nonzero simulator/runner outcome, not an unrelated compile failure. Missing completion or zero comparisons cannot pass. Explicit observed counters are acceptable; unsupported covergroups/code coverage are not claimed."
+    },
+    {
+      "id": "UF-G05",
+      "name": "Formal proof scope",
+      "required": "Record exact module/parameter instance, property meanings, sampling, reset handling, every assumption, frontend transformations/defines, engine/solver, mode and bound. Distinguish unbounded inductive proof from bounded absence of a counterexample. UNKNOWN, timeout, unproven induction or preprocessing-only success is not proof PASS."
+    },
+    {
+      "id": "UF-G06",
+      "name": "Formal non-vacuity and sensitivity",
+      "required": "Reachability witnesses must exercise the property antecedents and key ownership states under the same assumptions: reset release, empty/full, accepted push/pop, simultaneous requests, pointer wrap and recovery where claimed. Deliberately false property must produce an actual counterexample under those assumptions. Do not assume away operations whose rejection behavior is claimed."
+    },
+    {
+      "id": "UF-G07",
+      "name": "Evidence and reproducibility",
+      "required": "Fresh immutable output directories; commands/raw logs/exit codes/deadlines; source hashes before and after; traces or counterexamples and cover witnesses; machine-readable counts and status. Package-only checks must be labeled without simulation/proof. Public receipts use normalized artifact identities with original hashes distinct from derived bytes."
+    },
+    {
+      "id": "UF-G08",
+      "name": "Independent final review",
+      "required": "Review executed receipts, UVM observation/scoreboard separation, formal assumptions and actual proof logs, negative-control failure classes, claimed coverage and public source admission. Verify the final published source is the executed source. Publish limitations beside the result."
+    }
+  ],
+  "requirement_mapping": [
+    {
+      "addition": "T-UVM-AUTH",
+      "requirements": [
+        "R-AUTH-01",
+        "R-REF-01",
+        "R-ENV-01"
+      ],
+      "properties": [
+        "P-OBS-01"
+      ],
+      "original_tests": [
+        "T-REF-01",
+        "T-REF-02",
+        "T-ENV-01",
+        "T-ENV-03"
+      ],
+      "evidence": "DUT/fixture/library admission; independent-oracle provenance reused explicitly; actual transaction comparisons and intentional scoreboard failure.",
+      "closure": "Supplemental selected-profile evidence; not every reference-vector class or four-state capability."
+    },
+    {
+      "addition": "T-UVM-NUM-GEO",
+      "requirements": [
+        "R-NUM-03",
+        "R-NUM-04",
+        "R-NUM-05",
+        "R-NUM-06",
+        "R-GEO-01",
+        "R-GEO-02"
+      ],
+      "properties": [
+        "P-CORE-02",
+        "P-CORE-03",
+        "P-CORE-05",
+        "P-NUM-01",
+        "P-NUM-02"
+      ],
+      "original_tests": [
+        "T-C-01",
+        "T-C-02",
+        "T-AR-04",
+        "T-AR-05"
+      ],
+      "evidence": "Complete Ns1024 Y/tap/packet comparisons in four threshold/encoding combinations. Metrics only if every required exposed field is explicitly compared.",
+      "closure": "Selected finite vectors and static threshold only. No full mandatory corpus, general arithmetic proof, all AC10/11 fields or full-length re-execution implied."
+    },
+    {
+      "addition": "T-UVM-FLOW",
+      "requirements": [
+        "R-FLOW-01",
+        "R-FLOW-02",
+        "R-FLOW-05",
+        "R-ENV-02"
+      ],
+      "properties": [
+        "P-RV-01",
+        "P-CORE-01",
+        "P-CORE-08",
+        "P-LIVE-01"
+      ],
+      "original_tests": [
+        "T-C-03",
+        "T-C-06",
+        "T-ENV-01",
+        "T-ENV-02"
+      ],
+      "evidence": "Observed handshake acceptance, stable held payload/identity, no loss/duplication, exact full-tail completion and explicit bounded stall schedules.",
+      "closure": "Conditional finite-run progress only. Dynamic threshold commit and arbitrary stall fairness remain outside the claim."
+    },
+    {
+      "addition": "T-FORMAL-FIFO",
+      "requirements": [
+        "R-FLOW-01",
+        "R-FLOW-02",
+        "R-RST-01",
+        "R-ENV-01"
+      ],
+      "properties": [
+        "P-CORE-06",
+        "P-CTRL-01"
+      ],
+      "original_tests": [
+        "T-C-03",
+        "T-C-05",
+        "T-C-06",
+        "T-ENV-01"
+      ],
+      "evidence": "Unchanged synchronous stream_fifo: occupancy bounds, accepted-operation accounting, pointer/order ownership, registered pop output and reset/clear semantics at each proved parameter instance.",
+      "closure": "Local synchronous FIFO property evidence. P-CDC-01 is not mapped because this DUT is not an asynchronous FIFO; no fabric/platform CDC or full-core reset proof."
+    },
+    {
+      "addition": "T-FORMAL-NUM-OPTIONAL",
+      "requirements": [
+        "R-NUM-02",
+        "R-NUM-04",
+        "R-NUM-05"
+      ],
+      "properties": [
+        "P-NUM-02",
+        "P-NUM-03"
+      ],
+      "original_tests": [
+        "T-AR-01",
+        "T-AR-03",
+        "T-AR-05"
+      ],
+      "evidence": "Only if an admitted arithmetic/mask block is actually proved: explicit signed widths, independent mathematical predicate, tie/equality/protected-bin witnesses and exact parameter scope.",
+      "closure": "Optional until selected before results; no full FFT/IFFT or every-width proof inferred."
+    }
+  ],
+  "fifo_review_contract": {
+    "source_mapping_correction": "2026-10-17: prior mapping of stream_fifo32x256 to PCM was incorrect. Initial files are preserved with before_source_mapping_correction suffix; see source_mapping_correction_20261017.json.",
+    "active_parameters": [
+      {
+        "WIDTH": 32,
+        "DEPTH": 1024,
+        "use": "Deployed Y and spectral output FIFOs"
+      }
+    ],
+    "additional_parameters": [
+      {
+        "WIDTH": 32,
+        "DEPTH": 256,
+        "use": "Additional generic stream_fifo configuration; not the deployed PCM implementation"
+      }
+    ],
+    "pcm_input_exclusion": "Actual PCM FIFO is separate 12-bit pcm_mem and ownership/read pipeline inside trecap_pcm_stream_source at FIFO_DEPTH256. The stream_fifo harness does not prove that implementation.",
+    "pre_edge_acceptance": "push = push_i && !full_o; pop = pop_i && !empty_o",
+    "simultaneous_empty": "Only push is accepted; the new item is not bypassed to data_o.",
+    "simultaneous_full": "Only pop is accepted; the incoming item is not accepted in the same edge.",
+    "output": "data_o is registered on accepted pop. It and RAM are not reset/cleared; compare only valid post-pop observations.",
+    "reset_clear": "Reset or clear zero pointers and occupancy; do not initialize all memory in the formal harness.",
+    "reduced_parameters": "A proof at reduced width/depth is a proof of those instances, not automatically the deployed output32x1024 configuration. Generic32x256 is additional, not deployed PCM."
+  },
+  "inherited_limits": [
+    "The complete FFT/IFFT, WOLA, exporter, TCP/HPS/MMIO system is not formally proved by a FIFO harness.",
+    "Two-state formal does not establish X/Z detection, analog metastability, CDC/RDC, STA, PVT or physical reset release.",
+    "The UVM short synthetic matrix supplements the historical full384000 runs and 58 physical epochs; it does not repeat them.",
+    "Static TSH2 threshold ownership is applicable; dynamic commits, live codec/ADC, reserved DDR ring and UDP remain excluded from this active profile.",
+    "Mandatory metrics not exposed by the active service and broader original acceptance requirements remain open or partial, not waived by new framework coverage.",
+    "No energy saving, FPGA-over-laptop advantage, generic AI speedup or production reliability claim follows from UVM/formal additions."
+  ]
+}

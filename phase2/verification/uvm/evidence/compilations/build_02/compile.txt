@@ -1,0 +1,264 @@
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+Start time: 02:34:30 on Oct 17,2026
+vlog -sv -warning 2892 "+define+UVM_NO_DPI" "+incdir+${UVM_HOME}/src" -work work ${UVM_HOME}/src/uvm_pkg.sv -f source_files.f 
+-- Compiling package uvm_pkg (uvm-1.2 Built-in)
+** Warning: ${UVM_HOME}/src/seq/uvm_sequencer_base.svh(1499): (vlog-2186) SystemVerilog testbench feature
+(randomization, coverage or assertion) detected in the design.
+These features are only supported in Questasim.
+** Warning: ${UVM_HOME}/src/seq/uvm_sequencer_base.svh(1662): (vlog-2186) SystemVerilog testbench feature
+(randomization, coverage or assertion) detected in the design.
+These features are only supported in Questasim.
+** Warning: ${UVM_HOME}/src/seq/uvm_sequence_base.svh(1333): (vlog-2186) SystemVerilog testbench feature
+(randomization, coverage or assertion) detected in the design.
+These features are only supported in Questasim.
+-- Compiling package trecap_core_pkg
+-- Compiling package trecap_csr_pkg
+-- Compiling package trecap_packet_pkg
+-- Compiling package trecap_iface_pkg
+-- Importing package trecap_core_pkg
+-- Importing package trecap_packet_pkg
+-- Compiling package trecap_math_pkg
+-- Compiling package trecap_build_pkg
+-- Importing package trecap_csr_pkg
+-- Importing package trecap_iface_pkg
+-- Importing package trecap_math_pkg
+-- Compiling module trecap_round_sat
+** Warning (downgraded): rtl/round_sat.sv(24): (vlog-2892) Net type of 'value_i' was not explicitly declared.
+-- Compiling module trecap_complex_mul_q
+** Warning (downgraded): rtl/complex_mul_q.sv(20): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/complex_mul_q.sv(21): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/complex_mul_q.sv(22): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/complex_mul_q.sv(24): (vlog-2892) Net type of 'valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/complex_mul_q.sv(26): (vlog-2892) Net type of 'ar_i' was not explicitly declared.
+** Warning (downgraded): rtl/complex_mul_q.sv(27): (vlog-2892) Net type of 'ai_i' was not explicitly declared.
+** Warning (downgraded): rtl/complex_mul_q.sv(28): (vlog-2892) Net type of 'br_i' was not explicitly declared.
+** Warning (downgraded): rtl/complex_mul_q.sv(29): (vlog-2892) Net type of 'bi_i' was not explicitly declared.
+** Warning (downgraded): rtl/complex_mul_q.sv(32): (vlog-2892) Net type of 'ready_i' was not explicitly declared.
+** Warning: rtl/complex_mul_q.sv(169): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+-- Compiling module trecap_bit_reverse_addr
+** Warning (downgraded): rtl/bit_reverse_addr.sv(16): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/bit_reverse_addr.sv(17): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/bit_reverse_addr.sv(18): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/bit_reverse_addr.sv(20): (vlog-2892) Net type of 'valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/bit_reverse_addr.sv(21): (vlog-2892) Net type of 'addr_i' was not explicitly declared.
+** Warning: rtl/bit_reverse_addr.sv(70): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+-- Compiling module trecap_twiddle_rom
+** Warning (downgraded): rtl/twiddle_rom.sv(26): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/twiddle_rom.sv(27): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/twiddle_rom.sv(28): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/twiddle_rom.sv(30): (vlog-2892) Net type of 'valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/twiddle_rom.sv(31): (vlog-2892) Net type of 'inverse_i' was not explicitly declared.
+** Warning (downgraded): rtl/twiddle_rom.sv(32): (vlog-2892) Net type of 'index_i' was not explicitly declared.
+** Warning: rtl/twiddle_rom.sv(148): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+-- Compiling module trecap_fft_stage
+** Warning (downgraded): rtl/trecap_fft_stage.sv(21): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft_stage.sv(22): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft_stage.sv(23): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft_stage.sv(25): (vlog-2892) Net type of 'valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft_stage.sv(27): (vlog-2892) Net type of 'a_re_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft_stage.sv(28): (vlog-2892) Net type of 'a_im_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft_stage.sv(29): (vlog-2892) Net type of 'b_re_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft_stage.sv(30): (vlog-2892) Net type of 'b_im_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft_stage.sv(31): (vlog-2892) Net type of 'tw_re_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft_stage.sv(32): (vlog-2892) Net type of 'tw_im_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft_stage.sv(35): (vlog-2892) Net type of 'ready_i' was not explicitly declared.
+** Warning: rtl/trecap_fft_stage.sv(242): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+** Warning: rtl/trecap_fft_stage.sv(243): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+** Warning: rtl/trecap_fft_stage.sv(244): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+** Warning: rtl/trecap_fft_stage.sv(245): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+** Warning: rtl/trecap_fft_stage.sv(247): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+** Warning: rtl/trecap_fft_stage.sv(248): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+** Warning: rtl/trecap_fft_stage.sv(249): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+** Warning: rtl/trecap_fft_stage.sv(250): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+-- Compiling module trecap_fft256
+** Warning (downgraded): rtl/trecap_fft256.sv(23): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft256.sv(24): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft256.sv(25): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft256.sv(27): (vlog-2892) Net type of 'in_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft256.sv(29): (vlog-2892) Net type of 'in_sample_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft256.sv(30): (vlog-2892) Net type of 'in_frame_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft256.sv(33): (vlog-2892) Net type of 'out_ready_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_fft256.sv(47): (vlog-2892) Net type of 'clear_sticky_i' was not explicitly declared.
+-- Compiling module trecap_ifft256
+** Warning (downgraded): rtl/trecap_ifft256.sv(25): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_ifft256.sv(26): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_ifft256.sv(27): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_ifft256.sv(29): (vlog-2892) Net type of 'in_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_ifft256.sv(31): (vlog-2892) Net type of 'in_re_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_ifft256.sv(32): (vlog-2892) Net type of 'in_im_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_ifft256.sv(33): (vlog-2892) Net type of 'in_frame_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_ifft256.sv(36): (vlog-2892) Net type of 'out_ready_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_ifft256.sv(50): (vlog-2892) Net type of 'clear_sticky_i' was not explicitly declared.
+-- Compiling module trecap_input_ring
+** Warning (downgraded): rtl/trecap_input_ring.sv(24): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_input_ring.sv(25): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_input_ring.sv(26): (vlog-2892) Net type of 'enable_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_input_ring.sv(27): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_input_ring.sv(28): (vlog-2892) Net type of 'clear_sticky_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_input_ring.sv(30): (vlog-2892) Net type of 'sample_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_input_ring.sv(32): (vlog-2892) Net type of 'sample_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_input_ring.sv(33): (vlog-2892) Net type of 'sample_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_input_ring.sv(38): (vlog-2892) Net type of 'frame_req_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_input_ring.sv(40): (vlog-2892) Net type of 'frame_req_frame_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_input_ring.sv(41): (vlog-2892) Net type of 'frame_req_trigger_sample_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_input_ring.sv(44): (vlog-2892) Net type of 'frame_sample_ready_i' was not explicitly declared.
+-- Compiling module trecap_frame_scheduler
+** Warning (downgraded): rtl/trecap_frame_scheduler.sv(18): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_frame_scheduler.sv(19): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_frame_scheduler.sv(20): (vlog-2892) Net type of 'enable_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_frame_scheduler.sv(21): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_frame_scheduler.sv(22): (vlog-2892) Net type of 'clear_sticky_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_frame_scheduler.sv(26): (vlog-2892) Net type of 'sample_accept_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_frame_scheduler.sv(27): (vlog-2892) Net type of 'sample_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_frame_scheduler.sv(28): (vlog-2892) Net type of 'source_discontinuity_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_frame_scheduler.sv(32): (vlog-2892) Net type of 'finite_stream_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_frame_scheduler.sv(33): (vlog-2892) Net type of 'active_frame_count_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_frame_scheduler.sv(39): (vlog-2892) Net type of 'frame_ready_i' was not explicitly declared.
+-- Compiling module window_rom
+** Warning (downgraded): rtl/window_rom.sv(19): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/window_rom.sv(20): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/window_rom.sv(21): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/window_rom.sv(23): (vlog-2892) Net type of 'valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/window_rom.sv(24): (vlog-2892) Net type of 'addr_i' was not explicitly declared.
+** Warning: rtl/window_rom.sv(104): (vlog-2583) [SVCHK] - Extra checking for conflicts with always_comb and always_latch variables is done at vopt time.
+-- Compiling module trecap_analysis_window
+** Warning (downgraded): rtl/trecap_analysis_window.sv(22): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_analysis_window.sv(23): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_analysis_window.sv(24): (vlog-2892) Net type of 'enable_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_analysis_window.sv(25): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_analysis_window.sv(26): (vlog-2892) Net type of 'clear_sticky_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_analysis_window.sv(28): (vlog-2892) Net type of 'frame_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_analysis_window.sv(30): (vlog-2892) Net type of 'frame_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_analysis_window.sv(31): (vlog-2892) Net type of 'frame_start_sample_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_analysis_window.sv(33): (vlog-2892) Net type of 'sample_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_analysis_window.sv(35): (vlog-2892) Net type of 'sample_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_analysis_window.sv(36): (vlog-2892) Net type of 'sample_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_analysis_window.sv(39): (vlog-2892) Net type of 'out_ready_i' was not explicitly declared.
+-- Compiling module trecap_hermitian_canonicalizer
+** Warning (downgraded): rtl/trecap_hermitian_canonicalizer.sv(23): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_hermitian_canonicalizer.sv(24): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_hermitian_canonicalizer.sv(25): (vlog-2892) Net type of 'enable_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_hermitian_canonicalizer.sv(26): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_hermitian_canonicalizer.sv(27): (vlog-2892) Net type of 'clear_sticky_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_hermitian_canonicalizer.sv(29): (vlog-2892) Net type of 'in_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_hermitian_canonicalizer.sv(31): (vlog-2892) Net type of 'in_frame_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_hermitian_canonicalizer.sv(32): (vlog-2892) Net type of 'in_bin_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_hermitian_canonicalizer.sv(33): (vlog-2892) Net type of 'in_re_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_hermitian_canonicalizer.sv(34): (vlog-2892) Net type of 'in_im_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_hermitian_canonicalizer.sv(35): (vlog-2892) Net type of 'in_last_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_hermitian_canonicalizer.sv(38): (vlog-2892) Net type of 'out_ready_i' was not explicitly declared.
+-- Compiling module trecap_mag2_mask
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(30): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(31): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(32): (vlog-2892) Net type of 'enable_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(33): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(34): (vlog-2892) Net type of 'clear_metrics_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(35): (vlog-2892) Net type of 'clear_sticky_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(36): (vlog-2892) Net type of 'thr2_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(38): (vlog-2892) Net type of 'in_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(40): (vlog-2892) Net type of 'in_frame_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(41): (vlog-2892) Net type of 'in_bin_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(42): (vlog-2892) Net type of 'in_re_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(43): (vlog-2892) Net type of 'in_im_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(44): (vlog-2892) Net type of 'in_unique_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(45): (vlog-2892) Net type of 'in_self_conj_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(46): (vlog-2892) Net type of 'in_last_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_mag2_mask.sv(49): (vlog-2892) Net type of 'out_ready_i' was not explicitly declared.
+-- Compiling module trecap_spectrum_mask_builder
+** Warning (downgraded): rtl/trecap_spectrum_mask_builder.sv(27): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_spectrum_mask_builder.sv(28): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_spectrum_mask_builder.sv(29): (vlog-2892) Net type of 'enable_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_spectrum_mask_builder.sv(30): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_spectrum_mask_builder.sv(31): (vlog-2892) Net type of 'clear_sticky_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_spectrum_mask_builder.sv(33): (vlog-2892) Net type of 'in_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_spectrum_mask_builder.sv(35): (vlog-2892) Net type of 'in_frame_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_spectrum_mask_builder.sv(36): (vlog-2892) Net type of 'in_bin_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_spectrum_mask_builder.sv(37): (vlog-2892) Net type of 'in_re_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_spectrum_mask_builder.sv(38): (vlog-2892) Net type of 'in_im_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_spectrum_mask_builder.sv(39): (vlog-2892) Net type of 'in_mask_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_spectrum_mask_builder.sv(40): (vlog-2892) Net type of 'in_last_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_spectrum_mask_builder.sv(43): (vlog-2892) Net type of 'out_ready_i' was not explicitly declared.
+-- Compiling module trecap_synthesis_wola
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(29): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(30): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(31): (vlog-2892) Net type of 'enable_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(32): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(33): (vlog-2892) Net type of 'clear_sticky_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(35): (vlog-2892) Net type of 'in_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(37): (vlog-2892) Net type of 'in_frame_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(38): (vlog-2892) Net type of 'in_sample_offset_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(39): (vlog-2892) Net type of 'in_re_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(40): (vlog-2892) Net type of 'in_im_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(41): (vlog-2892) Net type of 'in_last_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(45): (vlog-2892) Net type of 'drain_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(47): (vlog-2892) Net type of 'drain_sample_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(48): (vlog-2892) Net type of 'drain_last_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(49): (vlog-2892) Net type of 'drain_sample_count_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_synthesis_wola.sv(52): (vlog-2892) Net type of 'out_ready_i' was not explicitly declared.
+-- Compiling module trecap_delay_error_metrics
+** Warning (downgraded): rtl/trecap_delay_error_metrics.sv(20): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_delay_error_metrics.sv(21): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_delay_error_metrics.sv(22): (vlog-2892) Net type of 'enable_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_delay_error_metrics.sv(23): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_delay_error_metrics.sv(24): (vlog-2892) Net type of 'clear_metrics_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_delay_error_metrics.sv(25): (vlog-2892) Net type of 'clear_sticky_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_delay_error_metrics.sv(27): (vlog-2892) Net type of 'x_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_delay_error_metrics.sv(29): (vlog-2892) Net type of 'x_sample_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_delay_error_metrics.sv(30): (vlog-2892) Net type of 'x_sample_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_delay_error_metrics.sv(32): (vlog-2892) Net type of 'y_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_delay_error_metrics.sv(34): (vlog-2892) Net type of 'y_sample_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_delay_error_metrics.sv(35): (vlog-2892) Net type of 'y_sample_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_delay_error_metrics.sv(38): (vlog-2892) Net type of 'y_out_ready_i' was not explicitly declared.
+-- Compiling module trecap_core_export_observed
+** Warning: rtl/trecap_core_export_observed.sv(31): (vlog-13314) Defaulting port 'sample_i' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(22): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(23): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(24): (vlog-2892) Net type of 'enable_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(25): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(26): (vlog-2892) Net type of 'clear_sticky_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(27): (vlog-2892) Net type of 'clear_metrics_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(32): (vlog-2892) Net type of 'sample_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(35): (vlog-2892) Net type of 'thr2_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(36): (vlog-2892) Net type of 'source_discontinuity_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(40): (vlog-2892) Net type of 'finite_stream_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(41): (vlog-2892) Net type of 'active_frame_count_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(42): (vlog-2892) Net type of 'tail_tick_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(44): (vlog-2892) Net type of 'tail_tick_sample_idx_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(45): (vlog-2892) Net type of 'tail_tick_last_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(46): (vlog-2892) Net type of 'tail_tick_count_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_core_export_observed.sv(50): (vlog-2892) Net type of 'y_ready_i' was not explicitly declared.
+-- Compiling module trecap_spectral_exporter
+-- Compiling module trecap_pcm_stream_source
+** Warning (downgraded): rtl/trecap_pcm_stream_source.sv(12): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_source.sv(12): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_source.sv(12): (vlog-2892) Net type of 'enable_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_source.sv(12): (vlog-2892) Net type of 'start_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_source.sv(12): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_source.sv(12): (vlog-2892) Net type of 'clear_sticky_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_source.sv(13): (vlog-2892) Net type of 'pcm_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_source.sv(15): (vlog-2892) Net type of 'pcm_data_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_source.sv(18): (vlog-2892) Net type of 'sample_ready_i' was not explicitly declared.
+-- Compiling module trecap_pcm_stream_top
+-- Importing package trecap_build_pkg
+** Warning (downgraded): rtl/trecap_pcm_stream_top.sv(32): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_top.sv(33): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_top.sv(36): (vlog-2892) Net type of 'pcm_valid_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_top.sv(38): (vlog-2892) Net type of 'pcm_data_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_top.sv(42): (vlog-2892) Net type of 'export_emitted_frames_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_top.sv(44): (vlog-2892) Net type of 'enable_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_top.sv(45): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_top.sv(46): (vlog-2892) Net type of 'clear_sticky_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_top.sv(47): (vlog-2892) Net type of 'clear_metrics_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_top.sv(49): (vlog-2892) Net type of 'replay_start_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_top.sv(50): (vlog-2892) Net type of 'thr2_i' was not explicitly declared.
+** Warning (downgraded): rtl/trecap_pcm_stream_top.sv(53): (vlog-2892) Net type of 'y_ready_i' was not explicitly declared.
+-- Compiling interface tsh2_if
+-- Compiling package tsh2_uvm_pkg
+-- Importing package uvm_pkg (uvm-1.2 Built-in)
+-- Compiling module tsh2_top
+-- Importing package tsh2_uvm_pkg
+
+Top level modules:
+	tsh2_top
+End time: 02:34:32 on Oct 17,2026, Elapsed time: 0:00:02
+Errors: 0, Warnings: 212

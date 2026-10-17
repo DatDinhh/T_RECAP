@@ -4,7 +4,7 @@
 
 [![Source and host checks](https://github.com/DatDinhh/T_RECAP/actions/workflows/phase2-source.yml/badge.svg)](https://github.com/DatDinhh/T_RECAP/actions/workflows/phase2-source.yml)
 
-[Verification report](phase2/docs/verification/portfolio/TRECAP_DV_Portfolio.pdf) | [Runnable RTL verification](phase2/verification/tsh2/README.md) | [Results and provenance](phase2/docs/project_overview/README.md) | [Recorded web demo](https://github.com/DatDinhh/trecap-spectral-studio)
+[UVM and formal report](phase2/docs/verification/uvm_formal/TRECAP_UVM_Formal_Report.pdf) | [Original verification report](phase2/docs/verification/portfolio/TRECAP_DV_Portfolio.pdf) | [Runnable RTL verification](phase2/verification/tsh2/README.md) | [Results and provenance](phase2/docs/project_overview/README.md) | [Recorded web demo](https://github.com/DatDinhh/trecap-spectral-studio)
 
 T-RECAP is a senior capstone project built around a fixed-point **FFT → tunable threshold → IFFT/WOLA** pipeline. The FPGA produces both a reconstructed audio waveform and a sparse representation of its spectrum. A laptop can inspect the audio, visualize spectral changes, and compute monitoring features from the retained spectral bins.
 
@@ -210,7 +210,30 @@ The verification work connects a defined contract, an independently checked nume
 
 Open the native [startup](phase2/docs/results/verification_20261017/waveforms/startup.vcd), [reset/recovery](phase2/docs/results/verification_20261017/waveforms/reset_recovery.vcd), and [final-output-stall](phase2/docs/results/verification_20261017/waveforms/final_y_stall.vcd) traces in a waveform viewer. The [16-page academic report](phase2/docs/verification/portfolio/TRECAP_DV_Portfolio.pdf) includes eight figures, eleven tables, methodology, failures, source binding, and sign-off limits. Its [LaTeX source and build guide](phase2/docs/verification/portfolio/README.md) are committed with the report.
 
-The disposition is **pass for the registered finite-file profile under the tested conditions**. The environment uses SystemVerilog procedural assertions and scoreboards. It is not UVM, formal verification, formal CDC/RDC, a code-coverage closure claim, or industrial certification. The broader original specification still has **30 partial and 16 excluded requirements**, which are requirement dispositions rather than a test pass rate. [Read the complete verification scope](phase2/verification/README.md).
+The original campaign disposition is **pass for the registered finite-file profile under the tested conditions**. That historical environment uses SystemVerilog procedural assertions and scoreboards. The separate supplement below adds genuine UVM execution and local formal proofs. Neither campaign establishes formal CDC/RDC, code-coverage closure or industrial certification. The broader original specification still has **30 partial and 16 excluded requirements**, which are requirement dispositions rather than a test pass rate. [Read the complete verification scope](phase2/verification/README.md).
+
+### UVM and formal supplement
+
+The October 17 supplement adds a reusable **Accellera UVM 1.2** environment and actual **SBY/Yosys formal proofs** against unchanged TSH2 RTL. It preserves the historical campaign and its board results.
+
+| New evidence | Executed scope |
+|---|---|
+| Genuine UVM simulation | Three seeds, four complete cases each: **12 completed epochs**, including three reset recoveries; three interrupted prefixes counted separately |
+| Exact UVM scoreboards | 18,432 waveform outputs, 13,932 canonical-bin records and 94,440 packet bytes; independent replay checks reconcile the captured observations |
+| UVM failure qualification | A mutated expected waveform value produces the intended fatal mismatch; one simulator startup crash is preserved with an explicit bounded recovery record |
+| Local formal proofs | **16 safety/equivalence jobs**: FIFO order at reduced depths, deployed output-FIFO control, 11 round/saturate instances and threshold-mask control/relations |
+| Formal covers | **14 bounded-cover jobs** reach 73 selected predicates; cover witnesses establish reachability, not universal correctness |
+| Formal negative controls | Three deliberately false assertions produce the intended counterexamples; they are expected failures, not additional proofs |
+
+![UVM sequence, driver, monitor and scoreboard](phase2/docs/verification/uvm_formal/figures/uvm_architecture.png)
+
+![Formal proof and counterexample flow](phase2/docs/verification/uvm_formal/figures/formal_architecture.png)
+
+![Actual UVM final-output stall observation](phase2/docs/verification/uvm_formal/figures/uvm_final_y.png)
+
+![Expected formal counterexample, not a DUT defect](phase2/docs/verification/uvm_formal/figures/formal_counterexample.png)
+
+Read the [academic LaTeX supplement](phase2/docs/verification/uvm_formal/README.md), [UVM runner and evidence](phase2/verification/uvm/README.md), and [formal properties, assumptions and witnesses](phase2/verification/formal/README.md). UVM uses deterministic seeded schedules and observed counters with the installed Starter simulator; solver-constrained randomization, covergroups and code-coverage closure are not claimed. Formal scope is local and instance-specific: it does not prove the complete FFT/IFFT pipeline, production-depth FIFO data order or the separate PCM FIFO.
 
 ## Reproduce the checks
 
@@ -237,7 +260,7 @@ cmake --build --preset verify --parallel 2
 ctest --preset verify
 ```
 
-The [portable regression guide](phase2/verification/tsh2/README.md) documents simulator setup, output files, and fresh output-directory requirements. GitHub Actions runs reference functional tests, RTL frontend elaboration, hygiene checks, package/checker qualification, and public evidence integrity checks on Linux and Windows. Licensed RTL simulation and physical hardware runs are recorded separately.
+The [portable regression guide](phase2/verification/tsh2/README.md) documents simulator setup, output files, and fresh output-directory requirements. GitHub Actions runs reference functional tests, RTL frontend elaboration, hygiene checks, package/checker qualification, and public evidence integrity checks on Linux and Windows. Licensed RTL simulation and physical hardware runs are recorded separately. The [formal workflow](https://github.com/DatDinhh/T_RECAP/actions/workflows/formal.yml) separately downloads a hash-pinned tool suite and executes all 33 formal proof, cover and expected-failure jobs. UVM is not executed by the ordinary host package checks.
 
 The [TSH2 application archive](phase2/profiles/tsh2/README.md) includes the board adapter, service, consumers, monitor, and local visualizer source. It also documents external coefficients, native libraries, fitted-image dependencies, and runtime admission requirements. It is not a one-command board deployment. The separate [Spectral Studio repository](https://github.com/DatDinhh/trecap-spectral-studio) is a recorded demonstration; visiting it does not remotely operate this board.
 
@@ -249,6 +272,9 @@ The [TSH2 application archive](phase2/profiles/tsh2/README.md) includes the boar
 | [`phase2/profiles/tsh2`](phase2/profiles/tsh2/README.md) | Archived current finite-file adapter, service, consumers, monitor, and visualizer |
 | [`phase2/sw/reference_model`](phase2/sw/reference_model/README.md) | C++ arithmetic reference and artifact tools |
 | [`phase2/verification/tsh2`](phase2/verification/tsh2/README.md) | Portable synthetic RTL regression and scoreboards |
+| [`phase2/verification/uvm`](phase2/verification/uvm/README.md) | Genuine UVM components, observed traces, exact scoreboards and reproducible runner |
+| [`phase2/verification/formal`](phase2/verification/formal/README.md) | Local proof harnesses, assumptions, solver receipts and counterexamples |
+| [`phase2/docs/verification/uvm_formal`](phase2/docs/verification/uvm_formal/README.md) | Academic supplement, LaTeX, diagrams and actual trace plots |
 | [`phase2/verification/campaign_sources`](phase2/verification/campaign_sources/README.md) | Accepted boundary/recovery bench source archive |
 | [`phase2/docs/verification/portfolio`](phase2/docs/verification/portfolio/README.md) | Academic PDF, editable LaTeX, and report figures |
 | [`phase2/docs/results/verification_20261017`](phase2/docs/results/verification_20261017/README.md) | Physical/RTL evidence ledger, coverage, source binding, and VCDs |

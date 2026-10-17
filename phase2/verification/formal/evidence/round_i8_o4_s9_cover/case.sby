@@ -1,0 +1,18 @@
+[options]
+mode cover
+depth 1
+timeout 90
+
+[engines]
+smtbmc z3
+
+[script]
+read_verilog -formal -sv -D SYNTHESIS round_sat.sv round_formal.sv
+chparam -set IN_W 8 -set OUT_W 4 -set SHIFT 9 -set NEGATIVE 0 round_formal
+prep -top round_formal
+async2sync
+dffunmap
+
+[files]
+round_sat.sv
+round_formal.sv

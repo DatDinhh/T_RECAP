@@ -1,0 +1,17 @@
+The supplemental packages are \epath{phase2/verification/uvm} and \epath{phase2/verification/formal}. Their READMEs give the exact tool options, dependencies and evidence interpretation. The report package contains editable LaTeX, plotted trace data, figure generators and a byte-identity manifest. Hashes provide traceability; they are neither proof certificates nor a substitute for rerunning tools.
+
+Package integrity checks use Python's standard library:
+\begin{lstlisting}
+python phase2/verification/uvm/run.py --check-package
+python phase2/verification/formal/run.py --repo-root phase2 --check-package
+python phase2/docs/verification/uvm_formal/check_bundle.py
+\end{lstlisting}
+These commands do not execute the DUT or a solver. Actual UVM execution needs the admitted simulator and genuine UVM source library. The UVM runner uses a fresh output directory, invokes compile and simulation, applies deadlines and checks the numerical observations. Formal execution needs the separately downloaded pinned OSS CAD Suite:
+\begin{lstlisting}
+python3 phase2/verification/formal/run.py \
+  --repo-root phase2 --tool-bin /path/to/oss-cad-suite/bin \
+  --output formal-runs/new-attempt
+\end{lstlisting}
+The full formal matrix is also configured as a dedicated GitHub Actions workflow. The existing Linux/Windows host workflow checks source hygiene, reference tests, RTL elaboration and package/evidence integrity. It does not silently substitute a package check for licensed UVM simulation.
+
+Before publication, an independent review reconciles numerical counts, exact compiled inputs, proof assumptions, per-case outcomes and intended negative signatures. The original failed simulator and formal attempts remain distinguishable from accepted executions. Publishing a fresh commit does not make the historical board campaign a new hardware run.

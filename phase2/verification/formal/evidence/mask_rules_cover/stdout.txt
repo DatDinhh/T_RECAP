@@ -1,0 +1,69 @@
+SBY  2:39:12 [result] Copy 'archive:formal/attempts/final06/mask_rules_cover/trecap_core_pkg.sv' to 'archive:formal/attempts/final06/mask_rules_cover/result/src/trecap_core_pkg.sv'.
+SBY  2:39:12 [result] Copy 'archive:formal/attempts/final06/mask_rules_cover/trecap_packet_pkg.sv' to 'archive:formal/attempts/final06/mask_rules_cover/result/src/trecap_packet_pkg.sv'.
+SBY  2:39:12 [result] Copy 'archive:formal/attempts/final06/mask_rules_cover/trecap_iface_pkg.sv' to 'archive:formal/attempts/final06/mask_rules_cover/result/src/trecap_iface_pkg.sv'.
+SBY  2:39:12 [result] Copy 'archive:formal/attempts/final06/mask_rules_cover/trecap_mag2_mask.sv' to 'archive:formal/attempts/final06/mask_rules_cover/result/src/trecap_mag2_mask.sv'.
+SBY  2:39:12 [result] Copy 'archive:formal/attempts/final06/mask_rules_cover/mask_formal.sv' to 'archive:formal/attempts/final06/mask_rules_cover/result/src/mask_formal.sv'.
+SBY  2:39:12 [result] engine_0: smtbmc z3
+SBY  2:39:12 [result] base: starting process "cd result/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY  2:39:13 [result] base: finished (returncode=0)
+SBY  2:39:13 [result] prep: starting process "cd result/model; yosys -ql design_prep.log design_prep.ys"
+SBY  2:39:13 [result] prep: finished (returncode=0)
+SBY  2:39:13 [result] smt2: starting process "cd result/model; yosys -ql design_smt2.log design_smt2.ys"
+SBY  2:39:13 [result] smt2: finished (returncode=0)
+SBY  2:39:13 [result] engine_0: starting process "cd result; yosys-smtbmc -s z3 --presat -c --noprogress -t 8  --append 0 --dump-vcd engine_0/trace%.vcd --dump-yw engine_0/trace%.yw --dump-vlogtb engine_0/trace%_tb.v --dump-smtc engine_0/trace%.smtc model/design_smt2.smt2"
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Solver: z3
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Checking cover reachability in step 0..
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Checking cover reachability in step 1..
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Checking cover reachability in step 2..
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Checking cover reachability in step 3..
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Reached cover statement in step 3 at mask_formal: c_nyquist_suppression
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Reached cover statement in step 3 at mask_formal: c_stall
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace0.vcd
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace0_tb.v
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace0.smtc
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace0.yw
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Checking cover reachability in step 3..
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Reached cover statement in step 3 at mask_formal: c_dc_protected_despite_pre_mask
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Reached cover statement in step 3 at mask_formal: c_simultaneous_accept
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace1.vcd
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace1_tb.v
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace1.smtc
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace1.yw
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Checking cover reachability in step 3..
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Reached cover statement in step 3 at mask_formal: c_equality_retained
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace2.vcd
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace2_tb.v
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace2.smtc
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace2.yw
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Checking cover reachability in step 3..
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Reached cover statement in step 3 at mask_formal: c_just_below_suppressed
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace3.vcd
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace3_tb.v
+SBY  2:39:14 [result] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace3.smtc
+SBY  2:39:15 [result] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace3.yw
+SBY  2:39:15 [result] engine_0: ##   0:00:00  Checking cover reachability in step 3..
+SBY  2:39:15 [result] engine_0: ##   0:00:00  Checking cover reachability in step 4..
+SBY  2:39:15 [result] engine_0: ##   0:00:00  Reached cover statement in step 4 at mask_formal: c_clear_recovery
+SBY  2:39:15 [result] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace4.vcd
+SBY  2:39:15 [result] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace4_tb.v
+SBY  2:39:15 [result] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace4.smtc
+SBY  2:39:15 [result] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace4.yw
+SBY  2:39:15 [result] engine_0: ##   0:00:00  Status: passed
+SBY  2:39:15 [result] engine_0: finished (returncode=0)
+SBY  2:39:15 [result] engine_0: Status returned by engine: pass
+SBY  2:39:15 [result] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:02 (2)
+SBY  2:39:15 [result] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  2:39:15 [result] summary: engine_0 (smtbmc z3) returned pass
+SBY  2:39:15 [result] summary: cover trace: result/engine_0/trace0.vcd
+SBY  2:39:15 [result] summary:   reached cover statement mask_formal.c_nyquist_suppression at mask_formal.sv:62.13-62.91 step 3
+SBY  2:39:15 [result] summary:   reached cover statement mask_formal.c_stall at mask_formal.sv:59.13-59.57 step 3
+SBY  2:39:15 [result] summary: cover trace: result/engine_0/trace1.vcd
+SBY  2:39:15 [result] summary:   reached cover statement mask_formal.c_dc_protected_despite_pre_mask at mask_formal.sv:61.13-61.118 step 3
+SBY  2:39:15 [result] summary:   reached cover statement mask_formal.c_simultaneous_accept at mask_formal.sv:60.13-60.82 step 3
+SBY  2:39:15 [result] summary: cover trace: result/engine_0/trace2.vcd
+SBY  2:39:15 [result] summary:   reached cover statement mask_formal.c_equality_retained at mask_formal.sv:63.13-63.114 step 3
+SBY  2:39:15 [result] summary: cover trace: result/engine_0/trace3.vcd
+SBY  2:39:15 [result] summary:   reached cover statement mask_formal.c_just_below_suppressed at mask_formal.sv:64.13-64.123 step 3
+SBY  2:39:15 [result] summary: cover trace: result/engine_0/trace4.vcd
+SBY  2:39:15 [result] summary:   reached cover statement mask_formal.c_clear_recovery at mask_formal.sv:65.13-65.63 step 4
+SBY  2:39:15 [result] DONE (PASS, rc=0)

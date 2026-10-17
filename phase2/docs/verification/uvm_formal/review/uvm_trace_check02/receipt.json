@@ -1,0 +1,144 @@
+{
+  "status": "PASS_INDEPENDENT_UVM_CHECKER_QUALIFICATION",
+  "runner_sha256": "884330093eaa872b87e6d83136e98516d8d1550f7c4903852cd5fa7b57e5132e",
+  "package_manifest_sha256": "a68d089503c9f664decb593f0188255224ac7c3bf4169535d3f169de7d1abc28",
+  "source_admission_sha256": "ab03815268a28dd644ffd51ca908f2eae1c028bb4ff5410004b64b36e66536d4",
+  "trace_source": "work/uvm_formal_20261017/uvm/runs/attempt03/seed_1",
+  "trace_bindings": {
+    "observed.csv": "c9cff59283877f50fa1a14f269e0a95540d76349316251f35642657521ec24c8",
+    "coverage.csv": "9bef7e45073871e43f173969ef9a39e7ab25b54213ef8f3953d18ff3b3af5ab6"
+  },
+  "cases": [
+    {
+      "case": "package_positive",
+      "kind": "package",
+      "expected": "PASS",
+      "exit": 0,
+      "diagnostic": null,
+      "qualified": true
+    },
+    {
+      "case": "missing_manifest",
+      "kind": "package",
+      "expected": "REJECT",
+      "exit": 1,
+      "diagnostic": "Required UVM package manifest missing",
+      "qualified": true
+    },
+    {
+      "case": "changed_uvm_source",
+      "kind": "package",
+      "expected": "REJECT",
+      "exit": 1,
+      "diagnostic": "UVM package mismatch",
+      "qualified": true
+    },
+    {
+      "case": "changed_dut_source",
+      "kind": "package",
+      "expected": "REJECT",
+      "exit": 1,
+      "diagnostic": "Source admission mismatch",
+      "qualified": true
+    },
+    {
+      "case": "removed_manifest_member",
+      "kind": "package",
+      "expected": "REJECT",
+      "exit": 1,
+      "diagnostic": "Exact UVM package manifest closure",
+      "qualified": true
+    },
+    {
+      "case": "trace_positive",
+      "kind": "trace",
+      "expected": "PASS",
+      "diagnostic": null,
+      "actual": "accepted",
+      "qualified": true
+    },
+    {
+      "case": "unknown_record",
+      "kind": "trace",
+      "expected": "REJECT",
+      "diagnostic": "Unknown event kind or epoch",
+      "actual": "Unknown event kind or epoch",
+      "qualified": true
+    },
+    {
+      "case": "missing_y",
+      "kind": "trace",
+      "expected": "REJECT",
+      "diagnostic": "Missing Y",
+      "actual": "Missing Y",
+      "qualified": true
+    },
+    {
+      "case": "wrong_y",
+      "kind": "trace",
+      "expected": "REJECT",
+      "diagnostic": "Y exact order/value",
+      "actual": "Y exact order/value",
+      "qualified": true
+    },
+    {
+      "case": "wrong_y_index",
+      "kind": "trace",
+      "expected": "REJECT",
+      "diagnostic": "Y exact order/value",
+      "actual": "Y exact order/value",
+      "qualified": true
+    },
+    {
+      "case": "wrong_disposition",
+      "kind": "trace",
+      "expected": "REJECT",
+      "diagnostic": "Epoch disposition",
+      "actual": "Epoch disposition",
+      "qualified": true
+    },
+    {
+      "case": "wrong_count",
+      "kind": "trace",
+      "expected": "REJECT",
+      "diagnostic": "Observed count reconciliation: inputs",
+      "actual": "Observed count reconciliation: inputs",
+      "qualified": true
+    },
+    {
+      "case": "missing_count",
+      "kind": "trace",
+      "expected": "REJECT",
+      "diagnostic": "inputs",
+      "actual": "'inputs'",
+      "qualified": true
+    },
+    {
+      "case": "duplicate_start",
+      "kind": "trace",
+      "expected": "REJECT",
+      "diagnostic": "Exactly one observed accepted start",
+      "actual": "Exactly one observed accepted start",
+      "qualified": true
+    },
+    {
+      "case": "missing_epoch",
+      "kind": "trace",
+      "expected": "REJECT",
+      "diagnostic": "Five observed epoch dispositions required",
+      "actual": "Five observed epoch dispositions required",
+      "qualified": true
+    },
+    {
+      "case": "wrong_tap_threshold",
+      "kind": "trace",
+      "expected": "REJECT",
+      "diagnostic": "Tap threshold/last",
+      "actual": "Tap threshold/last",
+      "qualified": true
+    }
+  ],
+  "positive_cases": 2,
+  "negative_controls": 14,
+  "scope": "Checker qualification only. All mutations occurred in independent review-owned copies; no active source, simulation, fixture or original evidence was changed."
+}

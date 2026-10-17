@@ -1,0 +1,30 @@
+{
+  "status": "PASS_LATEX_COMPILE",
+  "original_receipt_sha256": "996fa3a97b1b712c3bf19452176596b10b292bbfae2952d525d51723995c2302",
+  "compiler": "MiKTeX pdfTeX-1.40.25",
+  "pass_exit_codes": [
+    0,
+    0
+  ],
+  "inputs": {
+    "controls.tex": "1eb9f047a1a95e0649fa85535efe9abb34b8f2e79b5683e4c2b94c1a75fc32ac",
+    "formal_method.tex": "ae5bf0f5e6305764830c5765def710584155fe108d55e06c32a18a75615aec27",
+    "formal_results.tex": "2fc9541eb300be882c98b59e9ed11f8b71d5aa894e3b1a52d2b415b058c256e1",
+    "main.tex": "8975cee1ec82fb36f1f694958b51fd6b252e13ff4adfbc1879a0c894ea7517df",
+    "mask_method.tex": "d8db65518dcdf3dd3a4a6bae803d6c811b5fe4658bb4333bbff75de9c9855136",
+    "reproduction.tex": "cb44ce1f63474d26d991fe2ef796ed056ee7ccbfae389a96e233932563661c25",
+    "results_summary.tex": "dc7c25009f9a957a0fbf0c5911e6ddc8edb3803ade066325b3be3ad0aa2a7934",
+    "uvm_method.tex": "4444c9bb3198724964e10676e68746f512ca5452a39d9688b8243f576175b404",
+    "uvm_results.tex": "63fc6a8dc7848c15f31a13c906be332b763556f45aa26cada4b1c1b6fbf59f54",
+    "waveforms.tex": "e6c6804be46fbe619af6d30c92bfae67ec4b2cedce6db777ab447e50712eeba1",
+    "figures/formal_architecture.pdf": "30f041c79b451eead762a3eb98e0bcad5c17f87b53f573e7b4042b46df4736fe",
+    "figures/formal_counterexample.pdf": "7580bc570cb8c5728b695309a55041226d5a7dfbd98f79d50fda61200e911685",
+    "figures/uvm_architecture.pdf": "19b12940482ff0247db28ec4b853f0636d0a65b2fcfb31f8d579f4cd203d1ed1",
+    "figures/uvm_final_y.pdf": "940c7118248783da66fa364ac381281e71f1049a06e5a9adafb63ffb56f71faa",
+    "report_data.json": "71ca022444302269591dd6f4f40f9fb4bf1e36f1af324df4ba6595a6b2d81f97"
+  },
+  "pdf_sha256": "748e52f67488685db40a507463175a578b58c868c240d181dadd7d03f25311db",
+  "shell_escape": false,
+  "automatic_package_install": false,
+  "build_script_sha256": "16e15f015a9d38bfe8efac128f2e585f29b50c0d4d09517eb08839f4180d40c9"
+}

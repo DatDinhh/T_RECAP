@@ -1,0 +1,49 @@
+SBY  2:39:05 [result] Copy 'archive:formal/attempts/final06/mask_rules_prove/trecap_core_pkg.sv' to 'archive:formal/attempts/final06/mask_rules_prove/result/src/trecap_core_pkg.sv'.
+SBY  2:39:05 [result] Copy 'archive:formal/attempts/final06/mask_rules_prove/trecap_packet_pkg.sv' to 'archive:formal/attempts/final06/mask_rules_prove/result/src/trecap_packet_pkg.sv'.
+SBY  2:39:05 [result] Copy 'archive:formal/attempts/final06/mask_rules_prove/trecap_iface_pkg.sv' to 'archive:formal/attempts/final06/mask_rules_prove/result/src/trecap_iface_pkg.sv'.
+SBY  2:39:05 [result] Copy 'archive:formal/attempts/final06/mask_rules_prove/trecap_mag2_mask.sv' to 'archive:formal/attempts/final06/mask_rules_prove/result/src/trecap_mag2_mask.sv'.
+SBY  2:39:05 [result] Copy 'archive:formal/attempts/final06/mask_rules_prove/mask_formal.sv' to 'archive:formal/attempts/final06/mask_rules_prove/result/src/mask_formal.sv'.
+SBY  2:39:05 [result] engine_0: smtbmc z3
+SBY  2:39:05 [result] base: starting process "cd result/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY  2:39:06 [result] base: finished (returncode=0)
+SBY  2:39:06 [result] prep: starting process "cd result/model; yosys -ql design_prep.log design_prep.ys"
+SBY  2:39:06 [result] prep: finished (returncode=0)
+SBY  2:39:06 [result] smt2: starting process "cd result/model; yosys -ql design_smt2.log design_smt2.ys"
+SBY  2:39:06 [result] smt2: finished (returncode=0)
+SBY  2:39:06 [result] engine_0.basecase: starting process "cd result; yosys-smtbmc -s z3 --presat --noprogress -t 8  --append 0 --dump-vcd engine_0/trace.vcd --dump-yw engine_0/trace.yw --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2"
+SBY  2:39:06 [result] engine_0.induction: starting process "cd result; yosys-smtbmc -s z3 --presat -i --noprogress -t 8  --append 0 --dump-vcd engine_0/trace_induct.vcd --dump-yw engine_0/trace_induct.yw --dump-vlogtb engine_0/trace_induct_tb.v --dump-smtc engine_0/trace_induct.smtc model/design_smt2.smt2"
+SBY  2:39:07 [result] engine_0.induction: ##   0:00:00  Solver: z3
+SBY  2:39:07 [result] engine_0.basecase: ##   0:00:00  Solver: z3
+SBY  2:39:07 [result] engine_0.induction: ##   0:00:00  Trying induction in step 8..
+SBY  2:39:07 [result] engine_0.basecase: ##   0:00:00  Checking assumptions in step 0..
+SBY  2:39:07 [result] engine_0.induction: ##   0:00:00  Trying induction in step 7..
+SBY  2:39:07 [result] engine_0.basecase: ##   0:00:00  Checking assertions in step 0..
+SBY  2:39:07 [result] engine_0.basecase: ##   0:00:00  Checking assumptions in step 1..
+SBY  2:39:07 [result] engine_0.basecase: ##   0:00:00  Checking assertions in step 1..
+SBY  2:39:07 [result] engine_0.basecase: ##   0:00:00  Checking assumptions in step 2..
+SBY  2:39:07 [result] engine_0.basecase: ##   0:00:00  Checking assertions in step 2..
+SBY  2:39:07 [result] engine_0.basecase: ##   0:00:00  Checking assumptions in step 3..
+SBY  2:39:07 [result] engine_0.basecase: ##   0:00:00  Checking assertions in step 3..
+SBY  2:39:07 [result] engine_0.induction: ##   0:00:00  Trying induction in step 6..
+SBY  2:39:07 [result] engine_0.basecase: ##   0:00:00  Checking assumptions in step 4..
+SBY  2:39:07 [result] engine_0.basecase: ##   0:00:00  Checking assertions in step 4..
+SBY  2:39:07 [result] engine_0.induction: ##   0:00:00  Temporal induction successful.
+SBY  2:39:07 [result] engine_0.induction: ##   0:00:00  Status: passed
+SBY  2:39:07 [result] engine_0.induction: finished (returncode=0)
+SBY  2:39:07 [result] engine_0.induction: Status returned by engine for induction: pass
+SBY  2:39:08 [result] engine_0.basecase: ##   0:00:00  Checking assumptions in step 5..
+SBY  2:39:08 [result] engine_0.basecase: ##   0:00:01  Checking assertions in step 5..
+SBY  2:39:09 [result] engine_0.basecase: ##   0:00:02  Checking assumptions in step 6..
+SBY  2:39:09 [result] engine_0.basecase: ##   0:00:02  Checking assertions in step 6..
+SBY  2:39:10 [result] engine_0.basecase: ##   0:00:02  Checking assumptions in step 7..
+SBY  2:39:10 [result] engine_0.basecase: ##   0:00:03  Checking assertions in step 7..
+SBY  2:39:10 [result] engine_0.basecase: ##   0:00:03  Status: passed
+SBY  2:39:10 [result] engine_0.basecase: finished (returncode=0)
+SBY  2:39:10 [result] engine_0.basecase: Status returned by engine for basecase: pass
+SBY  2:39:10 [result] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:05 (5)
+SBY  2:39:10 [result] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:04 (4)
+SBY  2:39:10 [result] summary: engine_0 (smtbmc z3) returned pass for basecase
+SBY  2:39:10 [result] summary: engine_0 (smtbmc z3) returned pass for induction
+SBY  2:39:10 [result] summary: engine_0 did not produce any traces
+SBY  2:39:10 [result] summary: successful proof by k-induction.
+SBY  2:39:10 [result] DONE (PASS, rc=0)

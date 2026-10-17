@@ -1,0 +1,317 @@
+{
+  "status": "PASS",
+  "authoritative_attempt": "final06",
+  "jobs": 33,
+  "positive_proofs": 16,
+  "bounded_cover_jobs": 14,
+  "expected_failure_controls": 3,
+  "reached_cover_goals": 73,
+  "sum_case_elapsed_seconds": 128.048,
+  "all_recorded_input_hash_checks_passed": true,
+  "all_host_deadlines_respected": true,
+  "actual_outcomes": {
+    "PASS": 30,
+    "FAIL": 3
+  },
+  "records": [
+    {
+      "id": "fifo_d3_w8_prove",
+      "claim": "unbounded PDR safety proof",
+      "engine": "abc pdr",
+      "proof_signature": "Property proved"
+    },
+    {
+      "id": "fifo_d3_w8_cover",
+      "claim": "bounded reachability",
+      "depth": 24,
+      "cover_goals_reached": [
+        "fifo_formal.c_clear_recovery",
+        "fifo_formal.c_empty_after_full",
+        "fifo_formal.c_empty_both_requested",
+        "fifo_formal.c_full",
+        "fifo_formal.c_full_both_requested",
+        "fifo_formal.c_reset_recovery",
+        "fifo_formal.c_simultaneous_accepted",
+        "fifo_formal.c_write_and_read_wrap"
+      ],
+      "trace_files": 7
+    },
+    {
+      "id": "fifo_d4_w8_prove",
+      "claim": "unbounded PDR safety proof",
+      "engine": "abc pdr",
+      "proof_signature": "Property proved"
+    },
+    {
+      "id": "fifo_d4_w8_cover",
+      "claim": "bounded reachability",
+      "depth": 24,
+      "cover_goals_reached": [
+        "fifo_formal.c_clear_recovery",
+        "fifo_formal.c_empty_after_full",
+        "fifo_formal.c_empty_both_requested",
+        "fifo_formal.c_full",
+        "fifo_formal.c_full_both_requested",
+        "fifo_formal.c_reset_recovery",
+        "fifo_formal.c_simultaneous_accepted",
+        "fifo_formal.c_write_and_read_wrap"
+      ],
+      "trace_files": 7
+    },
+    {
+      "id": "fifo_d256_w32_prove",
+      "claim": "unbounded temporal-induction safety proof",
+      "engine": "smtbmc z3",
+      "proof_signature": "successful proof by k-induction"
+    },
+    {
+      "id": "fifo_d1024_w32_prove",
+      "claim": "unbounded temporal-induction safety proof",
+      "engine": "smtbmc z3",
+      "proof_signature": "successful proof by k-induction"
+    },
+    {
+      "id": "fifo_negative_never_full",
+      "claim": "intentional false property detected",
+      "assertion": "a_deliberately_false_never_full",
+      "trace_files": 1
+    },
+    {
+      "id": "round_i29_o28_s1_prove",
+      "claim": "combinational exhaustive equivalence",
+      "engine": "smtbmc z3",
+      "proof_signature": "successful proof by k-induction"
+    },
+    {
+      "id": "round_i29_o28_s1_cover",
+      "claim": "bounded reachability",
+      "depth": 1,
+      "cover_goals_reached": [
+        "round_formal.c_high_saturation",
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_negative_tie",
+        "round_formal.c_positive_tie",
+        "round_formal.c_zero"
+      ],
+      "trace_files": 4
+    },
+    {
+      "id": "round_i28_o28_s0_prove",
+      "claim": "combinational exhaustive equivalence",
+      "engine": "smtbmc z3",
+      "proof_signature": "successful proof by k-induction"
+    },
+    {
+      "id": "round_i28_o28_s0_cover",
+      "claim": "bounded reachability",
+      "depth": 1,
+      "cover_goals_reached": [
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_zero"
+      ],
+      "trace_files": 3
+    },
+    {
+      "id": "round_i37_o12_s15_prove",
+      "claim": "combinational exhaustive equivalence",
+      "engine": "smtbmc z3",
+      "proof_signature": "successful proof by k-induction"
+    },
+    {
+      "id": "round_i37_o12_s15_cover",
+      "claim": "bounded reachability",
+      "depth": 1,
+      "cover_goals_reached": [
+        "round_formal.c_high_saturation",
+        "round_formal.c_low_saturation",
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_negative_tie",
+        "round_formal.c_positive_tie",
+        "round_formal.c_zero"
+      ],
+      "trace_files": 7
+    },
+    {
+      "id": "round_i8_o4_s0_prove",
+      "claim": "combinational exhaustive equivalence",
+      "engine": "smtbmc z3",
+      "proof_signature": "successful proof by k-induction"
+    },
+    {
+      "id": "round_i8_o4_s0_cover",
+      "claim": "bounded reachability",
+      "depth": 1,
+      "cover_goals_reached": [
+        "round_formal.c_low_saturation",
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_zero"
+      ],
+      "trace_files": 3
+    },
+    {
+      "id": "round_i8_o4_s1_prove",
+      "claim": "combinational exhaustive equivalence",
+      "engine": "smtbmc z3",
+      "proof_signature": "successful proof by k-induction"
+    },
+    {
+      "id": "round_i8_o4_s1_cover",
+      "claim": "bounded reachability",
+      "depth": 1,
+      "cover_goals_reached": [
+        "round_formal.c_high_saturation",
+        "round_formal.c_low_saturation",
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_negative_tie",
+        "round_formal.c_positive_tie",
+        "round_formal.c_zero"
+      ],
+      "trace_files": 6
+    },
+    {
+      "id": "round_i8_o4_s4_prove",
+      "claim": "combinational exhaustive equivalence",
+      "engine": "smtbmc z3",
+      "proof_signature": "successful proof by k-induction"
+    },
+    {
+      "id": "round_i8_o4_s4_cover",
+      "claim": "bounded reachability",
+      "depth": 1,
+      "cover_goals_reached": [
+        "round_formal.c_high_saturation",
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_negative_tie",
+        "round_formal.c_positive_tie",
+        "round_formal.c_zero"
+      ],
+      "trace_files": 6
+    },
+    {
+      "id": "round_i8_o4_s8_prove",
+      "claim": "combinational exhaustive equivalence",
+      "engine": "smtbmc z3",
+      "proof_signature": "successful proof by k-induction"
+    },
+    {
+      "id": "round_i8_o4_s8_cover",
+      "claim": "bounded reachability",
+      "depth": 1,
+      "cover_goals_reached": [
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_zero"
+      ],
+      "trace_files": 3
+    },
+    {
+      "id": "round_i8_o4_s9_prove",
+      "claim": "combinational exhaustive equivalence",
+      "engine": "smtbmc z3",
+      "proof_signature": "successful proof by k-induction"
+    },
+    {
+      "id": "round_i8_o4_s9_cover",
+      "claim": "bounded reachability",
+      "depth": 1,
+      "cover_goals_reached": [
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_zero"
+      ],
+      "trace_files": 3
+    },
+    {
+      "id": "round_i64_o32_s63_prove",
+      "claim": "combinational exhaustive equivalence",
+      "engine": "smtbmc z3",
+      "proof_signature": "successful proof by k-induction"
+    },
+    {
+      "id": "round_i64_o32_s63_cover",
+      "claim": "bounded reachability",
+      "depth": 1,
+      "cover_goals_reached": [
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_negative_tie",
+        "round_formal.c_positive_tie",
+        "round_formal.c_zero"
+      ],
+      "trace_files": 5
+    },
+    {
+      "id": "round_i64_o32_s64_prove",
+      "claim": "combinational exhaustive equivalence",
+      "engine": "smtbmc z3",
+      "proof_signature": "successful proof by k-induction"
+    },
+    {
+      "id": "round_i64_o32_s64_cover",
+      "claim": "bounded reachability",
+      "depth": 1,
+      "cover_goals_reached": [
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_zero"
+      ],
+      "trace_files": 3
+    },
+    {
+      "id": "round_i64_o32_s65_prove",
+      "claim": "combinational exhaustive equivalence",
+      "engine": "smtbmc z3",
+      "proof_signature": "successful proof by k-induction"
+    },
+    {
+      "id": "round_i64_o32_s65_cover",
+      "claim": "bounded reachability",
+      "depth": 1,
+      "cover_goals_reached": [
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_zero"
+      ],
+      "trace_files": 3
+    },
+    {
+      "id": "round_negative_no_saturation",
+      "claim": "intentional false property detected",
+      "assertion": "a_deliberately_false_no_saturation",
+      "trace_files": 1
+    },
+    {
+      "id": "mask_rules_prove",
+      "claim": "unbounded temporal-induction safety proof",
+      "engine": "smtbmc z3",
+      "proof_signature": "successful proof by k-induction"
+    },
+    {
+      "id": "mask_rules_cover",
+      "claim": "bounded reachability",
+      "depth": 8,
+      "cover_goals_reached": [
+        "mask_formal.c_clear_recovery",
+        "mask_formal.c_dc_protected_despite_pre_mask",
+        "mask_formal.c_equality_retained",
+        "mask_formal.c_just_below_suppressed",
+        "mask_formal.c_nyquist_suppression",
+        "mask_formal.c_simultaneous_accept",
+        "mask_formal.c_stall"
+      ],
+      "trace_files": 5
+    },
+    {
+      "id": "mask_negative_never_valid",
+      "claim": "intentional false property detected",
+      "assertion": "a_deliberately_false_never_valid",
+      "trace_files": 1
+    }
+  ]
+}

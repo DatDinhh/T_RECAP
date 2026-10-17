@@ -1,0 +1,11 @@
+\begin{table}[htbp]\centering
+\caption{Registered supplemental result. Counts refer to distinct evidence types.}
+\begin{tabularx}{\linewidth}{P{1.5in}L}\toprule
+Evidence & Accepted result\\\midrule
+UVM simulation & Three seeds, 12 completed epochs, three interrupted prefixes and three reset recoveries included in the 12 completed epochs.\\
+Exact numerical checks & 18,432 reconstructed samples, 13,932 canonical-bin rows and 94,440 packet bytes in completed epochs.\\
+Formal proof & 16 safety/equivalence jobs discharged for the stated instances and assumptions.\\
+Formal reachability & 14 bounded-cover jobs, reported separately from proofs.\\
+Deliberate failures & One UVM wrong-reference test and three false-property formal tests detected the intended violation.\\\bottomrule
+\end{tabularx}\end{table}
+No production RTL changed. The simulator campaign required one explicit bounded recovery from a startup crash. The original failed aggregate remains evidence of that failure, rather than being overwritten by the accepted recovery manifest.

@@ -1,0 +1,6 @@
+\subsection{Threshold-mask protocol and decision rules}
+The mask harness instantiates the default 28-bit complex-input and 56-bit squared-magnitude implementation. Explicit top-level inputs preserve shared unconstrained controls and payloads through the SystemVerilog frontend. A shadow acceptance record tracks the accepted threshold and metadata; it is independent of the DUT output registers.
+
+The assertions cover ready/valid ownership, held output payload under backpressure, complex-value and metadata transfer, strict threshold comparison, DC protection and the unique-bin eligibility rule. Equality must be retained. Covers exercise an occupied stall, simultaneous output consumption and input acceptance, protected DC below threshold, suppressed Nyquist, equality retention, just-below-threshold suppression and clear/recovery.
+
+These properties relate the mask decision to the magnitude emitted by the DUT. They do not independently prove the multiplier, accumulated spectral statistics or the full FFT. The input threshold is unconstrained per accepted transaction; whole-epoch threshold ownership remains an upstream contract checked by the system environment.

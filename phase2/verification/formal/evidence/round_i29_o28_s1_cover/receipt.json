@@ -1,0 +1,69 @@
+{
+  "case": {
+    "id": "round_i29_o28_s1_cover",
+    "top": "round_formal",
+    "harness": "round_formal.sv",
+    "files": [
+      "round_sat.sv"
+    ],
+    "parameters": {
+      "IN_W": 29,
+      "OUT_W": 28,
+      "SHIFT": 1,
+      "NEGATIVE": 0
+    },
+    "mode": "cover",
+    "depth": 1,
+    "engine": "smtbmc z3",
+    "timeout": 90,
+    "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job"
+  },
+  "observed_status": "PASS",
+  "expected_status": "PASS",
+  "acceptance": "PASS",
+  "exit_code": 0,
+  "host_deadline_exceeded": false,
+  "cleanup": "not required",
+  "input_identity_unchanged": true,
+  "negative_signature_matched": false,
+  "elapsed_seconds": 3.564,
+  "command": [
+    "external-tool:oss-cad-suite/bin/sby",
+    "-d",
+    "result",
+    "case.sby"
+  ],
+  "sources": [
+    {
+      "path": "verification/tsh2/rtl/round_sat.sv",
+      "sha256": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457",
+      "copy_name": "round_sat.sv"
+    }
+  ],
+  "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366",
+  "configuration_sha256": "efc72f7d508540598b5e78c5e3a360a2792034c29d37b68d5673cd06f19eb744",
+  "traces": [
+    {
+      "path": "result/engine_0/trace0.vcd",
+      "sha256": "6d26570db1bbeeb19a96f0eb40a5eed150ae0e8be2b6b82f2945eaef29422b96",
+      "bytes": 2545
+    },
+    {
+      "path": "result/engine_0/trace1.vcd",
+      "sha256": "bea2af1d3942fda60856981faff21232df0da80ea2f9b8a574cc5a0f3c1ee777",
+      "bytes": 2545
+    },
+    {
+      "path": "result/engine_0/trace2.vcd",
+      "sha256": "2fdf1a7d274bccc05bdf8e21460bd0a303775ac8200c132dce98b54c169cb1ec",
+      "bytes": 2545
+    },
+    {
+      "path": "result/engine_0/trace3.vcd",
+      "sha256": "9a3484102e0056ee3c159b7ee9b78ceb46805042329aee65e5b4a442e142f10f",
+      "bytes": 2545
+    }
+  ],
+  "stdout_sha256": "d030f1fa26d54635a3257b16d4e74554b0cca43d0aec06282fb3db8ffb3d78ac",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

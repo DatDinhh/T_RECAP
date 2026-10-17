@@ -74,7 +74,7 @@
     {
       "id": "S14",
       "path": "verification/README.md",
-      "sha256": "e1ca8360cf4427282fec0fa0980513a7e68bb20372b6720e1afc1fe2431e4d46"
+      "sha256": "4b1289ddd6a4c0b0f008468102cdcc5d3b1bb4431d97be31c15e6b7d8769ab8b"
     },
     {
       "id": "S15",
@@ -2568,8 +2568,9 @@
         "The retained board top uses HPS reset only; KEY does not cancel a pending bus response. A copied TSH1 comment does not change its instantiated TSH2 adapter.",
         "No formal CDC/RDC, metastability proof, exhaustive code-coverage closure, PVT qualification or industrial certification is claimed.",
         "Public portable tests cover the unchanged stream/core/exporter closure at Ns1024 and use synthetic fixtures. The broader accepted campaign includes two full384000 simulations and58physical epochs, but these are distinct evidence scopes.",
-        "Functional simulations omit SYNTHESIS and use procedural assertions/checkers, not a UVM or concurrent-SVA environment. Source-bound fit/timing is historical; creating these diagrams performs no new synthesis, simulation or hardware run.",
-        "The public repository omits generated vendor IP and full fitted build artifacts. Board wrapper clock/reset details were checked against retained sources whose hashes match the published fitted source manifest."
+        "The original functional RTL campaigns omit SYNTHESIS and use procedural assertions/checkers. A later supplement executes genuine UVM 1.2 and scoped local formal safety/equivalence and bounded-cover jobs on unchanged TSH2 RTL. These are separate evidence scopes; they do not establish full pipeline formal equivalence or concurrent-SVA coverage. Source-bound fit/timing is historical; creating these diagrams performs no new synthesis, simulation or hardware run.",
+        "The public repository omits generated vendor IP and full fitted build artifacts. Board wrapper clock/reset details were checked against retained sources whose hashes match the published fitted source manifest.",
+        "The reviewed S14 verification index links the UVM/formal supplement and discloses its preserved simulator startup failure and bounded recovery. The 12 completed UVM epochs include three reset recoveries, with three aborted prefixes recorded separately; local formal proofs retain explicit assumptions and exclusions."
       ],
       "review_callouts": [
         "No active codec RX/TX asynchronous FIFOs in this profile. Do not copy the old audio-clock diagram.",
@@ -2686,10 +2687,10 @@
             790,
             170
           ],
-          "title": "Functional RTL evidence",
+          "title": "Functional verification evidence",
           "body": [
-            "Directed, full-length and seeded simulations; exact scoreboards",
-            "Procedural checks, not UVM or concurrent SVA",
+            "Original: directed/full-length procedural scoreboards",
+            "Supplement: UVM 1.2 + scoped local formal proofs",
             "10 ns simulation clock is not board timing"
           ],
           "tone": "gray",

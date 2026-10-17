@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "${MODELSIM_BIN}/vlib.exe",
+    "work"
+  ],
+  "cwd": "${UVM_PACKAGE}/runs/attempt03/build",
+  "timeout_seconds": 600,
+  "tool_sha256": "1be6b62216ae7323042a7e602381fa6550c2650c5b16c51f5963dfcea91d06b1",
+  "started_utc": "2026-10-17T06:27:44.850855+00:00",
+  "pid": 31128,
+  "exit_code": 0,
+  "elapsed_seconds": 0.063,
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

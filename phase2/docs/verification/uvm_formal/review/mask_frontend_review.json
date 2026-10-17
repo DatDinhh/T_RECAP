@@ -1,0 +1,225 @@
+{
+  "status": "PASS_INDEPENDENT_MASK_FRONTEND_REPAIR_REVIEW",
+  "old_attempt": "mask_wola03",
+  "accepted_qualification_attempt": "mask_ports04",
+  "source_bindings": [
+    {
+      "artifact": "formal/attempts/mask_wola03/mask_rules_prove/mask_formal.sv",
+      "sha256": "8efff4fa2a7df10e10dd3aa26cd0da25df02419f50e205f5ed1ca4c15d9326de"
+    },
+    {
+      "artifact": "formal/attempts/mask_wola03/mask_rules_prove/result/model/design.il",
+      "sha256": "786d83dca865464f68d32e367f7ca279572ec26a033ab57c273eb8d947a95298"
+    },
+    {
+      "artifact": "formal/attempts/mask_wola03/mask_rules_prove/stdout.txt",
+      "sha256": "cfb64ce12e127666bbf71c72a97fd17b021ba042aabf0ce73d6b41e3f927c0bf"
+    },
+    {
+      "artifact": "formal/attempts/mask_wola03/mask_rules_prove/result/engine_0/trace.vcd",
+      "sha256": "d518724448305082e302da7b43ea9ed4d2768f91df2b43bc4cae29fa4479b7a9"
+    },
+    {
+      "artifact": "formal/attempts/mask_ports04/mask_rules_prove/mask_formal.sv",
+      "sha256": "638a37caa1fb3b31d4042458b10583b844f54ba07a0893770248b0161f3e5751"
+    },
+    {
+      "artifact": "formal/attempts/mask_ports04/mask_rules_prove/result/model/design.il",
+      "sha256": "55ef1dfa0c0009b210259f0cf3e7f9cd7a14a378f2ea32d17363495845e5599c"
+    },
+    {
+      "artifact": "formal/attempts/mask_ports04/mask_rules_prove/stdout.txt",
+      "sha256": "b207f610278b069786ef194e7cdad1b4558df7b283a26032eabddd140065ab60"
+    },
+    {
+      "artifact": "formal/attempts/mask_ports04/mask_rules_cover/stdout.txt",
+      "sha256": "caab62d70eef48341c559466eacfa233ff28c2a4a5d7379c1fd559fbc40f2735"
+    },
+    {
+      "artifact": "formal/attempts/mask_ports04/mask_rules_cover/result/engine_0/trace4.vcd",
+      "sha256": "b49432bdce40c46b3cb4eca1a0fd2d2cd3503b8dd40becd6e3a278082915eeff"
+    },
+    {
+      "artifact": "formal/attempts/mask_ports04/mask_negative_never_valid/stdout.txt",
+      "sha256": "a5a1a7f43de04936763f85979b00fde9f0538e6f927e96b9baa1e271b6196367"
+    },
+    {
+      "artifact": "formal/attempts/mask_ports04/mask_negative_never_valid/result/engine_0/trace.vcd",
+      "sha256": "e0fd896ca3004f0661e9ff81af1b0ca0cae272f67f120bf0935bb628a47b2a60"
+    }
+  ],
+  "unconstrained_input_bindings": [
+    {
+      "signal": "rst_n",
+      "old_lowering": "connect $pub@1083 1'x  # /dut.rst_n 1'x",
+      "repaired_lowering": "connect $pub@1083 $pub@1055  # /dut.rst_n /rst_n"
+    },
+    {
+      "signal": "enable_i",
+      "old_lowering": "connect $pub@1084 1'x  # /dut.enable_i 1'x",
+      "repaired_lowering": "connect $pub@1084 $pub@1056  # /dut.enable_i /enable_i"
+    },
+    {
+      "signal": "clear_i",
+      "old_lowering": "connect $pub@1085 1'x  # /dut.clear_i 1'x",
+      "repaired_lowering": "connect $pub@1085 $pub@1057  # /dut.clear_i /clear_i"
+    },
+    {
+      "signal": "clear_metrics_i",
+      "old_lowering": "connect $pub@1086 1'x  # /dut.clear_metrics_i 1'x",
+      "repaired_lowering": "connect $pub@1086 $pub@1058  # /dut.clear_metrics_i /clear_metrics_i"
+    },
+    {
+      "signal": "clear_sticky_i",
+      "old_lowering": "connect $pub@1087 1'x  # /dut.clear_sticky_i 1'x",
+      "repaired_lowering": "connect $pub@1087 $pub@1059  # /dut.clear_sticky_i /clear_sticky_i"
+    },
+    {
+      "signal": "thr2_i",
+      "old_lowering": "connect $pub@1088 56'x  # /dut.thr2_i 56'x",
+      "repaired_lowering": "connect $pub@1088 $pub@1060  # /dut.thr2_i /thr2_i"
+    },
+    {
+      "signal": "in_valid_i",
+      "old_lowering": "connect $pub@1089 1'x  # /dut.in_valid_i 1'x",
+      "repaired_lowering": "connect $pub@1089 $pub@1061  # /dut.in_valid_i /in_valid_i"
+    },
+    {
+      "signal": "out_ready_i",
+      "old_lowering": "connect $pub@1099 1'x  # /dut.out_ready_i 1'x",
+      "repaired_lowering": "connect $pub@1099 $pub@1062  # /dut.out_ready_i /out_ready_i"
+    },
+    {
+      "signal": "in_unique_i",
+      "old_lowering": "connect $pub@1095 1'x  # /dut.in_unique_i 1'x",
+      "repaired_lowering": "connect $pub@1095 $pub@1063  # /dut.in_unique_i /in_unique_i"
+    },
+    {
+      "signal": "in_self_conj_i",
+      "old_lowering": "connect $pub@1096 1'x  # /dut.in_self_conj_i 1'x",
+      "repaired_lowering": "connect $pub@1096 $pub@1064  # /dut.in_self_conj_i /in_self_conj_i"
+    },
+    {
+      "signal": "in_last_i",
+      "old_lowering": "connect $pub@1097 1'x  # /dut.in_last_i 1'x",
+      "repaired_lowering": "connect $pub@1097 $pub@1065  # /dut.in_last_i /in_last_i"
+    },
+    {
+      "signal": "in_frame_idx_i",
+      "old_lowering": "connect $pub@1091 64'x  # /dut.in_frame_idx_i 64'x",
+      "repaired_lowering": "connect $pub@1091 $pub@1066  # /dut.in_frame_idx_i /in_frame_idx_i"
+    },
+    {
+      "signal": "in_bin_idx_i",
+      "old_lowering": "connect $pub@1092 8'x  # /dut.in_bin_idx_i 8'x",
+      "repaired_lowering": "connect $pub@1092 $pub@1067  # /dut.in_bin_idx_i /in_bin_idx_i"
+    },
+    {
+      "signal": "in_re_i",
+      "old_lowering": "connect $pub@1093 28'x  # /dut.in_re_i 28'x",
+      "repaired_lowering": "connect $pub@1093 $pub@1068  # /dut.in_re_i /in_re_i"
+    },
+    {
+      "signal": "in_im_i",
+      "old_lowering": "connect $pub@1094 28'x  # /dut.in_im_i 28'x",
+      "repaired_lowering": "connect $pub@1094 $pub@1069  # /dut.in_im_i /in_im_i"
+    }
+  ],
+  "same_property_and_reference_body_except_negative_control": true,
+  "assumptions_before_and_after": 1,
+  "assumption": "Initial sampled reset is low; no later reset, request, sequence, data or fairness assumption.",
+  "compiled_positive_assertions": 11,
+  "compiled_covers": 7,
+  "compiled_assumptions": 1,
+  "reached_covers": [
+    "c_clear_recovery",
+    "c_dc_protected_despite_pre_mask",
+    "c_equality_retained",
+    "c_just_below_suppressed",
+    "c_nyquist_suppression",
+    "c_simultaneous_accept",
+    "c_stall"
+  ],
+  "clear_recovery_witness": [
+    {
+      "step": 0,
+      "rst_n": 0,
+      "clear_i": 1,
+      "enable_i": 0,
+      "in_valid_i": 0,
+      "in_ready_o": 0,
+      "out_valid_o": 0,
+      "out_ready_i": 0,
+      "accepted": 0,
+      "saw_clear": 0
+    },
+    {
+      "step": 1,
+      "rst_n": 1,
+      "clear_i": 1,
+      "enable_i": 0,
+      "in_valid_i": 0,
+      "in_ready_o": 0,
+      "out_valid_o": 0,
+      "out_ready_i": 0,
+      "accepted": 0,
+      "saw_clear": 0
+    },
+    {
+      "step": 2,
+      "rst_n": 1,
+      "clear_i": 0,
+      "enable_i": 1,
+      "in_valid_i": 1,
+      "in_ready_o": 1,
+      "out_valid_o": 0,
+      "out_ready_i": 0,
+      "accepted": 1,
+      "saw_clear": 1
+    },
+    {
+      "step": 3,
+      "rst_n": 1,
+      "clear_i": 1,
+      "enable_i": 0,
+      "in_valid_i": 0,
+      "in_ready_o": 0,
+      "out_valid_o": 1,
+      "out_ready_i": 0,
+      "accepted": 0,
+      "saw_clear": 1
+    },
+    {
+      "step": 4,
+      "rst_n": 1,
+      "clear_i": 1,
+      "enable_i": 0,
+      "in_valid_i": 0,
+      "in_ready_o": 0,
+      "out_valid_o": 0,
+      "out_ready_i": 0,
+      "accepted": 0,
+      "saw_clear": 1
+    },
+    {
+      "step": 5,
+      "rst_n": 1,
+      "clear_i": 1,
+      "enable_i": 0,
+      "in_valid_i": 0,
+      "in_ready_o": 0,
+      "out_valid_o": 0,
+      "out_ready_i": 0,
+      "accepted": 0,
+      "saw_clear": 1
+    }
+  ],
+  "negative_control": "Actual named never-valid assertion fails with a valid output under the same initial-reset assumption.",
+  "diagnosis": "The old slang lowering connected internal attributed anyseq inputs and their DUT aliases to X constants; subsequent setundef produced separate nondeterministic uses, losing shared-input identity. That harness/frontend result cannot diagnose a DUT violation. Explicit top-level unconstrained ports preserve one shared bit-vector for DUT and checker, without restricting its allowed values.",
+  "proof_class": "Actual basecase plus successful temporal induction; seven reachable cover predicates and one expected-failure BMC counterexample qualify the repaired selected frontend use.",
+  "limits": [
+    "Two-state, sampled logical properties only; async2sync/dffunmap are declared transformations, not physical reset/CDC analysis.",
+    "Mask predicates are relational to the DUT-produced magnitude; multiplication and frame statistics are not independently proved.",
+    "Final campaign source hashes and all selected jobs still require independent final audit."
+  ]
+}

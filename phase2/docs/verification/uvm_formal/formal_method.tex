@@ -1,0 +1,18 @@
+Formal jobs use a pinned official OSS CAD Suite release. Each job binds unchanged implementation sources, a property harness, parameter values, the frontend, solver/engine, search depth and a deadline. An accepted safety result must come from the actual engine. A successful package-integrity check does not execute a proof.
+
+The harnesses use immediate SystemVerilog assertions and covers with sampled history. These are formal properties analyzed by a solver; they are not advertised as a concurrent-SVA test suite. Sequential proofs assume an initial sampled reset. Subsequent input controls remain unconstrained except where a case explicitly states otherwise. Asynchronous-reset normalization is interpreted at the formal sampling boundary and does not establish electrical reset behavior or metastability safety.
+
+\subsection{Synchronous FIFO}
+The accepted operations are determined from the pre-edge state:
+\[
+ p=\mathrm{push\_i}\land\neg\mathrm{full},\qquad
+ q=\mathrm{pop\_i}\land\neg\mathrm{empty}.
+\]
+Outside reset/clear, occupancy must update as $n'=n+p-q$ and remain within capacity. At full occupancy, simultaneous requests accept only the pop; at empty occupancy, they accept only the push. The output is registered on an accepted pop. Uninitialized RAM is not assumed to contain valid data.
+
+The deployed adapter instantiates the generic \texttt{stream\_fifo} at 32-bit width and depth 1,024 for its Y and spectral-output queues. Its PCM input queue is a separate implementation in \texttt{trecap\_pcm\_stream\_source}. A generic FIFO proof at depth 256 therefore does not prove the PCM queue. Reduced-width/depth ordering checks and production-size control checks are reported separately in the result ledger.
+
+\subsection{Rounded shift and saturation}
+The \texttt{trecap\_round\_sat} harness uses an independently expressed signed floor-quotient and nonnegative-remainder oracle. It checks the rounded value, signed clipping and the high/low/any saturation flags for every input bit pattern of each declared instance. The matrix includes the selected 29-to-28-bit shift-one setting and large-shift boundaries. Passing selected parameter instances does not prove all possible parameter combinations.
+
+\input{mask_method.tex}

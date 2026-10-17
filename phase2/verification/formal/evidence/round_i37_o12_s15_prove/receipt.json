@@ -1,0 +1,48 @@
+{
+  "case": {
+    "id": "round_i37_o12_s15_prove",
+    "top": "round_formal",
+    "harness": "round_formal.sv",
+    "files": [
+      "round_sat.sv"
+    ],
+    "parameters": {
+      "IN_W": 37,
+      "OUT_W": 12,
+      "SHIFT": 15,
+      "NEGATIVE": 0
+    },
+    "mode": "prove",
+    "depth": 1,
+    "engine": "smtbmc z3",
+    "timeout": 90,
+    "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters"
+  },
+  "observed_status": "PASS",
+  "expected_status": "PASS",
+  "acceptance": "PASS",
+  "exit_code": 0,
+  "host_deadline_exceeded": false,
+  "cleanup": "not required",
+  "input_identity_unchanged": true,
+  "negative_signature_matched": false,
+  "elapsed_seconds": 3.27,
+  "command": [
+    "external-tool:oss-cad-suite/bin/sby",
+    "-d",
+    "result",
+    "case.sby"
+  ],
+  "sources": [
+    {
+      "path": "verification/tsh2/rtl/round_sat.sv",
+      "sha256": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457",
+      "copy_name": "round_sat.sv"
+    }
+  ],
+  "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366",
+  "configuration_sha256": "9dd5d848c36e15671d65110ac6887d71b28a9fcdbe944504f8ba4e7e76c9cae5",
+  "traces": [],
+  "stdout_sha256": "9904a8578a1498799deeea1de8010ae3bfcf0b152d159902a2cf09316e6967b5",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

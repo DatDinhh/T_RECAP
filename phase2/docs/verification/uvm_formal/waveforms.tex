@@ -1,0 +1,4 @@
+\subsection{Actual trace excerpts}
+\plate{uvm_final_y}{Actual seed-1 monitor samples around the final waveform token. Y remains valid while readiness is low for 33 edges. Busy remains asserted, then completion follows the accepted final transfer. The 10 ns simulation clock is a testbench setting, not a measured board-performance result.}{3.5in}
+\plate{formal_counterexample}{Native solver witness for the deliberately false FIFO never-full assertion. Occupancy reaches three in the DEPTH=3 instance, disproving the control property. Reset and CLEAR are displayed because they may change occupancy independently of pop requests. This is an expected negative control, not a reported DUT defect.}{4.0in}
+The figure generator reads the committed clock-sample CSV and VCD, records their hashes, and exports the selected data alongside the figures. Conceptual architecture diagrams and measured trace excerpts are labeled separately.

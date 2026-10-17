@@ -1,0 +1,107 @@
+Reading pref.tcl
+
+# 2020.1
+
+# vsim -c -onfinish stop -voptargs="+acc" work.tsh2_top "+CASES=cases.txt" "+OUT=../seed_1" "+SEED=1" -do "run.do" 
+# Start time: 02:27:48 on Oct 17,2026
+# Loading ${TEMP}/SIMULATOR_SESSION/win32pe_gcc-4.2.1/export_tramp.dll
+# ** Note: (vsim-8785) UVM-aware debugging capabilities will be disabled since no compiled "questa_uvm_pkg" can be found.
+# This also means that later if you turn on UVM-aware debugging your debug simulations may have
+# different random seeds from your non-debug simulations.
+# Loading sv_std.std
+# Loading work.tsh2_if
+# Loading work.uvm_pkg
+# Loading work.tsh2_uvm_pkg
+# Loading work.tsh2_top
+# Loading work.trecap_core_pkg
+# Loading work.trecap_math_pkg
+# Loading work.trecap_packet_pkg
+# Loading work.trecap_iface_pkg
+# Loading work.trecap_csr_pkg
+# Loading work.trecap_build_pkg
+# Loading work.trecap_pcm_stream_top
+# Loading work.trecap_pcm_stream_source
+# Loading work.trecap_core_export_observed
+# Loading work.trecap_input_ring
+# Loading work.trecap_frame_scheduler
+# Loading work.trecap_analysis_window
+# Loading work.window_rom
+# Loading work.trecap_round_sat
+# Loading work.trecap_fft256
+# Loading work.trecap_bit_reverse_addr
+# Loading work.trecap_twiddle_rom
+# Loading work.trecap_fft_stage
+# Loading work.trecap_hermitian_canonicalizer
+# Loading work.trecap_mag2_mask
+# Loading work.trecap_spectrum_mask_builder
+# Loading work.trecap_ifft256
+# Loading work.trecap_synthesis_wola
+# Loading work.trecap_delay_error_metrics
+# Loading work.trecap_spectral_exporter
+# Compiling ${TEMP}/SIMULATOR_SESSION/win32pe_gcc-4.2.1/exportwrapper.c
+# Loading ${TEMP}/SIMULATOR_SESSION/win32pe_gcc-4.2.1/vsim_auto_compile.dll
+# ** Warning: Design size of 60474 statements exceeds ModelSim-Intel FPGA Starter Edition recommended capacity.
+# Expect performance to be adversely affected.
+# do run.do
+# UVM_INFO ${UVM_HOME}/src/base/uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
+# ----------------------------------------------------------------
+# UVM-1.2
+# (C) 2007-2014 Mentor Graphics Corporation
+# (C) 2007-2014 Cadence Design Systems, Inc.
+# (C) 2006-2014 Synopsys, Inc.
+# (C) 2011-2013 Cypress Semiconductor Corp.
+# (C) 2013-2014 NVIDIA Corporation
+# ----------------------------------------------------------------
+# 
+#   ***********       IMPORTANT RELEASE NOTES         ************
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_NO_DEPRECATED undefined.
+#   See http://www.eda.org/svdb/view.php?id=3313 for more details.
+# 
+#   You are using a version of the UVM library that has been compiled
+#   with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+#   See http://www.eda.org/svdb/view.php?id=3770 for more details.
+# 
+#       (Specify +UVM_NO_RELNOTES to turn off this notice)
+# 
+# UVM_INFO @ 0: reporter [RNTST] Running test tsh2_test...
+# UVM_INFO ${UVM_HOME}/src/base/uvm_traversal.svh(279) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+# UVM_INFO tb/tsh2_uvm_pkg.sv(151) @ 3905000: uvm_test_top.env.agent.monitor [EPOCH_STARTED] Observed accepted epoch=0 case=0
+# UVM_INFO tb/tsh2_uvm_pkg.sv(271) @ 90165000: uvm_test_top.env.scoreboard [RESET_ABORT_CHECKED] Observed reset aborted prefix: PCM=386 source=128 Y=0 taps=17 bytes=0
+# UVM_INFO tb/tsh2_uvm_pkg.sv(151) @ 94095000: uvm_test_top.env.agent.monitor [EPOCH_STARTED] Observed accepted epoch=1 case=0
+# UVM_INFO tb/tsh2_uvm_pkg.sv(278) @ 1421115000: uvm_test_top.env.scoreboard [EPOCH_CHECKED] epoch=1 case=0 seed=1 exact PCM1024/source1536/Y1536/taps1161/packet8568
+# UVM_INFO tb/tsh2_uvm_pkg.sv(151) @ 1425015000: uvm_test_top.env.agent.monitor [EPOCH_STARTED] Observed accepted epoch=2 case=1
+# UVM_INFO tb/tsh2_uvm_pkg.sv(278) @ 2769085000: uvm_test_top.env.scoreboard [EPOCH_CHECKED] epoch=2 case=1 seed=1 exact PCM1024/source1536/Y1536/taps1161/packet9720
+# UVM_INFO tb/tsh2_uvm_pkg.sv(151) @ 2772985000: uvm_test_top.env.agent.monitor [EPOCH_STARTED] Observed accepted epoch=3 case=2
+# UVM_INFO tb/tsh2_uvm_pkg.sv(278) @ 4099375000: uvm_test_top.env.scoreboard [EPOCH_CHECKED] epoch=3 case=2 seed=1 exact PCM1024/source1536/Y1536/taps1161/packet8568
+# UVM_INFO tb/tsh2_uvm_pkg.sv(151) @ 4103275000: uvm_test_top.env.agent.monitor [EPOCH_STARTED] Observed accepted epoch=4 case=3
+# UVM_INFO tb/tsh2_uvm_pkg.sv(278) @ 5425425000: uvm_test_top.env.scoreboard [EPOCH_CHECKED] epoch=4 case=3 seed=1 exact PCM1024/source1536/Y1536/taps1161/packet4624
+# UVM_INFO ${UVM_HOME}/src/base/uvm_objection.svh(1270) @ 5425495000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO tb/tsh2_uvm_pkg.sv(328) @ 5425495000: uvm_test_top [TSH2_UVM_COMPLETE] seed=1 completed=4 reset_aborts=1
+# UVM_INFO ${UVM_HOME}/src/base/uvm_report_server.svh(847) @ 5425495000: reporter [UVM/REPORT/SERVER] 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   15
+# UVM_WARNING :    0
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [EPOCH_CHECKED]     4
+# [EPOCH_STARTED]     5
+# [RESET_ABORT_CHECKED]     1
+# [RNTST]     1
+# [TEST_DONE]     1
+# [TSH2_UVM_COMPLETE]     1
+# [UVM/COMP/NAMECHECK]     1
+# [UVM/RELNOTES]     1
+# 
+# ** Note: $finish    : ${UVM_HOME}/src/base/uvm_root.svh(517)
+#    Time: 5425495 ns  Iteration: 69  Instance: /tsh2_top
+# Break in Task uvm_pkg/uvm_root::run_test at ${UVM_HOME}/src/base/uvm_root.svh line 517
+# Stopped at ${UVM_HOME}/src/base/uvm_root.svh line 517
+# 1
+UVM_EXIT_STATE=1
+# End time: 02:32:05 on Oct 17,2026, Elapsed time: 0:04:17
+# Errors: 0, Warnings: 1

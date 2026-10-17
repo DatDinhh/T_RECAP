@@ -1,0 +1,25 @@
+Elapsed clock time [H:MM:SS (secs)]: 0:00:02 (2)
+Elapsed process time [H:MM:SS (secs)]: 0:00:01 (1)
+engine_0 (smtbmc z3) returned pass
+cover trace: engine_0/trace0.vcd
+cover trace: engine_0/trace0.yw
+  reached cover statement fifo_formal.c_empty_both_requested at fifo_formal.sv:53.13-53.70 step 2
+cover trace: engine_0/trace1.vcd
+cover trace: engine_0/trace1.yw
+  reached cover statement fifo_formal.c_simultaneous_accepted at fifo_formal.sv:51.13-51.56 step 3
+cover trace: engine_0/trace2.vcd
+cover trace: engine_0/trace2.yw
+  reached cover statement fifo_formal.c_clear_recovery at fifo_formal.sv:55.13-55.71 step 4
+cover trace: engine_0/trace3.vcd
+cover trace: engine_0/trace3.yw
+  reached cover statement fifo_formal.c_reset_recovery at fifo_formal.sv:56.13-56.82 step 5
+cover trace: engine_0/trace4.vcd
+cover trace: engine_0/trace4.yw
+  reached cover statement fifo_formal.c_full at fifo_formal.sv:49.13-49.34 step 6
+  reached cover statement fifo_formal.c_full_both_requested at fifo_formal.sv:52.13-52.68 step 6
+cover trace: engine_0/trace5.vcd
+cover trace: engine_0/trace5.yw
+  reached cover statement fifo_formal.c_write_and_read_wrap at fifo_formal.sv:54.13-54.92 step 8
+cover trace: engine_0/trace6.vcd
+cover trace: engine_0/trace6.yw
+  reached cover statement fifo_formal.c_empty_after_full at fifo_formal.sv:50.13-50.59 step 10

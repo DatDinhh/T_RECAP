@@ -1,0 +1,84 @@
+{
+  "case": {
+    "id": "fifo_d4_w8_cover",
+    "top": "fifo_formal",
+    "harness": "fifo_formal.sv",
+    "files": [
+      "stream_fifo.sv"
+    ],
+    "parameters": {
+      "DEPTH": 4,
+      "WIDTH": 8,
+      "CHECK_ORDER": 1,
+      "NEGATIVE": 0
+    },
+    "mode": "cover",
+    "depth": 24,
+    "engine": "smtbmc z3",
+    "timeout": 120,
+    "scope": "bounded reachability witnesses for eight named FIFO scenarios at the reduced parameter instance"
+  },
+  "observed_status": "PASS",
+  "expected_status": "PASS",
+  "acceptance": "PASS",
+  "exit_code": 0,
+  "host_deadline_exceeded": false,
+  "cleanup": "not required",
+  "input_identity_unchanged": true,
+  "negative_signature_matched": false,
+  "elapsed_seconds": 4.372,
+  "command": [
+    "external-tool:oss-cad-suite/bin/sby",
+    "-d",
+    "result",
+    "case.sby"
+  ],
+  "sources": [
+    {
+      "path": "profiles/tsh2/work/trecap_stream8_v01/rtl/stream_fifo.sv",
+      "sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b",
+      "copy_name": "stream_fifo.sv"
+    }
+  ],
+  "harness_sha256": "2d1d890bfcd33697bc91ba8c124103def00b283222d4c830b36cf9d6e910b564",
+  "configuration_sha256": "326b26fe87acfface979466d9ece0650c91399df653ea4dfb08d9fe107f57023",
+  "traces": [
+    {
+      "path": "result/engine_0/trace0.vcd",
+      "sha256": "5ad99d00bded0a44695e4010e86d09b1226136a21533010c0a1780b2579002cd",
+      "bytes": 3882
+    },
+    {
+      "path": "result/engine_0/trace1.vcd",
+      "sha256": "d1f3e24a7376e024edd7bb2e040c4e8f9fad041049576e1113ccc2cc459fe02b",
+      "bytes": 4500
+    },
+    {
+      "path": "result/engine_0/trace2.vcd",
+      "sha256": "e830f324220509ed28b099cf80841f44dd3f2fb98e6c670b9e20def1f559eed5",
+      "bytes": 5118
+    },
+    {
+      "path": "result/engine_0/trace3.vcd",
+      "sha256": "d5b4008a94cd14df0c0b675b8a4ddb00e19f52efa63def54f486499a6cd729f5",
+      "bytes": 5736
+    },
+    {
+      "path": "result/engine_0/trace4.vcd",
+      "sha256": "365fbdc586a9d4b9c52cbf993df0dc23c901d1e4b11a885272d4d7773692893b",
+      "bytes": 6606
+    },
+    {
+      "path": "result/engine_0/trace5.vcd",
+      "sha256": "0e3b22436283274f8087100df777eeb125d96a65d4509796f4558b9fe3f205c6",
+      "bytes": 7898
+    },
+    {
+      "path": "result/engine_0/trace6.vcd",
+      "sha256": "3530f025748a011472c7eb990892745965d37bafcfcf856b3b6067ba5fdd73f4",
+      "bytes": 9193
+    }
+  ],
+  "stdout_sha256": "64066ed46ca12fba1183a6ad2a869a03fd32f0575304b8030275ad83aacf49c7",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

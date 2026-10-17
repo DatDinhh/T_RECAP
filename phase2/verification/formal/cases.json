@@ -1,0 +1,637 @@
+{
+  "cases": [
+    {
+      "id": "fifo_d3_w8_prove",
+      "top": "fifo_formal",
+      "harness": "fifo_formal.sv",
+      "files": [
+        "stream_fifo.sv"
+      ],
+      "parameters": {
+        "DEPTH": 3,
+        "WIDTH": 8,
+        "CHECK_ORDER": 1,
+        "NEGATIVE": 0
+      },
+      "mode": "prove",
+      "depth": 20,
+      "engine": "abc pdr",
+      "timeout": 120,
+      "scope": "exact FIFO order plus control"
+    },
+    {
+      "id": "fifo_d3_w8_cover",
+      "top": "fifo_formal",
+      "harness": "fifo_formal.sv",
+      "files": [
+        "stream_fifo.sv"
+      ],
+      "parameters": {
+        "DEPTH": 3,
+        "WIDTH": 8,
+        "CHECK_ORDER": 1,
+        "NEGATIVE": 0
+      },
+      "mode": "cover",
+      "depth": 24,
+      "engine": "smtbmc z3",
+      "timeout": 120,
+      "scope": "bounded reachability witnesses for eight named FIFO scenarios at the reduced parameter instance"
+    },
+    {
+      "id": "fifo_d4_w8_prove",
+      "top": "fifo_formal",
+      "harness": "fifo_formal.sv",
+      "files": [
+        "stream_fifo.sv"
+      ],
+      "parameters": {
+        "DEPTH": 4,
+        "WIDTH": 8,
+        "CHECK_ORDER": 1,
+        "NEGATIVE": 0
+      },
+      "mode": "prove",
+      "depth": 20,
+      "engine": "abc pdr",
+      "timeout": 120,
+      "scope": "exact FIFO order plus control"
+    },
+    {
+      "id": "fifo_d4_w8_cover",
+      "top": "fifo_formal",
+      "harness": "fifo_formal.sv",
+      "files": [
+        "stream_fifo.sv"
+      ],
+      "parameters": {
+        "DEPTH": 4,
+        "WIDTH": 8,
+        "CHECK_ORDER": 1,
+        "NEGATIVE": 0
+      },
+      "mode": "cover",
+      "depth": 24,
+      "engine": "smtbmc z3",
+      "timeout": 120,
+      "scope": "bounded reachability witnesses for eight named FIFO scenarios at the reduced parameter instance"
+    },
+    {
+      "id": "fifo_d256_w32_prove",
+      "top": "fifo_formal",
+      "harness": "fifo_formal.sv",
+      "files": [
+        "stream_fifo.sv"
+      ],
+      "parameters": {
+        "DEPTH": 256,
+        "WIDTH": 32,
+        "CHECK_ORDER": 0,
+        "NEGATIVE": 0
+      },
+      "mode": "prove",
+      "depth": 4,
+      "engine": "smtbmc z3",
+      "timeout": 120,
+      "scope": "additional parameter control only; not deployed PCM FIFO implementation"
+    },
+    {
+      "id": "fifo_d1024_w32_prove",
+      "top": "fifo_formal",
+      "harness": "fifo_formal.sv",
+      "files": [
+        "stream_fifo.sv"
+      ],
+      "parameters": {
+        "DEPTH": 1024,
+        "WIDTH": 32,
+        "CHECK_ORDER": 0,
+        "NEGATIVE": 0
+      },
+      "mode": "prove",
+      "depth": 4,
+      "engine": "smtbmc z3",
+      "timeout": 120,
+      "scope": "deployed output FIFO parameter control only; no pointer or order claim"
+    },
+    {
+      "id": "fifo_negative_never_full",
+      "top": "fifo_formal",
+      "harness": "fifo_formal.sv",
+      "files": [
+        "stream_fifo.sv"
+      ],
+      "parameters": {
+        "DEPTH": 3,
+        "WIDTH": 8,
+        "CHECK_ORDER": 1,
+        "NEGATIVE": 1
+      },
+      "mode": "bmc",
+      "depth": 8,
+      "engine": "smtbmc z3",
+      "timeout": 120,
+      "scope": "negative checker control; false never-full property",
+      "expected": "FAIL",
+      "expected_assertion": "a_deliberately_false_never_full"
+    },
+    {
+      "id": "round_i29_o28_s1_prove",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 29,
+        "OUT_W": 28,
+        "SHIFT": 1,
+        "NEGATIVE": 0
+      },
+      "mode": "prove",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters"
+    },
+    {
+      "id": "round_i29_o28_s1_cover",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 29,
+        "OUT_W": 28,
+        "SHIFT": 1,
+        "NEGATIVE": 0
+      },
+      "mode": "cover",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job"
+    },
+    {
+      "id": "round_i28_o28_s0_prove",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 28,
+        "OUT_W": 28,
+        "SHIFT": 0,
+        "NEGATIVE": 0
+      },
+      "mode": "prove",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters"
+    },
+    {
+      "id": "round_i28_o28_s0_cover",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 28,
+        "OUT_W": 28,
+        "SHIFT": 0,
+        "NEGATIVE": 0
+      },
+      "mode": "cover",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job"
+    },
+    {
+      "id": "round_i37_o12_s15_prove",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 37,
+        "OUT_W": 12,
+        "SHIFT": 15,
+        "NEGATIVE": 0
+      },
+      "mode": "prove",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters"
+    },
+    {
+      "id": "round_i37_o12_s15_cover",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 37,
+        "OUT_W": 12,
+        "SHIFT": 15,
+        "NEGATIVE": 0
+      },
+      "mode": "cover",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job"
+    },
+    {
+      "id": "round_i8_o4_s0_prove",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 8,
+        "OUT_W": 4,
+        "SHIFT": 0,
+        "NEGATIVE": 0
+      },
+      "mode": "prove",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters"
+    },
+    {
+      "id": "round_i8_o4_s0_cover",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 8,
+        "OUT_W": 4,
+        "SHIFT": 0,
+        "NEGATIVE": 0
+      },
+      "mode": "cover",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job"
+    },
+    {
+      "id": "round_i8_o4_s1_prove",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 8,
+        "OUT_W": 4,
+        "SHIFT": 1,
+        "NEGATIVE": 0
+      },
+      "mode": "prove",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters"
+    },
+    {
+      "id": "round_i8_o4_s1_cover",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 8,
+        "OUT_W": 4,
+        "SHIFT": 1,
+        "NEGATIVE": 0
+      },
+      "mode": "cover",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job"
+    },
+    {
+      "id": "round_i8_o4_s4_prove",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 8,
+        "OUT_W": 4,
+        "SHIFT": 4,
+        "NEGATIVE": 0
+      },
+      "mode": "prove",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters"
+    },
+    {
+      "id": "round_i8_o4_s4_cover",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 8,
+        "OUT_W": 4,
+        "SHIFT": 4,
+        "NEGATIVE": 0
+      },
+      "mode": "cover",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job"
+    },
+    {
+      "id": "round_i8_o4_s8_prove",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 8,
+        "OUT_W": 4,
+        "SHIFT": 8,
+        "NEGATIVE": 0
+      },
+      "mode": "prove",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters"
+    },
+    {
+      "id": "round_i8_o4_s8_cover",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 8,
+        "OUT_W": 4,
+        "SHIFT": 8,
+        "NEGATIVE": 0
+      },
+      "mode": "cover",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job"
+    },
+    {
+      "id": "round_i8_o4_s9_prove",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 8,
+        "OUT_W": 4,
+        "SHIFT": 9,
+        "NEGATIVE": 0
+      },
+      "mode": "prove",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters"
+    },
+    {
+      "id": "round_i8_o4_s9_cover",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 8,
+        "OUT_W": 4,
+        "SHIFT": 9,
+        "NEGATIVE": 0
+      },
+      "mode": "cover",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job"
+    },
+    {
+      "id": "round_i64_o32_s63_prove",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 64,
+        "OUT_W": 32,
+        "SHIFT": 63,
+        "NEGATIVE": 0
+      },
+      "mode": "prove",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters"
+    },
+    {
+      "id": "round_i64_o32_s63_cover",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 64,
+        "OUT_W": 32,
+        "SHIFT": 63,
+        "NEGATIVE": 0
+      },
+      "mode": "cover",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job"
+    },
+    {
+      "id": "round_i64_o32_s64_prove",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 64,
+        "OUT_W": 32,
+        "SHIFT": 64,
+        "NEGATIVE": 0
+      },
+      "mode": "prove",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters"
+    },
+    {
+      "id": "round_i64_o32_s64_cover",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 64,
+        "OUT_W": 32,
+        "SHIFT": 64,
+        "NEGATIVE": 0
+      },
+      "mode": "cover",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job"
+    },
+    {
+      "id": "round_i64_o32_s65_prove",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 64,
+        "OUT_W": 32,
+        "SHIFT": 65,
+        "NEGATIVE": 0
+      },
+      "mode": "prove",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters"
+    },
+    {
+      "id": "round_i64_o32_s65_cover",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 64,
+        "OUT_W": 32,
+        "SHIFT": 65,
+        "NEGATIVE": 0
+      },
+      "mode": "cover",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job"
+    },
+    {
+      "id": "round_negative_no_saturation",
+      "top": "round_formal",
+      "harness": "round_formal.sv",
+      "files": [
+        "round_sat.sv"
+      ],
+      "parameters": {
+        "IN_W": 8,
+        "OUT_W": 4,
+        "SHIFT": 1,
+        "NEGATIVE": 1
+      },
+      "mode": "bmc",
+      "depth": 1,
+      "engine": "smtbmc z3",
+      "timeout": 90,
+      "scope": "negative checker control; false no-saturation property",
+      "expected": "FAIL",
+      "expected_assertion": "a_deliberately_false_no_saturation"
+    },
+    {
+      "id": "mask_rules_prove",
+      "top": "mask_formal",
+      "harness": "mask_formal.sv",
+      "files": [
+        "trecap_core_pkg.sv",
+        "trecap_packet_pkg.sv",
+        "trecap_iface_pkg.sv",
+        "trecap_mag2_mask.sv"
+      ],
+      "parameters": {},
+      "frontend": "slang",
+      "mode": "prove",
+      "depth": 8,
+      "engine": "smtbmc z3",
+      "timeout": 120,
+      "scope": "actual default 28-bit inputs and 56-bit magnitude: threshold/DC/unique rules and ready/valid; no multiplication or metric correctness claim"
+    },
+    {
+      "id": "mask_rules_cover",
+      "top": "mask_formal",
+      "harness": "mask_formal.sv",
+      "files": [
+        "trecap_core_pkg.sv",
+        "trecap_packet_pkg.sv",
+        "trecap_iface_pkg.sv",
+        "trecap_mag2_mask.sv"
+      ],
+      "parameters": {},
+      "frontend": "slang",
+      "mode": "cover",
+      "depth": 8,
+      "engine": "smtbmc z3",
+      "timeout": 120,
+      "scope": "bounded reachability of seven selected ready/valid and masking witnesses; no arithmetic equivalence claim"
+    },
+    {
+      "id": "mask_negative_never_valid",
+      "top": "mask_formal",
+      "harness": "mask_formal.sv",
+      "files": [
+        "trecap_core_pkg.sv",
+        "trecap_packet_pkg.sv",
+        "trecap_iface_pkg.sv",
+        "trecap_mag2_mask.sv"
+      ],
+      "parameters": {},
+      "frontend": "slang",
+      "mode": "bmc",
+      "depth": 5,
+      "engine": "smtbmc z3",
+      "timeout": 120,
+      "scope": "slang frontend/checker negative control; false never-valid property",
+      "defines": [
+        "MASK_NEGATIVE"
+      ],
+      "expected": "FAIL",
+      "expected_assertion": "a_deliberately_false_never_valid"
+    }
+  ]
+}

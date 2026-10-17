@@ -4,7 +4,7 @@ These eight diagrams document the registered finite-file TSH2 application: lapto
 
 The [historical architecture atlas](../diagrams/README.md) describes the broader 2026-09-14 design, including paths that are inactive here. The current profile does not activate its FPGA DDR ring, UDP telemetry or live codec/ADC input. Ordinary HPS Linux RAM remains part of the TCP service.
 
-See the [TSH2 source snapshot](../../../profiles/tsh2/README.md), [portable verification package](../../../verification/tsh2/README.md), [accepted campaign evidence](../../results/verification_20261017/README.md), and [project overview](../../../README.md) for their distinct scopes.
+See the [TSH2 source snapshot](../../../profiles/tsh2/README.md), [portable verification package](../../../verification/tsh2/README.md), [accepted campaign evidence](../../results/verification_20261017/README.md), [UVM and formal supplement](../../verification/uvm_formal/README.md), and [project overview](../../../README.md) for their distinct scopes.
 
 | View | PNG | Editable vector |
 |---|---|---|
@@ -88,6 +88,8 @@ Taps remain valid-only. Export pressure limits future source hops instead of inv
 The retained board top uses CLOCK_50 for the active fabric and a three-stage reset-release chain driven by HPS `h2f_reset_n`. Assertion is asynchronous; release shifts high over three clock edges. Software CLEAR and epoch initialization clear ownership, while WOLA storage is scrubbed explicitly. Transform work RAM is loaded per frame. Generated HPS CPU, Ethernet and DDR clocks remain platform-owned. The active F2SDRAM write input is tied inactive.
 
 The public synthetic package checks the admitted stream/core/exporter closure at Ns=1,024. The broader accepted campaign contains two full 384,000-sample RTL simulations and 58 checked physical epochs. These scopes are distinct. Functional simulation uses a 10 ns clock, while the physical fabric constraint is 20 ns. VCD time is not board latency. No formal CDC/RDC, metastability proof, full code-coverage closure, PVT qualification or industrial certification is claimed.
+
+The original RTL campaigns use procedural checks and exact scoreboards. The later [UVM and formal supplement](../../verification/uvm_formal/README.md) adds genuine UVM 1.2 execution and scoped local formal proofs against unchanged TSH2 RTL. Its 12 completed UVM epochs include three reset recoveries; three aborted prefixes are recorded separately. The preserved simulator startup failure and explicit bounded recovery remain part of that evidence. Local formal assumptions and exclusions apply; the supplement does not establish full-pipeline equivalence, concurrent-SVA coverage or formal CDC/RDC safety. Plate 8 distinguishes these evidence layers without changing the physical architecture.
 
 ## Editable sources and integrity
 

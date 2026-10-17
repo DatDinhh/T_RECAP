@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "${MODELSIM_BIN}/vlog.exe",
+    "-sv",
+    "-warning",
+    "2892",
+    "+define+UVM_NO_DPI",
+    "+incdir+${UVM_HOME}/src",
+    "-work",
+    "work",
+    "${UVM_HOME}/src/uvm_pkg.sv",
+    "-f",
+    "source_files.f"
+  ],
+  "cwd": "${UVM_PACKAGE}/runs/attempt04_seed20261017/build",
+  "timeout_seconds": 600,
+  "tool_sha256": "8a01969d8154b4a6415e4d908de0b1dc48ab2f4b893dda8586b2b5d7a87dc232",
+  "started_utc": "2026-10-17T06:34:30.599645+00:00",
+  "pid": 37364,
+  "exit_code": 0,
+  "elapsed_seconds": 2.375,
+  "log_sha256": "218522db271ec410ee901896bbc66a2e2e3e43229f58a238d9319425791447bc"
+}

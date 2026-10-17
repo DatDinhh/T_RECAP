@@ -1,0 +1,15 @@
+SBY  2:24:21 [result] Copy 'archive:formal/attempts/smoke01/mask_rules_cover/trecap_core_pkg.sv' to 'archive:formal/attempts/smoke01/mask_rules_cover/result/src/trecap_core_pkg.sv'.
+SBY  2:24:21 [result] Copy 'archive:formal/attempts/smoke01/mask_rules_cover/trecap_iface_pkg.sv' to 'archive:formal/attempts/smoke01/mask_rules_cover/result/src/trecap_iface_pkg.sv'.
+SBY  2:24:21 [result] Copy 'archive:formal/attempts/smoke01/mask_rules_cover/trecap_mag2_mask.sv' to 'archive:formal/attempts/smoke01/mask_rules_cover/result/src/trecap_mag2_mask.sv'.
+SBY  2:24:21 [result] Copy 'archive:formal/attempts/smoke01/mask_rules_cover/mask_formal.sv' to 'archive:formal/attempts/smoke01/mask_rules_cover/result/src/mask_formal.sv'.
+SBY  2:24:22 [result] engine_0: smtbmc z3
+SBY  2:24:22 [result] base: starting process "cd result/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY  2:24:22 [result] base: ERROR: unknown command line argument '--formal'
+SBY  2:24:22 [result] base: ERROR: Bad command
+SBY  2:24:22 [result] base: finished (returncode=1)
+SBY  2:24:22 [result] base: task failed. ERROR.
+SBY  2:24:22 [result] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  2:24:22 [result] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  2:24:22 [result] summary: engine_0 (smtbmc z3) did not return a status
+SBY  2:24:22 [result] summary: engine_0 did not produce any traces
+SBY  2:24:22 [result] DONE (ERROR, rc=16)

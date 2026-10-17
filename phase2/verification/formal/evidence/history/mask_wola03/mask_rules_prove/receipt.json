@@ -1,0 +1,68 @@
+{
+  "case": {
+    "id": "mask_rules_prove",
+    "top": "mask_formal",
+    "harness": "mask_formal.sv",
+    "files": [
+      "trecap_core_pkg.sv",
+      "trecap_packet_pkg.sv",
+      "trecap_iface_pkg.sv",
+      "trecap_mag2_mask.sv"
+    ],
+    "parameters": {},
+    "frontend": "slang",
+    "mode": "prove",
+    "depth": 8,
+    "engine": "smtbmc z3",
+    "timeout": 120,
+    "scope": "actual default28-bit inputs and56-bit magnitude: threshold/DC/unique rules and ready/valid; no multiplication or metric correctness claim"
+  },
+  "observed_status": "FAIL",
+  "expected_status": "PASS",
+  "acceptance": "FAIL",
+  "exit_code": 2,
+  "host_deadline_exceeded": false,
+  "cleanup": "not required",
+  "input_identity_unchanged": true,
+  "negative_signature_matched": false,
+  "elapsed_seconds": 3.962,
+  "command": [
+    "external-tool:oss-cad-suite/bin/sby",
+    "-d",
+    "result",
+    "case.sby"
+  ],
+  "sources": [
+    {
+      "path": "verification/tsh2/rtl/trecap_core_pkg.sv",
+      "sha256": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784",
+      "copy_name": "trecap_core_pkg.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_packet_pkg.sv",
+      "sha256": "97a003c14b93019b5356208ea8be2e76df7435123132440729ea7038cd13b2be",
+      "copy_name": "trecap_packet_pkg.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_iface_pkg.sv",
+      "sha256": "d24ab618d901cb92394e190549489cb88caa7444de18731de0923c24446afd68",
+      "copy_name": "trecap_iface_pkg.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_mag2_mask.sv",
+      "sha256": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d",
+      "copy_name": "trecap_mag2_mask.sv"
+    }
+  ],
+  "harness_sha256": "8efff4fa2a7df10e10dd3aa26cd0da25df02419f50e205f5ed1ca4c15d9326de",
+  "configuration_sha256": "feae2d7f0384178b29df566ace91ee39b2465c7ba28a85190017f48e4cc9426a",
+  "traces": [
+    {
+      "path": "result/engine_0/trace.vcd",
+      "sha256": "d518724448305082e302da7b43ea9ed4d2768f91df2b43bc4cae29fa4479b7a9",
+      "bytes": 13014
+    }
+  ],
+  "stdout_sha256": "cfb64ce12e127666bbf71c72a97fd17b021ba042aabf0ce73d6b41e3f927c0bf",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

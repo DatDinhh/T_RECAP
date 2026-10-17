@@ -1,0 +1,72 @@
+{
+  "status": "PASS_INDEPENDENT_RECOVERED_UVM_AUDIT",
+  "summary_sha256": "595da0b79bfe06a6c652ee6ccc6d8a1dd1d105c9d6e8241f60ac2969b4b0934a",
+  "recovery_manifest_sha256": "3acf9b920c9dfa8d2a407e81d580e0ae98a26c8ad9c747665255ac1080b7d033",
+  "runner_sha256": "884330093eaa872b87e6d83136e98516d8d1550f7c4903852cd5fa7b57e5132e",
+  "assembler_sha256": "017357a50f0fd92882a7720aecb6a695fda86684b93124fd7efa637b7902d1da",
+  "selected_seeds": [
+    1,
+    7,
+    20261017
+  ],
+  "complete_epochs": 12,
+  "reset_aborted_prefixes": 3,
+  "recoveries_included_in_complete": 3,
+  "compiled_builds_verified": 2,
+  "completed_totals": {
+    "inputs": 12288,
+    "sources": 18432,
+    "y": 18432,
+    "taps": 13932,
+    "bytes": 94440,
+    "final_y_hold": 516,
+    "masked": 3822,
+    "kept": 10002,
+    "ineligible": 108
+  },
+  "seed_records": [
+    {
+      "seed": 1,
+      "report_sha256": "123d584a87aff3c429aba274e35da4920bd8efb6157c23b7b2b37af42fe1f31d",
+      "timing_rows": 1209,
+      "measured_final_y_hold_rows_by_epoch": {
+        "1": 33,
+        "2": 33,
+        "3": 33,
+        "4": 33
+      },
+      "compilation_id": "build_01"
+    },
+    {
+      "seed": 7,
+      "report_sha256": "416f650d5eb79feb8f04a3b009c8d0b39ad74f2d47e8f533bc1cb824ea37f0e2",
+      "timing_rows": 1233,
+      "measured_final_y_hold_rows_by_epoch": {
+        "1": 39,
+        "2": 39,
+        "3": 39,
+        "4": 39
+      },
+      "compilation_id": "build_01"
+    },
+    {
+      "seed": 20261017,
+      "report_sha256": "025cbad45e384d9805e91220dbc041215e39ccfd195ade1998428cb27cfe1322",
+      "timing_rows": 1305,
+      "measured_final_y_hold_rows_by_epoch": {
+        "1": 57,
+        "2": 57,
+        "3": 57,
+        "4": 57
+      },
+      "compilation_id": "build_02"
+    }
+  ],
+  "negative": "Executed first-Y mismatch was the intended single UVM fatal; no completed marker.",
+  "history": "One pre-UVM SIGSEGV exit211 retained. One explicit identical-build retry. Aggregate is recovered evidence, not uninterrupted default-run success. Cause unknown.",
+  "limits": [
+    "Independent fixture reconciliation calls the separately qualified Python checker; it does not rerun simulation.",
+    "Fixed1024-sample synthetic corpus and finite deterministic schedules. No solver randomization, covergroups, code-coverage percentage, whole-profile proof or new board evidence.",
+    "Timing rows are selected passive simulation excerpts, not a continuous full-run waveform or physical timing."
+  ]
+}

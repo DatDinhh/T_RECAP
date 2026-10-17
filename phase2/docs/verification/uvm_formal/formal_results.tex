@@ -1,0 +1,15 @@
+\subsection{Result matrix}
+\begin{table}[htbp]\centering
+\caption{Formal jobs grouped by their registered expected outcome.}
+\begin{tabularx}{\linewidth}{Lrrr}\toprule
+Family & Proof & Cover & Expected failure\\\midrule
+FIFO & 4 & 2 & 1\\
+Round/saturate & 11 & 11 & 1\\
+Magnitude mask & 1 & 1 & 1\\\midrule
+Total & 16 & 14 & 3\\\bottomrule
+\end{tabularx}\end{table}
+The 30 ordinary jobs return solver PASS. The three negative jobs return solver FAIL, with a nonzero process exit, the intended assertion label and a counterexample VCD. The campaign accepts those failures as checker controls. Thus 33 accepted jobs does not mean 33 proved properties.
+
+The 14 cover jobs reach 73 selected cover predicates. Multiple predicates may share one witness trace. Together with the three false-property controls, the campaign emits 68 native VCD files. The index preserves case IDs, engine settings, bounds and hashes. A cover establishes at least one trace within the configured depth, without proving a safety property or complete behavior coverage.
+
+The pinned Linux tool suite is OSS CAD Suite 2026-10-16: Yosys, SBY, ABC, Z3 and the slang SystemVerilog frontend. The release archive and actual executables are identified by SHA-256. Sequential proofs use ABC PDR or SMT temporal induction; round/saturate checks use exhaustive symbolic combinational comparison. The production-depth FIFO proofs cover control only. The 256-entry PCM source uses different RTL and is not included in these FIFO proofs.

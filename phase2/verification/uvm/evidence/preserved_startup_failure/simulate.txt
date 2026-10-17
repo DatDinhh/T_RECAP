@@ -1,0 +1,17 @@
+Reading pref.tcl
+
+# 2020.1
+
+# Attempting stack trace sig 11
+# Signal caught: signo [11]
+# do_stack_trace called again before completion!
+# With signal: signo [11]
+# vsim -c -onfinish stop -voptargs="+acc" work.tsh2_top "+CASES=cases.txt" "+OUT=../seed_7" "+SEED=7" -do "run.do" 
+# Start time: 02:32:06 on Oct 17,2026
+# Loading ${TEMP}/SIMULATOR_SESSION/win32pe_gcc-4.2.1/export_tramp.dll
+# End time: 02:32:07 on Oct 17,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+** Fatal: (SIGSEGV) Bad pointer access. Closing vsimk.
+** Fatal: vsimk is exiting with code 211.
+Exit codes are defined in the "Error and Warning Messages"
+appendix of the ModelSim User's Manual.

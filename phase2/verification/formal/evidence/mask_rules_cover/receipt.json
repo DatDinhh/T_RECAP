@@ -1,0 +1,88 @@
+{
+  "case": {
+    "id": "mask_rules_cover",
+    "top": "mask_formal",
+    "harness": "mask_formal.sv",
+    "files": [
+      "trecap_core_pkg.sv",
+      "trecap_packet_pkg.sv",
+      "trecap_iface_pkg.sv",
+      "trecap_mag2_mask.sv"
+    ],
+    "parameters": {},
+    "frontend": "slang",
+    "mode": "cover",
+    "depth": 8,
+    "engine": "smtbmc z3",
+    "timeout": 120,
+    "scope": "bounded reachability of seven selected ready/valid and masking witnesses; no arithmetic equivalence claim"
+  },
+  "observed_status": "PASS",
+  "expected_status": "PASS",
+  "acceptance": "PASS",
+  "exit_code": 0,
+  "host_deadline_exceeded": false,
+  "cleanup": "not required",
+  "input_identity_unchanged": true,
+  "negative_signature_matched": false,
+  "elapsed_seconds": 4.03,
+  "command": [
+    "external-tool:oss-cad-suite/bin/sby",
+    "-d",
+    "result",
+    "case.sby"
+  ],
+  "sources": [
+    {
+      "path": "verification/tsh2/rtl/trecap_core_pkg.sv",
+      "sha256": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784",
+      "copy_name": "trecap_core_pkg.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_packet_pkg.sv",
+      "sha256": "97a003c14b93019b5356208ea8be2e76df7435123132440729ea7038cd13b2be",
+      "copy_name": "trecap_packet_pkg.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_iface_pkg.sv",
+      "sha256": "d24ab618d901cb92394e190549489cb88caa7444de18731de0923c24446afd68",
+      "copy_name": "trecap_iface_pkg.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_mag2_mask.sv",
+      "sha256": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d",
+      "copy_name": "trecap_mag2_mask.sv"
+    }
+  ],
+  "harness_sha256": "638a37caa1fb3b31d4042458b10583b844f54ba07a0893770248b0161f3e5751",
+  "configuration_sha256": "5c39b83bb1d372782ec1343786afae80c244b64d5e7f2e57427132c5db0bdb16",
+  "traces": [
+    {
+      "path": "result/engine_0/trace0.vcd",
+      "sha256": "5a0e5fa615726b7ef2570692e9b0638790fc772bec752c1d797dddec1be53a83",
+      "bytes": 10054
+    },
+    {
+      "path": "result/engine_0/trace1.vcd",
+      "sha256": "440241c7adb8efec100dcb0aa046cd2cbe393635631b70290f4eb2836990a024",
+      "bytes": 10054
+    },
+    {
+      "path": "result/engine_0/trace2.vcd",
+      "sha256": "90a7437c3d9fce94d8086a2a9a3dd383057aedced504bd1fd8b79f5117f94c5f",
+      "bytes": 10054
+    },
+    {
+      "path": "result/engine_0/trace3.vcd",
+      "sha256": "6411d1daa221c7014ef6641b3a8496e8c14ba75b7f6a9cf3d43d071a9913d762",
+      "bytes": 10054
+    },
+    {
+      "path": "result/engine_0/trace4.vcd",
+      "sha256": "995fdfb32fe3a97cb6373db827fabefecb40570987e19443da00afad11d27789",
+      "bytes": 11816
+    }
+  ],
+  "stdout_sha256": "ef5b85e63447fa02509896ef8649c7ded33a493ce25afe2fea62115f55053014",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

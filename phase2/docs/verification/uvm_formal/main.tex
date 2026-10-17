@@ -1,0 +1,81 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.85in,headheight=15pt]{geometry}
+\usepackage{lmodern,amsmath,amssymb,graphicx,booktabs,array,tabularx,longtable}
+\usepackage{fancyhdr,caption,enumitem,listings}
+\usepackage[hidelinks,pdftitle={TRECAP UVM and Formal Verification},pdfauthor={TRECAP project}]{hyperref}
+\setlength{\emergencystretch}{2em}
+\setlength{\parskip}{3pt}
+\renewcommand{\arraystretch}{1.18}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlist[itemize]{leftmargin=17pt,itemsep=2pt,topsep=3pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\itshape TRECAP: UVM and Formal Verification}
+\fancyhead[R]{\small\itshape TSH2 supplement}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\captionsetup{font=small,labelfont=bf}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,columns=fullflexible,keepspaces=true,showstringspaces=false,frame=single}
+\newcommand{\epath}[1]{\nolinkurl{#1}}
+\newcommand{\plate}[3]{\begin{figure}[htbp]\centering\includegraphics[width=\linewidth,height=#3,keepaspectratio]{figures/#1.pdf}\caption{#2}\end{figure}}
+\title{\LARGE\bfseries TRECAP: UVM and Formal Verification\\[0.5em]\large Reusable simulation and local property proofs for a finite FPGA audio pipeline}
+\author{TRECAP project}
+\date{October 17, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+This supplement adds transaction-based UVM simulation and local formal verification to the registered TSH2 finite-file design. It separates three kinds of evidence: numerical comparisons on executed traces, inductive properties under explicit assumptions, and reachable witness traces. Existing RTL, reference fixtures and physical results remain identifiable independently of the new verification environment. The result is a bounded engineering case study rather than a claim of complete chip sign-off.
+\end{abstract}
+\input{results_summary.tex}
+
+\clearpage
+\section{Scope and verification contract}
+The verification target is the fixed-point FFT, threshold, IFFT/WOLA and spectral-export pipeline used in the registered TSH2 profile. The UVM environment reuses the admitted short synthetic corpus and exact reference outputs. Local formal harnesses instantiate unchanged implementation modules. The historical campaign of 14 RTL suites and 58 physical epochs is separate evidence; it was not retroactively executed using UVM.
+
+The acceptance policy was recorded before results: genuine UVM execution, passive transfer observation, exact numerical scoreboards, nonzero observed event counts, bounded runner completion, actual formal-engine results, explicit assumptions, cover witnesses and deliberate checker failures. Failed infrastructure or harness-development attempts remain distinct from successful verification runs.
+
+\begin{table}[htbp]\centering
+\caption{Evidence boundaries and the questions they answer.}
+\begin{tabularx}{\linewidth}{P{1.25in}LL}\toprule
+Method & Question & Limit\\\midrule
+UVM simulation & Does the DUT satisfy the checked contracts for executed transactions? & Finite vectors and schedules, not all possible traces.\\
+Formal safety proof & Can the named property fail in the instantiated transition system under the assumptions? & The exact module, parameters, reset model and assumptions.\\
+Formal cover & Can a specified scenario occur within the search depth? & A witness establishes reachability, not universal correctness.\\
+Negative control & Does the verification flow detect a deliberate violation? & Qualifies a specified checker path, not every possible defect.\\
+Physical campaign & Did the registered implementation reproduce expected captures on DE1-SoC? & Historical board conditions; not rerun for this supplement.\\\bottomrule
+\end{tabularx}\end{table}
+
+The original 46 broad requirements retain their historical 30 partial and 16 excluded dispositions. This supplement supplies additional evidence for selected numerical, framing, flow-control and reset contracts. A framework label does not automatically close a requirement.
+
+\clearpage
+\section{UVM environment and observation model}
+\input{uvm_method.tex}
+\plate{uvm_architecture}{UVM verification architecture. Diagrammatic roles are separated from measured results.}{3.4in}
+\input{uvm_results.tex}
+
+\clearpage
+\section{Formal harnesses, assumptions and proof results}
+\input{formal_method.tex}
+\plate{formal_architecture}{Formal flow and the scope of each result. Covers and deliberately failing controls are evaluated separately from safety proofs.}{3.1in}
+\input{formal_results.tex}
+
+\clearpage
+\section{Debugging evidence and checker qualification}
+\input{controls.tex}
+\input{waveforms.tex}
+
+\clearpage
+\section{Traceability, reproduction and residual limits}
+\input{reproduction.tex}
+\subsection{Interpretation limits}
+No general FFT/IFFT equivalence, all-width arithmetic theorem, whole-system liveness, formal CDC/RDC, analog metastability, physical timing or process/voltage/temperature qualification is implied. Two-state formal analysis supplements the existing four-state simulation checks. The new simulation matrix does not repeat the full-length corpus or the board campaign. No power saving, laptop-CPU speed advantage, AI speedup or production reliability result follows from these verification additions.
+
+\begin{thebibliography}{9}
+\bibitem{uvm} Accellera Systems Initiative, \emph{Universal Verification Methodology Working Group}. \url{https://www.accellera.org/activities/working-groups/uvm}. Accessed October 17, 2026.
+\bibitem{sby} YosysHQ, \emph{SBY Documentation: Getting Started}. \url{https://symbiyosys.readthedocs.io/en/latest/quickstart.html}. Accessed October 17, 2026.
+\bibitem{suite} YosysHQ, \emph{OSS CAD Suite, release 2026-10-16}. \url{https://github.com/YosysHQ/oss-cad-suite-build/releases/tag/2026-10-16}.
+\bibitem{project} TRECAP project, \emph{Registered TSH2 verification package and historical portfolio}. \url{https://github.com/DatDinhh/T_RECAP/tree/main/phase2/verification}.
+\end{thebibliography}
+\end{document}

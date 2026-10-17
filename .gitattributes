@@ -1,0 +1,5 @@
+# Source/evidence manifests bind exact bytes. Do not convert line endings.
+phase2/verification/uvm/** -text
+phase2/verification/formal/** -text
+phase2/docs/verification/uvm_formal/** -text
+phase2/docs/architecture/tsh2/** -text

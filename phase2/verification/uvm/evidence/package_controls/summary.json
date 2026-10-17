@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "scope": "Python package integrity checker qualification only; no simulator or DUT execution",
+  "runner_sha256": "884330093eaa872b87e6d83136e98516d8d1550f7c4903852cd5fa7b57e5132e",
+  "tests": [
+    {
+      "name": "positive",
+      "status": "PASS",
+      "exit_code": 0,
+      "stdout": "{\"status\": \"PASS\", \"scope\": \"static package/source admission only; no UVM execution\", \"dut_files\": 26}\n",
+      "stderr": ""
+    },
+    {
+      "name": "missing_manifest",
+      "status": "PASS",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "FAIL: Required UVM package manifest missing\n"
+    },
+    {
+      "name": "wrong_runner_hash",
+      "status": "PASS",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "FAIL: UVM package mismatch: run.py\n"
+    },
+    {
+      "name": "unsafe_manifest_path",
+      "status": "PASS",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "FAIL: Exact UVM package manifest closure\n"
+    },
+    {
+      "name": "wrong_sibling_binding",
+      "status": "PASS",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "FAIL: Sibling TSH2 admission binding\n"
+    }
+  ]
+}

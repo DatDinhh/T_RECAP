@@ -1,0 +1,41 @@
+{
+  "status": "PASS_RENDER_REVIEW",
+  "pdf_sha256": "748e52f67488685db40a507463175a578b58c868c240d181dadd7d03f25311db",
+  "pages": 9,
+  "figures": 4,
+  "tables": 4,
+  "academic_source": "LaTeX article, Latin Modern 11pt",
+  "renderer": "Poppler pdftoppm, scale-to1250 PNG",
+  "all_pages_visually_reviewed": true,
+  "final_unchanged_render_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    8,
+    9
+  ],
+  "final_changed_pages_reinspected": [
+    6,
+    7
+  ],
+  "page_render_sha256": {
+    "1": "9582780c5d5f66b909595fd3777903cd3cc6201ae19f0d73cb7e12c7c525989b",
+    "2": "46d0c13f4daf0d15f8e42530bb09ce9834618b9c5656ba058918689ff614ee93",
+    "3": "21fe3e9349a0b856a50f9896a0b667e48af72cd7174fbcaca41e2cfddff436b6",
+    "4": "2cd5cd9c46a413d42f954113ada367a2d7721bacbeffac1fd8f99406165d0683",
+    "5": "c76350bcf4dea1521f4c6a528903065054ec37c30a5adba5317266c5f86e07a9",
+    "6": "e3c1b08e9b999f013be61a84d7dbbf27a0ad4a0554e0b13a1c4bdb1eee9cb464",
+    "7": "d8626d791dd4b44e478f37a1fbc2da06aaf0e946460675427feaf9e39156814a",
+    "8": "696680c44e96ef9c3d1c5c3d4dfca3a0efdbde85c880e910471cd640be33bb90",
+    "9": "74e37614b0b47dc10f611b915b7419c0c7b430b9e7d17428354bd1f703fc1e17"
+  },
+  "overfull_boxes": 0,
+  "forbidden_unicode_dashes": 0,
+  "warnings": [
+    "Shell escape intentionally disabled",
+    "Two underfull bibliography boxes; reviewed, no clipping"
+  ],
+  "scope": "Artifact layout and data/traceability review; not a new simulation or solver result"
+}

@@ -1,0 +1,21 @@
+[options]
+mode cover
+depth 8
+timeout 120
+
+[engines]
+smtbmc z3
+
+[script]
+plugin -i slang
+read_slang -D FORMAL -D SYNTHESIS  --top mask_formal trecap_core_pkg.sv trecap_packet_pkg.sv trecap_iface_pkg.sv trecap_mag2_mask.sv mask_formal.sv
+prep -top mask_formal
+async2sync
+dffunmap
+
+[files]
+trecap_core_pkg.sv
+trecap_packet_pkg.sv
+trecap_iface_pkg.sv
+trecap_mag2_mask.sv
+mask_formal.sv

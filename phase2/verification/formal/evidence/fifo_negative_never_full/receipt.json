@@ -1,0 +1,56 @@
+{
+  "case": {
+    "id": "fifo_negative_never_full",
+    "top": "fifo_formal",
+    "harness": "fifo_formal.sv",
+    "files": [
+      "stream_fifo.sv"
+    ],
+    "parameters": {
+      "DEPTH": 3,
+      "WIDTH": 8,
+      "CHECK_ORDER": 1,
+      "NEGATIVE": 1
+    },
+    "mode": "bmc",
+    "depth": 8,
+    "engine": "smtbmc z3",
+    "timeout": 120,
+    "scope": "negative checker control; false never-full property",
+    "expected": "FAIL",
+    "expected_assertion": "a_deliberately_false_never_full"
+  },
+  "observed_status": "FAIL",
+  "expected_status": "FAIL",
+  "acceptance": "PASS",
+  "exit_code": 2,
+  "host_deadline_exceeded": false,
+  "cleanup": "not required",
+  "input_identity_unchanged": true,
+  "negative_signature_matched": true,
+  "elapsed_seconds": 3.867,
+  "command": [
+    "external-tool:oss-cad-suite/bin/sby",
+    "-d",
+    "result",
+    "case.sby"
+  ],
+  "sources": [
+    {
+      "path": "profiles/tsh2/work/trecap_stream8_v01/rtl/stream_fifo.sv",
+      "sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b",
+      "copy_name": "stream_fifo.sv"
+    }
+  ],
+  "harness_sha256": "2d1d890bfcd33697bc91ba8c124103def00b283222d4c830b36cf9d6e910b564",
+  "configuration_sha256": "d732589176ffcc51894f656f0a97a40ac40bf688a430758b675977bc09f70bed",
+  "traces": [
+    {
+      "path": "result/engine_0/trace.vcd",
+      "sha256": "97b9bb670560717b202d1ebc4baf68d798367225a19b0aee88b6a21aa72f88f0",
+      "bytes": 8803
+    }
+  ],
+  "stdout_sha256": "e1c106fd431402a5ac11a91822b220149277e471bd362a59acdcef1e886d5179",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

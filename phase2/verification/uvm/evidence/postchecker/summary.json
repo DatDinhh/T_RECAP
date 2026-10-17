@@ -1,0 +1,84 @@
+{
+  "status": "PASS",
+  "scope": "Postchecker qualification using isolated mutations of a real UVM capture; not additional DUT simulations",
+  "runner_sha256": "884330093eaa872b87e6d83136e98516d8d1550f7c4903852cd5fa7b57e5132e",
+  "qualification_script_sha256": "3ddad16693aabc538b62251f19092e1145c76ba3734bf92dce244d3f3693f764",
+  "original_trace_sha256": "c9cff59283877f50fa1a14f269e0a95540d76349316251f35642657521ec24c8",
+  "original_coverage_sha256": "9bef7e45073871e43f173969ef9a39e7ab25b54213ef8f3953d18ff3b3af5ab6",
+  "tests": [
+    {
+      "name": "actual_capture_positive",
+      "status": "PASS"
+    },
+    {
+      "name": "wrong_y",
+      "status": "PASS",
+      "expected_rejection": "Y exact order/value",
+      "mutated_trace_sha256": "a7918495d344ce4d48d18374a27848e6843d41bbfd112739d762bffe27055a10",
+      "mutated_coverage_sha256": "9bef7e45073871e43f173969ef9a39e7ab25b54213ef8f3953d18ff3b3af5ab6"
+    },
+    {
+      "name": "missing_y",
+      "status": "PASS",
+      "expected_rejection": "Missing Y",
+      "mutated_trace_sha256": "b90d3191ee2b185b1e5186ca4828da35c3da23ece57265efa00fd9d58f9a64ad",
+      "mutated_coverage_sha256": "9bef7e45073871e43f173969ef9a39e7ab25b54213ef8f3953d18ff3b3af5ab6"
+    },
+    {
+      "name": "wrong_tap",
+      "status": "PASS",
+      "expected_rejection": "Exact tap mag2",
+      "mutated_trace_sha256": "dffb32e9826fbdd68cedc273e2d701bca11e06a031f4e41a428ad80766b8d508",
+      "mutated_coverage_sha256": "9bef7e45073871e43f173969ef9a39e7ab25b54213ef8f3953d18ff3b3af5ab6"
+    },
+    {
+      "name": "wrong_packet",
+      "status": "PASS",
+      "expected_rejection": "PACKET exact order/value",
+      "mutated_trace_sha256": "4f30005fb0fb9006545fe350eacb282bbc5071935c5b24ac09bf1286c2499161",
+      "mutated_coverage_sha256": "9bef7e45073871e43f173969ef9a39e7ab25b54213ef8f3953d18ff3b3af5ab6"
+    },
+    {
+      "name": "unknown_kind",
+      "status": "PASS",
+      "expected_rejection": "Unknown event kind or epoch",
+      "mutated_trace_sha256": "2127515723202e60cec517fc56bb74f384fd23ad6aff22a5668fdb6186e8799c",
+      "mutated_coverage_sha256": "9bef7e45073871e43f173969ef9a39e7ab25b54213ef8f3953d18ff3b3af5ab6"
+    },
+    {
+      "name": "extra_epoch",
+      "status": "PASS",
+      "expected_rejection": "Unknown event kind or epoch",
+      "mutated_trace_sha256": "2cc50a18b34735ca894e047776be04f5fe65706e2033dc3afef174aa55fb9465",
+      "mutated_coverage_sha256": "9bef7e45073871e43f173969ef9a39e7ab25b54213ef8f3953d18ff3b3af5ab6"
+    },
+    {
+      "name": "reorder_y",
+      "status": "PASS",
+      "expected_rejection": "Y exact order/value",
+      "mutated_trace_sha256": "c15284fa1e4c4fee6def7b9cba5b06e79e70868450df15a64b9aea4908a24127",
+      "mutated_coverage_sha256": "9bef7e45073871e43f173969ef9a39e7ab25b54213ef8f3953d18ff3b3af5ab6"
+    },
+    {
+      "name": "duplicate_start",
+      "status": "PASS",
+      "expected_rejection": "Exactly one observed accepted start",
+      "mutated_trace_sha256": "2a7b5d78fd64341bdef51f88da3fe63bb31c67fc2870d34be87ef755fa319c54",
+      "mutated_coverage_sha256": "9bef7e45073871e43f173969ef9a39e7ab25b54213ef8f3953d18ff3b3af5ab6"
+    },
+    {
+      "name": "wrong_coverage_count",
+      "status": "PASS",
+      "expected_rejection": "Observed count reconciliation: y",
+      "mutated_trace_sha256": "c9cff59283877f50fa1a14f269e0a95540d76349316251f35642657521ec24c8",
+      "mutated_coverage_sha256": "adc8a320905452b3b45af3de2f6011717a34f7209362613fe836b9da72eb79df"
+    },
+    {
+      "name": "wrong_coverage_case",
+      "status": "PASS",
+      "expected_rejection": "Coverage ownership",
+      "mutated_trace_sha256": "c9cff59283877f50fa1a14f269e0a95540d76349316251f35642657521ec24c8",
+      "mutated_coverage_sha256": "9c999a68c5d491409111fd523a1f55869214029b40381fee8cb936a05b92b122"
+    }
+  ]
+}

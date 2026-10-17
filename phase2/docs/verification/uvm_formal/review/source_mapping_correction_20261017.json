@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-17",
+  "status": "CORRECTED_SOURCE_INSTANCE_MAPPING",
+  "origin": "Independent source review correction, confirmed against instantiations after root/formal-agent feedback",
+  "previous_claim": "stream_fifo WIDTH32 DEPTH256 was incorrectly identified as deployed PCM FIFO",
+  "corrected_claim": "Only default WIDTH32 DEPTH1024 stream_fifo is instantiated for deployed Y/spectral output. WIDTH32 DEPTH256 is an additional generic proof configuration. PCM uses distinct signed12 memory and control/read pipeline in trecap_pcm_stream_source at FIFO_DEPTH256.",
+  "execution_effect": "No selected proof job changed; no pass or failure was used to alter the mapping. No claim that stream_fifo proves PCM input storage.",
+  "before_hashes": {
+    "acceptance_plan.json": "d6d73927a277703d984e6ff5853e5407c568e569e8b13ab5bf27b98a5c7ffcbe",
+    "acceptance_plan.md": "8156947289fad9759c0becbb3dbc8413b06662b18713c23833c5369671057efa",
+    "formal_selected_matrix.json": "f8647610106e3e1b0f1b13b936fb99915aaa0e8f06d714208fa28c949244a1bb"
+  },
+  "corrected_hashes": {
+    "acceptance_plan.json": "111e62da77a30680c0c6bb27022a3906b0cb931c33f6f296a6e0c362b8b3834b",
+    "acceptance_plan.md": "a4cbc3a1fb871681d7aa3501e1cb05101f1a604ddfe867ff68f8a9e9e2972f47",
+    "formal_selected_matrix.json": "05c7bd3d26a50cd72c5773592f6929687268cd8fd8d131e813a6f36cb4061f5d"
+  },
+  "sources": [
+    {
+      "path": "phase2/profiles/tsh2/work/trecap_stream8_v01/rtl/trecap_stream_adapter.sv",
+      "sha256": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305"
+    },
+    {
+      "path": "phase2/profiles/tsh2/work/trecap_stream8_v01/rtl/stream_fifo.sv",
+      "sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b"
+    },
+    {
+      "path": "phase2/verification/tsh2/rtl/trecap_pcm_stream_source.sv",
+      "sha256": "79e402d7314b6540aea813bab2a42efa4d3107a34a63d61ff5ea3549bb4101f7"
+    }
+  ],
+  "line_references": {
+    "trecap_stream_adapter.sv": [
+      145,
+      148,
+      212
+    ],
+    "stream_fifo.sv": [
+      3
+    ],
+    "trecap_pcm_stream_source.sv": [
+      6,
+      36,
+      37,
+      38,
+      73,
+      74,
+      75,
+      76
+    ]
+  }
+}

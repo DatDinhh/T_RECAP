@@ -1,0 +1,48 @@
+SBY  2:28:28 [result] Copy 'archive:formal/attempts/mask_wola03/mask_rules_prove/trecap_core_pkg.sv' to 'archive:formal/attempts/mask_wola03/mask_rules_prove/result/src/trecap_core_pkg.sv'.
+SBY  2:28:28 [result] Copy 'archive:formal/attempts/mask_wola03/mask_rules_prove/trecap_packet_pkg.sv' to 'archive:formal/attempts/mask_wola03/mask_rules_prove/result/src/trecap_packet_pkg.sv'.
+SBY  2:28:28 [result] Copy 'archive:formal/attempts/mask_wola03/mask_rules_prove/trecap_iface_pkg.sv' to 'archive:formal/attempts/mask_wola03/mask_rules_prove/result/src/trecap_iface_pkg.sv'.
+SBY  2:28:28 [result] Copy 'archive:formal/attempts/mask_wola03/mask_rules_prove/trecap_mag2_mask.sv' to 'archive:formal/attempts/mask_wola03/mask_rules_prove/result/src/trecap_mag2_mask.sv'.
+SBY  2:28:28 [result] Copy 'archive:formal/attempts/mask_wola03/mask_rules_prove/mask_formal.sv' to 'archive:formal/attempts/mask_wola03/mask_rules_prove/result/src/mask_formal.sv'.
+SBY  2:28:28 [result] engine_0: smtbmc z3
+SBY  2:28:28 [result] base: starting process "cd result/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY  2:28:29 [result] base: finished (returncode=0)
+SBY  2:28:29 [result] prep: starting process "cd result/model; yosys -ql design_prep.log design_prep.ys"
+SBY  2:28:29 [result] prep: finished (returncode=0)
+SBY  2:28:29 [result] smt2: starting process "cd result/model; yosys -ql design_smt2.log design_smt2.ys"
+SBY  2:28:29 [result] smt2: finished (returncode=0)
+SBY  2:28:29 [result] engine_0.basecase: starting process "cd result; yosys-smtbmc -s z3 --presat --noprogress -t 8  --append 0 --dump-vcd engine_0/trace.vcd --dump-yw engine_0/trace.yw --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2"
+SBY  2:28:29 [result] engine_0.induction: starting process "cd result; yosys-smtbmc -s z3 --presat -i --noprogress -t 8  --append 0 --dump-vcd engine_0/trace_induct.vcd --dump-yw engine_0/trace_induct.yw --dump-vlogtb engine_0/trace_induct_tb.v --dump-smtc engine_0/trace_induct.smtc model/design_smt2.smt2"
+SBY  2:28:30 [result] engine_0.basecase: ##   0:00:00  Solver: z3
+SBY  2:28:30 [result] engine_0.induction: ##   0:00:00  Solver: z3
+SBY  2:28:30 [result] engine_0.induction: ##   0:00:00  Trying induction in step 8..
+SBY  2:28:30 [result] engine_0.basecase: ##   0:00:00  Checking assumptions in step 0..
+SBY  2:28:30 [result] engine_0.basecase: ##   0:00:00  Checking assertions in step 0..
+SBY  2:28:30 [result] engine_0.basecase: ##   0:00:00  Checking assumptions in step 1..
+SBY  2:28:30 [result] engine_0.basecase: ##   0:00:00  Checking assertions in step 1..
+SBY  2:28:30 [result] engine_0.basecase: ##   0:00:00  Checking assumptions in step 2..
+SBY  2:28:30 [result] engine_0.basecase: ##   0:00:00  Checking assertions in step 2..
+SBY  2:28:30 [result] engine_0.basecase: ##   0:00:00  BMC failed!
+SBY  2:28:30 [result] engine_0.basecase: ##   0:00:00  Assert failed in mask_formal: a_stall_payload
+SBY  2:28:30 [result] engine_0.basecase: ##   0:00:00  Assert failed in mask_formal: a_stall_valid
+SBY  2:28:30 [result] engine_0.basecase: ##   0:00:00  Writing trace to VCD file: engine_0/trace.vcd
+SBY  2:28:30 [result] engine_0.basecase: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace_tb.v
+SBY  2:28:30 [result] engine_0.basecase: ##   0:00:00  Writing trace to constraints file: engine_0/trace.smtc
+SBY  2:28:30 [result] engine_0.induction: ##   0:00:00  Trying induction in step 7..
+SBY  2:28:30 [result] engine_0.induction: ##   0:00:00  Trying induction in step 6..
+SBY  2:28:30 [result] engine_0.induction: ##   0:00:00  Trying induction in step 5..
+SBY  2:28:30 [result] engine_0.induction: ##   0:00:00  Trying induction in step 4..
+SBY  2:28:30 [result] engine_0.induction: ##   0:00:00  Trying induction in step 3..
+SBY  2:28:30 [result] engine_0.basecase: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace.yw
+SBY  2:28:30 [result] engine_0.induction: ##   0:00:00  Trying induction in step 2..
+SBY  2:28:30 [result] engine_0.induction: ##   0:00:00  Trying induction in step 1..
+SBY  2:28:30 [result] engine_0.basecase: ##   0:00:00  Status: failed
+SBY  2:28:30 [result] engine_0.basecase: finished (returncode=1)
+SBY  2:28:30 [result] engine_0.basecase: Status returned by engine for basecase: FAIL
+SBY  2:28:30 [result] engine_0.induction: terminating process
+SBY  2:28:30 [result] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:02 (2)
+SBY  2:28:30 [result] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  2:28:30 [result] summary: engine_0 (smtbmc z3) returned FAIL for basecase
+SBY  2:28:30 [result] summary: counterexample trace [basecase]: result/engine_0/trace.vcd
+SBY  2:28:30 [result] summary:   failed assertion mask_formal.a_stall_payload at mask_formal.sv:53.17-53.68 step 2
+SBY  2:28:30 [result] summary:   failed assertion mask_formal.a_stall_valid at mask_formal.sv:52.17-52.52 step 2
+SBY  2:28:30 [result] DONE (FAIL, rc=2)

@@ -1,0 +1,517 @@
+{
+  "status": "PASS_INDEPENDENT_FORMAL_RAW_RECEIPT_AUDIT",
+  "authoritative_attempt": "final06",
+  "summary_sha256": "76c4a10b320582e9ad78a4d293eda9fec98e36e8b03fdbff1f5b3b3ccc6afbe9",
+  "selected_executed_jobs": 33,
+  "classes": {
+    "prove": 16,
+    "cover": 14,
+    "negative": 3
+  },
+  "reached_cover_predicates": 73,
+  "bound_vcd_files": 68,
+  "admitted_source_count": 9,
+  "input_identity": {
+    "run.py": "325fe4ed85022c3cb50b56001eb66f07980c6db2e43f17814eb6fc8e11b293a4",
+    "cases.json": "dff8fdd930206853fc938d6c89e31ada23f2db9c0aa5f03209054d9209a90c79",
+    "admission.json": "16aad6b109914ff5d6253970b4589f58a6f7e5032b45fa0fd1f428b92a2f541f",
+    "toolchain.json": "9cb978afd700e8a7168471ba182814f2bb5993cf872ed13546623508b26a6845",
+    "harness/fifo_formal.sv": "2d1d890bfcd33697bc91ba8c124103def00b283222d4c830b36cf9d6e910b564",
+    "harness/mask_formal.sv": "638a37caa1fb3b31d4042458b10583b844f54ba07a0893770248b0161f3e5751",
+    "harness/round_formal.sv": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+  },
+  "all_current_inputs_match_run": true,
+  "actual_tool_binary_and_plugin_hashes_verified": true,
+  "mask_frontend_final_model_shared_input_identity": true,
+  "records": [
+    {
+      "id": "fifo_d3_w8_prove",
+      "scope": "exact FIFO order plus control",
+      "proof_class": "unbounded ABC PDR",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "80a6f7e2407b887d6e8f7d87095e2e6783a52e4385a7c4df93ff662e16e25d04",
+      "stdout_sha256": "d8bd200882e7e33f36ca4b2a478b715520ab3b71cf25b016477b88e01ca7cd18",
+      "harness_sha256": "2d1d890bfcd33697bc91ba8c124103def00b283222d4c830b36cf9d6e910b564"
+    },
+    {
+      "id": "fifo_d3_w8_cover",
+      "scope": "bounded reachability witnesses for eight named FIFO scenarios at the reduced parameter instance",
+      "proof_class": "bounded reachability only",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [
+        "fifo_formal.c_clear_recovery",
+        "fifo_formal.c_empty_after_full",
+        "fifo_formal.c_empty_both_requested",
+        "fifo_formal.c_full",
+        "fifo_formal.c_full_both_requested",
+        "fifo_formal.c_reset_recovery",
+        "fifo_formal.c_simultaneous_accepted",
+        "fifo_formal.c_write_and_read_wrap"
+      ],
+      "vcd_count": 7,
+      "receipt_sha256": "4b657a8cf1003bcd26e97509d9f63ba22f0187c6ed0ebd5c2bac98484923f407",
+      "stdout_sha256": "f5711854e201cd1477a16556cb5d3ca625b0d16964a2245daab488539598c64b",
+      "harness_sha256": "2d1d890bfcd33697bc91ba8c124103def00b283222d4c830b36cf9d6e910b564"
+    },
+    {
+      "id": "fifo_d4_w8_prove",
+      "scope": "exact FIFO order plus control",
+      "proof_class": "unbounded ABC PDR",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "672047f7c836687b46c6326bc508eb1c61691006511c917c9c0cce14515a9a20",
+      "stdout_sha256": "dfb80236f7188523695b993dc2546a59c336a91fd9040620b61866e6fac9a94e",
+      "harness_sha256": "2d1d890bfcd33697bc91ba8c124103def00b283222d4c830b36cf9d6e910b564"
+    },
+    {
+      "id": "fifo_d4_w8_cover",
+      "scope": "bounded reachability witnesses for eight named FIFO scenarios at the reduced parameter instance",
+      "proof_class": "bounded reachability only",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [
+        "fifo_formal.c_clear_recovery",
+        "fifo_formal.c_empty_after_full",
+        "fifo_formal.c_empty_both_requested",
+        "fifo_formal.c_full",
+        "fifo_formal.c_full_both_requested",
+        "fifo_formal.c_reset_recovery",
+        "fifo_formal.c_simultaneous_accepted",
+        "fifo_formal.c_write_and_read_wrap"
+      ],
+      "vcd_count": 7,
+      "receipt_sha256": "cfecd8dfa68a33d271b64c10648294a1b689ddc81c90a589c9d106633cd92214",
+      "stdout_sha256": "64066ed46ca12fba1183a6ad2a869a03fd32f0575304b8030275ad83aacf49c7",
+      "harness_sha256": "2d1d890bfcd33697bc91ba8c124103def00b283222d4c830b36cf9d6e910b564"
+    },
+    {
+      "id": "fifo_d256_w32_prove",
+      "scope": "additional parameter control only; not deployed PCM FIFO implementation",
+      "proof_class": "unbounded SMT temporal induction",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "1e40eea37bc925e8f5944441c0122450934bdb5bceeae5c798f0288c410f3ba7",
+      "stdout_sha256": "96ef36e01fc7f6caa67867bec3751f884006765bca9ad601613cfb1dc767378b",
+      "harness_sha256": "2d1d890bfcd33697bc91ba8c124103def00b283222d4c830b36cf9d6e910b564"
+    },
+    {
+      "id": "fifo_d1024_w32_prove",
+      "scope": "deployed output FIFO parameter control only; no pointer or order claim",
+      "proof_class": "unbounded SMT temporal induction",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "9586aa17db465b593c68d0883d7cdde7798cd7b7d7ab70f3917b9db819939076",
+      "stdout_sha256": "b27a77e00cf2d2dd6fd0084d53f515c97668be4fbadc0e81e19dd75026a23661",
+      "harness_sha256": "2d1d890bfcd33697bc91ba8c124103def00b283222d4c830b36cf9d6e910b564"
+    },
+    {
+      "id": "fifo_negative_never_full",
+      "scope": "negative checker control; false never-full property",
+      "proof_class": "intended false-property BMC counterexample",
+      "observed_status": "FAIL",
+      "exit_code": 2,
+      "cover_predicates": [],
+      "vcd_count": 1,
+      "receipt_sha256": "6bbaef603a3fb3235b22bc0fb8bc20ae464fa167f1b5edf86337543c2fb28223",
+      "stdout_sha256": "e1c106fd431402a5ac11a91822b220149277e471bd362a59acdcef1e886d5179",
+      "harness_sha256": "2d1d890bfcd33697bc91ba8c124103def00b283222d4c830b36cf9d6e910b564"
+    },
+    {
+      "id": "round_i29_o28_s1_prove",
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters",
+      "proof_class": "combinational exhaustive SMT",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "284299b1fa79d6deee6a1e40a2ba408eb81cb993992fd3509607354115cd823a",
+      "stdout_sha256": "f51f943f04dc36ecbc0ab86cfb3958f27842bf1a02a86f57660f940d43c90e0e",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i29_o28_s1_cover",
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job",
+      "proof_class": "bounded reachability only",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [
+        "round_formal.c_high_saturation",
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_negative_tie",
+        "round_formal.c_positive_tie",
+        "round_formal.c_zero"
+      ],
+      "vcd_count": 4,
+      "receipt_sha256": "9b09a7c3961d61ca8f401831bb456e086d8ba8a2ce048f708d9bd97408821a25",
+      "stdout_sha256": "d030f1fa26d54635a3257b16d4e74554b0cca43d0aec06282fb3db8ffb3d78ac",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i28_o28_s0_prove",
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters",
+      "proof_class": "combinational exhaustive SMT",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "93363613392a4ef6bcfbe9ae4ae9d51061b9fbcd94514bbadc4b1de1c16c067f",
+      "stdout_sha256": "8f9a9f6ee8904a1b298f22fa149d864599c5f8e827c3931de152645899c5c1a6",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i28_o28_s0_cover",
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job",
+      "proof_class": "bounded reachability only",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_zero"
+      ],
+      "vcd_count": 3,
+      "receipt_sha256": "3ff263cf74e7b68e2d70223490f8e399819c8b981add6908884f12b79da3a494",
+      "stdout_sha256": "6efcbb07d2b309ebe21917ef007102113afd87dd7a80433d65e912dcc9eb2955",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i37_o12_s15_prove",
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters",
+      "proof_class": "combinational exhaustive SMT",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "b640c2fefd64dff953c3a3644b714c3a885991aa5901e6abb878da9c7200f9a2",
+      "stdout_sha256": "9904a8578a1498799deeea1de8010ae3bfcf0b152d159902a2cf09316e6967b5",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i37_o12_s15_cover",
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job",
+      "proof_class": "bounded reachability only",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [
+        "round_formal.c_high_saturation",
+        "round_formal.c_low_saturation",
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_negative_tie",
+        "round_formal.c_positive_tie",
+        "round_formal.c_zero"
+      ],
+      "vcd_count": 7,
+      "receipt_sha256": "c4b3e9c46893880a59966ccf5ec7324a9355cd1fdb36ad1c62df96723936ee4d",
+      "stdout_sha256": "7135d9d513036d79337b7fb883b00cd669222f5cb236d405f255fcc8aec9f9b5",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i8_o4_s0_prove",
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters",
+      "proof_class": "combinational exhaustive SMT",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "682af160cc7d32ba57c934335e0388c931138b414a1368a2e99c275b04c6a4dd",
+      "stdout_sha256": "0c677aa294b8257d42aa99e1447c4fb3bfff187989864b515e5c88ae73045693",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i8_o4_s0_cover",
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job",
+      "proof_class": "bounded reachability only",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [
+        "round_formal.c_low_saturation",
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_zero"
+      ],
+      "vcd_count": 3,
+      "receipt_sha256": "8ed51e54b9ba575449d87ffc889495b6432deeb99170b05b19dee48524e9e538",
+      "stdout_sha256": "5cd5ca8db916e078133090911bfe144a4be4b450ba2ae11d8a7b4feea629c32b",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i8_o4_s1_prove",
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters",
+      "proof_class": "combinational exhaustive SMT",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "dbd337ee25523d7528002887d30d98bf4ca4398b9c81f13ea5e3f0129c2def10",
+      "stdout_sha256": "f97626b405482048582368ce99960493cf5f1ea6329936d467f492fe7dbfe18c",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i8_o4_s1_cover",
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job",
+      "proof_class": "bounded reachability only",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [
+        "round_formal.c_high_saturation",
+        "round_formal.c_low_saturation",
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_negative_tie",
+        "round_formal.c_positive_tie",
+        "round_formal.c_zero"
+      ],
+      "vcd_count": 6,
+      "receipt_sha256": "8e53e4cec7a6138c25da3629d1be7565154b7dcbd370c10c71b4845a683072cb",
+      "stdout_sha256": "6e32ff75ffea7066a337e1e49fd299e1b681a1dd0a534f920e8eaff1ea22b3f4",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i8_o4_s4_prove",
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters",
+      "proof_class": "combinational exhaustive SMT",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "681a217dc9c0bd0d89930718c561d52eb78fc634833492d52c96092b88b98668",
+      "stdout_sha256": "b81d09c768ed81d5cd32eaf78a132043009260a200dfdee70f70f05691dae506",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i8_o4_s4_cover",
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job",
+      "proof_class": "bounded reachability only",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [
+        "round_formal.c_high_saturation",
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_negative_tie",
+        "round_formal.c_positive_tie",
+        "round_formal.c_zero"
+      ],
+      "vcd_count": 6,
+      "receipt_sha256": "21d2bc6516c66dca6cf3f5905ad759ddcb3983170b32ed5b63256ec5c55a06bf",
+      "stdout_sha256": "cad0e1d475a0b1e63baf9080bcc5009592c12acb37c7e686bbb5cd64ca802c6b",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i8_o4_s8_prove",
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters",
+      "proof_class": "combinational exhaustive SMT",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "68d27f84d6dc220221c9ae25eb75b51b595752b09ca1110cf4dcc81d0aa91723",
+      "stdout_sha256": "3fbe31aea037d56a2b3e544adab13ee84ee079e608267a554dcfe81757bff85e",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i8_o4_s8_cover",
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job",
+      "proof_class": "bounded reachability only",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_zero"
+      ],
+      "vcd_count": 3,
+      "receipt_sha256": "e853d95aa2324630262f7231dd537933473547cc1dd794a5779aee5046f58232",
+      "stdout_sha256": "37a70790f231649029946e9b17b040fdef232c850d274849f6b152ea4bb8259c",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i8_o4_s9_prove",
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters",
+      "proof_class": "combinational exhaustive SMT",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "4fb461c7b209512cdabfd8ab1fe25ebe517b5154abb85e13ea32343d606f4647",
+      "stdout_sha256": "5876e03566d83ad3d11298915d46488ab58f627612ffe2bde6eab488cfae89b8",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i8_o4_s9_cover",
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job",
+      "proof_class": "bounded reachability only",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_zero"
+      ],
+      "vcd_count": 3,
+      "receipt_sha256": "660a02a77b84ee40ff07fbc78f9217b90a196accf07fa39c71a4b24689e7f9a9",
+      "stdout_sha256": "d792275c32ad1ae278f3a072e4cbd17656fb9efac593b5f3d3e0d17f9cfe277a",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i64_o32_s63_prove",
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters",
+      "proof_class": "combinational exhaustive SMT",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "1db0e5b68819d1a7921f1c4ff69a2a9607313f5adb1be1c34a259de2a244641c",
+      "stdout_sha256": "13e074ed0ced709bc9ddf2b93dc7dc5bac03eba3a384e22da666cc75ab376644",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i64_o32_s63_cover",
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job",
+      "proof_class": "bounded reachability only",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_negative_tie",
+        "round_formal.c_positive_tie",
+        "round_formal.c_zero"
+      ],
+      "vcd_count": 5,
+      "receipt_sha256": "8e2bbb6620a89cd07fe34cd8ef442c0dc487855afa6718d3b5001ca67c126683",
+      "stdout_sha256": "3aaf45551ae846ef90c3f0cd1170deeef0ecc412ff28f919ad4e73c3410aafa9",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i64_o32_s64_prove",
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters",
+      "proof_class": "combinational exhaustive SMT",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "490b3c8ee59e1362f0f2b195075119cc8a01d11b2df82ab54f60896d988e0d78",
+      "stdout_sha256": "44e623cfc33c0e596752e4c55bbf4658f27552cb1a43c8929f6896a96b9d693e",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i64_o32_s64_cover",
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job",
+      "proof_class": "bounded reachability only",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_zero"
+      ],
+      "vcd_count": 3,
+      "receipt_sha256": "c6b067040009c50d9dd2350d60f2026f1bfe6991ff5d71e0cda5eb5bc2572c25",
+      "stdout_sha256": "9b1bb4272ea12659269203675e8122dae881c46ee393702f433fcc0e91b641e5",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i64_o32_s65_prove",
+      "scope": "combinational exhaustive arithmetic equivalence at exact listed parameters",
+      "proof_class": "combinational exhaustive SMT",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "6e22cf382394f5fefac64be1a0f7cc0d2ea576bc1f9685eedb97281a9801d5d0",
+      "stdout_sha256": "f46ff7288d4385a311e1c84cb41b991ea9f571e5e5ee8707ea431f73d0e35d5b",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_i64_o32_s65_cover",
+      "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job",
+      "proof_class": "bounded reachability only",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [
+        "round_formal.c_maximum_input",
+        "round_formal.c_minimum_input",
+        "round_formal.c_zero"
+      ],
+      "vcd_count": 3,
+      "receipt_sha256": "27dbd42677820f2369dcf15596496aecf4c3ff7bd01f34aa6c4c791ac15d5258",
+      "stdout_sha256": "25e6e4335bc0b71d35f7b771161d7b3eaa05de2c6a3dffb39ca29f2fcdbe56ce",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "round_negative_no_saturation",
+      "scope": "negative checker control; false no-saturation property",
+      "proof_class": "intended false-property BMC counterexample",
+      "observed_status": "FAIL",
+      "exit_code": 2,
+      "cover_predicates": [],
+      "vcd_count": 1,
+      "receipt_sha256": "3516d56ff8d111aeca4d404fd002383f125e3fbe423a611cc99c567b72a97f96",
+      "stdout_sha256": "a71f2e371b511fdf20d9a8b029e67205d33a870d8878f90480bbc1fce892b12b",
+      "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366"
+    },
+    {
+      "id": "mask_rules_prove",
+      "scope": "actual default 28-bit inputs and 56-bit magnitude: threshold/DC/unique rules and ready/valid; no multiplication or metric correctness claim",
+      "proof_class": "unbounded SMT temporal induction",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [],
+      "vcd_count": 0,
+      "receipt_sha256": "f7c48f946a84d1b69110db3d708d4377546d8a128b298a8c7e370a5b7d6d6a74",
+      "stdout_sha256": "fc19af89c08cc7ff3d36fed3545f8fa2016f15ce2b8219895afecf405c350268",
+      "harness_sha256": "638a37caa1fb3b31d4042458b10583b844f54ba07a0893770248b0161f3e5751"
+    },
+    {
+      "id": "mask_rules_cover",
+      "scope": "bounded reachability of seven selected ready/valid and masking witnesses; no arithmetic equivalence claim",
+      "proof_class": "bounded reachability only",
+      "observed_status": "PASS",
+      "exit_code": 0,
+      "cover_predicates": [
+        "mask_formal.c_clear_recovery",
+        "mask_formal.c_dc_protected_despite_pre_mask",
+        "mask_formal.c_equality_retained",
+        "mask_formal.c_just_below_suppressed",
+        "mask_formal.c_nyquist_suppression",
+        "mask_formal.c_simultaneous_accept",
+        "mask_formal.c_stall"
+      ],
+      "vcd_count": 5,
+      "receipt_sha256": "f8119dddb1748f3eebc92d8a88671b7fc4f9eb21052b316d34cdc71931773b73",
+      "stdout_sha256": "ef5b85e63447fa02509896ef8649c7ded33a493ce25afe2fea62115f55053014",
+      "harness_sha256": "638a37caa1fb3b31d4042458b10583b844f54ba07a0893770248b0161f3e5751"
+    },
+    {
+      "id": "mask_negative_never_valid",
+      "scope": "slang frontend/checker negative control; false never-valid property",
+      "proof_class": "intended false-property BMC counterexample",
+      "observed_status": "FAIL",
+      "exit_code": 2,
+      "cover_predicates": [],
+      "vcd_count": 1,
+      "receipt_sha256": "76b852d8b41e3f64cf99be2d5c646d37aeb1d3ba9c0efb4ccc3295f9f65d8010",
+      "stdout_sha256": "a4489160491b2155d888b514c4f3a0d027519b682270121eca63ba7a8f5425b0",
+      "harness_sha256": "638a37caa1fb3b31d4042458b10583b844f54ba07a0893770248b0161f3e5751"
+    }
+  ],
+  "limits": [
+    "This review rechecks recorded proof results and identity, not a new solver execution.",
+    "Production-depth FIFO controls do not prove data order or PCM source implementation.",
+    "Mask relations use DUT magnitude and exclude multiplier, statistics and sticky diagnostics.",
+    "Covers are reachable witnesses; no coverage percentage, whole-pipeline proof, physical reset or CDC claim."
+  ]
+}

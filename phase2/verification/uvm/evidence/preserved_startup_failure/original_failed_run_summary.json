@@ -1,0 +1,15 @@
+{
+  "status": "FAIL",
+  "tests": [
+    {
+      "name": "seed_1_four_epochs_reset_recovery",
+      "status": "PASS",
+      "detail": "Official UVM execution and independent recorded trace reconciliation"
+    },
+    {
+      "name": "regression",
+      "status": "FAIL",
+      "message": "UVM run did not complete: 7"
+    }
+  ]
+}

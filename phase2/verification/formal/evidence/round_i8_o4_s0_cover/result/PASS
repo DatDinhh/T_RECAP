@@ -1,0 +1,13 @@
+Elapsed clock time [H:MM:SS (secs)]: 0:00:01 (1)
+Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+engine_0 (smtbmc z3) returned pass
+cover trace: engine_0/trace0.vcd
+cover trace: engine_0/trace0.yw
+  reached cover statement round_formal.c_low_saturation at round_formal.sv:34.33-34.66
+  reached cover statement round_formal.c_minimum_input at round_formal.sv:27.9-27.64
+cover trace: engine_0/trace1.vcd
+cover trace: engine_0/trace1.yw
+  reached cover statement round_formal.c_zero at round_formal.sv:26.9-26.30
+cover trace: engine_0/trace2.vcd
+cover trace: engine_0/trace2.yw
+  reached cover statement round_formal.c_maximum_input at round_formal.sv:28.9-28.65

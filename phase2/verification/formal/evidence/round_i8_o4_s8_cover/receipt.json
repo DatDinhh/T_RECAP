@@ -1,0 +1,64 @@
+{
+  "case": {
+    "id": "round_i8_o4_s8_cover",
+    "top": "round_formal",
+    "harness": "round_formal.sv",
+    "files": [
+      "round_sat.sv"
+    ],
+    "parameters": {
+      "IN_W": 8,
+      "OUT_W": 4,
+      "SHIFT": 8,
+      "NEGATIVE": 0
+    },
+    "mode": "cover",
+    "depth": 1,
+    "engine": "smtbmc z3",
+    "timeout": 90,
+    "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job"
+  },
+  "observed_status": "PASS",
+  "expected_status": "PASS",
+  "acceptance": "PASS",
+  "exit_code": 0,
+  "host_deadline_exceeded": false,
+  "cleanup": "not required",
+  "input_identity_unchanged": true,
+  "negative_signature_matched": false,
+  "elapsed_seconds": 3.846,
+  "command": [
+    "external-tool:oss-cad-suite/bin/sby",
+    "-d",
+    "result",
+    "case.sby"
+  ],
+  "sources": [
+    {
+      "path": "verification/tsh2/rtl/round_sat.sv",
+      "sha256": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457",
+      "copy_name": "round_sat.sv"
+    }
+  ],
+  "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366",
+  "configuration_sha256": "e1c8318c3fe07cb833e96ef934b8f3b1f8f826abcc4e3316f29d0ef523df4683",
+  "traces": [
+    {
+      "path": "result/engine_0/trace0.vcd",
+      "sha256": "7775443a6c6efc8da596161a1ffb86e2877cd494ca9db9b4c66ff173e9a3a209",
+      "bytes": 1084
+    },
+    {
+      "path": "result/engine_0/trace1.vcd",
+      "sha256": "9222c75dcfc7f359c3f7b3897a69028b34b356cfd99475a5db61f968d3b5231f",
+      "bytes": 1084
+    },
+    {
+      "path": "result/engine_0/trace2.vcd",
+      "sha256": "26512592ff334a602508bfb230f1998c588948ec1b91e7ff3c76426960c02a39",
+      "bytes": 1084
+    }
+  ],
+  "stdout_sha256": "37a70790f231649029946e9b17b040fdef232c850d274849f6b152ea4bb8259c",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

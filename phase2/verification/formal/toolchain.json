@@ -1,0 +1,10 @@
+{
+  "distribution": "YosysHQ OSS CAD Suite",
+  "release": "2026-10-16",
+  "asset": "oss-cad-suite-linux-x64-20261016.tgz",
+  "url": "https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2026-10-16/oss-cad-suite-linux-x64-20261016.tgz",
+  "sha256": "95aead487287adf8fbbe965799e88e2ccb12a544f3d0a27b27f80bfc7c892911",
+  "bytes": 748221305,
+  "digest_verified_against": "Official GitHub release asset API SHA256",
+  "binaries_redistributed": false
+}

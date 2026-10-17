@@ -1,0 +1,15 @@
+SBY  2:27:16 [result] Copy 'archive:formal/attempts/campaign02/mask_rules_prove/trecap_core_pkg.sv' to 'archive:formal/attempts/campaign02/mask_rules_prove/result/src/trecap_core_pkg.sv'.
+SBY  2:27:16 [result] Copy 'archive:formal/attempts/campaign02/mask_rules_prove/trecap_iface_pkg.sv' to 'archive:formal/attempts/campaign02/mask_rules_prove/result/src/trecap_iface_pkg.sv'.
+SBY  2:27:16 [result] Copy 'archive:formal/attempts/campaign02/mask_rules_prove/trecap_mag2_mask.sv' to 'archive:formal/attempts/campaign02/mask_rules_prove/result/src/trecap_mag2_mask.sv'.
+SBY  2:27:16 [result] Copy 'archive:formal/attempts/campaign02/mask_rules_prove/mask_formal.sv' to 'archive:formal/attempts/campaign02/mask_rules_prove/result/src/mask_formal.sv'.
+SBY  2:27:16 [result] engine_0: smtbmc z3
+SBY  2:27:16 [result] base: starting process "cd result/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY  2:27:16 [result] base: trecap_iface_pkg.sv:9: ERROR: unknown package 'trecap_packet_pkg'
+SBY  2:27:16 [result] base: ERROR: Design elaboration failed; see full log for details
+SBY  2:27:16 [result] base: finished (returncode=1)
+SBY  2:27:16 [result] base: task failed. ERROR.
+SBY  2:27:16 [result] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  2:27:16 [result] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  2:27:16 [result] summary: engine_0 (smtbmc z3) did not return a status
+SBY  2:27:16 [result] summary: engine_0 did not produce any traces
+SBY  2:27:16 [result] DONE (ERROR, rc=16)

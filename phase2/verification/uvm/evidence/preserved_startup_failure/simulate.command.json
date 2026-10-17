@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "${MODELSIM_BIN}/vsim.exe",
+    "-c",
+    "-onfinish",
+    "stop",
+    "-voptargs=+acc",
+    "work.tsh2_top",
+    "+CASES=cases.txt",
+    "+OUT=../seed_7",
+    "+SEED=7",
+    "-do",
+    "run.do"
+  ],
+  "cwd": "${UVM_PACKAGE}/runs/attempt03/build",
+  "timeout_seconds": 600,
+  "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+  "started_utc": "2026-10-17T06:32:06.074344+00:00",
+  "pid": 25704,
+  "exit_code": 211,
+  "elapsed_seconds": 1.969,
+  "log_sha256": "f72b60f9ad58eb72b22e24b581676a1f7a92bbc07543f5486417be795ea2dc95"
+}

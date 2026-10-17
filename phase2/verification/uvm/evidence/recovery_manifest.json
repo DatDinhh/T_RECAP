@@ -1,0 +1,203 @@
+{
+  "schema": "tsh2-explicit-startup-recovery-v1",
+  "scope": "Recovered selected campaign, not an uninterrupted successful default runner invocation",
+  "failed_startup_count": 1,
+  "explicit_retry_count": 1,
+  "failed_startup_seed": 7,
+  "failed_startup_exit_code": 211,
+  "failure_classification": "Observed simulator startup SIGSEGV before UVM/DUT load; root cause unknown",
+  "assembler_sha256": "017357a50f0fd92882a7720aecb6a695fda86684b93124fd7efa637b7902d1da",
+  "source_manifest_sha256": "5073ddbeb03d05962b4b90807475a3726bcb0758648c78812ee2a209b6c2b867",
+  "compilations": [
+    {
+      "id": "build_01",
+      "manifest_sha256": "5073ddbeb03d05962b4b90807475a3726bcb0758648c78812ee2a209b6c2b867",
+      "compile_command_sha256": "389c998c1f62f9dd3d3c0147980bbe47be6a5b04e33bc900cc69cffca16bde15",
+      "compile_log_sha256": "be737f577ad54dabad47378479bd6dbb9bb68d1f721ce3a19222f9afc363c2ea"
+    },
+    {
+      "id": "build_02",
+      "manifest_sha256": "660f2560f938744f481a78c05978358a84506dc0188b4b4df860e87d8c31a4b4",
+      "compile_command_sha256": "a68b982b633e5c2b66e38b260c62d94653192ae72923da83fe582b0735f6f25e",
+      "compile_log_sha256": "218522db271ec410ee901896bbc66a2e2e3e43229f58a238d9319425791447bc"
+    }
+  ],
+  "selection_and_copy_lineage": [
+    {
+      "original": "runs/attempt03/run_manifest.json",
+      "aggregate": "run_manifest.json",
+      "sha256": "5073ddbeb03d05962b4b90807475a3726bcb0758648c78812ee2a209b6c2b867"
+    },
+    {
+      "original": "runs/attempt03/version.log",
+      "aggregate": "version.log",
+      "sha256": "4bff1859a2d3314df968dd16dfa3573085263d79574e9d1d777774136b6675d0"
+    },
+    {
+      "original": "runs/attempt03/version.command.json",
+      "aggregate": "version.command.json",
+      "sha256": "a0abda0238226aa69cc5068425c4f90d807bba9719ee049bfa738dbfbf92954d"
+    },
+    {
+      "original": "runs/attempt03/vlib.log",
+      "aggregate": "vlib.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original": "runs/attempt03/vlib.command.json",
+      "aggregate": "vlib.command.json",
+      "sha256": "8e3d597f2ce4aa03d85342a51b3ca56e893cabe11f1cebe9e2bb47107b5de381"
+    },
+    {
+      "original": "runs/attempt03/vmap.log",
+      "aggregate": "vmap.log",
+      "sha256": "39bfec03b6aa6253a55a43c116dbd2ed9180783fd7f057abe3fe77fe6dabe227"
+    },
+    {
+      "original": "runs/attempt03/vmap.command.json",
+      "aggregate": "vmap.command.json",
+      "sha256": "aed60a05299d370fd21989c8db3f1ccf62235918ebfab9372c4f13976a230ba3"
+    },
+    {
+      "original": "runs/attempt03/compile.log",
+      "aggregate": "compile.log",
+      "sha256": "be737f577ad54dabad47378479bd6dbb9bb68d1f721ce3a19222f9afc363c2ea"
+    },
+    {
+      "original": "runs/attempt03/compile.command.json",
+      "aggregate": "compile.command.json",
+      "sha256": "389c998c1f62f9dd3d3c0147980bbe47be6a5b04e33bc900cc69cffca16bde15"
+    },
+    {
+      "original": "runs/attempt03/seed_1/simulate.log",
+      "aggregate": "seed_1/simulate.log",
+      "sha256": "5ca39e168c2375b8325c69e1348b648b0f336466d8f39b19f2795ef23e8b9c60"
+    },
+    {
+      "original": "runs/attempt03/seed_1/simulate.command.json",
+      "aggregate": "seed_1/simulate.command.json",
+      "sha256": "60fa2f0c1103ea5c2f614ab1806fab110684a77ff1aecc57347d527177b8b71d"
+    },
+    {
+      "original": "runs/attempt03/seed_1/coverage.csv",
+      "aggregate": "seed_1/coverage.csv",
+      "sha256": "9bef7e45073871e43f173969ef9a39e7ab25b54213ef8f3953d18ff3b3af5ab6"
+    },
+    {
+      "original": "runs/attempt03/seed_1/observed.csv",
+      "aggregate": "seed_1/observed.csv",
+      "sha256": "c9cff59283877f50fa1a14f269e0a95540d76349316251f35642657521ec24c8"
+    },
+    {
+      "original": "runs/attempt03/seed_1/timing.csv",
+      "aggregate": "seed_1/timing.csv",
+      "sha256": "cc9f2e8768c956f7931967f4a42f7d43dca98f28d5b1121e399214bdc113419b"
+    },
+    {
+      "original": "runs/attempt03/seed_7_retry01/simulate.log",
+      "aggregate": "seed_7/simulate.log",
+      "sha256": "f28e521eb0d9bfc89cc58f29f06099a6213a736ef9cb498429c864e4bf6a5d98"
+    },
+    {
+      "original": "runs/attempt03/seed_7_retry01/simulate.command.json",
+      "aggregate": "seed_7/simulate.command.json",
+      "sha256": "03fed5f94ef039022800f7cbed82a25f1dfa2ea2f595519f69c470a17507cc25"
+    },
+    {
+      "original": "runs/attempt03/seed_7_retry01/coverage.csv",
+      "aggregate": "seed_7/coverage.csv",
+      "sha256": "b6af9e982fa04d802eebdeed57d890de5b28fbdfd3da424b4253d58f1fd36092"
+    },
+    {
+      "original": "runs/attempt03/seed_7_retry01/observed.csv",
+      "aggregate": "seed_7/observed.csv",
+      "sha256": "6426c370eea91e28525c2e0bd9625ea1fa87f8e0447666c12df3e039f8bc6d97"
+    },
+    {
+      "original": "runs/attempt03/seed_7_retry01/timing.csv",
+      "aggregate": "seed_7/timing.csv",
+      "sha256": "dc73f7b28b861150ad3f7baa33d5c6c4b3b7c5e7a5523ff025a25bfa72c48c02"
+    },
+    {
+      "original": "runs/attempt04_seed20261017/seed_20261017/simulate.log",
+      "aggregate": "seed_20261017/simulate.log",
+      "sha256": "41350f54fda400cde830185cc9498148dab60aa6d57431c85478d148f5ae8a61"
+    },
+    {
+      "original": "runs/attempt04_seed20261017/seed_20261017/simulate.command.json",
+      "aggregate": "seed_20261017/simulate.command.json",
+      "sha256": "5e5a3ce9c58dd9629fb9c469e83e77719ff3afe655e68fd7fd715655679deca4"
+    },
+    {
+      "original": "runs/attempt04_seed20261017/seed_20261017/coverage.csv",
+      "aggregate": "seed_20261017/coverage.csv",
+      "sha256": "9dd5910b7a51b030056b2a5d676abc86abd1675db6127fc707fc8efde769435c"
+    },
+    {
+      "original": "runs/attempt04_seed20261017/seed_20261017/observed.csv",
+      "aggregate": "seed_20261017/observed.csv",
+      "sha256": "469261236d0986acbdc3adfcd3135741355302036df72e58790c96858d5313ec"
+    },
+    {
+      "original": "runs/attempt04_seed20261017/seed_20261017/timing.csv",
+      "aggregate": "seed_20261017/timing.csv",
+      "sha256": "0c0753a4b90dc3e6871a18c58ae4317983fbd8fc939a66624f791fa9e7292f5d"
+    },
+    {
+      "original": "runs/attempt04_seed20261017/negative_wrong_y/simulate.log",
+      "aggregate": "negative_wrong_y/simulate.log",
+      "sha256": "f6f4d745d2248ed9fe8ccf5d0d4fd1e64b16ed324d0ab688b4d0d2fb8e70d49d"
+    },
+    {
+      "original": "runs/attempt04_seed20261017/negative_wrong_y/simulate.command.json",
+      "aggregate": "negative_wrong_y/simulate.command.json",
+      "sha256": "1fcec128bae4f1f90db54491069458da5433546ccd7337c054a70b64c62b2239"
+    },
+    {
+      "original": "runs/attempt03/run_manifest.json",
+      "aggregate": "compilations/build_01/run_manifest.json",
+      "sha256": "5073ddbeb03d05962b4b90807475a3726bcb0758648c78812ee2a209b6c2b867"
+    },
+    {
+      "original": "runs/attempt03/compile.command.json",
+      "aggregate": "compilations/build_01/compile.command.json",
+      "sha256": "389c998c1f62f9dd3d3c0147980bbe47be6a5b04e33bc900cc69cffca16bde15"
+    },
+    {
+      "original": "runs/attempt03/compile.log",
+      "aggregate": "compilations/build_01/compile.log",
+      "sha256": "be737f577ad54dabad47378479bd6dbb9bb68d1f721ce3a19222f9afc363c2ea"
+    },
+    {
+      "original": "runs/attempt04_seed20261017/run_manifest.json",
+      "aggregate": "compilations/build_02/run_manifest.json",
+      "sha256": "660f2560f938744f481a78c05978358a84506dc0188b4b4df860e87d8c31a4b4"
+    },
+    {
+      "original": "runs/attempt04_seed20261017/compile.command.json",
+      "aggregate": "compilations/build_02/compile.command.json",
+      "sha256": "a68b982b633e5c2b66e38b260c62d94653192ae72923da83fe582b0735f6f25e"
+    },
+    {
+      "original": "runs/attempt04_seed20261017/compile.log",
+      "aggregate": "compilations/build_02/compile.log",
+      "sha256": "218522db271ec410ee901896bbc66a2e2e3e43229f58a238d9319425791447bc"
+    },
+    {
+      "original": "runs/attempt03/seed_7/simulate.log",
+      "aggregate": "preserved_startup_failure/simulate.log",
+      "sha256": "f72b60f9ad58eb72b22e24b581676a1f7a92bbc07543f5486417be795ea2dc95"
+    },
+    {
+      "original": "runs/attempt03/seed_7/simulate.command.json",
+      "aggregate": "preserved_startup_failure/simulate.command.json",
+      "sha256": "413de3534360dcc3eb788d2e60b922a5ae94e479213423dc0d86fd09b9ebc388"
+    },
+    {
+      "original": "runs/attempt03/summary.json",
+      "aggregate": "preserved_startup_failure/original_failed_run_summary.json",
+      "sha256": "69c57e569a9191e211b7889dd23f64863412cbdcee699c3d438998e47d67edd3"
+    }
+  ],
+  "checks": "All required positive epochs, expected numerical negative control, exact traces, per-build successful compile receipts and original/compiled source hashes recomputed; no automatic retry"
+}

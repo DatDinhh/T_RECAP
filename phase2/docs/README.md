@@ -11,6 +11,9 @@ Start with the [main project README](https://github.com/DatDinhh/T_RECAP#readme)
 | [Overview results and figures](project_overview/README.md) | Physical audio comparisons, host timing boundaries, claims audit and provenance |
 | [Verification portfolio](../verification/README.md) | Methodology, executed evidence and sign-off limits |
 | [Academic report and LaTeX](verification/portfolio/README.md) | Sixteen-page report with editable source |
+| [UVM and formal supplement](verification/uvm_formal/README.md) | Academic LaTeX report, diagrams and actual simulation/proof trace excerpts |
+| [Genuine UVM environment](../verification/uvm/README.md) | Reusable components, exact scoreboards, seeded schedules and observed coverage |
+| [Local formal package](../verification/formal/README.md) | Explicit assumptions, 16 proofs, 14 cover jobs, three negative controls and solver provenance |
 | [Portable seeded RTL package](../verification/tsh2/README.md) | Admitted synthetic fixtures, scoreboards and simulator runner |
 | [Physical and RTL evidence ledger](results/verification_20261017/README.md) | 58 board epochs, coverage, source binding and native VCDs |
 | [TSH2 source archive](../profiles/tsh2/README.md) | Finite service, adapter, consumer, monitor, visualizer and reproduction boundaries |

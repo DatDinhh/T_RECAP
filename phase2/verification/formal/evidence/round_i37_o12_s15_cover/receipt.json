@@ -1,0 +1,84 @@
+{
+  "case": {
+    "id": "round_i37_o12_s15_cover",
+    "top": "round_formal",
+    "harness": "round_formal.sv",
+    "files": [
+      "round_sat.sv"
+    ],
+    "parameters": {
+      "IN_W": 37,
+      "OUT_W": 12,
+      "SHIFT": 15,
+      "NEGATIVE": 0
+    },
+    "mode": "cover",
+    "depth": 1,
+    "engine": "smtbmc z3",
+    "timeout": 90,
+    "scope": "bounded reachability of selected zero/extreme/tie/saturation inputs; equivalence is established only by the corresponding prove job"
+  },
+  "observed_status": "PASS",
+  "expected_status": "PASS",
+  "acceptance": "PASS",
+  "exit_code": 0,
+  "host_deadline_exceeded": false,
+  "cleanup": "not required",
+  "input_identity_unchanged": true,
+  "negative_signature_matched": false,
+  "elapsed_seconds": 3.56,
+  "command": [
+    "external-tool:oss-cad-suite/bin/sby",
+    "-d",
+    "result",
+    "case.sby"
+  ],
+  "sources": [
+    {
+      "path": "verification/tsh2/rtl/round_sat.sv",
+      "sha256": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457",
+      "copy_name": "round_sat.sv"
+    }
+  ],
+  "harness_sha256": "79b53de020a159cf5827a681d09e96693a6857cd3f6c87f4194d818ac713b366",
+  "configuration_sha256": "155ab30082ecca0840fbaaebeca3066a80a49f615213aba51e47e714b1faab55",
+  "traces": [
+    {
+      "path": "result/engine_0/trace0.vcd",
+      "sha256": "1f2b04bf84902a961ecb34e9fd9dcdd90ed32d2f764714dc61752912d3b5b882",
+      "bytes": 2795
+    },
+    {
+      "path": "result/engine_0/trace1.vcd",
+      "sha256": "cfa7b3ba84cfcd1bb49f2e6abde1bd18640ec1bda6033422a883e706aef94420",
+      "bytes": 2795
+    },
+    {
+      "path": "result/engine_0/trace2.vcd",
+      "sha256": "53ffb4eaa11de8cf207cee3c928c3e4bd654b4cd735f112de85320bd7c16e2cc",
+      "bytes": 2795
+    },
+    {
+      "path": "result/engine_0/trace3.vcd",
+      "sha256": "b8067f483399c8184f8bbd283c2a4ebf7705c61257c0c72b005a6ec48f4ae751",
+      "bytes": 2795
+    },
+    {
+      "path": "result/engine_0/trace4.vcd",
+      "sha256": "181ec1f31a925bd4e6c279d8015b6dfac88e4ca50b28d147a1751096a61c4fb9",
+      "bytes": 2795
+    },
+    {
+      "path": "result/engine_0/trace5.vcd",
+      "sha256": "103af57affdf0a5b9c084e5f88c43500e6cb2b1ff9ca53406ec61ef263aa3ad3",
+      "bytes": 2795
+    },
+    {
+      "path": "result/engine_0/trace6.vcd",
+      "sha256": "559ed556602f6a02fb92a9daa2ecc06ab95ceb587599249883703eeed5f73f8e",
+      "bytes": 2795
+    }
+  ],
+  "stdout_sha256": "7135d9d513036d79337b7fb883b00cd669222f5cb236d405f255fcc8aec9f9b5",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

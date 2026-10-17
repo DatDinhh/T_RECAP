@@ -1,0 +1,102 @@
+{
+  "status": "ACCEPTED_SCOPED_SUPPLEMENT",
+  "date": "2026-10-17",
+  "baseline_git_commit": "6657a9e8e305a9c1577eb10e6e1978196eb81e7f",
+  "production_rtl_changed": false,
+  "new_board_run": false,
+  "uvm": {
+    "execution_mode": "explicit_recovered_campaign",
+    "uninterrupted_runner_pass": false,
+    "seeds": [
+      1,
+      7,
+      20261017
+    ],
+    "completed_epochs": 12,
+    "busy_reset_aborts": 3,
+    "immediate_recovery_epochs_included_in_completed": 3,
+    "negative_control_executed": true,
+    "completed_epoch_totals": {
+      "inputs": 12288,
+      "sources": 18432,
+      "y": 18432,
+      "taps": 13932,
+      "bytes": 94440,
+      "final_y_hold": 516,
+      "masked": 3822,
+      "kept": 10002,
+      "ineligible": 108
+    }
+  },
+  "formal": {
+    "authoritative_attempt": "final06",
+    "jobs": 33,
+    "positive_proofs": 16,
+    "bounded_cover_jobs": 14,
+    "expected_failure_controls": 3,
+    "reached_cover_goals": 73,
+    "sum_case_elapsed_seconds": 128.048,
+    "actual_outcomes": {
+      "PASS": 30,
+      "FAIL": 3
+    }
+  },
+  "formal_native_vcd_files": 68,
+  "review_receipts": [
+    {
+      "path": "review/uvm_trace_check02/receipt.json",
+      "original_sha256": "146ccdcb22dd6649b744c1f28ee709cf02b50c22cea0fdd3d2435ef94df6ede4",
+      "exported_sha256": "cdb8b0316fb6f517e876f80b1278ab2b74238211244a86c22bf0690ee4649be3"
+    },
+    {
+      "path": "review/formal_package_check06/receipt.json",
+      "original_sha256": "4eee0a707208ecc5ca20a19a781be09b52f960b2e4cbe1230f7e19ea3e188978",
+      "exported_sha256": "4eee0a707208ecc5ca20a19a781be09b52f960b2e4cbe1230f7e19ea3e188978"
+    },
+    {
+      "path": "review/mask_frontend_review.json",
+      "original_sha256": "b66de2709f1d0e0cd41e1b0514162d934f1afc00ff7b439e0b00a7b86c748ed4",
+      "exported_sha256": "2131233d27f2da843e8943b7eb37b47bcacb3584271cdb866a8aa2ca79b88775"
+    },
+    {
+      "path": "review/formal_raw_audit06.json",
+      "original_sha256": "305bde6493cd3b71baad4658bb697ef39074da77e2504c2b6417a6755d486aa4",
+      "exported_sha256": "305bde6493cd3b71baad4658bb697ef39074da77e2504c2b6417a6755d486aa4"
+    },
+    {
+      "path": "review/uvm_raw_audit01.json",
+      "original_sha256": "80361f37ea8257491ff15fdbc3bb86e2dcb8a84499c3c9ae2fa76b0481a88963",
+      "exported_sha256": "80361f37ea8257491ff15fdbc3bb86e2dcb8a84499c3c9ae2fa76b0481a88963"
+    },
+    {
+      "path": "review/public_export_audit.json",
+      "original_sha256": "2a0ab2c0a175e9592e639b92f68d422d9dacf1d7277ededd10a4a6898989c39b",
+      "exported_sha256": "2a0ab2c0a175e9592e639b92f68d422d9dacf1d7277ededd10a4a6898989c39b"
+    },
+    {
+      "path": "review/acceptance_plan.json",
+      "original_sha256": "111e62da77a30680c0c6bb27022a3906b0cb931c33f6f296a6e0c362b8b3834b",
+      "exported_sha256": "50664ea5771904dbffc7453165ee2fab21fa762b7f0c7fd9b4403e6b9c47b049"
+    },
+    {
+      "path": "review/source_mapping_correction_20261017.json",
+      "original_sha256": "fd51bddafc73fe8631f0e200a8cdb9c62c4d188230c6ce7c814d6a1481de509f",
+      "exported_sha256": "fd51bddafc73fe8631f0e200a8cdb9c62c4d188230c6ce7c814d6a1481de509f"
+    }
+  ],
+  "verification_bindings": [
+    {
+      "path": "verification/uvm/evidence/summary.json",
+      "sha256": "595da0b79bfe06a6c652ee6ccc6d8a1dd1d105c9d6e8241f60ac2969b4b0934a"
+    },
+    {
+      "path": "verification/formal/evidence/summary.json",
+      "sha256": "e503fdda22daa984cb0f36641950f2de5cf1b2866d0c0566d8530e7d7afdd076"
+    },
+    {
+      "path": "verification/formal/evidence/outcome_audit.json",
+      "sha256": "f6e3d29964ada8f81634225e5356e32e4261595eb2180d860986ee4592dbc2f1"
+    }
+  ],
+  "review_export_rule": "UTF-8 JSON; invocation roots replaced by named provenance aliases; original and derived hashes retained"
+}

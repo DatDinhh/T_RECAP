@@ -1,0 +1,48 @@
+name: TSH2 local formal proofs
+on:
+  push:
+    paths: ['phase2/rtl/**', 'phase2/verification/formal/**', 'phase2/verification/tsh2/rtl/**', 'phase2/profiles/tsh2/**', '.github/workflows/formal.yml']
+  pull_request:
+    paths: ['phase2/rtl/**', 'phase2/verification/formal/**', 'phase2/verification/tsh2/rtl/**', 'phase2/profiles/tsh2/**', '.github/workflows/formal.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: formal-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  formal:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Fetch pinned official OSS CAD Suite
+        shell: bash
+        run: |
+          curl --fail --location --retry 3 --max-time 300 \
+            'https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2026-10-16/oss-cad-suite-linux-x64-20261016.tgz' \
+            --output "$RUNNER_TEMP/oss-cad-suite.tgz"
+          printf '%s  %s\n' '95aead487287adf8fbbe965799e88e2ccb12a544f3d0a27b27f80bfc7c892911' "$RUNNER_TEMP/oss-cad-suite.tgz" | sha256sum --check --strict
+          tar -xzf "$RUNNER_TEMP/oss-cad-suite.tgz" -C "$RUNNER_TEMP"
+      - name: Verify package and source admission
+        run: python phase2/verification/formal/run.py --repo-root phase2 --check-package
+      - name: Execute registered proofs, covers and expected failures
+        shell: bash
+        run: |
+          python phase2/verification/formal/run.py \
+            --repo-root phase2 \
+            --tool-bin "$RUNNER_TEMP/oss-cad-suite/bin" \
+            --output "$RUNNER_TEMP/trecap-formal-results"
+      - name: Retain formal receipts and witness traces
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: trecap-formal-${{ github.sha }}
+          path: ${{ runner.temp }}/trecap-formal-results
+          if-no-files-found: warn
+          retention-days: 14

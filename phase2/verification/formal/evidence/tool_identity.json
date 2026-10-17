@@ -1,0 +1,41 @@
+{
+  "yosys": {
+    "sha256": "7c3e3396b38c129dd7485be5a0a0f0da8e495a94c8fd486059e3bea043a588d6",
+    "version": "Yosys 0.70+145 (git sha1 a31d95ea0, Release, Clang /usr/bin/clang++ 21.1.8)",
+    "exit_code": 0
+  },
+  "sby": {
+    "sha256": "ef208a3bf8350076de9b09663cdb820a62a34ab2fd481784a72c7cf60c7cb02d",
+    "version": "SBY v0.70-9-g79fc9ed",
+    "exit_code": 0
+  },
+  "z3": {
+    "sha256": "4141dfd8ca02d917ee5c032574318a8b6d0c35deea27877589472bc94928ed58",
+    "version": "Z3 version 4.15.5 - 64 bit",
+    "exit_code": 0
+  },
+  "boolector": {
+    "sha256": "ab6d77e8c7d489d268f312deeedc2a4e3aa8b9da805f7722f0eed7f585deddc6",
+    "version": "3.2.4",
+    "exit_code": 0
+  },
+  "yosys-abc": {
+    "sha256": "9a47b87ed0f705246d61b289669c5540a42f31203da2c7971e35baed9fdfb4cf",
+    "version": "======== ABC command line \"version\"\nUC Berkeley, ABC 1.01 (compiled Oct 16 2026 06:22:18)",
+    "exit_code": 0
+  },
+  "suite": {
+    "distribution": "YosysHQ OSS CAD Suite",
+    "release": "2026-10-16",
+    "asset": "oss-cad-suite-linux-x64-20261016.tgz",
+    "url": "https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2026-10-16/oss-cad-suite-linux-x64-20261016.tgz",
+    "sha256": "95aead487287adf8fbbe965799e88e2ccb12a544f3d0a27b27f80bfc7c892911",
+    "bytes": 748221305,
+    "digest_verified_against": "Official GitHub release asset API SHA256",
+    "binaries_redistributed": false
+  },
+  "slang_plugin": {
+    "suite_relative_path": "share/yosys/plugins/slang.so",
+    "sha256": "8586c30983cddb9f833bcff8732c9625574ceaefd50695d77ed102e5062a7ae5"
+  }
+}

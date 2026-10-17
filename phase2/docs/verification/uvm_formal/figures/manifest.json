@@ -1,0 +1,23 @@
+{
+  "generator_sha256": "5df324238380c6a7c59b7dfecad0a3b2d871eb19c5479c651de9eb515c537ea3",
+  "matplotlib": "3.11.2",
+  "kind": "conceptual verification architecture diagrams",
+  "files": [
+    {
+      "path": "formal_architecture.pdf",
+      "sha256": "30f041c79b451eead762a3eb98e0bcad5c17f87b53f573e7b4042b46df4736fe"
+    },
+    {
+      "path": "formal_architecture.png",
+      "sha256": "036e57ab0fcc38462c9c8288899766a70fd2a1c8b64d7b62248b1fe25c33a826"
+    },
+    {
+      "path": "uvm_architecture.pdf",
+      "sha256": "19b12940482ff0247db28ec4b853f0636d0a65b2fcfb31f8d579f4cd203d1ed1"
+    },
+    {
+      "path": "uvm_architecture.png",
+      "sha256": "0bc8d1b07aea2caae0a496ea642466868a5d78b910c44ab813e2f37ef184d999"
+    }
+  ]
+}

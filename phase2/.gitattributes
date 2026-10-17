@@ -73,3 +73,10 @@ docs/project_overview/figures/*.svg whitespace=-blank-at-eol,blank-at-eof,space-
 
 # Preserve source-bound current architecture atlas.
 docs/architecture/tsh2/** -text
+
+# Preserve executed UVM/formal source and evidence byte identities.
+verification/uvm/** -text
+verification/formal/** -text
+docs/verification/uvm_formal/** -text
+# Preserve original simulator transcript spacing as admitted evidence.
+verification/uvm/evidence/**/*.txt whitespace=-blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol

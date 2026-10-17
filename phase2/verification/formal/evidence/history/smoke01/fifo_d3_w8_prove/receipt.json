@@ -1,0 +1,48 @@
+{
+  "case": {
+    "id": "fifo_d3_w8_prove",
+    "top": "fifo_formal",
+    "harness": "fifo_formal.sv",
+    "files": [
+      "stream_fifo.sv"
+    ],
+    "parameters": {
+      "DEPTH": 3,
+      "WIDTH": 8,
+      "CHECK_ORDER": 1,
+      "NEGATIVE": 0
+    },
+    "mode": "prove",
+    "depth": 20,
+    "engine": "smtbmc z3",
+    "timeout": 120,
+    "scope": "exact FIFO order plus control"
+  },
+  "observed_status": "TIMEOUT",
+  "expected_status": "PASS",
+  "acceptance": "FAIL",
+  "exit_code": 8,
+  "timed_out": false,
+  "cleanup": "not required",
+  "input_identity_unchanged": true,
+  "negative_signature_matched": false,
+  "elapsed_seconds": 123.271,
+  "command": [
+    "external-tool:oss-cad-suite/bin/sby",
+    "-d",
+    "result",
+    "case.sby"
+  ],
+  "sources": [
+    {
+      "path": "profiles/tsh2/work/trecap_stream8_v01/rtl/stream_fifo.sv",
+      "sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b",
+      "copy_name": "stream_fifo.sv"
+    }
+  ],
+  "harness_sha256": "659e63c9f7f280804bae69feb3bd613952c174a696f8dedac241be5f90f2046c",
+  "configuration_sha256": "3b220021d4adce32e5c47eedf32824c5ce5c95be9dc8d126694719940070b19c",
+  "traces": [],
+  "stdout_sha256": "e82a5496c1bc9630304f841a46668608db19c5b938871d230b1eca36cd3c15f5",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

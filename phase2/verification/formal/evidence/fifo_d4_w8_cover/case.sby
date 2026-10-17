@@ -1,0 +1,18 @@
+[options]
+mode cover
+depth 24
+timeout 120
+
+[engines]
+smtbmc z3
+
+[script]
+read_verilog -formal -sv -D SYNTHESIS stream_fifo.sv fifo_formal.sv
+chparam -set DEPTH 4 -set WIDTH 8 -set CHECK_ORDER 1 -set NEGATIVE 0 fifo_formal
+prep -top fifo_formal
+async2sync
+dffunmap
+
+[files]
+stream_fifo.sv
+fifo_formal.sv

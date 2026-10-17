@@ -1,0 +1,42 @@
+{
+  "status": "DOCUMENTED",
+  "superseded_attempts": [
+    {
+      "attempt": "smoke01",
+      "observed": "FIFO SMT induction TIMEOUT; mask frontend ERROR",
+      "disposition": "Retained. PDR selected for reduced-depth FIFO order; unsupported --formal slang flag removed."
+    },
+    {
+      "attempt": "pdr_explore01",
+      "observed": "PDR PASS",
+      "disposition": "Engine-selection qualification only; authoritative final campaign replays the same design."
+    },
+    {
+      "attempt": "campaign02",
+      "observed": "FIFO/round jobs accepted; mask ERROR",
+      "disposition": "Retained. Added the missing unchanged trecap_packet_pkg dependency required by trecap_iface_pkg."
+    },
+    {
+      "attempt": "mask_wola03",
+      "observed": "WOLA proof/covers PASS; mask FAIL with stall counterexample and unreachable CLEAR cover",
+      "disposition": "Retained. Slang lowered internal undriven anyseq reg declarations to per-use X symbols, breaking shared input identity; not a DUT bug. Replaced harness input representation with explicit unconstrained top-level ports, leaving the property/reference body and reset assumption unchanged apart from adding a dedicated negative control."
+    },
+    {
+      "attempt": "mask_ports04",
+      "observed": "Mask induction/cover PASS and intended never-valid FAIL",
+      "disposition": "Frontend qualification accepted and independently audited; replayed in the authoritative final campaign."
+    },
+    {
+      "attempt": "final05",
+      "observed": "All 33 requested jobs accepted",
+      "disposition": "Preserved successful replay. Final06 repeats unchanged proofs after strengthening publication record-consistency checks in the runner."
+    }
+  ],
+  "independent_frontend_review": {
+    "artifact_id": "archive:formal-review/mask_frontend_review.json",
+    "original_sha256": "b66de2709f1d0e0cd41e1b0514162d934f1afc00ff7b439e0b00a7b86c748ed4",
+    "status": "PASS_INDEPENDENT_MASK_FRONTEND_REPAIR_REVIEW"
+  },
+  "DUT_modified": false,
+  "final_attempt": "final06"
+}

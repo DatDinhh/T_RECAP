@@ -626,11 +626,11 @@ z
     <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(938.88 512.240675)">Exporter + synchronous FIFOs</text>
    </g>
    <g id="text_25">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="67.68" y="678.830625" transform="rotate(-0 67.68 678.830625)">Functional RTL evidence</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="67.68" y="678.830625" transform="rotate(-0 67.68 678.830625)">Functional verification evidence</text>
    </g>
    <g id="text_26">
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 703.568675)">Directed, full-length and seeded simulations; exact scoreboards</text>
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 723.783394)">Procedural checks, not UVM or concurrent SVA</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 703.568675)">Original: directed/full-length procedural scoreboards</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 723.104675)">Supplement: UVM 1.2 + scoped local formal proofs</text>
     <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 742.640675)">10 ns simulation clock is not board timing</text>
    </g>
    <g id="text_27">

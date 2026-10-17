@@ -1,0 +1,125 @@
+SBY  2:24:34 [result] Copy 'archive:formal/attempts/pdr_explore01/stream_fifo.sv' to 'archive:formal/attempts/pdr_explore01/result/src/stream_fifo.sv'.
+SBY  2:24:34 [result] Copy 'archive:formal/attempts/pdr_explore01/fifo_formal.sv' to 'archive:formal/attempts/pdr_explore01/result/src/fifo_formal.sv'.
+SBY  2:24:34 [result] engine_0: abc pdr
+SBY  2:24:35 [result] base: starting process "cd result/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY  2:24:35 [result] base: finished (returncode=0)
+SBY  2:24:35 [result] prep: starting process "cd result/model; yosys -ql design_prep.log design_prep.ys"
+SBY  2:24:35 [result] prep: finished (returncode=0)
+SBY  2:24:35 [result] aig: starting process "cd result/model; yosys -ql design_aiger.log design_aiger.ys"
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.\clk like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\dut.mem$rdmux[0][1][1]$b$5006 [0] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\dut.mem$rdmux[0][1][1]$b$5006 [1] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\dut.mem$rdmux[0][1][1]$b$5006 [2] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\dut.mem$rdmux[0][1][1]$b$5006 [3] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\dut.mem$rdmux[0][1][1]$b$5006 [4] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\dut.mem$rdmux[0][1][1]$b$5006 [5] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\dut.mem$rdmux[0][1][1]$b$5006 [6] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\dut.mem$rdmux[0][1][1]$b$5006 [7] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[0][1][1]$b$5047 [0] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[0][1][1]$b$5047 [1] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[0][1][1]$b$5047 [2] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[0][1][1]$b$5047 [3] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[0][1][1]$b$5047 [4] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[0][1][1]$b$5047 [5] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[0][1][1]$b$5047 [6] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[0][1][1]$b$5047 [7] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[1][1][1]$b$5056 [0] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[1][1][1]$b$5056 [1] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[1][1][1]$b$5056 [2] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[1][1][1]$b$5056 [3] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[1][1][1]$b$5056 [4] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[1][1][1]$b$5056 [5] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[1][1][1]$b$5056 [6] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[1][1][1]$b$5056 [7] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[2][1][1]$b$5065 [0] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[2][1][1]$b$5065 [1] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[2][1][1]$b$5065 [2] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[2][1][1]$b$5065 [3] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[2][1][1]$b$5065 [4] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[2][1][1]$b$5065 [5] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[2][1][1]$b$5065 [6] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating undriven bit fifo_formal.$memory\g_order.queue$rdmux[2][1][1]$b$5065 [7] like $anyseq.
+SBY  2:24:36 [result] aig: Warning: Treating a total of 33 undriven bits in fifo_formal like $anyseq.
+SBY  2:24:36 [result] aig: finished (returncode=0)
+SBY  2:24:36 [result] engine_0: starting process "cd result; yosys-abc -c 'read_aiger model/design_aiger.aig; fold; strash; pdr -v -l; write_cex -a engine_0/trace.aiw'"
+SBY  2:24:36 [result] engine_0: ======== ABC command line "read_aiger model/design_aiger.aig; fold; strash; pdr -v -l; write_cex -a engine_0/trace.aiw"
+SBY  2:24:36 [result] engine_0: Warning: The last 2 outputs are interpreted as constraints.
+SBY  2:24:36 [result] engine_0: VarMax = 300. FrameMax = 10000. QueMax = 0. TimeMax = 299. MonoCNF = no. SkipGen = no. SolveAll = no.
+SBY  2:24:36 [result] engine_0: Proved output 3 in frame 0 (trivial).
+SBY  2:24:36 [result] engine_0: Frame Clauses                                                     Max Queue Flops Time
+SBY  2:24:36 [result] engine_0: 1 : 0 9                                                                 1     9      0.01 sec  T/O =  0  PRV =  1
+SBY  2:24:36 [result] engine_0: 2 : 0 23 84                                                             4    81      0.05 sec  T/O =  0  PRV =  1
+SBY  2:24:36 [result] engine_0: 2 : 0 47 182                                                            4   147      0.09 sec  T/O =  0  PRV =  1
+SBY  2:24:36 [result] engine_0: 2 : 0 47 264                                                            2   184      0.12 sec  T/O =  0  PRV =  1
+SBY  2:24:36 [result] engine_0: 2 : 0 47 302                                                            2   201      0.14 sec  T/O =  0  PRV =  1
+SBY  2:24:36 [result] engine_0: Proved output 6 in frame 2.
+SBY  2:24:36 [result] engine_0: 3 : 0 11 11 139 ~233                                                     2   201      0.22 sec  T/O =  0  PRV =  2
+SBY  2:24:36 [result] engine_0: Proved output 0 in frame 3.
+SBY  2:24:36 [result] engine_0: Proved output 9 in frame 3.
+SBY  2:24:36 [result] engine_0: 4 : 0 13 14 35 66 ~365                                                  12   220      0.31 sec  T/O =  0  PRV =  4
+SBY  2:24:36 [result] engine_0: 4 : 0 13 20 66 96 ~365                                                   5   240      0.35 sec  T/O =  0  PRV =  4
+SBY  2:24:36 [result] engine_0: 4 : 0 13 26 96 127 ~365                                                  5   245      0.40 sec  T/O =  0  PRV =  4
+SBY  2:24:36 [result] engine_0: 4 : 0 13 27 103 144 ~365                                                 5   246      0.42 sec  T/O =  0  PRV =  4
+SBY  2:24:36 [result] engine_0: Proved output 1 in frame 4.
+SBY  2:24:36 [result] engine_0: Proved output 2 in frame 4.
+SBY  2:24:36 [result] engine_0: Proved output 5 in frame 4.
+SBY  2:24:36 [result] engine_0: 5 : 0 12 23 57 94 10 ~410                                                2   246      0.46 sec  T/O =  0  PRV =  7
+SBY  2:24:36 [result] engine_0: Proved output 7 in frame 5.
+SBY  2:24:36 [result] engine_0: Proved output 8 in frame 5.
+SBY  2:24:36 [result] engine_0: 6 : 0 12 23 57 99 20 14 ~417                                            12   248      0.53 sec  T/O =  0  PRV =  9
+SBY  2:24:36 [result] engine_0: Timing out on output 4 in frame 6 (retrying in next anytime pass).
+SBY  2:24:36 [result] engine_0: 6 : 0 12 23 57 99 20 14 ~417                                             0   248      0.53 sec  T/O =  1  PRV =  9
+SBY  2:24:36 [result] engine_0: 7 : 0 12 23 57 81 23 12 9 ~418                                           0   248      0.57 sec  T/O =  1  PRV =  9
+SBY  2:24:36 [result] engine_0: All outputs solved or timed out in frame 7.
+SBY  2:24:36 [result] engine_0: Starting new anytime pass, reusing clauses.
+SBY  2:24:36 [result] engine_0: Frame Clauses                                                     Max Queue Flops Time
+SBY  2:24:37 [result] engine_0: 1 : 0 217 ~418                                                           0     0      0.02 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 2 : 0 12 205 ~418                                                        0     0      0.02 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 3 : 0 12 23 182 ~418                                                     0     0      0.02 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 4 : 0 12 23 57 125 ~418                                                  0     0      0.03 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 5 : 0 12 23 57 81 44 ~418                                                0     0      0.04 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 6 : 0 12 23 57 97 45 49 ~418                                            10    32      0.10 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 6 : 0 12 23 57 106 70 80 ~418                                           10    41      0.15 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 6 : 0 12 23 57 118 89 111 ~418                                           9    49      0.22 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 6 : 0 12 23 57 122 103 130 ~418                                         10    50      0.25 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: Timing out on output 4 in frame 6 (retrying in next anytime pass).
+SBY  2:24:37 [result] engine_0: 6 : 0 12 23 57 122 103 130 ~418                                          0    50      0.25 sec  T/O =  1  PRV =  9
+SBY  2:24:37 [result] engine_0: 7 : 0 12 23 57 75 43 57 82 ~429                                          0    50      0.30 sec  T/O =  1  PRV =  9
+SBY  2:24:37 [result] engine_0: All outputs solved or timed out in frame 7.
+SBY  2:24:37 [result] engine_0: Starting new anytime pass, reusing clauses.
+SBY  2:24:37 [result] engine_0: Frame Clauses                                                     Max Queue Flops Time
+SBY  2:24:37 [result] engine_0: 1 : 0 349 ~429                                                           0     0      0.04 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 2 : 0 12 337 ~429                                                        0     0      0.05 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 3 : 0 12 23 314 ~429                                                     0     0      0.05 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 4 : 0 12 23 57 257 ~429                                                  0     0      0.05 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 5 : 0 12 23 57 75 182 ~429                                               0     0      0.06 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 6 : 0 12 23 57 88 64 170 ~429                                            9    31      0.13 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 6 : 0 12 23 57 100 83 200 ~429                                           9    32      0.19 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 6 : 0 12 23 57 100 84 214 ~429                                           9    34      0.20 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 7 : 0 12 23 57 71 45 91 138 ~432                                         7    41      0.28 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 8 : 0 12 23 57 71 40 88 134 46 ~432                                      9    50      0.36 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 9 : 0 12 23 57 71 38 22 49 19 181 ~432                                   7    58      0.44 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 10 : 0 12 23 57 71 37 12 34 20 8 56 ~612                                  6    70      0.55 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: 10 : 0 12 23 57 71 37 12 34 24 11 77 ~612                                 5    70      0.58 sec  T/O =  0  PRV =  9
+SBY  2:24:37 [result] engine_0: Proved output 4 in frame 10.
+SBY  2:24:37 [result] engine_0: 11 : 0 12 23 57 71 37 0 0 0 0 0 21 ~662                                   0    70      0.63 sec  T/O =  0  PRV = 10
+SBY  2:24:37 [result] engine_0: Block =   37  Oblig =  2155  Clause =  1268  Call = 16425 (sat=67.3%)  Cex =   0  Start =  41
+SBY  2:24:37 [result] engine_0: SAT solving =     0.95 sec ( 62.22 %)
+SBY  2:24:37 [result] engine_0: unsat     =     0.15 sec ( 10.07 %)
+SBY  2:24:37 [result] engine_0: sat       =     0.80 sec ( 52.14 %)
+SBY  2:24:37 [result] engine_0: Generalize  =     0.68 sec ( 44.72 %)
+SBY  2:24:37 [result] engine_0: Push clause =     0.32 sec ( 21.13 %)
+SBY  2:24:37 [result] engine_0: Ternary sim =     0.06 sec (  4.16 %)
+SBY  2:24:37 [result] engine_0: Containment =     0.01 sec (  0.55 %)
+SBY  2:24:37 [result] engine_0: CNF compute =     0.05 sec (  3.30 %)
+SBY  2:24:37 [result] engine_0: Refinement  =     0.00 sec (  0.00 %)
+SBY  2:24:37 [result] engine_0: TOTAL       =     1.53 sec (100.00 %)
+SBY  2:24:37 [result] engine_0: Property proved.  Time =     1.53 sec
+SBY  2:24:37 [result] engine_0: Counter-example is not available.
+SBY  2:24:37 [result] engine_0: finished (returncode=0)
+SBY  2:24:37 [result] engine_0: Status returned by engine: PASS
+SBY  2:24:37 [result] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:03 (3)
+SBY  2:24:37 [result] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:02 (2)
+SBY  2:24:37 [result] summary: engine_0 (abc pdr) returned PASS
+SBY  2:24:37 [result] summary: engine_0 did not produce any traces
+SBY  2:24:37 [result] DONE (PASS, rc=0)

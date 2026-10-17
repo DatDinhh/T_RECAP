@@ -9,7 +9,7 @@
   },
   "definitions": {
     "file": "atlas_definitions.json",
-    "sha256": "3ddc66258d1d7632d64f6edc0a63682b7e02d2124a85c54895e2a7c924470648"
+    "sha256": "723d552b0c03ab272a097503f6b3d83b2890851230aaf7869481a4d273c2b7b2"
   },
   "sources": [
     {
@@ -80,7 +80,7 @@
     {
       "id": "S14",
       "path": "verification/README.md",
-      "sha256": "e1ca8360cf4427282fec0fa0980513a7e68bb20372b6720e1afc1fe2431e4d46"
+      "sha256": "4b1289ddd6a4c0b0f008468102cdcc5d3b1bb4431d97be31c15e6b7d8769ab8b"
     },
     {
       "id": "S15",
@@ -425,15 +425,15 @@
     {
       "file": "08-clock-reset-verification.png",
       "repo_path": "docs/architecture/tsh2/08-clock-reset-verification.png",
-      "sha256": "87531fe9e54529ec003686e8216bb23f9c0e3448f02bab809258e06dc5c6c9ae",
-      "bytes": 368303,
+      "sha256": "04856b6f047b4e494191f179534ea8f137db81573c07d3f156ec120c732fadb9",
+      "bytes": 366267,
       "plate": 8
     },
     {
       "file": "08-clock-reset-verification.svg",
       "repo_path": "docs/architecture/tsh2/08-clock-reset-verification.svg",
-      "sha256": "9843652285062a0d7797a1b2fd2d1b5d02bc478b8ca3601fab2181107c4283f6",
-      "bytes": 27233,
+      "sha256": "368237051a0d6f711c8e65b3912eea7f97646b68688540938bcf1b2cb73f69b7",
+      "bytes": 27236,
       "plate": 8
     }
   ],
@@ -450,7 +450,7 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+      "visual_review": "PASS: prior visual review retained; regenerated PNG/SVG bytes are unchanged"
     },
     {
       "plate": 2,
@@ -464,7 +464,7 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+      "visual_review": "PASS: prior visual review retained; regenerated PNG/SVG bytes are unchanged"
     },
     {
       "plate": 3,
@@ -478,7 +478,7 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+      "visual_review": "PASS: prior visual review retained; regenerated PNG/SVG bytes are unchanged"
     },
     {
       "plate": 4,
@@ -492,7 +492,7 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+      "visual_review": "PASS: prior visual review retained; regenerated PNG/SVG bytes are unchanged"
     },
     {
       "plate": 5,
@@ -506,7 +506,7 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+      "visual_review": "PASS: prior visual review retained; regenerated PNG/SVG bytes are unchanged"
     },
     {
       "plate": 6,
@@ -520,7 +520,7 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+      "visual_review": "PASS: prior visual review retained; regenerated PNG/SVG bytes are unchanged"
     },
     {
       "plate": 7,
@@ -534,7 +534,7 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+      "visual_review": "PASS: prior visual review retained; regenerated PNG/SVG bytes are unchanged"
     },
     {
       "plate": 8,
@@ -548,29 +548,49 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: final PNG visually inspected; SVG uses the same rendered definition"
+      "visual_review": "PASS: regenerated plate 8 visually inspected; SVG uses the same rendered definition"
     }
   ],
   "publication_review": {
     "status": "PASS",
-    "scope": "Visual inspection of all eight final PNGs for legibility, overlap and clipping; source semantics separately reviewed",
-    "reviewed_plates": [
+    "scope": "Documentation refresh only: retain prior reviewed plates1-7 by exact PNG/SVG byte identity; regenerated plate8 source semantics and final PNG visually reviewed",
+    "reviewed_updated_plates": [
+      8
+    ],
+    "byte_identical_prior_plates": [
       1,
       2,
       3,
       4,
       5,
       6,
-      7,
-      8
+      7
     ],
-    "reviewers": [
-      "renderer author",
-      "independent root reviewer"
-    ],
-    "method": "Final author inspection of all eight PNGs; independent root inspection of all eight compositions and approval of the final plate 4 wording adjustment",
-    "source_spec_sha256": "23aa806175467c544d641b1a5afc2d0e3060a0525c39233ec4338ef7802cb23f",
-    "generator_manifest_sha256_before_review_supplement": "cdc5a0c5bb0826d4e39a8ae7d24f11cf63483b8f02026ae43474a3443deb78fb",
-    "supplement": "Only visual-review fields added after rendering; all image, generator, definition and source hashes preserved"
+    "reviewer": "source-review agent",
+    "method": "Reviewed S14 verification index and supplemental report boundaries; verified physical nodes, edges and all source mappings unchanged; inspected final plate8 for legibility, clipping and overlaps",
+    "updated_definitions_sha256": "723d552b0c03ab272a097503f6b3d83b2890851230aaf7869481a4d273c2b7b2",
+    "source_binding_changed": "S14 verification/README.md",
+    "prior_review": {
+      "status": "PASS",
+      "scope": "Visual inspection of all eight final PNGs for legibility, overlap and clipping; source semantics separately reviewed",
+      "reviewed_plates": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "reviewers": [
+        "renderer author",
+        "independent root reviewer"
+      ],
+      "method": "Final author inspection of all eight PNGs; independent root inspection of all eight compositions and approval of the final plate 4 wording adjustment",
+      "source_spec_sha256": "23aa806175467c544d641b1a5afc2d0e3060a0525c39233ec4338ef7802cb23f",
+      "generator_manifest_sha256_before_review_supplement": "cdc5a0c5bb0826d4e39a8ae7d24f11cf63483b8f02026ae43474a3443deb78fb",
+      "supplement": "Only visual-review fields added after rendering; all image, generator, definition and source hashes preserved"
+    }
   }
 }

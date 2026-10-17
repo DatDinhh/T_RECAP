@@ -1,0 +1,102 @@
+{
+  "status": "PASS_INDEPENDENT_FORMAL_PACKAGE_CHECKER_QUALIFICATION",
+  "package_manifest_sha256": "87f7e3929d88ec0be32b6a83d612de72af56af9897e50d9fe7c0c776be4c634e",
+  "runner_sha256": "325fe4ed85022c3cb50b56001eb66f07980c6db2e43f17814eb6fc8e11b293a4",
+  "authoritative_summary_sha256": "e503fdda22daa984cb0f36641950f2de5cf1b2866d0c0566d8530e7d7afdd076",
+  "positive_cases": 1,
+  "negative_controls": 12,
+  "cases": [
+    {
+      "case": "positive_unchanged",
+      "expected": "PASS",
+      "exit_code": 0,
+      "intended_diagnostic": null,
+      "qualified": true
+    },
+    {
+      "case": "missing_manifest",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "intended_diagnostic": "package_manifest.json",
+      "qualified": true
+    },
+    {
+      "case": "changed_harness",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "intended_diagnostic": "Package identity mismatch",
+      "qualified": true
+    },
+    {
+      "case": "changed_admitted_dut",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "intended_diagnostic": "Source admission mismatch",
+      "qualified": true
+    },
+    {
+      "case": "changed_evidence_bytes",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "intended_diagnostic": "Package identity mismatch",
+      "qualified": true
+    },
+    {
+      "case": "aggregate_fail_rehashed",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "intended_diagnostic": "Authoritative campaign is incomplete or not accepted",
+      "qualified": true
+    },
+    {
+      "case": "missing_count_rehashed",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "intended_diagnostic": "executed",
+      "qualified": true
+    },
+    {
+      "case": "unknown_case_rehashed",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "intended_diagnostic": "Executed case definitions",
+      "qualified": true
+    },
+    {
+      "case": "failed_case_rehashed",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "intended_diagnostic": "Case outcome or deadline mismatch",
+      "qualified": true
+    },
+    {
+      "case": "deadline_rehashed",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "intended_diagnostic": "Case outcome or deadline mismatch",
+      "qualified": true
+    },
+    {
+      "case": "positive_rc_rehashed",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "intended_diagnostic": "Case exit code mismatch",
+      "qualified": true
+    },
+    {
+      "case": "negative_signature_rehashed",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "intended_diagnostic": "Intended negative control not evidenced",
+      "qualified": true
+    },
+    {
+      "case": "cover_witness_missing_rehashed",
+      "expected": "REJECT",
+      "exit_code": 1,
+      "intended_diagnostic": "Cover witnesses missing",
+      "qualified": true
+    }
+  ],
+  "scope": "Read-only original package. Mutations and recalculated integrity hashes exist only in review-owned copies. Rehashed controls qualify semantic gates beyond ordinary byte-integrity rejection. No solver executed."
+}

@@ -1,0 +1,28 @@
+{
+  "status": "PASS_INDEPENDENT_PUBLIC_EXPORT_AUDIT",
+  "packages": {
+    "formal": {
+      "status": "PASS",
+      "allowlist_sha256": "ab21c3a380fcbaf1b4475627dcc14f4eb98f8dbe584c93c3e9a72d1fa086d009",
+      "allowlisted_files": 395,
+      "original_derived_pairs_verified": 382,
+      "new_explicit_derived_summaries": 2,
+      "lineage_sha256": "7ce8d492262e51e18cc1a468f641d1120a070eb98b5fc933f08755bf22d19133",
+      "original_summary_sha256": "76c4a10b320582e9ad78a4d293eda9fec98e36e8b03fdbff1f5b3b3ccc6afbe9",
+      "normalized_transformations_match": true,
+      "private_path_and_session_scan": "PASS"
+    },
+    "uvm": {
+      "status": "PASS",
+      "allowlist_sha256": "1fae2cd45d2f351877bb9920474e0a9d7656648cb8e8f96888c7645478f2ea2f",
+      "allowlisted_files": 50,
+      "original_derived_pairs_verified": 40,
+      "new_explicit_derived_summaries": 0,
+      "lineage_sha256": "da91dcd1084ab374f62cc0f65ca33b9d4038c6fc5e2e6e1945a4ec80e6d1c4f1",
+      "original_summary_sha256": "595da0b79bfe06a6c652ee6ccc6d8a1dd1d105c9d6e8241f60ac2969b4b0934a",
+      "normalized_transformations_match": true,
+      "private_path_and_session_scan": "PASS"
+    }
+  },
+  "scope": "Allowlisted files only. Original evidence hashes and normalized export hashes verified separately; VCD values and CSV bytes preserved. No new simulation or proof. No vendor tools or libraries included."
+}

@@ -1,0 +1,73 @@
+{
+  "case": {
+    "id": "mask_negative_never_valid",
+    "top": "mask_formal",
+    "harness": "mask_formal.sv",
+    "files": [
+      "trecap_core_pkg.sv",
+      "trecap_packet_pkg.sv",
+      "trecap_iface_pkg.sv",
+      "trecap_mag2_mask.sv"
+    ],
+    "parameters": {},
+    "frontend": "slang",
+    "mode": "bmc",
+    "depth": 5,
+    "engine": "smtbmc z3",
+    "timeout": 120,
+    "scope": "slang frontend/checker negative control; false never-valid property",
+    "defines": [
+      "MASK_NEGATIVE"
+    ],
+    "expected": "FAIL",
+    "expected_assertion": "a_deliberately_false_never_valid"
+  },
+  "observed_status": "FAIL",
+  "expected_status": "FAIL",
+  "acceptance": "PASS",
+  "exit_code": 2,
+  "host_deadline_exceeded": false,
+  "cleanup": "not required",
+  "input_identity_unchanged": true,
+  "negative_signature_matched": true,
+  "elapsed_seconds": 3.696,
+  "command": [
+    "external-tool:oss-cad-suite/bin/sby",
+    "-d",
+    "result",
+    "case.sby"
+  ],
+  "sources": [
+    {
+      "path": "verification/tsh2/rtl/trecap_core_pkg.sv",
+      "sha256": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784",
+      "copy_name": "trecap_core_pkg.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_packet_pkg.sv",
+      "sha256": "97a003c14b93019b5356208ea8be2e76df7435123132440729ea7038cd13b2be",
+      "copy_name": "trecap_packet_pkg.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_iface_pkg.sv",
+      "sha256": "d24ab618d901cb92394e190549489cb88caa7444de18731de0923c24446afd68",
+      "copy_name": "trecap_iface_pkg.sv"
+    },
+    {
+      "path": "verification/tsh2/rtl/trecap_mag2_mask.sv",
+      "sha256": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d",
+      "copy_name": "trecap_mag2_mask.sv"
+    }
+  ],
+  "harness_sha256": "638a37caa1fb3b31d4042458b10583b844f54ba07a0893770248b0161f3e5751",
+  "configuration_sha256": "9caf6e50dd11aec388e437f32eae564756b890ab138aa5fe50348e7510b2e009",
+  "traces": [
+    {
+      "path": "result/engine_0/trace.vcd",
+      "sha256": "e0fd896ca3004f0661e9ff81af1b0ca0cae272f67f120bf0935bb628a47b2a60",
+      "bytes": 15031
+    }
+  ],
+  "stdout_sha256": "a4489160491b2155d888b514c4f3a0d027519b682270121eca63ba7a8f5425b0",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

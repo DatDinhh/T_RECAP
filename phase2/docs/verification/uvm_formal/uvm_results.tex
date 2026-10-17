@@ -1,0 +1,17 @@
+\subsection{Executed matrix and coverage interpretation}
+The registered seeds are 1, 7 and 20261017. Each completes the same four numerical cases with a distinct readiness and input-gap schedule. All completed output values and final metrics match their case-specific fixtures. FIFO empty, one-entry and full states, input gaps, waveform stalls, packet stalls and final-output hold are observed in the required completed cases. Masked-bin coverage applies to thresholded cases rather than threshold zero.
+
+\begin{table}[htbp]\centering
+\caption{UVM numerical work counted only in completed epochs.}
+\begin{tabular}{lrr}\toprule
+Observation & Per completed epoch & All 12 epochs\\\midrule
+Accepted PCM input & 1,024 & 12,288\\
+Padded source and reconstructed output, each & 1,536 & 18,432\\
+Canonical-bin records & 1,161 & 13,932\\
+Frames & 9 & 108\\\bottomrule
+\end{tabular}\end{table}
+Packet length depends on the threshold and encoding. The total 94,440 bytes is checked byte for byte, not inferred from a duration. The three interrupted prefixes are checked until reset, then retired as aborted transactions. Their partial counts are retained separately and excluded from this table.
+
+The final waveform token is held for 33, 39 and 57 sampled clock edges for seeds 1, 7 and 20261017 respectively. The checker requires held data/index stability, continued busy ownership and no premature completion. Completion is accepted only after the final transfer and drain conditions. Event counters establish that these scenarios occurred; they are not a simulator code-coverage percentage or an exhaustive exploration of schedules.
+
+The accepted recovery manifest binds every selected run to its actual compiled DUT, fixture and harness copies, compile receipts, UVM library identity and executable hashes. It aggregates successful individual executions after validating their provenance. It does not relabel the failed original aggregate as a success.

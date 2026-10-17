@@ -1,0 +1,252 @@
+{
+  "schema": "tsh2-uvm-public-evidence-v1",
+  "scope": "Selected exact completed UVM run; path-sanitized transcript and JSON copies, CSV/XML copied byte-for-byte",
+  "mapping_rules": [
+    "Normalize Windows path separators",
+    "Replace run, package, sibling source, simulator and UVM library absolute roots with named placeholders",
+    "Replace user temp directory with ${TEMP} and generated simulator sandbox session name with SIMULATOR_SESSION"
+  ],
+  "exporter_sha256": "102f3c170679e38e7fa45773e0e9589346d090cfe13aff49067eb5eed951b4b4",
+  "files": [
+    {
+      "original_local_package_relative": "runs/campaign01/summary.json",
+      "published_relative": "evidence/summary.json",
+      "original_sha256": "595da0b79bfe06a6c652ee6ccc6d8a1dd1d105c9d6e8241f60ac2969b4b0934a",
+      "published_sha256": "595da0b79bfe06a6c652ee6ccc6d8a1dd1d105c9d6e8241f60ac2969b4b0934a"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/run_manifest.json",
+      "published_relative": "evidence/source_manifest.json",
+      "original_sha256": "5073ddbeb03d05962b4b90807475a3726bcb0758648c78812ee2a209b6c2b867",
+      "published_sha256": "f17e823ecfe6f13abb3d1e2f32347f39324798e3334dd912fd689e7cf80d4724"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/junit.xml",
+      "published_relative": "evidence/junit.xml",
+      "original_sha256": "7d6e0e77e2a81505485a8c94bf3879d565a9f6d088da31f3fe3d2c3db85d0c56",
+      "published_sha256": "7d6e0e77e2a81505485a8c94bf3879d565a9f6d088da31f3fe3d2c3db85d0c56"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/recovery_manifest.json",
+      "published_relative": "evidence/recovery_manifest.json",
+      "original_sha256": "3acf9b920c9dfa8d2a407e81d580e0ae98a26c8ad9c747665255ac1080b7d033",
+      "published_sha256": "3acf9b920c9dfa8d2a407e81d580e0ae98a26c8ad9c747665255ac1080b7d033"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/preserved_startup_failure/simulate.log",
+      "published_relative": "evidence/preserved_startup_failure/simulate.txt",
+      "original_sha256": "f72b60f9ad58eb72b22e24b581676a1f7a92bbc07543f5486417be795ea2dc95",
+      "published_sha256": "872886d91a719348e483a13499f3c221543202b39d8a735745e8bb456f87dea5"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/preserved_startup_failure/simulate.command.json",
+      "published_relative": "evidence/preserved_startup_failure/simulate.command.json",
+      "original_sha256": "413de3534360dcc3eb788d2e60b922a5ae94e479213423dc0d86fd09b9ebc388",
+      "published_sha256": "d91c7d11c1195ecb4e6643658f8bd8b64428da9f703e1e41527f18edf0a1c55a"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/preserved_startup_failure/original_failed_run_summary.json",
+      "published_relative": "evidence/preserved_startup_failure/original_failed_run_summary.json",
+      "original_sha256": "69c57e569a9191e211b7889dd23f64863412cbdcee699c3d438998e47d67edd3",
+      "published_sha256": "69c57e569a9191e211b7889dd23f64863412cbdcee699c3d438998e47d67edd3"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/compilations/build_01/compile.command.json",
+      "published_relative": "evidence/compilations/build_01/compile.command.json",
+      "original_sha256": "389c998c1f62f9dd3d3c0147980bbe47be6a5b04e33bc900cc69cffca16bde15",
+      "published_sha256": "605c3dfd5e6cb2d30d2b1e2c1acf1da71db130291545ac734666b605353f481e"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/compilations/build_01/compile.log",
+      "published_relative": "evidence/compilations/build_01/compile.txt",
+      "original_sha256": "be737f577ad54dabad47378479bd6dbb9bb68d1f721ce3a19222f9afc363c2ea",
+      "published_sha256": "97da412e7873ddcc86168d59c6e4359c44ccdf3aaa4033981a5b87f2a85de97c"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/compilations/build_01/run_manifest.json",
+      "published_relative": "evidence/compilations/build_01/run_manifest.json",
+      "original_sha256": "5073ddbeb03d05962b4b90807475a3726bcb0758648c78812ee2a209b6c2b867",
+      "published_sha256": "f17e823ecfe6f13abb3d1e2f32347f39324798e3334dd912fd689e7cf80d4724"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/compilations/build_02/compile.command.json",
+      "published_relative": "evidence/compilations/build_02/compile.command.json",
+      "original_sha256": "a68b982b633e5c2b66e38b260c62d94653192ae72923da83fe582b0735f6f25e",
+      "published_sha256": "c1c19abc1e607f86fbadbe85f5bda847e3854fae11f3d096047af2095d0d7d32"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/compilations/build_02/compile.log",
+      "published_relative": "evidence/compilations/build_02/compile.txt",
+      "original_sha256": "218522db271ec410ee901896bbc66a2e2e3e43229f58a238d9319425791447bc",
+      "published_sha256": "8b815ed68dd7fe0a98d666a6da566e39b07f654482bdf57ad2acf020305ddd09"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/compilations/build_02/run_manifest.json",
+      "published_relative": "evidence/compilations/build_02/run_manifest.json",
+      "original_sha256": "660f2560f938744f481a78c05978358a84506dc0188b4b4df860e87d8c31a4b4",
+      "published_sha256": "f9293faf1fe4fb71bbb44272f9ed8975954599434d09eaa10ebe409f92e754b1"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/version.log",
+      "published_relative": "evidence/transcripts/version.txt",
+      "original_sha256": "4bff1859a2d3314df968dd16dfa3573085263d79574e9d1d777774136b6675d0",
+      "published_sha256": "4bff1859a2d3314df968dd16dfa3573085263d79574e9d1d777774136b6675d0"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/version.command.json",
+      "published_relative": "evidence/commands/version.json",
+      "original_sha256": "a0abda0238226aa69cc5068425c4f90d807bba9719ee049bfa738dbfbf92954d",
+      "published_sha256": "04f45aa7f0b64e9063c9c6346357de4a2202c0d8e2aba960906eab112207844d"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/vlib.log",
+      "published_relative": "evidence/transcripts/vlib.txt",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/vlib.command.json",
+      "published_relative": "evidence/commands/vlib.json",
+      "original_sha256": "8e3d597f2ce4aa03d85342a51b3ca56e893cabe11f1cebe9e2bb47107b5de381",
+      "published_sha256": "92298a9c5a77b266ddf97fea5207e3d41656b9adc3f7de2ef8c71796d27e5cbd"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/vmap.log",
+      "published_relative": "evidence/transcripts/vmap.txt",
+      "original_sha256": "39bfec03b6aa6253a55a43c116dbd2ed9180783fd7f057abe3fe77fe6dabe227",
+      "published_sha256": "c09bf58f053d453c428cfd1a124895123edb064c4fe503aed5462cc83fb02253"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/vmap.command.json",
+      "published_relative": "evidence/commands/vmap.json",
+      "original_sha256": "aed60a05299d370fd21989c8db3f1ccf62235918ebfab9372c4f13976a230ba3",
+      "published_sha256": "aa73ab769c3aa7324384427ff83b9232cce4a124aa1f2436db520f74e4a06f06"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/compile.log",
+      "published_relative": "evidence/transcripts/compile.txt",
+      "original_sha256": "be737f577ad54dabad47378479bd6dbb9bb68d1f721ce3a19222f9afc363c2ea",
+      "published_sha256": "97da412e7873ddcc86168d59c6e4359c44ccdf3aaa4033981a5b87f2a85de97c"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/compile.command.json",
+      "published_relative": "evidence/commands/compile.json",
+      "original_sha256": "389c998c1f62f9dd3d3c0147980bbe47be6a5b04e33bc900cc69cffca16bde15",
+      "published_sha256": "605c3dfd5e6cb2d30d2b1e2c1acf1da71db130291545ac734666b605353f481e"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/seed_1/report.json",
+      "published_relative": "evidence/seed_1/report.json",
+      "original_sha256": "123d584a87aff3c429aba274e35da4920bd8efb6157c23b7b2b37af42fe1f31d",
+      "published_sha256": "38c25a61c2b3f29e5e1250d2f1abf76fd146ad8dcad220450aa5b635065b5527"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/seed_1/coverage.csv",
+      "published_relative": "evidence/seed_1/coverage.csv",
+      "original_sha256": "9bef7e45073871e43f173969ef9a39e7ab25b54213ef8f3953d18ff3b3af5ab6",
+      "published_sha256": "9bef7e45073871e43f173969ef9a39e7ab25b54213ef8f3953d18ff3b3af5ab6"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/seed_1/simulate.log",
+      "published_relative": "evidence/transcripts/seed_1.txt",
+      "original_sha256": "5ca39e168c2375b8325c69e1348b648b0f336466d8f39b19f2795ef23e8b9c60",
+      "published_sha256": "13661ef94e71255dec0f5b924fdc02c7d555f27ffde403051b419f48595b69cb"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/seed_1/simulate.command.json",
+      "published_relative": "evidence/commands/seed_1.json",
+      "original_sha256": "60fa2f0c1103ea5c2f614ab1806fab110684a77ff1aecc57347d527177b8b71d",
+      "published_sha256": "06e71cdac65138bc2eeb6802416e961218341970471b2cc494d8b74f6d4663d5"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/seed_1/timing.csv",
+      "published_relative": "evidence/seed_1/timing.csv",
+      "original_sha256": "cc9f2e8768c956f7931967f4a42f7d43dca98f28d5b1121e399214bdc113419b",
+      "published_sha256": "cc9f2e8768c956f7931967f4a42f7d43dca98f28d5b1121e399214bdc113419b"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/seed_7/report.json",
+      "published_relative": "evidence/seed_7/report.json",
+      "original_sha256": "416f650d5eb79feb8f04a3b009c8d0b39ad74f2d47e8f533bc1cb824ea37f0e2",
+      "published_sha256": "4755eeef548fdc040765ef9594672cde7ab3d2950696132aa42b9003cf42843c"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/seed_7/coverage.csv",
+      "published_relative": "evidence/seed_7/coverage.csv",
+      "original_sha256": "b6af9e982fa04d802eebdeed57d890de5b28fbdfd3da424b4253d58f1fd36092",
+      "published_sha256": "b6af9e982fa04d802eebdeed57d890de5b28fbdfd3da424b4253d58f1fd36092"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/seed_7/simulate.log",
+      "published_relative": "evidence/transcripts/seed_7.txt",
+      "original_sha256": "f28e521eb0d9bfc89cc58f29f06099a6213a736ef9cb498429c864e4bf6a5d98",
+      "published_sha256": "e31e2b724274a6031ef963f8a085de48ad9cdd7261ff71756f5d6c0ca46649f8"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/seed_7/simulate.command.json",
+      "published_relative": "evidence/commands/seed_7.json",
+      "original_sha256": "03fed5f94ef039022800f7cbed82a25f1dfa2ea2f595519f69c470a17507cc25",
+      "published_sha256": "eba31636ea47af7864a69630ec7dd96184d7150b2a26e19a1c39d926012bd5db"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/seed_20261017/report.json",
+      "published_relative": "evidence/seed_20261017/report.json",
+      "original_sha256": "025cbad45e384d9805e91220dbc041215e39ccfd195ade1998428cb27cfe1322",
+      "published_sha256": "061ccf2d3def7a1dfdb00d79594628eebcb5e07b101c8ec0a2c9572401995d48"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/seed_20261017/coverage.csv",
+      "published_relative": "evidence/seed_20261017/coverage.csv",
+      "original_sha256": "9dd5910b7a51b030056b2a5d676abc86abd1675db6127fc707fc8efde769435c",
+      "published_sha256": "9dd5910b7a51b030056b2a5d676abc86abd1675db6127fc707fc8efde769435c"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/seed_20261017/simulate.log",
+      "published_relative": "evidence/transcripts/seed_20261017.txt",
+      "original_sha256": "41350f54fda400cde830185cc9498148dab60aa6d57431c85478d148f5ae8a61",
+      "published_sha256": "2571b49bda76b701e3be0fc80873791a239740d7c028660392ef8b73ee77294b"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/seed_20261017/simulate.command.json",
+      "published_relative": "evidence/commands/seed_20261017.json",
+      "original_sha256": "5e5a3ce9c58dd9629fb9c469e83e77719ff3afe655e68fd7fd715655679deca4",
+      "published_sha256": "66d6cfb5be7cd9d9ce20f5352782f7c3e8b8ce67f3edd274b0bfc658904801e2"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/negative_wrong_y/report.json",
+      "published_relative": "evidence/negative_wrong_y/report.json",
+      "original_sha256": "7b193277653b2d25e077362b99350f60705fb30ff9aef10d25b043f56d518ed7",
+      "published_sha256": "1b41e24f271ebf62ef857ea92edf1e6d6ab922e0a843ffb3d7489b66f4e41b3e"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/negative_wrong_y/simulate.log",
+      "published_relative": "evidence/transcripts/negative_wrong_y.txt",
+      "original_sha256": "f6f4d745d2248ed9fe8ccf5d0d4fd1e64b16ed324d0ab688b4d0d2fb8e70d49d",
+      "published_sha256": "26cb2f3becb1c853a5478bf210a090fd003fa134bbd26a4a431bfe6d3e04fee4"
+    },
+    {
+      "original_local_package_relative": "runs/campaign01/negative_wrong_y/simulate.command.json",
+      "published_relative": "evidence/commands/negative_wrong_y.json",
+      "original_sha256": "1fcec128bae4f1f90db54491069458da5433546ccd7337c054a70b64c62b2239",
+      "published_sha256": "f379c2954c5f50f67149dbe1663ab75ad0c04e53c71a726d02925c8a72dcd05f"
+    },
+    {
+      "original_local_package_relative": "reconciler_controls01/summary.json",
+      "published_relative": "evidence/postchecker/summary.json",
+      "original_sha256": "b4391197b7c73cb1310b04e38b054bb061dc68d4c0bac16ac5de6195658d859f",
+      "published_sha256": "b4391197b7c73cb1310b04e38b054bb061dc68d4c0bac16ac5de6195658d859f"
+    },
+    {
+      "original_local_package_relative": "reconciler_controls01/junit.xml",
+      "published_relative": "evidence/postchecker/junit.xml",
+      "original_sha256": "8ec938a9bf2a7fd7cedbefee06e8aa3e68e75865e9d12e72698f644be6af5c76",
+      "published_sha256": "8ec938a9bf2a7fd7cedbefee06e8aa3e68e75865e9d12e72698f644be6af5c76"
+    },
+    {
+      "original_local_package_relative": "package_controls01/summary.json",
+      "published_relative": "evidence/package_controls/summary.json",
+      "original_sha256": "8bc6ed65b9be163e55ee33672bf5ed4ad8689ec1f6d135dd08c7e6dbab55bbb3",
+      "published_sha256": "8bc6ed65b9be163e55ee33672bf5ed4ad8689ec1f6d135dd08c7e6dbab55bbb3"
+    }
+  ]
+}
