@@ -1,5 +1,7 @@
 # Documentation guide
 
+**T-RECAP: Threshold-based Reduction and Encoding for Controlled Audio Processing.** See [project naming and scope](project_identity.md).
+
 Start with the [main project README](https://github.com/DatDinhh/T_RECAP#readme) for the objective, current architecture, spectrograms, workload results and verification visuals. The current verified application is the finite-file **TSH2** TCP/MMIO profile. The broader DDR-ring/UDP/live-source architecture is retained as a separate historical design.
 
 ## Current TSH2 application and verification
@@ -18,7 +20,7 @@ Start with the [main project README](https://github.com/DatDinhh/T_RECAP#readme)
 | [Physical and RTL evidence ledger](results/verification_20261017/README.md) | 58 board epochs, coverage, source binding and native VCDs |
 | [TSH2 source archive](../profiles/tsh2/README.md) | Finite service, adapter, consumer, monitor, visualizer and reproduction boundaries |
 
-The remaining sections document shared components and the original broad Phase 2 architecture. Their deployment milestones and open integration items belong to those named profiles; they do not describe the finite TCP/MMIO service as DDR/UDP or establish live microphone acceptance.
+The remaining sections document shared components and the original broad Phase 2 architecture. Their deployment milestones and open integration items belong to those named profiles. They do not describe the finite TCP/MMIO service as DDR/UDP or establish live microphone acceptance.
 
 ## Shared reference and original architecture
 
@@ -27,7 +29,7 @@ The remaining sections document shared components and the original broad Phase 2
 | [Project overview](../README.md) | Engineering question, contribution, scope, current status |
 | [Specification index](specs/README.md) | Included normative PDF, revision identity, document precedence |
 | [Architecture design](architecture/architecture_design.md) | Datapath choices, scheduling, capacity budgets, design boundaries |
-| [Historical architecture atlas, 2026-09-14](architecture/diagrams/README.md) | Preserved broad DDR/UDP architecture snapshot; separate from current TSH2 verification |
+| [Historical architecture atlas, 2026-09-14](architecture/diagrams/README.md) | Preserved broad DDR/UDP architecture snapshot with a verification scope separate from current TSH2 |
 | [Implementation plan](architecture/architecture_implementation.md) | Implemented deliverables, build dependencies, remaining platform results |
 | [Repository ownership](architecture/repo_architecture.md) | File ownership, source/generated distinctions, dependency rules |
 | [Build guide](architecture/build_order.md) | Tools and component build sequence |
@@ -52,7 +54,7 @@ The remaining sections document shared components and the original broad Phase 2
 - [Platform Designer boundary](architecture/platform_designer_wrapper.md) and [board top](architecture/de1soc_board_top_integration.md): generated-system and physical-board integration.
 - [HPS transport](architecture/de1soc_hps_transport.md) and [command path](architecture/de1soc_command_path.md): software lifecycle, forwarding, and control results.
 
-The [reference-model documentation](../sw/reference_model/README.md) explains arithmetic, finite streams, coefficients, and offline artifacts. Its finite input/output model and the FPGA's continuous stream interfaces serve different purposes; neither is a substitute for the other's design contract.
+The [reference-model documentation](../sw/reference_model/README.md) explains arithmetic, finite streams, coefficients, and offline artifacts. Its finite input/output model and the FPGA's continuous stream interfaces serve different purposes. Neither is a substitute for the other's design contract.
 
 - [Transform microarchitecture](architecture/transform_microarchitecture.md) and [storage schedule](architecture/storage_schedule.md): RAM ports, arithmetic pipeline and cycle budgets.
 - [Physical timing](architecture/physical_timing.md): codec/ADC I/O, CDC routing and external timing allocations.
@@ -74,8 +76,8 @@ The [reference-model documentation](../sw/reference_model/README.md) explains ar
 | [ADC](bringup/adc_bringup.md) | Optional LTC2308 source and diagnostic operation |
 | [BRAM replay](architecture/de1soc_bram_replay_path.md) | Deterministic source, full-tail completion, transport boundary |
 
-These guides describe implementation and operational procedures. They do not by themselves establish that the procedures have passed on a board. Full functional and system signoff remain open. The [Lite deployment result](results/de1soc_lite_bram_20260915.md) records the integrated fitted image and FPGA configuration; the [FPGA-only measurement result](results/board_power_20260925/README.md) records a separate checked core workload and its physical DC-input measurements. [Older implementation results](results/fpga_implementation.md) remain historical.
+These guides describe implementation and operational procedures. They do not by themselves establish that the procedures have passed on a board. Full functional and system signoff remain open. The [Lite deployment result](results/de1soc_lite_bram_20260915.md) records the integrated fitted image and FPGA configuration. The [FPGA-only measurement result](results/board_power_20260925/README.md) records a separate checked core workload and its physical DC-input measurements. [Older implementation results](results/fpga_implementation.md) remain historical.
 
 ## History
 
-The [deprecation guide](deprecation/deprecated_phase2_documents.md) explains superseded Phase 2 documents; [Phase 1 notes](deprecation/phase1_quarantine_notes.md) explain the earlier Haar design. The `c0_*_v*.md` notes in `bringup/` retain the rationale for earlier control, tail, arithmetic-width, and delayed-reference changes. Historical revision labels identify when a change was introduced, not the maturity of the current repository.
+The [deprecation guide](deprecation/deprecated_phase2_documents.md) explains superseded Phase 2 documents. [Phase 1 notes](deprecation/phase1_quarantine_notes.md) explain the earlier Haar design. The `c0_*_v*.md` notes in `bringup/` retain the rationale for earlier control, tail, arithmetic-width, and delayed-reference changes. Historical revision labels identify when a change was introduced, not the maturity of the current repository.

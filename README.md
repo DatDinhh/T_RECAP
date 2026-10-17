@@ -1,5 +1,7 @@
 # T-RECAP
 
+**Threshold-based Reduction and Encoding for Controlled Audio Processing**
+
 **FPGA spectral sparsification, audio reconstruction, and measured host workload reduction on DE1-SoC.**
 
 [![Source and host checks](https://github.com/DatDinhh/T_RECAP/actions/workflows/phase2-source.yml/badge.svg)](https://github.com/DatDinhh/T_RECAP/actions/workflows/phase2-source.yml)
@@ -8,13 +10,15 @@
 
 T-RECAP is a senior capstone project built around a fixed-point **FFT → tunable threshold → IFFT/WOLA** pipeline. The FPGA produces both a reconstructed audio waveform and a sparse representation of its spectrum. A laptop can inspect the audio, visualize spectral changes, and compute monitoring features from the retained spectral bins.
 
+**New to the terminology?** See [Terms and abbreviations](#terms-and-abbreviations), including the difference between TSH2, THR2 and TSP1.
+
 ## Objective
 
 **Reduce the spectral data a host must receive and process, while measuring the signal information lost at each threshold.** The practical application is a spectral-activity monitor: track dominant frequency, spectral centroid, band energy, and changes in activity from compact spectral records. The reconstruction path lets us hear and measure what the threshold removed.
 
 This asks a specific engineering question: can a consumer that understands sparse spectra do less work while retaining the information its task needs? We compare dense and sparse representations at the **same threshold**, check their feature outputs for equality, and separately compare thresholded results with the original signal.
 
-The current verified implementation processes finite audio files on a real DE1-SoC. Live microphone input and continuous real-time transport have not been qualified. The name expands to *Transform-domain Representation and Energy-aware Computation Accelerator with Controlled Precision*; electrical energy savings have not been established.
+The current verified implementation processes finite audio files on a real DE1-SoC. Live microphone input and continuous real-time transport have not been qualified. The [project naming note](phase2/docs/project_identity.md) records the current full name and its relationship to historical documents. Electrical energy savings have not been established.
 
 ## What the project demonstrates
 
@@ -99,9 +103,9 @@ Clock/reset ownership, checked behavior and remaining scope.
 4. **FPGA spectral exporter:** emit retained powers and bin indices as sparse TSP1 records. The HPS returns these records and the separate reconstructed waveform to the laptop.
 5. **Laptop consumer:** validate records, compute features or monitor activity, and display the results. Reference checking evaluates implementation correctness and signal distortion separately.
 
-The **waveform output contains reconstructed samples**. The **TSP1 output contains squared magnitudes without phase**, so it cannot reconstruct audio by itself. The finite TCP service returns sparse records; the lower-level adapter also supports dense records for verification.
+The **waveform output contains reconstructed samples**. The **TSP1 output contains squared magnitudes without phase**, so it cannot reconstruct audio by itself. The finite TCP service returns sparse records. The lower-level adapter also supports dense records for verification.
 
-The current profile is named **TSH2**. It uses ready/valid waveform flow control and spectral-record credit to preserve state while the host feeds and drains data. Its elapsed FPGA counter includes host-induced stalls. The [historical architecture atlas](phase2/docs/architecture/diagrams/README.md) preserves the broader DDR-ring/UDP source snapshot dated 2026-09-14. Its interfaces and acceptance scope are separate from current TSH2 verification.
+The current implementation is called **TSH2**, an internal name for the finite-file FPGA application profile and its host register interface. It uses ready/valid waveform flow control and spectral-record credit to preserve state while the host feeds and drains data. Its elapsed FPGA counter includes host-induced stalls. The [historical architecture atlas](phase2/docs/architecture/diagrams/README.md) preserves the broader DDR-ring/UDP source snapshot dated 2026-09-14. Its interfaces and acceptance scope are separate from current TSH2 verification.
 
 | Architecture scope | Current TSH2 atlas | Historical atlas, 2026-09-14 |
 |---|---|---|
@@ -118,10 +122,10 @@ The current profile is named **TSH2**. It uses ready/valid waveform flow control
 | FFT / hop | 256 samples / 128 samples |
 | Fixed-point fractional precision | 15 bits |
 | Spectral representation | 129 canonical bins, unsigned 56-bit squared magnitudes |
-| Eight-second run | 384,000 input samples at nominal 48 kHz; 3,001 frames; 384,512 full-tail output samples |
-| Reconstruction delay | 384 samples, equivalent to 8 ms at 48 kHz; this is not network latency |
-| Packet size | Dense: 952 bytes/frame; sparse: `48 + 8K` bytes/frame for `K` retained bins |
-| Fitted profile resources | 6,521 ALMs, 47 M10K blocks, 35 DSP blocks; source-bound historical fit/timing evidence |
+| Eight-second run | 384,000 input samples at nominal 48 kHz, 3,001 frames and 384,512 full-tail output samples |
+| Reconstruction delay | 384 samples, equivalent to 8 ms at 48 kHz. This is not network latency |
+| Packet size | 952 bytes/frame in dense mode and `48 + 8K` bytes/frame in sparse mode for `K` retained bins |
+| Fitted profile resources | 6,521 ALMs, 47 M10K blocks and 35 DSP blocks, as recorded in the historical fit and timing evidence tied to the source |
 
 `THR2` is a power threshold on `Re(X)^2 + Im(X)^2`, not a percentage or a calibrated sound level. An eligible bin is suppressed when its power is **strictly less** than the threshold. Equality is retained, DC is protected, and Nyquist is eligible. Thresholds are configured while idle and remain fixed throughout a run. Increasing the threshold does not shorten the baseline FFT/IFFT schedule.
 
@@ -131,7 +135,7 @@ The following plots use the actual reconstructed waveform captured from the boar
 
 ![Original and FPGA-processed flute spectrograms](phase2/docs/project_overview/figures/flute_captured_spectrograms.png)
 
-The spectrograms use one shared scale. Threshold zero reproduces this prepared input exactly after alignment. Increasing the threshold removes weak spectral components; at high thresholds the audible waveform changes substantially. This is selective suppression, not a general-purpose denoising guarantee.
+The spectrograms use one shared scale. Threshold zero reproduces this prepared input exactly after alignment. Increasing the threshold removes weak spectral components. At high thresholds the audible waveform changes substantially. This is selective suppression, not a general-purpose denoising guarantee.
 
 ![Captured waveform before and after thresholding](phase2/docs/project_overview/figures/flute_waveform.png)
 
@@ -151,7 +155,7 @@ NRMSE is `100 × ||aligned_output - input||₂ / ||input||₂`. It measures tota
 
 ![Spectral packet size by threshold](phase2/docs/project_overview/figures/flute_packet_sizes.png)
 
-The physical campaign also processed natural environmental recordings and synthetic signals. The [case ledger](phase2/docs/results/verification_20261017/hardware/cases.csv) identifies all 58 runs; the [application results](phase2/docs/project_overview/README.md) explain the monitor quality gates and recording provenance. No new hardware execution was performed to redraw these overview figures.
+The physical campaign also processed natural environmental recordings and synthetic signals. The [case ledger](phase2/docs/results/verification_20261017/hardware/cases.csv) identifies all 58 runs. The [application results](phase2/docs/project_overview/README.md) explain the monitor quality gates and recording provenance. No new hardware execution was performed to redraw these overview figures.
 
 ## What work is reduced on the laptop?
 
@@ -159,7 +163,7 @@ A dense consumer visits every spectral bin, including bins that the FPGA has alr
 
 ![Laptop workload using actual captured FPGA spectra](phase2/docs/project_overview/figures/host_workload_flute.png)
 
-This experiment replays actual captured sparse FPGA packets from RAM on an **Intel Core i7-8750H**, with 3,001 frames per eight-second flute clip and 30 matched dense/sparse trials. The host re-encodes the same thresholded values into dense control packets; those controls are not additional FPGA captures. Both paths produce identical integer 16-band features.
+This experiment replays actual captured sparse FPGA packets from RAM on an **Intel Core i7-8750H**, with 3,001 frames per eight-second flute clip and 30 matched dense/sparse trials. The host re-encodes the same thresholded values into dense control packets. Those controls are not additional FPGA captures. Both paths produce identical integer 16-band features.
 
 | Threshold | Feature computation: paired elapsed-time reduction | Packet validation + features: paired elapsed-time reduction |
 |---:|---:|---:|
@@ -190,15 +194,15 @@ The verification work connects a defined contract, an independently checked nume
 
 | Verification layer | Executed evidence |
 |---|---|
-| Reference arithmetic | 729,156 independent arithmetic comparisons; 11 C++ tests; 248 finite-input corner checks |
+| Reference arithmetic | 729,156 independent arithmetic comparisons, 11 C++ tests and 248 finite-input corner checks |
 | Directed RTL campaign | 14 fresh suites covering arithmetic boundaries, threshold semantics, finite geometry, malformed controls, stalls, and reset/recovery |
 | Full-length RTL, included in the 14 suites | Two 384,000-input runs, checking 769,024 waveform outputs, 774,258 canonical-bin observations, and 6,002 frames in total |
 | Public seeded regression | Three seeds across four threshold/packet-mode cases: 12 epochs, 18,432 exact waveform samples, 13,932 canonical rows, and 94,440 packet bytes |
 | Checker qualification | Intentional corrupt/missing results, unknown-value and completion controls, bounded timeouts, plus a real RTL run with mutated expected output that must fail |
-| Physical DE1-SoC campaign | 58 epochs, 29 configurations, 13 inputs; exact output/packet comparison and zero final fault/drop flags |
+| Physical DE1-SoC campaign | 58 epochs across 29 configurations and 13 inputs, with exact output/packet comparison and zero final fault/drop flags |
 | Traceability | Source and fixture hashes, requirement dispositions, observed event coverage, JSON/JUnit receipts, native VCD traces, and published data provenance |
 
-**A real defect was found and repaired:** the software reference's signed round-shift helper mishandled shifts 63 and 64. The failing boundary cases were reproduced before the fix, then checked independently after it. This repair concerns the reference arithmetic; it is not presented as a new FPGA speed optimization.
+**A real defect was found and repaired:** the software reference's signed round-shift helper mishandled shifts 63 and 64. The failing boundary cases were reproduced before the fix, then checked independently after it. This repair concerns the reference arithmetic. It is not presented as a new FPGA speed optimization.
 
 ![Round-shift boundary defect and correction](phase2/docs/project_overview/figures/dv_rounding.png)
 
@@ -218,12 +222,12 @@ The October 17 supplement adds a reusable **Accellera UVM 1.2** environment and 
 
 | New evidence | Executed scope |
 |---|---|
-| Genuine UVM simulation | Three seeds, four complete cases each: **12 completed epochs**, including three reset recoveries; three interrupted prefixes counted separately |
-| Exact UVM scoreboards | 18,432 waveform outputs, 13,932 canonical-bin records and 94,440 packet bytes; independent replay checks reconcile the captured observations |
-| UVM failure qualification | A mutated expected waveform value produces the intended fatal mismatch; one simulator startup crash is preserved with an explicit bounded recovery record |
+| Genuine UVM simulation | Three seeds, four complete cases each: **12 completed epochs**, including three reset recoveries. Three interrupted prefixes are counted separately |
+| Exact UVM scoreboards | 18,432 waveform outputs, 13,932 canonical-bin records and 94,440 packet bytes. Independent replay checks reconcile the captured observations |
+| UVM failure qualification | A mutated expected waveform value produces the intended fatal mismatch. One simulator startup crash is preserved with an explicit bounded recovery record |
 | Local formal proofs | **16 safety/equivalence jobs**: FIFO order at reduced depths, deployed output-FIFO control, 11 round/saturate instances and threshold-mask control/relations |
-| Formal covers | **14 bounded-cover jobs** reach 73 selected predicates; cover witnesses establish reachability, not universal correctness |
-| Formal negative controls | Three deliberately false assertions produce the intended counterexamples; they are expected failures, not additional proofs |
+| Formal covers | **14 bounded-cover jobs** reach 73 selected predicates. Cover witnesses establish reachability, not universal correctness |
+| Formal negative controls | Three deliberately false assertions produce the intended counterexamples. They are expected failures, not additional proofs |
 
 ![UVM sequence, driver, monitor and scoreboard](phase2/docs/verification/uvm_formal/figures/uvm_architecture.png)
 
@@ -233,7 +237,77 @@ The October 17 supplement adds a reusable **Accellera UVM 1.2** environment and 
 
 ![Expected formal counterexample, not a DUT defect](phase2/docs/verification/uvm_formal/figures/formal_counterexample.png)
 
-Read the [academic LaTeX supplement](phase2/docs/verification/uvm_formal/README.md), [UVM runner and evidence](phase2/verification/uvm/README.md), and [formal properties, assumptions and witnesses](phase2/verification/formal/README.md). UVM uses deterministic seeded schedules and observed counters with the installed Starter simulator; solver-constrained randomization, covergroups and code-coverage closure are not claimed. Formal scope is local and instance-specific: it does not prove the complete FFT/IFFT pipeline, production-depth FIFO data order or the separate PCM FIFO.
+Read the [academic LaTeX supplement](phase2/docs/verification/uvm_formal/README.md), [UVM runner and evidence](phase2/verification/uvm/README.md), and [formal properties, assumptions and witnesses](phase2/verification/formal/README.md). UVM uses deterministic seeded schedules and observed counters with the installed Starter simulator. Solver-constrained randomization, covergroups and code-coverage closure are not claimed. Formal scope is local and instance-specific: it does not prove the complete FFT/IFFT pipeline, production-depth FIFO data order or the separate PCM FIFO.
+
+## Terms and abbreviations
+
+Start here if you are new to the project. **TSH2 is an implementation name, THR2 is a threshold setting, and TSP1 is an output format.** They refer to different things.
+
+In one sentence: the **TSH2** FPGA profile applies **THR2** to FFT-bin power, exports retained spectral powers in **TSP1** packets, and separately produces reconstructed audio **Y**.
+
+### Project names and output labels
+
+| Term | Meaning in this repository |
+|---|---|
+| **T-RECAP** | Threshold-based Reduction and Encoding for Controlled Audio Processing. |
+| **TSH2** | The internal identifier for the current finite-file FPGA application profile and its host register interface. A *profile* is a particular implementation with a defined configuration and interface. The repository does not document a long-form expansion of the letters T/S/H. |
+| **TSH1** | The earlier FPGA profile used for the historical 1,024-sample resident-compute comparison. Its timing results must not be read as current TSH2 measurements. |
+| **THR2** | The threshold applied to squared FFT magnitude: `Re(X)^2 + Im(X)^2`. It is expressed in the implementation's fixed-point power units, not percent, decibels or sound-pressure level. Values below it are suppressed. Equality is retained, and DC is protected. |
+| **TSP1** | The project's version-1 spectral packet format. It carries frame metadata and power values, with retained-bin indices in sparse mode. It omits phase, so these packets alone cannot reconstruct the audio. |
+| **Y** | The reconstructed time-domain audio output from the IFFT/WOLA path. This sample stream is separate from TSP1 spectral packets. |
+
+For the exact interfaces, see the [TSH2 contract](phase2/profiles/tsh2/work/trecap_stream8_v01/CONTRACT.md) and [output architecture](phase2/docs/architecture/tsh2/README.md).
+
+### Audio and signal processing
+
+| Term | Meaning and why it matters here |
+|---|---|
+| **DSP** | Digital signal processing: numerical operations on sampled signals. A hardware *DSP block* is a dedicated arithmetic resource inside the FPGA. |
+| **PCM / WAV** | Pulse-code modulation represents audio as numeric samples. WAV is a file container that can store those samples. WAV-file size and spectral-packet size are different measurements. |
+| **FFT / IFFT** | Fast Fourier transform and inverse fast Fourier transform. The FFT maps a time-domain frame to frequency coefficients. The IFFT maps coefficients back to time-domain samples. |
+| **WOLA** | Weighted overlap-add. Windowed, overlapping frames are combined to form the reconstructed waveform. |
+| **Frame / hop** | A frame is one window of samples processed together. The hop is how far the next frame advances. Current settings use 256 samples per FFT frame and a 128-sample hop. |
+| **Fixed-point arithmetic** | Integer arithmetic with an agreed binary scale. Rounding, saturation and scaling are part of the implementation and must match the numerical reference. |
+| **Bin / canonical bins** | A bin is one discrete FFT frequency index. A real 256-point FFT has 129 unique bins including DC and Nyquist. These are the canonical bins used by the exporter. |
+| **Magnitude / power / phase** | Magnitude is the size of a complex FFT coefficient. Power here is its squared magnitude. Phase describes its angle. TSP1 retains power, while waveform reconstruction requires the appropriate complex coefficients. |
+| **DC / Nyquist** | DC is the zero-frequency component. Nyquist is half the sample rate. The threshold protects DC. The Nyquist bin can be suppressed. |
+| **Dense / sparse / sparsification** | Dense spectra store every canonical bin, including zeros. Sparse spectra store retained bins with their indices. Sparsification suppresses selected coefficients and permits this compact representation. Dense and sparse data at the same threshold represent the same retained powers. |
+| **Spectrogram / band energy** | A spectrogram shows spectral strength over time and frequency. Band energy groups and sums powers over selected bins. The 16-band consumer uses 16 disjoint bin groups. |
+| **Spectral centroid / dominant frequency** | The centroid summarizes where spectral weight is concentrated. Dominant frequency identifies the strongest spectral component. Both are monitoring features computed downstream. |
+| **NRMSE** | Normalized root-mean-square error. Here it is the waveform error-vector norm divided by the reference waveform's norm, reported as a percentage. It measures numerical waveform difference, not recognition accuracy or perceived audio quality. |
+| **Consumer / features / AI** | A consumer is downstream software using the output. Features are summaries such as band energies. AI means artificial intelligence. YAMNet is the pretrained audio-event model explored here. The measured 16-band consumer is separate from AI inference. |
+
+### Hardware, transport and timing
+
+| Term | Meaning and why it matters here |
+|---|---|
+| **FPGA / SoC / DE1-SoC** | Field-programmable gate array / system on a chip. DE1-SoC is the development board used here. Its Cyclone V device contains FPGA fabric and an ARM processor subsystem. |
+| **CPU / HPS / host** | CPU means central processing unit. HPS means hard processor system, the ARM side of the board running Linux. In the workload plots, the host CPU is the laptop's Intel CPU. The board CPU and laptop CPU are distinct measurement targets. |
+| **MMIO** | Memory-mapped input/output. Software reads or writes hardware registers through addresses, allowing the HPS to configure, feed and drain the FPGA. |
+| **FIFO / BRAM / M10K** | First-in, first-out queue / block RAM. FIFOs buffer ordered data. BRAM is on-chip memory. M10K names a Cyclone V embedded memory-block resource. |
+| **RAM / DDR** | Random-access memory / double data rate. DDR refers to external memory in the historical architecture. It should not be confused with the current FPGA's on-chip FIFOs. |
+| **Ready/valid / backpressure / credit** | A ready/valid transfer occurs when both signals are asserted. Backpressure pauses acceptance until the receiver has space. Spectral-record credit reserves capacity before producing another frame's records. |
+| **TCP/IP / UDP / Ethernet** | Transmission Control Protocol / Internet Protocol and User Datagram Protocol are network protocols. Ethernet provides the network link. The current finite-file path uses TCP. UDP appears in the historical architecture. |
+| **Epoch / tail / drain** | An epoch is one accepted processing run. The tail completes the final overlapping frames after input ends. Draining reads pending outputs. FPGA DONE alone does not mean the laptop has received every output. This use of epoch is unrelated to AI training. |
+| **Latency / throughput / elapsed cycles** | Latency is delay to a defined output. Throughput is the amount processed per unit time. Elapsed cycles count clock ticks between defined events. The current TSH2 counter includes stalls caused by host feed/drain, so it is not a pure arithmetic-only timing measurement. |
+| **ADC / LINE-IN** | Analog-to-digital converter / analog line-level input. These concern physical audio capture. The qualified implementation uses finite audio files. Live input through the board's audio jack is outside the verified scope. |
+
+### Design verification and evidence
+
+| Term | Meaning and why it matters here |
+|---|---|
+| **RTL / DUT** | Register-transfer level / design under test. RTL describes the hardware. DUT identifies the module or subsystem being checked. |
+| **UVM** | Universal Verification Methodology. A SystemVerilog framework that organizes stimulus, drivers, monitors and scoreboards into reusable simulation components. Using UVM alone does not establish verification completeness. |
+| **Sequence / driver / monitor / scoreboard** | A sequence supplies test transactions, which a driver applies to the DUT. A monitor observes actual interface activity, and a scoreboard compares those observations with expected results. |
+| **Reference model / bit-exact** | The reference model computes expected numerical results. Bit-exact means the checked integer values match exactly, including the required rounding and saturation behavior. |
+| **Seed / regression / coverage** | A seed makes a stimulus schedule reproducible. A regression runs a collection of tests. Coverage records what was exercised. The current observed counters are not a claim of complete code or functional coverage. |
+| **Formal verification / assertion / assumption** | Formal tools analyze a mathematical model of the RTL. An assertion states what must hold. An assumption limits permitted inputs or behavior. A passing proof applies only to its stated model, properties and assumptions. |
+| **SBY / Yosys** | Tools used by this project's formal flow. SBY, also known as SymbiYosys, coordinates formal jobs. Yosys processes the RTL into the model used by the proof flow. These names do not imply that the entire design was proved. |
+| **Proof / cover / counterexample** | A proof establishes a property within its stated scope. A cover witness shows that a selected event is reachable. A counterexample is a trace that violates an assertion. A cover witness is not a universal correctness proof. |
+| **Negative control** | An intentionally incorrect expected value or property used to check that the verification flow detects a fault. Its expected failure is evidence about the checker, not automatically a DUT defect. |
+| **VCD / waveform** | Value Change Dump, a file format containing signal changes over simulation or formal-trace time. A waveform viewer displays those changes for inspection. |
+| **CDC / RDC** | Clock-domain crossing / reset-domain crossing. These refer to checks on signals crossing clock or reset boundaries. They require their own analysis. Local functional proofs do not establish CDC/RDC signoff. |
+| **Provenance** | The recorded source version, tool configuration, inputs and run artifacts that connect a reported result to the work that produced it. |
 
 ## Reproduce the checks
 
@@ -262,7 +336,7 @@ ctest --preset verify
 
 The [portable regression guide](phase2/verification/tsh2/README.md) documents simulator setup, output files, and fresh output-directory requirements. GitHub Actions runs reference functional tests, RTL frontend elaboration, hygiene checks, package/checker qualification, and public evidence integrity checks on Linux and Windows. Licensed RTL simulation and physical hardware runs are recorded separately. The [formal workflow](https://github.com/DatDinhh/T_RECAP/actions/workflows/formal.yml) separately downloads a hash-pinned tool suite and executes all 33 formal proof, cover and expected-failure jobs. UVM is not executed by the ordinary host package checks.
 
-The [TSH2 application archive](phase2/profiles/tsh2/README.md) includes the board adapter, service, consumers, monitor, and local visualizer source. It also documents external coefficients, native libraries, fitted-image dependencies, and runtime admission requirements. It is not a one-command board deployment. The separate [Spectral Studio repository](https://github.com/DatDinhh/trecap-spectral-studio) is a recorded demonstration; visiting it does not remotely operate this board.
+The [TSH2 application archive](phase2/profiles/tsh2/README.md) includes the board adapter, service, consumers, monitor, and local visualizer source. It also documents external coefficients, native libraries, fitted-image dependencies, and runtime admission requirements. It is not a one-command board deployment. The separate [Spectral Studio repository](https://github.com/DatDinhh/trecap-spectral-studio) is a recorded demonstration. Visiting it does not remotely operate this board.
 
 ## Repository map
 
@@ -288,4 +362,4 @@ The earlier [architecture atlas](phase2/docs/architecture/diagrams/README.md), [
 
 T-RECAP is a senior capstone engineering project investigating the connection between fixed-point FPGA signal processing, sparse spectral data, and measurable downstream work. Its portfolio spans RTL design, numerical debugging, hardware/software integration, application evaluation, and reproducible design verification.
 
-Project-authored code is distributed under the [MIT license](LICENSE). Third-party toolchains and audio datasets retain their own terms. The flute example is credited to Lawrence Fritts and the [University of Iowa Musical Instrument Samples collection](https://theremin.music.uiowa.edu/MIS.html); environmental recording credits and dataset distinctions are preserved in the [data provenance](phase2/docs/results/verification_20261017/data_provenance/dataset_terms.json). Raw third-party recordings are not bundled with the verification package.
+Project-authored code is distributed under the [MIT license](LICENSE). Third-party toolchains and audio datasets retain their own terms. The flute example is credited to Lawrence Fritts and the [University of Iowa Musical Instrument Samples collection](https://theremin.music.uiowa.edu/MIS.html). Environmental recording credits and dataset distinctions are preserved in the [data provenance](phase2/docs/results/verification_20261017/data_provenance/dataset_terms.json). Raw third-party recordings are not bundled with the verification package.

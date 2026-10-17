@@ -1,5 +1,7 @@
 # Current TSH2 architecture atlas
 
+**T-RECAP: Threshold-based Reduction and Encoding for Controlled Audio Processing.** See [project naming and scope](../../project_identity.md).
+
 These eight diagrams document the registered finite-file TSH2 application: laptop PCM over TCP, HPS software feeding and draining MMIO FIFOs, a fixed-point FPGA audio pipeline, and separate waveform and spectral outputs. They describe reviewed source structure. Creating this atlas performed no new synthesis, simulation, hardware execution or timing measurement.
 
 The [historical architecture atlas](../diagrams/README.md) describes the broader 2026-09-14 design, including paths that are inactive here. The current profile does not activate its FPGA DDR ring, UDP telemetry or live codec/ADC input. Ordinary HPS Linux RAM remains part of the TCP service.
@@ -31,14 +33,14 @@ One START covers the complete 384,000-sample input and its finite tail. The HPS 
 
 The transform size is 256 with hop 128. The full run contains 384,128 analysis tokens, 3,001 frames and 384,512 Y samples. The first frame covers conceptual indices -128 through 127, with a zero left half. After the last analysis frame, 384 WOLA-only ticks drain the tail without dummy FFT frames.
 
-The mask compares eligible squared magnitude with THR2 using strict less-than. Equality is retained, DC is protected and Nyquist is eligible. Canonical taps contain pre-mask power and the decision; the masked spectrum builder changes the complex bins. The separate solid reference-history branch provides sample context for the 384-sample error alignment. Current TSH2 does not export the broader historical METRICS/WAVE telemetry records.
+The mask compares eligible squared magnitude with THR2 using strict less-than. Equality is retained, DC is protected and Nyquist is eligible. Canonical taps contain pre-mask power and the decision. The masked spectrum builder changes the complex bins. The separate solid reference-history branch provides sample context for the 384-sample error alignment. Current TSH2 does not export the broader historical METRICS/WAVE telemetry records.
 
 <a id="plate-03-transform-memory"></a>
 ## 3. Transform engines and storage
 
 ![Independent FFT and IFFT iterative engine template with work RAM, twiddles and registered butterfly](03-transform-memory.png)
 
-The template is instantiated independently for FFT and IFFT. Each engine owns its own work RAM and butterfly; they do not share a single RAM. Eight radix-2 stages contain 128 butterflies each. Forward FFT divides by two at each stage. Inverse FFT uses inverse twiddles without that per-stage division. The arithmetic rounds ties away from zero and then saturates.
+The template is instantiated independently for FFT and IFFT. Each engine owns its own work RAM and butterfly. They do not share a single RAM. Eight radix-2 stages contain 128 butterflies each. Forward FFT divides by two at each stage. Inverse FFT uses inverse twiddles without that per-stage division. The arithmetic rounds ties away from zero and then saturates.
 
 All work RAM locations load before compute. Scheduled reads and writes avoid read/write overlap, and each butterfly writes two distinct addresses. Work RAM contents are not asynchronously cleared. The structural schedule is not a measured transform, network or full-epoch latency.
 
@@ -47,9 +49,9 @@ All work RAM locations load before compute. Scheduled reads and writes avoid rea
 
 ![Single epoch with real PCM, analysis zeros, WOLA tail, exporter completion and final host drain](04-finite-epoch-feed-drain.png)
 
-For the registered 384,000-sample geometry, 128 analysis-zero tokens finish the analysis frames and 384 more ticks drain WOLA. For other admitted simulation lengths, use `frames = floor((Ns + 254) / 128)`, `tau_last = 128 * frames`, and `Ny = tau_last + 384`; do not assume the analysis flush is always 128 tokens.
+For the registered 384,000-sample geometry, 128 analysis-zero tokens finish the analysis frames and 384 more ticks drain WOLA. For other admitted simulation lengths, use `frames = floor((Ns + 254) / 128)`, `tau_last = 128 * frames`, and `Ny = tau_last + 384`. Do not assume the analysis flush is always 128 tokens.
 
-DONE requires the exact production counts, core quiescence, completed exporter records and no partial packed word. It does not mean every output has reached the host or laptop. Earlier records may already have been drained, and the host checks final read totals before CLEAR. CLEAR preserves the epoch counter; hardware reset resets it.
+DONE requires the exact production counts, core quiescence, completed exporter records and no partial packed word. It does not mean every output has reached the host or laptop. Earlier records may already have been drained, and the host checks final read totals before CLEAR. CLEAR preserves the epoch counter. Hardware reset resets it.
 
 <a id="plate-05-tsp1-y-outputs"></a>
 ## 5. Separate Y and TSP1 outputs
@@ -58,9 +60,9 @@ DONE requires the exact production counts, core quiescence, completed exporter r
 
 Y carries signed12 reconstructed samples in sign-extended 32-bit words. The full output is 1,538,048 bytes. TSP1 carries squared magnitudes without phase, so it cannot reconstruct audio by itself. Packet-size reductions describe this spectral representation, not the WAV size or the separate Y stream.
 
-TSP1 uses a 48-byte little-endian header and FNV-1a64, not CRC. The checksum covers header bytes 0 through 39 plus payload/padding, excluding the checksum field itself. Sparse records use `48 + 8K` bytes, with bin8 plus power56 in each entry. DC remains present, so `1 <= K <= 129`. Dense records use 952 bytes. At threshold zero, sparse K=129 uses 1,080 bytes and is larger than dense. The finite TCP service selects sparse mode; lower-level adapter tests also support dense.
+TSP1 uses a 48-byte little-endian header and FNV-1a64, not CRC. The checksum covers header bytes 0 through 39 plus payload/padding, excluding the checksum field itself. Sparse records use `48 + 8K` bytes, with bin8 plus power56 in each entry. DC remains present, so `1 <= K <= 129`. Dense records use 952 bytes. At threshold zero, sparse K=129 uses 1,080 bytes and is larger than dense. The finite TCP service selects sparse mode. Lower-level adapter tests also support dense.
 
-The packer can accept the first three bytes of a word while its FIFO is full; acceptance of the fourth byte requires space for the packed word. Exporter frame ownership lasts through acceptance of the final record byte.
+The packer can accept the first three bytes of a word while its FIFO is full. Acceptance of the fourth byte requires space for the packed word. Exporter frame ownership lasts through acceptance of the final record byte.
 
 <a id="plate-06-tcp-hps-mmio"></a>
 ## 6. TCP, HPS software and MMIO
@@ -69,7 +71,7 @@ The packer can accept the first three bytes of a word while its FIFO is full; ac
 
 One connection carries a 16-byte request header and 1,536,000 bytes of signed12 PCM represented as int32le. The client half-closes its write side so the service can reject extra or missing bytes before accelerator writes. The response contains a 40-byte header, full Y, then complete sparse TSP1. Reference gold is not sent to the FPGA.
 
-The frozen host controller polls and interleaves batches of up to 64 spectral reads, 64 Y reads and 64 PCM writes. Its board wall/thread timers exclude TCP input reception and reply transmission. Laptop end-to-end timing has a different boundary. The service is bounded and serial; failed requests end it without automatic retry or MMIO recovery. These diagrams are not deployment instructions.
+The frozen host controller polls and interleaves batches of up to 64 spectral reads, 64 Y reads and 64 PCM writes. Its board wall/thread timers exclude TCP input reception and reply transmission. Laptop end-to-end timing has a different boundary. The service is bounded and serial. Failed requests end it without automatic retry or MMIO recovery. These diagrams are not deployment instructions.
 
 <a id="plate-07-configuration-backpressure"></a>
 ## 7. Configuration, backpressure and faults
@@ -85,17 +87,17 @@ Taps remain valid-only. Export pressure limits future source hops instead of inv
 
 ![Active CLOCK_50 domain, HPS reset release, software initialization and separate verification evidence scopes](08-clock-reset-verification.png)
 
-The retained board top uses CLOCK_50 for the active fabric and a three-stage reset-release chain driven by HPS `h2f_reset_n`. Assertion is asynchronous; release shifts high over three clock edges. Software CLEAR and epoch initialization clear ownership, while WOLA storage is scrubbed explicitly. Transform work RAM is loaded per frame. Generated HPS CPU, Ethernet and DDR clocks remain platform-owned. The active F2SDRAM write input is tied inactive.
+The retained board top uses CLOCK_50 for the active fabric and a three-stage reset-release chain driven by HPS `h2f_reset_n`. Assertion is asynchronous. Release shifts high over three clock edges. Software CLEAR and epoch initialization clear ownership, while WOLA storage is scrubbed explicitly. Transform work RAM is loaded per frame. Generated HPS CPU, Ethernet and DDR clocks remain platform-owned. The active F2SDRAM write input is tied inactive.
 
 The public synthetic package checks the admitted stream/core/exporter closure at Ns=1,024. The broader accepted campaign contains two full 384,000-sample RTL simulations and 58 checked physical epochs. These scopes are distinct. Functional simulation uses a 10 ns clock, while the physical fabric constraint is 20 ns. VCD time is not board latency. No formal CDC/RDC, metastability proof, full code-coverage closure, PVT qualification or industrial certification is claimed.
 
-The original RTL campaigns use procedural checks and exact scoreboards. The later [UVM and formal supplement](../../verification/uvm_formal/README.md) adds genuine UVM 1.2 execution and scoped local formal proofs against unchanged TSH2 RTL. Its 12 completed UVM epochs include three reset recoveries; three aborted prefixes are recorded separately. The preserved simulator startup failure and explicit bounded recovery remain part of that evidence. Local formal assumptions and exclusions apply; the supplement does not establish full-pipeline equivalence, concurrent-SVA coverage or formal CDC/RDC safety. Plate 8 distinguishes these evidence layers without changing the physical architecture.
+The original RTL campaigns use procedural checks and exact scoreboards. The later [UVM and formal supplement](../../verification/uvm_formal/README.md) adds genuine UVM 1.2 execution and scoped local formal proofs against unchanged TSH2 RTL. Its 12 completed UVM epochs include three reset recoveries. Three aborted prefixes are recorded separately. The preserved simulator startup failure and explicit bounded recovery remain part of that evidence. Local formal assumptions and exclusions apply. The supplement does not establish full-pipeline equivalence, concurrent-SVA coverage or formal CDC/RDC safety. Plate 8 distinguishes these evidence layers without changing the physical architecture.
 
 ## Editable sources and integrity
 
 [atlas_definitions.json](atlas_definitions.json) holds the editable node rectangles, routed edges, captions, reviewed source notes and source hashes. [build_atlas.py](build_atlas.py) renders the same definitions as PNG and SVG. [atlas_manifest.json](atlas_manifest.json) binds the generator, definitions, 34 public source files and all 16 image artifacts.
 
-Two board-wrapper sources are retained in the original build archive rather than supplied as public files. Their original hashes are matched against the [published fitted-source manifest](../../results/verification_20261017/source_bindings/fitted_source_manifest.json). This public check verifies those manifest entries; it cannot reopen the omitted original wrappers or rebuild the complete fitted image. The artifact identifiers are provenance references, not filesystem paths to open.
+Two board-wrapper sources are retained in the original build archive rather than supplied as public files. Their original hashes are matched against the [published fitted-source manifest](../../results/verification_20261017/source_bindings/fitted_source_manifest.json). This public check verifies those manifest entries. It cannot reopen the omitted original wrappers or rebuild the complete fitted image. The artifact identifiers are provenance references, not filesystem paths to open.
 
 From the `phase2` directory, the integrity check needs only Python's standard library:
 

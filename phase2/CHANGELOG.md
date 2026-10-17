@@ -2,13 +2,15 @@
 
 ## Unreleased
 
-- Prepared the Phase 2 source and reviewed September 2026 result packages for publication to `DatDinhh/T_RECAP`; corrected stale status text and report typography while preserving numerical evidence, historical identities, and the FFT/threshold/IFFT baseline.
+- Adopted **Threshold-based Reduction and Encoding for Controlled Audio Processing** as the full project name while retaining **T-RECAP**. Updated current documentation and the terminology glossary. Preserved the original specification identity, interface identifiers, and measured evidence. See [project naming and scope](docs/project_identity.md).
 
-- Extended verification to 20 finite input lengths with two static thresholds and output stalls; recorded [80 passing boundary cases](docs/results/verification_boundaries_20260915.md), baseline regression and checker qualification. Added supplemental reference bundles and validated compiled configuration against report metadata.
+- Prepared the Phase 2 source and reviewed September 2026 result packages for publication to `DatDinhh/T_RECAP`. Corrected stale status text and report typography while preserving numerical evidence, historical identities, and the FFT/threshold/IFFT baseline.
+
+- Extended verification to 20 finite input lengths with two static thresholds and output stalls. Recorded [80 passing boundary cases](docs/results/verification_boundaries_20260915.md), baseline regression and checker qualification. Added supplemental reference bundles and validated compiled configuration against report metadata.
 
 - Added native simulator, artifact, independent reference, arithmetic and finite-core verification runners with immutable evidence and deliberate checker-failure witnesses.
 - Corrected signed-zero comparisons in rounded-shift RTL and shared math helpers, preserving negative rounding and saturation.
-- Stopped classifying legitimate fixed-point IFFT imaginary residuals as WOLA protocol faults; exact complex comparisons remain in verification.
+- Stopped classifying legitimate fixed-point IFFT imaginary residuals as WOLA protocol faults. Exact complex comparisons remain in verification.
 - Corrected the simulation assertion for delayed-history responses retained during output stalls. Recorded the scoped results in [the first verification campaign](docs/results/verification_baseline_20260915.md).
 
 - Implemented synchronous M10K frame/history/OLA stores, a registered seven-clock butterfly, and explicit RAM port schedules while retaining the arithmetic rounding boundaries.
@@ -19,7 +21,7 @@
 
 - Consolidated the Phase 2 implementation and reconciled reference source into one repository with a single canonical integrated specification.
 - Reworked the project overview and architecture documentation around the engineering question, core deliverable, component ownership, and remaining design decisions.
-- Clarified that suppression and retained spectral-energy ratios are representation metrics; the baseline does not claim measured power savings or runtime precision scaling.
+- Clarified that suppression and retained spectral-energy ratios are representation metrics. The baseline does not claim measured power savings or runtime precision scaling.
 - Added contributor guidance and separated active source documentation from historical Phase 1 and C0 revision material.
 - Made threshold configuration belong to an admitted frame through an ordered metadata queue, preventing a later CSR update from splitting that frame's mask decisions.
 - Separated button-paced ADC diagnostics from continuous DSP acquisition and reset the DSP epoch when switching between those acquisition modes.
@@ -29,4 +31,4 @@
 - Added source-generated reference configuration bindings, portable CMake presets, source-hygiene tooling, and a GitHub workflow limited to source checks and host builds.
 - Excluded local environments, credentials, tool output, and captures from source distribution while preserving existing coefficient, input-vector, and reference-output bytes.
 
-This entry does not announce hardware completion. Verification claims are limited to the linked executed campaigns; detailed reference-model changes are maintained with that component.
+This entry does not announce hardware completion. Verification claims are limited to the linked executed campaigns. Detailed reference-model changes are maintained with that component.
