@@ -1,0 +1,78 @@
+{
+  "schema": "trecap-readme-results-subset-v1",
+  "status": "PASS_COMPACT_PUBLIC_REVIEW_SUBSET",
+  "files": [
+    {
+      "path": "claims_matrix.json",
+      "sha256": "2965a3fe16f77798dd63156da3607868e4da6b47ea4c84c386fcbb64f377fd26",
+      "bytes": 17874
+    },
+    {
+      "path": "claims_matrix.csv",
+      "sha256": "c9d227eb9aecc8ba20806a04bb998781911bcc24ca2b7c93f39ee193363930dc",
+      "bytes": 11925
+    },
+    {
+      "path": "claim_source_bindings.json",
+      "sha256": "f67dc562db76fb38d0a47d2bbafbadb1eb154c020abebac170875471096700ed",
+      "bytes": 5234
+    },
+    {
+      "path": "host_workload_audit.json",
+      "sha256": "ef2e54da2dbcbffe85d64d1a4293239cf0ffc96e65da528b0a0dba8f5ba6d493",
+      "bytes": 16177
+    },
+    {
+      "path": "source_bindings.json",
+      "sha256": "bc8e7a089d527109f65d892c1edd4c1d3d740589ef04f508d7692924d503ea7f",
+      "bytes": 2264
+    },
+    {
+      "path": "monitor_receiver_paired.csv",
+      "sha256": "70a639fd705b535fcc166b817d3bc605354a9429e04bfdb077570b8eaf2148c9",
+      "bytes": 1735
+    },
+    {
+      "path": "monitor_routes_by_recording.csv",
+      "sha256": "9d10a800fe87888e8375d6e857af339b0bdfed69aa33ffc02d7848a4ac6d2d93",
+      "bytes": 3271
+    },
+    {
+      "path": "monitor_heldout_quality_and_bytes.csv",
+      "sha256": "829e75150db40a9a72c54ae5ec2c826977d755b56e78839c4e7480515c933eac",
+      "bytes": 1455
+    },
+    {
+      "path": "monitor_raw_trials.csv",
+      "sha256": "b8368b51b51dc4f017d607fa8ca16d706547b331e74585f37072259b4c5d851e",
+      "bytes": 63636
+    },
+    {
+      "path": "flute_downstream_paired.csv",
+      "sha256": "b68effc22966f45fef1a7044716cb20ec5d9586ec93c5da360068b6a24959121",
+      "bytes": 4530
+    },
+    {
+      "path": "flute_downstream_raw_trials.csv",
+      "sha256": "b03f899f71baf0fda474f71281e8ce70db4eb48c23e6858adaa798f8454aa436",
+      "bytes": 55403
+    },
+    {
+      "path": "readme_audit.md",
+      "sha256": "e7af901e024e445c1389579a8a4e08c6d92632b098db8dd1b8c09e1a44a816a3",
+      "bytes": 8181
+    },
+    {
+      "path": "tracked_inventory_summary.json",
+      "sha256": "c4d1b943d6d2139141beb8c2768f7b2bc3cd9cfbedb6b20b5e07a05e5cbfea62",
+      "bytes": 1302
+    }
+  ],
+  "include_manifest": true,
+  "scope": "Historical measurements independently re-audited, not new execution. Raw trial copies are unchanged; derived tables retain original artifact hashes.",
+  "exclude": [
+    "build_claims_audit.py",
+    "write_claims_matrix.py",
+    "tracked_inventory.csv"
+  ]
+}

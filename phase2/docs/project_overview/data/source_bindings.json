@@ -1,0 +1,21 @@
+{
+  "originals_unchanged": true,
+  "commit_audited": "351ff6a8ef9f7ebd9893a531d71ac7626f95a0e2",
+  "artifact_sha256": {
+    "outputs/trecap_downstream8_v01/benchmark01/raw_trials.csv": "b03f899f71baf0fda474f71281e8ce70db4eb48c23e6858adaa798f8454aa436",
+    "outputs/trecap_downstream8_v01/benchmark01/metadata.json": "17777258054e9111a7d1b3bd2907aec7ffed0e1271f4ba05cc62300568609726",
+    "outputs/trecap_downstream8_v01/analysis01/comparison.csv": "06c58d2c7f2fe62965a6337c4dccba548d25ce0efe277d2ce232dc7b20dc0e81",
+    "outputs/trecap_downstream8_v01/benchmark01_registration.json": "4c89e7df4875908682e8eb5b025311bd2ee980393720fcf5e83ab849b5e3fd4d",
+    "outputs/trecap_downstream8_v01/benchmark01_receipt.json": "3bbfc7d9c3d58109989366878442d83e1f2442c6127a4520278668e0a05acb95",
+    "outputs/trecap_downstream8_v01/analysis01/metrics.json": "129fc94790b725b999956fbd3ca783740a8a7afac8a9ae60f259adec79700f20",
+    "outputs/trecap_downstream8_v01/inputs01/report.json": "891e4ee69a1d4968eab723ae66fe30199b160ed748dc3c0f4bfe4c234fcba05e",
+    "work/trecap_downstream8_v01/machine_inventory02.json": "79eb6744309da205bcdac11edb05ad34bfa683e14ee90f45879a477e09069e74",
+    "outputs/trecap_spectral_monitor_v01/revision02/timing01/raw_trials.csv": "b8368b51b51dc4f017d607fa8ca16d706547b331e74585f37072259b4c5d851e",
+    "outputs/trecap_spectral_monitor_v01/revision02/timing01/validation.json": "67fcb3e6716fe30d3468d7c0673e0c0261479ba1a7f79ec60c645f800a295897",
+    "outputs/trecap_spectral_monitor_v01/revision02/timing01/registration.json": "dfb1fc15399112a7afc6524733ca8675f6d71e7f3515828bc17cb6131eed55b1",
+    "outputs/trecap_spectral_monitor_v01/revision02/analysis02/metrics.json": "341a5052fb66936355ed171df1635c17af780012dbb38b05e2d2fdd8db34a0b4",
+    "outputs/trecap_spectral_monitor_v01/revision02/analysis02/timing_by_recording.csv": "9d10a800fe87888e8375d6e857af339b0bdfed69aa33ffc02d7848a4ac6d2d93",
+    "outputs/trecap_spectral_monitor_v01/revision02/analysis02/paired_ratios_by_recording.csv": "279df5d4ecb7574fcdfc2bd07a71ddb3c442ec3d7d8f259bf064949d995a0a0a",
+    "outputs/trecap_spectral_monitor_v01/revision02/analysis02/quality_all_thresholds.csv": "b20f06b8eab58aab6b478bc55e26a04e1943d52b3ad81305098f622ab1e38cc5"
+  }
+}

@@ -66,3 +66,7 @@ sim/verification/reference_adapter/reference_api_adapter.cpp -text
 profiles/tsh2/** -text
 docs/results/verification_20261017/** -text
 docs/verification/portfolio/** -text
+
+# Preserve source-bound overview figures, numerical extracts and manifests.
+docs/project_overview/** -text
+docs/project_overview/figures/*.svg whitespace=-blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

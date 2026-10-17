@@ -1,0 +1,48 @@
+{
+  "commit": "351ff6a8ef9f7ebd9893a531d71ac7626f95a0e2",
+  "tracked_files": 1454,
+  "bytes": 35698684,
+  "categories": {
+    "repository_infrastructure_or_overview": {
+      "files": 4,
+      "bytes": 7831
+    },
+    "historical_phase1": {
+      "files": 33,
+      "bytes": 450331
+    },
+    "shared_project_infrastructure_tests_or_documentation": {
+      "files": 134,
+      "bytes": 2200778
+    },
+    "shared_arithmetic_reference_or_contract_source": {
+      "files": 245,
+      "bytes": 1397298
+    },
+    "original_phase2_architecture_source_or_documentation": {
+      "files": 358,
+      "bytes": 9881766
+    },
+    "historical_baseline_or_separate_experiment": {
+      "files": 446,
+      "bytes": 15158149
+    },
+    "current_tsh2_release_evidence_or_report": {
+      "files": 59,
+      "bytes": 5001028
+    },
+    "current_tsh2_application_source": {
+      "files": 92,
+      "bytes": 777118
+    },
+    "current_tsh2_archived_verification_source": {
+      "files": 15,
+      "bytes": 102441
+    },
+    "current_tsh2_portable_verification": {
+      "files": 68,
+      "bytes": 721944
+    }
+  },
+  "classification_limit": "Every committed path classified by lineage and role; classification is not a claim of per-line functional verification."
+}

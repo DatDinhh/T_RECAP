@@ -1,0 +1,417 @@
+{
+  "schema": "trecap-readme-scientific-figures-v1",
+  "status": "PASS_SOURCE_AND_NUMERICAL_CHECKS",
+  "new_hardware_execution": false,
+  "new_timing_execution": false,
+  "script_sha256": "2e4062b46c02c0519695aa50bb66c04440de1248ab45e66c566b912724c225bb",
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.5.3",
+    "matplotlib": "3.11.2"
+  },
+  "source_artifacts": {
+    "archive:workspace/outputs/trecap_stream8_v01/build01/generated/trecap_core_export_observed.sv": {
+      "sha256": "a3e887bb2383ab6ca11d5a1d1f8eef184f9f855510171cfb531588448a9fada9",
+      "bytes": 30909
+    },
+    "archive:workspace/outputs/trecap_stream8_v01/build01/generated/trecap_spectral_exporter.sv": {
+      "sha256": "7a041daa6f32486e3f3e2c4bfdb95b9a5dc6277f6b0f4ba7f525fcb082a258be",
+      "bytes": 15649
+    },
+    "archive:workspace/outputs/trecap_stream8_v01/build01/sources/trecap_hps_top.sv": {
+      "sha256": "cce69d7a6395d93c8a487e36b8db8e4288e5b2e9613f205dfd84b1f380d96447",
+      "bytes": 7049
+    },
+    "archive:workspace/outputs/trecap_stream8_v01/build01/sources/trecap_stream_adapter.sv": {
+      "sha256": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305",
+      "bytes": 13188
+    },
+    "repo:phase2/profiles/tsh2/work/trecap_stream8_v01/CONTRACT.md": {
+      "sha256": "73af404e631860483433b1df3e0fb53f7ea66bdc1f87319b5e519aec89181f13",
+      "bytes": 3499
+    },
+    "repo:phase2/profiles/tsh2/work/trecap_stream8_v01/rtl/trecap_stream_adapter.sv": {
+      "sha256": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305",
+      "bytes": 13188
+    },
+    "repo:phase2/profiles/tsh2/work/trecap_stream8_v01/host/tsh2_client.c": {
+      "sha256": "dcd06ae59f5f0bcbe081c50f5f7f4530b6e993b0ebc6d2ad25573fa7245c13fd",
+      "bytes": 14488
+    },
+    "repo:phase2/profiles/tsh2/README.md": {
+      "sha256": "2dbd78a0d9e5313cfe8348e2b5988130970530a28e83be4d6ddb07e2b7711cba",
+      "bytes": 4709
+    },
+    "archive:workspace/work/verification_20261017_release/hardware/captures01/index.json": {
+      "sha256": "ebca3e87a8a65712e2df9d8a47f5f34e37169c360cf606a4abaa027bde96e931",
+      "bytes": 167697
+    },
+    "archive:workspace/outputs/trecap_stream8_v01/fixtures02/input.i32le": {
+      "sha256": "6326a4925fb4688a37e0a9dfb6a2a84368ea4620210422004031b8c4af89f22b",
+      "bytes": 1536000
+    },
+    "archive:workspace/work/verification_20261017_release/hardware/captures01/flute8s_thr0_trial0/y.i32le": {
+      "sha256": "8214832a3e3545f7dec751d70d961a4316f4154ad100d5e6974de3467f6058b4",
+      "bytes": 1538048
+    },
+    "archive:workspace/work/verification_20261017_release/hardware/captures01/flute8s_thr0_trial0/capture_receipt.json": {
+      "sha256": "f94c039afc4864d70ab8eb6493a48be602643a627e3c9e89cb10face2a4f9815",
+      "bytes": 5387
+    },
+    "archive:workspace/outputs/trecap_stream8_v01/fixtures02/flute8s_thr0/y.i32le": {
+      "sha256": "8214832a3e3545f7dec751d70d961a4316f4154ad100d5e6974de3467f6058b4",
+      "bytes": 1538048
+    },
+    "archive:workspace/work/verification_20261017_release/hardware/captures01/flute8s_thr0_trial1/y.i32le": {
+      "sha256": "8214832a3e3545f7dec751d70d961a4316f4154ad100d5e6974de3467f6058b4",
+      "bytes": 1538048
+    },
+    "archive:workspace/work/verification_20261017_release/hardware/captures01/flute8s_thr0_trial1/capture_receipt.json": {
+      "sha256": "a7708f7bb6f7efb3fbc0d502d22b6dc37abf5bf0d7650ef13c9d51f9c32d79a1",
+      "bytes": 5387
+    },
+    "archive:workspace/work/verification_20261017_release/hardware/captures01/flute8s_thr100000000_trial0/y.i32le": {
+      "sha256": "335f2f3655f4a1b0c0bc8674ca64f097dc3dabc697c841e7ad6d189777359153",
+      "bytes": 1538048
+    },
+    "archive:workspace/work/verification_20261017_release/hardware/captures01/flute8s_thr100000000_trial0/capture_receipt.json": {
+      "sha256": "02f323f93f294039317615296bb94eccefc8a39f6c0e2371cbd8123dd308b8ea",
+      "bytes": 5515
+    },
+    "archive:workspace/outputs/trecap_stream8_v01/fixtures02/flute8s_thr100000000/y.i32le": {
+      "sha256": "335f2f3655f4a1b0c0bc8674ca64f097dc3dabc697c841e7ad6d189777359153",
+      "bytes": 1538048
+    },
+    "archive:workspace/work/verification_20261017_release/hardware/captures01/flute8s_thr100000000_trial1/y.i32le": {
+      "sha256": "335f2f3655f4a1b0c0bc8674ca64f097dc3dabc697c841e7ad6d189777359153",
+      "bytes": 1538048
+    },
+    "archive:workspace/work/verification_20261017_release/hardware/captures01/flute8s_thr100000000_trial1/capture_receipt.json": {
+      "sha256": "0e44bda83dcd966a067e9f5e8fb29a43122cfb8462b32c46589848d7a0454a3f",
+      "bytes": 5515
+    },
+    "archive:workspace/work/verification_20261017_release/hardware/captures01/flute8s_thr100000000000_trial0/y.i32le": {
+      "sha256": "a569328ee3a5a858aa9407142d0f11ba3fb0184269cbeb0f6d465087e337036a",
+      "bytes": 1538048
+    },
+    "archive:workspace/work/verification_20261017_release/hardware/captures01/flute8s_thr100000000000_trial0/capture_receipt.json": {
+      "sha256": "75e98d13f9ee3e9218099d45ef22f5ad9fa7ffd4a4ef510077553ee995e7c201",
+      "bytes": 5563
+    },
+    "archive:workspace/outputs/trecap_stream8_v01/fixtures02/flute8s_thr100000000000/y.i32le": {
+      "sha256": "a569328ee3a5a858aa9407142d0f11ba3fb0184269cbeb0f6d465087e337036a",
+      "bytes": 1538048
+    },
+    "archive:workspace/work/verification_20261017_release/hardware/captures01/flute8s_thr100000000000_trial1/y.i32le": {
+      "sha256": "a569328ee3a5a858aa9407142d0f11ba3fb0184269cbeb0f6d465087e337036a",
+      "bytes": 1538048
+    },
+    "archive:workspace/work/verification_20261017_release/hardware/captures01/flute8s_thr100000000000_trial1/capture_receipt.json": {
+      "sha256": "33fe40531bc739af308d4ce1cac0e4751d72ddbb1d0af6bd10996b00259e4e67",
+      "bytes": 5563
+    },
+    "archive:workspace/work/readme_20261017_review/evidence/host_workload_audit.json": {
+      "sha256": "ef2e54da2dbcbffe85d64d1a4293239cf0ffc96e65da528b0a0dba8f5ba6d493",
+      "bytes": 16177
+    },
+    "archive:workspace/work/readme_20261017_review/evidence/source_bindings.json": {
+      "sha256": "bc8e7a089d527109f65d892c1edd4c1d3d740589ef04f508d7692924d503ea7f",
+      "bytes": 2264
+    },
+    "archive:workspace/work/readme_20261017_review/evidence/flute_downstream_paired.csv": {
+      "sha256": "b68effc22966f45fef1a7044716cb20ec5d9586ec93c5da360068b6a24959121",
+      "bytes": 4530
+    },
+    "archive:workspace/work/readme_20261017_review/evidence/monitor_receiver_paired.csv": {
+      "sha256": "70a639fd705b535fcc166b817d3bc605354a9429e04bfdb077570b8eaf2148c9",
+      "bytes": 1735
+    },
+    "archive:workspace/work/verification_20261017_release/figures/hardware03/flute_waveform_comparison.png": {
+      "sha256": "1760c38ac33e297f264d2b5a1d6252246ec877c5324a01a08b2ee0c640360521",
+      "bytes": 1266967
+    },
+    "archive:workspace/work/verification_20261017_release/figures/hardware03/flute_error_agreement.png": {
+      "sha256": "18132d0739d14530f16d28ee46e837005d0549c46943f2116b309d5b94ec4a64",
+      "bytes": 209703
+    },
+    "archive:workspace/work/verification_20261017_release/figures/hardware03/flute_packet_sizes.png": {
+      "sha256": "ab5996583fa9230f571964ed2712e9bb6f06b01e6a3446ca841bab508bc21e60",
+      "bytes": 199890
+    },
+    "archive:workspace/work/verification_20261017_release/figures/static04/verification_topology.png": {
+      "sha256": "d4c6a66bddcf3ccd2a74362e2dae7f467611e8693b7e0e20644d4c33ecfa3730",
+      "bytes": 382217
+    },
+    "archive:workspace/work/verification_20261017_release/figures/traces02/rtl_handshake_backpressure.png": {
+      "sha256": "e1b5d467e1509f711abdab8cf1dcc82af01142a2c683969ea7313e02155ae95d",
+      "bytes": 196703
+    },
+    "archive:workspace/work/verification_20261017_release/figures/traces02/rtl_reset_response.png": {
+      "sha256": "21cad60f6f1f579155e6963ce83271978648d97a03a9ce797f24a64edc7f1cd9",
+      "bytes": 303689
+    },
+    "archive:workspace/work/verification_20261017_release/figures/static04/rounding_boundary.png": {
+      "sha256": "9bda83f884c9e2e751b5419cc727630d3d92b8655653d905672539211dfaa855",
+      "bytes": 162621
+    },
+    "archive:workspace/work/verification_20261017_release/figures/manifest.json": {
+      "sha256": "8eaf7947f7d2dac859951661069c92179f81918e1aacb5cb3ccb9b762c393115",
+      "bytes": 11632
+    },
+    "archive:workspace/work/verification_20261017_release/figures/vcd_final_binding01.json": {
+      "sha256": "9203e4102a893c5e8fe92ac9ef0581d950c333832cb401123bb2da29dd2a7415",
+      "bytes": 1241
+    },
+    "archive:workspace/work/verification_20261017_release/figures/hardware03/provenance.json": {
+      "sha256": "4d1cbb6c1adc7b176b5e24873efff11a5a23e67a4292360cd8fd65177097acb6",
+      "bytes": 21467
+    },
+    "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/report.json": {
+      "sha256": "430e746f686b82717a252ce7bf8f79ea1d5f721c7791b540c2e5baebd5682ac0",
+      "bytes": 14422
+    },
+    "archive:workspace/work/verification_20261017_release/rtl/reset_waveform/report.json": {
+      "sha256": "3ac2c7d413fe6c3f6303a7e6b235d4acc004239602efc17252160bfee5745871",
+      "bytes": 2840
+    }
+  },
+  "plot_parameters": {
+    "spectrogram": {
+      "sample_rate_hz": 48000,
+      "window": "periodic Hann: 0.5 - 0.5*cos(2*pi*n/1024)",
+      "window_samples": 1024,
+      "hop_samples": 256,
+      "fft_points": 2048,
+      "analysis_frames": 1497,
+      "frame_center_first_s": 0.010666666666666666,
+      "frame_center_last_s": 7.989333333333334,
+      "centering": false,
+      "edge_padding": false,
+      "fft_zero_padding_samples": 1024,
+      "frequency_range_hz": [
+        0,
+        24000
+      ],
+      "color_range_dbfs": [
+        -100,
+        -20
+      ],
+      "dbfs_definition": "20*log10(one-sided amplitude / 2048); coherent window-gain normalization. Interior rFFT bins doubled; DC and Nyquist not doubled.",
+      "floor_amplitude_relative_to_full_scale": 1e-05,
+      "alignment_samples": 384,
+      "alignment_expression": "captured_y[384:384384] compared with input[0:384000]",
+      "per_panel_normalization": false,
+      "rendered_trial": 0,
+      "capture_records": [
+        {
+          "capture_id": "flute8s_thr0_trial0",
+          "epoch": 49,
+          "trial": 0,
+          "threshold": 0,
+          "y_sha256": "8214832a3e3545f7dec751d70d961a4316f4154ad100d5e6974de3467f6058b4",
+          "reference_sha256": "8214832a3e3545f7dec751d70d961a4316f4154ad100d5e6974de3467f6058b4",
+          "input_sha256": "6326a4925fb4688a37e0a9dfb6a2a84368ea4620210422004031b8c4af89f22b",
+          "full_reference_error_lsb": 0
+        },
+        {
+          "capture_id": "flute8s_thr0_trial1",
+          "epoch": 50,
+          "trial": 1,
+          "threshold": 0,
+          "y_sha256": "8214832a3e3545f7dec751d70d961a4316f4154ad100d5e6974de3467f6058b4",
+          "reference_sha256": "8214832a3e3545f7dec751d70d961a4316f4154ad100d5e6974de3467f6058b4",
+          "input_sha256": "6326a4925fb4688a37e0a9dfb6a2a84368ea4620210422004031b8c4af89f22b",
+          "full_reference_error_lsb": 0
+        },
+        {
+          "capture_id": "flute8s_thr100000000_trial0",
+          "epoch": 51,
+          "trial": 0,
+          "threshold": 100000000,
+          "y_sha256": "335f2f3655f4a1b0c0bc8674ca64f097dc3dabc697c841e7ad6d189777359153",
+          "reference_sha256": "335f2f3655f4a1b0c0bc8674ca64f097dc3dabc697c841e7ad6d189777359153",
+          "input_sha256": "6326a4925fb4688a37e0a9dfb6a2a84368ea4620210422004031b8c4af89f22b",
+          "full_reference_error_lsb": 0
+        },
+        {
+          "capture_id": "flute8s_thr100000000_trial1",
+          "epoch": 52,
+          "trial": 1,
+          "threshold": 100000000,
+          "y_sha256": "335f2f3655f4a1b0c0bc8674ca64f097dc3dabc697c841e7ad6d189777359153",
+          "reference_sha256": "335f2f3655f4a1b0c0bc8674ca64f097dc3dabc697c841e7ad6d189777359153",
+          "input_sha256": "6326a4925fb4688a37e0a9dfb6a2a84368ea4620210422004031b8c4af89f22b",
+          "full_reference_error_lsb": 0
+        },
+        {
+          "capture_id": "flute8s_thr100000000000_trial0",
+          "epoch": 57,
+          "trial": 0,
+          "threshold": 100000000000,
+          "y_sha256": "a569328ee3a5a858aa9407142d0f11ba3fb0184269cbeb0f6d465087e337036a",
+          "reference_sha256": "a569328ee3a5a858aa9407142d0f11ba3fb0184269cbeb0f6d465087e337036a",
+          "input_sha256": "6326a4925fb4688a37e0a9dfb6a2a84368ea4620210422004031b8c4af89f22b",
+          "full_reference_error_lsb": 0
+        },
+        {
+          "capture_id": "flute8s_thr100000000000_trial1",
+          "epoch": 58,
+          "trial": 1,
+          "threshold": 100000000000,
+          "y_sha256": "a569328ee3a5a858aa9407142d0f11ba3fb0184269cbeb0f6d465087e337036a",
+          "reference_sha256": "a569328ee3a5a858aa9407142d0f11ba3fb0184269cbeb0f6d465087e337036a",
+          "input_sha256": "6326a4925fb4688a37e0a9dfb6a2a84368ea4620210422004031b8c4af89f22b",
+          "full_reference_error_lsb": 0
+        }
+      ],
+      "numerical_controls": "Zero, coherent full-scale sine, full-scale DC and Nyquist normalization checks passed; threshold0 STFT array equality passed."
+    },
+    "host_workload_flute": {
+      "plot_data": "flute_downstream_paired.csv",
+      "origin": "historical_physical_FPGA_sparse_packets_replayed_on_CPU",
+      "trials_per_threshold_per_stage": 30,
+      "clip_seconds": 8,
+      "cpu": "Intel Core i7-8750H",
+      "os": "Windows 11",
+      "error_bars": "within-session descriptive paired-ratio IQR, not confidence intervals",
+      "timing_scope": "warm-RAM batch elapsed time",
+      "no_new_execution": true
+    },
+    "host_workload_monitor_replay": {
+      "plot_data": "monitor_receiver_paired.csv",
+      "origin": "software_reference_spectra_Windows_host_timing_session",
+      "trials_per_recording": 30,
+      "clip_seconds": 5,
+      "threshold": 10000000,
+      "cpu_identity": "not_recorded",
+      "os": "Windows",
+      "error_bars": "within-recording descriptive paired-ratio IQR, not confidence intervals",
+      "median_across_recording_median_ratios": 1.3107304907227468,
+      "no_new_execution": true
+    }
+  },
+  "captions": {
+    "current_architecture": "Source-bound conceptual TSH2 data flow. Laptop and HPS boxes execute on CPUs; the middle boundary is FPGA fabric. The two HPS boxes describe feeding and draining within one service. THR2 is configurable before a finite epoch and fixed during it. This is not a live-codec or FPGA-DDR streaming diagram, and no stage timing is inferred.",
+    "flute_captured_spectrograms": "Diagnostic STFT of the registered flute input and actual physical FPGA outputs from epochs 49, 51 and 57. Trial 1 at each threshold is byte-identical. Y is aligned by exactly 384 samples; the displayed support is 384,000 samples. Fixed periodic Hann window, hop, FFT, full 0 to 24 kHz frequency range and -100 to -20 dBFS color range are shared across all panels. These spectrograms are computed from time-domain captures, not internal FPGA FFT taps or regenerated reference samples. Threshold-zero input and output STFT arrays are exactly equal. No new board execution was performed.",
+    "host_workload_flute": "Historical warm-RAM host replay of physically captured FPGA sparse packets against host-derived same-threshold dense controls. Both implementations produce identical features. Left: medians of elapsed decode plus feature time. Right: medians and descriptive quartiles of the 30 paired dense/sparse ratios, not ratios of the displayed medians or confidence intervals. Threshold zero is an unfavorable sparse control. This does not measure FPGA-versus-laptop speedup, network, FFT/IFFT or AI inference. CPU identity applies only to this historical campaign.",
+    "host_workload_monitor_replay": "Separate monitor revision02 software-reference timing campaign on four held-out five-second recordings. Plot shows complete receiver routes, 30 paired trials per recording and descriptive paired-ratio IQR. The median across the four per-recording paired median ratios is 1.31073049. The CPU model was not recorded; it must not be borrowed from the flute benchmark. Physical board output verification happened separately. No new timing or hardware execution.",
+    "flute_waveform": "Recorded five-threshold physical flute waveform comparison. Original plot unchanged; removes 384 leading returned samples and uses common amplitude scales.",
+    "flute_error_agreement": "Recorded input distortion versus exact threshold-specific reference agreement. Original numerical plot unchanged.",
+    "flute_packet_sizes": "Recorded sparse TSP1 size versus the compact dense TSP1 baseline, not versus WAV or PCM. Original numerical plot unchanged.",
+    "dv_topology": "Conceptual boundaries of oracle, host checking and physical capture. Original accepted diagram unchanged.",
+    "dv_handshake": "Actual ModelSim ready/valid stall trace from the retained full-length threshold-zero simulation. Original plot unchanged; 10 ns simulation clock is distinct from nominal 20 ns board clock.",
+    "dv_reset": "Actual ModelSim clear/reset excerpts during FFT and WOLA operation. Original plot unchanged; full recovery is checked by the separate scoreboard.",
+    "dv_rounding": "Recorded old and repaired C++ responses for four rounded-shift boundary witnesses. Original plot unchanged."
+  },
+  "reused_pngs": [
+    {
+      "published": "flute_waveform.png",
+      "source_artifact": "archive:workspace/work/verification_20261017_release/figures/hardware03/flute_waveform_comparison.png",
+      "sha256": "1760c38ac33e297f264d2b5a1d6252246ec877c5324a01a08b2ee0c640360521",
+      "transformation": "none; byte-for-byte PNG copy"
+    },
+    {
+      "published": "flute_error_agreement.png",
+      "source_artifact": "archive:workspace/work/verification_20261017_release/figures/hardware03/flute_error_agreement.png",
+      "sha256": "18132d0739d14530f16d28ee46e837005d0549c46943f2116b309d5b94ec4a64",
+      "transformation": "none; byte-for-byte PNG copy"
+    },
+    {
+      "published": "flute_packet_sizes.png",
+      "source_artifact": "archive:workspace/work/verification_20261017_release/figures/hardware03/flute_packet_sizes.png",
+      "sha256": "ab5996583fa9230f571964ed2712e9bb6f06b01e6a3446ca841bab508bc21e60",
+      "transformation": "none; byte-for-byte PNG copy"
+    },
+    {
+      "published": "dv_topology.png",
+      "source_artifact": "archive:workspace/work/verification_20261017_release/figures/static04/verification_topology.png",
+      "sha256": "d4c6a66bddcf3ccd2a74362e2dae7f467611e8693b7e0e20644d4c33ecfa3730",
+      "transformation": "none; byte-for-byte PNG copy"
+    },
+    {
+      "published": "dv_handshake.png",
+      "source_artifact": "archive:workspace/work/verification_20261017_release/figures/traces02/rtl_handshake_backpressure.png",
+      "sha256": "e1b5d467e1509f711abdab8cf1dcc82af01142a2c683969ea7313e02155ae95d",
+      "transformation": "none; byte-for-byte PNG copy"
+    },
+    {
+      "published": "dv_reset.png",
+      "source_artifact": "archive:workspace/work/verification_20261017_release/figures/traces02/rtl_reset_response.png",
+      "sha256": "21cad60f6f1f579155e6963ce83271978648d97a03a9ce797f24a64edc7f1cd9",
+      "transformation": "none; byte-for-byte PNG copy"
+    },
+    {
+      "published": "dv_rounding.png",
+      "source_artifact": "archive:workspace/work/verification_20261017_release/figures/static04/rounding_boundary.png",
+      "sha256": "9bda83f884c9e2e751b5419cc727630d3d92b8655653d905672539211dfaa855",
+      "transformation": "none; byte-for-byte PNG copy"
+    }
+  ],
+  "publication_scope": "Derived plots, source code and summary metrics only. No raw audio, capture waveform arrays, private paths, network identities or runtime UUIDs are exported.",
+  "outputs": {
+    "current_architecture.png": {
+      "sha256": "b4edb3639e004a57ea0773a4dce5347ecadde5aac4fe209809c6c23df8a95288",
+      "bytes": 352281
+    },
+    "current_architecture.svg": {
+      "sha256": "dcd2b9e7c090fcfbdfcd93ff5a64717125c8f1bb4a2a29ca74ab36ed87ec3cec",
+      "bytes": 28282
+    },
+    "dv_handshake.png": {
+      "sha256": "e1b5d467e1509f711abdab8cf1dcc82af01142a2c683969ea7313e02155ae95d",
+      "bytes": 196703
+    },
+    "dv_reset.png": {
+      "sha256": "21cad60f6f1f579155e6963ce83271978648d97a03a9ce797f24a64edc7f1cd9",
+      "bytes": 303689
+    },
+    "dv_rounding.png": {
+      "sha256": "9bda83f884c9e2e751b5419cc727630d3d92b8655653d905672539211dfaa855",
+      "bytes": 162621
+    },
+    "dv_topology.png": {
+      "sha256": "d4c6a66bddcf3ccd2a74362e2dae7f467611e8693b7e0e20644d4c33ecfa3730",
+      "bytes": 382217
+    },
+    "flute_captured_spectrograms.png": {
+      "sha256": "2e874e38ba64c69eb6d1c2365c3eb67626908cb34899ed03f08da6333059d3f4",
+      "bytes": 3140690
+    },
+    "flute_captured_spectrograms.svg": {
+      "sha256": "7b870edc1e4542da0fa919fb72ea8c8f807899a2a41590f8ee8cb69019b609af",
+      "bytes": 4750666
+    },
+    "flute_error_agreement.png": {
+      "sha256": "18132d0739d14530f16d28ee46e837005d0549c46943f2116b309d5b94ec4a64",
+      "bytes": 209703
+    },
+    "flute_packet_sizes.png": {
+      "sha256": "ab5996583fa9230f571964ed2712e9bb6f06b01e6a3446ca841bab508bc21e60",
+      "bytes": 199890
+    },
+    "flute_waveform.png": {
+      "sha256": "1760c38ac33e297f264d2b5a1d6252246ec877c5324a01a08b2ee0c640360521",
+      "bytes": 1266967
+    },
+    "host_workload_flute.png": {
+      "sha256": "e942bd3e674e29ec09edd6e8c623b36514c2b344a64be31d50bdf0d68459250c",
+      "bytes": 257080
+    },
+    "host_workload_flute.svg": {
+      "sha256": "80bee44d26ceffa0e1bef22df4528beac798263e82ff5c3bfefc28652154fd78",
+      "bytes": 37888
+    },
+    "host_workload_monitor_replay.png": {
+      "sha256": "52d55ee36575ec9d857413dff361f56c6baac04ed70002c9fd88f16a9cfb618f",
+      "bytes": 178597
+    },
+    "host_workload_monitor_replay.svg": {
+      "sha256": "fdbe449013e21479ce0bad303c4813a00b3b298b1fb9befee2c9c222a1228136",
+      "bytes": 25983
+    },
+    "spectrogram_metrics.json": {
+      "sha256": "0b2d0b783ac04b3596e074b7f81401db06d6781cf8245531602d2e8c8dd51e1f",
+      "bytes": 523
+    }
+  }
+}

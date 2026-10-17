@@ -1,0 +1,20 @@
+{
+  "0": {
+    "input_support_samples": 384000,
+    "max_input_error_lsb": 0,
+    "nrmse_vs_input_percent": 0.0,
+    "full_reference_error_lsb": 0
+  },
+  "100000000": {
+    "input_support_samples": 384000,
+    "max_input_error_lsb": 9,
+    "nrmse_vs_input_percent": 1.7632080063858488,
+    "full_reference_error_lsb": 0
+  },
+  "100000000000": {
+    "input_support_samples": 384000,
+    "max_input_error_lsb": 75,
+    "nrmse_vs_input_percent": 27.192324802237977,
+    "full_reference_error_lsb": 0
+  }
+}

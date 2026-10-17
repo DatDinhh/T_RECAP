@@ -1,8 +1,22 @@
 # Documentation guide
 
-We organize the documentation around the decisions needed to understand and implement T-RECAP. Start with the project scope, then the architecture, then the guide for the component you are working on.
+Start with the [main project README](https://github.com/DatDinhh/T_RECAP#readme) for the objective, current architecture, spectrograms, workload results and verification visuals. The current verified application is the finite-file **TSH2** TCP/MMIO profile. The broader DDR-ring/UDP/live-source architecture is retained as a separate historical design.
 
-## Start here
+## Current TSH2 application and verification
+
+| Document | Purpose |
+|---|---|
+| [Current Phase 2 entry point](../README.md) | Profile responsibilities, source map and reproducible checks |
+| [Overview results and figures](project_overview/README.md) | Physical audio comparisons, host timing boundaries, claims audit and provenance |
+| [Verification portfolio](../verification/README.md) | Methodology, executed evidence and sign-off limits |
+| [Academic report and LaTeX](verification/portfolio/README.md) | Sixteen-page report with editable source |
+| [Portable seeded RTL package](../verification/tsh2/README.md) | Admitted synthetic fixtures, scoreboards and simulator runner |
+| [Physical and RTL evidence ledger](results/verification_20261017/README.md) | 58 board epochs, coverage, source binding and native VCDs |
+| [TSH2 source archive](../profiles/tsh2/README.md) | Finite service, adapter, consumer, monitor, visualizer and reproduction boundaries |
+
+The remaining sections document shared components and the original broad Phase 2 architecture. Their deployment milestones and open integration items belong to those named profiles; they do not describe the finite TCP/MMIO service as DDR/UDP or establish live microphone acceptance.
+
+## Shared reference and original architecture
 
 | Document | Purpose |
 | --- | --- |

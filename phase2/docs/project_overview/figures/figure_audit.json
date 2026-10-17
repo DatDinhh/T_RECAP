@@ -1,0 +1,120 @@
+{
+  "schema": "trecap-readme-figure-audit-v1",
+  "status": "PASS_FIGURE_PUBLICATION_AUDIT",
+  "figure_count": 11,
+  "new_plot_or_diagram_count": 4,
+  "unchanged_original_png_count": 7,
+  "source_and_numeric_controls": "Generator checked capture input/receipt/reference hashes, actual/reference byte equality, repeat byte equality, source adapter equality, STFT normalization and threshold0 STFT equality. Workload tables supplied by independent raw-trial reconciliation.",
+  "visual_review": "All four new PNGs inspected. Attempt01 architecture arrow/title contact and monitor legend overlap corrected in attempt02, then those two images inspected again. Spectrogram and physical-packet CPU plot PNGs are byte-identical to the reviewed attempt01. All seven accepted reused PNGs match their original hashes.",
+  "text_hygiene": "Approved source/notes/JSON/SVG files contain no private absolute paths, runtime UUIDs, MAC/IP addresses, en dashes or em dashes.",
+  "pngs": {
+    "current_architecture.png": {
+      "sha256": "b4edb3639e004a57ea0773a4dce5347ecadde5aac4fe209809c6c23df8a95288",
+      "width": 2772,
+      "height": 1571,
+      "metadata_keys": [
+        "Software",
+        "dpi"
+      ]
+    },
+    "dv_handshake.png": {
+      "sha256": "e1b5d467e1509f711abdab8cf1dcc82af01142a2c683969ea7313e02155ae95d",
+      "width": 3572,
+      "height": 1838,
+      "metadata_keys": [
+        "Software",
+        "dpi"
+      ]
+    },
+    "dv_reset.png": {
+      "sha256": "21cad60f6f1f579155e6963ce83271978648d97a03a9ce797f24a64edc7f1cd9",
+      "width": 3869,
+      "height": 2151,
+      "metadata_keys": [
+        "Software",
+        "dpi"
+      ]
+    },
+    "dv_rounding.png": {
+      "sha256": "9bda83f884c9e2e751b5419cc727630d3d92b8655653d905672539211dfaa855",
+      "width": 3562,
+      "height": 1458,
+      "metadata_keys": [
+        "Software",
+        "dpi"
+      ]
+    },
+    "dv_topology.png": {
+      "sha256": "d4c6a66bddcf3ccd2a74362e2dae7f467611e8693b7e0e20644d4c33ecfa3730",
+      "width": 3082,
+      "height": 1804,
+      "metadata_keys": [
+        "Software",
+        "dpi"
+      ]
+    },
+    "flute_captured_spectrograms.png": {
+      "sha256": "2e874e38ba64c69eb6d1c2365c3eb67626908cb34899ed03f08da6333059d3f4",
+      "width": 2836,
+      "height": 1720,
+      "metadata_keys": [
+        "Software",
+        "dpi"
+      ]
+    },
+    "flute_error_agreement.png": {
+      "sha256": "18132d0739d14530f16d28ee46e837005d0549c46943f2116b309d5b94ec4a64",
+      "width": 3261,
+      "height": 1366,
+      "metadata_keys": [
+        "Software",
+        "dpi"
+      ]
+    },
+    "flute_packet_sizes.png": {
+      "sha256": "ab5996583fa9230f571964ed2712e9bb6f06b01e6a3446ca841bab508bc21e60",
+      "width": 3120,
+      "height": 1532,
+      "metadata_keys": [
+        "Software",
+        "dpi"
+      ]
+    },
+    "flute_waveform.png": {
+      "sha256": "1760c38ac33e297f264d2b5a1d6252246ec877c5324a01a08b2ee0c640360521",
+      "width": 3569,
+      "height": 3169,
+      "metadata_keys": [
+        "Software",
+        "dpi"
+      ]
+    },
+    "host_workload_flute.png": {
+      "sha256": "e942bd3e674e29ec09edd6e8c623b36514c2b344a64be31d50bdf0d68459250c",
+      "width": 2877,
+      "height": 1283,
+      "metadata_keys": [
+        "Software",
+        "dpi"
+      ]
+    },
+    "host_workload_monitor_replay.png": {
+      "sha256": "52d55ee36575ec9d857413dff361f56c6baac04ed70002c9fd88f16a9cfb618f",
+      "width": 2728,
+      "height": 1182,
+      "metadata_keys": [
+        "Software",
+        "dpi"
+      ]
+    }
+  },
+  "figure_provenance_sha256": "7adcd9fafc8f753665e941a5211f96af37ed3deeea029f3b81abb6f0c39978aa",
+  "original_private_command_receipt_sha256": "2aac64378018d75dc080709664dd361034487ff25976e2962e17cffc054775ae",
+  "private_command_exit_code": 0,
+  "no_new_hardware_or_timing_execution": true,
+  "exclusions": [
+    "Raw audio and capture waveform arrays",
+    "Private command receipts",
+    "Plot caches and superseded rendering attempts"
+  ]
+}

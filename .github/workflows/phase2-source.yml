@@ -45,6 +45,8 @@ jobs:
         run: python verification/tsh2/run.py --check-package
       - name: Check published evidence integrity
         run: python docs/results/verification_20261017/export_public_evidence.py --check docs/results/verification_20261017
+      - name: Check overview figures and result integrity
+        run: python docs/project_overview/check_bundle.py
       - name: Configure HPS transport on Linux
         if: runner.os == 'Linux'
         run: cmake --preset hps

@@ -1,0 +1,195 @@
+{
+  "schema": "trecap-readme-addendum-v1",
+  "status": "PASS_CLAIMS_WITH_REQUIRED_SCOPE_CLARIFICATIONS",
+  "reviewed_draft": {
+    "artifact_id": "archive-workspace:work/readme_20261017_review/stage/README.md",
+    "sha256": "bafad6cb25eb2be2586a15751149a1b91527d014febd83617dca04ba80d7f3c8"
+  },
+  "required_clarifications": [
+    "Describe compute-only comparison as the earlier TSH1 short-job campaign, not a measurement of current TSH2.",
+    "Call the four recordings held out during software selection, then a physical replication set. Hardware repetitions do not create new unseen examples.",
+    "Quality and natural byte comparisons use original five-second support; physical transactions include separately reported zero padding to eight seconds.",
+    "Strict packet validation runs inside decode timing; numerical equality qualification runs after each timed batch."
+  ],
+  "natural_quality_gates": {
+    "applies_separately_to_every_recording": true,
+    "selected_threshold": 10000000,
+    "valid_dominant_bin_within_one_187_5_hz_bin_percent_min": 99,
+    "centroid_absolute_error_p95_hz_max": 187.5,
+    "thresholded_invalid_centroids_where_baseline_valid_allowed": 0,
+    "active_band_relative_energy_error_p95_percent_max": 10,
+    "worst_individual_band_relative_energy_error_p95_percent_max": 20,
+    "baseline_active_definition": "group band energy >= max(1e9, 1e-4 * group total energy)",
+    "additional_zero_input_activity_allowed": 0,
+    "natural_events": "Compare with threshold-zero clusters by baseline primary-band membership and nearest unused onset within 0.256 s. Report missed/added clusters and delay. This is not labeled recognition accuracy.",
+    "quality_groups": "Use interior frames f=1 through NS/128-1, consecutive 48-frame groups, discard incomplete final group. Natural clips yield 39 groups.",
+    "observed_four_natural_clips": {
+      "dominant_within_one_bin_percent_each": 100,
+      "centroid_error_p95_hz_max": 1.7163171360288743,
+      "active_band_error_p95_percent_max": 1.1127648413365698,
+      "worst_band_error_p95_percent_max": 2.898982141237363,
+      "invalid_centroid_groups": 0,
+      "baseline_clusters": 3,
+      "matched_clusters": 3,
+      "missed_clusters": 0,
+      "added_clusters": 0
+    }
+  },
+  "synthetic_quality_gates": {
+    "controls": 8,
+    "specified_persistent_events": 5,
+    "all_correct_band_members_detected_by_onset_plus_s": 0.512,
+    "extra_clusters_allowed": 0,
+    "includes_zero_steady_and_brief_transient_controls": true,
+    "applies_at_threshold_zero": true,
+    "cluster_adjacent_band_window_s": 0.256,
+    "cluster_deadline_from_first_alert_does_not_extend": true
+  },
+  "denominators": {
+    "natural_original": {
+      "samples": 240000,
+      "seconds": 5,
+      "packet_frames": 1876,
+      "compact_dense_bytes": 1785952,
+      "pcm16_bytes": 480000,
+      "packed12_bytes": 360000,
+      "monitor_groups": 39,
+      "cpu_task_summary_bytes": 6552
+    },
+    "synthetic_original": {
+      "samples": 245760,
+      "seconds": 5.12,
+      "packet_frames": 1921,
+      "compact_dense_bytes": 1828792,
+      "monitor_groups": 40
+    },
+    "physical_transaction": {
+      "samples": 384000,
+      "seconds": 8,
+      "packet_frames": 3001,
+      "compact_dense_bytes": 2856952,
+      "natural_appended_zeros": 144000,
+      "synthetic_appended_zeros": 138240
+    },
+    "physical_prefix_check": "Exact original_NS/128+1 complete packet prefix, unchanged physical bytes, checked against original finite-reference packet/feature/power/monitor outputs.",
+    "quality_scope": "Original support only with original_NS passed to grouping. Added silence is excluded from application conclusions.",
+    "byte_scope": "Sparse and compact dense encode identical thresholded powers and same frames. Exclude separate reconstructed waveform and network framing. Full physical bytes and original-support prefix bytes are separate.",
+    "summary_scope": "6552-byte CPU task summary is not emitted by current FPGA and summary encoding is outside benchmark timing."
+  },
+  "timing": {
+    "downstream_flute": "Historical physical spectral packets, cached RAM, i7-8750H, 30 paired trials. Consumer stage uses predecoded data. Decode+consumer stage includes strict TSP1 validation/checksum and integer 16-band features. Numerical expected-feature comparison follows timing.",
+    "monitor_v02": "Software-reference spectra, four original five-second held-out recordings, 30 paired trials. Receiver routes include strict native packet decode/validation, materialized feature arrays and common Python monitor aggregation/event logic. Numerical feature/monitor equality check follows each timed batch.",
+    "monitor_cpu_model": "Not retained in this campaign registration/validation; do not borrow adjacent i7-8750H metadata.",
+    "excluded": "Upstream FPGA/DSP producer for cached spectral routes, transport, disk, context creation, numerical expected-output qualification; no total system, power, AI or utilization claim.",
+    "monitor_receiver_aggregate": "Median of the four per-recording medians of paired dense/sparse elapsed ratios: 1.3107304907. Not a ratio of aggregate medians and not an average of per-recording medians."
+  },
+  "earlier_compute_only": {
+    "profile": "Historical TSH1, not current finite-file TSH2",
+    "cpu": "Intel Core i7-8750H, native Windows, scalar MSVC /O2, one pinned thread",
+    "jobs": "Six finite jobs: two 1024-sample flute excerpts, each at thresholds 0, 1e8 and 1e11.",
+    "includes": "Resident input, per-job initialization, FFT, thresholding, IFFT/WOLA, full tail, sparse packet generation.",
+    "excludes": "External input loading, allocation, immutable input-range validation, output readback, file I/O, Ethernet and external hashing.",
+    "trials": "Three warmups plus 30 measured jobs per implementation per case. Separate CPU and FPGA campaigns; ratio of medians, not paired trials.",
+    "fpga_cycles": 88524,
+    "clock_hz": 50000000,
+    "source_id": "e767ec1f0f0249921a364ac019d5d2659ce2027b0c24502fb6f0f55ec1a87445",
+    "sof_sha256": "14bb2852b2b7b99b5136e0670ccbf62d2993be378fe23f1ed443d0182277e7a5",
+    "raw_trial_rows_recomputed": 396,
+    "cases": [
+      {
+        "case_id": "flute_offset0_thr0",
+        "cpu_median_ms": 0.41865,
+        "fpga_median_ms": 1.77048,
+        "fpga_over_cpu_ratio_of_medians": 4.229021855965604,
+        "measured_trials_per_implementation": 30
+      },
+      {
+        "case_id": "flute_offset0_thr100000000",
+        "cpu_median_ms": 0.2833,
+        "fpga_median_ms": 1.77048,
+        "fpga_over_cpu_ratio_of_medians": 6.249488175079422,
+        "measured_trials_per_implementation": 30
+      },
+      {
+        "case_id": "flute_offset0_thr100000000000",
+        "cpu_median_ms": 0.29774999999999996,
+        "fpga_median_ms": 1.77048,
+        "fpga_over_cpu_ratio_of_medians": 5.946196473551638,
+        "measured_trials_per_implementation": 30
+      },
+      {
+        "case_id": "flute_offset192000_thr0",
+        "cpu_median_ms": 0.4044,
+        "fpga_median_ms": 1.77048,
+        "fpga_over_cpu_ratio_of_medians": 4.378041543026707,
+        "measured_trials_per_implementation": 30
+      },
+      {
+        "case_id": "flute_offset192000_thr100000000",
+        "cpu_median_ms": 0.34204999999999997,
+        "fpga_median_ms": 1.77048,
+        "fpga_over_cpu_ratio_of_medians": 5.176085367636311,
+        "measured_trials_per_implementation": 30
+      },
+      {
+        "case_id": "flute_offset192000_thr100000000000",
+        "cpu_median_ms": 0.30755,
+        "fpga_median_ms": 1.77048,
+        "fpga_over_cpu_ratio_of_medians": 5.756722484148919,
+        "measured_trials_per_implementation": 30
+      }
+    ],
+    "recommended_readme_sentence": "In an earlier matched resident-compute comparison of six 1,024-sample jobs, the TSH1 FPGA implementation took 4.23-6.25 times the i7-8750H laptop median time. This is separate from the current TSH2 eight-second capture and sparse-consumer results."
+  },
+  "bindings": [
+    {
+      "artifact_id": "archive-workspace:work/trecap_spectral_monitor_v02/PROTOCOL.md",
+      "sha256": "eac20aaaffad605ad772958f09b3d4ad12bb9c959796411eb79124f9b5c74705"
+    },
+    {
+      "artifact_id": "archive-workspace:work/trecap_spectral_monitor_v02/benchmark.py",
+      "sha256": "4678b381c913e7b242cbaa83bff4c96fe8076ad59425c0bab35e8ba5ef60102d"
+    },
+    {
+      "artifact_id": "archive-workspace:work/trecap_monitor_board_v01/PROTOCOL.md",
+      "sha256": "086a6d3e23f90567691dd5755bd9982cfdaadbf43001f3214d9eb1911bf5ba4d"
+    },
+    {
+      "artifact_id": "archive-workspace:work/trecap_monitor_board_v01/analyze.py",
+      "sha256": "7c0bb255ff2fae1e805826023c03cba73c0c3f54795b8ede9919e24370769467"
+    },
+    {
+      "artifact_id": "archive-workspace:outputs/trecap_compute_only_v01/RESULTS.md",
+      "sha256": "f75513ea97aff6ab12ffb8c5e4269d62fcaeb7656905b13ecefe0f5c78a01b61"
+    },
+    {
+      "artifact_id": "archive-workspace:outputs/trecap_compute_only_v01/analysis01/RESULTS.md",
+      "sha256": "57f4f8312ffe8e19c5479e0c66c725f3861cb9916140531f2fbea8a1327da10b"
+    },
+    {
+      "artifact_id": "archive-workspace:outputs/trecap_compute_only_v01/analysis01/raw_trials.csv",
+      "sha256": "d2b365656738226bc93678bddf38971a37ff4a4ed88231f0d3fb782303069437"
+    },
+    {
+      "artifact_id": "archive-workspace:outputs/trecap_compute_only_v01/analysis01/comparison.csv",
+      "sha256": "f10c697bc0ee505f73470860c375f28c749b97821df7e6b320bd8abbed76f50b"
+    },
+    {
+      "artifact_id": "archive-workspace:outputs/trecap_compute_only_v01/analysis01/metrics.json",
+      "sha256": "bac8648723804cdccf188336f62997d47942ae966b16ac2fd6edc43b49376481"
+    },
+    {
+      "artifact_id": "archive-workspace:outputs/trecap_compute_only_v01/physical_provenance.json",
+      "sha256": "88d743c403aedca4baf2473b76a16cebd907aceb125005c3d03926e08ef1a430"
+    },
+    {
+      "artifact_id": "archive-workspace:work/readme_20261017_review/evidence/monitor_heldout_quality_and_bytes.csv",
+      "sha256": "829e75150db40a9a72c54ae5ec2c826977d755b56e78839c4e7480515c933eac"
+    },
+    {
+      "artifact_id": "archive-workspace:work/readme_20261017_review/evidence/flute_downstream_paired.csv",
+      "sha256": "b68effc22966f45fef1a7044716cb20ec5d9586ec93c5da360068b6a24959121"
+    }
+  ],
+  "publication": "Derived compact review only; artifact identifiers refer to immutable local archives. No private boot identifiers or personal filesystem paths are exported. Original 13-file allowlist remains unchanged."
+}

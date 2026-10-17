@@ -1,0 +1,130 @@
+{
+  "schema": "trecap-readme-figure-publication-v1",
+  "status": "APPROVED_REVIEW_SUBSET",
+  "destination_root": "phase2/docs/project_overview",
+  "files": [
+    {
+      "source": "attempt02/current_architecture.png",
+      "destination": "figures/current_architecture.png",
+      "sha256": "b4edb3639e004a57ea0773a4dce5347ecadde5aac4fe209809c6c23df8a95288",
+      "bytes": 352281
+    },
+    {
+      "source": "attempt02/current_architecture.svg",
+      "destination": "figures/current_architecture.svg",
+      "sha256": "dcd2b9e7c090fcfbdfcd93ff5a64717125c8f1bb4a2a29ca74ab36ed87ec3cec",
+      "bytes": 28282
+    },
+    {
+      "source": "attempt02/dv_handshake.png",
+      "destination": "figures/dv_handshake.png",
+      "sha256": "e1b5d467e1509f711abdab8cf1dcc82af01142a2c683969ea7313e02155ae95d",
+      "bytes": 196703
+    },
+    {
+      "source": "attempt02/dv_reset.png",
+      "destination": "figures/dv_reset.png",
+      "sha256": "21cad60f6f1f579155e6963ce83271978648d97a03a9ce797f24a64edc7f1cd9",
+      "bytes": 303689
+    },
+    {
+      "source": "attempt02/dv_rounding.png",
+      "destination": "figures/dv_rounding.png",
+      "sha256": "9bda83f884c9e2e751b5419cc727630d3d92b8655653d905672539211dfaa855",
+      "bytes": 162621
+    },
+    {
+      "source": "attempt02/dv_topology.png",
+      "destination": "figures/dv_topology.png",
+      "sha256": "d4c6a66bddcf3ccd2a74362e2dae7f467611e8693b7e0e20644d4c33ecfa3730",
+      "bytes": 382217
+    },
+    {
+      "source": "attempt02/figure_audit.json",
+      "destination": "figures/figure_audit.json",
+      "sha256": "d32cbda823ab51e42cfa5876525aa582d1c7b0b0fea57da0ef21b43aa0f458e1",
+      "bytes": 4094
+    },
+    {
+      "source": "attempt02/figure_provenance.json",
+      "destination": "figures/figure_provenance.json",
+      "sha256": "7adcd9fafc8f753665e941a5211f96af37ed3deeea029f3b81abb6f0c39978aa",
+      "bytes": 22533
+    },
+    {
+      "source": "attempt02/flute_captured_spectrograms.png",
+      "destination": "figures/flute_captured_spectrograms.png",
+      "sha256": "2e874e38ba64c69eb6d1c2365c3eb67626908cb34899ed03f08da6333059d3f4",
+      "bytes": 3140690
+    },
+    {
+      "source": "attempt02/flute_captured_spectrograms.svg",
+      "destination": "figures/flute_captured_spectrograms.svg",
+      "sha256": "7b870edc1e4542da0fa919fb72ea8c8f807899a2a41590f8ee8cb69019b609af",
+      "bytes": 4750666
+    },
+    {
+      "source": "attempt02/flute_error_agreement.png",
+      "destination": "figures/flute_error_agreement.png",
+      "sha256": "18132d0739d14530f16d28ee46e837005d0549c46943f2116b309d5b94ec4a64",
+      "bytes": 209703
+    },
+    {
+      "source": "attempt02/flute_packet_sizes.png",
+      "destination": "figures/flute_packet_sizes.png",
+      "sha256": "ab5996583fa9230f571964ed2712e9bb6f06b01e6a3446ca841bab508bc21e60",
+      "bytes": 199890
+    },
+    {
+      "source": "attempt02/flute_waveform.png",
+      "destination": "figures/flute_waveform.png",
+      "sha256": "1760c38ac33e297f264d2b5a1d6252246ec877c5324a01a08b2ee0c640360521",
+      "bytes": 1266967
+    },
+    {
+      "source": "attempt02/host_workload_flute.png",
+      "destination": "figures/host_workload_flute.png",
+      "sha256": "e942bd3e674e29ec09edd6e8c623b36514c2b344a64be31d50bdf0d68459250c",
+      "bytes": 257080
+    },
+    {
+      "source": "attempt02/host_workload_flute.svg",
+      "destination": "figures/host_workload_flute.svg",
+      "sha256": "80bee44d26ceffa0e1bef22df4528beac798263e82ff5c3bfefc28652154fd78",
+      "bytes": 37888
+    },
+    {
+      "source": "attempt02/host_workload_monitor_replay.png",
+      "destination": "figures/host_workload_monitor_replay.png",
+      "sha256": "52d55ee36575ec9d857413dff361f56c6baac04ed70002c9fd88f16a9cfb618f",
+      "bytes": 178597
+    },
+    {
+      "source": "attempt02/host_workload_monitor_replay.svg",
+      "destination": "figures/host_workload_monitor_replay.svg",
+      "sha256": "fdbe449013e21479ce0bad303c4813a00b3b298b1fb9befee2c9c222a1228136",
+      "bytes": 25983
+    },
+    {
+      "source": "attempt02/spectrogram_metrics.json",
+      "destination": "figures/spectrogram_metrics.json",
+      "sha256": "0b2d0b783ac04b3596e074b7f81401db06d6781cf8245531602d2e8c8dd51e1f",
+      "bytes": 523
+    },
+    {
+      "source": "build_figures.py",
+      "destination": "figures/build_figures.py",
+      "sha256": "2e4062b46c02c0519695aa50bb66c04440de1248ab45e66c566b912724c225bb",
+      "bytes": 23593
+    },
+    {
+      "source": "FIGURE_NOTES.md",
+      "destination": "figures/FIGURE_NOTES.md",
+      "sha256": "dcbc54cc3ee2a518d09e53e60a21210ee928e0427bb6edd41cb62ca3d6309158",
+      "bytes": 6403
+    }
+  ],
+  "include_this_manifest_as": "figures/FIGURE_PUBLICATION_FILES.json",
+  "data_dependency": "Audited plotting data from the separate evidence agent belongs in data/.",
+  "excluded": "Do not copy commands01/commands02, mpl_cache, attempt01, audit_bundle.py or any raw capture arrays."
+}
