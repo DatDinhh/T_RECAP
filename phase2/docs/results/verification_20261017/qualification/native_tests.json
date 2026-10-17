@@ -1,0 +1,36 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/native/findings.json",
+      "original_sha256": "a21ceaaa4d23788edd34d43c406dcaa22ce36451e7435d3298c5b69fedbd96db"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "schema": "trecap-fresh-native-audit-v1",
+    "status": "PASS_REUSED_NATIVE_DLL_QUALIFICATION",
+    "reviewed_at_utc": "2026-10-17T02:12:04.245290+00:00",
+    "cases": 5,
+    "bigint_edges": 4,
+    "malformed_input_rejections": 32,
+    "hardware_access": false,
+    "new_compilation": false,
+    "frozen_inputs_unchanged": true,
+    "historical_qualification_unchanged": true,
+    "receipts_sha256": {
+      "build.log": "311803cacd5428d196215486cd441b08c191baa9a673e7b6ba44dd6c2a410e51",
+      "build_command.txt": "627f05e65e006c46423b12a97050fcdcc6defc6f54c43e5651afd8441c768168",
+      "execution.json": "afb2f8ae589edd93ea0b2a2c474367066a773a862f7c1fdf0109ca7b837cbad2",
+      "qualification.json": "f97f2e3e2a93e5ae642ba2099a69f637f9ba679e404fab221a3abec989607f5f",
+      "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout.log": "7cf93e40ef7c6fabdd1dbdbea6cbcd722d41df729cff54d468f8dadbaae92243",
+      "trecap_monitor.dll": "11dccf5d4dc9cddf8e3ed8ffe4b7ec98e77feb3f176ffd105ae8bbc6524f86c2"
+    },
+    "limitations": [
+      "Fresh tests reuse the unchanged admitted DLL and historical physical-capture inputs.",
+      "Copied build logs are historical build evidence, not a new compilation.",
+      "This qualification does not exercise the physical board or the newly fixed separate C++ reference helper."
+    ]
+  }
+}

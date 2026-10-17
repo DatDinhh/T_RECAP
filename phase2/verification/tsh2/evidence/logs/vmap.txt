@@ -1,0 +1,3 @@
+Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+vmap -c 
+Copying <LOCAL_PATH>/../modelsim.ini to modelsim.ini

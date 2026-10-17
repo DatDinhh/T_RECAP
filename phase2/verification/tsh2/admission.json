@@ -1,0 +1,274 @@
+{
+  "schema": "trecap-portable-DV-admission-v1",
+  "source_id": "39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed",
+  "original_SOF_sha256": "f96bc5a35adf08711a5f392baf9f8cbf5ec65a17211a58117bdb53f62acbb7ab",
+  "source_snapshot_manifest_sha256": "f9fd05862997aca4be309caac37ba8f89dd60e4f85656f099d0c86416122149e",
+  "DUT_modified": false,
+  "scope": "26-file unchanged active PCM stream/core/RAM exporter closure; deterministic synthetic1024 numeric cases threshold0 and100000000, eachdense/sparse. No recorded audio, vendorHPS model or board access. Functional INPUT_SAMPLES1024, physical image384000.",
+  "admitted_files": [
+    {
+      "path": "rtl/trecap_core_pkg.sv",
+      "sha256": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/include/generated/trecap_core_pkg.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_packet_pkg.sv",
+      "sha256": "97a003c14b93019b5356208ea8be2e76df7435123132440729ea7038cd13b2be",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/include/generated/trecap_packet_pkg.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_iface_pkg.sv",
+      "sha256": "d24ab618d901cb92394e190549489cb88caa7444de18731de0923c24446afd68",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/include/generated/trecap_iface_pkg.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_math_pkg.sv",
+      "sha256": "3930d84eead3da9b097e26b82678a3e847fe0bb296e52e192c297702f70f7c2a",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/include/trecap_math_pkg.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_build_pkg.sv",
+      "sha256": "e0871a68fadfb69258df42b0c6544f9927f124963e5a55f055d12815753ff827",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/include/trecap_build_pkg.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/round_sat.sv",
+      "sha256": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/common/round_sat.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/complex_mul_q.sv",
+      "sha256": "c45b088222549570d2b65719739bed2fff5be7b77bb6d163c4c1a5c3d1148579",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/fft/complex_mul_q.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/bit_reverse_addr.sv",
+      "sha256": "de4dafca7eae92e6f900d675151dc20dc794e1f66ff9ce40548a7520f3ca6209",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/fft/bit_reverse_addr.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/twiddle_rom.sv",
+      "sha256": "4f0beb59243898d47eb79857ceb0caf9cf9f753f2ea1d7e942507c4ee6824d7c",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/fft/twiddle_rom.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_fft_stage.sv",
+      "sha256": "0f8795941f9843e1f266cc0ee9d310c4be52d3103e6d750abb455f49880472d1",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/fft/trecap_fft_stage.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_fft256.sv",
+      "sha256": "a0c710046185fb54bd7281444c57539f9b689e4a6f52f634dba60a259619ef66",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/fft/trecap_fft256.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_ifft256.sv",
+      "sha256": "92c175d4a30da253e9a93e118080261958daa181cf4e6f12560d9524d110bd3c",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/fft/trecap_ifft256.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_input_ring.sv",
+      "sha256": "022be1284812f1cfd98dd39ff178cb3890ec2bd3b8eb047ff2c2814ef5a5c44a",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_input_ring.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_frame_scheduler.sv",
+      "sha256": "6d263b88c540605e1bfb728e5b4c1bc87d7f5552a007b178031a198675f5c255",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_frame_scheduler.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/window_rom.sv",
+      "sha256": "931ec1f72f160384df6cb6c008db22cde6dab1bee94b0b7013843ab44374dcbe",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/core/window_rom.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_analysis_window.sv",
+      "sha256": "62798c5bfed8076c54568986bd6df6d57b430e9aacb97efb582364974620c6ad",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_analysis_window.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_hermitian_canonicalizer.sv",
+      "sha256": "6b1c11ba7badb80c18a71e157346be994cb2cec1c775a4a910f38843d4fa2b4d",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_hermitian_canonicalizer.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_mag2_mask.sv",
+      "sha256": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_mag2_mask.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_spectrum_mask_builder.sv",
+      "sha256": "695d9bd8c51c3ee97412854d37a4c5f5b953f793cb05a4a76f83d305e05fe3e0",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_spectrum_mask_builder.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_synthesis_wola.sv",
+      "sha256": "7d30dee3679adb15bee54f2ad9762d102b08f54314c280a6f4918b95d277a7aa",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_synthesis_wola.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_delay_error_metrics.sv",
+      "sha256": "1f08cbb2131d9ab4f84c90b750c2836046aea966498d035bcec94422b4958e30",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_delay_error_metrics.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_core_export_observed.sv",
+      "sha256": "a3e887bb2383ab6ca11d5a1d1f8eef184f9f855510171cfb531588448a9fada9",
+      "origin": "outputs/trecap_stream8_v01/build01/generated/trecap_core_export_observed.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_spectral_exporter.sv",
+      "sha256": "7a041daa6f32486e3f3e2c4bfdb95b9a5dc6277f6b0f4ba7f525fcb082a258be",
+      "origin": "outputs/trecap_stream8_v01/build01/generated/trecap_spectral_exporter.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_pcm_stream_source.sv",
+      "sha256": "79e402d7314b6540aea813bab2a42efa4d3107a34a63d61ff5ea3549bb4101f7",
+      "origin": "outputs/trecap_stream8_v01/build01/generated/trecap_pcm_stream_source.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "rtl/trecap_pcm_stream_top.sv",
+      "sha256": "2d8e7794a5629cf88e9d47ee0f2dd68ab28d1b73e3c071d701e2d5e3ab1780d2",
+      "origin": "outputs/trecap_stream8_v01/build01/generated/trecap_pcm_stream_top.sv",
+      "kind": "unchanged_registered_DUT"
+    },
+    {
+      "path": "artifacts/coefficients/twiddle_im.memh",
+      "sha256": "d8b9c42a442e0dcaace24ec76ae28b41c29d7ad4df6e43aed1da0c1df818d1a0",
+      "origin": "outputs/trecap_stream8_v01/build01/artifacts/coefficients/twiddle_im.memh",
+      "kind": "frozen_coefficient"
+    },
+    {
+      "path": "artifacts/coefficients/twiddle_inv_im.memh",
+      "sha256": "2ffc1ad332cb48307073a57c8dc5367c95a33210e1f4216f1b96091695f12d20",
+      "origin": "outputs/trecap_stream8_v01/build01/artifacts/coefficients/twiddle_inv_im.memh",
+      "kind": "frozen_coefficient"
+    },
+    {
+      "path": "artifacts/coefficients/twiddle_inv_re.memh",
+      "sha256": "84094f5e7e6bbdde3e4f458e1e5386af2d3c440f6154bcd8fbd415e521377944",
+      "origin": "outputs/trecap_stream8_v01/build01/artifacts/coefficients/twiddle_inv_re.memh",
+      "kind": "frozen_coefficient"
+    },
+    {
+      "path": "artifacts/coefficients/twiddle_re.memh",
+      "sha256": "84094f5e7e6bbdde3e4f458e1e5386af2d3c440f6154bcd8fbd415e521377944",
+      "origin": "outputs/trecap_stream8_v01/build01/artifacts/coefficients/twiddle_re.memh",
+      "kind": "frozen_coefficient"
+    },
+    {
+      "path": "artifacts/coefficients/window_qw.memh",
+      "sha256": "05bcfd74bea5fe075b56a5b83c9db53ea73c4b0f6d6f45348eda0a14cf41c4ed",
+      "origin": "outputs/trecap_stream8_v01/build01/artifacts/coefficients/window_qw.memh",
+      "kind": "frozen_coefficient"
+    },
+    {
+      "path": "fixtures/cases.json",
+      "sha256": "2d226173722ccbe7c1c339d45a164ecca6f90cfbadb85f280bdca46f933b95da",
+      "origin": "reference_fixture01 fixed C++ plus independent recursive integer oracle",
+      "kind": "synthetic_fixture"
+    },
+    {
+      "path": "fixtures/provenance.json",
+      "sha256": "313afd9adfcd5e6a0dff451fe90f3849bc069bb4a777b237c446d3ff69c90069",
+      "origin": "reference_fixture01 fixed C++ plus independent recursive integer oracle",
+      "kind": "synthetic_fixture"
+    },
+    {
+      "path": "fixtures/thr0/bins.csv",
+      "sha256": "27e276488dd05ff94e8e1139fff3b7385e1f6f34d8052492aafebcc438485db0",
+      "origin": "reference_fixture01 fixed C++ plus independent recursive integer oracle",
+      "kind": "synthetic_fixture"
+    },
+    {
+      "path": "fixtures/thr0/dense.memh",
+      "sha256": "27b0711a1b8a1b091f729863e0234b4beaadd910a13c9bdd8aee22617db18b79",
+      "origin": "reference_fixture01 packet encoding from independently checked canonical bins",
+      "kind": "synthetic_fixture"
+    },
+    {
+      "path": "fixtures/thr0/input.memh",
+      "sha256": "ee82bb187a700aa371923e570916b033450902315e6003b1ea76864a942883e1",
+      "origin": "reference_fixture01 fixed C++ plus independent recursive integer oracle",
+      "kind": "synthetic_fixture"
+    },
+    {
+      "path": "fixtures/thr0/sparse.memh",
+      "sha256": "a4aeeacfc8efb970ee80ace8b46910e74639f6f9cfc91ae58e20dea1e7dbe772",
+      "origin": "reference_fixture01 packet encoding from independently checked canonical bins",
+      "kind": "synthetic_fixture"
+    },
+    {
+      "path": "fixtures/thr0/y.memh",
+      "sha256": "63946a0118ddce3ca076db9a26cfbbd7755831f10e95c54361120636066883d6",
+      "origin": "reference_fixture01 fixed C++ plus independent recursive integer oracle",
+      "kind": "synthetic_fixture"
+    },
+    {
+      "path": "fixtures/thr100000000/bins.csv",
+      "sha256": "2df5ead09aafd2a62d96562031e1b48787485bb692db79ff5b504c97356bfb54",
+      "origin": "reference_fixture01 fixed C++ plus independent recursive integer oracle",
+      "kind": "synthetic_fixture"
+    },
+    {
+      "path": "fixtures/thr100000000/dense.memh",
+      "sha256": "301556317d56cc54e2010905a76e2261a72f74d6d4a9011be756812817da7bac",
+      "origin": "reference_fixture01 packet encoding from independently checked canonical bins",
+      "kind": "synthetic_fixture"
+    },
+    {
+      "path": "fixtures/thr100000000/input.memh",
+      "sha256": "ee82bb187a700aa371923e570916b033450902315e6003b1ea76864a942883e1",
+      "origin": "reference_fixture01 fixed C++ plus independent recursive integer oracle",
+      "kind": "synthetic_fixture"
+    },
+    {
+      "path": "fixtures/thr100000000/sparse.memh",
+      "sha256": "b4a38175cd343c6a1fa04c061573ae5d6ec6595e9fcbe2b647f067307b8e54d3",
+      "origin": "reference_fixture01 packet encoding from independently checked canonical bins",
+      "kind": "synthetic_fixture"
+    },
+    {
+      "path": "fixtures/thr100000000/y.memh",
+      "sha256": "b98a011c9c80b21004bd4080c4963d48db919fd5ae5a69c776efe337e7c51ddb",
+      "origin": "reference_fixture01 fixed C++ plus independent recursive integer oracle",
+      "kind": "synthetic_fixture"
+    },
+    {
+      "path": "fixture_tools.py",
+      "sha256": "f018048a6a8c1a9314321e42b13a154add6054c6aacd232802bc24e3fa6f1b49",
+      "origin": "Project integer generator and TSP1 packet contract",
+      "kind": "fixture_generator"
+    },
+    {
+      "path": "rtl/trecap_csr_pkg.sv",
+      "sha256": "3a1b8b968015494077f8627ff541de8120769258461b2d182c3ea4ac944176e1",
+      "origin": "outputs/trecap_stream8_v01/build01/source/rtl/include/generated/trecap_csr_pkg.sv",
+      "kind": "unchanged_registered_DUT"
+    }
+  ]
+}

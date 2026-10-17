@@ -1,0 +1,5 @@
+phase,seed,cycles,input_tokens,source_tokens,y_tokens,tap_rows,packet_bytes,fifo_empty_cycles,fifo_one_cycles,fifo_full_cycles,input_gap_cycles,y_stall_cycles,export_stall_cycles,simultaneous_push_pop,write_wraps,read_wraps,final_y_hold_cycles,discontinuities,schedule_hash,metric_count,sum_abs,sum_sq,max_abs
+0,7,132794,1024,1536,1536,1161,8568,30876,132,70890,283,2623,32883,718,4,4,39,1,1587787348,1536,0,0,0
+1,7,134363,1024,1536,1536,1161,9720,32220,132,70809,526,4308,30778,539,4,4,39,1,155932085,1536,0,0,0
+2,7,132830,1024,1536,1536,1161,8568,30892,132,70872,288,2517,32800,730,4,4,39,1,1887579452,1536,1433,3573,8
+3,7,132212,1024,1536,1536,1161,4624,31724,132,69231,503,1631,42172,626,4,4,39,1,1679046450,1536,1433,3573,8

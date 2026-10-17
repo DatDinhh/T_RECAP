@@ -4,9 +4,21 @@ Transform-domain Representation and Energy-aware Computation Accelerator with Co
 
 We are developing T-RECAP as a senior capstone project on the Terasic DE1-SoC. The current work is in [Phase 2](phase2/README.md): fixed-point FFT, a tunable spectral threshold, IFFT/WOLA reconstruction, source integration, bounded telemetry, and HPS-to-PC transport/control.
 
-## Current milestone
+## Latest: design verification portfolio
 
-The source architecture, FPGA fit/timing checkpoint, selected reference/RTL verification campaigns, and board measurements are available. Integrated HPS transport and full-system acceptance remain open.
+The registered TSH2 finite-file profile now has a [design verification portfolio](phase2/verification/README.md), including a LaTeX-authored report, editable source, a portable seeded SystemVerilog regression, checker negative controls, source/fixture hashes, an observed coverage ledger and sanitized physical-board evidence. The campaign records 14 fresh RTL suites and 58 checked physical epochs. Read the report for the exact scope, reused evidence and remaining sign-off gaps.
+
+- [Report, LaTeX source and build instructions](phase2/docs/verification/portfolio/README.md)
+- [Run the portable verification package](phase2/verification/tsh2/README.md)
+- [Inspect the 58-case public evidence ledger](phase2/docs/results/verification_20261017/README.md)
+- [Active TSH2 profile and local visualizer source](phase2/profiles/tsh2/README.md)
+- [Separate recorded web demo repository](https://github.com/DatDinhh/trecap-spectral-studio)
+
+GitHub Actions checks source hygiene, RTL elaboration, reference functional tests, portable checker qualification and public evidence integrity. Licensed simulator runs and physical hardware measurements are recorded separately. This is a bounded verification result, not a claim of full production sign-off, energy savings or AI acceleration.
+
+## Earlier Phase 2 milestone
+
+The source architecture, FPGA fit/timing checkpoint, selected reference/RTL verification campaigns, and board measurements are available. This earlier milestone predates the TSH2 finite-file integration above; broad full-system acceptance remains open.
 
 - [Finite-core verification](phase2/docs/results/verification_boundaries_20260915.md) records 80 passing boundary cases and the baseline regression.
 - [Board-power measurements](phase2/docs/results/board_power_20260925/README.md) record twelve FPGA-only trials, 301,989,888 checked output samples and zero mismatches. The observed threshold-dependent power difference does **not** establish energy savings.
@@ -28,4 +40,4 @@ The source architecture, FPGA fit/timing checkpoint, selected reference/RTL veri
 
 The [Phase 1 demonstration](phase1_demo/) is retained as historical work. Phase 2 contains the current implementation; its software model is an arithmetic reference, not a universally qualified golden model.
 
-Run Phase 2 commands from its directory. GitHub Actions checks source hygiene, production RTL elaboration and host compilation; it does not execute the signal-processing functional campaigns or deploy to hardware. Published results identify their own measurement scope and retained evidence.
+Run Phase 2 commands from its directory. The current CI runs reference functional tests as well as source checks; it does not run the licensed RTL campaigns or deploy to hardware. Published results identify their own measurement scope and retained evidence.

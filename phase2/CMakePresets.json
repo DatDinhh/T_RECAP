@@ -32,6 +32,16 @@
       "cacheVariables": {
         "TRECAP_BUILD_HPS": "ON"
       }
+    },
+    {
+      "name": "verify",
+      "displayName": "Reference model with functional tests",
+      "inherits": "host",
+      "binaryDir": "${sourceDir}/build/verify",
+      "cacheVariables": {
+        "TRECAP_BUILD_TESTS": "ON",
+        "BUILD_TESTING": "ON"
+      }
     }
   ],
   "buildPresets": [
@@ -44,6 +54,24 @@
       "name": "hps",
       "configurePreset": "hps",
       "configuration": "Release"
+    },
+    {
+      "name": "verify",
+      "configurePreset": "verify",
+      "configuration": "Release"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "verify",
+      "configurePreset": "verify",
+      "configuration": "Release",
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "noTestsAction": "error"
+      }
     }
   ]
 }

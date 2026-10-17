@@ -1,0 +1,196 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/software/findings.json",
+      "original_sha256": "14e664f680550ed10d32b3a796b1be2baf46ed6c3fbc21a4b714bb3519b68a16"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "status": "PASS",
+    "unit_test_count": 66,
+    "suites": [
+      {
+        "tests": 17,
+        "name": "Archived data and audio contracts",
+        "receipt": "data.receipt.json",
+        "status": "PASS"
+      },
+      {
+        "tests": 14,
+        "name": "Hardware lifecycle with fake IO",
+        "receipt": "hardware_mock.receipt.json",
+        "status": "PASS"
+      },
+      {
+        "tests": 25,
+        "name": "Queue, loopback HTTP, and restore chronology",
+        "receipt": "server_fake_io.receipt.json",
+        "status": "PASS"
+      },
+      {
+        "tests": 10,
+        "name": "JavaScript observed-progress state",
+        "receipt": "javascript_pipeline.receipt.json",
+        "status": "PASS"
+      }
+    ],
+    "public_demo": {
+      "selectable_captures": 40,
+      "receipt": "public_demo_integrity.receipt.json",
+      "retained_versions": 1,
+      "asset_hashes": 122,
+      "status": "PASS",
+      "recorded_timelines": 12,
+      "sources": 12
+    },
+    "archived_data": {
+      "synthetic": 8,
+      "full_reconstruction_samples_per_capture": 384512,
+      "exact_reference_selected_cases": 24,
+      "recordings": 12,
+      "selected_trial_index": 0,
+      "registered_cases": 24,
+      "natural": 4,
+      "thresholds": [
+        0,
+        10000000
+      ],
+      "binding_receipt": "input_bindings.json",
+      "hash_bound_physical_epochs": 48,
+      "full_spectral_frames_per_capture": 3001
+    },
+    "covered": [
+      "Exact archived raw capture bindings and selected complete reference equality; no absent threshold fallback.",
+      "Fixed shared audio gain, exact difference samples, axes and causal monitor timestamps, finite silence, packet bounds, input WAV preprocessing, restoration and mutation detection.",
+      "Injected boot, source, lock, permission and protocol faults; fake transfer progress and measured fixture byte counts; UART/subprocess/network test entry points mocked.",
+      "Single hardware queue semantics, baseline-before-selected ordering, immutable result identity, explicit failure and latch behavior, loopback token/origin/path/input checks, chronological restore.",
+      "Observed-only animation stages, baseline separation, failure stopping, saved capture stage skipping, stale response rejection, separate browser presentation failure, terminal elapsed-time freeze.",
+      "Offline public asset hashes, manifest/catalog consistency, preserved numerical section hashes, mono PCM16 geometry, exact difference and threshold-zero equality, relative URLs and private metadata marker checks."
+    ],
+    "limitations": [
+      "No fresh physical board execution or real UART, Ethernet, hardware boot, live FPGA timing, concurrency under real transport, or current hardware state was verified.",
+      "Fake IO validates host behavior on fixtures and cannot prove actual FPGA operation or deployment.",
+      "The public verifier validates the local exported assets against their manifest and their internal numerical/audio contracts. It does not refetch the hosted website or independently regenerate every exported capture from raw board data.",
+      "No browser rendering, audio device playback, live microphone streaming, or remote Tailscale/private gateway validation was performed.",
+      "Timing values printed by these tests are verification runtime, not fresh performance claims."
+    ],
+    "unchanged_source_files": 19,
+    "source_hashes": {
+      "work/trecap_visualizer_v01/data.py": {
+        "sha256": "be560c78b15129df5e7944b138f9ace0577c6390cba7cee207c77835263fa47e",
+        "bytes": 35216
+      },
+      "work/trecap_visualizer_v01/server.py": {
+        "sha256": "66dd07b73103f7b4ee797c456a7d257fa251294a98d284428f1d80a2742347ef",
+        "bytes": 22631
+      },
+      "work/trecap_visualizer_v01/queue_contract.py": {
+        "sha256": "458ff78ab22f1de909afd243be450453d84ce70da72c54e3b579cb6e7fd45eda",
+        "bytes": 279
+      },
+      "work/trecap_visualizer_v01/hardware.py": {
+        "sha256": "b944b9b6165f36b489604574c7d7ac553351296a82a015002c0090ae4b5d6e04",
+        "bytes": 16466
+      },
+      "work/trecap_visualizer_v01/web/pipeline.js": {
+        "sha256": "5659de64d1e2fc423f2a68b726e9e2a9681161debb6501646dddfedd5593a132",
+        "bytes": 10196
+      },
+      "work/trecap_visualizer_v01/tests/test_data.py": {
+        "sha256": "a467feee05636efc2f0402d15e8691f9f0097d54b088c1b67efe4a5dfe4ad417",
+        "bytes": 12321
+      },
+      "work/trecap_visualizer_v01/tests/test_hardware.py": {
+        "sha256": "2c1ace13cc15f2463eff85543a2e6365236ad4939b0cec7f3bff622ef4520bf5",
+        "bytes": 14548
+      },
+      "work/trecap_visualizer_v01/tests/test_server.py": {
+        "sha256": "937c66ca750336b4df7ad1d33aff307bec7a5fb5f98676211ea5d41a8a9a72f2",
+        "bytes": 29558
+      },
+      "work/trecap_visualizer_v01/tests/test_pipeline.cjs": {
+        "sha256": "89382c84855994f5ae37e45d7e87f7107a37cd5b34c4569d150d38131c5fda9f",
+        "bytes": 4549
+      },
+      "work/trecap_monitor_board_v01/analyze.py": {
+        "sha256": "7c0bb255ff2fae1e805826023c03cba73c0c3f54795b8ede9919e24370769467",
+        "bytes": 22835
+      },
+      "work/trecap_spectral_monitor_v02/common.py": {
+        "sha256": "753db45b80e3c3a99aebe3f1e86877e62481d7d41087095d8fdcf765038520cd",
+        "bytes": 1363
+      },
+      "work/trecap_spectral_monitor_v02/monitor.py": {
+        "sha256": "02b5e28e127559c3629727c7ade0cf14930abf60e4ee3ecfa7fb229b74e7eaa1",
+        "bytes": 5608
+      },
+      "work/trecap_spectral_monitor_v01/native/native_api.py": {
+        "sha256": "436a92ac0928d4e79a1bfdaaa2449de54fd99fb9d87e15324a34e894854220d8",
+        "bytes": 5668
+      },
+      "work/trecap_ai_scheduler_v01/native/native_api.py": {
+        "sha256": "766c604343fc8dfd2b5607e3351351b59bb8fb47f91675d6d96f92f642c92144",
+        "bytes": 4566
+      },
+      "work/trecap-spectral-studio/verify_demo.py": {
+        "sha256": "abcbe872da4e25e5def6bee608099583b57ccd35870f834f23fdf0810beef126",
+        "bytes": 8118
+      },
+      "work/trecap-spectral-studio/index.html": {
+        "sha256": "61ebff6687558342707899d881864c7b7113d6337184d9bdc516b7b18e5124b3",
+        "bytes": 22299
+      },
+      "work/trecap-spectral-studio/app.js": {
+        "sha256": "c1083d608bbb594b0385b478faf02b4b86d88beb57c0074495db4290eed13797",
+        "bytes": 37422
+      },
+      "work/trecap-spectral-studio/pipeline.js": {
+        "sha256": "6b12ea0f57d11dfb7eb1b51a581d0b3b4887cbc56aa0bef6514f919d82326be8",
+        "bytes": 9876
+      },
+      "work/trecap-spectral-studio/styles.css": {
+        "sha256": "66f93cf138b59798e8334c141792c2491ecd3348291d95621016ff9841745a19",
+        "bytes": 52021
+      }
+    },
+    "source_hashes_unchanged": true,
+    "excluded_tests": [
+      "test_remote_gateway.py",
+      "test_remote_ui.cjs"
+    ],
+    "schema": "trecap-fresh-isolated-host-regression-v1",
+    "started_at_utc": "2026-10-17T02:08:13.918628+00:00",
+    "finished_at_utc": "2026-10-17T02:09:27.369106+00:00",
+    "reviewed_at_utc": "2026-10-17T02:12:04.245290+00:00",
+    "receipt_sha256": {
+      "data.receipt.json": "f7ba5625afaf5ea824080f1d7e0c9ef6a3d4f37cdb1cfeb282e4b15dbc9d254a",
+      "data.stderr.txt": "26f743b08a743e9b36632184d63ee0e1af6c554b8a561d88ddb152a1ebd171b9",
+      "data.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "hardware_mock.receipt.json": "5a831f449dddadfca51f94ceb063652c895166644d63f31b99cdcc8dd32b1405",
+      "hardware_mock.stderr.txt": "8593104b252d93ebf85be44241e8d843e9aaed6d354cfdc4b1f9f917699fdf36",
+      "hardware_mock.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "input_bindings.json": "af3209f7ed061270fcf0cd1cb436d4faccf8a766d62479a2685a09ea05d1d01a",
+      "javascript_pipeline.receipt.json": "bffc043e4584012ead7e2e20a40712d14c593d35d6670d5c9868b9b6f221945c",
+      "javascript_pipeline.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "javascript_pipeline.stdout.txt": "da3773ea25cadb0f95d9de6cf90d875756305c7f0879bc8295211d8bbf8d783c",
+      "public_demo_integrity.receipt.json": "1ecb18afee72ec013093595a85cb9d2a3f19bcfe873b780621b3c16fd1d01e88",
+      "public_demo_integrity.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "public_demo_integrity.stdout.txt": "10776af015fe722e839288f24f0f8523a6369c3032c4bc77786a73902d466d3c",
+      "runner.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "runner.stdout.txt": "ead762895313abfbfd3644d44080c0101fda0e9d7826546dae850f2e27e85c37",
+      "run_summary.json": "bdfbc5c0c52dbe17367c913107f5e9b96ea8df541cae1aa2fa8d6f6980115b67",
+      "run_verification.py": "678eb3ebc8a3d3824643e08cc330a28c7fc4ec860fdca52a8010228fe27259d8",
+      "server_fake_io.receipt.json": "ba2629a4fac972941e32ef56457987226163d7a6341a427eb523c066370ef1fe",
+      "server_fake_io.stderr.txt": "8d5722a4ceb5bba5f946d81ebc901d1ea1c951837a66d2408a5bc2c58601ede7",
+      "server_fake_io.stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_hashes_after.json": "7afd418d21280a58032a713179c036920b676b4444c7da101b0cc509401884e3",
+      "source_hashes_before.json": "7afd418d21280a58032a713179c036920b676b4444c7da101b0cc509401884e3",
+      "test_inventory.json": "ce29f0da509b485fdb99cea3908cc54a98b6c31b02d15fee40a516ba533723c9"
+    },
+    "prior_descriptive_inventory_sha256": "98937213496836da39736d80fad0770658fccf939d75651eb87e5116634e098c",
+    "counts_independently_reconciled_to_fresh_stdout": true,
+    "fresh_execution_not_fresh_board_data": true
+  }
+}

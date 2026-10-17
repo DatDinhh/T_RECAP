@@ -1,0 +1,69 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/rtl/mask_threshold_boundaries/four_state_controls02.json",
+      "original_sha256": "1fd7637568d9c148708177e89150b74f03eed8bea6f2d566863c93141d0faec1"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "status": "PASS",
+    "retry_of": "four_state_controls.json",
+    "reason": "Original inline -do commands diagnosed unknown payload/control but ModelSim default $finish returned zero. Preserved initial failed exit-code qualification; do-file macro plus -onfinish stop now propagates deliberate fatal failures. All positive result collectors already require both exact completion and no error/fatal diagnostics.",
+    "cases": [
+      {
+        "mode": "X",
+        "expected_marker": "MASK_UNKNOWN_VALID_PAYLOAD",
+        "qualification_passed": true,
+        "stage": "inject_X_qualified",
+        "argv": [
+          "external-tool:vsim.exe",
+          "-c",
+          "-onfinish",
+          "stop",
+          "-voptargs=+acc",
+          "work.mask_tb",
+          "+OUT=archive:workspace/work/verification_20261017_release/rtl/mask_threshold_boundaries/inject_X_qualified",
+          "+INJECT_X",
+          "-do",
+          "archive:workspace/work/verification_20261017_release/rtl/mask_threshold_boundaries/negative_control.do"
+        ],
+        "cwd": "archive:workspace/work/verification_20261017_release/rtl/mask_threshold_boundaries",
+        "timeout_s": 60,
+        "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+        "started_utc": "2026-10-17T02:13:45.598983+00:00",
+        "pid": 47460,
+        "returncode": 3,
+        "elapsed_s": 3.14000000001397,
+        "log_sha256": "b4ad401b2f64e98f4e6872f191071de210ef2aab0ec47aef4f6a70a2cdc518b2"
+      },
+      {
+        "mode": "Z",
+        "expected_marker": "MASK_UNKNOWN_CONTROL",
+        "qualification_passed": true,
+        "stage": "inject_Z_qualified",
+        "argv": [
+          "external-tool:vsim.exe",
+          "-c",
+          "-onfinish",
+          "stop",
+          "-voptargs=+acc",
+          "work.mask_tb",
+          "+OUT=archive:workspace/work/verification_20261017_release/rtl/mask_threshold_boundaries/inject_Z_qualified",
+          "+INJECT_Z",
+          "-do",
+          "archive:workspace/work/verification_20261017_release/rtl/mask_threshold_boundaries/negative_control.do"
+        ],
+        "cwd": "archive:workspace/work/verification_20261017_release/rtl/mask_threshold_boundaries",
+        "timeout_s": 60,
+        "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+        "started_utc": "2026-10-17T02:13:48.790993+00:00",
+        "pid": 20900,
+        "returncode": 3,
+        "elapsed_s": 3.219000000040978,
+        "log_sha256": "35cb4b46cc639d1d46c4231bf05b96627c473fee0078fcec19298c8381a6eb50"
+      }
+    ]
+  }
+}

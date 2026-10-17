@@ -1,0 +1,738 @@
+{
+  "schema_version": 1,
+  "status": "PASS_EXPLICIT_SOURCE_ONLY_STAGE",
+  "scope": "Archived active TSH2 workbench source; not a complete hardware build/deployment package",
+  "file_count": 90,
+  "source_bytes": 730927,
+  "copied_source_identity": "All RTL/C/C++ unchanged; one Markdown command and two shell toolchain paths parameterized",
+  "excluded": [
+    "All outputs/, build products, compiler/simulator caches and raw captures",
+    "Runtime plans, boot/session inventories, board/UART/JTAG programming and standalone deployment launchers",
+    "Vendor/generated HPS/Quartus sources, images, executables and native DLLs",
+    "Raw audio/datasets, trained models, abandoned AI campaigns and remote-access components",
+    "Old visualizer README/launch/stop/record scripts whose operational paths are superseded by this README"
+  ],
+  "readme_sha256": "2dbd78a0d9e5313cfe8348e2b5988130970530a28e83be4d6ddb07e2b7711cba",
+  "files": [
+    {
+      "path": "work/trecap_ai_scheduler_v01/native/README.md",
+      "original_artifact_id": "archive:workspace/work/trecap_ai_scheduler_v01/native/README.md",
+      "original_sha256": "b621c4ea5b1aa68c65f82d456cdc2081a7a58eb24b21b58d61ee939f1fa464e1",
+      "published_sha256": "18df7a78054bbd7bc40dfe713eda79edf8fe1ec702d808971c2851d4624aba31",
+      "bytes": 3986,
+      "transformation": "Markdown command only: replace personal Python interpreter path with python"
+    },
+    {
+      "path": "work/trecap_ai_scheduler_v01/native/build.ps1",
+      "original_artifact_id": "archive:workspace/work/trecap_ai_scheduler_v01/native/build.ps1",
+      "original_sha256": "6694c2e4f5cfdcd8e2b7cb6c6ae9c7f38dae4bdf9d52eb12a1f48e31efb50155",
+      "published_sha256": "6694c2e4f5cfdcd8e2b7cb6c6ae9c7f38dae4bdf9d52eb12a1f48e31efb50155",
+      "bytes": 917,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_ai_scheduler_v01/native/dll.cpp",
+      "original_artifact_id": "archive:workspace/work/trecap_ai_scheduler_v01/native/dll.cpp",
+      "original_sha256": "cedc21b0cafa1ef95d463ce2a2e42d39a9f661c6a3b96644c00b2ccbf842e59a",
+      "published_sha256": "cedc21b0cafa1ef95d463ce2a2e42d39a9f661c6a3b96644c00b2ccbf842e59a",
+      "bytes": 6809,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_ai_scheduler_v01/native/native_api.py",
+      "original_artifact_id": "archive:workspace/work/trecap_ai_scheduler_v01/native/native_api.py",
+      "original_sha256": "766c604343fc8dfd2b5607e3351351b59bb8fb47f91675d6d96f92f642c92144",
+      "published_sha256": "766c604343fc8dfd2b5607e3351351b59bb8fb47f91675d6d96f92f642c92144",
+      "bytes": 4566,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_ai_scheduler_v01/native/qualify.py",
+      "original_artifact_id": "archive:workspace/work/trecap_ai_scheduler_v01/native/qualify.py",
+      "original_sha256": "e064db1e2bddf5c4c01bc6c189d69078634187451fe55d7ea94b0f6e181a260e",
+      "published_sha256": "e064db1e2bddf5c4c01bc6c189d69078634187451fe55d7ea94b0f6e181a260e",
+      "bytes": 9818,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_cpu_fpga_bench_v01/cpu02/NUMERICS.md",
+      "original_artifact_id": "archive:workspace/work/trecap_cpu_fpga_bench_v01/cpu02/NUMERICS.md",
+      "original_sha256": "212819e31ad007d524b7a2e68ab41c60e53ca03868ca8cb0edfdfa085f864d82",
+      "published_sha256": "212819e31ad007d524b7a2e68ab41c60e53ca03868ca8cb0edfdfa085f864d82",
+      "bytes": 2693,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_cpu_fpga_bench_v01/cpu02/kernel.hpp",
+      "original_artifact_id": "archive:workspace/work/trecap_cpu_fpga_bench_v01/cpu02/kernel.hpp",
+      "original_sha256": "a70a28f1513828221fd27c7e7e595eb04e0cacf50f683064a4a2567a794b0b39",
+      "published_sha256": "a70a28f1513828221fd27c7e7e595eb04e0cacf50f683064a4a2567a794b0b39",
+      "bytes": 2920,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_cpu_fpga_bench_v01/cpu02/main.cpp",
+      "original_artifact_id": "archive:workspace/work/trecap_cpu_fpga_bench_v01/cpu02/main.cpp",
+      "original_sha256": "1308389fb2e3b0cf8d291aa350a9ca58ad7d33797e51d38c6bac7c6807200f17",
+      "published_sha256": "1308389fb2e3b0cf8d291aa350a9ca58ad7d33797e51d38c6bac7c6807200f17",
+      "bytes": 8484,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_cpu_fpga_bench_v01/host02/tsh2_client.c",
+      "original_artifact_id": "archive:workspace/work/trecap_cpu_fpga_bench_v01/host02/tsh2_client.c",
+      "original_sha256": "36e2805f050fbd3635f536933f23fceb81567ff2824437786a04ff219020074a",
+      "published_sha256": "36e2805f050fbd3635f536933f23fceb81567ff2824437786a04ff219020074a",
+      "bytes": 17794,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_downstream8_v01/native/CMakeLists.txt",
+      "original_artifact_id": "archive:workspace/work/trecap_downstream8_v01/native/CMakeLists.txt",
+      "original_sha256": "58ccbc04d589462bf380b942b1a26318bdd40c54b48a1ca444b31023d4515ee0",
+      "published_sha256": "58ccbc04d589462bf380b942b1a26318bdd40c54b48a1ca444b31023d4515ee0",
+      "bytes": 822,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_downstream8_v01/native/build.py",
+      "original_artifact_id": "archive:workspace/work/trecap_downstream8_v01/native/build.py",
+      "original_sha256": "552aab8061bf6b473c1dae2151711b6df0b37a097deda9f24f48675197a2baac",
+      "published_sha256": "552aab8061bf6b473c1dae2151711b6df0b37a097deda9f24f48675197a2baac",
+      "bytes": 2175,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_downstream8_v01/native/codec.cpp",
+      "original_artifact_id": "archive:workspace/work/trecap_downstream8_v01/native/codec.cpp",
+      "original_sha256": "c4a5d2f96b24d5716e2f343e202756c1988d459417c2922449eff51cd2f9cf74",
+      "published_sha256": "c4a5d2f96b24d5716e2f343e202756c1988d459417c2922449eff51cd2f9cf74",
+      "bytes": 5093,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_downstream8_v01/native/codec.hpp",
+      "original_artifact_id": "archive:workspace/work/trecap_downstream8_v01/native/codec.hpp",
+      "original_sha256": "96fc7615cb406f5c8bacc1e2df2f9d9e8ca440be24e83b8a7643e23531ba5a66",
+      "published_sha256": "96fc7615cb406f5c8bacc1e2df2f9d9e8ca440be24e83b8a7643e23531ba5a66",
+      "bytes": 1683,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_downstream8_v01/native/codec_selftest_main.cpp",
+      "original_artifact_id": "archive:workspace/work/trecap_downstream8_v01/native/codec_selftest_main.cpp",
+      "original_sha256": "ddf1d78c963dc5282245b2e2e44f9141b63edea3b36ade8e18a1d9546a13adff",
+      "published_sha256": "ddf1d78c963dc5282245b2e2e44f9141b63edea3b36ade8e18a1d9546a13adff",
+      "bytes": 24677,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_downstream8_v01/native/consumer.cpp",
+      "original_artifact_id": "archive:workspace/work/trecap_downstream8_v01/native/consumer.cpp",
+      "original_sha256": "462a4f14861dd6980fff4dac97b3f103b80f835aafbc9334ad08b68259df34aa",
+      "published_sha256": "462a4f14861dd6980fff4dac97b3f103b80f835aafbc9334ad08b68259df34aa",
+      "bytes": 892,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_downstream8_v01/native/finish_build.py",
+      "original_artifact_id": "archive:workspace/work/trecap_downstream8_v01/native/finish_build.py",
+      "original_sha256": "3a4c5e8f5840931efb8746b11a9d17264747a94c87361f9d4dba64a2eaf02957",
+      "published_sha256": "3a4c5e8f5840931efb8746b11a9d17264747a94c87361f9d4dba64a2eaf02957",
+      "bytes": 2034,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_downstream8_v01/native/main.cpp",
+      "original_artifact_id": "archive:workspace/work/trecap_downstream8_v01/native/main.cpp",
+      "original_sha256": "d3806ebb3ef1f95828f9995066bf9c4b16e1ac5902e0eea4267268e4e468588a",
+      "published_sha256": "d3806ebb3ef1f95828f9995066bf9c4b16e1ac5902e0eea4267268e4e468588a",
+      "bytes": 11823,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_downstream8_v01/native/observer.cpp",
+      "original_artifact_id": "archive:workspace/work/trecap_downstream8_v01/native/observer.cpp",
+      "original_sha256": "8cffa3c5c46aaa7ea86457bf85a2c1e79c12afa93f08625683d3ce7d531e593e",
+      "published_sha256": "8cffa3c5c46aaa7ea86457bf85a2c1e79c12afa93f08625683d3ce7d531e593e",
+      "bytes": 566,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_jtag_readback_v01/physical/validate_tsp1.py",
+      "original_artifact_id": "archive:workspace/work/trecap_jtag_readback_v01/physical/validate_tsp1.py",
+      "original_sha256": "75e4745c2342f710c390f4f6199d99bd516eb85876b6d88de7a5dd3c4f1ad351",
+      "published_sha256": "75e4745c2342f710c390f4f6199d99bd516eb85876b6d88de7a5dd3c4f1ad351",
+      "bytes": 6238,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_laptop_fpga_v01/cpu/build.ps1",
+      "original_artifact_id": "archive:workspace/work/trecap_laptop_fpga_v01/cpu/build.ps1",
+      "original_sha256": "310e0daa367bdb4bea2f940d535e93483d10d21787b7e2817da4c3c1d8ab5627",
+      "published_sha256": "310e0daa367bdb4bea2f940d535e93483d10d21787b7e2817da4c3c1d8ab5627",
+      "bytes": 1150,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_laptop_fpga_v01/cpu/campaign.cpp",
+      "original_artifact_id": "archive:workspace/work/trecap_laptop_fpga_v01/cpu/campaign.cpp",
+      "original_sha256": "93b3ed6744ed3bf9183c4000b4d37f88c777cd2c1d77bb7123e6126ee7eeb132",
+      "published_sha256": "93b3ed6744ed3bf9183c4000b4d37f88c777cd2c1d77bb7123e6126ee7eeb132",
+      "bytes": 1938,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_laptop_fpga_v01/cpu/dll.cpp",
+      "original_artifact_id": "archive:workspace/work/trecap_laptop_fpga_v01/cpu/dll.cpp",
+      "original_sha256": "89d55f98f1d639f238d587afcdb4da39ac890f7e23f5ba1f893b43b8674c69ac",
+      "published_sha256": "89d55f98f1d639f238d587afcdb4da39ac890f7e23f5ba1f893b43b8674c69ac",
+      "bytes": 1083,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_laptop_fpga_v01/cpu/qualify.py",
+      "original_artifact_id": "archive:workspace/work/trecap_laptop_fpga_v01/cpu/qualify.py",
+      "original_sha256": "031c875a3ec65bc0f331076df2dbad084c3773a439a7110d445e85db06b4a6f5",
+      "published_sha256": "031c875a3ec65bc0f331076df2dbad084c3773a439a7110d445e85db06b4a6f5",
+      "bytes": 4016,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_laptop_fpga_v01/cpu/shared.hpp",
+      "original_artifact_id": "archive:workspace/work/trecap_laptop_fpga_v01/cpu/shared.hpp",
+      "original_sha256": "2194c961092b2f69371ac2a6331e256ee2da187bbe139715fad62b0a242b67d7",
+      "published_sha256": "2194c961092b2f69371ac2a6331e256ee2da187bbe139715fad62b0a242b67d7",
+      "bytes": 1224,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_laptop_fpga_v01/service/PROTOCOL.md",
+      "original_artifact_id": "archive:workspace/work/trecap_laptop_fpga_v01/service/PROTOCOL.md",
+      "original_sha256": "e6ae0f1abf6f65b1ac75d3fe5fc64f8c987665de3ad9eb20ef59286a406bb65e",
+      "published_sha256": "e6ae0f1abf6f65b1ac75d3fe5fc64f8c987665de3ad9eb20ef59286a406bb65e",
+      "bytes": 2234,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_laptop_fpga_v01/service/build.sh",
+      "original_artifact_id": "archive:workspace/work/trecap_laptop_fpga_v01/service/build.sh",
+      "original_sha256": "ae400a211172e47bc622470122088a2690c87564ca65ceb4043d05279868e6ce",
+      "published_sha256": "7ee70744e08b979766d5cbbd7a10565270ecaf64dafc8fa22d079075e9350994",
+      "bytes": 1228,
+      "transformation": "Shell builder only: replace personal cross-toolchain path with required TSH2_ARM_DEPS"
+    },
+    {
+      "path": "work/trecap_laptop_fpga_v01/service/qualify.py",
+      "original_artifact_id": "archive:workspace/work/trecap_laptop_fpga_v01/service/qualify.py",
+      "original_sha256": "59deefa5eba5df581d6de538e48bc5466ebbb332a457dc78334bb0b982d4e9c8",
+      "published_sha256": "59deefa5eba5df581d6de538e48bc5466ebbb332a457dc78334bb0b982d4e9c8",
+      "bytes": 2204,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_laptop_fpga_v01/service/service.c",
+      "original_artifact_id": "archive:workspace/work/trecap_laptop_fpga_v01/service/service.c",
+      "original_sha256": "a65a1be11abe2e3f01c9d80f1bd3c167a1094881b301bfbc48870bf7496ba24c",
+      "published_sha256": "a65a1be11abe2e3f01c9d80f1bd3c167a1094881b301bfbc48870bf7496ba24c",
+      "bytes": 7664,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_monitor_board_v01/PROTOCOL.md",
+      "original_artifact_id": "archive:workspace/work/trecap_monitor_board_v01/PROTOCOL.md",
+      "original_sha256": "086a6d3e23f90567691dd5755bd9982cfdaadbf43001f3214d9eb1911bf5ba4d",
+      "published_sha256": "086a6d3e23f90567691dd5755bd9982cfdaadbf43001f3214d9eb1911bf5ba4d",
+      "bytes": 5740,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_monitor_board_v01/analyze.py",
+      "original_artifact_id": "archive:workspace/work/trecap_monitor_board_v01/analyze.py",
+      "original_sha256": "7c0bb255ff2fae1e805826023c03cba73c0c3f54795b8ede9919e24370769467",
+      "published_sha256": "7c0bb255ff2fae1e805826023c03cba73c0c3f54795b8ede9919e24370769467",
+      "bytes": 22835,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_monitor_board_v01/prepare.py",
+      "original_artifact_id": "archive:workspace/work/trecap_monitor_board_v01/prepare.py",
+      "original_sha256": "3ade9f1d6981f13c399147cc53bdd1f09b807b9b5ad9769ecff6f6f461f31a1b",
+      "published_sha256": "3ade9f1d6981f13c399147cc53bdd1f09b807b9b5ad9769ecff6f6f461f31a1b",
+      "bytes": 13561,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_sparse_consumer_v01/audit_packets.py",
+      "original_artifact_id": "archive:workspace/work/trecap_sparse_consumer_v01/audit_packets.py",
+      "original_sha256": "11078f57fb61d79e39020e6e72b505462ce4eb3516807e4e97a8159a524c6bbc",
+      "published_sha256": "11078f57fb61d79e39020e6e72b505462ce4eb3516807e4e97a8159a524c6bbc",
+      "bytes": 4460,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_sparse_consumer_v01/native/CMakeLists.txt",
+      "original_artifact_id": "archive:workspace/work/trecap_sparse_consumer_v01/native/CMakeLists.txt",
+      "original_sha256": "42ddab091647b48389d7819d362a2f50883645d3ce6793df9cb8b427e1da37a4",
+      "published_sha256": "42ddab091647b48389d7819d362a2f50883645d3ce6793df9cb8b427e1da37a4",
+      "bytes": 743,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_sparse_consumer_v01/native/README.md",
+      "original_artifact_id": "archive:workspace/work/trecap_sparse_consumer_v01/native/README.md",
+      "original_sha256": "0f936039e61f82d1503753b9435a9e9c650e7ef9c82329530168a2ab0de62e41",
+      "published_sha256": "0f936039e61f82d1503753b9435a9e9c650e7ef9c82329530168a2ab0de62e41",
+      "bytes": 4737,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_sparse_consumer_v01/native/codec.cpp",
+      "original_artifact_id": "archive:workspace/work/trecap_sparse_consumer_v01/native/codec.cpp",
+      "original_sha256": "c4a5d2f96b24d5716e2f343e202756c1988d459417c2922449eff51cd2f9cf74",
+      "published_sha256": "c4a5d2f96b24d5716e2f343e202756c1988d459417c2922449eff51cd2f9cf74",
+      "bytes": 5093,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_sparse_consumer_v01/native/codec.hpp",
+      "original_artifact_id": "archive:workspace/work/trecap_sparse_consumer_v01/native/codec.hpp",
+      "original_sha256": "96fc7615cb406f5c8bacc1e2df2f9d9e8ca440be24e83b8a7643e23531ba5a66",
+      "published_sha256": "96fc7615cb406f5c8bacc1e2df2f9d9e8ca440be24e83b8a7643e23531ba5a66",
+      "bytes": 1683,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_sparse_consumer_v01/native/consumer.cpp",
+      "original_artifact_id": "archive:workspace/work/trecap_sparse_consumer_v01/native/consumer.cpp",
+      "original_sha256": "462a4f14861dd6980fff4dac97b3f103b80f835aafbc9334ad08b68259df34aa",
+      "published_sha256": "462a4f14861dd6980fff4dac97b3f103b80f835aafbc9334ad08b68259df34aa",
+      "bytes": 892,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_sparse_consumer_v01/native/main.cpp",
+      "original_artifact_id": "archive:workspace/work/trecap_sparse_consumer_v01/native/main.cpp",
+      "original_sha256": "ddf1d78c963dc5282245b2e2e44f9141b63edea3b36ade8e18a1d9546a13adff",
+      "published_sha256": "ddf1d78c963dc5282245b2e2e44f9141b63edea3b36ade8e18a1d9546a13adff",
+      "bytes": 24677,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_sparse_consumer_v01/native/observer.cpp",
+      "original_artifact_id": "archive:workspace/work/trecap_sparse_consumer_v01/native/observer.cpp",
+      "original_sha256": "8cffa3c5c46aaa7ea86457bf85a2c1e79c12afa93f08625683d3ce7d531e593e",
+      "published_sha256": "8cffa3c5c46aaa7ea86457bf85a2c1e79c12afa93f08625683d3ce7d531e593e",
+      "bytes": 566,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_spectral_monitor_v01/native/README.md",
+      "original_artifact_id": "archive:workspace/work/trecap_spectral_monitor_v01/native/README.md",
+      "original_sha256": "02cf0aed7b08526a24dda3dd339bb81fd9421b2d4ed9c65c2d9b19736c6c68a8",
+      "published_sha256": "02cf0aed7b08526a24dda3dd339bb81fd9421b2d4ed9c65c2d9b19736c6c68a8",
+      "bytes": 4275,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_spectral_monitor_v01/native/build.ps1",
+      "original_artifact_id": "archive:workspace/work/trecap_spectral_monitor_v01/native/build.ps1",
+      "original_sha256": "658cb5ef314fbd8776d0f1b6bf274c14e8c4089fa1056334e8c3204a9c7506a3",
+      "published_sha256": "658cb5ef314fbd8776d0f1b6bf274c14e8c4089fa1056334e8c3204a9c7506a3",
+      "bytes": 889,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_spectral_monitor_v01/native/dll.cpp",
+      "original_artifact_id": "archive:workspace/work/trecap_spectral_monitor_v01/native/dll.cpp",
+      "original_sha256": "ada3a075c1851f620bde89dea7aa60fc6ccab00be61bb2a377b8c5a77f9ee8fd",
+      "published_sha256": "ada3a075c1851f620bde89dea7aa60fc6ccab00be61bb2a377b8c5a77f9ee8fd",
+      "bytes": 7140,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_spectral_monitor_v01/native/native_api.py",
+      "original_artifact_id": "archive:workspace/work/trecap_spectral_monitor_v01/native/native_api.py",
+      "original_sha256": "436a92ac0928d4e79a1bfdaaa2449de54fd99fb9d87e15324a34e894854220d8",
+      "published_sha256": "436a92ac0928d4e79a1bfdaaa2449de54fd99fb9d87e15324a34e894854220d8",
+      "bytes": 5668,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_spectral_monitor_v01/native/qualify.py",
+      "original_artifact_id": "archive:workspace/work/trecap_spectral_monitor_v01/native/qualify.py",
+      "original_sha256": "f24dd575a9a07499586a4410bd1697cd1397dafe85727c49898d0a9cd9048952",
+      "published_sha256": "f24dd575a9a07499586a4410bd1697cd1397dafe85727c49898d0a9cd9048952",
+      "bytes": 9214,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_spectral_monitor_v02/PROTOCOL.md",
+      "original_artifact_id": "archive:workspace/work/trecap_spectral_monitor_v02/PROTOCOL.md",
+      "original_sha256": "eac20aaaffad605ad772958f09b3d4ad12bb9c959796411eb79124f9b5c74705",
+      "published_sha256": "eac20aaaffad605ad772958f09b3d4ad12bb9c959796411eb79124f9b5c74705",
+      "bytes": 9932,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_spectral_monitor_v02/benchmark.py",
+      "original_artifact_id": "archive:workspace/work/trecap_spectral_monitor_v02/benchmark.py",
+      "original_sha256": "4678b381c913e7b242cbaa83bff4c96fe8076ad59425c0bab35e8ba5ef60102d",
+      "published_sha256": "4678b381c913e7b242cbaa83bff4c96fe8076ad59425c0bab35e8ba5ef60102d",
+      "bytes": 5951,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_spectral_monitor_v02/common.py",
+      "original_artifact_id": "archive:workspace/work/trecap_spectral_monitor_v02/common.py",
+      "original_sha256": "753db45b80e3c3a99aebe3f1e86877e62481d7d41087095d8fdcf765038520cd",
+      "published_sha256": "753db45b80e3c3a99aebe3f1e86877e62481d7d41087095d8fdcf765038520cd",
+      "bytes": 1363,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_spectral_monitor_v02/monitor.py",
+      "original_artifact_id": "archive:workspace/work/trecap_spectral_monitor_v02/monitor.py",
+      "original_sha256": "02b5e28e127559c3629727c7ade0cf14930abf60e4ee3ecfa7fb229b74e7eaa1",
+      "published_sha256": "02b5e28e127559c3629727c7ade0cf14930abf60e4ee3ecfa7fb229b74e7eaa1",
+      "bytes": 5608,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_spectral_monitor_v02/prepare.py",
+      "original_artifact_id": "archive:workspace/work/trecap_spectral_monitor_v02/prepare.py",
+      "original_sha256": "fadd96c43783f3d69b100193cc6930b8d7f5685ed05376915874aaf00bab1c98",
+      "published_sha256": "fadd96c43783f3d69b100193cc6930b8d7f5685ed05376915874aaf00bab1c98",
+      "bytes": 9204,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_spectral_monitor_v02/telemetry.py",
+      "original_artifact_id": "archive:workspace/work/trecap_spectral_monitor_v02/telemetry.py",
+      "original_sha256": "c61a4c5eb916e5d57cdf3a0bc4d2c36dca3351f5e9251c5348a8839f71fa283b",
+      "published_sha256": "c61a4c5eb916e5d57cdf3a0bc4d2c36dca3351f5e9251c5348a8839f71fa283b",
+      "bytes": 1550,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_spectral_monitor_v02/tests/test_cluster_contract.py",
+      "original_artifact_id": "archive:workspace/work/trecap_spectral_monitor_v02/tests/test_cluster_contract.py",
+      "original_sha256": "5757050990aee5cc4e68952ab26af61b580c42138b777e17921b6772df5da04f",
+      "published_sha256": "5757050990aee5cc4e68952ab26af61b580c42138b777e17921b6772df5da04f",
+      "bytes": 4001,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_spectral_monitor_v02/tests/test_monitor_contract.py",
+      "original_artifact_id": "archive:workspace/work/trecap_spectral_monitor_v02/tests/test_monitor_contract.py",
+      "original_sha256": "7b812bde42718759f4b0aba6b8364e6230d482954e9d88e01fdb3ac5f1892c63",
+      "published_sha256": "7b812bde42718759f4b0aba6b8364e6230d482954e9d88e01fdb3ac5f1892c63",
+      "bytes": 9547,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/CONTRACT.md",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/CONTRACT.md",
+      "original_sha256": "73af404e631860483433b1df3e0fb53f7ea66bdc1f87319b5e519aec89181f13",
+      "published_sha256": "73af404e631860483433b1df3e0fb53f7ea66bdc1f87319b5e519aec89181f13",
+      "bytes": 3499,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/build/README.md",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/build/README.md",
+      "original_sha256": "3b428fafa51fb191370f4d00a9170d6c9926f2c594e61647c9347049e762da56",
+      "published_sha256": "3b428fafa51fb191370f4d00a9170d6c9926f2c594e61647c9347049e762da56",
+      "bytes": 2521,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/build/analyze_timing.py",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/build/analyze_timing.py",
+      "original_sha256": "aad55b8486826c4f4cccfa15eac9e1ec6ab45ed80668d69ed72a360033311526",
+      "published_sha256": "aad55b8486826c4f4cccfa15eac9e1ec6ab45ed80668d69ed72a360033311526",
+      "bytes": 13061,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/build/assemble.py",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/build/assemble.py",
+      "original_sha256": "7d2f99a36711baa03a71b7750cd5ea8914d48a9751289f8bfd4cf499d832e5ce",
+      "published_sha256": "7d2f99a36711baa03a71b7750cd5ea8914d48a9751289f8bfd4cf499d832e5ce",
+      "bytes": 3232,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/build/assess.py",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/build/assess.py",
+      "original_sha256": "e0fbe2399719d0f691969ef12d384dd42f32a5be318babdb0e6dec2a34dc4404",
+      "published_sha256": "e0fbe2399719d0f691969ef12d384dd42f32a5be318babdb0e6dec2a34dc4404",
+      "bytes": 4459,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/build/build.py",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/build/build.py",
+      "original_sha256": "5c96269d2de2049672c06361303ae27a16d7feb36de711089b37c734a93af40f",
+      "published_sha256": "5c96269d2de2049672c06361303ae27a16d7feb36de711089b37c734a93af40f",
+      "bytes": 10811,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/build/review_image.py",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/build/review_image.py",
+      "original_sha256": "c6ce4f634e1cf83ac06c71a44eac8bf10f8d02c64af3382fe21c6228708ed524",
+      "published_sha256": "c6ce4f634e1cf83ac06c71a44eac8bf10f8d02c64af3382fe21c6228708ed524",
+      "bytes": 9848,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/build/simulate.py",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/build/simulate.py",
+      "original_sha256": "fad4d55e9738b3614db013e3139f13afd0c8956fcc8359fff2ea4e7dab8a638c",
+      "published_sha256": "fad4d55e9738b3614db013e3139f13afd0c8956fcc8359fff2ea4e7dab8a638c",
+      "bytes": 4589,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/build/timing_review.tcl",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/build/timing_review.tcl",
+      "original_sha256": "cd6c4603c255f72c06c7b178aa1bb162c96453e16b8711e6b36022083841cbbc",
+      "published_sha256": "cd6c4603c255f72c06c7b178aa1bb162c96453e16b8711e6b36022083841cbbc",
+      "bytes": 2423,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/core/README.md",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/core/README.md",
+      "original_sha256": "830659273811ceeb7c36207fd5761e782e4c0ebe9a542c9ee1ee0e23a9350390",
+      "published_sha256": "830659273811ceeb7c36207fd5761e782e4c0ebe9a542c9ee1ee0e23a9350390",
+      "bytes": 2778,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/core/prepare_top.py",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/core/prepare_top.py",
+      "original_sha256": "8c7e83a779a0b6367f5a88c8195f2e2853913f49c5d1e0d5e007b2982e9db84f",
+      "published_sha256": "8c7e83a779a0b6367f5a88c8195f2e2853913f49c5d1e0d5e007b2982e9db84f",
+      "bytes": 3294,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/core/stream_tb.sv",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/core/stream_tb.sv",
+      "original_sha256": "67e6258b65efc5e9cafb37cec72268f090e95946e8049c9901e5b652ea6d17a6",
+      "published_sha256": "67e6258b65efc5e9cafb37cec72268f090e95946e8049c9901e5b652ea6d17a6",
+      "bytes": 8668,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/core/trecap_pcm_stream_source.sv",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/core/trecap_pcm_stream_source.sv",
+      "original_sha256": "79e402d7314b6540aea813bab2a42efa4d3107a34a63d61ff5ea3549bb4101f7",
+      "published_sha256": "79e402d7314b6540aea813bab2a42efa4d3107a34a63d61ff5ea3549bb4101f7",
+      "bytes": 6770,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/core/trecap_pcm_stream_top.sv",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/core/trecap_pcm_stream_top.sv",
+      "original_sha256": "2d8e7794a5629cf88e9d47ee0f2dd68ab28d1b73e3c071d701e2d5e3ab1780d2",
+      "published_sha256": "2d8e7794a5629cf88e9d47ee0f2dd68ab28d1b73e3c071d701e2d5e3ab1780d2",
+      "bytes": 28092,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/core/verify_stream.py",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/core/verify_stream.py",
+      "original_sha256": "c4610cfaf0af6c21b0f6a436ee04c74fb30c7946470426f902839937540ccb30",
+      "published_sha256": "c4610cfaf0af6c21b0f6a436ee04c74fb30c7946470426f902839937540ccb30",
+      "bytes": 3487,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/host/prepare_gold.py",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/host/prepare_gold.py",
+      "original_sha256": "67502d671fdb9af399d8f6909fa44d3fcabca422d284a727ab7835c6bf9d36d7",
+      "published_sha256": "67502d671fdb9af399d8f6909fa44d3fcabca422d284a727ab7835c6bf9d36d7",
+      "bytes": 5113,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/host/test_validate.py",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/host/test_validate.py",
+      "original_sha256": "464b5d431268caec2b55644e7e97d0006b31db64fac66829c0e2623398373385",
+      "published_sha256": "464b5d431268caec2b55644e7e97d0006b31db64fac66829c0e2623398373385",
+      "bytes": 2931,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/host/tsh2_client.c",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/host/tsh2_client.c",
+      "original_sha256": "dcd06ae59f5f0bcbe081c50f5f7f4530b6e993b0ebc6d2ad25573fa7245c13fd",
+      "published_sha256": "dcd06ae59f5f0bcbe081c50f5f7f4530b6e993b0ebc6d2ad25573fa7245c13fd",
+      "bytes": 14488,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/host/validate.py",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/host/validate.py",
+      "original_sha256": "868e7d0a772c88a3d3528ea18cb4625e074c1abdb33d3a4628cda29d57b8e1e9",
+      "published_sha256": "868e7d0a772c88a3d3528ea18cb4625e074c1abdb33d3a4628cda29d57b8e1e9",
+      "bytes": 10556,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/rtl/adapter_tb.sv",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/rtl/adapter_tb.sv",
+      "original_sha256": "696444d42a14ef111029927c6db44921ad86fd57a2604f3ceedf137f7eb87937",
+      "published_sha256": "696444d42a14ef111029927c6db44921ad86fd57a2604f3ceedf137f7eb87937",
+      "bytes": 7179,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/rtl/stream_fifo.sv",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/rtl/stream_fifo.sv",
+      "original_sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b",
+      "published_sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b",
+      "bytes": 1266,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_stream8_v01/rtl/trecap_stream_adapter.sv",
+      "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/rtl/trecap_stream_adapter.sv",
+      "original_sha256": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305",
+      "published_sha256": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305",
+      "bytes": 13188,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/data.py",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/data.py",
+      "original_sha256": "be560c78b15129df5e7944b138f9ace0577c6390cba7cee207c77835263fa47e",
+      "published_sha256": "be560c78b15129df5e7944b138f9ace0577c6390cba7cee207c77835263fa47e",
+      "bytes": 35216,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/hardware.py",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/hardware.py",
+      "original_sha256": "b944b9b6165f36b489604574c7d7ac553351296a82a015002c0090ae4b5d6e04",
+      "published_sha256": "b944b9b6165f36b489604574c7d7ac553351296a82a015002c0090ae4b5d6e04",
+      "bytes": 16466,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/probe/README.md",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/probe/README.md",
+      "original_sha256": "68caaeda99fc03118b21aef1e4adc7dc5de66bf6fd9b65107ccdd47b527f6ca2",
+      "published_sha256": "68caaeda99fc03118b21aef1e4adc7dc5de66bf6fd9b65107ccdd47b527f6ca2",
+      "bytes": 1648,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/probe/build.sh",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/probe/build.sh",
+      "original_sha256": "3f553c4b31783d1a4a6b0e3d377e1944d2857d7314220c648f2ef67f57f9b1d1",
+      "published_sha256": "9d4c2e2e633b6f82a67c7269175589c111cd2c32b5004da236b617943c3d9939",
+      "bytes": 1209,
+      "transformation": "Shell builder only: replace personal cross-toolchain path with required TSH2_ARM_DEPS"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/probe/qualify.py",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/probe/qualify.py",
+      "original_sha256": "3fbeb68b3aa11881e31bce7a619fe0ea49a690cde492ea7300c099ffb4261709",
+      "published_sha256": "3fbeb68b3aa11881e31bce7a619fe0ea49a690cde492ea7300c099ffb4261709",
+      "bytes": 1408,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/probe/tsh2_probe.c",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/probe/tsh2_probe.c",
+      "original_sha256": "171ec08bf51d9eb11d475af450efa73a80f37fd73ca98acd87ac706a85e26dc7",
+      "published_sha256": "171ec08bf51d9eb11d475af450efa73a80f37fd73ca98acd87ac706a85e26dc7",
+      "bytes": 8198,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/queue_contract.py",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/queue_contract.py",
+      "original_sha256": "458ff78ab22f1de909afd243be450453d84ce70da72c54e3b579cb6e7fd45eda",
+      "published_sha256": "458ff78ab22f1de909afd243be450453d84ce70da72c54e3b579cb6e7fd45eda",
+      "bytes": 279,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/server.py",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/server.py",
+      "original_sha256": "66dd07b73103f7b4ee797c456a7d257fa251294a98d284428f1d80a2742347ef",
+      "published_sha256": "66dd07b73103f7b4ee797c456a7d257fa251294a98d284428f1d80a2742347ef",
+      "bytes": 22631,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/tests/test_data.py",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/tests/test_data.py",
+      "original_sha256": "a467feee05636efc2f0402d15e8691f9f0097d54b088c1b67efe4a5dfe4ad417",
+      "published_sha256": "a467feee05636efc2f0402d15e8691f9f0097d54b088c1b67efe4a5dfe4ad417",
+      "bytes": 12321,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/tests/test_hardware.py",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/tests/test_hardware.py",
+      "original_sha256": "2c1ace13cc15f2463eff85543a2e6365236ad4939b0cec7f3bff622ef4520bf5",
+      "published_sha256": "2c1ace13cc15f2463eff85543a2e6365236ad4939b0cec7f3bff622ef4520bf5",
+      "bytes": 14548,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/tests/test_pipeline.cjs",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/tests/test_pipeline.cjs",
+      "original_sha256": "89382c84855994f5ae37e45d7e87f7107a37cd5b34c4569d150d38131c5fda9f",
+      "published_sha256": "89382c84855994f5ae37e45d7e87f7107a37cd5b34c4569d150d38131c5fda9f",
+      "bytes": 4549,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/tests/test_server.py",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/tests/test_server.py",
+      "original_sha256": "937c66ca750336b4df7ad1d33aff307bec7a5fb5f98676211ea5d41a8a9a72f2",
+      "published_sha256": "937c66ca750336b4df7ad1d33aff307bec7a5fb5f98676211ea5d41a8a9a72f2",
+      "bytes": 29558,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/web/app.js",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/web/app.js",
+      "original_sha256": "67dfc511376517d7e03c2c7ed89b39d728328c4ed5fa8dd2175fe77648a0d1d7",
+      "published_sha256": "67dfc511376517d7e03c2c7ed89b39d728328c4ed5fa8dd2175fe77648a0d1d7",
+      "bytes": 42563,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/web/index.html",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/web/index.html",
+      "original_sha256": "5f91a9bf53668afab7133babdc2d7536bc79b890a63bfe13d5f37eda5aa1befa",
+      "published_sha256": "5f91a9bf53668afab7133babdc2d7536bc79b890a63bfe13d5f37eda5aa1befa",
+      "bytes": 21702,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/web/pipeline.js",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/web/pipeline.js",
+      "original_sha256": "5659de64d1e2fc423f2a68b726e9e2a9681161debb6501646dddfedd5593a132",
+      "published_sha256": "5659de64d1e2fc423f2a68b726e9e2a9681161debb6501646dddfedd5593a132",
+      "bytes": 10196,
+      "transformation": "none; byte-identical source copy"
+    },
+    {
+      "path": "work/trecap_visualizer_v01/web/styles.css",
+      "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/web/styles.css",
+      "original_sha256": "ba2dec89c669cc057e4099beef6af4eb29d6dd08e76ee9ed19ed6507f5c16be6",
+      "published_sha256": "ba2dec89c669cc057e4099beef6af4eb29d6dd08e76ee9ed19ed6507f5c16be6",
+      "bytes": 50122,
+      "transformation": "none; byte-identical source copy"
+    }
+  ]
+}

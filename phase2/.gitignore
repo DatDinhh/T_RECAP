@@ -116,3 +116,17 @@ artifacts/telemetry_captures/*
 
 # Reviewed, portable functional receipts are publication evidence.
 !docs/results/hps_cpu_benchmark_20260925/data/qualification/*.log
+
+# Reviewed TSH2 source archive; this exact work directory contains source only.
+!/profiles/tsh2/work/
+!/profiles/tsh2/work/trecap_stream8_v01/build/
+# Representative verification traces reviewed as public text evidence.
+!/docs/results/verification_20261017/waveforms/startup.vcd
+!/docs/results/verification_20261017/waveforms/reset_recovery.vcd
+!/docs/results/verification_20261017/waveforms/final_y_stall.vcd
+# LaTeX build products stay local; the reviewed PDF is explicitly maintained.
+*.aux
+*.fls
+*.fdb_latexmk
+*.toc
+*.synctex.gz

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b111b">
+  <title>T-RECAP · Spectral Studio</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to results</a>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="T-RECAP Spectral Studio home"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><strong>T-RECAP</strong><span class="brand-divider"></span><span>Spectral Studio</span></a>
+    <div class="connection-group"><span class="session-chip" id="session-mode">Capture workspace</span><div class="connection" id="board-state"><span class="status-dot"></span><span>Checking board connection</span></div><button id="connect" class="connect-button hidden">Reconnect</button></div>
+  </header>
+  <main class="app-shell">
+    <aside class="control-rail" aria-labelledby="setup-title">
+      <div class="rail-heading"><p class="eyebrow">EXPERIMENT CONTROLS</p><h2 id="setup-title">Capture setup</h2><p>Choose an input. Set a threshold.<br>Inspect the captured result.</p></div>
+      <section class="controls panel" aria-label="Choose audio and processing threshold">
+        <div class="source-control control-step">
+          <label class="control-label" for="source"><span class="step-number">01</span><span>Choose a sound</span></label>
+          <select id="source" disabled><option>Loading available recordings…</option></select>
+          <p id="source-description" class="helper">Recordings are loaded from the local demo library.</p>
+          <div class="source-actions"><button class="preview-button" id="preview-source" disabled>▶ Preview input</button><button class="upload-label" id="upload-pick">Load a WAV file <span aria-hidden="true">↗</span></button><input type="file" id="upload" accept=".wav,audio/wav" hidden></div>
+        </div>
+        <div class="threshold-control control-step">
+          <label class="control-label" for="threshold"><span class="step-number">02</span><span>Set the threshold</span></label>
+          <div class="threshold-readout"><span>SPECTRAL THRESHOLD</span><output id="threshold-value" for="threshold">10⁷</output></div>
+          <input type="range" id="threshold" min="0" max="6" value="2" step="1" aria-valuetext="10 to the power of 7" aria-describedby="threshold-help">
+          <div class="range-labels" aria-hidden="true"><span>Off</span><span>10⁶</span><span>10⁷</span><span>10⁸</span><span>10⁹</span><span>10¹⁰</span><span>10¹¹</span></div>
+          <p class="helper" id="threshold-help">A higher threshold removes more weak spectral components.</p>
+        </div>
+        <div class="run-control control-step">
+          <div class="control-label"><span class="step-number">03</span><span>Capture on the board</span></div>
+          <button class="primary" id="run" disabled><span class="run-icon" aria-hidden="true">↗</span><span id="run-label">Run on FPGA</span></button>
+          <label class="auto-label"><input id="auto-apply" type="checkbox"> Apply after slider changes</label>
+        </div>
+      </section>
+      <div class="run-status" id="run-status" role="status" aria-live="polite"><span class="status-icon" aria-hidden="true">i</span><span id="run-message">Each threshold change requires a new buffered hardware run. Playback updates when the captured result is ready.</span></div>
+      <div class="capture-flow" aria-label="Buffered processing workflow">
+        <p class="eyebrow">THE SIGNAL PATH</p><div class="pipeline"><span>FFT</span><i aria-hidden="true">→</i><span>Threshold</span><i aria-hidden="true">→</i><span>IFFT</span></div>
+        <p>The board processes a buffered clip. Playback and plots follow the completed capture.</p>
+        <div class="rail-foot"><span class="hardware-icon" aria-hidden="true">▦</span><span>DE1-SoC <span>FPGA audio processing</span></span></div>
+      </div>
+    </aside>
+    <div class="workspace" id="workspace" tabindex="-1">
+      <section class="intro" aria-labelledby="workspace-title"><div><p class="eyebrow">FPGA AUDIO PROCESSING · INTERACTIVE DEMO</p><h1 id="workspace-title">Hear it. See what changes.</h1><p class="intro-copy">Compare the original sound with the FPGA output, then inspect the laptop’s spectral monitor.</p></div><span class="workspace-badge"><span aria-hidden="true">⌁</span> SIGNAL ANALYSIS</span></section>
+      <section id="processing-flow" class="processing-flow panel" aria-labelledby="flow-title" data-status="idle">
+        <div class="flow-heading">
+          <div><p class="eyebrow">THE HARDWARE JOURNEY</p><h2 id="flow-title">Follow the signal</h2></div>
+          <div class="flow-session"><span class="flow-live-dot" aria-hidden="true"></span><span id="flow-status" role="status" aria-live="polite">Ready for a hardware run</span><span id="flow-elapsed" class="flow-elapsed">0.0 s</span></div>
+        </div>
+        <p id="flow-detail" class="flow-detail">Press Run on FPGA to follow your audio from this laptop, through the board, and back to the monitor.</p>
+        <div class="flow-diagram" aria-label="Audio travels from the laptop over Ethernet to the DE1-SoC, then returns as reconstructed audio and sparse spectra for laptop analysis.">
+          <div class="flow-device flow-input" data-flow-part="prepare" data-state="waiting">
+            <div class="flow-device-heading"><svg viewBox="0 0 32 24" fill="none" aria-hidden="true"><rect x="5" y="2" width="22" height="15" rx="2"/><path d="M2 21h28M10 21l1-4h10l1 4"/><path class="flow-icon-wave" d="M9 10h3l2-4 4 8 2-4h3"/></svg><span>YOUR LAPTOP</span></div>
+            <strong>Prepare the audio</strong>
+            <p>WAV → mono PCM<br>48 kHz · signed 12-bit</p>
+            <div class="flow-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <span class="flow-device-foot">One buffered clip</span>
+          </div>
+          <div class="flow-link flow-link-send" data-flow-part="send" data-state="waiting" aria-label="Send input PCM over Ethernet"><span class="flow-link-label">ETHERNET</span><span class="flow-wire" aria-hidden="true"><i></i><i></i><i></i><b>›</b></span><span class="flow-link-caption">Input PCM</span></div>
+          <div class="flow-board" data-flow-part="board" data-state="waiting">
+            <div class="flow-board-heading"><div class="flow-chip-mark" aria-hidden="true">▦</div><div><strong>DE1-SoC</strong><span>PHYSICAL FPGA BOARD</span></div><span class="flow-hardware-led" aria-hidden="true"></span></div>
+            <div class="flow-hps"><span>HPS</span><span>Network I/O · feed & drain</span><span aria-hidden="true">⇄</span></div>
+            <div class="flow-fabric">
+              <div class="flow-fabric-label"><span>FPGA FABRIC</span><span class="flow-chip-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div>
+              <div class="flow-board-path"><span class="flow-operation"><strong>FFT</strong><small>Find frequencies</small></span><span class="flow-inner-arrow" aria-hidden="true">›</span><span class="flow-operation flow-threshold-operation"><strong>Threshold</strong><small>Keep strong bins</small></span><span class="flow-inner-arrow" aria-hidden="true">›</span><span class="flow-operation"><strong>IFFT</strong><small>Overlap-add</small></span></div>
+              <div class="flow-board-outputs"><span><i aria-hidden="true"></i>Sparse spectra</span><span><i aria-hidden="true"></i>Rebuilt audio</span></div>
+            </div>
+          </div>
+          <div class="flow-link flow-link-return" data-flow-part="receive" data-state="waiting" aria-label="Return reconstructed audio and sparse spectral packets over Ethernet"><span class="flow-link-label">ETHERNET</span><span class="flow-wire" aria-hidden="true"><i></i><i></i><i></i><b>›</b></span><span class="flow-link-caption">Audio + spectra</span></div>
+          <div class="flow-device flow-output" data-flow-part="consumer" data-state="waiting">
+            <div class="flow-device-heading"><svg viewBox="0 0 32 24" fill="none" aria-hidden="true"><rect x="4" y="2" width="24" height="16" rx="2"/><path d="M16 18v4M10 22h12M9 13V9M14 13V6M19 13v-3M24 13V5"/></svg><span>YOUR LAPTOP</span></div>
+            <strong>Make it useful</strong>
+            <div class="flow-laptop-task" data-flow-part="verify" data-state="waiting"><span class="flow-task-dot" aria-hidden="true"></span><span>Validate & decode</span></div>
+            <div class="flow-laptop-task"><span class="flow-task-dot" aria-hidden="true"></span><span>16-band features</span></div>
+            <div class="flow-laptop-task"><span class="flow-task-dot" aria-hidden="true"></span><span>Detect sound changes</span></div>
+            <div class="flow-listen-ready" data-flow-part="ready" data-state="waiting"><span aria-hidden="true">▶</span> Listen & compare</div>
+          </div>
+        </div>
+        <ol class="flow-stages" aria-label="Observed hardware job stages">
+          <li data-flow-stage="prepare" data-state="waiting"><span class="flow-stage-index" aria-hidden="true">01</span><span><strong>Prepare</strong><small>Input audio</small></span></li>
+          <li data-flow-stage="send" data-state="waiting"><span class="flow-stage-index" aria-hidden="true">02</span><span><strong>Send</strong><small>To the board</small></span></li>
+          <li data-flow-stage="board" data-state="waiting"><span class="flow-stage-index" aria-hidden="true">03</span><span><strong>Process</strong><small>FPGA pipeline</small></span></li>
+          <li data-flow-stage="receive" data-state="waiting"><span class="flow-stage-index" aria-hidden="true">04</span><span><strong>Return</strong><small>Board output</small></span></li>
+          <li data-flow-stage="verify" data-state="waiting"><span class="flow-stage-index" aria-hidden="true">05</span><span><strong>Verify</strong><small>Packet checks</small></span></li>
+          <li data-flow-stage="consumer" data-state="waiting"><span class="flow-stage-index" aria-hidden="true">06</span><span><strong>Analyze</strong><small>Laptop monitor</small></span></li>
+          <li data-flow-stage="ready" data-state="waiting"><span class="flow-stage-index" aria-hidden="true">07</span><span><strong>Ready</strong><small>Listen & inspect</small></span></li>
+        </ol>
+        <div class="flow-context"><span><small>INPUT</small><strong id="flow-source">No active input</strong></span><span><small>THRESHOLD</small><strong id="flow-threshold">Not set</strong></span><span><small>CAPTURE</small><strong id="flow-pass">No active pass</strong></span><span id="flow-queue" class="flow-queue">No queued run</span></div>
+        <details class="flow-evidence"><summary>Stage details <span aria-hidden="true">＋</span></summary><div class="flow-evidence-body"><p id="flow-transfer">Transfer sizes will appear during a hardware run.</p><ol id="flow-events"><li>No hardware job started in this session.</li></ol><p id="flow-observation">Live job stages. Motion inside the board illustrates the pipeline.</p></div></details>
+      </section>
+      <section class="player panel" aria-label="Synchronized audio playback">
+        <div class="result-heading"><div class="result-title-group"><p class="eyebrow"><span class="result-indicator" aria-hidden="true"></span>CURRENT RESULT</p><h2 id="result-title">Choose a recording to begin</h2></div><div class="result-tags"><span class="tag" id="applied-threshold">No result loaded</span><span class="tag pending hidden" id="pending-threshold"></span><span class="tag physical hidden" id="provenance-tag"></span></div></div>
+        <p class="capture-summary"><span aria-hidden="true">↳</span><span id="capture-summary">No captured result loaded.</span></p>
+        <div class="audio-compare">
+          <div class="audio-compare-heading"><h3>Listen before and after</h3><span id="listening-state" role="status" aria-live="polite">Audio not loaded</span></div>
+          <div class="audio-switch" role="group" aria-label="Play before or after FPGA processing">
+            <button data-audio="original" class="active" aria-pressed="true" aria-label="Listen before FPGA" disabled><span class="listen-icon" aria-hidden="true">▶</span><span><strong>Listen before FPGA</strong><small>Prepared input sent to the board</small></span></button>
+            <button data-audio="processed" aria-pressed="false" aria-label="Listen after FPGA" disabled><span class="listen-icon" aria-hidden="true">▶</span><span><strong>Listen after FPGA</strong><small>Audio returned from the board</small></span></button>
+            <button data-audio="difference" aria-pressed="false" aria-label="Hear the difference" disabled><span class="listen-icon" aria-hidden="true">△</span><span><strong>Hear the difference</strong><small>Before minus after</small></span></button>
+          </div>
+          <p class="listen-help">Click a button to play. Switch while playing to compare the same moment.</p>
+        </div>
+        <div class="transport">
+          <button class="play" id="play" disabled aria-label="Play audio"><span id="play-symbol" aria-hidden="true">▶</span></button>
+          <div class="timeline-control"><input id="seek" type="range" min="0" max="1" step="0.001" value="0" disabled aria-label="Playback position"><div class="time-labels"><span id="current-time">0:00.00</span><span id="total-time">0:00.00</span></div></div>
+          <label class="volume">Volume<input type="range" id="volume" min="0" max="1" step="0.01" value="0.65" aria-label="Playback volume"></label>
+        </div>
+        <div class="player-foot"><span id="audio-description">Original and reconstructed audio share one playhead and the same playback gain.</span><label class="loop-label" title="Replay this captured result; no new hardware run is triggered."><input type="checkbox" id="loop"> Loop clip</label></div>
+        <a id="download-processed-audio" class="audio-download hidden" download>Download FPGA output WAV <span aria-hidden="true">↓</span></a>
+      </section>
+      <section class="comparison-section" aria-labelledby="measurement-title">
+        <div class="section-heading"><h2 id="measurement-title">Capture measurements</h2><p>Measured for the current result</p></div>
+        <div class="metric-grid">
+          <article class="metric panel"><span class="metric-label">Waveform error <span aria-hidden="true">01</span></span><strong id="metric-error">N/A</strong><span>NRMSE against original</span></article>
+          <article class="metric panel"><span class="metric-label">Spectral packet change <span aria-hidden="true">02</span></span><strong id="metric-bytes">N/A</strong><span id="metric-byte-detail">Sparse versus dense spectra</span></article>
+          <article class="metric panel"><span class="metric-label">Laptop consumer <span aria-hidden="true">03</span></span><strong id="metric-consumer">N/A</strong><span id="metric-consumer-detail">Sparse versus matched dense data</span></article>
+          <article class="metric panel"><span class="metric-label">Board service time <span aria-hidden="true">04</span></span><strong id="metric-board">N/A</strong><span class="metric-subtext">8 s buffer · includes HPS feed/drain</span><span id="metric-host" class="metric-subtext">Host round trip: not measured</span></article>
+        </div>
+        <p class="measurement-note" id="measurement-note">Consumer timing excludes FPGA processing and network transport. Spectral packet reduction is not WAV compression. No measurement is shown until a result is available.</p>
+      </section>
+      <div class="analysis-nav">
+        <div class="view-tabs" role="tablist" aria-label="Analysis views">
+          <button id="tab-signals" data-view="signals" role="tab" aria-selected="true" aria-controls="panel-signals" tabindex="0"><span class="tab-icon" aria-hidden="true">⌁</span>Signal comparison</button>
+          <button id="tab-consumer" data-view="consumer" role="tab" aria-selected="false" aria-controls="panel-consumer" tabindex="-1"><span class="tab-icon" aria-hidden="true">▥</span>Laptop monitor</button>
+          <button id="tab-performance" data-view="performance" role="tab" aria-selected="false" aria-controls="panel-performance" tabindex="-1"><span class="tab-icon" aria-hidden="true">↗</span>Timing & provenance</button>
+        </div>
+        <span class="legend"><i class="swatch original"></i> Original <i class="swatch processed"></i> FPGA output</span>
+      </div>
+      <section class="view-panel" id="panel-signals" data-view-panel="signals" role="tabpanel" aria-labelledby="tab-signals" tabindex="0">
+        <div class="chart-grid">
+          <article class="panel chart-card"><div class="card-heading"><div><p class="eyebrow">01 · FREQUENCY CONTENT</p><h2>Before & after spectrum</h2></div><span class="readout" id="spectrum-time">N/A</span></div><div class="canvas-wrap"><canvas id="spectrum" aria-label="Original and processed power spectrum at the playback position" role="img"></canvas></div><p class="chart-caption">One dB scale, relative to the unthresholded reference peak. Weak components may be removed.</p></article>
+          <article class="panel chart-card"><div class="card-heading"><div><p class="eyebrow">02 · RECONSTRUCTED SOUND</p><h2>Aligned waveform</h2></div><span class="readout">2-second window</span></div><div class="canvas-wrap"><canvas id="waveform" aria-label="Aligned original and reconstructed audio waveforms" role="img"></canvas></div><p class="chart-caption">The reconstructed waveform is aligned to the original. Playback gain is identical.</p></article>
+          <article class="panel chart-card wide"><div class="card-heading"><div><p class="eyebrow">03 · SPECTRUM OVER TIME</p><h2>Follow the sound across the clip</h2></div><div class="heat-legend"><span>Low energy</span><span class="heat-ramp"></span><span>High</span></div></div><div class="spectrogram-grid"><div><h3><i class="swatch original"></i> Original</h3><div class="canvas-wrap spectrogram-wrap"><canvas id="spectrogram-original" aria-label="Original audio spectrogram with synchronized playback cursor" role="img"></canvas></div></div><div><h3><i class="swatch processed"></i> FPGA output</h3><div class="canvas-wrap spectrogram-wrap"><canvas id="spectrogram-processed" aria-label="FPGA processed spectrogram on the same scale" role="img"></canvas></div></div></div><p class="chart-caption">The shared color scale makes removed components visible. The cursor follows the sound you hear.</p></article>
+        </div>
+      </section>
+      <section class="view-panel" id="panel-consumer" data-view-panel="consumer" role="tabpanel" aria-labelledby="tab-consumer" tabindex="0" hidden>
+        <div class="chart-grid">
+          <article class="panel chart-card"><div class="card-heading"><div><p class="eyebrow">04 · WHAT THE LAPTOP COMPUTES</p><h2>Energy in 16 frequency bands</h2></div><span class="readout" id="consumer-time">N/A</span></div><div class="canvas-wrap"><canvas id="bands" aria-label="Original and processed consumer energy in sixteen frequency bands" role="img"></canvas></div><p class="chart-caption">Energy is shown relative to the original block’s total. The same consumer processes both inputs.</p></article>
+          <article class="panel chart-card"><div class="card-heading"><div><p class="eyebrow">05 · WHAT THE MONITOR REPORTS</p><h2>Persistent sound changes</h2></div><span class="readout" id="event-count">N/A</span></div><div class="canvas-wrap"><canvas id="events" aria-label="Original and processed spectral monitor event timeline" role="img"></canvas></div><p class="chart-caption">Recorded events across the whole clip. These are sound changes, not diagnosed faults.</p></article>
+        </div>
+      </section>
+      <section class="view-panel" id="panel-performance" data-view-panel="performance" role="tabpanel" aria-labelledby="tab-performance" tabindex="0" hidden>
+        <section class="panel route-panel" aria-labelledby="routes-title"><div class="card-heading"><div><p class="eyebrow">LAPTOP PROCESSING ROUTES</p><h2 id="routes-title">Compare equivalent work</h2></div><span class="readout" id="timing-trials">No timing loaded</span></div><div class="route-table-wrap"><table class="route-table"><thead><tr><th scope="col">Input to the laptop</th><th scope="col">What the laptop does</th><th scope="col">Measured time</th></tr></thead><tbody id="timing-routes"><tr><td colspan="3">Timing becomes available after a result is loaded.</td></tr></tbody></table></div><p class="chart-caption" id="route-scope">The CPU-only route includes signal processing. The spectral routes begin with already processed data; they are not a whole-system speed comparison.</p></section>
+        <details class="provenance panel"><summary>Result provenance & measurement boundaries <span aria-hidden="true">＋</span></summary><div class="provenance-body"><dl id="provenance-list"><dt>Status</dt><dd>No result loaded.</dd></dl><ul id="result-notes"></ul><button id="download-result" class="secondary" disabled>Download result JSON <span aria-hidden="true">↓</span></button></div></details>
+      </section>
+      <footer><strong>T-RECAP</strong><span>Adjustable spectral filtering · DE1-SoC · Laptop consumer</span><span>Buffered capture. Synchronized playback.</span></footer>
+    </div>
+  </main>
+  <script src="/pipeline.js" defer></script>
+  <script src="/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "external-tool:index.json",
+      "original_sha256": "b9a564b471d8c851ff2a66fbab9dc7a6436e4b25e3d0194b71b26ff9caca30ba"
+    },
+    {
+      "artifact_id": "archive:workspace/work/trecap_audio_listen_v01/make_demo.py",
+      "original_sha256": "bf91357975084564538fdee2f8d8bd016687be705555af4ab9e5c6e991b75d61"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "reviewed_utc_date": "2026-10-17",
+    "flute": {
+      "attribution": "Lawrence Fritts / University of Iowa Musical Instrument Samples",
+      "input_source_url": "https://theremin.music.uiowa.edu/sound%20files/MIS/Woodwinds/flute/Flute.nonvib.mf.C5B5.aiff",
+      "terms_url": "https://theremin.music.uiowa.edu/MIS.html",
+      "observed_terms": "The official page permits downloading and using the samples for projects without restrictions.",
+      "input_preprocessing": "First8seconds; frozen48kHz signed12 input. Input SHA256 is retained in hardware/cases.csv.",
+      "raw_audio_in_this_package": false
+    },
+    "ESC50": {
+      "terms_url": "https://github.com/karolpiczak/ESC-50/blob/33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6/README.md",
+      "observed_terms": "The corpus is CC BY-NC; ESC-10 is a CC BY subset. Selected original-source clip labels are separate attribution facts, not a replacement license for the corpus.",
+      "raw_audio_in_this_package": false
+    }
+  }
+}

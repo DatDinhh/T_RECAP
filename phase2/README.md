@@ -1,5 +1,7 @@
 # T-RECAP
 
+> Latest verification: see the [DV portfolio](verification/README.md), [LaTeX report](docs/verification/portfolio/README.md), [portable regression](verification/tsh2/README.md), and [TSH2 profile source](profiles/tsh2/README.md). The historical status below describes the original Phase 2 baseline; the portfolio records the later finite-file integration and its explicit limits.
+
 **Transform-domain Representation and Energy-aware Computation Accelerator with Controlled Precision**
 
 We are building a fixed-point signal-processing system on the Terasic DE1-SoC for our senior capstone project. T-RECAP converts a sample stream into overlapping frequency-domain frames, suppresses selected low-energy bins, and reconstructs a delayed output with weighted overlap-add (WOLA). We use a software reference model to define the arithmetic and an FPGA implementation to realize the stream processing.

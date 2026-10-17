@@ -1,0 +1,115 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/reference/summary.json",
+      "original_sha256": "7a75df7935a320810ad3db73d2b8e452452f3c50b0bc4dcbf7de20728bde420e"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "schema": "trecap-reference-fix-release-v1",
+    "status": "PASS_REFERENCE_REPAIR_AND_BOUNDED_VERIFICATION",
+    "finished_utc": "2026-10-17T02:12:37.526920+00:00",
+    "fixed_defect": "rnd_shr now implements nearest ties-away rounding for int64 values at all unsigned shift counts, including 63,64 and >64.",
+    "changed_files": [
+      {
+        "path": "repo:phase2/sw/reference_model/include/trecap_golden/rounding.hpp",
+        "before_sha256": "83730b8ab5f352274e24779cac5b2db0ddf490d3cb32225fa7a046fb7dd648a3",
+        "after_sha256": "0c5691734ca317f5a42b918d01e1b134d3c27fd044fd0f5fc2dddb68fc623180"
+      },
+      {
+        "path": "repo:phase2/sw/reference_model/tests/cpp/test_rounding.cpp",
+        "before_sha256": "dd3ead2a2df76e814c9cb911375f4fedca9d9ccb86be58782af32b9723a05c85",
+        "after_sha256": "1c423a0ea5e216c3321da9a297941ab4477160884bf9c3eaa01128a602828b49"
+      },
+      {
+        "path": "repo:phase2/sim/verification/reference_adapter/reference_api_adapter.cpp",
+        "before_sha256": "33b3424db031e5be2b8997b574841e1d925908d39fcaf2e1a6a7659b550e6e26",
+        "after_sha256": "157e257fda884181ae91e63a539955f1e2ffe9ac58e7e552a04ca83401f5db92"
+      }
+    ],
+    "asr_changed": false,
+    "repository_inspection": {
+      "agents_files_found": [],
+      "git_repository": false,
+      "notes": "Direct ancestor AGENTS checks and repository AGENTS search found none. repo:phase2 has no .git and git rev-parse reports not a repository; original byte snapshots and unified diff preserved."
+    },
+    "math_argument": {
+      "shift_zero": "Returns original int64 unchanged, including INT64_MIN.",
+      "shifts_1_to_63": "Magnitude <=2^63 and bias <=2^62, so magnitude+bias <=3*2^62 <2^64. Rounded quotient <=2^62 and signed conversion/negation are representable.",
+      "shift_64": "Only INT64_MIN has magnitude 2^63, exactly one half of 2^64; ties-away returns -1. Every other int64 magnitude is below half and returns zero.",
+      "shifts_above_64": "Every int64 magnitude is strictly below half; return zero without attempting an out-of-width machine shift.",
+      "asr": "Existing floor shift is safe: at shifts1..62 unsigned magnitude+divisor-1 stays below2^64; at >=63 signed result is zero or minus one.",
+      "peer_review": "Independent teammate review confirmed this argument and found no change needed in asr."
+    },
+    "checks": {
+      "cpp_ctest": {
+        "passed": 11,
+        "failed": 0,
+        "receipt": "commands_attempt02/023.json"
+      },
+      "baseline_reference": {
+        "status": "PASS_BOUNDED_BASELINE",
+        "independent_primitive_comparisons": 16540,
+        "selected_complete_vectors": 2,
+        "negative_checker_witnesses": 13,
+        "receipt": "baseline_attempt02/report.json"
+      },
+      "wide_arithmetic": {
+        "comparisons": 729156,
+        "round": 364578,
+        "asr": 364578,
+        "properties": 364578,
+        "checker_corruptions_rejected": 5,
+        "pre_fix_failures_confirmed": 4,
+        "receipt": "arithmetic_attempt01/report.json"
+      },
+      "finite_corners": {
+        "cases": 248,
+        "records": 1551100,
+        "output_samples": 198912,
+        "frames": 810,
+        "canonical_bins": 104490,
+        "complex_stage_rows": 1244160,
+        "all_128_hop_residues": true,
+        "invalid_inputs_rejected": 4,
+        "receipt": "corner_attempt01/report.json"
+      },
+      "full_length_fixed_vs_frozen": {
+        "input_samples": 384000,
+        "output_samples": 384512,
+        "frames": 3001,
+        "canonical_bin_rows": 387129,
+        "threshold": 0,
+        "status": "PASS_FIXED_REFERENCE_FULL_LENGTH_FROZEN_EQUIVALENCE",
+        "receipt": "full_length_attempt02/report.json"
+      }
+    },
+    "preserved_infrastructure_attempts": [
+      {
+        "path": "baseline_attempt01/report.json",
+        "reason": "SDK discovery access denied before compilation; successful scoped-escalation attempt02 retained separately."
+      },
+      {
+        "path": "full_length_attempt01/report.json",
+        "reason": "Checker expected wrong tau_last; corrected frames*hop=384128 in new attempt02, no DUT change."
+      }
+    ],
+    "limitations": [
+      "Not exhaustive enumeration of every int64 value; all shift regions and unsigned extremes are covered by tests and bounded arithmetic argument.",
+      "Coefficient tables shared with frozen specification; independent transcendental coefficient synthesis not proved.",
+      "Full-length comparison is fixed C++ output versus registered frozen gold; independent recursive oracle is used for the selected baseline and 248 short corner cases.",
+      "Full-length intermediate stage rows were counted, not independently checked. All final Y and canonical bin fields were checked.",
+      "No hardware, RTL, dynamic configuration, system quality or performance signoff by this reference campaign."
+    ],
+    "frozen_expected_artifacts_changed": false,
+    "prior_campaign_evidence_changed": false,
+    "hardware_calls": false,
+    "source_diff": "source_changes.patch",
+    "source_snapshots": [
+      "source_before",
+      "source_after"
+    ]
+  }
+}

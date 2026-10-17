@@ -1,0 +1,93 @@
+Reading pref.tcl
+
+# 2020.1
+
+# vsim -c -onfinish stop -voptargs="+acc" work.dv_stream_tb "+OUT=../seed_7" "+CASES=../seed_7/cases.txt" "+COUNT=4" "+SEED=7" -do "run.do" 
+# Start time: 23:24:03 on Oct 16,2026
+# Loading sv_std.std
+# Loading work.dv_stream_tb
+# Loading work.trecap_core_pkg
+# Loading work.trecap_math_pkg
+# Loading work.trecap_packet_pkg
+# Loading work.trecap_iface_pkg
+# Loading work.trecap_csr_pkg
+# Loading work.trecap_build_pkg
+# Loading work.trecap_pcm_stream_top
+# Loading work.trecap_pcm_stream_source
+# Loading work.trecap_core_export_observed
+# Loading work.trecap_input_ring
+# Loading work.trecap_frame_scheduler
+# Loading work.trecap_analysis_window
+# Loading work.window_rom
+# Loading work.trecap_round_sat
+# Loading work.trecap_fft256
+# Loading work.trecap_bit_reverse_addr
+# Loading work.trecap_twiddle_rom
+# Loading work.trecap_fft_stage
+# Loading work.trecap_hermitian_canonicalizer
+# Loading work.trecap_mag2_mask
+# Loading work.trecap_spectrum_mask_builder
+# Loading work.trecap_ifft256
+# Loading work.trecap_synthesis_wola
+# Loading work.trecap_delay_error_metrics
+# Loading work.trecap_spectral_exporter
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 82, found 45.
+#    Time: 0 ps  Iteration: 0  Instance: /dv_stream_tb/dut File: tb/dv_stream_tb.sv Line: 19
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'y_sample_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'source_sample_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'tap_sample_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'tap_frame_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'frame_boundary_pulse_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'core_alive_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'core_busy_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'core_sample_count_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'core_error_sample_count_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'core_sum_abs_err_lo_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'core_sum_sq_err_lo_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'core_max_abs_err_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'core_overflow_flags_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_active_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_done_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_input_phase_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_flush_phase_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_analysis_flush_phase_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_tail_drain_phase_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_output_accept_pulse_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_last_sample_pulse_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_done_pulse_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_next_issue_idx_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_output_accept_count_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_configured_input_samples_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_configured_flush_samples_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'tail_drain_active_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'tail_drain_accept_pulse_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'tail_drain_done_pulse_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'wola_output_count_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_config_error_sticky_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_mem_range_error_sticky_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'replay_overrun_sticky_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'top_alive_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'top_done_pulse_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'top_output_accept_count_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(19): [TFMPC] - Missing connection for port 'top_expected_output_count_o'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'exporter'.  Expected 27, found 22.
+#    Time: 0 ps  Iteration: 0  Instance: /dv_stream_tb/exporter File: tb/dv_stream_tb.sv Line: 38
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(38): [TFMPC] - Missing connection for port 'out_last_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(38): [TFMPC] - Missing connection for port 'out_bytes_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(38): [TFMPC] - Missing connection for port 'out_frame_id_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(38): [TFMPC] - Missing connection for port 'out_thr2_o'.
+# ** Warning: (vsim-3722) tb/dv_stream_tb.sv(38): [TFMPC] - Missing connection for port 'out_sparse_o'.
+# do run.do
+# CASE_COMPLETE phase=0 seed=7 cycles=132794
+# CASE_COMPLETE phase=1 seed=7 cycles=134363
+# CASE_COMPLETE phase=2 seed=7 cycles=132830
+# CASE_COMPLETE phase=3 seed=7 cycles=132212
+# DV_COMPLETE cases=4 seed=7
+# ** Note: $finish    : tb/dv_stream_tb.sv(150)
+#    Time: 5337423 ns  Iteration: 0  Instance: /dv_stream_tb
+# Break in Module dv_stream_tb at tb/dv_stream_tb.sv line 150
+# Stopped at tb/dv_stream_tb.sv line 150
+# 1
+DV_EXIT_STATE=1
+# End time: 23:24:24 on Oct 16,2026, Elapsed time: 0:00:21
+# Errors: 0, Warnings: 44

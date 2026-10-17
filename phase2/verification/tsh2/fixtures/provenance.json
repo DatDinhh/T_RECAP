@@ -1,0 +1,54 @@
+{
+  "status": "PASS_REDISTRIBUTABLE_SYNTHETIC_REFERENCE_FIXTURES",
+  "origin": "Project-generated integer-only signal; no recorded audio or external dataset.",
+  "generator_sha256": "9c8ba6b462ba72cfe3c6c7407b1f4e49326e721225742f09c166e34f3df5d7a1",
+  "initial_lcg_state_hex": "20261017",
+  "samples_formula": "12*triangle(i%64)+3*triangle((i*5)%64)+((LCG_state>>24)%7)-3; triangle(p)=p-16 if p<32 else48-p; LCG=(1664525*state+1013904223)mod2^32",
+  "input_sha256": "ee82bb187a700aa371923e570916b033450902315e6003b1ea76864a942883e1",
+  "adapter_sha256": "d80e9ad6795876dd4b649802e123d668eaab69a0c94268a4e99e03ccf2d086b7",
+  "cases": [
+    {
+      "threshold": 0,
+      "input_samples": 1024,
+      "frames": 9,
+      "Y_samples": 1536,
+      "canonical_bins": 1161,
+      "records_compared": 16541,
+      "status": "PASS_FIXED_CPP_AND_INDEPENDENT_INTEGER_ORACLE",
+      "input_sha256": "ee82bb187a700aa371923e570916b033450902315e6003b1ea76864a942883e1",
+      "y_sha256": "63946a0118ddce3ca076db9a26cfbbd7755831f10e95c54361120636066883d6",
+      "bins_sha256": "27e276488dd05ff94e8e1139fff3b7385e1f6f34d8052492aafebcc438485db0"
+    },
+    {
+      "threshold": 100000000,
+      "input_samples": 1024,
+      "frames": 9,
+      "Y_samples": 1536,
+      "canonical_bins": 1161,
+      "records_compared": 16541,
+      "status": "PASS_FIXED_CPP_AND_INDEPENDENT_INTEGER_ORACLE",
+      "input_sha256": "ee82bb187a700aa371923e570916b033450902315e6003b1ea76864a942883e1",
+      "y_sha256": "b98a011c9c80b21004bd4080c4963d48db919fd5ae5a69c776efe337e7c51ddb",
+      "bins_sha256": "2df5ead09aafd2a62d96562031e1b48787485bb692db79ff5b504c97356bfb54"
+    }
+  ],
+  "coefficient_sha256": {
+    "window_qw": "05bcfd74bea5fe075b56a5b83c9db53ea73c4b0f6d6f45348eda0a14cf41c4ed",
+    "twiddle_re": "84094f5e7e6bbdde3e4f458e1e5386af2d3c440f6154bcd8fbd415e521377944",
+    "twiddle_im": "d8b9c42a442e0dcaace24ec76ae28b41c29d7ad4df6e43aed1da0c1df818d1a0",
+    "twiddle_inv_re": "84094f5e7e6bbdde3e4f458e1e5386af2d3c440f6154bcd8fbd415e521377944",
+    "twiddle_inv_im": "2ffc1ad332cb48307073a57c8dc5367c95a33210e1f4216f1b96091695f12d20"
+  },
+  "source_sha256": {
+    "reference_integer_oracle.py": "78fa9837f51676bed60bec01f7ad9f8fa17faa506c2405dc8b0210801d009374",
+    "reference_qualification.py": "be696b28bacd693f6d3fa48510b417491282e730babe2ae455f74c62dce7727d",
+    "rounding.hpp": "0c5691734ca317f5a42b918d01e1b134d3c27fd044fd0f5fc2dddb68fc623180"
+  },
+  "limitations": [
+    "Coefficient tables are shared specification inputs.",
+    "No physical hardware or RTL execution in this fixture generation.",
+    "This is new supplemental evidence, not a modification to the frozen October17 campaign."
+  ],
+  "original_local_fixture_manifest_sha256": "73fb93edc7bbd05d0f571fe766c6469febbf2173f798fe17fb0c8b809a7ca887",
+  "packet_encoder_sha256": "f018048a6a8c1a9314321e42b13a154add6054c6aacd232802bc24e3fa6f1b49"
+}

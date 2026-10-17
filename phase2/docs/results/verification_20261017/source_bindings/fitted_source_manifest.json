@@ -1,0 +1,1376 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/outputs/trecap_stream8_v01/build01/source_manifest.json",
+      "original_sha256": "f9fd05862997aca4be309caac37ba8f89dd60e4f85656f099d0c86416122149e"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "schema": "tsh2-hps50-snapshot-v1",
+    "status": "PREPARED",
+    "source_id": "39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed",
+    "files": [
+      {
+        "path": "artifacts/coefficients/twiddle_im.memh",
+        "sha256": "d8b9c42a442e0dcaace24ec76ae28b41c29d7ad4df6e43aed1da0c1df818d1a0"
+      },
+      {
+        "path": "artifacts/coefficients/twiddle_inv_im.memh",
+        "sha256": "2ffc1ad332cb48307073a57c8dc5367c95a33210e1f4216f1b96091695f12d20"
+      },
+      {
+        "path": "artifacts/coefficients/twiddle_inv_re.memh",
+        "sha256": "84094f5e7e6bbdde3e4f458e1e5386af2d3c440f6154bcd8fbd415e521377944"
+      },
+      {
+        "path": "artifacts/coefficients/twiddle_re.memh",
+        "sha256": "84094f5e7e6bbdde3e4f458e1e5386af2d3c440f6154bcd8fbd415e521377944"
+      },
+      {
+        "path": "artifacts/coefficients/window_qw.memh",
+        "sha256": "05bcfd74bea5fe075b56a5b83c9db53ea73c4b0f6d6f45348eda0a14cf41c4ed"
+      },
+      {
+        "path": "artifacts/measurement/multitone/y_dense.memh",
+        "sha256": "718212b1cbb8fca5a60206b6a9d5b39363ae0cee8945ca792b670c035fd34117"
+      },
+      {
+        "path": "artifacts/measurement/multitone/y_masked.memh",
+        "sha256": "a966f60ab30759ac64ac440cc893d74782c1020883cb4fa570ddb32ad0081c8a"
+      },
+      {
+        "path": "artifacts/test_vectors/near_threshold_multitone_Ns1024_thr64/x_in.memh",
+        "sha256": "36912af7d556f633a348f0bc294555dd16d1494f540ae542d840071e651b3e9b"
+      },
+      {
+        "path": "build_snapshot.py",
+        "sha256": "5c96269d2de2049672c06361303ae27a16d7feb36de711089b37c734a93af40f"
+      },
+      {
+        "path": "capture_hps_ddr_assignments.tcl",
+        "sha256": "49a314a2d6ef39aa2b1b2a38133e3719894e32598496fefec430536fd4868d49"
+      },
+      {
+        "path": "CONTRACT.md",
+        "sha256": "73af404e631860483433b1df3e0fb53f7ea66bdc1f87319b5e519aec89181f13"
+      },
+      {
+        "path": "generated/trecap_core_export_observed.sv",
+        "sha256": "a3e887bb2383ab6ca11d5a1d1f8eef184f9f855510171cfb531588448a9fada9"
+      },
+      {
+        "path": "generated/trecap_pcm_stream_source.sv",
+        "sha256": "79e402d7314b6540aea813bab2a42efa4d3107a34a63d61ff5ea3549bb4101f7"
+      },
+      {
+        "path": "generated/trecap_pcm_stream_top.sv",
+        "sha256": "2d8e7794a5629cf88e9d47ee0f2dd68ab28d1b73e3c071d701e2d5e3ab1780d2"
+      },
+      {
+        "path": "generated/trecap_spectral_exporter.sv",
+        "sha256": "7a041daa6f32486e3f3e2c4bfdb95b9a5dc6277f6b0f4ba7f525fcb082a258be"
+      },
+      {
+        "path": "hps_image.sdc",
+        "sha256": "08ea77a1accc64362daf283fa8ab4ceccde4d010ae3b45676de63fe5c7507ff4"
+      },
+      {
+        "path": "hps_peripheral_io.tcl",
+        "sha256": "edd314814b81a68f1458e028bbfe99b9d7067d2853acca5f8640e7ff3c1ee0c3"
+      },
+      {
+        "path": "hps_peripheral_timing.sdc",
+        "sha256": "ad6c78e07e9a74c3c9f790fc03c0958ab9b9fc4ad702e78d33a592bc8ea642bc"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/.gitkeep",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/generate_system.sh",
+        "sha256": "aadea48e6fae49ffbbee8954e23f03a50da4d880adff7442892416e6676635bc"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/hps_config.tcl",
+        "sha256": "9495720f49558bd58186fb2cea96c6cbfea815af24c92e92befbd816fdf01501"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/ip/trecap_csr_bridge/trecap_avalon_csr_bridge.sv",
+        "sha256": "7a920ed5166f370e2366362ce8745d39c6a71717366daacde470646660e6b0e0"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/ip/trecap_csr_bridge/trecap_avalon_csr_bridge_hw.tcl",
+        "sha256": "e0170fdabaf0a1061d079c120bbfc3aac4f3c2ea05ce5e8d44a714ad01cf66ca"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/platform_designer.tcl",
+        "sha256": "902a8b61c43e97439b1d6e992e8756d3ecc66cc375a5e2cca8c0751073696dad"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/presets/README.md",
+        "sha256": "279ac48a9eab63b99842cbd86a161d0eae3a5bc4f4404490e137eef55b983765"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/presets/terasic_de1soc_revh_qp20_1_hps.tsv",
+        "sha256": "774671612e1b4772a7bad5c26349296bce96369181a7b7957a654535651a81be"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/presets/terasic_de1soc_revh_qp20_1_hps_manifest.json",
+        "sha256": "5ac619a7fa1f8e778dc491d11448fdee2aca916d2fc968d3b114431b63e738f4"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altdq_dqs2_acv_connect_to_hard_phy_cyclonev.sv",
+        "sha256": "1b6f02b2ad49a9260bec1b25548b3bf1040eed847931ef77bf8f1afa485f41a1"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_avalon_mm_bridge.v",
+        "sha256": "0e2752d651f86533294a9024ceeb273f210e1483bd8375672a5a0ff899ad18e6"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_avalon_sc_fifo.v",
+        "sha256": "64eb470c506508cb2e7ca129c9e83120bd75c2dcab089bc9c9585602fcecdcef"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_avalon_st_pipeline_base.v",
+        "sha256": "6232fac8bc298cac4c501617beba7331819914f4125511d0e7a53ba3df21eb0c"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_avalon_st_pipeline_stage.sv",
+        "sha256": "6f7d0c8e18061ed11a3410ec9eeb103d6a822605272db1a0cef6e44051a7b366"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_default_burst_converter.sv",
+        "sha256": "33978f040e54257a9c374e3ff23ea70f41220c07cc2350cb73ce5d3e64d29b4a"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_incr_burst_converter.sv",
+        "sha256": "ffecf3d3f53e5d7b0f4f371ed15e8338d5405204735c833c0eb03c2ed0ddeaf1"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_mem_if_dll_cyclonev.sv",
+        "sha256": "799a7f59c2458104122253eed4f0cf8fab5ab3cb4b060af93037fd72a81a4129"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_mem_if_hard_memory_controller_top_cyclonev.sv",
+        "sha256": "8728e1a515d6d1201decc469b7b650c2c8703f214eb70a4e0faaa99dfefb8fb0"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_mem_if_hhp_qseq_synth_top.v",
+        "sha256": "14b94f7ebb5d645d61c9333e5bd964b3402eb6cd32ef8b8c382dd139e5f7feac"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_mem_if_oct_cyclonev.sv",
+        "sha256": "15f4b60f816bae7f12d38c3d1adc8e83c56de73dd2ab1d2d7a0cf373a3a1de73"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_address_alignment.sv",
+        "sha256": "144481bf0da9b0e5ce6d3f6049d0e1b11a21e1226deefe2be883278b46da30d9"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_arbitrator.sv",
+        "sha256": "9ad124f19f60f429eec5577e835b79accf90ef36b3bd15b44bfcf77690b5df74"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_axi_master_ni.sv",
+        "sha256": "4f74a9c7596ca02e0b851aa81696ecb5ce21d3617a5a4aa93da986f47492646f"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_burst_adapter.sv",
+        "sha256": "a387b28e1febcdd4ee430e73698576bcc9a69c75d875a4ec3b5f1cc0d461e20c"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_burst_adapter_13_1.sv",
+        "sha256": "2129886a3183b5f7b23cd48050f052b4382e05bb24312985941ba5aec42eb94f"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_burst_adapter_new.sv",
+        "sha256": "c74adb2318294fb664a2efcf4c5b4b863199beaca231719d6d5bc7fcc58784a6"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_burst_adapter_uncmpr.sv",
+        "sha256": "82953c6082d157b9e71e5587a139e99229118310fc6be0b106217d4363679d21"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_burst_uncompressor.sv",
+        "sha256": "298fd73c7a791a29093ebe7c6f57d9ed55d67ea08c0f5da14a4c6ea7131d2a78"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_master_agent.sv",
+        "sha256": "66083328c067885ce6a8402f3b0c6977ba7f86f18d0294bd1a2ffd26fc460388"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_master_translator.sv",
+        "sha256": "ec92d9a1a9a9fdc69825e58d3f1cb35deee684f04111959f9e4cd70fa7caf429"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_slave_agent.sv",
+        "sha256": "47488739a6863d3294e1f31908676c60458d8342cad99274643c8ae293e3c74b"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_slave_translator.sv",
+        "sha256": "9e28ad6bfc75032a2ed94ccde9ce4263e0e8926780391be2770d3a70a8b086da"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_reset_controller.sdc",
+        "sha256": "407824af91b3867813b244ca04cd294b4e2adb5f63776daa5052539e0710e8a9"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_reset_controller.v",
+        "sha256": "c52e8e0938791905b156db1c55caaa40e779529a8327c71071cce3b1d75416d6"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_reset_synchronizer.v",
+        "sha256": "546fbe0953cdc22bb32f63e2d8885f0bda030e70f2ddf8308c0ef428debc1d38"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_wrap_burst_converter.sv",
+        "sha256": "abd28889ca89914799d0564746aa49c0cfeb4e611c424192ddb15842cd20503d"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps.pre.xml",
+        "sha256": "08f40d4361ee2165fc3c3667a0c05594574e168593f8734e13bad48c05172cef"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_AC_ROM.hex",
+        "sha256": "e9f95814f8b1f5cb7f706bde426f019ff8d45f1f67bf61578fa4004116a7a350"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_inst_ROM.hex",
+        "sha256": "357cfe43c78fe97cf255eab83ce0fd32fd7f2f87cfd1355f185a2c4935a2852e"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram.v",
+        "sha256": "b8c62ff30265c0eb41447601c609640a00c42272626c8aff41900812bc0e8e7c"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0.ppf",
+        "sha256": "d4dca70dba63f330817190cc92b5d346d8e50e3726c978a0dfc2255fe3171cca"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0.sdc",
+        "sha256": "f9f415061c150ed6959b73a06e0434c136e27f9f29d156dc408991ed61961767"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0.sv",
+        "sha256": "c22e0264cef97944857de831a12ad02effb2a6113aeea19a719d1412cc20cd3c"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_acv_hard_addr_cmd_pads.v",
+        "sha256": "c7257313e34d673d9e23c8902181fe89a05151ed4fce9b07ef26475d62dce8d7"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_acv_hard_io_pads.v",
+        "sha256": "5d3ff918255a837f23d188e78544a8ed462ccb953c3d4b6c847c83d34275ec1e"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_acv_hard_memphy.v",
+        "sha256": "8172d23b301bf56a00e17e2aae0044b73d7b7e43d05171fb1933290834fdb0a0"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_acv_ldc.v",
+        "sha256": "fd2785ae5443438646651599b9672946916d9ac5ed54bddd5a5a5563c95bef7c"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_altdqdqs.v",
+        "sha256": "2d8420d69d736882eb6b5b2cc90acb225e3170acd41d96a5de65803645ebe1ad"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_clock_pair_generator.v",
+        "sha256": "d791dd391812ee626f3d32cf45b252536b11442fbbbdf96736d49da057568ab2"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_generic_ddio.v",
+        "sha256": "c8f62355329539b7a8bb3c4a6dae97ff6bab1aea08b6388d811b4fcc1f68a656"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_iss_probe.v",
+        "sha256": "72a6c95dc514524783d6ec5666af2fbbc2646e9962a3991f387c246cf8e9a67d"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_parameters.tcl",
+        "sha256": "a57920cd5901149487d8ddec2e297e8aecbcd67d9d744cacf7c8417467212b8a"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_phy_csr.sv",
+        "sha256": "6d88ca69fb99d5f32b73ea199e9e321238ed0c3b06edad934998f08d0200abd1"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_pin_assignments.tcl",
+        "sha256": "8cb0b1cf7b22b8ef9b09dec24aadaae1c1c5f41b25d7ff403de1f7993c47094f"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_pin_map.tcl",
+        "sha256": "35ec0dac46a58cd089ad754803f5ebce0180f0183902519bb54ef0605309511e"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_report_timing.tcl",
+        "sha256": "ae8cffba0b736d4b5c4288bb1647e030e08e08a1d9e2bfb631503a583d54359f"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_report_timing_core.tcl",
+        "sha256": "659ba5de15e194b67a814ae73fad4c27027640aed5d7c7ec162398c08b543e09"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_reset.v",
+        "sha256": "ea2ae8c0b12d7cedb516749c7464c9812c4cad20d2478aff3905b9675f245ff2"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_reset_sync.v",
+        "sha256": "4d21dbb1f0f07d53032cdfd10d109bb96c5ef43a8a204f8da81c775a77cddd90"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_timing.tcl",
+        "sha256": "4bed45269c14ce391abafdafe16e6264333b3b3748631330cecb057a26401f03"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_pll.sv",
+        "sha256": "e521c2a3c843bdfb0d4d0e21509b18be24987eefbb2b5cecf73aed703f8c8886"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/alt_types.pre.h",
+        "sha256": "e457af5507db6d6dea3c02ce39525d7cce3133e83c30e25684782ad95e0fab5c"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/emif.pre.xml",
+        "sha256": "1643180e0c38eecead5d9de31920e5c17eac1b99e5b1dc012b809d6ed0146570"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sdram_io.pre.h",
+        "sha256": "ccba54b5653f08b15fe4059c79f6f91599802855e24ddc48f9b293e6920df3d1"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer.pre.c",
+        "sha256": "b05e822f10e6dc1a9f565e5b559152c6ca7afa55dfb4de89104ee0085db8f1f9"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer.pre.h",
+        "sha256": "d83f8aebac264f805177aa81b30fa5d11d65a418dde20198b98d93078ede0969"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer_auto.pre.h",
+        "sha256": "2e6243e4ff454e61b898a145f5868c43501b5feee9517f294c06ec0df75f7a30"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer_auto_ac_init.pre.c",
+        "sha256": "8aae8160a0643297bddab139e8268cd59f81b95a55d44f9c00367af9743763df"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer_auto_inst_init.pre.c",
+        "sha256": "5f6354da5efc817adc95a09d834ffa56221b5fd7430ec243c54d1d86ea94d788"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer_defines.pre.h",
+        "sha256": "af24f885d71b0c9c3ff4997f18e9de3ddd17d8024455f6eee9b2100770979748"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/system.pre.h",
+        "sha256": "a3e1ed911e305181b679899dfa62d2ff7555ddff555de8f9e205321ef295255c"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/tclrpt.pre.c",
+        "sha256": "a4b7b1dc7fda71a162a3e31938eca0685af42433a6e4a8263251f59a7a2f86ef"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/tclrpt.pre.h",
+        "sha256": "d88f59d7737d19fa06818729d3bda438a7cddb284f2980d4eff9d9d0b261cb1c"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_hps_0.v",
+        "sha256": "ae9429c193b89cd0b0755e156e88c743281553a5b567709528335eb6d498cc93"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_hps_0_fpga_interfaces.sdc",
+        "sha256": "c39fd028c61b6b6a6a6c3dae27b73d03a777c5c5e47cc43bdc9e24ffa940e822"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_hps_0_fpga_interfaces.sv",
+        "sha256": "f9af1460500452c55af49f1095e20215451a80567396a0e678c0adc5c7ba07ca"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_hps_0_hps_io.v",
+        "sha256": "0c98b77df9e06e96fb0e4cdf6724c39410f2715ea3e850121e4acce18f260a21"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_hps_0_hps_io_border.sdc",
+        "sha256": "208f249ea4a140fcecc8eb60a33d2ffb4c3f679f9c6a2acb19d0c250d2e2397a"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_hps_0_hps_io_border.sv",
+        "sha256": "196f58e5bd4173f15544de49e1744967b6e2823648c77d12678630dd622cbd15"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_irq_mapper.sv",
+        "sha256": "aa4f39c455bbfeb8999ccdd14a9148d18a7ba4f05d1e3a9638b2c58b7532863c"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0.v",
+        "sha256": "975c635f5cf564bdc65ec6bc407e5fe01cc90454991ab51d2259df43c3b6adf1"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_avalon_st_adapter.v",
+        "sha256": "9036c6f7ec120331a5205485861d044d3901fa21defaa2faa96002da0fe458d4"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv",
+        "sha256": "2d5753bde13889be1a2ceb5922c769c276519f88fdd3637d08db75d23c9257c4"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_cmd_demux.sv",
+        "sha256": "503ee449ca70f1b6cf9a80c04bb935186a99af61eab61454b592c8e40ceb310c"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_cmd_mux.sv",
+        "sha256": "e033eeef2eb0813b106a8f80d77015d09643a0de31f03e7a65c0572fbb267eb9"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_router.sv",
+        "sha256": "a5e203ef2f86758996d7aba14772566f0c25dc9426be71892468b0a0c485aca1"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_router_002.sv",
+        "sha256": "eb8a107719d56a6c39c1c9dea6376537cec845077cc156e82bf8b77c3cc10281"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_rsp_demux.sv",
+        "sha256": "5a29e3719c5e370db81a4c3316a69fa109d594d54bb471a3afc0763f14692a3f"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_rsp_mux.sv",
+        "sha256": "8a4eb76a70e0b9b9cfb1c673ae6029ae019b9717139b17acc65b6bde2ef7fd2f"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1.v",
+        "sha256": "82551a411dcaadc04c27bb75c4e895fd95794c7f1f6fc623c20c3a657f21ef10"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1_avalon_st_adapter.v",
+        "sha256": "4a0e712c5fcdc840a953fac9479ee393d5e2ef3647d1465da6b085b03b9f3e41"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1_avalon_st_adapter_error_adapter_0.sv",
+        "sha256": "a0417c95f8d290bfbebf806949ab87ab5dfb75ea3950ab21daf1bb3245c39610"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1_cmd_demux.sv",
+        "sha256": "0b21aac1df67b16a1d343a97840cbd377874b3795efe5354d22e9ff1232b5c3f"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1_cmd_mux.sv",
+        "sha256": "7e3071b3348547d5e9146c06b029b549ef83e0aee0ce8544a488eb5fa5ab3808"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1_router.sv",
+        "sha256": "464ed4e39e240b9f561dd269c6c1c2859023ed413d4074fbc379b01d36404c23"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1_router_001.sv",
+        "sha256": "ce18e7d345f7ce19c1de778a75955340e85a82d9e9fc05c48cc25305a5580296"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1_rsp_mux.sv",
+        "sha256": "f91f09efb40dc541ff1c6b5a39ab0e5970e64c551a41670c0e7e1f0bbf940338"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/trecap_avalon_csr_bridge.sv",
+        "sha256": "7a920ed5166f370e2366362ce8745d39c6a71717366daacde470646660e6b0e0"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/system.debuginfo",
+        "sha256": "f525bfb56319276091e74c57d5d97910ad1154c5e39b68590606ae2af56b0609"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/system.qip",
+        "sha256": "e80923b32201458fa7d949d0897224c97d548e8c50de2de75347dbc2e97e4b07"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/system.qip.original",
+        "sha256": "c8593fb79ef9e83c3d0ca240c428e906248f6360f362c316ab196498a5611011"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/system.regmap",
+        "sha256": "1f4e71c0737b5618184e0c38a29706370ff7d9fffc1c0908b1b7c7baf25183b5"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/system.v",
+        "sha256": "b389377cfb93e41666b95036250771522f0ff47facaf17b885a77b85c7051bcf"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/system_hps_0_hps.svd",
+        "sha256": "5c675cfdc3cba22762634106a730cb04bef3952a5912f01d87bf80ec21bab398"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/system.cmp",
+        "sha256": "6f8c1c96d01f20b4012b66c1d48bd0fda7d1d5d3df1ee99325237e48c821cc52"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/system.html",
+        "sha256": "d1624b753e898682ac248bec1549d31ed0c8d2f88f606e39daa6d47340120610"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/system.xml",
+        "sha256": "497346f4f9eccbe63cf06515c8500e539429a97d54ddff441882f30326b5206c"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/system_generation.rpt",
+        "sha256": "94a42fb1e6cc28c2e518d97476b76ea9780689250177aec359e923d4679cc12d"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system/system_generation_previous.rpt",
+        "sha256": "94a42fb1e6cc28c2e518d97476b76ea9780689250177aec359e923d4679cc12d"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system.qsys",
+        "sha256": "b3101b69f042d319c0c9686db3c0566feeb6de9013d963826058bc8cba776141"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system.sopcinfo",
+        "sha256": "05bc3ba55bd4f50be321a4595c9ce2db81eed5038dad63faac8b748dfea2f3ff"
+      },
+      {
+        "path": "legacy/platform/de1soc/qsys/system_blueprint.xml",
+        "sha256": "77c9ce04ddfe82ab220dc693d966c18571312a87e46308b33c3d5c591029543d"
+      },
+      {
+        "path": "review_scripts/analyze_timing.py",
+        "sha256": "aad55b8486826c4f4cccfa15eac9e1ec6ab45ed80668d69ed72a360033311526"
+      },
+      {
+        "path": "review_scripts/review_image.py",
+        "sha256": "c6ce4f634e1cf83ac06c71a44eac8bf10f8d02c64af3382fe21c6228708ed524"
+      },
+      {
+        "path": "review_scripts/timing_review.tcl",
+        "sha256": "cd6c4603c255f72c06c7b178aa1bb162c96453e16b8711e6b36022083841cbbc"
+      },
+      {
+        "path": "source/rtl/common/async_fifo.sv",
+        "sha256": "65c1a44b5ac734d4f006cb1cb7fd0bc0906413e33fac0851824b9e3d8106abb6"
+      },
+      {
+        "path": "source/rtl/common/reset_sync.sv",
+        "sha256": "fa443befd35b8a12316f6c764b154bbab10c18bdb6dd6e342087752f663923c4"
+      },
+      {
+        "path": "source/rtl/common/round_sat.sv",
+        "sha256": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457"
+      },
+      {
+        "path": "source/rtl/common/simple_dual_port_ram.sv",
+        "sha256": "86b9a342b4e6060192dae32c85f164921e2b055724fc0854958ffea0fcc9fdc4"
+      },
+      {
+        "path": "source/rtl/common/skid_buffer.sv",
+        "sha256": "5d898e6d5ad70812bb9d8a945f39eca4e137709ff172379376167436043f7263"
+      },
+      {
+        "path": "source/rtl/common/sync_bus_snapshot.sv",
+        "sha256": "8b2922810e9b2efc23451f90c61fddc985cbcc2e7a0b2d849f4a30e5a61b432d"
+      },
+      {
+        "path": "source/rtl/common/sync_fifo.sv",
+        "sha256": "2085edcb855a59f0221294927698883fa238ac7b114fffc68bcf33f760352cd8"
+      },
+      {
+        "path": "source/rtl/common/sync_pulse.sv",
+        "sha256": "af29834ff593199d3401e1f294efa85b7bfb20bde58efabf2545863d5c7e3250"
+      },
+      {
+        "path": "source/rtl/common/true_dual_port_ram.sv",
+        "sha256": "e14e08cbad033f1a1efa256fb8826fe1a1ac5a5ced3d1e5df53a1d61fdb20df4"
+      },
+      {
+        "path": "source/rtl/core/trecap_analysis_window.sv",
+        "sha256": "62798c5bfed8076c54568986bd6df6d57b430e9aacb97efb582364974620c6ad"
+      },
+      {
+        "path": "source/rtl/core/trecap_core_top.sv",
+        "sha256": "44ab78f15ab83a13de90109e2772159dbac0efc1fccf66791d9c70657fe76f6b"
+      },
+      {
+        "path": "source/rtl/core/trecap_delay_error_metrics.sv",
+        "sha256": "1f08cbb2131d9ab4f84c90b750c2836046aea966498d035bcec94422b4958e30"
+      },
+      {
+        "path": "source/rtl/core/trecap_frame_scheduler.sv",
+        "sha256": "6d263b88c540605e1bfb728e5b4c1bc87d7f5552a007b178031a198675f5c255"
+      },
+      {
+        "path": "source/rtl/core/trecap_hermitian_canonicalizer.sv",
+        "sha256": "6b1c11ba7badb80c18a71e157346be994cb2cec1c775a4a910f38843d4fa2b4d"
+      },
+      {
+        "path": "source/rtl/core/trecap_input_ring.sv",
+        "sha256": "022be1284812f1cfd98dd39ff178cb3890ec2bd3b8eb047ff2c2814ef5a5c44a"
+      },
+      {
+        "path": "source/rtl/core/trecap_mag2_mask.sv",
+        "sha256": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d"
+      },
+      {
+        "path": "source/rtl/core/trecap_spectrum_mask_builder.sv",
+        "sha256": "695d9bd8c51c3ee97412854d37a4c5f5b953f793cb05a4a76f83d305e05fe3e0"
+      },
+      {
+        "path": "source/rtl/core/trecap_synthesis_wola.sv",
+        "sha256": "7d30dee3679adb15bee54f2ad9762d102b08f54314c280a6f4918b95d277a7aa"
+      },
+      {
+        "path": "source/rtl/core/window_rom.sv",
+        "sha256": "931ec1f72f160384df6cb6c008db22cde6dab1bee94b0b7013843ab44374dcbe"
+      },
+      {
+        "path": "source/rtl/fft/bit_reverse_addr.sv",
+        "sha256": "de4dafca7eae92e6f900d675151dc20dc794e1f66ff9ce40548a7520f3ca6209"
+      },
+      {
+        "path": "source/rtl/fft/complex_mul_q.sv",
+        "sha256": "c45b088222549570d2b65719739bed2fff5be7b77bb6d163c4c1a5c3d1148579"
+      },
+      {
+        "path": "source/rtl/fft/trecap_fft256.sv",
+        "sha256": "a0c710046185fb54bd7281444c57539f9b689e4a6f52f634dba60a259619ef66"
+      },
+      {
+        "path": "source/rtl/fft/trecap_fft_stage.sv",
+        "sha256": "0f8795941f9843e1f266cc0ee9d310c4be52d3103e6d750abb455f49880472d1"
+      },
+      {
+        "path": "source/rtl/fft/trecap_ifft256.sv",
+        "sha256": "92c175d4a30da253e9a93e118080261958daa181cf4e6f12560d9524d110bd3c"
+      },
+      {
+        "path": "source/rtl/fft/twiddle_rom.sv",
+        "sha256": "4f0beb59243898d47eb79857ceb0caf9cf9f753f2ea1d7e942507c4ee6824d7c"
+      },
+      {
+        "path": "source/rtl/include/generated/trecap_core_pkg.sv",
+        "sha256": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784"
+      },
+      {
+        "path": "source/rtl/include/generated/trecap_csr_pkg.sv",
+        "sha256": "3a1b8b968015494077f8627ff541de8120769258461b2d182c3ea4ac944176e1"
+      },
+      {
+        "path": "source/rtl/include/generated/trecap_iface_pkg.sv",
+        "sha256": "d24ab618d901cb92394e190549489cb88caa7444de18731de0923c24446afd68"
+      },
+      {
+        "path": "source/rtl/include/generated/trecap_packet_pkg.sv",
+        "sha256": "97a003c14b93019b5356208ea8be2e76df7435123132440729ea7038cd13b2be"
+      },
+      {
+        "path": "source/rtl/include/trecap_build_pkg.sv",
+        "sha256": "e0871a68fadfb69258df42b0c6544f9927f124963e5a55f055d12815753ff827"
+      },
+      {
+        "path": "source/rtl/include/trecap_math_pkg.sv",
+        "sha256": "3930d84eead3da9b097e26b82678a3e847fe0bb296e52e192c297702f70f7c2a"
+      },
+      {
+        "path": "source/rtl/interfaces/trecap_avmm_if.sv",
+        "sha256": "e57274d6fbbf4a10a25beab30151a89d5f5148a390ce1c946d616cc33146ede9"
+      },
+      {
+        "path": "source/rtl/interfaces/trecap_core_tap_if.sv",
+        "sha256": "a0a55654863fb0ffae27ea3d3be79723c9bcf75cbc44fae578edcfaf5b0ba448"
+      },
+      {
+        "path": "source/rtl/interfaces/trecap_csr_if.sv",
+        "sha256": "a30d6be979bc5b0364226156ad92d188dba23aaea6d568496bea4872e2e21417"
+      },
+      {
+        "path": "source/rtl/interfaces/trecap_frame_if.sv",
+        "sha256": "7f29f0c67f64d30e17c5217748d063047049cbaf89e1b302c456e6e2de6d09c4"
+      },
+      {
+        "path": "source/rtl/interfaces/trecap_record_if.sv",
+        "sha256": "92863fbe1f5e915ba19588b1f19eec3df26a5cc48f0d62b6b54ec60851b9d6af"
+      },
+      {
+        "path": "source/rtl/interfaces/trecap_sample_if.sv",
+        "sha256": "c5756125161ff34612d06f27a192a3ecbaf2f3d572f56e9a58fb7c55efc8da5d"
+      },
+      {
+        "path": "source/rtl/sources/trecap_adc_adapter.sv",
+        "sha256": "fec492a7013e9b18a084dbd618c4af1e02287fa29b9049a393963d5b10138889"
+      },
+      {
+        "path": "source/rtl/sources/trecap_audio_adapter.sv",
+        "sha256": "b0f54a05c661c47e311a76198f65d36d2f62b3fac223ac2fbf36f5d73e37eba7"
+      },
+      {
+        "path": "source/rtl/sources/trecap_bram_replay_source.sv",
+        "sha256": "842e1d90663c297285ccdd9f9cda7969f8ca846994ec27bbf12e07d985758e66"
+      },
+      {
+        "path": "source/rtl/sources/trecap_diagnostic_source.sv",
+        "sha256": "1c355aa2ff32dec15d04d86d8b29f3f952caf146850a5d4cb818128f3c5de9b0"
+      },
+      {
+        "path": "source/rtl/sources/trecap_source_mux.sv",
+        "sha256": "efe7cfa8bd750c2daa68187582b2ed3f919ed0e65907f809af6f549fcb9ccf8f"
+      },
+      {
+        "path": "source/rtl/top/trecap_core_bram_replay_top.sv",
+        "sha256": "5fe42cbe7e787f94ab46d31ed7af264a58bad0d22fefdbaffcd37fe7c85c308f"
+      },
+      {
+        "path": "source/rtl/top/trecap_core_only_top.sv",
+        "sha256": "8af237604db20cd32ecd1442b5918303c959461a843b7c3d67ccac8b048c8d86"
+      },
+      {
+        "path": "source/rtl/top/trecap_source_core_integration.sv",
+        "sha256": "0677af80af9cb5a19e42e57ccbfcd312324183ec428651b34ef0ed747ad4df77"
+      },
+      {
+        "path": "sources/platform_designer_wrapper.sv",
+        "sha256": "3123d253447c91903e41c646049a3f4c837ff871f3ca493b3019382d00934c4e"
+      },
+      {
+        "path": "sources/stream_fifo.sv",
+        "sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b"
+      },
+      {
+        "path": "sources/trecap_hps_top.sv",
+        "sha256": "cce69d7a6395d93c8a487e36b8db8e4288e5b2e9613f205dfd84b1f380d96447"
+      },
+      {
+        "path": "sources/trecap_stream_adapter.sv",
+        "sha256": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305"
+      }
+    ],
+    "qip_references": [
+      {
+        "role": "SOPCINFO_FILE",
+        "path": "legacy/platform/de1soc/qsys/system.sopcinfo",
+        "sha256": "05bc3ba55bd4f50be321a4595c9ce2db81eed5038dad63faac8b748dfea2f3ff"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/system.cmp",
+        "sha256": "6f8c1c96d01f20b4012b66c1d48bd0fda7d1d5d3df1ee99325237e48c821cc52"
+      },
+      {
+        "role": "SLD_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/system.regmap",
+        "sha256": "1f4e71c0737b5618184e0c38a29706370ff7d9fffc1c0908b1b7c7baf25183b5"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/system_hps_0_hps.svd",
+        "sha256": "5c675cfdc3cba22762634106a730cb04bef3952a5912f01d87bf80ec21bab398"
+      },
+      {
+        "role": "SLD_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/system.debuginfo",
+        "sha256": "f525bfb56319276091e74c57d5d97910ad1154c5e39b68590606ae2af56b0609"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system.qsys",
+        "sha256": "b3101b69f042d319c0c9686db3c0566feeb6de9013d963826058bc8cba776141"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/system.v",
+        "sha256": "b389377cfb93e41666b95036250771522f0ff47facaf17b885a77b85c7051bcf"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_reset_controller.v",
+        "sha256": "c52e8e0938791905b156db1c55caaa40e779529a8327c71071cce3b1d75416d6"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_reset_synchronizer.v",
+        "sha256": "546fbe0953cdc22bb32f63e2d8885f0bda030e70f2ddf8308c0ef428debc1d38"
+      },
+      {
+        "role": "SDC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_reset_controller.sdc",
+        "sha256": "407824af91b3867813b244ca04cd294b4e2adb5f63776daa5052539e0710e8a9"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_irq_mapper.sv",
+        "sha256": "aa4f39c455bbfeb8999ccdd14a9148d18a7ba4f05d1e3a9638b2c58b7532863c"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1.v",
+        "sha256": "82551a411dcaadc04c27bb75c4e895fd95794c7f1f6fc623c20c3a657f21ef10"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1_avalon_st_adapter.v",
+        "sha256": "4a0e712c5fcdc840a953fac9479ee393d5e2ef3647d1465da6b085b03b9f3e41"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1_avalon_st_adapter_error_adapter_0.sv",
+        "sha256": "a0417c95f8d290bfbebf806949ab87ab5dfb75ea3950ab21daf1bb3245c39610"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1_rsp_mux.sv",
+        "sha256": "f91f09efb40dc541ff1c6b5a39ab0e5970e64c551a41670c0e7e1f0bbf940338"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_arbitrator.sv",
+        "sha256": "9ad124f19f60f429eec5577e835b79accf90ef36b3bd15b44bfcf77690b5df74"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1_cmd_mux.sv",
+        "sha256": "7e3071b3348547d5e9146c06b029b549ef83e0aee0ce8544a488eb5fa5ab3808"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1_cmd_demux.sv",
+        "sha256": "0b21aac1df67b16a1d343a97840cbd377874b3795efe5354d22e9ff1232b5c3f"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1_router_001.sv",
+        "sha256": "ce18e7d345f7ce19c1de778a75955340e85a82d9e9fc05c48cc25305a5580296"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_1_router.sv",
+        "sha256": "464ed4e39e240b9f561dd269c6c1c2859023ed413d4074fbc379b01d36404c23"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_avalon_sc_fifo.v",
+        "sha256": "64eb470c506508cb2e7ca129c9e83120bd75c2dcab089bc9c9585602fcecdcef"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_slave_agent.sv",
+        "sha256": "47488739a6863d3294e1f31908676c60458d8342cad99274643c8ae293e3c74b"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_burst_uncompressor.sv",
+        "sha256": "298fd73c7a791a29093ebe7c6f57d9ed55d67ea08c0f5da14a4c6ea7131d2a78"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_master_agent.sv",
+        "sha256": "66083328c067885ce6a8402f3b0c6977ba7f86f18d0294bd1a2ffd26fc460388"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_slave_translator.sv",
+        "sha256": "9e28ad6bfc75032a2ed94ccde9ce4263e0e8926780391be2770d3a70a8b086da"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_master_translator.sv",
+        "sha256": "ec92d9a1a9a9fdc69825e58d3f1cb35deee684f04111959f9e4cd70fa7caf429"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0.v",
+        "sha256": "975c635f5cf564bdc65ec6bc407e5fe01cc90454991ab51d2259df43c3b6adf1"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_avalon_st_adapter.v",
+        "sha256": "9036c6f7ec120331a5205485861d044d3901fa21defaa2faa96002da0fe458d4"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv",
+        "sha256": "2d5753bde13889be1a2ceb5922c769c276519f88fdd3637d08db75d23c9257c4"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_rsp_mux.sv",
+        "sha256": "8a4eb76a70e0b9b9cfb1c673ae6029ae019b9717139b17acc65b6bde2ef7fd2f"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_rsp_demux.sv",
+        "sha256": "5a29e3719c5e370db81a4c3316a69fa109d594d54bb471a3afc0763f14692a3f"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_cmd_mux.sv",
+        "sha256": "e033eeef2eb0813b106a8f80d77015d09643a0de31f03e7a65c0572fbb267eb9"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_cmd_demux.sv",
+        "sha256": "503ee449ca70f1b6cf9a80c04bb935186a99af61eab61454b592c8e40ceb310c"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_burst_adapter.sv",
+        "sha256": "a387b28e1febcdd4ee430e73698576bcc9a69c75d875a4ec3b5f1cc0d461e20c"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_burst_adapter_uncmpr.sv",
+        "sha256": "82953c6082d157b9e71e5587a139e99229118310fc6be0b106217d4363679d21"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_burst_adapter_13_1.sv",
+        "sha256": "2129886a3183b5f7b23cd48050f052b4382e05bb24312985941ba5aec42eb94f"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_burst_adapter_new.sv",
+        "sha256": "c74adb2318294fb664a2efcf4c5b4b863199beaca231719d6d5bc7fcc58784a6"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_incr_burst_converter.sv",
+        "sha256": "ffecf3d3f53e5d7b0f4f371ed15e8338d5405204735c833c0eb03c2ed0ddeaf1"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_wrap_burst_converter.sv",
+        "sha256": "abd28889ca89914799d0564746aa49c0cfeb4e611c424192ddb15842cd20503d"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_default_burst_converter.sv",
+        "sha256": "33978f040e54257a9c374e3ff23ea70f41220c07cc2350cb73ce5d3e64d29b4a"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_address_alignment.sv",
+        "sha256": "144481bf0da9b0e5ce6d3f6049d0e1b11a21e1226deefe2be883278b46da30d9"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_avalon_st_pipeline_stage.sv",
+        "sha256": "6f7d0c8e18061ed11a3410ec9eeb103d6a822605272db1a0cef6e44051a7b366"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_avalon_st_pipeline_base.v",
+        "sha256": "6232fac8bc298cac4c501617beba7331819914f4125511d0e7a53ba3df21eb0c"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_router_002.sv",
+        "sha256": "eb8a107719d56a6c39c1c9dea6376537cec845077cc156e82bf8b77c3cc10281"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_mm_interconnect_0_router.sv",
+        "sha256": "a5e203ef2f86758996d7aba14772566f0c25dc9426be71892468b0a0c485aca1"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_merlin_axi_master_ni.sv",
+        "sha256": "4f74a9c7596ca02e0b851aa81696ecb5ce21d3617a5a4aa93da986f47492646f"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_avalon_mm_bridge.v",
+        "sha256": "0e2752d651f86533294a9024ceeb273f210e1483bd8375672a5a0ff899ad18e6"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/trecap_avalon_csr_bridge.sv",
+        "sha256": "7a920ed5166f370e2366362ce8745d39c6a71717366daacde470646660e6b0e0"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_hps_0.v",
+        "sha256": "ae9429c193b89cd0b0755e156e88c743281553a5b567709528335eb6d498cc93"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_hps_0_hps_io.v",
+        "sha256": "0c98b77df9e06e96fb0e4cdf6724c39410f2715ea3e850121e4acce18f260a21"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram.v",
+        "sha256": "b8c62ff30265c0eb41447601c609640a00c42272626c8aff41900812bc0e8e7c"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altdq_dqs2_acv_connect_to_hard_phy_cyclonev.sv",
+        "sha256": "1b6f02b2ad49a9260bec1b25548b3bf1040eed847931ef77bf8f1afa485f41a1"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_mem_if_dll_cyclonev.sv",
+        "sha256": "799a7f59c2458104122253eed4f0cf8fab5ab3cb4b060af93037fd72a81a4129"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_mem_if_hard_memory_controller_top_cyclonev.sv",
+        "sha256": "8728e1a515d6d1201decc469b7b650c2c8703f214eb70a4e0faaa99dfefb8fb0"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_mem_if_hhp_qseq_synth_top.v",
+        "sha256": "14b94f7ebb5d645d61c9333e5bd964b3402eb6cd32ef8b8c382dd139e5f7feac"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/altera_mem_if_oct_cyclonev.sv",
+        "sha256": "15f4b60f816bae7f12d38c3d1adc8e83c56de73dd2ab1d2d7a0cf373a3a1de73"
+      },
+      {
+        "role": "SOURCE_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_AC_ROM.hex",
+        "sha256": "e9f95814f8b1f5cb7f706bde426f019ff8d45f1f67bf61578fa4004116a7a350"
+      },
+      {
+        "role": "SOURCE_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_inst_ROM.hex",
+        "sha256": "357cfe43c78fe97cf255eab83ce0fd32fd7f2f87cfd1355f185a2c4935a2852e"
+      },
+      {
+        "role": "SOURCE_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0.ppf",
+        "sha256": "d4dca70dba63f330817190cc92b5d346d8e50e3726c978a0dfc2255fe3171cca"
+      },
+      {
+        "role": "SDC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0.sdc",
+        "sha256": "f9f415061c150ed6959b73a06e0434c136e27f9f29d156dc408991ed61961767"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0.sv",
+        "sha256": "c22e0264cef97944857de831a12ad02effb2a6113aeea19a719d1412cc20cd3c"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_acv_hard_addr_cmd_pads.v",
+        "sha256": "c7257313e34d673d9e23c8902181fe89a05151ed4fce9b07ef26475d62dce8d7"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_acv_hard_io_pads.v",
+        "sha256": "5d3ff918255a837f23d188e78544a8ed462ccb953c3d4b6c847c83d34275ec1e"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_acv_hard_memphy.v",
+        "sha256": "8172d23b301bf56a00e17e2aae0044b73d7b7e43d05171fb1933290834fdb0a0"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_acv_ldc.v",
+        "sha256": "fd2785ae5443438646651599b9672946916d9ac5ed54bddd5a5a5563c95bef7c"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_altdqdqs.v",
+        "sha256": "2d8420d69d736882eb6b5b2cc90acb225e3170acd41d96a5de65803645ebe1ad"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_clock_pair_generator.v",
+        "sha256": "d791dd391812ee626f3d32cf45b252536b11442fbbbdf96736d49da057568ab2"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_generic_ddio.v",
+        "sha256": "c8f62355329539b7a8bb3c4a6dae97ff6bab1aea08b6388d811b4fcc1f68a656"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_iss_probe.v",
+        "sha256": "72a6c95dc514524783d6ec5666af2fbbc2646e9962a3991f387c246cf8e9a67d"
+      },
+      {
+        "role": "TCL_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_parameters.tcl",
+        "sha256": "a57920cd5901149487d8ddec2e297e8aecbcd67d9d744cacf7c8417467212b8a"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_phy_csr.sv",
+        "sha256": "6d88ca69fb99d5f32b73ea199e9e321238ed0c3b06edad934998f08d0200abd1"
+      },
+      {
+        "role": "TCL_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_pin_assignments.tcl",
+        "sha256": "8cb0b1cf7b22b8ef9b09dec24aadaae1c1c5f41b25d7ff403de1f7993c47094f"
+      },
+      {
+        "role": "TCL_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_pin_map.tcl",
+        "sha256": "35ec0dac46a58cd089ad754803f5ebce0180f0183902519bb54ef0605309511e"
+      },
+      {
+        "role": "TCL_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_report_timing.tcl",
+        "sha256": "ae8cffba0b736d4b5c4288bb1647e030e08e08a1d9e2bfb631503a583d54359f"
+      },
+      {
+        "role": "TCL_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_report_timing_core.tcl",
+        "sha256": "659ba5de15e194b67a814ae73fad4c27027640aed5d7c7ec162398c08b543e09"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_reset.v",
+        "sha256": "ea2ae8c0b12d7cedb516749c7464c9812c4cad20d2478aff3905b9675f245ff2"
+      },
+      {
+        "role": "VERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_reset_sync.v",
+        "sha256": "4d21dbb1f0f07d53032cdfd10d109bb96c5ef43a8a204f8da81c775a77cddd90"
+      },
+      {
+        "role": "TCL_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_p0_timing.tcl",
+        "sha256": "4bed45269c14ce391abafdafe16e6264333b3b3748631330cecb057a26401f03"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps_sdram_pll.sv",
+        "sha256": "e521c2a3c843bdfb0d4d0e21509b18be24987eefbb2b5cecf73aed703f8c8886"
+      },
+      {
+        "role": "HPS_ISW_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/alt_types.pre.h",
+        "sha256": "e457af5507db6d6dea3c02ce39525d7cce3133e83c30e25684782ad95e0fab5c"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/alt_types.pre.h",
+        "sha256": "e457af5507db6d6dea3c02ce39525d7cce3133e83c30e25684782ad95e0fab5c"
+      },
+      {
+        "role": "HPS_ISW_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/emif.pre.xml",
+        "sha256": "1643180e0c38eecead5d9de31920e5c17eac1b99e5b1dc012b809d6ed0146570"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/emif.pre.xml",
+        "sha256": "1643180e0c38eecead5d9de31920e5c17eac1b99e5b1dc012b809d6ed0146570"
+      },
+      {
+        "role": "HPS_ISW_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sdram_io.pre.h",
+        "sha256": "ccba54b5653f08b15fe4059c79f6f91599802855e24ddc48f9b293e6920df3d1"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sdram_io.pre.h",
+        "sha256": "ccba54b5653f08b15fe4059c79f6f91599802855e24ddc48f9b293e6920df3d1"
+      },
+      {
+        "role": "HPS_ISW_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer.pre.c",
+        "sha256": "b05e822f10e6dc1a9f565e5b559152c6ca7afa55dfb4de89104ee0085db8f1f9"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer.pre.c",
+        "sha256": "b05e822f10e6dc1a9f565e5b559152c6ca7afa55dfb4de89104ee0085db8f1f9"
+      },
+      {
+        "role": "HPS_ISW_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer.pre.h",
+        "sha256": "d83f8aebac264f805177aa81b30fa5d11d65a418dde20198b98d93078ede0969"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer.pre.h",
+        "sha256": "d83f8aebac264f805177aa81b30fa5d11d65a418dde20198b98d93078ede0969"
+      },
+      {
+        "role": "HPS_ISW_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer_auto.pre.h",
+        "sha256": "2e6243e4ff454e61b898a145f5868c43501b5feee9517f294c06ec0df75f7a30"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer_auto.pre.h",
+        "sha256": "2e6243e4ff454e61b898a145f5868c43501b5feee9517f294c06ec0df75f7a30"
+      },
+      {
+        "role": "HPS_ISW_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer_auto_ac_init.pre.c",
+        "sha256": "8aae8160a0643297bddab139e8268cd59f81b95a55d44f9c00367af9743763df"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer_auto_ac_init.pre.c",
+        "sha256": "8aae8160a0643297bddab139e8268cd59f81b95a55d44f9c00367af9743763df"
+      },
+      {
+        "role": "HPS_ISW_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer_auto_inst_init.pre.c",
+        "sha256": "5f6354da5efc817adc95a09d834ffa56221b5fd7430ec243c54d1d86ea94d788"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer_auto_inst_init.pre.c",
+        "sha256": "5f6354da5efc817adc95a09d834ffa56221b5fd7430ec243c54d1d86ea94d788"
+      },
+      {
+        "role": "HPS_ISW_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer_defines.pre.h",
+        "sha256": "af24f885d71b0c9c3ff4997f18e9de3ddd17d8024455f6eee9b2100770979748"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/sequencer_defines.pre.h",
+        "sha256": "af24f885d71b0c9c3ff4997f18e9de3ddd17d8024455f6eee9b2100770979748"
+      },
+      {
+        "role": "HPS_ISW_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/system.pre.h",
+        "sha256": "a3e1ed911e305181b679899dfa62d2ff7555ddff555de8f9e205321ef295255c"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/system.pre.h",
+        "sha256": "a3e1ed911e305181b679899dfa62d2ff7555ddff555de8f9e205321ef295255c"
+      },
+      {
+        "role": "HPS_ISW_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/tclrpt.pre.c",
+        "sha256": "a4b7b1dc7fda71a162a3e31938eca0685af42433a6e4a8263251f59a7a2f86ef"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/tclrpt.pre.c",
+        "sha256": "a4b7b1dc7fda71a162a3e31938eca0685af42433a6e4a8263251f59a7a2f86ef"
+      },
+      {
+        "role": "HPS_ISW_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/tclrpt.pre.h",
+        "sha256": "d88f59d7737d19fa06818729d3bda438a7cddb284f2980d4eff9d9d0b261cb1c"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/sequencer/tclrpt.pre.h",
+        "sha256": "d88f59d7737d19fa06818729d3bda438a7cddb284f2980d4eff9d9d0b261cb1c"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_hps_0_hps_io_border.sv",
+        "sha256": "196f58e5bd4173f15544de49e1744967b6e2823648c77d12678630dd622cbd15"
+      },
+      {
+        "role": "SDC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_hps_0_hps_io_border.sdc",
+        "sha256": "208f249ea4a140fcecc8eb60a33d2ffb4c3f679f9c6a2acb19d0c250d2e2397a"
+      },
+      {
+        "role": "HPS_ISW_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps.pre.xml",
+        "sha256": "08f40d4361ee2165fc3c3667a0c05594574e168593f8734e13bad48c05172cef"
+      },
+      {
+        "role": "MISC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/hps.pre.xml",
+        "sha256": "08f40d4361ee2165fc3c3667a0c05594574e168593f8734e13bad48c05172cef"
+      },
+      {
+        "role": "SYSTEMVERILOG_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_hps_0_fpga_interfaces.sv",
+        "sha256": "f9af1460500452c55af49f1095e20215451a80567396a0e678c0adc5c7ba07ca"
+      },
+      {
+        "role": "SDC_FILE",
+        "path": "legacy/platform/de1soc/qsys/system/synthesis/submodules/system_hps_0_fpga_interfaces.sdc",
+        "sha256": "c39fd028c61b6b6a6a6c3dae27b73d03a777c5c5e47cc43bdc9e24ffa940e822"
+      }
+    ],
+    "hps_bus_ports": [
+      "HPS_DDR3_ADDR",
+      "HPS_DDR3_BA",
+      "HPS_DDR3_CAS_N",
+      "HPS_DDR3_CKE",
+      "HPS_DDR3_CK_N",
+      "HPS_DDR3_CK_P",
+      "HPS_DDR3_CS_N",
+      "HPS_DDR3_DM",
+      "HPS_DDR3_DQ",
+      "HPS_DDR3_DQS_N",
+      "HPS_DDR3_DQS_P",
+      "HPS_DDR3_ODT",
+      "HPS_DDR3_RAS_N",
+      "HPS_DDR3_RESET_N",
+      "HPS_DDR3_RZQ",
+      "HPS_DDR3_WE_N",
+      "HPS_ENET_GTX_CLK",
+      "HPS_ENET_INT_N",
+      "HPS_ENET_MDC",
+      "HPS_ENET_MDIO",
+      "HPS_ENET_RX_CLK",
+      "HPS_ENET_RX_DATA",
+      "HPS_ENET_RX_DV",
+      "HPS_ENET_TX_DATA",
+      "HPS_ENET_TX_EN",
+      "HPS_FLASH_DATA",
+      "HPS_FLASH_DCLK",
+      "HPS_FLASH_NCSO",
+      "HPS_GSENSOR_INT",
+      "HPS_I2C_CONTROL",
+      "HPS_I2C1_SCLK",
+      "HPS_I2C1_SDAT",
+      "HPS_I2C2_SCLK",
+      "HPS_I2C2_SDAT",
+      "HPS_KEY",
+      "HPS_LED",
+      "HPS_LTC_GPIO",
+      "HPS_SD_CLK",
+      "HPS_SD_CMD",
+      "HPS_SD_DATA",
+      "HPS_SPIM_CLK",
+      "HPS_SPIM_MISO",
+      "HPS_SPIM_MOSI",
+      "HPS_SPIM_SS",
+      "HPS_UART_RX",
+      "HPS_UART_TX",
+      "HPS_CONV_USB_N",
+      "HPS_USB_CLKOUT",
+      "HPS_USB_DATA",
+      "HPS_USB_DIR",
+      "HPS_USB_NXT",
+      "HPS_USB_STP"
+    ],
+    "fpga_pins": {
+      "CLOCK_50": "AF14",
+      "LEDR[0]": "V16",
+      "LEDR[1]": "W16",
+      "LEDR[2]": "V17",
+      "LEDR[3]": "V18",
+      "LEDR[4]": "W17",
+      "LEDR[5]": "W19",
+      "LEDR[6]": "Y19",
+      "LEDR[7]": "W20",
+      "LEDR[8]": "W21",
+      "LEDR[9]": "Y21"
+    },
+    "settings_sha256": {
+      "audio_hps.qsf": "43a0d90413ccea0a94a4b1af67b1993499dfcd219436acbcac778387c907cc0c",
+      "audio_hps.qpf": "f4e3f724fb0ffd3ecb2a33947b1867b60d7f51d0834529425015b21e02d7598c"
+    },
+    "generated_input_initial_sha256": {
+      "hps_ddr_assignments.qsf": "f132ecce8e6aedd819b3e6b22525311d373aebd67e84a8661230420ff51cff97"
+    },
+    "base_hps_manifest_sha256": "c78d87d81a5baaaec18319e2cf7f41caf3af395a1a0cf7785198d35cffe75ca9",
+    "base_core_registration_sha256": "917ce59733e5dce4ae1913104fff3d85c66c9d20fc0b6bd4058c7f7d5bb93a23",
+    "new_application_sha256": {
+      "trecap_pcm_stream_source.sv": "79e402d7314b6540aea813bab2a42efa4d3107a34a63d61ff5ea3549bb4101f7",
+      "trecap_pcm_stream_top.sv": "2d8e7794a5629cf88e9d47ee0f2dd68ab28d1b73e3c071d701e2d5e3ab1780d2",
+      "stream_fifo.sv": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b",
+      "trecap_stream_adapter.sv": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305"
+    },
+    "exporter_sha256": "7a041daa6f32486e3f3e2c4bfdb95b9a5dc6277f6b0f4ba7f525fcb082a258be",
+    "adapter_sha256": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305"
+  }
+}

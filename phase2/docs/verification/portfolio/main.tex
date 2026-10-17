@@ -1,0 +1,337 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.85in,headheight=16pt,headsep=18pt,footskip=24pt]{geometry}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,graphicx,xcolor,array,tabularx,booktabs,longtable}
+\usepackage{fancyhdr,titlesec,caption,enumitem,listings}
+\usepackage[hidelinks,pdfauthor={TRECAP project},pdftitle={TRECAP Design Verification Portfolio},pdfsubject={Evidence-driven finite-file FPGA verification}]{hyperref}
+\definecolor{navy}{HTML}{000000}
+\definecolor{teal}{HTML}{000000}
+\definecolor{blue}{HTML}{000000}
+\definecolor{light}{HTML}{E3E3E3}
+\definecolor{muted}{HTML}{444444}
+\definecolor{orange}{HTML}{444444}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{2pt}
+\setlength{\emergencystretch}{2em}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.22}
+\setlist[itemize]{leftmargin=17pt,itemsep=2pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=18pt,itemsep=2pt,topsep=3pt}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\titleformat{\section}{\large\bfseries}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.7em}{}
+\titlespacing*{\section}{0pt}{0pt}{10pt}
+\titlespacing*{\subsection}{0pt}{7pt}{3pt}
+\captionsetup{hypcap=false,font=small,labelfont=bf,textfont=normalfont,skip=7pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\itshape TRECAP: Design Verification Case Study}
+\fancyhead[R]{\small\itshape TSH2 finite-file profile}
+\fancyfoot[L]{\scriptsize\color{muted}Evidence campaign: 2026-10-17 UTC}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\newcommand{\page}[1]{\clearpage\section{#1}}
+\newcommand{\evidence}[1]{\par{\footnotesize\raggedright\sloppy\color{muted}\textbf{Evidence:} #1\par}}
+\newcommand{\epath}[1]{\nolinkurl{#1}}
+\newcommand{\callout}[2]{\par\medskip\noindent\textbf{#1.} #2\par\smallskip}
+\newcommand{\fig}[3]{\begin{center}\includegraphics[width=\linewidth,height=#3,keepaspectratio]{figures/#1.pdf}\captionof{figure}{#2}\end{center}}
+\lstset{basicstyle=\ttfamily\small,keywordstyle=\color{blue}\bfseries,commentstyle=\color{muted},breaklines=true,columns=fullflexible,keepspaces=true,showstringspaces=false,frame=single,rulecolor=\color{light},xleftmargin=4pt,xrightmargin=4pt}
+\title{\LARGE\bfseries TRECAP: Design Verification Case Study\\[0.5em]
+\Large From arithmetic defect to bounded release evidence}
+\author{TRECAP project}
+\date{October 17, 2026}
+\begin{document}
+\maketitle
+\thispagestyle{plain}
+\begin{abstract}
+Reference repair, exact RTL scoreboards, and fresh DE1-SoC replication.
+The registered TSH2 finite-file profile passed its campaign gates. The original full-project specification remains only partially evidenced. This portfolio makes that distinction explicit.
+\end{abstract}
+\medskip
+\par\noindent\begin{minipage}{\linewidth}\captionof{table}{Summary of the registered verification campaign.}
+\noindent\begin{tabularx}{\linewidth}{P{1.48in}L}
+\toprule
+\textbf{58 physical epochs} & 29 configurations, two repeats, 13 distinct registered inputs.\\
+\textbf{22,301,696 Y samples} & Every returned sample matched its frozen threshold-specific reference.\\
+\textbf{107,200,224 packet bytes} & Exact wire comparison plus independent decoding of 174,058 frames.\\
+\textbf{Two full RTL runs} & 384,000 inputs each; complete finite tails, canonical taps and packets checked.\\
+\textbf{One reference defect fixed} & Four retained counterexamples; 729,156 independent arithmetic comparisons.\\
+\bottomrule
+\end{tabularx}\par\end{minipage}\par
+\vspace{0.14in}
+\paragraph{DV capabilities demonstrated.}
+Requirement-to-test mapping; reference-model qualification; directed corner stimulus; protocol and recovery checking; negative-control qualification; raw capture audit; reproducible failure records; source and image traceability.
+\vfill
+{\small\noindent Campaign executed October 17, 2026 UTC\par
+English portfolio authored in LaTeX from finalized evidence.\par
+Procedural SystemVerilog, Python, and C++; no UVM or formal-coverage claim.}
+
+\page{Implemented profile and checking boundaries}
+TRECAP reconstructs audio after thresholding an FFT spectrum and exports spectral packets for a bounded monitor application. The verified implementation is a finite-file path, not an unbounded live-audio system.
+\fig{topology}{Conceptual architecture and evidence boundaries. Board expectations are frozen registered gold. Selected comparisons qualify the repaired reference; they do not regenerate all physical expectations.}{3.75in}
+\par\noindent\begin{minipage}{\linewidth}\captionof{table}{Implemented TSH2 finite-file profile.}
+\noindent\begin{tabularx}{\linewidth}{P{1.55in}L}
+\toprule
+Input & 48 kHz, signed 12-bit samples; 384,000 samples per physical epoch.\\
+Transform & FFT length 256, hop 128; 3,001 frames with finite-tail processing.\\
+Reconstruction & 384,512 returned Y samples; fixed alignment delay of 384 samples.\\
+Control & Squared-magnitude threshold latched for the whole epoch.\\
+Transport & TCP to HPS RAM; CPU-driven lightweight-bridge FIFO access.\\
+\bottomrule
+\end{tabularx}\par\end{minipage}\par
+The active FPGA fabric uses nominal/constrained CLOCK\_50 at 50 MHz. No per-stage physical latency, calibrated oscillator measurement, power saving, or AI-inference speedup is established here.
+\evidence{\epath{assurance/final_disposition.json}; \epath{assurance/clock_reset_review.json}; \epath{figures/manifest.json}. Short evidence paths in this document identify historical campaign artifacts, not files all promised in this repository. The published manifest maps original hashes to normalized public records; archive identifiers refer to retained local evidence.}
+
+\page{Verification architecture and test contract}
+The environment separates stimulus, expected results, DUT observations, and acceptance policy. Tests report success only after numerical comparisons and completion invariants pass.
+\par\noindent\begin{minipage}{\linewidth}\captionof{table}{Verification layers and their independence boundaries.}
+\noindent\begin{tabularx}{\linewidth}{P{1.35in}L}
+\toprule
+\textbf{Layer} & \textbf{Responsibility and independence boundary}\\
+\midrule
+Case registration & Fix source/image identities, input hashes, threshold, geometry, expected format and watchdog bounds before results are observed.\\
+Stimulus driver & Present signed PCM with input gaps; impose independent output/export stalls; inject reset or clear only at a selected observed phase.\\
+Procedural monitors & Observe ready/valid transfers, ordering, held metadata, finite-tail completion, FIFO occupancy, fault and drop counters.\\
+Reference/oracle & Python arbitrary integers qualify selected C++ primitives and short vectors. Frozen registered gold supplies full-run and board expectations.\\
+Scoreboards & Compare every required Y value, canonical complex tap or packet byte; verify indices, frame counts and final metrics where observable.\\
+Runner & Require a valid completion marker, clean diagnostics and deadlines. An exit code of zero alone is insufficient.\\
+Evidence writer & Retain commands, stdout/stderr, exit codes, hashes, negative controls, coverage ledgers and raw observations.\\
+\bottomrule
+\end{tabularx}\par\end{minipage}\par
+\subsection{Per-case execution contract}
+\begin{enumerate}
+\item Validate the registered input, source identity, numeric parameters and expected geometry.
+\item Start a fresh run with explicit stimulus, handshake disturbance and finite watchdogs.
+\item Capture actual transfers before comparison; preserve raw results when a checker fails.
+\item Compare values and protocol invariants, then require the complete tail and expected counters.
+\item Emit a machine-readable receipt. Keep failed and superseded attempts alongside successful attempts.
+\end{enumerate}
+\callout{What this environment is}{Procedural SystemVerilog testbenches plus Python/C++ checkers and explicit event ledgers. Concurrent assertions, covergroups, code-coverage percentages, vendor-model closure and UVM are not claimed.}
+\evidence{\epath{rtl/summary.json}; \epath{rtl/coverage.json}; \epath{assurance/test_gate_matrix_revision03.csv}.}
+
+\page{Bug case study: signed rounded shift}
+The C++ reference helper returned zero whenever the unsigned shift was at least 63. That shortcut violated its signed 64-bit nearest-rounding contract with ties away from zero. The defect was reproduced before changing the helper or its tests.
+\fig{rounding}{Actual old and repaired executable responses for four retained witnesses. The exact expected values come from integer reasoning and the independent checker.}{2.9in}
+\subsection{Repair and domain argument}
+For $1\leq s\leq63$, let $m=|v|$ in an unsigned representation and $b=2^{s-1}$. Then $m\leq2^{63}$, $b\leq2^{62}$, and $m+b\leq3\cdot2^{62}<2^{64}$. The magnitude-plus-bias operation is representable, including \texttt{INT64\_MIN}. At $s=64$, only \texttt{INT64\_MIN} reaches a half and rounds to $-1$. Above 64 every input rounds to zero. Shift zero returns the input unchanged.
+\begin{lstlisting}[language=C++,caption={Production boundary handling; the existing magnitude path follows.}]
+if (shift == 0U) return value;
+if (shift >= 64U) {
+    return shift == 64U &&
+        value == std::numeric_limits<std::int64_t>::min()
+        ? -1 : 0;
+}
+\end{lstlisting}
+The related arithmetic-floor shift was inspected and independently tested; it needed no change. Frozen expected artifacts and RTL were preserved. The repaired full-length threshold-zero reference reproduced the registered Y and canonical bins exactly.
+\evidence{\epath{reference/source_changes.patch}; \epath{reference/arithmetic_attempt01/report.json}; \epath{reference/arithmetic_attempt01/old_binary_negative_control.json}.}
+
+\page{Reference qualification and checker qualification}
+\par\noindent\begin{minipage}{\linewidth}\captionof{table}{Reference-model qualification results.}
+\noindent\begin{tabularx}{\linewidth}{P{1.6in}P{1.55in}L}
+\toprule
+\textbf{Check} & \textbf{Observed result} & \textbf{Scope}\\
+\midrule
+C++ unit regression & 11 tests passed & Fresh compiler build, including compile-time and runtime rounding boundaries.\\
+Wide arithmetic oracle & 729,156 comparisons & 364,578 rounded shifts and 364,578 floor shifts; 364,578 property points.\\
+Baseline oracle & 16,540 primitives; two vectors & Independent integer construction for selected complete vectors; 13 negative witnesses.\\
+Finite corner corpus & 248 cases; 1,551,100 records & All 128 hop residues; 198,912 Y samples and 104,490 canonical bins; four invalid inputs rejected.\\
+Full reference equivalence & 384,000 input samples & 384,512 Y and 387,129 canonical rows agree with unchanged threshold-zero gold.\\
+\bottomrule
+\end{tabularx}\par\end{minipage}\par
+\subsection{Testing the test environment}
+A matching model and DUT can share an error. The campaign therefore includes independent arithmetic formulations and deliberate bad results, not only positive agreement.
+\begin{itemize}
+\item The wide arithmetic checker rejected five deliberately corrupted answers and retained four failures from the old executable.
+\item Runner qualification exercised assertions, error/fatal diagnostics, X/Z values, missing completion, damaged traces, and both simulator and host watchdogs.
+\item The physical artifact auditor rejected nine deliberately corrupted cases before trusting positive raw-data results.
+\item An inline simulator command once returned zero after a deliberate fatal. Completion/log checks rejected that result; qualified command-file handling produced a failing status.
+\end{itemize}
+\callout{Independence limits}{This is not exhaustive enumeration of all 64-bit values. Coefficient tables remain shared with the frozen specification. The recursive independent oracle covers selected baseline and short-vector cases. Full-length equivalence uses frozen gold, and full-length intermediate stage rows were counted rather than independently checked.}
+\evidence{\epath{reference/summary.json}; \epath{assurance/reference_peer_review.json}; \epath{assurance/audit01/summary.json}; \epath{rtl/qualification_snapshot/}.}
+
+\page{RTL test matrix and observed coverage}
+\par\noindent\begin{minipage}{\linewidth}\captionof{table}{Directed RTL test families and observed counts.}
+\noindent\begin{tabularx}{\linewidth}{P{1.65in}P{1.55in}L}
+\toprule
+\textbf{Test family} & \textbf{Observed count} & \textbf{Risk addressed}\\
+\midrule
+Round/saturate & 33,132 comparisons; 138 high-shift checks & Signed extrema, ties, sign handling and out-of-width shifts.\\
+Complex butterfly & 4,374 directed comparisons & Two width/normalization profiles, saturation and cancellation cases.\\
+Threshold/protection & 3,072 bins; 12 statistics frames & Below/equal/above threshold, DC protection, Nyquist eligibility, mirrored bins and full 56-bit thresholds.\\
+Finite geometry & 24 epochs & 12 lengths around hop and frame boundaries, each in dense and sparse export.\\
+Busy cancellation & 32 cancellations and 32 exact recoveries & 16 source/FFT/IFFT/WOLA/drain/held-output phases crossed with clear and hard reset.\\
+Final Y completion & 12 epochs; 1,536 stall cycles & Last Y held for 128 cycles per epoch; no early completion, exact final integer metrics.\\
+Full-size numerical & Two complete runs & All 769,024 Y samples, 774,258 canonical rows and 3,380,152 packet bytes across both runs.\\
+\bottomrule
+\end{tabularx}\par\end{minipage}\par
+The short RTL lengths are $1,2,126,127,128,129,130,254,255,256,257,258$. The separate reference corner corpus covers all 128 hop residues. Those are distinct coverage claims.
+\subsection{Retained evidence was identified as retained}
+Unchanged-source TSH2 adapter evidence includes 12 normal epochs, 13 negative cases, 913,932 checks and 312,316 transactions. Active RAM-exporter evidence includes 174 scenarios, 3,106 records, 2,037,896 bytes and eight aborted prefixes. These prior runs were rebound to the unchanged sources, not relabeled as new execution.
+\callout{Coverage vocabulary}{The reported counts are observed transactions, directed scenarios and event-bin hits. They are not a functional-coverage closure percentage, line/branch coverage, or proof that every temporal interleaving was explored.}
+\evidence{\epath{rtl/summary.json}; \epath{rtl/coverage.json}; \epath{assurance/retained_evidence_revalidation.json}.}
+
+\page{Backpressure and completion semantics}
+\fig{handshake}{Measured simulator transitions from the full-length threshold-zero run. Orange intervals show valid high while ready is low. The conjunction lane is a derived logic level, not a transfer counter.}{4.0in}
+Ready/valid checking covers ordering and stable data/metadata while a token is blocked. End-of-input is not end-of-output: finite padding, synthesis draining and export completion remain part of the transaction.
+\subsection{A specific last-token obligation}
+In 12 separate short epochs, the final Y token was held for 128 cycles. The design had to retain busy high and done low until acceptance. Exact final sample count, sum of absolute error, sum of squared error and maximum error were checked with absolute-index integer calculations. These checks complement the two long-run numerical scoreboards.
+\callout{Timing interpretation}{The trace is native simulator VCD at a 10 ns testbench clock. The board fabric is nominally constrained at 20 ns. Neither this waveform nor the simulation cycle count is a physical FPGA latency measurement.}
+\evidence{\epath{rtl/final_y_completion_metrics_attempt02/report.json}; \epath{figures/vcd_final_binding01.json}; \epath{rtl/full384000_dense0/representative_windows.vcd}.}
+
+\page{Reset, cancellation and clean recovery}
+\fig{reset}{Four recorded excerpts: datapath clear and hard reset during FFT compute wait and WOLA add-write. The raw VCD records actual control transitions; full recovery correctness is established by separate numerical scoreboards.}{4.1in}
+The complete directed matrix targets 16 observable phases for each of two cancellation mechanisms. Each cancellation is followed by 600 quiet cycles and a fresh 1,024-input epoch with exact reconstruction and spectral checking. The 32 recoveries compare 49,152 Y samples; the waveform replay is a selected four-case illustration of that broader ledger.
+\subsection{What the waveform does not prove}
+A short plotted cancellation window is not a plot of an entire recovery epoch. Functional reset tests also do not establish electrical reset-domain safety. The active top's asynchronous assertion and three-stage synchronous release were reviewed structurally; formal CDC/RDC, metastability MTBF and vendor-domain failure analysis remain outside this campaign.
+\evidence{\epath{rtl/core_busy_reset_recovery/report.json}; \epath{rtl/reset_waveform/report.json}; \epath{assurance/clock_reset_review.json}.}
+
+\page{Two complete-length RTL scoreboards}
+\par\noindent\begin{minipage}{\linewidth}\captionof{table}{Complete-length RTL observations for the two selected thresholds.}
+\noindent\begin{tabularx}{\linewidth}{Lrr}
+\toprule
+\textbf{Observed quantity} & \textbf{Threshold 0, dense} & \textbf{Threshold $10^8$, sparse}\\
+\midrule
+Input samples / frames & 384,000 / 3,001 & 384,000 / 3,001\\
+Y samples / canonical rows & 384,512 / 387,129 & 384,512 / 387,129\\
+Exact packet bytes & 2,856,952 & 523,200\\
+Simulation cycles & 33,014,903 & 27,666,087\\
+Observed Y stall cycles & 1,487 & 1,513\\
+Observed export stall cycles & 4,930 & 1,038\\
+Result & PASS & PASS\\
+\bottomrule
+\end{tabularx}\par\end{minipage}\par
+\fig{fullrun}{Measured startup excerpt ending at 203.880 us absolute simulation time. Presented indices are not handshake counts. The full-run completion evidence comes from complete scoreboards, not from this excerpt.}{3.65in}
+These runs instantiate the active core and RAM exporter with functional timing. They exclude the generated HPS vendor bridge and MMIO adapter. Threshold-zero gold was also rechecked with the repaired full-length C++ reference. The sparse run uses frozen registered threshold-specific expectations.
+\evidence{\epath{rtl/full384000_dense0/report.json}; \epath{rtl/full384000_sparse100000000/report.json}; \epath{assurance/rtl_audit01/summary.json}.}
+
+\page{Fresh board execution and independent audit}
+\par\noindent\begin{minipage}{\linewidth}\captionof{table}{Fresh physical capture totals.}
+\noindent\begin{tabularx}{\linewidth}{Lrrr}
+\toprule
+\textbf{Registered matrix} & \textbf{Configurations} & \textbf{Repeats} & \textbf{Epochs}\\
+\midrule
+12 monitor inputs, thresholds 0 and $10^7$ & 24 & 2 & 48\\
+Flute, five thresholds from 0 through $10^{11}$ & 5 & 2 & 10\\
+Total & 29 & 2 & 58\\
+\bottomrule
+\end{tabularx}\par\end{minipage}\par
+The host established ownership, programmed the admitted SOF into volatile configuration, admitted the boot and service, then checked runtime identities and idle/fault conditions before and after each epoch. No expected output was uploaded to the board. A later reboot or reprogramming invalidates that runtime admission.
+\par\noindent\begin{minipage}{\linewidth}\captionof{table}{Independent physical-capture audit results.}
+\noindent\begin{tabularx}{\linewidth}{P{2.1in}L}
+\toprule
+\textbf{Independent observation} & \textbf{Result}\\
+\midrule
+Accepted input & 22,272,000 samples.\\
+Returned waveform & 22,301,696 samples; maximum reference error 0 LSB.\\
+Packet audit & 107,200,224 bytes exact; 174,058 frames strictly decoded.\\
+Threshold-zero identity & 26 epochs exactly match aligned input.\\
+Final register snapshots & 58 with zero faults/drops and empty FIFOs; exact feed/drain counts.\\
+Audit integrity & Nine corruptions rejected; 1,412 unique files and 2,238 hash bindings checked.\\
+\bottomrule
+\end{tabularx}\par\end{minipage}\par
+The independent decoder checks headers, bin indices, threshold and power values, and recomputes all 21 monitor-feature columns. Native checks additionally validate FNV and format invariants.
+\subsection{A preserved operational failure}
+The first handover script encountered missing \texttt{readlink} and fractional-sleep support. A final shell marker alone was not accepted as ownership clearance. Explicit process exit and a replacement file-descriptor/maps inventory supplied the required evidence. Both attempts remain available.
+\callout{Replication boundary}{Two repeats per configuration improve replication confidence. They are not a prolonged reliability study or a new held-out application benchmark. Physical captures used sparse export at every threshold; the dense RTL case uses its own format-specific expected packets.}
+\evidence{\epath{hardware/captures01/index.json}; \epath{assurance/audit01/summary.json}; \epath{hardware/00_owner_admission.json}.}
+
+\page{Measured audio reconstruction}
+\fig{audio}{Fresh physical flute captures at all five thresholds. Every panel uses the same gain and amplitude scale. The full clip uses 2 ms min/max envelopes; the detail window is the same input-selected 20 ms interval. The fixed delay removes exactly 384 leading samples.}{6.6in}
+The plotted outputs are epochs 49, 51, 53, 55 and 57. The corresponding second repetitions are byte-identical. No per-trace amplitude normalization is used.
+\evidence{\epath{figures/hardware03/provenance.json}; \epath{figures/hardware03/flute_metrics.json}.}
+
+\page{Algorithm agreement is separate from signal distortion}
+\fig{quality}{Input distortion uses all 384,000 aligned input-support samples. Reference agreement checks the complete 384,512-sample returned waveform, including its tail.}{3.25in}
+\[
+\mathrm{NRMSE}_{\mathrm{input}}=100\sqrt{\frac{\sum_{n=0}^{383999}(Y[n+384]-x[n])^2}{\sum_{n=0}^{383999}x[n]^2}}\%.
+\]
+\par\noindent\begin{minipage}{\linewidth}\captionof{table}{Measured flute reconstruction error and reference agreement.}
+\noindent\begin{tabularx}{\linewidth}{Lrrr}
+\toprule
+\textbf{Threshold} & \textbf{Input NRMSE} & \textbf{Max input error} & \textbf{Max reference error}\\
+\midrule
+0 & 0.0000\% & 0 LSB & 0 LSB\\
+$10^8$ & 1.7632\% & 9 LSB & 0 LSB\\
+$10^9$ & 3.7987\% & 17 LSB & 0 LSB\\
+$10^{10}$ & 9.6180\% & 33 LSB & 0 LSB\\
+$10^{11}$ & 27.1923\% & 75 LSB & 0 LSB\\
+\bottomrule
+\end{tabularx}\par\end{minipage}\par
+Correct implementation of a lossy algorithm can change the input appreciably. Threshold choice therefore needs application acceptance in addition to bit-exact numerical verification. The monitor audit passes the four registered natural-record quality gates and the five expected synthetic events; that bounded result does not establish real-world diagnostic accuracy.
+\evidence{\epath{figures/hardware03/flute_metrics.json}; \epath{assurance/audit01/summary.json}.}
+
+\page{Spectral packet size and honest denominators}
+\fig{packet_sizes}{Actual captured sparse TSP1 bytes compared with the compact dense spectral representation of the same 3,001 frames. These are not WAV compression ratios.}{3.55in}
+The compact dense baseline is 2,856,952 bytes, or 952 bytes per frame. Sparse threshold-zero packets are 13.4454\% larger because they carry explicit indices and headers. At $10^8$, the captured spectral representation is 81.6868\% smaller than compact dense while input NRMSE is 1.7632\% for this flute recording.
+\subsection{Application and performance limits}
+The current downstream application is a bounded spectral monitor. No reduction in YAMNet inference computation, power, or CPU cost has been demonstrated. HPS service durations and FPGA cycle registers include feeding, draining and stalls. They are not isolated FFT or core compute latency.
+For monitor records, quality and byte comparisons use their original 5 s or 5.12 s support where applicable. Zero padding to an 8 s physical epoch must not inflate a reduction claim. The plotted flute recording already spans the full 8 s input support.
+\evidence{\epath{figures/hardware03/flute_metrics.json}; \epath{assurance/audit01/summary.json}. The compact dense baseline is workspace-relative \epath{outputs/trecap_stream8_v01/fixtures02/flute8s_thr0/dense.tsp1}.}
+
+\page{Release decision, reused evidence and open scope}
+\callout{Scoped verdict}{PASS for the registered TSH2 finite-file profile. Original full-project signoff remains open. Of 46 original requirements, 30 have partial active-profile evidence and 16 are explicit profile exclusions. This is not a pass-rate calculation.}
+\par\noindent\begin{minipage}{\linewidth}\captionof{table}{Evidence status and limits of the release decision.}
+\noindent\begin{tabularx}{\linewidth}{P{1.7in}L}
+\toprule
+\textbf{Area} & \textbf{Disposition and limit}\\
+\midrule
+Host software & 66 fresh tests: 17 archived-data, 14 fake-hardware, 25 loopback/fake-I/O HTTP and 10 JavaScript checks. These do not exercise physical FPGA I/O.\\
+Public demo integrity & 122 local asset hashes and 40 selectable captures validated. No hosted-site refetch or browser/audio-device test implied.\\
+Native monitor & Existing DLL reused: five frozen cases, four bigint edge cases and 32 malformed inputs. Historical build logs are not a fresh compilation.\\
+Implementation timing & Retained admitted fit: 6,521 ALMs, 8,568 registers, 47 M10Ks, 35 DSPs; worst CLOCK\_50 setup/hold slack 3.237/0.105 ns in the historical audit. No fresh fit was needed because RTL did not change.\\
+Unimplemented interfaces & Continuous microphone/codec acquisition, original DDR ring and UDP telemetry are outside the finite-file profile. The fabric DDR write request is tied low in this active top.\\
+Broader assurance & No formal CDC/RDC, MTBF, post-layout functional simulation, environmental qualification, power-interruption study or certified safety/reliability claim.\\
+\bottomrule
+\end{tabularx}\par\end{minipage}\par
+Original acceptance criteria requiring inaccessible statistics, full metric epochs, signed complex/\allowbreak preliminary-mask channels, or broader dynamic control retain their scoped/partial dispositions. G00 through G12 govern the selected profile; G13 records supplemental broader coverage. An exclusion never becomes a test pass.
+\evidence{\epath{assurance/final_disposition.json}; \epath{assurance/original_requirement_dispositions.json}; \epath{software/findings.json}; \epath{native/findings.json}.}
+
+\page{Reproduction and portfolio integration}
+\subsection{Review this work in three passes}
+\begin{enumerate}
+\item \textbf{Scope and outcome:} read the final disposition and original-requirement mapping before interpreting any pass count.
+\item \textbf{One failure to one fix:} follow the old rounded-shift executable responses, source patch, independent arithmetic report and unchanged threshold-zero full-reference comparison.
+\item \textbf{One complete transaction:} follow a registered input to RTL Y/taps/packets, then a physical capture's reply/raw output, independent decoding and final register snapshot.
+\end{enumerate}
+\par\noindent\begin{minipage}{\linewidth}\captionof{table}{Campaign artifact organization and reproduction requirements.}
+\noindent\begin{tabularx}{\linewidth}{P{1.32in}L}
+\toprule
+\textbf{Campaign path} & \textbf{Reproduction evidence}\\
+\midrule
+\epath{reference/} & Before/after sources, exact patch, compiler commands, oracle inputs/results and complete-length reference comparison.\\
+\epath{rtl/} & Testbenches, source/input identities, native simulator commands/logs, numerical scoreboards and VCDs. ModelSim is required for those recorded simulator runs.\\
+\epath{hardware/} & Admission, 58 raw captures, replies, UART receipts and final registers. A rerun requires actual board access and fresh ownership/runtime admission.\\
+\epath{assurance/} & Registered plan, test-gate matrix, original-requirement mapping, independent audits and final disposition.\\
+\epath{figures/} & Plot scripts, numeric data, source hashes, final VCD binding and rendered assets.\\
+\bottomrule
+\end{tabularx}\par\end{minipage}\par
+\subsection{Portable regression integration}
+\input{portfolio_integration.tex}
+\subsection{Rebuilding this document}
+Run pdfLaTeX twice from this directory, or run \texttt{python build.py -{}-compiler <pdflatex-path>}. The build script preserves an immutable attempt directory with both compiler logs and the exact input hashes. Compiling the report does not rerun its verification evidence.
+\evidence{Published \href{../../results/verification_20261017/README.md}{evidence index}, \href{../../results/verification_20261017/manifest.json}{evidence manifest}, \href{../../../verification/tsh2/README.md}{portable runner}, and local \epath{source_manifest.json}. Original raw campaign archives remain separate.}
+
+\page{Evidence identity and technical review notes}
+\subsection{Bound implementation identities}
+\textbf{FPGA source ID}\par
+{\footnotesize\ttfamily 39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed}\par
+\textbf{Programmed SOF SHA256}\par
+{\footnotesize\ttfamily f96bc5a35adf08711a5f392baf9f8cbf5ec65a17211a58117bdb53f62acbb7ab}\par
+\textbf{Repaired rounded-shift source SHA256}\par
+{\footnotesize\ttfamily 0c5691734ca317f5a42b918d01e1b134d3c27fd044fd0f5fc2dddb68fc623180}\par
+\subsection{Failure records that strengthen the result}
+The campaign retains failed SDK discovery, the full-reference checker's incorrect initial tail coordinate, simulator exit-status ambiguity, and board-handover tooling failures. Each was resolved with a separately identified attempt. The accepted tail coordinate is $3001\times128=384128$. No failing expected output was edited into agreement.
+\subsection{What a technical interview can inspect}
+\begin{itemize}
+\item Explain why $s=63$ and $s=64$ differ in signed 64-bit nearest rounding, and why unsigned magnitude avoids negating \texttt{INT64\_MIN}.
+\item Trace a blocked final output through ready/valid stability, busy/done semantics and finite-tail bookkeeping.
+\item Distinguish oracle independence from frozen-gold agreement and show a negative control that proves the checker fails.
+\item Reconcile a reset coverage ledger with an observed VCD phase and an exact recovery scoreboard.
+\item Explain why a zero reference error and nonzero input NRMSE can both be correct.
+\item Identify which claims require hardware, which can be checked offline, and which remain outside the signoff scope.
+\end{itemize}
+\callout{Evidence over labels}{This portfolio presents inspectable verification work and its boundaries. It does not substitute framework names, unmeasured coverage percentages or unexplained pass counts for executed checks.}
+\evidence{The local source manifest binds all eight vector figures and the approved public evidence export. Original and derived exported hashes are distinguished. Raw captures, proprietary simulator data and personal runtime identifiers are not included in this portfolio.}
+\end{document}

@@ -80,6 +80,30 @@ class PublicationHygiene(unittest.TestCase):
         self.assertIn("possible credential", issues[0])
         self.assertNotIn(token, issues[0])
 
+    def test_reviewed_waveforms_are_scanned_and_scope_is_exact(self):
+        waveform = "docs/results/verification_20261017/waveforms/startup.vcd"
+        self.write(waveform, "$timescale 1ns $end\n#0\n")
+        self.assertEqual(self.audit(), [])
+        token = "gh" + "p_" + "C" * 36
+        self.write(waveform, "$comment " + token + " $end\n")
+        issues = self.audit()
+        self.assertTrue(any("possible credential" in issue for issue in issues))
+        self.assertTrue(all(token not in issue for issue in issues))
+        self.write(waveform, "$timescale 1ns $end\n")
+        self.write("docs/results/verification_20261017/waveforms/arbitrary.vcd", "#0\n")
+        self.assertTrue(any("local build/output" in issue for issue in self.audit()))
+
+    def test_profile_source_is_scanned_but_local_work_is_excluded(self):
+        token = "gh" + "p_" + "D" * 36
+        self.write("profiles/tsh2/work/example/source.txt", token)
+        self.write("profiles/tsh2/work/trecap_stream8_v01/build/source.txt", token)
+        self.write("work/private-local.txt", token)
+        self.write("build/private-local.txt", token)
+        issues = self.audit()
+        self.assertEqual(len(issues), 2, issues)
+        self.assertTrue(any("profiles/tsh2/work/example" in issue for issue in issues))
+        self.assertTrue(any("trecap_stream8_v01/build/source.txt" in issue for issue in issues))
+
     def test_other_logs_are_not_allowed_as_public_receipts(self):
         self.write("docs/results/other/fixture.log", "raw capture\n")
         self.assertTrue(any("local build/output" in issue for issue in self.audit()))

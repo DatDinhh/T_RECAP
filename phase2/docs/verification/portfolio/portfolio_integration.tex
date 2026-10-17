@@ -1,0 +1,7 @@
+The supplemental package executed seeds 1, 7 and 20261017 under ModelSim Intel FPGA Starter 2020.1 on Windows. Each seed ran thresholds 0 and $10^8$ in dense and sparse modes: 12 epochs total, with 18,432 exact Y samples, 13,932 canonical rows and 94,440 packet bytes. Required observed event bins passed. The separate RTL negative control altered only the expected first Y value and failed with \texttt{Y\_GOLD\_MISMATCH}, as required.
+
+Stimulus is a newly generated 1,024-sample integer signal, not recorded audio. Both threshold fixtures were independently matched between the repaired C++ model and the recursive integer oracle. The runner also supports an offline package/checker audit; that mode uses constructed traces and is not RTL execution. Simulator tools are required for this command from the package directory:
+\begin{lstlisting}
+python run.py --suite regression --seeds 1,7,20261017
+\end{lstlisting}
+This bounded suite does not rerun the long release simulations, reset phase sweep or physical board. Linux execution and hosted RTL CI are not claimed. The published receipt identifies the executed source, fixture and tool scope.

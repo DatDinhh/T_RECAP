@@ -1,0 +1,168 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "external-tool:index.json",
+      "original_sha256": "b9a564b471d8c851ff2a66fbab9dc7a6436e4b25e3d0194b71b26ff9caca30ba"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": [
+    {
+      "record_id": "1-19898-A-41",
+      "source": {
+        "id": "1-19898-A-41",
+        "category": "chainsaw",
+        "kind": "natural",
+        "split": "heldout",
+        "pcm": "archive:workspace/outputs/trecap_spectral_monitor_v01/revision02/inputs01/1-19898-A-41.npy",
+        "ns": 240000,
+        "sha256": "c9aeb3adb6386f878ea9155ae745f096b2f125205812c4fc8bf1d7046bd90c23",
+        "clipped_samples": 0,
+        "source": {
+          "filename": "1-19898-A-41.wav",
+          "fold": "1",
+          "target": "41",
+          "category": "chainsaw",
+          "esc10": "True",
+          "src_file": "19898",
+          "take": "A",
+          "source_title": "CHAINSAW.wav",
+          "source_url": "http://www.freesound.org/people/JFBSAUVE/sounds/19898/",
+          "creator": "JFBSAUVE",
+          "source_license": "CC-BY",
+          "official_attribution_line": "- [1-19898-A.ogg]: clip derived from CHAINSAW.wav (http://www.freesound.org/people/JFBSAUVE/sounds/19898/) by JFBSAUVE [CC-BY]",
+          "path": "external-tool:1-19898-A-41.wav",
+          "url": "https://raw.githubusercontent.com/karolpiczak/ESC-50/33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6/audio/1-19898-A-41.wav",
+          "bytes": 441044,
+          "sha256": "02afa3102978b5fb16f9c6237d90231abb74318873309600f01caf4776746944",
+          "wav": {
+            "channels": 1,
+            "sample_rate": 44100,
+            "sample_width_bytes": 2,
+            "samples_per_channel": 220500,
+            "compression": "NONE"
+          },
+          "duration_seconds": 5.0
+        }
+      }
+    },
+    {
+      "record_id": "1-22882-A-44",
+      "source": {
+        "id": "1-22882-A-44",
+        "category": "engine",
+        "kind": "natural",
+        "split": "heldout",
+        "pcm": "archive:workspace/outputs/trecap_spectral_monitor_v01/revision02/inputs01/1-22882-A-44.npy",
+        "ns": 240000,
+        "sha256": "8dd4f76d05dc7bf32692bd3a421e9aea75e4725c33a591f51387421233e1ff6c",
+        "clipped_samples": 0,
+        "source": {
+          "filename": "1-22882-A-44.wav",
+          "fold": "1",
+          "target": "44",
+          "category": "engine",
+          "esc10": "False",
+          "src_file": "22882",
+          "take": "A",
+          "source_title": "idle truck.flac",
+          "source_url": "http://www.freesound.org/people/Corsica_S/sounds/22882/",
+          "creator": "Corsica_S",
+          "source_license": "CC-BY",
+          "official_attribution_line": "- [1-22882-A.ogg]: clip derived from idle truck.flac (http://www.freesound.org/people/Corsica_S/sounds/22882/) by Corsica_S [CC-BY]",
+          "path": "external-tool:1-22882-A-44.wav",
+          "url": "https://raw.githubusercontent.com/karolpiczak/ESC-50/33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6/audio/1-22882-A-44.wav",
+          "bytes": 441044,
+          "sha256": "b908257c714fdaa15dddfc814eb497397ada9bee501e8a5c9d6ec7adc325e2d0",
+          "wav": {
+            "channels": 1,
+            "sample_rate": 44100,
+            "sample_width_bytes": 2,
+            "samples_per_channel": 220500,
+            "compression": "NONE"
+          },
+          "duration_seconds": 5.0
+        }
+      }
+    },
+    {
+      "record_id": "1-19840-A-36",
+      "source": {
+        "id": "1-19840-A-36",
+        "category": "vacuum_cleaner",
+        "kind": "natural",
+        "split": "heldout",
+        "pcm": "archive:workspace/outputs/trecap_spectral_monitor_v01/revision02/inputs01/1-19840-A-36.npy",
+        "ns": 240000,
+        "sha256": "42ae54f072e8f0aa5214f4c0fea5dd30a45919f3003bd19be3e25578704e0454",
+        "clipped_samples": 0,
+        "source": {
+          "filename": "1-19840-A-36.wav",
+          "fold": "1",
+          "target": "36",
+          "category": "vacuum_cleaner",
+          "esc10": "False",
+          "src_file": "19840",
+          "take": "A",
+          "source_title": "Hoover Stationary.wav",
+          "source_url": "http://www.freesound.org/people/fogma/sounds/19840/",
+          "creator": "fogma",
+          "source_license": "CC-BY",
+          "official_attribution_line": "- [1-19840-A.ogg]: clip derived from Hoover Stationary.wav (http://www.freesound.org/people/fogma/sounds/19840/) by fogma [CC-BY]",
+          "path": "external-tool:1-19840-A-36.wav",
+          "url": "https://raw.githubusercontent.com/karolpiczak/ESC-50/33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6/audio/1-19840-A-36.wav",
+          "bytes": 441044,
+          "sha256": "d6d58e48005b976207cd6030de5d8976e9e7f4377eab86f790c5473c95ad2dd1",
+          "wav": {
+            "channels": 1,
+            "sample_rate": 44100,
+            "sample_width_bytes": 2,
+            "samples_per_channel": 220500,
+            "compression": "NONE"
+          },
+          "duration_seconds": 5.0
+        }
+      }
+    },
+    {
+      "record_id": "1-27165-A-35",
+      "source": {
+        "id": "1-27165-A-35",
+        "category": "washing_machine",
+        "kind": "natural",
+        "split": "heldout",
+        "pcm": "archive:workspace/outputs/trecap_spectral_monitor_v01/revision02/inputs01/1-27165-A-35.npy",
+        "ns": 240000,
+        "sha256": "a93f533829d93790748c332006a6349a537e6ae6ff5e9a6e4ca6d04a03dba90b",
+        "clipped_samples": 0,
+        "source": {
+          "filename": "1-27165-A-35.wav",
+          "fold": "1",
+          "target": "35",
+          "category": "washing_machine",
+          "esc10": "False",
+          "src_file": "27165",
+          "take": "A",
+          "source_title": "20061205.washing.machine.pumping.flac",
+          "source_url": "http://www.freesound.org/people/dobroide/sounds/27165/",
+          "creator": "dobroide",
+          "source_license": "CC-BY",
+          "official_attribution_line": "- [1-27165-A.ogg]: clip derived from 20061205.washing.machine.pumping.flac (http://www.freesound.org/people/dobroide/sounds/27165/) by dobroide [CC-BY]",
+          "path": "external-tool:1-27165-A-35.wav",
+          "url": "https://raw.githubusercontent.com/karolpiczak/ESC-50/33c8ce9eb2cf0b1c2f8bcf322eb349b6be34dbb6/audio/1-27165-A-35.wav",
+          "bytes": 441044,
+          "sha256": "e6cad0b77f3204159226c4b12003156401f284a32351b9eacd2051df7f6e8237",
+          "wav": {
+            "channels": 1,
+            "sample_rate": 44100,
+            "sample_width_bytes": 2,
+            "samples_per_channel": 220500,
+            "compression": "NONE"
+          },
+          "duration_seconds": 5.0
+        }
+      }
+    }
+  ]
+}

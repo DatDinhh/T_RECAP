@@ -1,0 +1,47 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/rtl/arithmetic_large_shifts/report.json",
+      "original_sha256": "76f288a2e22600498104b68c17411260782a873d35743c445eab5b9544a3146c"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "status": "PASS",
+    "rows": 23,
+    "comparisons": 138,
+    "shifts": [
+      62,
+      63,
+      64,
+      65,
+      127,
+      128
+    ],
+    "input_width": 64,
+    "helper_width": 128,
+    "expected_rule": "Arbitrary integer magnitude quotient/remainder; increment on 2*remainder>=2^shift, restore sign. Includes INT64_MIN and +/- half ties and neighbors.",
+    "observed_trace_sha256": "a2567fd81d84d02090b07e551b12bd8966dc1c8a1fd523bda351caabfbb50cea",
+    "command": {
+      "stage": "simulate",
+      "argv": [
+        "external-tool:vsim.exe",
+        "-c",
+        "-voptargs=+acc",
+        "work.large_shift_tb",
+        "+OUT=archive:workspace/work/verification_20261017_release/rtl/arithmetic_large_shifts",
+        "-do",
+        "onerror {quit -code 1}; onbreak {quit -code 1}; run -all; quit -code 0"
+      ],
+      "cwd": "archive:workspace/work/verification_20261017_release/rtl/arithmetic_large_shifts",
+      "timeout_s": 60,
+      "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+      "started_utc": "2026-10-17T02:10:55.202760+00:00",
+      "pid": 7460,
+      "returncode": 0,
+      "elapsed_s": 1.9690000000409782,
+      "log_sha256": "d633e9a73db05b2f6452c68fe946f7436fcb306243c5bb2382d93d7f3889845b"
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/assurance/audit01/summary.json",
+      "original_sha256": "bfb1271103bc8906b8c23b66e11d51657fd620d81e52d94057ef91d8fcbca3bb"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "schema": "trecap-fresh-physical-independent-audit-v1",
+    "started_utc": "2026-10-17T02:18:58.932829+00:00",
+    "hardware_access_by_auditor": false,
+    "fresh_captures_audited": true,
+    "new_benchmark": false,
+    "checks": [
+      {
+        "check": "58 distinct fresh capture records",
+        "pass": true
+      },
+      {
+        "check": "All registered monitor48 and flute10 cases, with no denominator change",
+        "pass": true
+      },
+      {
+        "check": "Every frozen natural and synthetic quality criterion recomputed",
+        "pass": true
+      }
+    ],
+    "checker_negative_controls": [
+      "fault",
+      "drop",
+      "missing_Y",
+      "unread_wire",
+      "nonempty_FIFO",
+      "packet_magic",
+      "packet_threshold",
+      "packet_protected_DC",
+      "packet_truncation"
+    ],
+    "status": "PASS_FRESH_58_CAPTURE_REPLICATION_AND_MONITOR_AUDIT",
+    "capture_index_sha256": "ebca3e87a8a65712e2df9d8a47f5f34e37169c360cf606a4abaa027bde96e931",
+    "capture_started_utc": "2026-10-17T02:11:24.941735+00:00",
+    "capture_finished_utc": "2026-10-17T02:18:48.403296+00:00",
+    "boot_id": "RUNTIME_SESSION_REDACTED",
+    "source_id": "39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed",
+    "sof_sha256": "f96bc5a35adf08711a5f392baf9f8cbf5ec65a17211a58117bdb53f62acbb7ab",
+    "totals": {
+      "physical_epochs": 58,
+      "distinct_inputs": 13,
+      "configurations": 29,
+      "monitor_epochs": 48,
+      "flute_epochs": 10,
+      "input_samples_checked": 22272000,
+      "Y_samples_checked": 22301696,
+      "frames_checked": 174058,
+      "packet_bytes_compared": 107200224,
+      "threshold_zero_epochs": 26,
+      "zero_drop_and_fault_snapshots": 58,
+      "natural_quality_records": 4,
+      "synthetic_records": 8,
+      "synthetic_expected_events": 5,
+      "synthetic_matched_events": 5
+    },
+    "limitations": [
+      "Fresh board execution reuses frozen application inputs and registered PC-only expected outputs. It is a replication dataset.",
+      "All full Y values and strict power packets are compared; original frame statistics, complete metrics and signed complex/preliminary-mask fields remain unavailable in physical TSH2.",
+      "Native strict decoder checks FNV and packet invariants; independent Python reconstruction checks every header, index, threshold, power and all21 feature columns.",
+      "Monitor quality and byte ratios use only original5s/5.12s support. Natural event comparison is not labeled fault diagnosis.",
+      "Recorded FPGA cycles include HPS source/drain stalls; board/host intervals are service timing, not an isolated-core or energy/speedup benchmark.",
+      "No continuous microphone, live codec/ADC, original DDR/UDP architecture, long-duration reliability or industrial certification is established.",
+      "Audit performs no hardware access. It verifies the preserved fresh physical execution receipts and raw data."
+    ],
+    "finished_utc": "2026-10-17T02:19:14.447001+00:00",
+    "audit_script_sha256": "d5919d8d260a7128e77c67b4a6f52e23fd1c3d6a6f8f48ea548452f41593569d",
+    "unique_files_hashed": 1412,
+    "hash_comparisons": 2238,
+    "raw_log_sha256": "4104607bdcb661b648efa978f244dceb71383ccb5281eea05f19fa81e54fcb9d"
+  }
+}

@@ -1,0 +1,140 @@
+[
+  {
+    "argv": [
+      "vsim.exe",
+      "-c",
+      "-onfinish",
+      "stop",
+      "-voptargs=+acc",
+      "work.dv_stream_tb",
+      "+OUT=../negative_control",
+      "+CASES=../negative_control/cases.txt",
+      "+COUNT=2",
+      "+SEED=1",
+      "+INJECT_BAD_Y",
+      "-do",
+      "run.do"
+    ],
+    "cwd": "<RESULT>/build",
+    "timeout_seconds": 1,
+    "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+    "started_utc": "2026-10-17T03:25:07.399068+00:00",
+    "pid": 34524,
+    "timed_out": true,
+    "cleanup": {
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "ERROR: Access denied\n\n"
+    },
+    "exit_code": 1,
+    "cleanup_seconds": 0.078,
+    "elapsed_seconds": 1.109,
+    "log_sha256": "6dcf5a22c22536b59cf98dbb360bb373bb7398e9d416718108c2c5ece93a6248",
+    "original_receipt_sha256": "268ba75c4b38c335213d49ef4af1187643c47359daa9bf9fe520225ef929379c",
+    "environment": "sandbox",
+    "test": "negative_control"
+  },
+  {
+    "argv": [
+      "vsim.exe",
+      "-c",
+      "-onfinish",
+      "stop",
+      "-voptargs=+acc",
+      "work.dv_stream_tb",
+      "+OUT=../seed_1",
+      "+CASES=../seed_1/cases.txt",
+      "+COUNT=2",
+      "+SEED=1",
+      "-do",
+      "run.do"
+    ],
+    "cwd": "<RESULT>/build",
+    "timeout_seconds": 1,
+    "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+    "started_utc": "2026-10-17T03:25:06.292228+00:00",
+    "pid": 21780,
+    "timed_out": true,
+    "cleanup": {
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "ERROR: Access denied\n\n"
+    },
+    "exit_code": 1,
+    "cleanup_seconds": 0.062,
+    "elapsed_seconds": 1.094,
+    "log_sha256": "62185b737c060bbeb800c89d9ee9f5764137006f22ea98ea81aeaa32351b15dc",
+    "original_receipt_sha256": "686da591ec30e3742e237cc93a62d4ad0b3e3b4e844ac9f6a0d7cc46a73c7c49",
+    "environment": "sandbox",
+    "test": "seed_1"
+  },
+  {
+    "argv": [
+      "vsim.exe",
+      "-c",
+      "-onfinish",
+      "stop",
+      "-voptargs=+acc",
+      "work.dv_stream_tb",
+      "+OUT=../negative_control",
+      "+CASES=../negative_control/cases.txt",
+      "+COUNT=2",
+      "+SEED=1",
+      "+INJECT_BAD_Y",
+      "-do",
+      "run.do"
+    ],
+    "cwd": "<RESULT>/build",
+    "timeout_seconds": 1,
+    "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+    "started_utc": "2026-10-17T03:28:21.297586+00:00",
+    "pid": 7676,
+    "timed_out": true,
+    "cleanup": {
+      "exit_code": 0,
+      "stdout": "SUCCESS: The process with PID 54312 (child process of PID 29880) has been terminated.\nSUCCESS: The process with PID 6608 (child process of PID 29880) has been terminated.\nSUCCESS: The process with PID 29880 (child process of PID 7676) has been terminated.\nSUCCESS: The process with PID 7676 (child process of PID 45608) has been terminated.\n",
+      "stderr": ""
+    },
+    "exit_code": 1,
+    "cleanup_seconds": 0.437,
+    "elapsed_seconds": 1.453,
+    "log_sha256": "6dcf5a22c22536b59cf98dbb360bb373bb7398e9d416718108c2c5ece93a6248",
+    "original_receipt_sha256": "2f2c940ea35f0e235d09e75d391dbd2ea9d6b5de049ed8f49ec262e1d1ccf619",
+    "environment": "Windows_host",
+    "test": "negative_control"
+  },
+  {
+    "argv": [
+      "vsim.exe",
+      "-c",
+      "-onfinish",
+      "stop",
+      "-voptargs=+acc",
+      "work.dv_stream_tb",
+      "+OUT=../seed_1",
+      "+CASES=../seed_1/cases.txt",
+      "+COUNT=2",
+      "+SEED=1",
+      "-do",
+      "run.do"
+    ],
+    "cwd": "<RESULT>/build",
+    "timeout_seconds": 1,
+    "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+    "started_utc": "2026-10-17T03:28:19.785936+00:00",
+    "pid": 42460,
+    "timed_out": true,
+    "cleanup": {
+      "exit_code": 0,
+      "stdout": "SUCCESS: The process with PID 45280 (child process of PID 19264) has been terminated.\nSUCCESS: The process with PID 21108 (child process of PID 19264) has been terminated.\nSUCCESS: The process with PID 19264 (child process of PID 42460) has been terminated.\nSUCCESS: The process with PID 42460 (child process of PID 45608) has been terminated.\n",
+      "stderr": ""
+    },
+    "exit_code": 1,
+    "cleanup_seconds": 0.468,
+    "elapsed_seconds": 1.5,
+    "log_sha256": "6dcf5a22c22536b59cf98dbb360bb373bb7398e9d416718108c2c5ece93a6248",
+    "original_receipt_sha256": "0677fa6b0a98bcd6fd3fdc4e920fd87800f76cb306ec46f40bc34e77bfe886eb",
+    "environment": "Windows_host",
+    "test": "seed_1"
+  }
+]

@@ -58,3 +58,11 @@ docs/presentation/reference_model_20260922/plot_reference_presentation.py whites
 scripts/analysis/plot_architecture_presentation.py whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol
 scripts/analysis/plot_reference_presentation.py whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol
 sw/measurement/ina228/README.md whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol
+
+# DV admission, source lineage and public evidence hashes are byte identities.
+verification/tsh2/** -text
+verification/campaign_sources/** -text
+sim/verification/reference_adapter/reference_api_adapter.cpp -text
+profiles/tsh2/** -text
+docs/results/verification_20261017/** -text
+docs/verification/portfolio/** -text

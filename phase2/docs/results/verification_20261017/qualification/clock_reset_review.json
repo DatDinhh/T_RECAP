@@ -1,0 +1,92 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/assurance/clock_reset_review.json",
+      "original_sha256": "89ff3267fd6cc845bedf4fc458fb6a466569bd145e230e347056a730b6fdffb3"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "status": "PASS_BOUNDED_SOURCE_CONNECTIVITY_REVIEW",
+    "source_id": "39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed",
+    "source_sha256": {
+      "sources/trecap_hps_top.sv": "cce69d7a6395d93c8a487e36b8db8e4288e5b2e9613f205dfd84b1f380d96447",
+      "sources/platform_designer_wrapper.sv": "3123d253447c91903e41c646049a3f4c837ff871f3ca493b3019382d00934c4e",
+      "legacy/platform/de1soc/qsys/system.qsys": "b3101b69f042d319c0c9686db3c0566feeb6de9013d963826058bc8cba776141",
+      "hps_image.sdc": "08ea77a1accc64362daf283fa8ab4ceccde4d010ae3b45676de63fe5c7507ff4",
+      "sources/trecap_stream_adapter.sv": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305"
+    },
+    "checks": {
+      "top_platform_clock": true,
+      "top_adapter_clock": true,
+      "shared_reset_to_bridge_and_adapter": true,
+      "three_stage_reset_release": true,
+      "reset_assert_async_release_clocked": true,
+      "wrapper_clock_map": true,
+      "bridge_clocks_same_source": true,
+      "lw_axi_clock_connected": true,
+      "csr_bridge_clock_connected": true,
+      "physical_clock_period_20ns": true,
+      "fpga_ddr_writer_tied_off": true
+    },
+    "clock_connections": [
+      {
+        "kind": "clock",
+        "version": "20.1",
+        "start": "clk_0.clk",
+        "end": "trecap_csr_bridge.clk"
+      },
+      {
+        "kind": "clock",
+        "version": "20.1",
+        "start": "clk_0.clk",
+        "end": "trecap_f2h_sdram_bridge.clk"
+      },
+      {
+        "kind": "clock",
+        "version": "20.1",
+        "start": "clk_0.clk",
+        "end": "hps_0.f2h_axi_clock"
+      },
+      {
+        "kind": "clock",
+        "version": "20.1",
+        "start": "clk_0.clk",
+        "end": "hps_0.f2h_sdram0_clock"
+      },
+      {
+        "kind": "clock",
+        "version": "20.1",
+        "start": "clk_0.clk",
+        "end": "hps_0.h2f_axi_clock"
+      },
+      {
+        "kind": "clock",
+        "version": "20.1",
+        "start": "clk_0.clk",
+        "end": "hps_0.h2f_lw_axi_clock"
+      }
+    ],
+    "reset_connections": [
+      {
+        "kind": "reset",
+        "version": "20.1",
+        "start": "clk_0.clk_reset",
+        "end": "trecap_csr_bridge.reset"
+      },
+      {
+        "kind": "reset",
+        "version": "20.1",
+        "start": "clk_0.clk_reset",
+        "end": "trecap_f2h_sdram_bridge.reset"
+      }
+    ],
+    "meaning": "Hand-written active data pipeline and CSR boundary share CLOCK_50; three-stage asynchronous-assert/synchronous-release reset is visible in the registered top. FPGA DDR writer is tied off.",
+    "limitations": [
+      "Text/XML connectivity review is not netlist CDC/RDC signoff, MTBF calculation, formal proof or analog metastability qualification.",
+      "HPS hard IP, generated interconnect and DDR contain vendor clock domains and require their documented timing/calibration assumptions.",
+      "Functional testbench time must not be substituted for physical board clock timing."
+    ]
+  }
+}

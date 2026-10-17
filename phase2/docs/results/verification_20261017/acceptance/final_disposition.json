@@ -1,0 +1,510 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/assurance/final_disposition.json",
+      "original_sha256": "c0c355220dd1d63b7fe015aebddf49589e00c4a0fa5063d54b92932296537170"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "schema": "trecap-final-scoped-release-disposition-v1",
+    "created_utc": "2026-10-17T02:38:43.055881+00:00",
+    "report_ready": true,
+    "release_verdict": "PASS - registered TSH2 finite-file profile",
+    "status": "PASS_SELECTED_PROFILE_WITH_EXPLICIT_ORIGINAL_SIGNOFF_GAPS",
+    "registered_profile": "48kHz signed12 finite-file384000; FFT256/hop128; epoch-latched threshold; Y and TSP1 plus bounded spectral monitor",
+    "source_id": "39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed",
+    "sof_sha256": "f96bc5a35adf08711a5f392baf9f8cbf5ec65a17211a58117bdb53f62acbb7ab",
+    "boot_id": "RUNTIME_SESSION_REDACTED",
+    "active_plan": {
+      "active_plan": "release_plan_revision03.json",
+      "sha256": "3822a09545515da0fea56131fe259fa092c8f53e7d7471c1ee4428a4a45d7058",
+      "case_inventory": "physical_case_inventory_revision02.json",
+      "case_inventory_sha256": "119d5a525f1b50291267a3ee22f9ce3e9a5b92fa6b82a335cdec5485cf684d3b",
+      "requirements_matrix": "requirements_matrix.json",
+      "requirements_matrix_sha256": "27fe1c596ea767111e552eed3812bbcbf59559897bea4c76c3ef7b3879da5efd",
+      "status": "REGISTERED_PLAN_NOT_A_VERIFICATION_RESULT",
+      "revision_utc": "2026-10-17T02:13:09.751466+00:00"
+    },
+    "gates": [
+      {
+        "gate_id": "G00",
+        "title": "Freeze implementation, registered cases and current evidence identity",
+        "mandatory": true,
+        "status": "PASS_REGISTERED_BINDINGS",
+        "evidence": [
+          "archive:workspace/work/verification_20261017_release/assurance/active_plan.json",
+          "archive:workspace/work/verification_20261017_release/assurance/audit01/summary.json",
+          "archive:workspace/work/verification_20261017_release/assurance/retained_evidence_revalidation.json",
+          "archive:workspace/work/verification_20261017_release/reference/summary.json",
+          "archive:workspace/work/verification_20261017_release/rtl/summary.json",
+          "archive:workspace/work/verification_20261017_release/assurance/report_review03/summary.json"
+        ],
+        "evidence_sha256": {
+          "archive:workspace/work/verification_20261017_release/assurance/active_plan.json": "fbf796f37bb3c3947090fecdbe12f2a7631dbec4bd25274aa8bb31c6f25be5ba",
+          "archive:workspace/work/verification_20261017_release/assurance/audit01/summary.json": "bfb1271103bc8906b8c23b66e11d51657fd620d81e52d94057ef91d8fcbca3bb",
+          "archive:workspace/work/verification_20261017_release/assurance/retained_evidence_revalidation.json": "077180ba125688b6be074e307438c1a0276fb53e8337edf663ae156751708f5e",
+          "archive:workspace/work/verification_20261017_release/reference/summary.json": "7a75df7935a320810ad3db73d2b8e452452f3c50b0bc4dcbf7de20728bde420e",
+          "archive:workspace/work/verification_20261017_release/rtl/summary.json": "eb295e55ce26533cda7225858d978816d8e6066f5fab48b3aef414520acea9ee",
+          "archive:workspace/work/verification_20261017_release/assurance/report_review03/summary.json": "d8e81807e55ca95d98081f71453a78a975fb9f64ddbffb02d24b79020f0e8788"
+        },
+        "accepted_scope": "Registered revision03,58physical cases,182fitted source files,unchanged SOF and repaired reference identities remain bound through final report review.",
+        "remaining_or_limit": "Identities apply to this campaign only; later image/source changes require new impact review.",
+        "original_requirement_ids": [
+          "R-AUTH-01",
+          "R-ENV-01"
+        ],
+        "original_requirement_full_closure": false
+      },
+      {
+        "gate_id": "G01",
+        "title": "Repair and independently qualify reference rounding helper",
+        "mandatory": true,
+        "status": "PASS",
+        "evidence": [
+          "archive:workspace/work/verification_20261017_release/assurance/reference_peer_review.json",
+          "archive:workspace/work/verification_20261017_release/reference/summary.json",
+          "archive:workspace/work/verification_20261017_release/reference/arithmetic_attempt01/report.json"
+        ],
+        "evidence_sha256": {
+          "archive:workspace/work/verification_20261017_release/assurance/reference_peer_review.json": "9aa19457c15e902350d5484d7f77d3a32c58c4e90e180aa24481d68e35b9734e",
+          "archive:workspace/work/verification_20261017_release/reference/summary.json": "7a75df7935a320810ad3db73d2b8e452452f3c50b0bc4dcbf7de20728bde420e",
+          "archive:workspace/work/verification_20261017_release/reference/arithmetic_attempt01/report.json": "e97d2b9aba30d744743a7116944a6c1d5f4823435f3f37332b0b735308858bf4"
+        },
+        "accepted_scope": "Shift63 and64 helper defects repaired;729156 round/floor comparisons,364578 property points,4 old-binary witnesses and5 checker corruptions, plus independent domain proof.",
+        "remaining_or_limit": "Not exhaustive enumeration of every int64 value; complete shift regions supported by bounded arithmetic reasoning.",
+        "original_requirement_ids": [
+          "R-REF-01",
+          "R-NUM-02",
+          "R-ENV-01"
+        ],
+        "original_requirement_full_closure": false
+      },
+      {
+        "gate_id": "G02",
+        "title": "Qualify selected static reference vectors and transform anchors",
+        "mandatory": true,
+        "status": "PASS_SELECTED_STATIC_REFERENCE",
+        "evidence": [
+          "archive:workspace/work/verification_20261017_release/reference/baseline_attempt02/report.json",
+          "archive:workspace/work/verification_20261017_release/reference/corner_attempt01/report.json",
+          "archive:workspace/work/verification_20261017_release/reference/full_length_attempt02/report.json"
+        ],
+        "evidence_sha256": {
+          "archive:workspace/work/verification_20261017_release/reference/baseline_attempt02/report.json": "1e2085a30addb2b438614be17c6e268a02155b15ac8e0c8cfaa7d7521376db95",
+          "archive:workspace/work/verification_20261017_release/reference/corner_attempt01/report.json": "b49e7ea6809e1ec1c64f3404d87cb0da8be73bfd1fdb78af0511ea714f10c429",
+          "archive:workspace/work/verification_20261017_release/reference/full_length_attempt02/report.json": "13056e154f533044207decad133021b0c6d17002e3300832faa2dffcc71a6ed3"
+        },
+        "accepted_scope": "16540 independent primitive comparisons,2 selected baseline vectors,248 short corner cases/all128 hop residues,11 CTest regressions, full384000 repaired-reference/frozen equivalence.",
+        "remaining_or_limit": "Full-size output comparison uses frozen expected bytes; recursive independent oracle covers baseline/short cases. Coefficient-generation and dynamic reference qualification remain open.",
+        "original_requirement_ids": [
+          "R-REF-01",
+          "R-NUM-01",
+          "R-NUM-03",
+          "R-NUM-04",
+          "R-NUM-05",
+          "R-NUM-06"
+        ],
+        "original_requirement_full_closure": false
+      },
+      {
+        "gate_id": "G03",
+        "title": "Execute full-size TSH2 core geometry and exact numerical simulation",
+        "mandatory": true,
+        "status": "PASS_TWO_COMPLETE_FULL_LENGTH_RUNS",
+        "evidence": [
+          "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/report.json",
+          "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/report.json",
+          "archive:workspace/work/verification_20261017_release/rtl/summary.json",
+          "archive:workspace/work/verification_20261017_release/assurance/rtl_audit01/summary.json"
+        ],
+        "evidence_sha256": {
+          "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/report.json": "430e746f686b82717a252ce7bf8f79ea1d5f721c7791b540c2e5baebd5682ac0",
+          "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/report.json": "925f569e58cb9ddc2dffd93aa89e431f0a91cdeaecbe5f478cd42aff5bc81054",
+          "archive:workspace/work/verification_20261017_release/rtl/summary.json": "eb295e55ce26533cda7225858d978816d8e6066f5fab48b3aef414520acea9ee",
+          "archive:workspace/work/verification_20261017_release/assurance/rtl_audit01/summary.json": "9c3a52e54eda986b4260dd863da7fbe06791321dc4d31bade251a6a52a54ee0a"
+        },
+        "accepted_scope": "Both preselected full384000 cases passed: threshold0dense and100000000sparse; independent complete artifact audit checks769024Y,774258canonical rows,6002frames and3380152packet bytes exactly.",
+        "remaining_or_limit": "Full-size simulations instantiate active core and RAM exporter, excluding HPS vendor bridge and MMIO adapter. No full-size internal-statistics or physical timing claim.",
+        "original_requirement_ids": [
+          "R-GEO-01",
+          "R-GEO-02",
+          "R-NUM-03",
+          "R-NUM-05",
+          "R-NUM-06",
+          "R-NUM-07",
+          "R-FLOW-01",
+          "R-FLOW-02",
+          "R-FLOW-05"
+        ],
+        "original_requirement_full_closure": false
+      },
+      {
+        "gate_id": "G04",
+        "title": "Exercise adapter flow, FIFO pressure and allowed reset/clear behavior",
+        "mandatory": true,
+        "status": "PASS_SELECTED_FLOW_AND_RESET",
+        "evidence": [
+          "archive:workspace/work/verification_20261016/rtl/adapter_assertions/report.json",
+          "archive:workspace/work/verification_20261017_release/rtl/core_busy_reset_recovery/report.json",
+          "archive:workspace/work/verification_20261017_release/assurance/retained_evidence_revalidation.json"
+        ],
+        "evidence_sha256": {
+          "archive:workspace/work/verification_20261016/rtl/adapter_assertions/report.json": "4400a882d4a1a7e525f205251539604cc1b6489e31b305584d4ca4631b3d5867",
+          "archive:workspace/work/verification_20261017_release/rtl/core_busy_reset_recovery/report.json": "18b157d5c37c913f6dc5766baba0f38eb46997c9c95ef5801155db4891ee1f26",
+          "archive:workspace/work/verification_20261017_release/assurance/retained_evidence_revalidation.json": "077180ba125688b6be074e307438c1a0276fb53e8337edf663ae156751708f5e"
+        },
+        "accepted_scope": "Retained unchanged-source adapter evidence:12 normal epochs,13 negatives,913932 checks,312316 transactions and all3 FIFO-full observations. Fresh32 busy-phase cancellations and32 exact recovery epochs.",
+        "remaining_or_limit": "Original dynamic per-frame commits and generated HPS bridge simulation remain outside active fixed-epoch profile.",
+        "original_requirement_ids": [
+          "R-FLOW-01",
+          "R-FLOW-02",
+          "R-FLOW-05",
+          "R-RST-01",
+          "R-CTL-01",
+          "R-CTL-02"
+        ],
+        "original_requirement_full_closure": false
+      },
+      {
+        "gate_id": "G05",
+        "title": "Qualify active RAM packet exporter under ownership and reset pressure",
+        "mandatory": true,
+        "status": "PASS_REVALIDATED_ACTIVE_RAM_EXPORTER",
+        "evidence": [
+          "archive:workspace/work/verification_20261016/rtl/summary.json",
+          "archive:workspace/work/verification_20261017_release/assurance/retained_evidence_revalidation.json"
+        ],
+        "evidence_sha256": {
+          "archive:workspace/work/verification_20261016/rtl/summary.json": "7a815321e7984e41862b7c1a9f1cfa5a0bfcbce0297ed94a68e56e9387f9bae6",
+          "archive:workspace/work/verification_20261017_release/assurance/retained_evidence_revalidation.json": "077180ba125688b6be074e307438c1a0276fb53e8337edf663ae156751708f5e"
+        },
+        "accepted_scope": "Retained active RAM exporter evidence rehashed:174 scenarios,3106 complete records,2037896 bytes,8 aborted prefixes, queue depths2/3/4 and request/response reset corners.",
+        "remaining_or_limit": "No redundant rerun in release. Original multi-priority telemetry architecture remains excluded.",
+        "original_requirement_ids": [
+          "R-TEL-02",
+          "R-TEL-03",
+          "R-TEL-04",
+          "R-RST-01",
+          "R-FLOW-02"
+        ],
+        "original_requirement_full_closure": false
+      },
+      {
+        "gate_id": "G06",
+        "title": "Qualify the actual runner, observed assertions and scoreboards",
+        "mandatory": true,
+        "status": "PASS_BOUNDED_SELECTED_CHECKERS",
+        "evidence": [
+          "archive:workspace/work/verification_20261017_release/rtl/qualification_snapshot/runs/verification/environment-20261017T020532Z-3c430f83/summary.json",
+          "archive:workspace/work/verification_20261017_release/rtl/mask_threshold_boundaries/four_state_controls02.json",
+          "archive:workspace/work/verification_20261017_release/assurance/audit01/summary.json",
+          "archive:workspace/work/verification_20261017_release/reference/arithmetic_attempt01/report.json"
+        ],
+        "evidence_sha256": {
+          "archive:workspace/work/verification_20261017_release/rtl/qualification_snapshot/runs/verification/environment-20261017T020532Z-3c430f83/summary.json": "2d1fab31ebd21a9b53022f7dd63be8e9e8e157e179dcc1332d87cd9c20a848a6",
+          "archive:workspace/work/verification_20261017_release/rtl/mask_threshold_boundaries/four_state_controls02.json": "1fd7637568d9c148708177e89150b74f03eed8bea6f2d566863c93141d0faec1",
+          "archive:workspace/work/verification_20261017_release/assurance/audit01/summary.json": "bfb1271103bc8906b8c23b66e11d51657fd620d81e52d94057ef91d8fcbca3bb",
+          "archive:workspace/work/verification_20261017_release/reference/arithmetic_attempt01/report.json": "e97d2b9aba30d744743a7116944a6c1d5f4823435f3f37332b0b735308858bf4"
+        },
+        "accepted_scope": "15 environment cases classify positives, assertions/error/fatal, X/Z, missing completion and both watchdogs;2 DUT-path X/Z controls; native/reference/physical-audit corruptions are rejected.",
+        "remaining_or_limit": "Generic probe diagnostics can be caught by log scan despite simulator exit0. The corrected mask negative-control do-file exits3. Concurrent assertions, covergroups, code coverage, vendor models and DPI are excluded; no universal checker/vacuity claim.",
+        "original_requirement_ids": [
+          "R-ENV-01",
+          "R-ENV-02"
+        ],
+        "original_requirement_full_closure": false
+      },
+      {
+        "gate_id": "G07",
+        "title": "Requalify native codec, monitor and host application after reference fix",
+        "mandatory": true,
+        "status": "PASS_FRESH_ISOLATED_HOST_AND_NATIVE",
+        "evidence": [
+          "archive:workspace/work/verification_20261017_release/software/findings.json",
+          "archive:workspace/work/verification_20261017_release/native/findings.json"
+        ],
+        "evidence_sha256": {
+          "archive:workspace/work/verification_20261017_release/software/findings.json": "14e664f680550ed10d32b3a796b1be2baf46ed6c3fbc21a4b714bb3519b68a16",
+          "archive:workspace/work/verification_20261017_release/native/findings.json": "a21ceaaa4d23788edd34d43c406dcaa22ce36451e7435d3298c5b69fedbd96db"
+        },
+        "accepted_scope": "66 isolated host tests,122 local public hashes,5 native cases/4 bigint edges/32 malformed rejections;19 host sources identical before/after.",
+        "remaining_or_limit": "Native DLL reused without rebuild. No browser rendering/playback, remote gateway or current microphone test.",
+        "original_requirement_ids": [
+          "R-SW-03",
+          "R-TEL-02",
+          "R-ENV-01"
+        ],
+        "original_requirement_full_closure": false
+      },
+      {
+        "gate_id": "G08",
+        "title": "Admit the exact physical image, kernel, current boot and service",
+        "mandatory": true,
+        "status": "PASS_FRESH_ADMISSION",
+        "evidence": [
+          "archive:workspace/work/verification_20261017_release/hardware/deployment01/admission_summary.json",
+          "archive:workspace/work/verification_20261017_release/assurance/deployment_safety_review.json",
+          "archive:workspace/work/verification_20261017_release/assurance/audit01/summary.json"
+        ],
+        "evidence_sha256": {
+          "archive:workspace/work/verification_20261017_release/hardware/deployment01/admission_summary.json": "1c04bb63f7c9489e29b2ae5e1768b1e82d2b1173cc634b5f23dab6e4b415541c",
+          "archive:workspace/work/verification_20261017_release/assurance/deployment_safety_review.json": "db3025f702a8d896d8d285c2adc78610bfe3e68191041a32e038d9c64cf71802",
+          "archive:workspace/work/verification_20261017_release/assurance/audit01/summary.json": "bfb1271103bc8906b8c23b66e11d51657fd620d81e52d94057ef91d8fcbca3bb"
+        },
+        "accepted_scope": "Fresh boot3615d536-53c5-4665-95bf-39f5edb34b56 admitted with exact SOF/source/service; per-request system manager4/reset5 and TSH2/source/geometry verified; RAM tools archive contains only3 binaries.",
+        "remaining_or_limit": "Initial missing-readlink and fractional-sleep issues are preserved. Replacement fd/maps owner inventory explicitly supersedes premature no-owner claim.",
+        "original_requirement_ids": [
+          "R-AUTH-01",
+          "R-BOARD-01",
+          "R-PLAT-01",
+          "R-PLAT-02"
+        ],
+        "original_requirement_full_closure": false
+      },
+      {
+        "gate_id": "G09",
+        "title": "Capture complete fresh monitor and flute matrices on the admitted board",
+        "mandatory": true,
+        "status": "PASS_FRESH_58_PHYSICAL_CAPTURES",
+        "evidence": [
+          "archive:workspace/work/verification_20261017_release/assurance/audit01/summary.json",
+          "archive:workspace/work/verification_20261017_release/hardware/captures01/index.json"
+        ],
+        "evidence_sha256": {
+          "archive:workspace/work/verification_20261017_release/assurance/audit01/summary.json": "bfb1271103bc8906b8c23b66e11d51657fd620d81e52d94057ef91d8fcbca3bb",
+          "archive:workspace/work/verification_20261017_release/hardware/captures01/index.json": "ebca3e87a8a65712e2df9d8a47f5f34e37169c360cf606a4abaa027bde96e931"
+        },
+        "accepted_scope": "58 epochs,22272000 inputs,22301696 Y samples,174058 frames and107200224 packet bytes exactly checked;58 raw final snapshots show exact counts and zero drops/faults.26 zero-threshold identities and repeated outputs exact.",
+        "remaining_or_limit": "Physical TSH2 omits original frame statistics/metrics/signed complex details, so this does not close original AC10/AC11/AC12/AC13 bundle.",
+        "original_requirement_ids": [
+          "R-BOARD-01",
+          "R-GEO-02",
+          "R-FLOW-02",
+          "R-FLOW-05",
+          "R-NUM-06",
+          "R-TEL-02"
+        ],
+        "original_requirement_full_closure": false
+      },
+      {
+        "gate_id": "G10",
+        "title": "Recompute monitor quality and duration-matched representation comparison",
+        "mandatory": true,
+        "status": "PASS_FROZEN_MONITOR_CRITERIA",
+        "evidence": [
+          "archive:workspace/work/verification_20261017_release/assurance/audit01/summary.json"
+        ],
+        "evidence_sha256": {
+          "archive:workspace/work/verification_20261017_release/assurance/audit01/summary.json": "bfb1271103bc8906b8c23b66e11d51657fd620d81e52d94057ef91d8fcbca3bb"
+        },
+        "accepted_scope": "Every full spectrum and21 features independently recomputed; original-support monitor bytes/results reproduce frozen behavior.4 natural gates and5/5 intended synthetic events pass.",
+        "remaining_or_limit": "Developmental replication corpus. Tolerances are engineering criteria, not externally labeled machine-fault detection validation. Byte ratios exclude padded silence.",
+        "original_requirement_ids": [
+          "R-SW-03",
+          "R-TEL-02"
+        ],
+        "original_requirement_full_closure": false
+      },
+      {
+        "gate_id": "G11",
+        "title": "Bind implementation timing evidence to the exact programmed image",
+        "mandatory": true,
+        "status": "PASS_REVALIDATED_FITTED_TIMING",
+        "evidence": [
+          "archive:workspace/work/verification_20261016/rtl/timing_reanalysis.json",
+          "archive:workspace/work/verification_20261017_release/assurance/retained_evidence_revalidation.json"
+        ],
+        "evidence_sha256": {
+          "archive:workspace/work/verification_20261016/rtl/timing_reanalysis.json": "d890749669035a336939dd162c7ac4482c0f2e321ecbf1df73b3872ac9a281b4",
+          "archive:workspace/work/verification_20261017_release/assurance/retained_evidence_revalidation.json": "077180ba125688b6be074e307438c1a0276fb53e8337edf663ae156751708f5e"
+        },
+        "accepted_scope": "35 retained timing-parser checks and source/report hashes remain valid for exact unchanged programmed SOF;18 clocks,4 corners,288 clock/check rows and32 calibrated DDR rows.",
+        "remaining_or_limit": "Historical September28 fit with explicit hard-IP/calibration exceptions; no new fit/STA, structural CDC proof or physical DDR visibility proof.",
+        "original_requirement_ids": [
+          "R-CDC-02",
+          "R-PLAT-02"
+        ],
+        "original_requirement_full_closure": false
+      },
+      {
+        "gate_id": "G12",
+        "title": "Audit reproducibility and produce evidence-backed waveform report",
+        "mandatory": true,
+        "status": "PASS_INDEPENDENT_EVIDENCE_AND_REPORT_REVIEW",
+        "evidence": [
+          "archive:workspace/work/verification_20261017_release/assurance/audit01/summary.json",
+          "archive:workspace/work/verification_20261017_release/assurance/deployment_safety_review.json",
+          "archive:workspace/work/verification_20261017_release/assurance/rtl_audit01/summary.json",
+          "archive:workspace/work/verification_20261017_release/assurance/figure_audit01/summary.json",
+          "archive:workspace/work/verification_20261017_release/assurance/report_review03/summary.json",
+          "archive:workspace/work/verification_20261017_release/figures/manifest.json",
+          "archive:workspace/work/verification_20261017_release/assurance/original_requirement_dispositions.json"
+        ],
+        "evidence_sha256": {
+          "archive:workspace/work/verification_20261017_release/assurance/audit01/summary.json": "bfb1271103bc8906b8c23b66e11d51657fd620d81e52d94057ef91d8fcbca3bb",
+          "archive:workspace/work/verification_20261017_release/assurance/deployment_safety_review.json": "db3025f702a8d896d8d285c2adc78610bfe3e68191041a32e038d9c64cf71802",
+          "archive:workspace/work/verification_20261017_release/assurance/rtl_audit01/summary.json": "9c3a52e54eda986b4260dd863da7fbe06791321dc4d31bade251a6a52a54ee0a",
+          "archive:workspace/work/verification_20261017_release/assurance/figure_audit01/summary.json": "627e34814bf12a2a2ab0637657c0658df47dd14990a5b7bbc75106c623161cb4",
+          "archive:workspace/work/verification_20261017_release/assurance/report_review03/summary.json": "d8e81807e55ca95d98081f71453a78a975fb9f64ddbffb02d24b79020f0e8788",
+          "archive:workspace/work/verification_20261017_release/figures/manifest.json": "8eaf7947f7d2dac859951661069c92179f81918e1aacb5cb3ccb9b762c393115",
+          "archive:workspace/work/verification_20261017_release/assurance/original_requirement_dispositions.json": "ca3abc69947715195842c1b3370dc3fd39ccfd18a9f5a2b2c7e65a2d8064fc38"
+        },
+        "accepted_scope": "Fresh58capture raw-data audit, two full-size complete RTL artifact audits, final8figure source/numeric/visual audit and completed candidate content review all pass.",
+        "remaining_or_limit": "Final render changes are limited to reviewed generator verdict/gate/footer/link/filename updates. Root performs final PDF layout and bundle checks. Documentation creates no additional functional coverage.",
+        "original_requirement_ids": [
+          "R-AUTH-01",
+          "R-ENV-01",
+          "R-EXT-02"
+        ],
+        "original_requirement_full_closure": false
+      },
+      {
+        "gate_id": "G13",
+        "title": "Broader core arithmetic/geometry/reset coverage",
+        "mandatory": false,
+        "status": "PASS_SUPPLEMENTAL_WITH_ORIGINAL_GAPS",
+        "evidence": [
+          "archive:workspace/work/verification_20261017_release/rtl/finite_geometry/report.json",
+          "archive:workspace/work/verification_20261017_release/rtl/core_busy_reset_recovery/report.json",
+          "archive:workspace/work/verification_20261017_release/rtl/butterfly_boundaries/report.json",
+          "archive:workspace/work/verification_20261017_release/rtl/mask_threshold_boundaries/report.json",
+          "archive:workspace/work/verification_20261017_release/rtl/arithmetic_large_shifts/report.json",
+          "archive:workspace/work/verification_20261017_release/rtl/summary.json",
+          "archive:workspace/work/verification_20261017_release/rtl/coverage.json",
+          "archive:workspace/work/verification_20261017_release/rtl/analysis_window_boundaries_attempt02/report.json",
+          "archive:workspace/work/verification_20261017_release/rtl/canonical_boundaries_attempt02/report.json",
+          "archive:workspace/work/verification_20261017_release/rtl/final_y_completion_metrics_attempt02/report.json"
+        ],
+        "evidence_sha256": {
+          "archive:workspace/work/verification_20261017_release/rtl/finite_geometry/report.json": "d14e1d027d1afd1c5698e2aaf8d50168d73da44d5fdc64921e5c9d6b3139258e",
+          "archive:workspace/work/verification_20261017_release/rtl/core_busy_reset_recovery/report.json": "18b157d5c37c913f6dc5766baba0f38eb46997c9c95ef5801155db4891ee1f26",
+          "archive:workspace/work/verification_20261017_release/rtl/butterfly_boundaries/report.json": "0ead65394ad2fc6fe0c365d44663dc3ea2c054d70d3f5b1a9466c01159f05088",
+          "archive:workspace/work/verification_20261017_release/rtl/mask_threshold_boundaries/report.json": "3fb907d511b62ea1090fc6062d72d7285ccaab43f94cd7a46416c86949649edd",
+          "archive:workspace/work/verification_20261017_release/rtl/arithmetic_large_shifts/report.json": "76f288a2e22600498104b68c17411260782a873d35743c445eab5b9544a3146c",
+          "archive:workspace/work/verification_20261017_release/rtl/summary.json": "eb295e55ce26533cda7225858d978816d8e6066f5fab48b3aef414520acea9ee",
+          "archive:workspace/work/verification_20261017_release/rtl/coverage.json": "7fc2e1e77a9a0faa9fc4363f53d2f4803d96849a103d75ccb02399d1d6f68cb3",
+          "archive:workspace/work/verification_20261017_release/rtl/analysis_window_boundaries_attempt02/report.json": "453297c3cbfd66936aabb710fb9de89e0165e4b8ae94c4b6a4f2942e8fa6e512",
+          "archive:workspace/work/verification_20261017_release/rtl/canonical_boundaries_attempt02/report.json": "db9de53d9061d3442ae402752238798dfd794231884396b47e00d01a71a47599",
+          "archive:workspace/work/verification_20261017_release/rtl/final_y_completion_metrics_attempt02/report.json": "7ac942e6823c7ff6fa934beccfc859e8dcaa3db28b02f60e0171de530e49c6d4"
+        },
+        "accepted_scope": "All14freshRTL suites PASS with actual observed counts: arithmetic/window/butterfly/canonical/mask,24geometry,32busy-phase recoveries,12final-Y/error-metric epochs and qualified controls,plus mandatory two full-size runs.",
+        "remaining_or_limit": "Directed bounds do not close every original arithmetic/control/metrics/CDC requirement. No code-coverage percentage or exhaustive proof.",
+        "original_requirement_ids": [
+          "R-REF-02",
+          "R-NUM-02",
+          "R-NUM-03",
+          "R-NUM-04",
+          "R-NUM-07",
+          "R-GEO-01",
+          "R-RST-01",
+          "R-FLOW-04"
+        ],
+        "original_requirement_full_closure": false
+      }
+    ],
+    "pending_mandatory_gates": [],
+    "mandatory_gates_passed": 13,
+    "mandatory_gates_total": 13,
+    "supplemental_gates_passed": 1,
+    "original_project_signoff": "OPEN",
+    "industrial_certification": false,
+    "original_requirement_dispositions": {
+      "path": "original_requirement_dispositions.json",
+      "sha256": "ca3abc69947715195842c1b3370dc3fd39ccfd18a9f5a2b2c7e65a2d8064fc38",
+      "requirements": 46,
+      "partial_applicability": 30,
+      "excluded_active_profile": 16,
+      "fully_closed_original_requirements": 0
+    },
+    "physical_totals": {
+      "physical_epochs": 58,
+      "distinct_inputs": 13,
+      "configurations": 29,
+      "monitor_epochs": 48,
+      "flute_epochs": 10,
+      "input_samples_checked": 22272000,
+      "Y_samples_checked": 22301696,
+      "frames_checked": 174058,
+      "packet_bytes_compared": 107200224,
+      "threshold_zero_epochs": 26,
+      "zero_drop_and_fault_snapshots": 58,
+      "natural_quality_records": 4,
+      "synthetic_records": 8,
+      "synthetic_expected_events": 5,
+      "synthetic_matched_events": 5
+    },
+    "full_RTL_audit_totals": {
+      "runs": 2,
+      "input_samples": 768000,
+      "source_tokens": 769024,
+      "Y_samples": 769024,
+      "frames": 6002,
+      "canonical_rows": 774258,
+      "packet_bytes": 3380152
+    },
+    "assurance_report_review": {
+      "path": "report_review03/summary.json",
+      "sha256": "d8e81807e55ca95d98081f71453a78a975fb9f64ddbffb02d24b79020f0e8788"
+    },
+    "accepted_evidence_classes": [
+      "Fresh physical replication58epochs",
+      "Fresh reference/host/native execution",
+      "Fresh selectedRTL14suites",
+      "Prior adapter/FIFO/RAM-exporter simulation revalidated by unchanged sources",
+      "Historical September28 fit/STA freshly rebound"
+    ],
+    "top_remaining_original_signoff_gaps": [
+      "Physical AC10/11/12/13 observations: original frame statistics, complete metric epochs and signed complex/pre-mask bin artifacts are not all exposed by TSH2.",
+      "Dynamic threshold/source/metric-clear controls, live microphone/codec, continuous operation and original DDR-ring/UDP interfaces are outside the implemented profile.",
+      "No complete all-parameter/all-reset-state proof, formal CDC/RDC/MTBF, post-layout simulation, long-duration/environmental reliability or security signoff.",
+      "Frozen full expected data are regression oracles. Independent qualification covers selected short vectors/primitives; shared coefficients and all58full expectations were not independently regenerated.",
+      "No energy, isolated FPGA speedup, laptop-CPU superiority or AI-inference acceleration claim follows from this campaign."
+    ],
+    "preserved_attempts": [
+      {
+        "artifact": "hardware/00_handover_receipt.json",
+        "finding": "Optional BusyBox readlink applet unavailable; its initial no-owner conclusion was premature.",
+        "disposition": "hardware/00_owner_inventory_receipt.json independently lists every process fd and map; hardware/00_owner_admission.json explicitly supersedes the early claim."
+      },
+      {
+        "artifact": "hardware/00_handover_receipt.json",
+        "finding": "BusyBox sleep rejected fractional0.1 argument in the process-exit wait.",
+        "disposition": "The explicit test that /proc/68 no longer existed succeeded. Replacement owner inventory then established absence. No failed sleep is counted as a passing delay test."
+      },
+      {
+        "artifact": "assurance/test_gate_matrix_revision02_serialize_attempt01_partial.csv",
+        "finding": "Assurance CSV writer initially omitted an extra G03 field from its column union.",
+        "disposition": "Partial files retained with serialize_attempt01 names. Corrected serialization then completed; active_plan.json identifies mandatory revision03."
+      },
+      {
+        "attempt": "mask_threshold_boundaries/four_state_controls.json",
+        "classification": "checker runner qualification failure",
+        "cause": "X/Z fatal diagnostics fired correctly but ModelSim inline-do/default-finish returnedzero. Explicit.do macro/-onfinish stop correctly returns3. All positive collectors also require exactcompletion and rejecterror/fatal text.",
+        "resolved_by": "mask_threshold_boundaries/four_state_controls02.json"
+      },
+      {
+        "attempt": "final_y_completion_stall/report.json",
+        "classification": "postchecker fixture-map defect",
+        "cause": "All12simulatedepochs passed exactonlinechecks and128finalY heldcycles. Python checker used cases[phase] for sixfixtures eachdense/sparse. Correct cases[phase//2], matching originalrunner, then freshreplay plus actualtimemetrics passed.",
+        "resolved_by": "final_y_completion_metrics_attempt02/report.json"
+      },
+      {
+        "attempt": "canonical_boundaries/report.json",
+        "classification": "superseded trace quality",
+        "cause": "Positive comparisons passed but trace wrote checkedexpected operands. Replayed using capturedactual DUT outputfields.",
+        "resolved_by": "canonical_boundaries_attempt02/report.json"
+      },
+      {
+        "attempt": "analysis_window_boundaries/report.json",
+        "classification": "testbench elaboration defect",
+        "cause": "Bench assumed28-bit window output; registered T_U_W is27. ModelSim rejected beforetimeadvanced. Correct width and explicit27-bit saturation oracle passed.",
+        "resolved_by": "analysis_window_boundaries_attempt02/report.json"
+      }
+    ],
+    "final_render_rule": "The reviewed generator may be rerun with final_disposition.json to update verdict/gate labels, add its evidence link, remove the DRAFT footer and select the final filename. Any other substantive content or source change requires a fresh review.",
+    "reviewed_generator_sha256": "109fc3c7a20a4eaf6455a7675fb80ce87ea52b79560d85c94fb8f3ace023535a",
+    "claim_rule": "All mandatory registered-profile gates pass. This is scoped engineering acceptance for the exact recorded image,source and cases; it is not original full-project signoff or industrial certification."
+  }
+}

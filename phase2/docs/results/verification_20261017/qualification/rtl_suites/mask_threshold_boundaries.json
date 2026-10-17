@@ -1,0 +1,63 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/rtl/mask_threshold_boundaries/report.json",
+      "original_sha256": "3fb907d511b62ea1090fc6062d72d7285ccaab43f94cd7a46416c86949649edd"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "status": "PASS",
+    "rows": 3072,
+    "thresholds_decimal": [
+      "0",
+      "1",
+      "24",
+      "25",
+      "26",
+      "18014398509481983",
+      "18014398509481984",
+      "18014398509481985",
+      "36028797018963967",
+      "36028797018963968",
+      "36028797018963969",
+      "72057594037927935"
+    ],
+    "event_bins": {
+      "DC:above:eligible0:mask0": 6,
+      "interior:above:eligible1:mask0": 451,
+      "interior:equal:eligible1:mask0": 109,
+      "Nyquist:above:eligible1:mask0": 6,
+      "mirror:above:eligible0:mask0": 453,
+      "mirror:equal:eligible0:mask0": 109,
+      "interior:below:eligible1:mask1": 964,
+      "mirror:below:eligible0:mask0": 962,
+      "DC:equal:eligible0:mask0": 1,
+      "Nyquist:equal:eligible1:mask0": 1,
+      "DC:below:eligible0:mask0": 5,
+      "Nyquist:below:eligible1:mask1": 5
+    },
+    "source_registration": "archive:workspace/work/verification_20261017_release/rtl/mask_threshold_boundaries/source_registration.json",
+    "command": {
+      "stage": "simulate",
+      "argv": [
+        "external-tool:vsim.exe",
+        "-c",
+        "-voptargs=+acc",
+        "work.mask_tb",
+        "+OUT=archive:workspace/work/verification_20261017_release/rtl/mask_threshold_boundaries",
+        "-do",
+        "onerror {quit -code 1}; onbreak {quit -code 1}; run -all; quit -code 0"
+      ],
+      "cwd": "archive:workspace/work/verification_20261017_release/rtl/mask_threshold_boundaries",
+      "timeout_s": 120,
+      "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+      "started_utc": "2026-10-17T02:09:22.768007+00:00",
+      "pid": 14328,
+      "returncode": 0,
+      "elapsed_s": 3.375,
+      "log_sha256": "36fbaf9daf7bf093a7915a7d5530689b451d45a100e9394f01ab0d356eba4b5f"
+    }
+  }
+}

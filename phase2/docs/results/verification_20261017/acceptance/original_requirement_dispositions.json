@@ -1,0 +1,966 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/assurance/original_requirement_dispositions.json",
+      "original_sha256": "ca3abc69947715195842c1b3370dc3fd39ccfd18a9f5a2b2c7e65a2d8064fc38"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "schema": "trecap-original-requirement-dispositions-v1",
+    "created_utc": "2026-10-17T02:25:35.109743+00:00",
+    "status": "ORIGINAL_PROJECT_SIGNOFF_OPEN_WITH_EXPLICIT_ACTIVE_PROFILE_MAPPING",
+    "registered_profile": "TSH2 finite-file + spectral monitor",
+    "original_requirement_count": 46,
+    "partial_applicability_count": 30,
+    "excluded_from_active_profile_count": 16,
+    "original_requirements_closed_by_this_report": 0,
+    "active_profile_acceptance_is_separate": true,
+    "active_profile_final_decision_reference": "final_disposition.json",
+    "mapping_plan_sha256": "3822a09545515da0fea56131fe259fa092c8f53e7d7471c1ee4428a4a45d7058",
+    "original_authority_sha256": {
+      "repo:phase2/docs/verification/requirements_matrix.md": "39820a19f02c002863c057fe20d551b5a0d15088d2c69e8e39dbcfbc7a5fc8e0",
+      "repo:phase2/docs/verification/coverage_and_signoff.md": "4b1baabde834112962424671da4ba85680065f0d560b521d18360751c0256464",
+      "repo:phase2/docs/verification/test_catalog.md": "200b8d9278e02cc9b7059505d39575d3a97a3af2d260e4de8aff5bc3ea0f56eb",
+      "repo:phase2/docs/verification/reference_and_core.md": "1893470a07bf1e3a8381292d7d3b7f171ed8f3cd48d0edf913125ae36141221b"
+    },
+    "interpretation": "These dispositions evaluate original project-wide closure, not the pass rate of active-profile tests. Zero closed original rows does not mean zero passing tests. Passing selected-profile checks and explicit exclusions remain fully reported in the local gate decision.",
+    "rows": [
+      {
+        "original_requirement_id": "R-AUTH-01",
+        "original_required_behavior": "Versioned expected behavior and immutable inputs",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G00",
+          "G08",
+          "G12"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-REF-01, T-ENV-03",
+        "original_mandatory_coverage": "All selected revisions, hashes, widths and artifact rows",
+        "original_acceptance_ids": [
+          "AC1",
+          "AC2",
+          "AC3",
+          "AC4",
+          "AC5",
+          "AC13"
+        ],
+        "disposition_reason": "Frozen active source/configuration and references are bound. The original full source-of-truth hierarchy and every original profile are not globally signed off.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-REF-01",
+        "original_required_behavior": "Reference qualified independently before prediction",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G01",
+          "G02"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-REF-02, T-REF-03, T-REF-05",
+        "original_mandatory_coverage": "Primitive/frame/finite checks; dynamic adapter static-equivalence witness",
+        "original_acceptance_ids": [
+          "AC1",
+          "AC2",
+          "AC6",
+          "AC9",
+          "AC10",
+          "AC11",
+          "AC12"
+        ],
+        "disposition_reason": "Rounding repair, independent selected primitives/vectors,248 short corners and full-size frozen equivalence are evidenced. This is not the complete original reference qualification suite.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-REF-02",
+        "original_required_behavior": "All required vector classes admitted; no invented quality bounds",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G13"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-REF-04, T-REF-06",
+        "original_mandatory_coverage": "Every mandatory class and no-suppression bound",
+        "original_acceptance_ids": [
+          "AC1",
+          "AC4",
+          "AC8",
+          "AC10",
+          "AC11",
+          "AC14"
+        ],
+        "disposition_reason": "Independent higher-precision quality bounds over the original required corpus are not closed by exact fixed-point regression.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-NUM-01",
+        "original_required_behavior": "Correct signed/unsigned coefficients and width schedule",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G02"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-AR-02",
+        "original_mandatory_coverage": "Window 0/unity; twiddle +/-unity; full input extrema",
+        "original_acceptance_ids": [
+          "AC2",
+          "AC6",
+          "AC9",
+          "AC10",
+          "AC11",
+          "AC12"
+        ],
+        "disposition_reason": "Frozen coefficient bytes and selected integer anchors are bound. Independent transcendental coefficient-generation qualification remains open.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-NUM-02",
+        "original_required_behavior": "Exact shifts, ties-away rounding and defined saturation",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G01",
+          "G13"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-AR-01, T-AR-03",
+        "original_mandatory_coverage": "Sign x tie x shift x boundary",
+        "original_acceptance_ids": [
+          "AC1",
+          "AC4",
+          "AC8",
+          "AC10",
+          "AC11",
+          "AC14"
+        ],
+        "disposition_reason": "Broad rounding and selected saturation/butterfly extremes pass. Every original width, overflow policy and mandatory arithmetic instance is not claimed complete.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-NUM-03",
+        "original_required_behavior": "Custom FFT/IFFT graph, normalization and ordering",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G02",
+          "G03",
+          "G13"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-XF-01, T-XF-02, T-XF-04",
+        "original_mandatory_coverage": "All bins/stages, direction, ROM axes, RAM phases",
+        "original_acceptance_ids": [
+          "AC1",
+          "AC2",
+          "AC4",
+          "AC6",
+          "AC7",
+          "AC8",
+          "AC9",
+          "AC10",
+          "AC11",
+          "AC12",
+          "AC14"
+        ],
+        "disposition_reason": "Selected axis, butterfly, baseline/corner and active full-size transforms are covered. This is not every original transform/stage mandatory bin.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-NUM-04",
+        "original_required_behavior": "Canonicalization precedes full-width mask decisions",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G02",
+          "G13"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-AR-04, T-AR-05",
+        "original_mandatory_coverage": "Conjugate/self-conjugate x signed tie x threshold relation",
+        "original_acceptance_ids": [
+          "AC1",
+          "AC2",
+          "AC4",
+          "AC6",
+          "AC8",
+          "AC9",
+          "AC10",
+          "AC11",
+          "AC12",
+          "AC14"
+        ],
+        "disposition_reason": "Selected canonicalization, protected-bin, asymmetry/tie and malformed controls are covered. Full original canonical-statistic suite remains separately scoped.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-NUM-05",
+        "original_required_behavior": "Correct final/preliminary mask, protection and weighted statistics",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G02",
+          "G03"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-AR-05, T-AR-06, T-C-01",
+        "original_mandatory_coverage": "Eligible 128/unique 129; interior weight 2; endpoint weight 1",
+        "original_acceptance_ids": [
+          "AC2",
+          "AC4",
+          "AC6",
+          "AC7",
+          "AC9",
+          "AC10",
+          "AC11",
+          "AC12",
+          "AC14"
+        ],
+        "disposition_reason": "Selected threshold equality/protected/signed extremes and fixed-epoch configurations pass. Original dynamic commit interfaces are not exercised.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-NUM-06",
+        "original_required_behavior": "Exact synthesis, OLA and final output rounding",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G02",
+          "G03",
+          "G09"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-C-01, T-C-02",
+        "original_mandatory_coverage": "Overlap phases, startup/tail and output saturation",
+        "original_acceptance_ids": [
+          "AC2",
+          "AC3",
+          "AC4",
+          "AC6",
+          "AC7",
+          "AC9",
+          "AC10",
+          "AC11",
+          "AC12",
+          "AC13",
+          "AC14"
+        ],
+        "disposition_reason": "Complete active-profile Y sequences are compared against registered gold. Exact equality proves the tested finite algorithm/configurations, not every original reconstruction/quality instance.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-NUM-07",
+        "original_required_behavior": "No unexpected overflow on normative vectors",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G03",
+          "G13"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-C-01, T-C-07",
+        "original_mandatory_coverage": "Frozen headroom cases; separately classified stress flags",
+        "original_acceptance_ids": [
+          "AC1",
+          "AC4",
+          "AC6",
+          "AC7",
+          "AC8",
+          "AC9",
+          "AC10",
+          "AC11",
+          "AC12",
+          "AC14"
+        ],
+        "disposition_reason": "Selected saturation flags, busy recovery and fault status are observed. Complete original internal overflow/statistic observation remains incomplete.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-GEO-01",
+        "original_required_behavior": "Window-active finite geometry and pure drain",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G03",
+          "G13"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-C-02",
+        "original_mandatory_coverage": "Ns=1/2, H+1/H+2, L+1/L+2, long wraps",
+        "original_acceptance_ids": [
+          "AC1",
+          "AC4",
+          "AC6",
+          "AC7",
+          "AC8",
+          "AC9",
+          "AC10",
+          "AC11",
+          "AC12",
+          "AC14"
+        ],
+        "disposition_reason": "All128 residues in reference tests and12 selected boundary lengths in RTL extend geometry coverage. Original generic counter/lifetime/wrap requirements remain open.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-GEO-02",
+        "original_required_behavior": "Delayed reference and exact full-tail error metrics",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G03",
+          "G09"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-C-01, T-C-08",
+        "original_mandatory_coverage": "All Ny samples scored; startup reference and post-input tail zero extension",
+        "original_acceptance_ids": [
+          "AC3",
+          "AC4",
+          "AC6",
+          "AC7",
+          "AC9",
+          "AC12",
+          "AC13",
+          "AC14"
+        ],
+        "disposition_reason": "Active384000-input/3001-frame/384512-Y geometry is physically replicated exactly. Original profile-wide mandatory input-length instances are not all covered.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-FLOW-01",
+        "original_required_behavior": "Atomic input acceptance and tagged history ownership",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G03",
+          "G04"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-C-03, T-C-06",
+        "original_mandatory_coverage": "Full/empty and pointer reuse; delayed output pressure",
+        "original_acceptance_ids": [
+          "AC4",
+          "AC6",
+          "AC7",
+          "AC9",
+          "AC12",
+          "AC14"
+        ],
+        "disposition_reason": "Active input/output stalls, FIFO pressure and held payloads are exercised. Original profile-wide scheduling cases and optional interfaces remain open.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-FLOW-02",
+        "original_required_behavior": "Stable streams and no duplicated/missing work",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G03",
+          "G04",
+          "G05",
+          "G09"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-XF-03, T-C-03",
+        "original_mandatory_coverage": "First/middle/last stall; consecutive identical accepted values",
+        "original_acceptance_ids": [
+          "AC3",
+          "AC4",
+          "AC6",
+          "AC7",
+          "AC9",
+          "AC12",
+          "AC13",
+          "AC14"
+        ],
+        "disposition_reason": "Active finite FIFO/exporter path is checked with exact values and counters. Broader live-source and telemetry noninterference contracts remain outside scope.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-FLOW-03",
+        "original_required_behavior": "Each frame owns its threshold snapshot",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-C-04, T-CTL-02",
+        "original_mandatory_coverage": "Commit timing x queue occupancy x old frame in flight",
+        "original_acceptance_ids": [],
+        "disposition_reason": "The TSH2 adapter latches threshold/mode for a whole finite epoch. Original in-flight per-frame commits are a different interface.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-FLOW-04",
+        "original_required_behavior": "Correct internal metric commit versus public output acceptance",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G13"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-C-08",
+        "original_mandatory_coverage": "Clear x pending request/commit/held y; local MAG2 policy separate",
+        "original_acceptance_ids": [
+          "AC1",
+          "AC4",
+          "AC8",
+          "AC10",
+          "AC11",
+          "AC14"
+        ],
+        "disposition_reason": "Selected time-domain final metrics are added in RTL; physical TSH2 omits complete original commit-epoch metric outputs and fixes clear_metrics_i=0.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-FLOW-05",
+        "original_required_behavior": "Exact completion and no premature done",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G03",
+          "G04",
+          "G09"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-C-03, T-BRD-01",
+        "original_mandatory_coverage": "Source/core/system completion distinctions; final y held",
+        "original_acceptance_ids": [
+          "AC3",
+          "AC4",
+          "AC6",
+          "AC7",
+          "AC9",
+          "AC12",
+          "AC13",
+          "AC14"
+        ],
+        "disposition_reason": "Selected complete drain, final-Y hold and fresh physical read totals are checked. Full generic completion contract over original interfaces is not closed.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-SRC-01",
+        "original_required_behavior": "Correct source normalization and mode selection",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-S-01",
+        "original_mandatory_coverage": "Audio ties; ADC midscale/extrema; manual exclusion",
+        "original_acceptance_ids": [],
+        "disposition_reason": "The active profile receives already prepared signed12 file PCM; physical audio/ADC normalization and source mux modes are excluded.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-SRC-02",
+        "original_required_behavior": "Coherent epoch change and defined recovery",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-S-02",
+        "original_mandatory_coverage": "Gap/duplicate/readiness loss; idempotent commit; settle",
+        "original_acceptance_ids": [],
+        "disposition_reason": "No live source switching, gap/duplicate recovery, codec grant loss or source rearm is claimed.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-SRC-03",
+        "original_required_behavior": "Audio serialization, I2C and complete-frame transfer",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-S-03",
+        "original_mandatory_coverage": "I2S L/R/edges, ACK/NACK, grant/lock, clock loss, FIFO pressure",
+        "original_acceptance_ids": [],
+        "disposition_reason": "WM8731 I2S/I2C serialization, codec clock loss and complete live audio frames are outside the active file profile.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-SRC-04",
+        "original_required_behavior": "ADC protocol priming and mode behavior",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-S-04",
+        "original_mandatory_coverage": "Channel/prime/abort/manual/continuous; first result",
+        "original_acceptance_ids": [],
+        "disposition_reason": "Optional LTC2308 ADC protocol and manual/continuous modes are excluded.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-RST-01",
+        "original_required_behavior": "Reset and clear affect their specified owners",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G04",
+          "G05",
+          "G13"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-C-05, T-CTL-03, T-DDR-05",
+        "original_mandatory_coverage": "Each reset/clear x outstanding work; resolved collisions",
+        "original_acceptance_ids": [
+          "AC1",
+          "AC4",
+          "AC7",
+          "AC8",
+          "AC9",
+          "AC10",
+          "AC11",
+          "AC12",
+          "AC14"
+        ],
+        "disposition_reason": "32 directed phase cancellations/recoveries and exporter reset corners pass. Original all-interface reset/clock-loss/metric-clear coverage and structural RDC proof remain open.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-CDC-01",
+        "original_required_behavior": "Functional CDC protocol and coordinated FIFO reset",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-S-05",
+        "original_mandatory_coverage": "Clock phase/ratio x occupancy x reset sequence",
+        "original_acceptance_ids": [],
+        "disposition_reason": "The selected fabric data path is synchronous; broader asynchronous codec FIFO reset/phase sweeps are not executed. Active vendor boundary assumptions still belong to G11.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-CDC-02",
+        "original_required_behavior": "Structural CDC/RDC and fitted physical constraints",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G11"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-PHY-01, T-PHY-02",
+        "original_mandatory_coverage": "Every active crossing, clock and constrained path group",
+        "original_acceptance_ids": [],
+        "disposition_reason": "Source-bound fitted timing and selected single-clock connectivity are reviewed. This is not general CDC/RDC, MTBF or original all-domain timing closure.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-TEL-01",
+        "original_required_behavior": "Observer pressure cannot throttle admitted DSP work",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-S-06",
+        "original_mandatory_coverage": "Paired runs with matched source/control and aligned accepted start",
+        "original_acceptance_ids": [],
+        "disposition_reason": "TSH2 is a finite transaction whose service may stall feeding/draining. It does not claim original live-observer noninterference.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-TEL-02",
+        "original_required_behavior": "Packet fields, sizes, timestamps, endian/sign and flags",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G05",
+          "G07",
+          "G09",
+          "G10"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-TEL-01, T-SW-03",
+        "original_mandatory_coverage": "All types/fields; SPEC64 buckets and SPEC129 masks; WAVE boundaries",
+        "original_acceptance_ids": [
+          "AC3",
+          "AC4",
+          "AC6",
+          "AC7",
+          "AC9",
+          "AC12",
+          "AC13"
+        ],
+        "disposition_reason": "Active TSP1 packets have exact field/order/checksum/payload comparisons and negative decoding controls. Original packet families/artifact schemas differ.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-TEL-03",
+        "original_required_behavior": "Atomic packet storage and specified arbitration",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G05"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-TEL-02, T-TEL-03",
+        "original_mandatory_coverage": "Priority x occupancy x simultaneous pop/admit",
+        "original_acceptance_ids": [
+          "AC12"
+        ],
+        "disposition_reason": "Active RAM exporter queue depths and selected full/empty/abort corners are exercised. Original record scheduler and all telemetry priorities are not implemented by this profile.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-TEL-04",
+        "original_required_behavior": "Loss accounting respects stage and counter semantics",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G05"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-TEL-05, T-SW-01",
+        "original_mandatory_coverage": "Every terminal reason; no exact-count assumption for coalesced audio events",
+        "original_acceptance_ids": [
+          "AC12"
+        ],
+        "disposition_reason": "Active exporter ownership/reset scenarios pass. Original live monitor drop policy and other telemetry epoch rules remain outside scope.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-TEL-05",
+        "original_required_behavior": "Coherent metric/status snapshots and effective profile cadence",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-TEL-04",
+        "original_mandatory_coverage": "Applied clear vs raw request; profile-derived period/enables",
+        "original_acceptance_ids": [],
+        "disposition_reason": "Original METRICS/STATUS cadence, applied metric clear and profile snapshots are not the TSP1 service protocol. Original mandatory metric/frame/bin artifact observability is incomplete in the physical TSH2 interface.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-CTL-01",
+        "original_required_behavior": "Valid CSR accesses and rejection without alias/side effects",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G04"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-CTL-01",
+        "original_mandatory_coverage": "Every implemented access class and defined invalid request",
+        "original_acceptance_ids": [
+          "AC7",
+          "AC9"
+        ],
+        "disposition_reason": "Active IDLE-only threshold/mode writes and finite start/clear errors are checked. Original register set and dynamic per-frame commit control are different interfaces.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-CTL-02",
+        "original_required_behavior": "Atomic shadow/commit, snapshots and owner permissions",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G04"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-CTL-02, T-CTL-03",
+        "original_mandatory_coverage": "All multiword values; safe application; local collision precedence",
+        "original_acceptance_ids": [
+          "AC7",
+          "AC9"
+        ],
+        "disposition_reason": "Active adapter transactions/error guards pass. Original register-wide atomicity, snapshots and every original address/commit instance remain open.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-DDR-01",
+        "original_required_behavior": "Ring alignment, range and wrap-aware free-space admission",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-DDR-01, T-DDR-02",
+        "original_mandatory_coverage": "Exact end; guard; required extent +/-64; invalid range",
+        "original_acceptance_ids": [],
+        "disposition_reason": "No original FPGA DDR ring is used; HPS resident buffers with PIO/FIFO transport are a different data path.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-DDR-02",
+        "original_required_behavior": "Accepted bus writes complete under the declared backend",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-DDR-03, T-DDR-06",
+        "original_mandatory_coverage": "Generic responses versus local acceptance; all beat fault positions",
+        "original_acceptance_ids": [],
+        "disposition_reason": "No original Avalon FPGA-to-DDR record writer is used; bus completion claims are excluded.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-DDR-03",
+        "original_required_behavior": "Record-level atomic publication and pointer ownership",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-DDR-02, T-DDR-04",
+        "original_mandatory_coverage": "WRAP separate from normal; seq wrap; torn snapshot/illegal Rd",
+        "original_acceptance_ids": [],
+        "disposition_reason": "No original ring publication, absolute W/Rd pointer ownership or WRAP records are used.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-DDR-04",
+        "original_required_behavior": "Reset/reconfigure cannot publish stale or wrong-epoch work",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-DDR-05",
+        "original_mandatory_coverage": "Outstanding response and post-WRAP reset; late-response decision",
+        "original_acceptance_ids": [],
+        "disposition_reason": "No original outstanding DDR-response transport epoch/reconfiguration path is used.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-SW-01",
+        "original_required_behavior": "HPS consumes committed records and forwards correct bytes",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-SW-01",
+        "original_mandatory_coverage": "Malformed extents, WRAP/padding, UDP failure and Rd-commit outcomes",
+        "original_acceptance_ids": [],
+        "disposition_reason": "The actual service forwards Y/TSP1 over finite TCP; original DDR consumer and UDP forwarding contracts are excluded.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-SW-02",
+        "original_required_behavior": "Command retries are at most once in the specified session",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-SW-02",
+        "original_mandatory_coverage": "Duplicate/conflict/stale/wrap/half-range x peer/session/cache",
+        "original_acceptance_ids": [],
+        "disposition_reason": "No original peer/session retry command protocol is used. Finite TCP requests are distinct from at-most-once cached command sessions.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-SW-03",
+        "original_required_behavior": "PC decoder and playback obey the wire contract",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G07",
+          "G09",
+          "G10"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-SW-03",
+        "original_mandatory_coverage": "Every type, size, sign, flag, gap/reorder and capture mode",
+        "original_acceptance_ids": [
+          "AC3",
+          "AC4",
+          "AC6",
+          "AC7",
+          "AC9",
+          "AC12",
+          "AC13"
+        ],
+        "disposition_reason": "Native strict TSP1 decoding, monitor arithmetic and isolated application behavior are checked. Original receiver transport/schema and broad robustness obligations are not all exercised.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-PLAT-01",
+        "original_required_behavior": "Kernel reservation/mapping and codec-grant ownership",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G08"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-SW-04, T-BRD-01",
+        "original_mandatory_coverage": "Exclusive owner; mmap/ioctl bounds; revoke/cleanup readback",
+        "original_acceptance_ids": [
+          "AC13"
+        ],
+        "disposition_reason": "Exact runtime, boot, RAM-only service ownership and qualified bridge admission are evidenced. Original kernel-module and fabric DDR ring integration are not present.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-PLAT-02",
+        "original_required_behavior": "Model substitution limits and real DDR visibility explicit",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G08",
+          "G11"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-PHY-03, T-DDR-06, T-BRD-01",
+        "original_mandatory_coverage": "Every vendor boundary; posted-write visibility not inferred from OKAY",
+        "original_acceptance_ids": [
+          "AC13"
+        ],
+        "disposition_reason": "Exact fitted image, pins/handoff/runtime and timing bindings support active operation. Vendor/HPS/DDR assumptions remain bounded; no unrestricted board platform claim.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-BOARD-01",
+        "original_required_behavior": "BRAM hardware matches mandatory artifacts before live demo",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G08",
+          "G09"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-BRD-01",
+        "original_mandatory_coverage": "All required vectors/artifact fields; no required observation lost",
+        "original_acceptance_ids": [
+          "AC3",
+          "AC4",
+          "AC6",
+          "AC7",
+          "AC9",
+          "AC12",
+          "AC13"
+        ],
+        "disposition_reason": "All58 fresh physical epochs provide exact Y/power packets and raw final counters. Original AC10/AC11 metrics/statistics and full AC12 signed-bin fields are absent, so original AC13 bundle is incomplete.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-BOARD-02",
+        "original_required_behavior": "Live-source claims carry separate physical evidence",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-BRD-02, T-BRD-03",
+        "original_mandatory_coverage": "Only selected live profiles; ADC remains optional",
+        "original_acceptance_ids": [],
+        "disposition_reason": "Continuous live microphone/LINE-IN/ADC evidence is excluded. Finite file replay remains explicitly labeled.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-ENV-01",
+        "original_required_behavior": "Checkers run, reject intentional defects and preserve evidence",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G00",
+          "G01",
+          "G06",
+          "G07",
+          "G12"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-ENV-01, T-ENV-02, T-ENV-03",
+        "original_mandatory_coverage": "Enabled/triggered checks, four-state behavior, both watchdogs",
+        "original_acceptance_ids": [
+          "AC1",
+          "AC2",
+          "AC3",
+          "AC4",
+          "AC5"
+        ],
+        "disposition_reason": "Selected runner/trace/assertion/error/fatal/watchdog mechanisms are qualified. Concurrent assertions, covergroups, code coverage, vendor models and DPI are explicitly excluded.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-ENV-02",
+        "original_required_behavior": "Conditional progress is stated and tested without vacuity",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G06"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-C-03, T-S-02, T-DDR-03",
+        "original_mandatory_coverage": "Fairness satisfied/violated partitions; no unconditional clock-return assumption",
+        "original_acceptance_ids": [],
+        "disposition_reason": "Selected checker corruptions and active X/Z controls reject known faults. No universal per-property activation, sensitivity or vacuity claim is made.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-EXT-01",
+        "original_required_behavior": "Future zero-aware RTL preserves baseline arithmetic",
+        "active_profile_applicability": "EXCLUDED_FROM_ACTIVE_PROFILE",
+        "original_signoff_disposition": "EXCLUDED_FROM_ACTIVE_PROFILE_ORIGINAL_REQUIREMENT_OPEN",
+        "original_requirement_closed": false,
+        "local_gate_ids": [],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-EXT-01",
+        "original_mandatory_coverage": "Identical input/THR2; zero opportunities per stage",
+        "original_acceptance_ids": [],
+        "disposition_reason": "No zero-aware RTL optimization is introduced or claimed.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      },
+      {
+        "original_requirement_id": "R-EXT-02",
+        "original_required_behavior": "Activity traces and electrical measurements have separate scope",
+        "active_profile_applicability": "PARTIAL_APPLICABILITY",
+        "original_signoff_disposition": "PARTIAL_EVIDENCE_NOT_CLOSED",
+        "original_requirement_closed": false,
+        "local_gate_ids": [
+          "G12"
+        ],
+        "local_gate_status_authority": "final_disposition.json",
+        "original_test_families": "T-EXT-02",
+        "original_mandatory_coverage": "Workload, trace interval, mapping and uncertainty; no proxy-as-energy claim",
+        "original_acceptance_ids": [],
+        "disposition_reason": "A traceable report, raw data and diagrams are delivered for the active scope. This does not imply the optional architectural extensions or complete original project are accepted.",
+        "scope_rule": "A passing local gate is evidence for its selected profile. It does not substitute for every mandatory original test instance or missing observable."
+      }
+    ]
+  }
+}

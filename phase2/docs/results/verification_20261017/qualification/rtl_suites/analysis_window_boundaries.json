@@ -1,0 +1,74 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/rtl/analysis_window_boundaries_attempt02/report.json",
+      "original_sha256": "453297c3cbfd66936aabb710fb9de89e0165e4b8ae94c4b6a4f2942e8fa6e512"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "status": "PASS",
+    "scope": "Active12xunsigned16 to27bit analysis-window block; coefficient injection via existing WINDOW_FILE parameter. Directed coefficient bytes differ from frozenimage window only for this block-level width stress. Exact saturated results and sticky flags checked for artificial65535 coefficients with signed12 extrema. Original image coefficient verification remains in fullcore tests.",
+    "command": {
+      "stage": "simulate",
+      "argv": [
+        "external-tool:vsim.exe",
+        "-c",
+        "-voptargs=+acc",
+        "work.window_tb",
+        "+OUT=archive:workspace/work/verification_20261017_release/rtl/analysis_window_boundaries_attempt02",
+        "-do",
+        "onerror {quit -code 1}; onbreak {quit -code 1}; run -all; quit -code 0"
+      ],
+      "cwd": "archive:workspace/work/verification_20261017_release/rtl/analysis_window_boundaries_attempt02",
+      "timeout_s": 120,
+      "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+      "started_utc": "2026-10-17T02:25:54.622655+00:00",
+      "pid": 33720,
+      "returncode": 0,
+      "elapsed_s": 1.7349999999860302,
+      "log_sha256": "3787b55848c08c8399316439d3c77533fb9da23b3a95b0c525346c26ed1f502b"
+    },
+    "products_checked": 1024,
+    "held_output_checks": 3072,
+    "observed_event_bins": {
+      "sample-2048_Qw0": 52,
+      "sample-2048_Qw1": 51,
+      "sample-2048_Qw32767": 51,
+      "sample-2048_Qw32768": 51,
+      "sample-2048_Qw65535": 51,
+      "sample2047_Qw0": 52,
+      "sample2047_Qw1": 51,
+      "sample2047_Qw32767": 51,
+      "sample2047_Qw32768": 51,
+      "sample2047_Qw65535": 51,
+      "sample-1_Qw0": 52,
+      "sample-1_Qw1": 51,
+      "sample-1_Qw32767": 51,
+      "sample-1_Qw32768": 51,
+      "sample-1_Qw65535": 51,
+      "sample1_Qw0": 52,
+      "sample1_Qw1": 51,
+      "sample1_Qw32767": 51,
+      "sample1_Qw32768": 51,
+      "sample1_Qw65535": 51
+    },
+    "artifacts": {
+      "compile.command.json": "9446ed36f017ffbaf251892f5c71ca7d3652da0ff25b1cf7963c6d4703fa3039",
+      "compile.log": "6bd9821171aabb3114cab18d67571372cd2ad93a639cfbe702f71ab1027c3082",
+      "directed_window.memh": "4104d18b86a9c2b0f2a7f803c0d3bc9f59817af0d0cea40a35b5021cb117b6b7",
+      "modelsim.ini": "4f8a398a203cef39713c79363b72e029e44756a630db3d54b83175fc8f3264bd",
+      "simulate.command.json": "ae6088b1ddc79351c04da998309deefcaad5ae56375cf663d0334ea75546595a",
+      "simulate.log": "3787b55848c08c8399316439d3c77533fb9da23b3a95b0c525346c26ed1f502b",
+      "source_registration.json": "e5a13cb5d53adf61eb1949e98f5aa866ed07af6bac87cae80593cf8c83cc644e",
+      "trace.csv": "f6e765f40722fe287b09edae085d89f085ad47bdcc75fb65708939c9f65363a0",
+      "transcript": "8880d34bca5b6d990c2d9b00cb7f836e0c66e1b202dd467abef7d9dc03420071",
+      "vlib.command.json": "cc19c0d23e4f024ff9d8bd7d8813627ec8a2a65c92a0d6a9985a543eae63d1e3",
+      "vlib.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "vmap.command.json": "daad15cefe682220d6c918e959bbbec9aee66c28adba3d853ec3681f2a064fab",
+      "vmap.log": "39bfec03b6aa6253a55a43c116dbd2ed9180783fd7f057abe3fe77fe6dabe227",
+      "window_tb.sv": "1695b7aaed87aac2d2a677c25be72e050f0b471ebf637dc7e96f085f2319fac9"
+    }
+  }
+}

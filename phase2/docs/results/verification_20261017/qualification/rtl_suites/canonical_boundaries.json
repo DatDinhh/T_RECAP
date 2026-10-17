@@ -1,0 +1,89 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/rtl/canonical_boundaries_attempt02/report.json",
+      "original_sha256": "db9de53d9061d3442ae402752238798dfd794231884396b47e00d01a71a47599"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "status": "PASS",
+    "command": {
+      "stage": "simulate",
+      "argv": [
+        "external-tool:vsim.exe",
+        "-c",
+        "-voptargs=+acc",
+        "work.canonical_tb",
+        "+OUT=archive:workspace/work/verification_20261017_release/rtl/canonical_boundaries_attempt02",
+        "-do",
+        "onerror {quit -code 1}; onbreak {quit -code 1}; run -all; quit -code 0"
+      ],
+      "cwd": "archive:workspace/work/verification_20261017_release/rtl/canonical_boundaries_attempt02",
+      "timeout_s": 120,
+      "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+      "started_utc": "2026-10-17T02:22:37.818115+00:00",
+      "pid": 2328,
+      "returncode": 0,
+      "elapsed_s": 2.1410000000614673,
+      "log_sha256": "15965f6e272e3c65de1fb1c2d05c707ecefe7889fe7327e8169cde9449d6a8d5"
+    },
+    "scope": "Active28-bit canonical block. Independent integer pair-average/difference ties away from zero, mirrored already-rounded imaginary value, DC/Nyquist forcing, directed min-negative mirror saturation diagnostic and four malformed input fail-stops with sticky-clear nonrecovery and clear/disable exact recovery.",
+    "observed_event_bins": {
+      "accepted_output_bins": 2048,
+      "self_conjugate": 16,
+      "unique_interior": 1016,
+      "real_sum_positive_odd_tie": 126,
+      "imag_difference_negative_odd_tie": 380,
+      "mirror": 1016,
+      "real_sum_negative_odd_tie": 254
+    },
+    "malformed_cases": [
+      {
+        "fault": "0",
+        "fail_stop_cycles": "10",
+        "sticky_clear_blocked": "1",
+        "recovery": "0"
+      },
+      {
+        "fault": "1",
+        "fail_stop_cycles": "10",
+        "sticky_clear_blocked": "1",
+        "recovery": "1"
+      },
+      {
+        "fault": "2",
+        "fail_stop_cycles": "10",
+        "sticky_clear_blocked": "1",
+        "recovery": "0"
+      },
+      {
+        "fault": "3",
+        "fail_stop_cycles": "10",
+        "sticky_clear_blocked": "1",
+        "recovery": "1"
+      }
+    ],
+    "frames": 8,
+    "output_bins": 2048,
+    "output_stability_checks": 6144,
+    "artifacts": {
+      "canonical_tb.sv": "39ba8b56cee2c1ecfc94bc63da30bd38968cff0eb9a5ceac25fdf3689e078dc0",
+      "compile.command.json": "5ec6c5b4c498e41a24fdc5bb1f96461187454aa68c5ca18f0a38f5355f5bf33b",
+      "compile.log": "2014a84232e7935c23ca03aad957a4f2136d3610cf5465c344c113be67eb274a",
+      "faults.csv": "d344dd835fc0fd3055f56f2c184a32df30cb1d706c9675a266a38c51ae7526b2",
+      "modelsim.ini": "4f8a398a203cef39713c79363b72e029e44756a630db3d54b83175fc8f3264bd",
+      "simulate.command.json": "209f53b9d01154c5b0d0607e2debe37e342670b8d7d450d0cfd2552a639e12e2",
+      "simulate.log": "15965f6e272e3c65de1fb1c2d05c707ecefe7889fe7327e8169cde9449d6a8d5",
+      "source_registration.json": "5a3be9bac11b66a595a1543c8fcca1f68d4f110ed3f322a7b7940b0ea30162b0",
+      "trace.csv": "67671791da2fee286a7853f87c7aa772e4a1e28a5059acf1c1799df8e57d6591",
+      "transcript": "dbef2b08ec301b57cfba0cc5ea1b23df5b9169980f89be3c0c149b68cd1ef1a8",
+      "vectors.txt": "a868f843f3d010a708ed935e0f6d39624f711c425d0c5df3e864b4d43e256dea",
+      "vlib.command.json": "6afffd3678e61b9353df455c9464eaeb5ed54e6a22c6581a8a1d04dfad289c22",
+      "vlib.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "vmap.command.json": "c12bf76e5106d0ee34e2f2e46125602cbbe7787d27799bbb385119f090581607",
+      "vmap.log": "39bfec03b6aa6253a55a43c116dbd2ed9180783fd7f057abe3fe77fe6dabe227"
+    }
+  }
+}

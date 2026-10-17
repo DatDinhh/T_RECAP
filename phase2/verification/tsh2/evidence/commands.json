@@ -1,0 +1,161 @@
+[
+  {
+    "argv": [
+      "vlog.exe",
+      "-sv",
+      "-warning",
+      "2892",
+      "-work",
+      "work",
+      "-f",
+      "source_files.f"
+    ],
+    "cwd": "<RESULT>/build",
+    "timeout_seconds": 180,
+    "tool_sha256": "8a01969d8154b4a6415e4d908de0b1dc48ab2f4b893dda8586b2b5d7a87dc232",
+    "started_utc": "2026-10-17T03:23:41.011000+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 0.656,
+    "log_sha256": "8309f9ab2ab2a145e91aff2c1ecc4279a0b713d683dc4d25a3dd628765573795",
+    "receipt": "compile.command.json",
+    "published_log": "logs/compile.txt",
+    "published_log_sha256": "8309f9ab2ab2a145e91aff2c1ecc4279a0b713d683dc4d25a3dd628765573795"
+  },
+  {
+    "argv": [
+      "vsim.exe",
+      "-c",
+      "-onfinish",
+      "stop",
+      "-voptargs=+acc",
+      "work.dv_stream_tb",
+      "+OUT=../negative_control",
+      "+CASES=../negative_control/cases.txt",
+      "+COUNT=4",
+      "+SEED=1",
+      "+INJECT_BAD_Y",
+      "-do",
+      "run.do"
+    ],
+    "cwd": "<RESULT>/build",
+    "timeout_seconds": 180,
+    "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+    "started_utc": "2026-10-17T03:24:48.263392+00:00",
+    "exit_code": 1,
+    "elapsed_seconds": 2.922,
+    "log_sha256": "e9d6ec8a00bf8b08dd7f835ec64b6b49a306b9e11e44c5c8fecbf81886676227",
+    "receipt": "negative_control/simulate.command.json",
+    "published_log": "logs/negative_control/simulate.txt",
+    "published_log_sha256": "e9d6ec8a00bf8b08dd7f835ec64b6b49a306b9e11e44c5c8fecbf81886676227"
+  },
+  {
+    "argv": [
+      "vsim.exe",
+      "-c",
+      "-onfinish",
+      "stop",
+      "-voptargs=+acc",
+      "work.dv_stream_tb",
+      "+OUT=../seed_1",
+      "+CASES=../seed_1/cases.txt",
+      "+COUNT=4",
+      "+SEED=1",
+      "-do",
+      "run.do"
+    ],
+    "cwd": "<RESULT>/build",
+    "timeout_seconds": 180,
+    "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+    "started_utc": "2026-10-17T03:23:41.635779+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 20.75,
+    "log_sha256": "31066665f7ce2cc21ffcddb86df36d355dcf3e46f2ce91b0254838b3c483648c",
+    "receipt": "seed_1/simulate.command.json",
+    "published_log": "logs/seed_1/simulate.txt",
+    "published_log_sha256": "31066665f7ce2cc21ffcddb86df36d355dcf3e46f2ce91b0254838b3c483648c"
+  },
+  {
+    "argv": [
+      "vsim.exe",
+      "-c",
+      "-onfinish",
+      "stop",
+      "-voptargs=+acc",
+      "work.dv_stream_tb",
+      "+OUT=../seed_20261017",
+      "+CASES=../seed_20261017/cases.txt",
+      "+COUNT=4",
+      "+SEED=20261017",
+      "-do",
+      "run.do"
+    ],
+    "cwd": "<RESULT>/build",
+    "timeout_seconds": 180,
+    "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+    "started_utc": "2026-10-17T03:24:25.187137+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 22.937,
+    "log_sha256": "c040afa08a85b71b6bef6b272a09619dea0aab4007a7644f911ab3b29b820e09",
+    "receipt": "seed_20261017/simulate.command.json",
+    "published_log": "logs/seed_20261017/simulate.txt",
+    "published_log_sha256": "c040afa08a85b71b6bef6b272a09619dea0aab4007a7644f911ab3b29b820e09"
+  },
+  {
+    "argv": [
+      "vsim.exe",
+      "-c",
+      "-onfinish",
+      "stop",
+      "-voptargs=+acc",
+      "work.dv_stream_tb",
+      "+OUT=../seed_7",
+      "+CASES=../seed_7/cases.txt",
+      "+COUNT=4",
+      "+SEED=7",
+      "-do",
+      "run.do"
+    ],
+    "cwd": "<RESULT>/build",
+    "timeout_seconds": 180,
+    "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+    "started_utc": "2026-10-17T03:24:02.517380+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 22.547,
+    "log_sha256": "88281d9cbe0cfc4d67baf2af67fe3bc2edecc3c37e2c7b0aa9442bb397a575f6",
+    "receipt": "seed_7/simulate.command.json",
+    "published_log": "logs/seed_7/simulate.txt",
+    "published_log_sha256": "88281d9cbe0cfc4d67baf2af67fe3bc2edecc3c37e2c7b0aa9442bb397a575f6"
+  },
+  {
+    "argv": [
+      "vlib.exe",
+      "work"
+    ],
+    "cwd": "<RESULT>/build",
+    "timeout_seconds": 180,
+    "tool_sha256": "1be6b62216ae7323042a7e602381fa6550c2650c5b16c51f5963dfcea91d06b1",
+    "started_utc": "2026-10-17T03:23:40.825943+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 0.078,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "receipt": "vlib.command.json",
+    "published_log": "logs/vlib.txt",
+    "published_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "argv": [
+      "vmap.exe",
+      "-c"
+    ],
+    "cwd": "<RESULT>/build",
+    "timeout_seconds": 180,
+    "tool_sha256": "635697d5cdbf2ef218ad0e377b3a093ab85b40e3cd462291cc77100ea61d2f95",
+    "started_utc": "2026-10-17T03:23:40.905516+00:00",
+    "exit_code": 0,
+    "elapsed_seconds": 0.063,
+    "log_sha256": "39bfec03b6aa6253a55a43c116dbd2ed9180783fd7f057abe3fe77fe6dabe227",
+    "receipt": "vmap.command.json",
+    "published_log": "logs/vmap.txt",
+    "published_log_sha256": "ba2cb22b4b6faaff245c769d4c873e911d0f21e1d6c77e181a820ffc5c07239b"
+  }
+]

@@ -1,0 +1,98 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/rtl/butterfly_boundaries/report.json",
+      "original_sha256": "0ead65394ad2fc6fe0c365d44663dc3ea2c054d70d3f5b1a9466c01159f05088"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "status": "PASS",
+    "oracle": "Python arbitrary integer products; one ties-away rounded/saturated complex product followed by independent sum/difference cut. Active FFT and IFFT widths/normalization; every output held3cycles with accepted operands removed from inputs.",
+    "profiles": [
+      {
+        "status": "PASS",
+        "DATA_W": 28,
+        "NORMALIZE_BY_2": 1,
+        "REGISTER_OUTPUT": true,
+        "rows": 2187,
+        "observed_event_bins": {
+          "observed_transactions": 2187,
+          "no_saturation": 2089,
+          "zero_B": 738,
+          "zero_twiddle": 243,
+          "product_sum_cancellation_or_zero": 1335,
+          "twiddle_axis": 972,
+          "saturation": 98,
+          "product_half_tie": 72
+        },
+        "trace_sha256": "3f95a43e03b6b71522ebe9131ede07d8db5e7bd9525fbc6465d5015c0e080616",
+        "vector_sha256": "ed6ba30de52ae9bad62d1336dcb8480fcd075a3c20c4a818a19f99524b8a8989",
+        "command": {
+          "stage": "simulate_width28",
+          "argv": [
+            "external-tool:vsim.exe",
+            "-c",
+            "-voptargs=+acc",
+            "-gDW=28",
+            "-gNORM=1",
+            "work.butterfly_tb",
+            "+OUT=archive:workspace/work/verification_20261017_release/rtl/butterfly_boundaries/width28_normalize1",
+            "-do",
+            "run -all; quit -code 0"
+          ],
+          "cwd": "archive:workspace/work/verification_20261017_release/rtl/butterfly_boundaries",
+          "timeout_s": 90,
+          "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+          "started_utc": "2026-10-17T02:16:36.421612+00:00",
+          "pid": 36308,
+          "returncode": 0,
+          "elapsed_s": 2.765999999945052,
+          "log_sha256": "bf9e3b74954f0b9487b72bdd4631d18a5c612177bf1fa07e40ac52b7dcecaec6"
+        }
+      },
+      {
+        "status": "PASS",
+        "DATA_W": 36,
+        "NORMALIZE_BY_2": 0,
+        "REGISTER_OUTPUT": true,
+        "rows": 2187,
+        "observed_event_bins": {
+          "observed_transactions": 2187,
+          "no_saturation": 1735,
+          "zero_B": 738,
+          "zero_twiddle": 243,
+          "product_sum_cancellation_or_zero": 1335,
+          "twiddle_axis": 972,
+          "saturation": 452,
+          "product_half_tie": 72
+        },
+        "trace_sha256": "0fb4d9347b4367c895a10ca490a0c399a47dbbb765961a6693cfb4c495660851",
+        "vector_sha256": "7754c3059610491b768e3101ff57da1d1557d2523b72b6ff400e03fb30093962",
+        "command": {
+          "stage": "simulate_width36",
+          "argv": [
+            "external-tool:vsim.exe",
+            "-c",
+            "-voptargs=+acc",
+            "-gDW=36",
+            "-gNORM=0",
+            "work.butterfly_tb",
+            "+OUT=archive:workspace/work/verification_20261017_release/rtl/butterfly_boundaries/width36_normalize0",
+            "-do",
+            "run -all; quit -code 0"
+          ],
+          "cwd": "archive:workspace/work/verification_20261017_release/rtl/butterfly_boundaries",
+          "timeout_s": 90,
+          "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+          "started_utc": "2026-10-17T02:16:39.294446+00:00",
+          "pid": 51624,
+          "returncode": 0,
+          "elapsed_s": 2.765999999945052,
+          "log_sha256": "338dc7286981293d9b603d8aae8bf1fc08181143bcd6309faaa07e59db3409e1"
+        }
+      }
+    ]
+  }
+}

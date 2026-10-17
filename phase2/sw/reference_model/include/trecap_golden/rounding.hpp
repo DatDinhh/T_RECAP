@@ -35,8 +35,10 @@ constexpr std::int64_t rnd_shr(const std::int64_t value, const unsigned shift) {
     if (shift == 0U) {
         return value;
     }
-    if (shift >= 63U) {
-        return 0;
+    if (shift >= 64U) {
+        // At shift 64 only INT64_MIN reaches a half, which rounds to -1.
+        // Larger shifts put every int64 value strictly below a half.
+        return shift == 64U && value == std::numeric_limits<std::int64_t>::min() ? -1 : 0;
     }
 
     const std::uint64_t bias = std::uint64_t{1} << (shift - 1U);

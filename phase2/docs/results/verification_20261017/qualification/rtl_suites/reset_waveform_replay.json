@@ -1,0 +1,96 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/rtl/reset_waveform/report.json",
+      "original_sha256": "3ac2c7d413fe6c3f6303a7e6b235d4acc004239602efc17252160bfee5745871"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "status": "PASS",
+    "scope": "Native VCD of four already-selected observable phase cases: datapath clear and hard reset during FFT compute wait and WOLA add write; exact1024-sample recovery following each cancellation. VCD records abort/clear and600idle recovery cycles, excludes lengthy golden recovery epoch.",
+    "original_bench_sha256": "5cc41d0a66aec0a61f18fc089e575d41622d68d838f4c35c01ea27b1426209c2",
+    "bench_sha256": "afee7020d928a0ea29e6004a949b818b4caffe4f17a93a5f1139a930d0a3087c",
+    "waveform_sha256": "d16bf3f0cf859bd876b961b5052ef94ee58c38e4e2d335270d64e8ec43a23f59",
+    "coverage": [
+      {
+        "case": "0",
+        "kind": "0",
+        "target": "3",
+        "source_seen": "128",
+        "y_seen": "0",
+        "taps_seen": "0",
+        "wire_seen": "0",
+        "frames": "1",
+        "emitted": "0",
+        "fft_state": "4",
+        "ifft_state": "0",
+        "wola_state": "1"
+      },
+      {
+        "case": "1",
+        "kind": "0",
+        "target": "12",
+        "source_seen": "256",
+        "y_seen": "127",
+        "taps_seen": "129",
+        "wire_seen": "952",
+        "frames": "2",
+        "emitted": "1",
+        "fft_state": "4",
+        "ifft_state": "0",
+        "wola_state": "6"
+      },
+      {
+        "case": "2",
+        "kind": "1",
+        "target": "3",
+        "source_seen": "128",
+        "y_seen": "0",
+        "taps_seen": "0",
+        "wire_seen": "0",
+        "frames": "1",
+        "emitted": "0",
+        "fft_state": "4",
+        "ifft_state": "0",
+        "wola_state": "1"
+      },
+      {
+        "case": "3",
+        "kind": "1",
+        "target": "12",
+        "source_seen": "256",
+        "y_seen": "125",
+        "taps_seen": "129",
+        "wire_seen": "952",
+        "frames": "2",
+        "emitted": "1",
+        "fft_state": "3",
+        "ifft_state": "0",
+        "wola_state": "6"
+      }
+    ],
+    "command": {
+      "stage": "simulate",
+      "argv": [
+        "external-tool:vsim.exe",
+        "-c",
+        "-voptargs=+acc",
+        "work.reset_wave_tb",
+        "+OUT=archive:workspace/work/verification_20261017_release/rtl/reset_waveform",
+        "+CASES=archive:workspace/outputs/trecap_hps_transport_v01/fixtures01/tb_cases.txt",
+        "-do",
+        "onerror {quit -code 1}; onbreak {quit -code 1}; run -all; quit -code 0"
+      ],
+      "cwd": "archive:workspace/work/verification_20261017_release/rtl/reset_waveform",
+      "timeout_s": 180,
+      "tool_sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+      "started_utc": "2026-10-17T02:15:36.893615+00:00",
+      "pid": 37964,
+      "returncode": 0,
+      "elapsed_s": 22.18700000003446,
+      "log_sha256": "06e97eafb054d4647e7dee0812767376a7efe9ff7abe82c7e02ff84622f18e04"
+    }
+  }
+}

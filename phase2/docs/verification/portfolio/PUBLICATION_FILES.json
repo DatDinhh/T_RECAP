@@ -1,0 +1,95 @@
+{
+  "schema": "trecap-portfolio-publication-allowlist-v1",
+  "status": "APPROVED_PUBLICATION_SUBSET",
+  "destination": "phase2/docs/verification/portfolio",
+  "files": [
+    {
+      "path": "main.tex",
+      "sha256": "dffd2f12ca5ec633f8b4305b7c71f18f8cc8a8344e99a589cc92b92b880bee04",
+      "bytes": 31125
+    },
+    {
+      "path": "portfolio_integration.tex",
+      "sha256": "ec1ecc619f2b82ed4a5cf8eed9a7eea3e1819089ef23e2f44f7d38fcd6f26313",
+      "bytes": 1146
+    },
+    {
+      "path": "build.py",
+      "sha256": "193689b3fa4950469a1b2b82f359c53fddc930e3d51fbd162fc93a244d32dd64",
+      "bytes": 2696
+    },
+    {
+      "path": "README.md",
+      "sha256": "276ac20ed073382365f02d0c15b40188832af15c424252b1397eb3dc4cdaefb8",
+      "bytes": 3373
+    },
+    {
+      "path": "source_manifest.json",
+      "sha256": "106ecc25e8960fa6092e5078c8ae8cb4438697069dad81850348d5efe9894fc2",
+      "bytes": 31986
+    },
+    {
+      "path": "TRECAP_DV_Portfolio.pdf",
+      "sha256": "67689f75ebd617875c5f97e912b440e71fc51dbf159a2d12972a52e9d667f700",
+      "bytes": 1120709
+    },
+    {
+      "path": "figures/topology.pdf",
+      "sha256": "c080201e3f6afda1cfa3eacd5e599dc3a7c15f82d5e6be5902677ba494f1a139",
+      "bytes": 38229
+    },
+    {
+      "path": "figures/rounding.pdf",
+      "sha256": "89d49856e33aaec70be74d34e8122b51a4c9c5885245fb13ec066e3a81c1f3c1",
+      "bytes": 28063
+    },
+    {
+      "path": "figures/handshake.pdf",
+      "sha256": "12504f60afa2cfc28618ee1c38249fce16f29e67f4a893f629b5478a496a7a33",
+      "bytes": 23333
+    },
+    {
+      "path": "figures/reset.pdf",
+      "sha256": "fc320d96631dcac4b2d7035088b14d421336078c9ba49f8439a6f445166b3593",
+      "bytes": 21912
+    },
+    {
+      "path": "figures/fullrun.pdf",
+      "sha256": "944a5156eae78b004df626d81996d4b35da18044d0ba38dee5493ef095058be9",
+      "bytes": 27914
+    },
+    {
+      "path": "figures/audio.pdf",
+      "sha256": "f266bbffda660930e14d3caf6849c0466410f52cf055881395eac37c70b2bed7",
+      "bytes": 530415
+    },
+    {
+      "path": "figures/quality.pdf",
+      "sha256": "a0c252a2132954004420bb7b1a709fb01f4c8129badc3be9809063fd4259fb6f",
+      "bytes": 30437
+    },
+    {
+      "path": "figures/packet_sizes.pdf",
+      "sha256": "dcb66bf0dbb6d4b74034181209ecf9631a9a7d1f91cf988fd1dff68ad8982374",
+      "bytes": 22100
+    },
+    {
+      "path": "build_receipt.public.json",
+      "sha256": "42b92f57ebcb1c435787b3c7596f963592ddb28e6ed2481158c8002c28c8d3fd",
+      "bytes": 3531
+    },
+    {
+      "path": "document_audit.public.json",
+      "sha256": "dd938b334f60b17b126956712eaf03f65b880bdef8cec30b5e5daf94f3597310",
+      "bytes": 4118
+    }
+  ],
+  "include_this_manifest": "PUBLICATION_FILES.json",
+  "exclusions": [
+    "build/",
+    "build_receipt.json",
+    "private preparation helpers",
+    "private evidence copies"
+  ],
+  "note": "Copy only files listed here and this allowlist. Local reruns may create private workstation receipts that need a separate publication review."
+}

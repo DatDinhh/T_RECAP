@@ -1,0 +1,121 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/rtl/qualification_snapshot/runs/verification/rounding-20261017T020559Z-45ee23e0/summary.json",
+      "original_sha256": "a45112f77aa8fde6a5b1e794d95525846ed87ab5ee15451e754c5a38c2cff0f2"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "schema_version": 1,
+    "run_id": "rounding-20261017T020559Z-45ee23e0",
+    "test_family": "T-AR-01",
+    "scope": {
+      "package_helpers": [
+        "sgn",
+        "abs_mag",
+        "asr >=128",
+        "rnd_shr then sat_signed"
+      ],
+      "input_width": 64,
+      "output_width": 12,
+      "shifts": [
+        0,
+        1,
+        4,
+        15
+      ],
+      "input_cases": 8283,
+      "comparisons": 33132,
+      "no_full_parameter_coverage_claim": true
+    },
+    "source_sha256": {
+      "rtl/common/round_sat.sv": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457",
+      "sim/verification/arithmetic_rounding_tb.sv": "9f45abea4799a9bdf36a4dbec3e51934b263a1f3dee3b497f57cb434e4b66a5b",
+      "rtl/include/generated/trecap_core_pkg.sv": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784",
+      "rtl/include/trecap_math_pkg.sv": "3930d84eead3da9b097e26b82678a3e847fe0bb296e52e192c297702f70f7c2a",
+      "scripts/verification/rounding_qualification.py": "3897cc6e65e92efd41d4dfeef4d7442b7cac6a241d091fcce127edd02fd812f8",
+      "scripts/verification/simulator_qualification.py": "79a0cc3e86fc45eab9b70ef09661c849f74c3c781e51c41abc166909b90ada9f"
+    },
+    "vectors_sha256": "4b87ccc51a4fc67967ed1f6a3a64f4c139f45779fa3a4ca85509aef901ce4a46",
+    "cases": [
+      {
+        "case": "positive",
+        "outcome": "PASS",
+        "argv": [
+          "external-tool:vsim.exe",
+          "-c",
+          "-onfinish",
+          "stop",
+          "-voptargs=+acc",
+          "work.arithmetic_rounding_tb",
+          "+VECTORS=archive:workspace/work/verification_20261017_release/rtl/qualification_snapshot/runs/verification/rounding-20261017T020559Z-45ee23e0/vectors.txt",
+          "+TRACE=archive:workspace/work/verification_20261017_release/rtl/qualification_snapshot/runs/verification/rounding-20261017T020559Z-45ee23e0/positive.trace",
+          "-do",
+          "archive:workspace/work/verification_20261017_release/rtl/qualification_snapshot/runs/verification/rounding-20261017T020559Z-45ee23e0/run.do"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 3.313,
+        "log": "positive.log",
+        "log_sha256": "71c5915f9708c16602b0d6cbdec6a6f90c5e0623ba47ec2671ee76a9b37b825a",
+        "capture_sha256": "55b808f15d8be0e7682e3b575ec83f9e15b4d858e03dcccbf53d96a21012920c"
+      },
+      {
+        "case": "corrupt_expectation",
+        "outcome": "PASS",
+        "argv": [
+          "external-tool:vsim.exe",
+          "-c",
+          "-onfinish",
+          "stop",
+          "-voptargs=+acc",
+          "work.arithmetic_rounding_tb",
+          "+VECTORS=archive:workspace/work/verification_20261017_release/rtl/qualification_snapshot/runs/verification/rounding-20261017T020559Z-45ee23e0/corrupt_vectors.txt",
+          "+TRACE=archive:workspace/work/verification_20261017_release/rtl/qualification_snapshot/runs/verification/rounding-20261017T020559Z-45ee23e0/corrupt_expectation.trace",
+          "-do",
+          "archive:workspace/work/verification_20261017_release/rtl/qualification_snapshot/runs/verification/rounding-20261017T020559Z-45ee23e0/run.do"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 2.516,
+        "log": "corrupt_expectation.log",
+        "log_sha256": "f2a73e4a17f9604a89b1aec75716026f8ea962cba3a7c2c252b1f0d30d08cad1",
+        "capture_sha256": "48698c1ad85d207f51667814cfce8091a66d562700b72aea5d82bba95ff20d96"
+      },
+      {
+        "case": "corrupt_helper",
+        "outcome": "PASS",
+        "argv": [
+          "external-tool:vsim.exe",
+          "-c",
+          "-onfinish",
+          "stop",
+          "-voptargs=+acc",
+          "work.arithmetic_rounding_tb",
+          "+VECTORS=archive:workspace/work/verification_20261017_release/rtl/qualification_snapshot/runs/verification/rounding-20261017T020559Z-45ee23e0/vectors.txt",
+          "+TRACE=archive:workspace/work/verification_20261017_release/rtl/qualification_snapshot/runs/verification/rounding-20261017T020559Z-45ee23e0/corrupt_helper.trace",
+          "+INJECT_HELPER_ERROR",
+          "-do",
+          "archive:workspace/work/verification_20261017_release/rtl/qualification_snapshot/runs/verification/rounding-20261017T020559Z-45ee23e0/run.do"
+        ],
+        "exit_code": 0,
+        "timed_out": false,
+        "duration_seconds": 2.266,
+        "log": "corrupt_helper.log",
+        "log_sha256": "635d883667c3eaa9c266d5254424b91c5d8c865547a5ff41070eb6d7ea2330cc",
+        "capture_sha256": "48698c1ad85d207f51667814cfce8091a66d562700b72aea5d82bba95ff20d96"
+      }
+    ],
+    "overall": "PASS",
+    "compile_options": [
+      "-sv",
+      "-warning",
+      "2892",
+      "-work",
+      "work"
+    ],
+    "defines": []
+  }
+}

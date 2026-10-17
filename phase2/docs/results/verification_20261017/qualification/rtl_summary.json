@@ -1,0 +1,648 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/rtl/summary.json",
+      "original_sha256": "eb295e55ce26533cda7225858d978816d8e6066f5fab48b3aef414520acea9ee"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "schema": "trecap-release-RTL-verification-20261017-v1",
+    "generated_utc": "2026-10-17T02:34:57.204109+00:00",
+    "status": "PASS_SELECTED_ACTIVE_PROFILE_CHECKS_WITH_EXPLICIT_LIMITS",
+    "profile": "active8s TSH2",
+    "source_binding": {
+      "status": "PASS",
+      "registered_files": 182,
+      "changed": [],
+      "registered_settings_match": {
+        "audio_hps.qsf": true,
+        "audio_hps.qpf": true
+      },
+      "source_id": "39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed",
+      "source_manifest_sha256": "f9fd05862997aca4be309caac37ba8f89dd60e4f85656f099d0c86416122149e",
+      "qsf_sha256": "43a0d90413ccea0a94a4b1af67b1993499dfcd219436acbcac778387c907cc0c",
+      "sof_path": "outputs/trecap_stream8_v01/build01/output_files/audio_hps.sof",
+      "sof_sha256": "f96bc5a35adf08711a5f392baf9f8cbf5ec65a17211a58117bdb53f62acbb7ab",
+      "SOF_matches_prior_historical_assembly": true,
+      "fresh_sources": {
+        "source/rtl/include/generated/trecap_core_pkg.sv": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784",
+        "source/rtl/include/generated/trecap_csr_pkg.sv": "3a1b8b968015494077f8627ff541de8120769258461b2d182c3ea4ac944176e1",
+        "source/rtl/include/generated/trecap_packet_pkg.sv": "97a003c14b93019b5356208ea8be2e76df7435123132440729ea7038cd13b2be",
+        "source/rtl/include/generated/trecap_iface_pkg.sv": "d24ab618d901cb92394e190549489cb88caa7444de18731de0923c24446afd68",
+        "source/rtl/include/trecap_math_pkg.sv": "3930d84eead3da9b097e26b82678a3e847fe0bb296e52e192c297702f70f7c2a",
+        "source/rtl/include/trecap_build_pkg.sv": "e0871a68fadfb69258df42b0c6544f9927f124963e5a55f055d12815753ff827",
+        "source/rtl/common/round_sat.sv": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457",
+        "source/rtl/common/reset_sync.sv": "fa443befd35b8a12316f6c764b154bbab10c18bdb6dd6e342087752f663923c4",
+        "source/rtl/common/sync_pulse.sv": "af29834ff593199d3401e1f294efa85b7bfb20bde58efabf2545863d5c7e3250",
+        "source/rtl/common/sync_bus_snapshot.sv": "8b2922810e9b2efc23451f90c61fddc985cbcc2e7a0b2d849f4a30e5a61b432d",
+        "source/rtl/common/skid_buffer.sv": "5d898e6d5ad70812bb9d8a945f39eca4e137709ff172379376167436043f7263",
+        "source/rtl/common/simple_dual_port_ram.sv": "86b9a342b4e6060192dae32c85f164921e2b055724fc0854958ffea0fcc9fdc4",
+        "source/rtl/common/true_dual_port_ram.sv": "e14e08cbad033f1a1efa256fb8826fe1a1ac5a5ced3d1e5df53a1d61fdb20df4",
+        "source/rtl/common/sync_fifo.sv": "2085edcb855a59f0221294927698883fa238ac7b114fffc68bcf33f760352cd8",
+        "source/rtl/common/async_fifo.sv": "65c1a44b5ac734d4f006cb1cb7fd0bc0906413e33fac0851824b9e3d8106abb6",
+        "source/rtl/interfaces/trecap_sample_if.sv": "c5756125161ff34612d06f27a192a3ecbaf2f3d572f56e9a58fb7c55efc8da5d",
+        "source/rtl/interfaces/trecap_frame_if.sv": "7f29f0c67f64d30e17c5217748d063047049cbaf89e1b302c456e6e2de6d09c4",
+        "source/rtl/interfaces/trecap_core_tap_if.sv": "a0a55654863fb0ffae27ea3d3be79723c9bcf75cbc44fae578edcfaf5b0ba448",
+        "source/rtl/interfaces/trecap_record_if.sv": "92863fbe1f5e915ba19588b1f19eec3df26a5cc48f0d62b6b54ec60851b9d6af",
+        "source/rtl/interfaces/trecap_csr_if.sv": "a30d6be979bc5b0364226156ad92d188dba23aaea6d568496bea4872e2e21417",
+        "source/rtl/interfaces/trecap_avmm_if.sv": "e57274d6fbbf4a10a25beab30151a89d5f5148a390ce1c946d616cc33146ede9",
+        "source/rtl/sources/trecap_bram_replay_source.sv": "842e1d90663c297285ccdd9f9cda7969f8ca846994ec27bbf12e07d985758e66",
+        "source/rtl/sources/trecap_diagnostic_source.sv": "1c355aa2ff32dec15d04d86d8b29f3f952caf146850a5d4cb818128f3c5de9b0",
+        "source/rtl/sources/trecap_source_mux.sv": "efe7cfa8bd750c2daa68187582b2ed3f919ed0e65907f809af6f549fcb9ccf8f",
+        "source/rtl/sources/trecap_audio_adapter.sv": "b0f54a05c661c47e311a76198f65d36d2f62b3fac223ac2fbf36f5d73e37eba7",
+        "source/rtl/sources/trecap_adc_adapter.sv": "fec492a7013e9b18a084dbd618c4af1e02287fa29b9049a393963d5b10138889",
+        "source/rtl/fft/complex_mul_q.sv": "c45b088222549570d2b65719739bed2fff5be7b77bb6d163c4c1a5c3d1148579",
+        "source/rtl/fft/bit_reverse_addr.sv": "de4dafca7eae92e6f900d675151dc20dc794e1f66ff9ce40548a7520f3ca6209",
+        "source/rtl/fft/twiddle_rom.sv": "4f0beb59243898d47eb79857ceb0caf9cf9f753f2ea1d7e942507c4ee6824d7c",
+        "source/rtl/fft/trecap_fft_stage.sv": "0f8795941f9843e1f266cc0ee9d310c4be52d3103e6d750abb455f49880472d1",
+        "source/rtl/fft/trecap_fft256.sv": "a0c710046185fb54bd7281444c57539f9b689e4a6f52f634dba60a259619ef66",
+        "source/rtl/fft/trecap_ifft256.sv": "92c175d4a30da253e9a93e118080261958daa181cf4e6f12560d9524d110bd3c",
+        "source/rtl/core/trecap_input_ring.sv": "022be1284812f1cfd98dd39ff178cb3890ec2bd3b8eb047ff2c2814ef5a5c44a",
+        "source/rtl/core/trecap_frame_scheduler.sv": "6d263b88c540605e1bfb728e5b4c1bc87d7f5552a007b178031a198675f5c255",
+        "source/rtl/core/window_rom.sv": "931ec1f72f160384df6cb6c008db22cde6dab1bee94b0b7013843ab44374dcbe",
+        "source/rtl/core/trecap_analysis_window.sv": "62798c5bfed8076c54568986bd6df6d57b430e9aacb97efb582364974620c6ad",
+        "source/rtl/core/trecap_hermitian_canonicalizer.sv": "6b1c11ba7badb80c18a71e157346be994cb2cec1c775a4a910f38843d4fa2b4d",
+        "source/rtl/core/trecap_mag2_mask.sv": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d",
+        "source/rtl/core/trecap_spectrum_mask_builder.sv": "695d9bd8c51c3ee97412854d37a4c5f5b953f793cb05a4a76f83d305e05fe3e0",
+        "source/rtl/core/trecap_synthesis_wola.sv": "7d30dee3679adb15bee54f2ad9762d102b08f54314c280a6f4918b95d277a7aa",
+        "source/rtl/core/trecap_delay_error_metrics.sv": "1f08cbb2131d9ab4f84c90b750c2836046aea966498d035bcec94422b4958e30",
+        "source/rtl/core/trecap_core_top.sv": "44ab78f15ab83a13de90109e2772159dbac0efc1fccf66791d9c70657fe76f6b",
+        "source/rtl/top/trecap_core_only_top.sv": "8af237604db20cd32ecd1442b5918303c959461a843b7c3d67ccac8b048c8d86",
+        "source/rtl/top/trecap_core_bram_replay_top.sv": "5fe42cbe7e787f94ab46d31ed7af264a58bad0d22fefdbaffcd37fe7c85c308f",
+        "source/rtl/top/trecap_source_core_integration.sv": "0677af80af9cb5a19e42e57ccbfcd312324183ec428651b34ef0ed747ad4df77",
+        "generated/trecap_core_export_observed.sv": "a3e887bb2383ab6ca11d5a1d1f8eef184f9f855510171cfb531588448a9fada9",
+        "generated/trecap_spectral_exporter.sv": "7a041daa6f32486e3f3e2c4bfdb95b9a5dc6277f6b0f4ba7f525fcb082a258be",
+        "generated/trecap_pcm_stream_source.sv": "79e402d7314b6540aea813bab2a42efa4d3107a34a63d61ff5ea3549bb4101f7",
+        "generated/trecap_pcm_stream_top.sv": "2d8e7794a5629cf88e9d47ee0f2dd68ab28d1b73e3c071d701e2d5e3ab1780d2",
+        "sources/stream_fifo.sv": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b",
+        "sources/trecap_stream_adapter.sv": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305"
+      },
+      "defines": [],
+      "DUT_source_edits": false
+    },
+    "fresh_suites": [
+      {
+        "name": "four_state_environment",
+        "status": "PASS",
+        "evidence_class": "fresh_release_simulation",
+        "report": "work/verification_20261017_release/rtl/qualification_snapshot/runs/verification/environment-20261017T020532Z-3c430f83/summary.json",
+        "sha256": "2d1fab31ebd21a9b53022f7dd63be8e9e8e157e179dcc1332d87cd9c20a848a6",
+        "scope": "Four-state/scheduling/file protocol and deliberate assertion,error,fatal,X,Z,sim watchdog,host watchdog,missing completion,damaged trace rejection.",
+        "counts": {
+          "cases": 15,
+          "capabilities_excluded": [
+            "concurrent assertions",
+            "covergroups",
+            "code coverage",
+            "vendor models",
+            "DPI"
+          ]
+        }
+      },
+      {
+        "name": "rounding_qualification",
+        "status": "PASS",
+        "evidence_class": "fresh_release_simulation",
+        "report": "work/verification_20261017_release/rtl/qualification_snapshot/runs/verification/rounding-20261017T020559Z-45ee23e0/summary.json",
+        "sha256": "a45112f77aa8fde6a5b1e794d95525846ed87ab5ee15451e754c5a38c2cff0f2",
+        "scope": "Actual registered round_sat and math helpers versus arbitrary integer oracle; altered helper and altered expectation rejected.",
+        "counts": {
+          "package_helpers": [
+            "sgn",
+            "abs_mag",
+            "asr >=128",
+            "rnd_shr then sat_signed"
+          ],
+          "input_width": 64,
+          "output_width": 12,
+          "shifts": [
+            0,
+            1,
+            4,
+            15
+          ],
+          "input_cases": 8283,
+          "comparisons": 33132,
+          "no_full_parameter_coverage_claim": true
+        }
+      },
+      {
+        "name": "rounding_large_shifts",
+        "status": "PASS",
+        "evidence_class": "fresh_release_simulation",
+        "report": "work/verification_20261017_release/rtl/arithmetic_large_shifts/report.json",
+        "sha256": "76f288a2e22600498104b68c17411260782a873d35743c445eab5b9544a3146c",
+        "scope": "Actual RTL helper and round_sat with shifts62,63,64,65,127,128 and signed64 minimum ties.",
+        "counts": {
+          "comparisons": 138,
+          "shifts": [
+            62,
+            63,
+            64,
+            65,
+            127,
+            128
+          ],
+          "rows": 23
+        }
+      },
+      {
+        "name": "analysis_window_boundaries",
+        "status": "PASS",
+        "evidence_class": "fresh_release_simulation",
+        "report": "work/verification_20261017_release/rtl/analysis_window_boundaries_attempt02/report.json",
+        "sha256": "453297c3cbfd66936aabb710fb9de89e0165e4b8ae94c4b6a4f2942e8fa6e512",
+        "scope": "Registered27-bit analysis window. Directedunsigned16 coefficient injection, signed12 extrema, exact saturation and held outputs.",
+        "counts": {
+          "observed_event_bins": {
+            "sample-2048_Qw0": 52,
+            "sample-2048_Qw1": 51,
+            "sample-2048_Qw32767": 51,
+            "sample-2048_Qw32768": 51,
+            "sample-2048_Qw65535": 51,
+            "sample2047_Qw0": 52,
+            "sample2047_Qw1": 51,
+            "sample2047_Qw32767": 51,
+            "sample2047_Qw32768": 51,
+            "sample2047_Qw65535": 51,
+            "sample-1_Qw0": 52,
+            "sample-1_Qw1": 51,
+            "sample-1_Qw32767": 51,
+            "sample-1_Qw32768": 51,
+            "sample-1_Qw65535": 51,
+            "sample1_Qw0": 52,
+            "sample1_Qw1": 51,
+            "sample1_Qw32767": 51,
+            "sample1_Qw32768": 51,
+            "sample1_Qw65535": 51
+          },
+          "products_checked": 1024,
+          "held_output_checks": 3072
+        }
+      },
+      {
+        "name": "butterfly_boundaries",
+        "status": "PASS",
+        "evidence_class": "fresh_release_simulation",
+        "report": "work/verification_20261017_release/rtl/butterfly_boundaries/report.json",
+        "sha256": "0ead65394ad2fc6fe0c365d44663dc3ea2c054d70d3f5b1a9466c01159f05088",
+        "scope": "Actual FFT28/normalize and IFFT36/no-normalize stage profiles; independent full-product cuts and exact output/flag/stall comparisons.",
+        "counts": {
+          "transactions": 4374,
+          "FFT_transactions": 2187,
+          "IFFT_transactions": 2187,
+          "held_output_checks": 13122
+        }
+      },
+      {
+        "name": "canonical_boundaries",
+        "status": "PASS",
+        "evidence_class": "fresh_release_simulation",
+        "report": "work/verification_20261017_release/rtl/canonical_boundaries_attempt02/report.json",
+        "sha256": "db9de53d9061d3442ae402752238798dfd794231884396b47e00d01a71a47599",
+        "scope": "Asymmetric odd signed pair sums/differences, self-conjugate imaginary diagnostics, already-rounded mirror negation, overflow diagnostic,4 malformed fail-stops and exact clear/disable recovery.",
+        "counts": {
+          "observed_event_bins": {
+            "accepted_output_bins": 2048,
+            "self_conjugate": 16,
+            "unique_interior": 1016,
+            "real_sum_positive_odd_tie": 126,
+            "imag_difference_negative_odd_tie": 380,
+            "mirror": 1016,
+            "real_sum_negative_odd_tie": 254
+          },
+          "frames": 8,
+          "output_bins": 2048,
+          "output_stability_checks": 6144
+        }
+      },
+      {
+        "name": "mask_threshold_boundaries",
+        "status": "PASS",
+        "evidence_class": "fresh_release_simulation",
+        "report": "work/verification_20261017_release/rtl/mask_threshold_boundaries/report.json",
+        "sha256": "3fb907d511b62ea1090fc6062d72d7285ccaab43f94cd7a46416c86949649edd",
+        "scope": "3072 full-spectrum bins: magnitude below/equal/above threshold, DCprotected, Nyquist and interior eligible, mirror ineligible, full56-bit thresholds; exact12 frame statistics and held metadata.",
+        "counts": {
+          "event_bins": {
+            "DC:above:eligible0:mask0": 6,
+            "interior:above:eligible1:mask0": 451,
+            "interior:equal:eligible1:mask0": 109,
+            "Nyquist:above:eligible1:mask0": 6,
+            "mirror:above:eligible0:mask0": 453,
+            "mirror:equal:eligible0:mask0": 109,
+            "interior:below:eligible1:mask1": 964,
+            "mirror:below:eligible0:mask0": 962,
+            "DC:equal:eligible0:mask0": 1,
+            "Nyquist:equal:eligible1:mask0": 1,
+            "DC:below:eligible0:mask0": 5,
+            "Nyquist:below:eligible1:mask1": 5
+          },
+          "rows": 3072
+        }
+      },
+      {
+        "name": "mask_unknown_controls",
+        "status": "PASS",
+        "evidence_class": "fresh_release_simulation",
+        "report": "work/verification_20261017_release/rtl/mask_threshold_boundaries/four_state_controls02.json",
+        "sha256": "1fd7637568d9c148708177e89150b74f03eed8bea6f2d566863c93141d0faec1",
+        "scope": "X valid payload and Z required valid control rejected by four-state checker before DUT acceptance. Explicit.do macro and -onfinish stop yield nonzero3.",
+        "counts": {
+          "negative_controls": 2
+        }
+      },
+      {
+        "name": "finite_geometry",
+        "status": "PASS",
+        "evidence_class": "fresh_release_simulation",
+        "report": "work/verification_20261017_release/rtl/finite_geometry/report.json",
+        "sha256": "d14e1d027d1afd1c5698e2aaf8d50168d73da44d5fdc64921e5c9d6b3139258e",
+        "scope": "12 Ns values [1,2,126,127,128,129,130,254,255,256,257,258] x dense/sparse threshold10000000 with fresh fixed reference independently checked.",
+        "counts": {
+          "epochs": 24,
+          "Ns": [
+            1,
+            2,
+            126,
+            127,
+            128,
+            129,
+            130,
+            254,
+            255,
+            256,
+            257,
+            258
+          ],
+          "Y_samples_checked": 16896,
+          "canonical_taps_checked": 7740
+        }
+      },
+      {
+        "name": "busy_reset_recovery",
+        "status": "PASS",
+        "evidence_class": "fresh_release_simulation",
+        "report": "work/verification_20261017_release/rtl/core_busy_reset_recovery/report.json",
+        "sha256": "18b157d5c37c913f6dc5766baba0f38eb46997c9c95ef5801155db4891ee1f26",
+        "scope": "16 observable source/FFT/IFFT/WOLA/drain/held-output phases x datapath clear/hard reset,600 quiet cycles and exact1024-sample restart per cancellation.",
+        "counts": {
+          "cancellations": 32,
+          "exact_recoveries": 32,
+          "Y_recovery_samples_checked": 49152,
+          "canonical_tap_rows_checked": 43862
+        }
+      },
+      {
+        "name": "final_y_and_time_metrics",
+        "status": "PASS",
+        "evidence_class": "fresh_release_simulation",
+        "report": "work/verification_20261017_release/rtl/final_y_completion_metrics_attempt02/report.json",
+        "sha256": "7ac942e6823c7ff6fa934beccfc859e8dcaa3db28b02f60e0171de530e49c6d4",
+        "scope": "12excerpt/threshold/mode epochs, finalY held128cycles with busy1/done0 untilaccept; exact sample/tap/packet and finalcount/sumabs/sumsq/maxerror versus absolute-index integer calculation.",
+        "counts": {
+          "Y_samples_checked": 18432,
+          "epochs": 12,
+          "canonical_tap_rows_checked": 13932,
+          "final_token_stall_cycles": 1536
+        }
+      },
+      {
+        "name": "reset_waveform_replay",
+        "status": "PASS",
+        "evidence_class": "fresh_release_simulation",
+        "report": "work/verification_20261017_release/rtl/reset_waveform/report.json",
+        "sha256": "3ac2c7d413fe6c3f6303a7e6b235d4acc004239602efc17252160bfee5745871",
+        "scope": "Four selected clear/hardreset cases at FFTwait/WOLAaddwrite with actual native VCD and exact recovery.",
+        "counts": {
+          "cancellations": 4,
+          "exact_recoveries": 4
+        }
+      },
+      {
+        "name": "full384000_dense0",
+        "status": "PASS",
+        "evidence_class": "fresh_release_simulation",
+        "report": "work/verification_20261017_release/rtl/full384000_dense0/report.json",
+        "sha256": "430e746f686b82717a252ce7bf8f79ea1d5f721c7791b540c2e5baebd5682ac0",
+        "scope": "Full384000 finite input,384512 exactY/flush tokens,3001frames,387129 canonical taps and2856952 dense bytes, threshold0.",
+        "counts": {
+          "input_samples_checked": 384000,
+          "source_tokens_checked": 384512,
+          "Y_samples_checked": 384512,
+          "canonical_taps_checked": 387129,
+          "packet_bytes_checked": 2856952,
+          "completion_line": "# PASS full_stream epochs=1 fifo_full_cycles=32574703 input_gap_cycles=4424 export_stall_cycles=4930 y_stall_cycles=1487 cycles=33014903"
+        }
+      },
+      {
+        "name": "full384000_sparse100000000",
+        "status": "PASS",
+        "evidence_class": "fresh_release_simulation",
+        "report": "work/verification_20261017_release/rtl/full384000_sparse100000000/report.json",
+        "sha256": "925f569e58cb9ddc2dffd93aa89e431f0a91cdeaecbe5f478cd42aff5bc81054",
+        "scope": "Full384000 finite input,384512 exactY/flush tokens,3001frames,387129 canonical taps and523200 sparse bytes, threshold100000000.",
+        "counts": {
+          "input_samples_checked": 384000,
+          "source_tokens_checked": 384512,
+          "Y_samples_checked": 384512,
+          "canonical_taps_checked": 387129,
+          "packet_bytes_checked": 523200,
+          "completion_line": "# PASS full_stream epochs=1 fifo_full_cycles=27232062 input_gap_cycles=4399 export_stall_cycles=1038 y_stall_cycles=1513 cycles=27666087"
+        }
+      }
+    ],
+    "reused_evidence": [
+      {
+        "name": "core_assertions",
+        "evidence_class": "prior_same_session_20261016_simulation_reused_after_fresh_source_hash_match",
+        "status": "PASS",
+        "report": "work/verification_20261016/rtl/core_assertions/report.json",
+        "report_sha256": "7958acc974d5763b54957be501d57a177881d8468ae659e81bd3ab2c1d453d3a",
+        "epochs": 12,
+        "input_samples": 12288,
+        "full_tail_y_samples": 18432,
+        "canonical_tap_rows": 13932,
+        "coverage": "# PASS stream epochs=12 fifo_full_cycles=768578 input_gap_cycles=4394 export_stall_cycles=295381 y_stall_cycles=30873 cycles=1473121"
+      },
+      {
+        "name": "adapter_assertions",
+        "evidence_class": "prior_same_session_20261016_simulation_reused_after_fresh_source_hash_match",
+        "status": "PASS",
+        "report": "work/verification_20261016/rtl/adapter_assertions/report.json",
+        "report_sha256": "4400a882d4a1a7e525f205251539604cc1b6489e31b305584d4ca4631b3d5867",
+        "coverage": {
+          "normal_epochs": 12,
+          "negatives": 13,
+          "checks": 913932,
+          "transactions": 312316,
+          "cycles": 1426797,
+          "inputfull": 645536,
+          "spectralfull": 59542,
+          "yfull": 177035
+        },
+        "completion_line": "# PASS streamadapter normal_epochs=12 negatives=13 checks=913932 transactions=312316 cycles=1426797 inputfull=645536 spectralfull=59542 yfull=177035"
+      },
+      {
+        "name": "ram_exporter",
+        "evidence_class": "prior_same_session_20261016_simulation_reused_after_fresh_source_hash_match",
+        "status": "PASS",
+        "report": "work/verification_20261016/rtl/ram_exporter/verification.json",
+        "report_sha256": "85b1c1d7a9f9c8b9838bf311e9c5d5fc843cce5daa976c05b6c160411536cb32",
+        "coverage": {
+          "cycles": 5356638,
+          "counter_checks": 144,
+          "stalled_cycle_checks": 303483,
+          "ram_reads": 512424,
+          "ram_writes": 256624,
+          "concurrent_distinct_address_cycles": 54,
+          "fetch_flushes": 0,
+          "response_flushes": 0
+        },
+        "scenario_count": 136,
+        "fixture_case_count": 56,
+        "fixture_records": 3024,
+        "queue_frames": 4,
+        "complete_records_checked": 3056,
+        "aborted_prefixes_checked": 2,
+        "bytes_checked": 2001480
+      },
+      {
+        "name": "ram_queue2",
+        "evidence_class": "prior_same_session_20261016_simulation_reused_after_fresh_source_hash_match",
+        "status": "PASS",
+        "report": "work/verification_20261016/rtl/ram_queue2/verification.json",
+        "report_sha256": "38e2a02da40d60b0cbe229f9bc4f796782ef831414220759956a28c96960d38d",
+        "coverage": {
+          "cycles": 58672,
+          "counter_checks": 32,
+          "stalled_cycle_checks": 4270,
+          "ram_reads": 5180,
+          "ram_writes": 3002,
+          "concurrent_distinct_address_cycles": 18,
+          "fetch_flushes": 0,
+          "response_flushes": 0
+        },
+        "scenario_count": 24,
+        "fixture_case_count": 0,
+        "fixture_records": 0,
+        "queue_frames": 2,
+        "complete_records_checked": 28,
+        "aborted_prefixes_checked": 2,
+        "bytes_checked": 20696
+      },
+      {
+        "name": "ram_supplement",
+        "evidence_class": "prior_same_session_20261016_simulation_reused_after_fresh_source_hash_match",
+        "status": "PASS",
+        "report": "work/verification_20261016/rtl/ram_supplement/verification.json",
+        "report_sha256": "1ca6a812cbddc017072b6b6bb16c5629ba6443720626059a00f70a1aa070ad7a",
+        "coverage": {
+          "cycles": 25299,
+          "counter_checks": 12,
+          "stalled_cycle_checks": 1511,
+          "ram_reads": 2338,
+          "ram_writes": 1185,
+          "concurrent_distinct_address_cycles": 54,
+          "fetch_flushes": 0,
+          "response_flushes": 0
+        },
+        "scenario_count": 6,
+        "fixture_case_count": 0,
+        "fixture_records": 0,
+        "queue_frames": 3,
+        "complete_records_checked": 14,
+        "aborted_prefixes_checked": 0,
+        "bytes_checked": 10024
+      },
+      {
+        "name": "ram_corners",
+        "evidence_class": "prior_same_session_20261016_simulation_reused_after_fresh_source_hash_match",
+        "status": "PASS",
+        "report": "work/verification_20261016/rtl/ram_corners/verification.json",
+        "report_sha256": "ce775b118aa4224404965738386985620799b46f624cd89354aa12b52602c579",
+        "coverage": {
+          "cycles": 18635,
+          "counter_checks": 16,
+          "stalled_cycle_checks": 836,
+          "ram_reads": 1604,
+          "ram_writes": 1280,
+          "concurrent_distinct_address_cycles": 0,
+          "fetch_flushes": 4,
+          "response_flushes": 4
+        },
+        "scenario_count": 8,
+        "fixture_case_count": 0,
+        "fixture_records": 0,
+        "queue_frames": 2,
+        "complete_records_checked": 8,
+        "aborted_prefixes_checked": 4,
+        "bytes_checked": 5696
+      }
+    ],
+    "reused_prior_summary": {
+      "path": "work/verification_20261016/rtl/summary.json",
+      "sha256": "7a815321e7984e41862b7c1a9f1cfa5a0bfcbce0297ed94a68e56e9387f9bae6"
+    },
+    "reference_regeneration": [
+      {
+        "report": "work/verification_20261017_release/reference/full_length_attempt01/report.json",
+        "sha256": "5b625b9e61bb3bedb380573f3d8cff65605b5f5f2c2825571c6ffbf0bb79f879",
+        "status": "HARNESS_GEOMETRY_EXPECTATION_ERROR",
+        "scope": "Fresh fixed-C++ reference regeneration; consult report for threshold,input and exact artifact comparisons."
+      },
+      {
+        "report": "work/verification_20261017_release/reference/full_length_attempt02/report.json",
+        "sha256": "13056e154f533044207decad133021b0c6d17002e3300832faa2dffcc71a6ed3",
+        "status": "PASS_FIXED_REFERENCE_FULL_LENGTH_FROZEN_EQUIVALENCE",
+        "scope": "Fresh fixed-C++ reference regeneration; consult report for threshold,input and exact artifact comparisons."
+      }
+    ],
+    "native_waveforms": [
+      {
+        "path": "work/verification_20261017_release/rtl/reset_waveform/reset_recovery.vcd",
+        "status": "PASS",
+        "sha256": "d16bf3f0cf859bd876b961b5052ef94ee58c38e4e2d335270d64e8ec43a23f59",
+        "bytes": 1676392,
+        "time_resolution": "1ps",
+        "clock_period": "10ns",
+        "kind": "native ModelSim VCD, observed DUT/testbench signals; bounded representative windows, not continuous wholeepoch"
+      },
+      {
+        "path": "work/verification_20261017_release/rtl/final_y_completion_metrics_attempt02/final_y_stall.vcd",
+        "status": "PASS",
+        "sha256": "a1310f82c175bf9815c8ee4ff1ecb52930d27ee81fac637c42dcdb22d4a5ccc5",
+        "bytes": 117446,
+        "time_resolution": "1ps",
+        "clock_period": "10ns",
+        "kind": "native ModelSim VCD, observed DUT/testbench signals; bounded representative windows, not continuous wholeepoch"
+      },
+      {
+        "path": "work/verification_20261017_release/rtl/full384000_dense0/representative_windows.vcd",
+        "status": "PASS",
+        "sha256": "2067f0a92f0c05202362aefcfe62a3aed2ac56e573745f893d2087fb0a522c44",
+        "bytes": 2555130,
+        "time_resolution": "1ps",
+        "clock_period": "10ns",
+        "kind": "native ModelSim VCD, observed DUT/testbench signals; bounded representative windows, not continuous wholeepoch"
+      },
+      {
+        "path": "work/verification_20261017_release/rtl/full384000_sparse100000000/representative_windows.vcd",
+        "status": "PASS",
+        "sha256": "df63dff51b58d220bebee40d0585ec517d4dc555cfbf0fda4578e828962b80a7",
+        "bytes": 2406177,
+        "time_resolution": "1ps",
+        "clock_period": "10ns",
+        "kind": "native ModelSim VCD, observed DUT/testbench signals; bounded representative windows, not continuous wholeepoch"
+      }
+    ],
+    "attempt_dispositions": [
+      {
+        "attempt": "mask_threshold_boundaries/four_state_controls.json",
+        "classification": "checker runner qualification failure",
+        "cause": "X/Z fatal diagnostics fired correctly but ModelSim inline-do/default-finish returnedzero. Explicit.do macro/-onfinish stop correctly returns3. All positive collectors also require exactcompletion and rejecterror/fatal text.",
+        "resolved_by": "mask_threshold_boundaries/four_state_controls02.json"
+      },
+      {
+        "attempt": "final_y_completion_stall/report.json",
+        "classification": "postchecker fixture-map defect",
+        "cause": "All12simulatedepochs passed exactonlinechecks and128finalY heldcycles. Python checker used cases[phase] for sixfixtures eachdense/sparse. Correct cases[phase//2], matching originalrunner, then freshreplay plus actualtimemetrics passed.",
+        "resolved_by": "final_y_completion_metrics_attempt02/report.json"
+      },
+      {
+        "attempt": "canonical_boundaries/report.json",
+        "classification": "superseded trace quality",
+        "cause": "Positive comparisons passed but trace wrote checkedexpected operands. Replayed using capturedactual DUT outputfields.",
+        "resolved_by": "canonical_boundaries_attempt02/report.json"
+      },
+      {
+        "attempt": "analysis_window_boundaries/report.json",
+        "classification": "testbench elaboration defect",
+        "cause": "Bench assumed28-bit window output; registered T_U_W is27. ModelSim rejected beforetimeadvanced. Correct width and explicit27-bit saturation oracle passed.",
+        "resolved_by": "analysis_window_boundaries_attempt02/report.json"
+      }
+    ],
+    "historical_implementation": {
+      "status": "PASS_TIMING_ONLY",
+      "evidence_kind": "Fresh read-only parsing/hash check of historical September 28 fitted reports; no new Quartus compilation or STA run.",
+      "checks_passed": 35,
+      "checks_total": 35,
+      "clocks": 18,
+      "clock_corner_check_rows": 288,
+      "corners": 4,
+      "calibrated_DDR_categories": 32,
+      "worst_CLOCK_50_slack_ns": {
+        "setup": 3.237,
+        "hold": 0.105,
+        "recovery": 12.181,
+        "removal": 0.434
+      },
+      "constraint_exceptions": [
+        "Only exact generated HPS hard primitive register names and three explicit hard-peripheral clock ports are classified as no_clock; no fabric register is exempted.",
+        "One hundred multiple_clock nodes are exact DDR hard read-capture/postamble structures under four DQS groups, covered by vendor calibrated DDR analysis.",
+        "Vendor DDR raw input/output path analysis contains calibration-dependent negative slack; the separate 8 categories x 4 corners calibrated report is the applicable DDR margin gate.",
+        "The 84 explicit hard-peripheral pin cuts preserve vendor directions and wrapper names. They do not cover DDR, adapter, leaf, framer or generated HPS-to-fabric synchronous paths.",
+        "Only asynchronous reset-synchronizer clear pins and constant LED outputs are custom false paths; reset release and all synchronous fabric remain timed."
+      ],
+      "resources": {
+        "ALMs": 6521,
+        "registers": 8568,
+        "M10K_blocks": 47,
+        "DSP_blocks": 35
+      },
+      "fit_summary_sha256": "64f396f2da8881794ea2383c734e339869dc21e17eb769272ea5f9ee4aad6493"
+    },
+    "tools": {
+      "modelsim": "Model Technology ModelSim - INTEL FPGA STARTER EDITION vsim 2020.1 Simulator 2020.02 Feb 28 2020",
+      "iverilog": "Icarus Verilog version 11.0 (stable) (d3b0992)",
+      "vvp": "Icarus Verilog runtime version 11.0 (stable) (d3b0992)",
+      "python": "Python 3.12.14"
+    },
+    "limitations": [
+      "Selected active TSH2 source-bound profile only. This is requirement/event-count evidence, not a code-coverage percentage, exhaustive state proof, full parameter proof or industrial certification.",
+      "Functional simulations use no SYNTHESIS define. ModelSim supports the exercised immediate checks and four-state tests. Concurrent assertions, covergroups, code coverage, DPI and vendor-model qualification remain excluded. Unsupported $past diagnostics in uninstantiated diagnostic/source-mux libraries do not qualify those unused profiles.",
+      "No fresh CDC/RDC formal/static analysis, metastability proof, asynchronous phase/frequency sweep, reset-controller ordering proof or gate-level timing simulation. Physical core is synchronous CLOCK_50 with20ns period; functional testbench uses10ns clock and1ps precision, with no physical timing or throughput inference. Vendor HPS bridge/reset domains are excluded from these functional simulations.",
+      "Historical fit/STA is retained and freshly source/hash bound, not newly executed Quartus compilation. No claim that negative raw calibration-dependent DDR paths become direct timing passes; applicable calibrated timing and exact exceptions are documented in prior receipt.",
+      "Full-length RTL selected threshold0/dense and100000000/sparse only. Root physical campaign covers broader selectedthreshold matrix. Full core numeric traces cover Y,canonical bins andpacketbytes; actual final time metric totals are checked on12shortexcerpts, and mask perframe counters/energies on directedunit cases, not every full-lengthinternalstatistic.",
+      "32 busy-phase reset/clear cases cover sourceinput, FFT/IFFT load/read/compute/output, WOLAemit/add/drain andheldY. This is not every internal RAM microphase x every reset type. No broad asynchronous reset-removal metastability claim.",
+      "TSH2 freezes threshold/mode for an epoch and ties direct sticky/metric clear controls low. Dynamic commit/source-swap, direct metricclear at pending/read/commit boundaries and arbitrary controlcollisions from broader architecture are not reachable profilecontrols; no general-library signoff is inferred.",
+      "No natural 64-bit counter wrap/overflow lifetime, aggregate64-bit carry overflow, forced history-tag corruption, exhaustive illegal geometry or all arithmetic-width configurations. Signed error extrema and all accumulated internalstatistics are not exhaustively crossed. Directed saturatingblockstress is diagnostic evidence, not an in-range end-to-end numeric guarantee.",
+      "Ns1/2,H/L neighborhoods and full384000 are RTLtested. Freshreference-only additionalresidues/waveformfamilies do not count as RTLsimulation coverage. No inactive DDR/UDP/livecodec/ADC path claim.",
+      "All board and HPS results are owned by root campaign. This agent performed no hardwarewrites,deployment,serverstart or softwareinstallation. Waveforms are actual representative native traces, not synthetic timing illustrations."
+    ],
+    "command_receipt_locations": [
+      "Each freshsuite directory *.command.json or commands.json records argv,cwd,toolhash,exitcode,watchdog andloghash.",
+      "qualification_snapshot/runs/verification/*/summary.json includes stage/case commands and outcomes.",
+      "Priorreused summary references exact command,source andartifact receipts."
+    ],
+    "scripts": {
+      "build_summary.py": "8513d5c0d9a01a8436955de93be1f2819b4467d22c0659462d276faf4b5f4e0d",
+      "capture_reset_wave.py": "f69644c7c67d509495735feba005a33ba4a9118dc96f7437c89b1b63b490b98c",
+      "extend_arithmetic.py": "aeaecf1874f3db738917e3fac406174a03024b7bbd74199e90a313615ea579f9",
+      "launch_full_threshold.py": "6fef2fe082403cdd8900374510477349c0c8cdd22de996f7d76e1672eb14d6b1",
+      "qualify_tools.py": "a147279cc3c449b2e6e131190afe5bf9e299fab7cb0683ac225d178ba25327b7",
+      "requalify_mask_controls.py": "0feb7b26824d1d4f8d785a5a1e799773bd8d5f0cc506d86ec55fc32d3b2eb15a",
+      "run_butterfly.py": "0d18cd1fcf162522f4f81e2d9203921332d31576392abad2738b7e6adbc9b1dc",
+      "run_canonical.py": "166cef57b9e1e976327e64f89349e07f7bba25052605ecf95ee15c9eda189130",
+      "run_canonical02.py": "91ace7997cb0fd04a8d4b69f06c27daa91d406f2412e0e7902fe7229aec68166",
+      "run_final_y_metrics02.py": "7697ea79806f046f904be2eb19a02c5b7934d8c2129d914dfc050f0ac343ee94",
+      "run_final_y_metrics02_expanded.py": "d79b424c4ef4f81087ffe7a1c0c8111f459f0805979ea0bd35b8f3ef365aa43c",
+      "run_final_y_stall.py": "5694ac8ccc5c6fdf376e679c2b694ef026e41a4fb8045a08e34425f7f42f1ed9",
+      "run_full.py": "8afc44de2f8e9c5d513acde158f6c5171f4fc4992b1ad764e6b6f973ac9653e3",
+      "run_full_thr100000000_sparse.py": "99b3e7edbb4ac606066ff1a7c1801da436298f72ffae6ca7e8f6faa3ce4c5ef5",
+      "run_geometry.py": "c319746127434fd42b8e6f50b213c2d37c9d3368f9c523b9b458ee28918bbc76",
+      "run_mask.py": "e6ceab8c8b4f0fe760795b2123a28b6d1ecb56b9632e5e26dccf3f9d76981c9e",
+      "run_reset.py": "8440ff45ae4973c5a084258469c4dd9707e94708028930f97fb0cb1b43bc6b49",
+      "run_window.py": "02646edc6176b554cf8f5003f3e4cd60191d31647bfdb3209e1a24bfe6393883",
+      "run_window02.py": "b072325b0d93ef79cfb269eba450f3dc6d539fd4b3bac2c2caab1f593165c483",
+      "run_window02_expanded.py": "43cf06b0e71e8d77d7d95fa2eed43f7de55399b5e1668b083d68d632b31dd27e",
+      "sim_common.py": "18069796ae890720d63047e2572af5d63d3e6b6d0b5200d43542dbb98ff61049"
+    },
+    "observed_coverage": {
+      "path": "work/verification_20261017_release/rtl/coverage.json",
+      "sha256": "7fc2e1e77a9a0faa9fc4363f53d2f4803d96849a103d75ccb02399d1d6f68cb3"
+    }
+  }
+}

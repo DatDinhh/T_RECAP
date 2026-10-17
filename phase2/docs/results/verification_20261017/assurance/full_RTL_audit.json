@@ -1,0 +1,1023 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/assurance/rtl_audit01/summary.json",
+      "original_sha256": "9c3a52e54eda986b4260dd863da7fbe06791321dc4d31bade251a6a52a54ee0a"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "schema": "trecap-full-RTL-independent-artifact-audit-v1",
+    "started_utc": "2026-10-17T02:35:11.128414+00:00",
+    "new_simulation": false,
+    "hardware_access": false,
+    "runs": [
+      {
+        "name": "full384000_dense0",
+        "threshold": 0,
+        "encoding": "dense",
+        "input_samples": 384000,
+        "source_tokens": 384512,
+        "Y_samples": 384512,
+        "canonical_rows": 387129,
+        "frames": 3001,
+        "packet_bytes": 2856952,
+        "Y_exact": true,
+        "canonical_fields_exact": true,
+        "packets_exact": true,
+        "maximum_absolute_Y_error": 0,
+        "report_sha256": "430e746f686b82717a252ce7bf8f79ea1d5f721c7791b540c2e5baebd5682ac0",
+        "completion": "PASS full_stream epochs=1 fifo_full_cycles=32574703 input_gap_cycles=4424 export_stall_cycles=4930 y_stall_cycles=1487 cycles=33014903",
+        "source_scope": "Full active core and RAM exporter. HPS vendor bridge and MMIO adapter are not in this full-size simulation."
+      },
+      {
+        "name": "full384000_sparse100000000",
+        "threshold": 100000000,
+        "encoding": "sparse",
+        "input_samples": 384000,
+        "source_tokens": 384512,
+        "Y_samples": 384512,
+        "canonical_rows": 387129,
+        "frames": 3001,
+        "packet_bytes": 523200,
+        "Y_exact": true,
+        "canonical_fields_exact": true,
+        "packets_exact": true,
+        "maximum_absolute_Y_error": 0,
+        "report_sha256": "925f569e58cb9ddc2dffd93aa89e431f0a91cdeaecbe5f478cd42aff5bc81054",
+        "completion": "PASS full_stream epochs=1 fifo_full_cycles=27232062 input_gap_cycles=4399 export_stall_cycles=1038 y_stall_cycles=1513 cycles=27666087",
+        "source_scope": "Full active core and RAM exporter. HPS vendor bridge and MMIO adapter are not in this full-size simulation."
+      }
+    ],
+    "hash_checks": [
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/include/generated/trecap_core_pkg.sv",
+        "sha256": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/include/generated/trecap_csr_pkg.sv",
+        "sha256": "3a1b8b968015494077f8627ff541de8120769258461b2d182c3ea4ac944176e1",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/include/generated/trecap_packet_pkg.sv",
+        "sha256": "97a003c14b93019b5356208ea8be2e76df7435123132440729ea7038cd13b2be",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/include/generated/trecap_iface_pkg.sv",
+        "sha256": "d24ab618d901cb92394e190549489cb88caa7444de18731de0923c24446afd68",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/include/trecap_math_pkg.sv",
+        "sha256": "3930d84eead3da9b097e26b82678a3e847fe0bb296e52e192c297702f70f7c2a",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/include/trecap_build_pkg.sv",
+        "sha256": "e0871a68fadfb69258df42b0c6544f9927f124963e5a55f055d12815753ff827",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/round_sat.sv",
+        "sha256": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/reset_sync.sv",
+        "sha256": "fa443befd35b8a12316f6c764b154bbab10c18bdb6dd6e342087752f663923c4",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/sync_pulse.sv",
+        "sha256": "af29834ff593199d3401e1f294efa85b7bfb20bde58efabf2545863d5c7e3250",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/sync_bus_snapshot.sv",
+        "sha256": "8b2922810e9b2efc23451f90c61fddc985cbcc2e7a0b2d849f4a30e5a61b432d",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/skid_buffer.sv",
+        "sha256": "5d898e6d5ad70812bb9d8a945f39eca4e137709ff172379376167436043f7263",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/simple_dual_port_ram.sv",
+        "sha256": "86b9a342b4e6060192dae32c85f164921e2b055724fc0854958ffea0fcc9fdc4",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/true_dual_port_ram.sv",
+        "sha256": "e14e08cbad033f1a1efa256fb8826fe1a1ac5a5ced3d1e5df53a1d61fdb20df4",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/sync_fifo.sv",
+        "sha256": "2085edcb855a59f0221294927698883fa238ac7b114fffc68bcf33f760352cd8",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/async_fifo.sv",
+        "sha256": "65c1a44b5ac734d4f006cb1cb7fd0bc0906413e33fac0851824b9e3d8106abb6",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/interfaces/trecap_sample_if.sv",
+        "sha256": "c5756125161ff34612d06f27a192a3ecbaf2f3d572f56e9a58fb7c55efc8da5d",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/interfaces/trecap_frame_if.sv",
+        "sha256": "7f29f0c67f64d30e17c5217748d063047049cbaf89e1b302c456e6e2de6d09c4",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/interfaces/trecap_core_tap_if.sv",
+        "sha256": "a0a55654863fb0ffae27ea3d3be79723c9bcf75cbc44fae578edcfaf5b0ba448",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/interfaces/trecap_record_if.sv",
+        "sha256": "92863fbe1f5e915ba19588b1f19eec3df26a5cc48f0d62b6b54ec60851b9d6af",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/interfaces/trecap_csr_if.sv",
+        "sha256": "a30d6be979bc5b0364226156ad92d188dba23aaea6d568496bea4872e2e21417",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/interfaces/trecap_avmm_if.sv",
+        "sha256": "e57274d6fbbf4a10a25beab30151a89d5f5148a390ce1c946d616cc33146ede9",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/sources/trecap_bram_replay_source.sv",
+        "sha256": "842e1d90663c297285ccdd9f9cda7969f8ca846994ec27bbf12e07d985758e66",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/sources/trecap_diagnostic_source.sv",
+        "sha256": "1c355aa2ff32dec15d04d86d8b29f3f952caf146850a5d4cb818128f3c5de9b0",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/sources/trecap_source_mux.sv",
+        "sha256": "efe7cfa8bd750c2daa68187582b2ed3f919ed0e65907f809af6f549fcb9ccf8f",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/sources/trecap_audio_adapter.sv",
+        "sha256": "b0f54a05c661c47e311a76198f65d36d2f62b3fac223ac2fbf36f5d73e37eba7",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/sources/trecap_adc_adapter.sv",
+        "sha256": "fec492a7013e9b18a084dbd618c4af1e02287fa29b9049a393963d5b10138889",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/fft/complex_mul_q.sv",
+        "sha256": "c45b088222549570d2b65719739bed2fff5be7b77bb6d163c4c1a5c3d1148579",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/fft/bit_reverse_addr.sv",
+        "sha256": "de4dafca7eae92e6f900d675151dc20dc794e1f66ff9ce40548a7520f3ca6209",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/fft/twiddle_rom.sv",
+        "sha256": "4f0beb59243898d47eb79857ceb0caf9cf9f753f2ea1d7e942507c4ee6824d7c",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/fft/trecap_fft_stage.sv",
+        "sha256": "0f8795941f9843e1f266cc0ee9d310c4be52d3103e6d750abb455f49880472d1",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/fft/trecap_fft256.sv",
+        "sha256": "a0c710046185fb54bd7281444c57539f9b689e4a6f52f634dba60a259619ef66",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/fft/trecap_ifft256.sv",
+        "sha256": "92c175d4a30da253e9a93e118080261958daa181cf4e6f12560d9524d110bd3c",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_input_ring.sv",
+        "sha256": "022be1284812f1cfd98dd39ff178cb3890ec2bd3b8eb047ff2c2814ef5a5c44a",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_frame_scheduler.sv",
+        "sha256": "6d263b88c540605e1bfb728e5b4c1bc87d7f5552a007b178031a198675f5c255",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/window_rom.sv",
+        "sha256": "931ec1f72f160384df6cb6c008db22cde6dab1bee94b0b7013843ab44374dcbe",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_analysis_window.sv",
+        "sha256": "62798c5bfed8076c54568986bd6df6d57b430e9aacb97efb582364974620c6ad",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_hermitian_canonicalizer.sv",
+        "sha256": "6b1c11ba7badb80c18a71e157346be994cb2cec1c775a4a910f38843d4fa2b4d",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_mag2_mask.sv",
+        "sha256": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_spectrum_mask_builder.sv",
+        "sha256": "695d9bd8c51c3ee97412854d37a4c5f5b953f793cb05a4a76f83d305e05fe3e0",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_synthesis_wola.sv",
+        "sha256": "7d30dee3679adb15bee54f2ad9762d102b08f54314c280a6f4918b95d277a7aa",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_delay_error_metrics.sv",
+        "sha256": "1f08cbb2131d9ab4f84c90b750c2836046aea966498d035bcec94422b4958e30",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_core_top.sv",
+        "sha256": "44ab78f15ab83a13de90109e2772159dbac0efc1fccf66791d9c70657fe76f6b",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/top/trecap_core_only_top.sv",
+        "sha256": "8af237604db20cd32ecd1442b5918303c959461a843b7c3d67ccac8b048c8d86",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/top/trecap_core_bram_replay_top.sv",
+        "sha256": "5fe42cbe7e787f94ab46d31ed7af264a58bad0d22fefdbaffcd37fe7c85c308f",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/top/trecap_source_core_integration.sv",
+        "sha256": "0677af80af9cb5a19e42e57ccbfcd312324183ec428651b34ef0ed747ad4df77",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/generated/trecap_core_export_observed.sv",
+        "sha256": "a3e887bb2383ab6ca11d5a1d1f8eef184f9f855510171cfb531588448a9fada9",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/generated/trecap_spectral_exporter.sv",
+        "sha256": "7a041daa6f32486e3f3e2c4bfdb95b9a5dc6277f6b0f4ba7f525fcb082a258be",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/generated/trecap_pcm_stream_source.sv",
+        "sha256": "79e402d7314b6540aea813bab2a42efa4d3107a34a63d61ff5ea3549bb4101f7",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/generated/trecap_pcm_stream_top.sv",
+        "sha256": "2d8e7794a5629cf88e9d47ee0f2dd68ab28d1b73e3c071d701e2d5e3ab1780d2",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/sources/stream_fifo.sv",
+        "sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/sources/trecap_stream_adapter.sv",
+        "sha256": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/full_stream_tb.sv",
+        "sha256": "af6cb40edcb714446b5f3fc9917b9a608e93dfce668c4a890bcb355d22b7d992",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/fixtures02/input.memh",
+        "sha256": "e325fbee55047e00d4dd18f6a563d0de64e994327c3d36fe9f4f783cff195ae4",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/fixtures02/flute8s_thr0/y_out.memh",
+        "sha256": "01967a674974fd1e639acaa61b1290914913b3f794baca3961646bcb56642de7",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/fixtures02/flute8s_thr0/bin_stats.csv",
+        "sha256": "8d11dbb839d004f299d9f02286ad126c75fe864407f10847c690c26e390a5c9e",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/fixtures02/flute8s_thr0/dense.tsp1",
+        "sha256": "be2cb2b247495324ececc2745dda84281d2ee2647f4be10caaa6d84f2294a524",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/cases.txt",
+        "sha256": "8118d9d1e06d440f43e8f7a5b11dbcf913de4555b17433dcbad39d77d15a5477",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/commands.json",
+        "sha256": "6e25d2d3baffc77446a83de72115d0d6ca4923153daedbef9753933c77bfd4df",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/compile.log",
+        "sha256": "c2f844bc28103603729801c3dbbcd28df875cf51750d14b90239006c26b88b69",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/full_stream_tb.sv",
+        "sha256": "af6cb40edcb714446b5f3fc9917b9a608e93dfce668c4a890bcb355d22b7d992",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/gold_packet.memh",
+        "sha256": "a18e9886297b8c293090542c0573fa8df4a47159f35f1b2b600e4425bd3913cd",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/modelsim.ini",
+        "sha256": "4f8a398a203cef39713c79363b72e029e44756a630db3d54b83175fc8f3264bd",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/packet.tsp1",
+        "sha256": "be2cb2b247495324ececc2745dda84281d2ee2647f4be10caaa6d84f2294a524",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/registration.json",
+        "sha256": "4d50058c25685e67cbc145debd37789a07bfe31ada3803798c56db861a8131f7",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/representative_windows.vcd",
+        "sha256": "2067f0a92f0c05202362aefcfe62a3aed2ac56e573745f893d2087fb0a522c44",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/simulate.log",
+        "sha256": "44726f9b4152a576f782e8d6971193f1f1242dc02a789cba83e18ded79416909",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/taps.csv",
+        "sha256": "466e67d7192cb5d0ca09f66bd3989f3becd0b7ef3782b4a8bac3f35f51f95302",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/transcript",
+        "sha256": "0ee46192d2670376ab638f7caae9f6850ae50419143c3770fced3dd19b549818",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/vlib.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/vmap.log",
+        "sha256": "39bfec03b6aa6253a55a43c116dbd2ed9180783fd7f057abe3fe77fe6dabe227",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/y.csv",
+        "sha256": "29da9a4b3929fde7b6cb89449f5475dc1b37e57a10536ce56cae38b5317c9874",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "external-tool:vlib.exe",
+        "sha256": "1be6b62216ae7323042a7e602381fa6550c2650c5b16c51f5963dfcea91d06b1",
+        "reason": "simulator tool",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/vlib.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "execution log",
+        "pass": true
+      },
+      {
+        "path": "external-tool:vmap.exe",
+        "sha256": "635697d5cdbf2ef218ad0e377b3a093ab85b40e3cd462291cc77100ea61d2f95",
+        "reason": "simulator tool",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/vmap.log",
+        "sha256": "39bfec03b6aa6253a55a43c116dbd2ed9180783fd7f057abe3fe77fe6dabe227",
+        "reason": "execution log",
+        "pass": true
+      },
+      {
+        "path": "external-tool:vlog.exe",
+        "sha256": "8a01969d8154b4a6415e4d908de0b1dc48ab2f4b893dda8586b2b5d7a87dc232",
+        "reason": "simulator tool",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/compile.log",
+        "sha256": "c2f844bc28103603729801c3dbbcd28df875cf51750d14b90239006c26b88b69",
+        "reason": "execution log",
+        "pass": true
+      },
+      {
+        "path": "external-tool:vsim.exe",
+        "sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+        "reason": "simulator tool",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_dense0/simulate.log",
+        "sha256": "44726f9b4152a576f782e8d6971193f1f1242dc02a789cba83e18ded79416909",
+        "reason": "execution log",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/include/generated/trecap_core_pkg.sv",
+        "sha256": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/include/generated/trecap_csr_pkg.sv",
+        "sha256": "3a1b8b968015494077f8627ff541de8120769258461b2d182c3ea4ac944176e1",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/include/generated/trecap_packet_pkg.sv",
+        "sha256": "97a003c14b93019b5356208ea8be2e76df7435123132440729ea7038cd13b2be",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/include/generated/trecap_iface_pkg.sv",
+        "sha256": "d24ab618d901cb92394e190549489cb88caa7444de18731de0923c24446afd68",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/include/trecap_math_pkg.sv",
+        "sha256": "3930d84eead3da9b097e26b82678a3e847fe0bb296e52e192c297702f70f7c2a",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/include/trecap_build_pkg.sv",
+        "sha256": "e0871a68fadfb69258df42b0c6544f9927f124963e5a55f055d12815753ff827",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/round_sat.sv",
+        "sha256": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/reset_sync.sv",
+        "sha256": "fa443befd35b8a12316f6c764b154bbab10c18bdb6dd6e342087752f663923c4",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/sync_pulse.sv",
+        "sha256": "af29834ff593199d3401e1f294efa85b7bfb20bde58efabf2545863d5c7e3250",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/sync_bus_snapshot.sv",
+        "sha256": "8b2922810e9b2efc23451f90c61fddc985cbcc2e7a0b2d849f4a30e5a61b432d",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/skid_buffer.sv",
+        "sha256": "5d898e6d5ad70812bb9d8a945f39eca4e137709ff172379376167436043f7263",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/simple_dual_port_ram.sv",
+        "sha256": "86b9a342b4e6060192dae32c85f164921e2b055724fc0854958ffea0fcc9fdc4",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/true_dual_port_ram.sv",
+        "sha256": "e14e08cbad033f1a1efa256fb8826fe1a1ac5a5ced3d1e5df53a1d61fdb20df4",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/sync_fifo.sv",
+        "sha256": "2085edcb855a59f0221294927698883fa238ac7b114fffc68bcf33f760352cd8",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/common/async_fifo.sv",
+        "sha256": "65c1a44b5ac734d4f006cb1cb7fd0bc0906413e33fac0851824b9e3d8106abb6",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/interfaces/trecap_sample_if.sv",
+        "sha256": "c5756125161ff34612d06f27a192a3ecbaf2f3d572f56e9a58fb7c55efc8da5d",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/interfaces/trecap_frame_if.sv",
+        "sha256": "7f29f0c67f64d30e17c5217748d063047049cbaf89e1b302c456e6e2de6d09c4",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/interfaces/trecap_core_tap_if.sv",
+        "sha256": "a0a55654863fb0ffae27ea3d3be79723c9bcf75cbc44fae578edcfaf5b0ba448",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/interfaces/trecap_record_if.sv",
+        "sha256": "92863fbe1f5e915ba19588b1f19eec3df26a5cc48f0d62b6b54ec60851b9d6af",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/interfaces/trecap_csr_if.sv",
+        "sha256": "a30d6be979bc5b0364226156ad92d188dba23aaea6d568496bea4872e2e21417",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/interfaces/trecap_avmm_if.sv",
+        "sha256": "e57274d6fbbf4a10a25beab30151a89d5f5148a390ce1c946d616cc33146ede9",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/sources/trecap_bram_replay_source.sv",
+        "sha256": "842e1d90663c297285ccdd9f9cda7969f8ca846994ec27bbf12e07d985758e66",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/sources/trecap_diagnostic_source.sv",
+        "sha256": "1c355aa2ff32dec15d04d86d8b29f3f952caf146850a5d4cb818128f3c5de9b0",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/sources/trecap_source_mux.sv",
+        "sha256": "efe7cfa8bd750c2daa68187582b2ed3f919ed0e65907f809af6f549fcb9ccf8f",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/sources/trecap_audio_adapter.sv",
+        "sha256": "b0f54a05c661c47e311a76198f65d36d2f62b3fac223ac2fbf36f5d73e37eba7",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/sources/trecap_adc_adapter.sv",
+        "sha256": "fec492a7013e9b18a084dbd618c4af1e02287fa29b9049a393963d5b10138889",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/fft/complex_mul_q.sv",
+        "sha256": "c45b088222549570d2b65719739bed2fff5be7b77bb6d163c4c1a5c3d1148579",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/fft/bit_reverse_addr.sv",
+        "sha256": "de4dafca7eae92e6f900d675151dc20dc794e1f66ff9ce40548a7520f3ca6209",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/fft/twiddle_rom.sv",
+        "sha256": "4f0beb59243898d47eb79857ceb0caf9cf9f753f2ea1d7e942507c4ee6824d7c",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/fft/trecap_fft_stage.sv",
+        "sha256": "0f8795941f9843e1f266cc0ee9d310c4be52d3103e6d750abb455f49880472d1",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/fft/trecap_fft256.sv",
+        "sha256": "a0c710046185fb54bd7281444c57539f9b689e4a6f52f634dba60a259619ef66",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/fft/trecap_ifft256.sv",
+        "sha256": "92c175d4a30da253e9a93e118080261958daa181cf4e6f12560d9524d110bd3c",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_input_ring.sv",
+        "sha256": "022be1284812f1cfd98dd39ff178cb3890ec2bd3b8eb047ff2c2814ef5a5c44a",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_frame_scheduler.sv",
+        "sha256": "6d263b88c540605e1bfb728e5b4c1bc87d7f5552a007b178031a198675f5c255",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/window_rom.sv",
+        "sha256": "931ec1f72f160384df6cb6c008db22cde6dab1bee94b0b7013843ab44374dcbe",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_analysis_window.sv",
+        "sha256": "62798c5bfed8076c54568986bd6df6d57b430e9aacb97efb582364974620c6ad",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_hermitian_canonicalizer.sv",
+        "sha256": "6b1c11ba7badb80c18a71e157346be994cb2cec1c775a4a910f38843d4fa2b4d",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_mag2_mask.sv",
+        "sha256": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_spectrum_mask_builder.sv",
+        "sha256": "695d9bd8c51c3ee97412854d37a4c5f5b953f793cb05a4a76f83d305e05fe3e0",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_synthesis_wola.sv",
+        "sha256": "7d30dee3679adb15bee54f2ad9762d102b08f54314c280a6f4918b95d277a7aa",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_delay_error_metrics.sv",
+        "sha256": "1f08cbb2131d9ab4f84c90b750c2836046aea966498d035bcec94422b4958e30",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/core/trecap_core_top.sv",
+        "sha256": "44ab78f15ab83a13de90109e2772159dbac0efc1fccf66791d9c70657fe76f6b",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/top/trecap_core_only_top.sv",
+        "sha256": "8af237604db20cd32ecd1442b5918303c959461a843b7c3d67ccac8b048c8d86",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/top/trecap_core_bram_replay_top.sv",
+        "sha256": "5fe42cbe7e787f94ab46d31ed7af264a58bad0d22fefdbaffcd37fe7c85c308f",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/source/rtl/top/trecap_source_core_integration.sv",
+        "sha256": "0677af80af9cb5a19e42e57ccbfcd312324183ec428651b34ef0ed747ad4df77",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/generated/trecap_core_export_observed.sv",
+        "sha256": "a3e887bb2383ab6ca11d5a1d1f8eef184f9f855510171cfb531588448a9fada9",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/generated/trecap_spectral_exporter.sv",
+        "sha256": "7a041daa6f32486e3f3e2c4bfdb95b9a5dc6277f6b0f4ba7f525fcb082a258be",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/generated/trecap_pcm_stream_source.sv",
+        "sha256": "79e402d7314b6540aea813bab2a42efa4d3107a34a63d61ff5ea3549bb4101f7",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/generated/trecap_pcm_stream_top.sv",
+        "sha256": "2d8e7794a5629cf88e9d47ee0f2dd68ab28d1b73e3c071d701e2d5e3ab1780d2",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/sources/stream_fifo.sv",
+        "sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/build01/sources/trecap_stream_adapter.sv",
+        "sha256": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/full_stream_tb.sv",
+        "sha256": "af6cb40edcb714446b5f3fc9917b9a608e93dfce668c4a890bcb355d22b7d992",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/fixtures02/input.memh",
+        "sha256": "e325fbee55047e00d4dd18f6a563d0de64e994327c3d36fe9f4f783cff195ae4",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/fixtures02/flute8s_thr100000000/y_out.memh",
+        "sha256": "6b97f39be0b0d575bcbbdb55ef4f4e5965dadada44f43e1ab77eb697aaa29420",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/fixtures02/flute8s_thr100000000/bin_stats.csv",
+        "sha256": "fa718126adaf36a1b53f500c12c7fa917aeb5c9d2f5b37f178cd30429f6c8c86",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/outputs/trecap_stream8_v01/fixtures02/flute8s_thr100000000/sparse.tsp1",
+        "sha256": "c7911b2107ddb355c7dfd55e0bada6a37d55c29b649afd1178a5a5ee97744749",
+        "reason": "registered source or input",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/cases.txt",
+        "sha256": "fb6bc73565cfac641e35dfac7096b9b5aadd907b3e35554aa45692ac4f4e9eed",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/commands.json",
+        "sha256": "891ec3aa06ce8f8f723328c36093f66627c68cd6a691c0329957dbc52520c1b9",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/compile.log",
+        "sha256": "0006fae7371e1d9e57299434861602993d912e99fcc5f97cb7d2c175a9f6b092",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/full_stream_tb.sv",
+        "sha256": "af6cb40edcb714446b5f3fc9917b9a608e93dfce668c4a890bcb355d22b7d992",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/gold_packet.memh",
+        "sha256": "6cdf28b9fdc20ee0355c35ef6de45dbf7f834e2a960b51d560d6ea61819ae0a2",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/modelsim.ini",
+        "sha256": "4f8a398a203cef39713c79363b72e029e44756a630db3d54b83175fc8f3264bd",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/packet.tsp1",
+        "sha256": "c7911b2107ddb355c7dfd55e0bada6a37d55c29b649afd1178a5a5ee97744749",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/registration.json",
+        "sha256": "8837d44a188868485b0ed2a2af42964780b45266a9b9e0ced17688ea608e65ee",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/representative_windows.vcd",
+        "sha256": "df63dff51b58d220bebee40d0585ec517d4dc555cfbf0fda4578e828962b80a7",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/simulate.log",
+        "sha256": "cd5553b9781239121bd139c227f2ec31de2dfed61cb32be4a94a0a8cee00dbdf",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/taps.csv",
+        "sha256": "ccbace7950ba29859d4d1be0853bf1421e6e38d55e4f275feabd9dd4eb5989df",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/transcript",
+        "sha256": "0564fed1f054736f68d6be73db5041f671b4d602eac8853eb80f9f19014efe4f",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/vlib.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/vmap.log",
+        "sha256": "39bfec03b6aa6253a55a43c116dbd2ed9180783fd7f057abe3fe77fe6dabe227",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/y.csv",
+        "sha256": "bb9f9a314ff5a4b11b93f822230a6345a89824ffaf4800b30ada7d4bae12212f",
+        "reason": "completed run artifact",
+        "pass": true
+      },
+      {
+        "path": "external-tool:vlib.exe",
+        "sha256": "1be6b62216ae7323042a7e602381fa6550c2650c5b16c51f5963dfcea91d06b1",
+        "reason": "simulator tool",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/vlib.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reason": "execution log",
+        "pass": true
+      },
+      {
+        "path": "external-tool:vmap.exe",
+        "sha256": "635697d5cdbf2ef218ad0e377b3a093ab85b40e3cd462291cc77100ea61d2f95",
+        "reason": "simulator tool",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/vmap.log",
+        "sha256": "39bfec03b6aa6253a55a43c116dbd2ed9180783fd7f057abe3fe77fe6dabe227",
+        "reason": "execution log",
+        "pass": true
+      },
+      {
+        "path": "external-tool:vlog.exe",
+        "sha256": "8a01969d8154b4a6415e4d908de0b1dc48ab2f4b893dda8586b2b5d7a87dc232",
+        "reason": "simulator tool",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/compile.log",
+        "sha256": "0006fae7371e1d9e57299434861602993d912e99fcc5f97cb7d2c175a9f6b092",
+        "reason": "execution log",
+        "pass": true
+      },
+      {
+        "path": "external-tool:vsim.exe",
+        "sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+        "reason": "simulator tool",
+        "pass": true
+      },
+      {
+        "path": "archive:workspace/work/verification_20261017_release/rtl/full384000_sparse100000000/simulate.log",
+        "sha256": "cd5553b9781239121bd139c227f2ec31de2dfed61cb32be4a94a0a8cee00dbdf",
+        "reason": "execution log",
+        "pass": true
+      }
+    ],
+    "status": "PASS_TWO_COMPLETE_RTL_ARTIFACT_RECONCILIATIONS",
+    "totals": {
+      "runs": 2,
+      "input_samples": 768000,
+      "source_tokens": 769024,
+      "Y_samples": 769024,
+      "frames": 6002,
+      "canonical_rows": 774258,
+      "packet_bytes": 3380152
+    },
+    "limitations": [
+      "Exact comparisons use the unchanged registered expected outputs, whose separate reference qualification has its own scope.",
+      "No new simulation, physical hardware action, timing analysis or performance benchmark was run by this auditor.",
+      "Full-size time-domain sums/frame-statistics are not independently exposed in these raw captures. Only reported fault indicators are checked in the bench."
+    ],
+    "finished_utc": "2026-10-17T02:35:20.415817+00:00",
+    "hash_check_count": 158,
+    "audit_source_sha256": "e11a1d9798e2b959f532d52b352319968ef0b538246fc4f9168a1641bc8cbcec",
+    "raw_log_sha256": "d9ea0986fb3aa0acfbc674c231ecab612135fea41bdc093524407c5f4e85037b"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "trecap-public-latex-build-receipt-v1",
+  "derived_export": true,
+  "original_receipt_artifact_id": "archive:workspace/work/dv_portfolio_20261017/latex/publication/build/attempt06/build_receipt.json",
+  "original_receipt_sha256": "9e2a79527a7dd325088914b47b8f3995d2e2d77b02fc9756b540103aeb476b00",
+  "transformation": "Compiler executable and working/output directories normalized. Original log and receipt hashes preserved separately. This is a derived receipt, not an exact command transcript.",
+  "status": "PASS_LATEX_COMPILE",
+  "engine": "real pdfLaTeX",
+  "compiler_version": "MiKTeX-pdfTeX 4.18 (MiKTeX 24.1), pdfTeX-1.40.25",
+  "compiler_version_original_stdout_sha256": "411fe348ef60dcedb763ef814869eb58fd088f6df51ed4d0205df697adbab463",
+  "compiler_version_original_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "commands": [
+    {
+      "normalized_argv": [
+        "pdflatex",
+        "-disable-installer",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-file-line-error",
+        "-jobname=TRECAP_DV_Portfolio",
+        "-output-directory=build/attempt06",
+        "main.tex"
+      ],
+      "cwd": ".",
+      "started_utc": "2026-10-17T03:39:36.674842+00:00",
+      "exit_code": 0,
+      "original_stdout_sha256": "848de16308f4c69e5ac0f19b11977e7ed0cdeb9961237ba40bbefb04ff4a2860",
+      "original_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "normalized_argv": [
+        "pdflatex",
+        "-disable-installer",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-file-line-error",
+        "-jobname=TRECAP_DV_Portfolio",
+        "-output-directory=build/attempt06",
+        "main.tex"
+      ],
+      "cwd": ".",
+      "started_utc": "2026-10-17T03:39:38.271242+00:00",
+      "exit_code": 0,
+      "original_stdout_sha256": "0d43fdd072e34ed40100d615a315c28b3a893309bab5385e8595f09112e277af",
+      "original_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "input_hashes": {
+    "main.tex": "dffd2f12ca5ec633f8b4305b7c71f18f8cc8a8344e99a589cc92b92b880bee04",
+    "portfolio_integration.tex": "ec1ecc619f2b82ed4a5cf8eed9a7eea3e1819089ef23e2f44f7d38fcd6f26313",
+    "source_manifest.json": "106ecc25e8960fa6092e5078c8ae8cb4438697069dad81850348d5efe9894fc2",
+    "figures/audio.pdf": "f266bbffda660930e14d3caf6849c0466410f52cf055881395eac37c70b2bed7",
+    "figures/fullrun.pdf": "944a5156eae78b004df626d81996d4b35da18044d0ba38dee5493ef095058be9",
+    "figures/handshake.pdf": "12504f60afa2cfc28618ee1c38249fce16f29e67f4a893f629b5478a496a7a33",
+    "figures/packet_sizes.pdf": "dcb66bf0dbb6d4b74034181209ecf9631a9a7d1f91cf988fd1dff68ad8982374",
+    "figures/quality.pdf": "a0c252a2132954004420bb7b1a709fb01f4c8129badc3be9809063fd4259fb6f",
+    "figures/reset.pdf": "fc320d96631dcac4b2d7035088b14d421336078c9ba49f8439a6f445166b3593",
+    "figures/rounding.pdf": "89d49856e33aaec70be74d34e8122b51a4c9c5885245fb13ec066e3a81c1f3c1",
+    "figures/topology.pdf": "c080201e3f6afda1cfa3eacd5e599dc3a7c15f82d5e6be5902677ba494f1a139"
+  },
+  "pdf_sha256": "67689f75ebd617875c5f97e912b440e71fc51dbf159a2d12972a52e9d667f700",
+  "pdf_bytes": 1120709,
+  "original_compile_log_sha256": "135dcba535c7f0db8bae935ce42c276e53b78231e6485cc821f416a41677b000",
+  "scope": "Two successful real LaTeX compiler passes. This build does not rerun RTL or hardware verification."
+}

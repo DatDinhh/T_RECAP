@@ -1,0 +1,32 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/hardware/captures01/index.json",
+      "original_sha256": "ebca3e87a8a65712e2df9d8a47f5f34e37169c360cf606a4abaa027bde96e931"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "status": "PASS_FRESH_58_PHYSICAL_EPOCHS_EXACT",
+    "started_utc": "2026-10-17T02:11:24.941735+00:00",
+    "new_physical_execution": true,
+    "gold_uploaded": false,
+    "boot_id": "RUNTIME_SESSION_REDACTED",
+    "source_id": "39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed",
+    "sof_sha256": "f96bc5a35adf08711a5f392baf9f8cbf5ec65a17211a58117bdb53f62acbb7ab",
+    "selected_epochs": 58,
+    "controller_sha256": "d8786a1bbe597d5c9d9bc3b2350d13fe80fcbfa54a1f80431398d75a2c5733b6",
+    "hardware_controller_sha256": "b944b9b6165f36b489604574c7d7ac553351296a82a015002c0090ae4b5d6e04",
+    "timing_scope": "Diagnostic service/roundtrip timings only, not pure FPGA latency or a performance comparison.",
+    "totals": {
+      "input_samples": 22272000,
+      "waveform_samples": 22301696,
+      "frames": 174058,
+      "packet_bytes": 107200224,
+      "configurations": 29,
+      "repeats": 2
+    },
+    "ended_utc": "2026-10-17T02:18:48.403296+00:00"
+  }
+}

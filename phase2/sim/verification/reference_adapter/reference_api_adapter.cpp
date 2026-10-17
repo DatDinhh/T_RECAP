@@ -79,6 +79,8 @@ int main(int argc, char** argv) {
                 const auto parameter = number<unsigned>(shift_text);
                 if (op == "round")
                     std::cout << "R\t" << id << '\t' << tg::rnd_shr(value, parameter) << '\n';
+                else if (op == "asr")
+                    std::cout << "R\t" << id << '\t' << tg::asr(value, parameter) << '\n';
                 else if (op == "sat")
                     std::cout << "R\t" << id << '\t' << tg::sat_signed(value, parameter) << '\n';
                 else throw std::runtime_error("unknown primitive operation");

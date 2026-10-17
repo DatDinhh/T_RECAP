@@ -53,6 +53,13 @@ LOCAL_EXPORT_PATHS = {
 
 # These text receipts were reviewed for public evidence and intentionally retained.
 PUBLIC_RECEIPT_DIR = "docs/results/hps_cpu_benchmark_20260925/data/qualification"
+# Exact reviewed simulation excerpts only. They remain subject to text, path
+# and credential checks; arbitrary traces and simulator logs stay excluded.
+PUBLIC_WAVEFORMS = {
+    "docs/results/verification_20261017/waveforms/startup.vcd",
+    "docs/results/verification_20261017/waveforms/reset_recovery.vcd",
+    "docs/results/verification_20261017/waveforms/final_y_stall.vcd",
+}
 # Links in this generator input are relative to the reviewed generated report.
 MARKDOWN_OUTPUT_DIRS = {
     "experiments/ifft_zero_isolation/study/report_template.md":
@@ -102,7 +109,9 @@ def source_files(root: Path):
             # The vendor DDR pin script can leave its diagnostic dump here
             # after a failed/interrupted run; it is not maintained source.
             filenames = [name for name in filenames if name != "hps_sdram_p0_all_pins.txt"]
-        names[:] = sorted(name for name in names if name not in IGNORED_DIRS
+        names[:] = sorted(name for name in names if (name not in IGNORED_DIRS
+                          or (name == "work" and parent.relative_to(root).as_posix() == "profiles/tsh2")
+                          or (name == "build" and parent.relative_to(root).as_posix() == "profiles/tsh2/work/trecap_stream8_v01"))
                           and not name.startswith(("build-", "build_", "cmake-build-")))
         for name in list(names):
             path = parent / name
@@ -216,7 +225,7 @@ def check(root: Path) -> tuple[int, list[str]]:
                 report(path, "symlink points outside the repository")
             continue
         public_receipt = (path.parent.relative_to(root).as_posix() == PUBLIC_RECEIPT_DIR
-                          and path.suffix.lower() == ".log")
+                          and path.suffix.lower() == ".log") or relative in PUBLIC_WAVEFORMS
         if path.suffix.lower() in LOCAL_SUFFIXES and not public_receipt:
             report(path, "local build/output file in the source tree")
             continue

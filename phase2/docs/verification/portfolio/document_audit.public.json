@@ -1,0 +1,75 @@
+{
+  "schema": "trecap-public-document-audit-v1",
+  "status": "PASS_DOCUMENT_PUBLICATION_AUDIT",
+  "pages": 16,
+  "figures": 8,
+  "numbered_tables": 11,
+  "compile_warnings": 0,
+  "overfull_boxes": 0,
+  "underfull_boxes": 0,
+  "pdf_sha256": "67689f75ebd617875c5f97e912b440e71fc51dbf159a2d12972a52e9d667f700",
+  "source_hashes": {
+    "main.tex": "dffd2f12ca5ec633f8b4305b7c71f18f8cc8a8344e99a589cc92b92b880bee04",
+    "portfolio_integration.tex": "ec1ecc619f2b82ed4a5cf8eed9a7eea3e1819089ef23e2f44f7d38fcd6f26313"
+  },
+  "source_manifest_sha256": "106ecc25e8960fa6092e5078c8ae8cb4438697069dad81850348d5efe9894fc2",
+  "extracted_text_sha256": "ec67cf3b8b4b8fd8d987e0d5ce0e59f3569b4032ce41201d4e5a233eafb6a0ab",
+  "dash_check": {
+    "tex_ascii_only": true,
+    "pdf_en_dash_count": 0,
+    "pdf_em_dash_count": 0
+  },
+  "numeric_spot_checks": [
+    "22,301,696",
+    "107,200,224",
+    "729,156",
+    "13.4454",
+    "81.6868",
+    "1.7632",
+    "18,432",
+    "13,932",
+    "94,440"
+  ],
+  "portable_regression_public_receipt_sha256": "761d5dd162e0db65b1633489965ddfd554744a50b5834b575ef1d0fb168c5411",
+  "visual_review": "All 16 pages of the academic typography revision were rendered with Poppler and inspected at full page size. The author inspected all pages of attempt05; an independent reviewer inspected pages 9 through 16. Final attempt06 pages were checked by raster equality against attempt05, except page 15, which was inspected again after preventing an inline command hyphen ligature. No clipped text, tables, captions or figures were observed.",
+  "typography": {
+    "body_and_headings": "Latin Modern Roman",
+    "math": "Latin Modern math",
+    "font_size_pt": 11,
+    "document_style": "Academic article, serif, black/gray, numbered sections and captions"
+  },
+  "rendered_page_hashes": {
+    "page-01.png": "9989f415e6d986ec78deb72a78f71c352d7f428b7f1f7399c9f70876024a130e",
+    "page-02.png": "14da9182806df01c6839b8ded7fd4e053f396dee38bf7b2343247985132fc6ef",
+    "page-03.png": "7aaf0637ebf1528c4aeec95bc0820993b0d8d6b06fd35fb5586b9181024fa7eb",
+    "page-04.png": "e764a108ddccc1bcfd0aa2a99ada64c48dfc06ad71b7acd1abc50e604fbae2a1",
+    "page-05.png": "3c4b654e590390ef42daf6ef46f7d351d1c81f060049ac8780e3bd8795159822",
+    "page-06.png": "54c33c7e8baadb15124aff81cdb967b0a7f3b6eed76151368017014b918ca6f7",
+    "page-07.png": "cb990966224caf989d6a0048b67bb0e38abfe098045458c1a1c5e590179ee099",
+    "page-08.png": "25f52bc1e7759c119e1ce5766b23b6768dc644425fd600d71df7f256a8b20499",
+    "page-09.png": "824ef7328093d7b48d827b6fb066a955b66867a4fd25c74fe95dfe7fbaf1ddf8",
+    "page-10.png": "de8643928de9275bf3c1ea9a625463512dfdd436d24528383b68f5a7856dbcd8",
+    "page-11.png": "6e898fb1c4f3f3b578fd1d3e4a6ca4f0be8e63e687c8d1d4ef143e7b50076fae",
+    "page-12.png": "b3f9c56d9c1bf842fe7af25c55834b9fa163f0303dd31a4d16b957a125cf39b1",
+    "page-13.png": "82bf7d9d38a7bbaa3296fab6d7478990a0bc35bbdbed2d316b03bb6fe44e6714",
+    "page-14.png": "d082935328c308f19cc647f55f85186c72c9b921d1f0b882c1aa69599a96e47d",
+    "page-15.png": "af7c496d7b271996edb4071e91550bcd13fe805f2954d9aa3d523f07ec2dd7ab",
+    "page-16.png": "c50d198d64ee91b3cee8fb4e1751cf66a143d5f8a54a713c70d14fb596f22eb5"
+  },
+  "scope": "Document rendering, text formatting, public hygiene and evidence binding audit. Not new RTL or hardware execution.",
+  "style_revision_content_invariance": {
+    "scientific_body": "Exact source equality after removing added table-caption grouping, one discretionary line-break command and markup preventing an inline command hyphen ligature.",
+    "integration_section": "Byte-identical to prior publication.",
+    "eight_vector_figures": "Byte-identical to prior publication.",
+    "previous_pdf_sha256": "48a58bc823ba79c73505937de1d64947da746c708d43b7bb97f75ee96d4ea960"
+  },
+  "public_text_hygiene": {
+    "main.tex": "PASS",
+    "portfolio_integration.tex": "PASS",
+    "build.py": "PASS",
+    "README.md": "PASS",
+    "source_manifest.json": "PASS",
+    "build_receipt.public.json": "PASS"
+  },
+  "pdf_text_hygiene": "PASS"
+}

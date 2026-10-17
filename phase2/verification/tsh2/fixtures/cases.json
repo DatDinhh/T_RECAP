@@ -1,0 +1,58 @@
+[
+  {
+    "id": "thr0_dense",
+    "threshold": "0",
+    "sparse": false,
+    "input": "fixtures/thr0/input.memh",
+    "y": "fixtures/thr0/y.memh",
+    "bins": "fixtures/thr0/bins.csv",
+    "packet_memh": "fixtures/thr0/dense.memh",
+    "packet_bytes": 8568,
+    "input_samples": 1024,
+    "output_samples": 1536,
+    "frames": 9,
+    "canonical_bins": 1161
+  },
+  {
+    "id": "thr0_sparse",
+    "threshold": "0",
+    "sparse": true,
+    "input": "fixtures/thr0/input.memh",
+    "y": "fixtures/thr0/y.memh",
+    "bins": "fixtures/thr0/bins.csv",
+    "packet_memh": "fixtures/thr0/sparse.memh",
+    "packet_bytes": 9720,
+    "input_samples": 1024,
+    "output_samples": 1536,
+    "frames": 9,
+    "canonical_bins": 1161
+  },
+  {
+    "id": "thr100000000_dense",
+    "threshold": "100000000",
+    "sparse": false,
+    "input": "fixtures/thr100000000/input.memh",
+    "y": "fixtures/thr100000000/y.memh",
+    "bins": "fixtures/thr100000000/bins.csv",
+    "packet_memh": "fixtures/thr100000000/dense.memh",
+    "packet_bytes": 8568,
+    "input_samples": 1024,
+    "output_samples": 1536,
+    "frames": 9,
+    "canonical_bins": 1161
+  },
+  {
+    "id": "thr100000000_sparse",
+    "threshold": "100000000",
+    "sparse": true,
+    "input": "fixtures/thr100000000/input.memh",
+    "y": "fixtures/thr100000000/y.memh",
+    "bins": "fixtures/thr100000000/bins.csv",
+    "packet_memh": "fixtures/thr100000000/sparse.memh",
+    "packet_bytes": 4624,
+    "input_samples": 1024,
+    "output_samples": 1536,
+    "frames": 9,
+    "canonical_bins": 1161
+  }
+]

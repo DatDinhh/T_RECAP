@@ -1,0 +1,743 @@
+{
+  "derived_export": true,
+  "source_artifacts": [
+    {
+      "artifact_id": "archive:workspace/work/verification_20261017_release/assurance/release_plan_revision03.json",
+      "original_sha256": "3822a09545515da0fea56131fe259fa092c8f53e7d7471c1ee4428a4a45d7058"
+    }
+  ],
+  "transformation": "Personal absolute paths are replaced by documented artifact IDs; runtime UUID/MAC/private endpoints are removed. Numeric observations and original artifact hashes are preserved.",
+  "data": {
+    "schema": "trecap-active-profile-release-plan-v3",
+    "created_utc": "2026-10-17T02:07:08.871828+00:00",
+    "campaign": "verification_20261017_release",
+    "status": "REGISTERED_PLAN_NOT_A_VERIFICATION_RESULT",
+    "scope": "Existing active TSH2 finite-file epoch and spectral monitor; software helper repair, stronger source-bound verification and fresh physical replication.",
+    "source_id": "39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed",
+    "sof_sha256": "f96bc5a35adf08711a5f392baf9f8cbf5ec65a17211a58117bdb53f62acbb7ab",
+    "profile": {
+      "sample_rate_hz": 48000,
+      "fft_length": 256,
+      "hop": 128,
+      "input_samples": 384000,
+      "frames": 3001,
+      "waveform_samples": 384512,
+      "delay_samples": 384,
+      "threshold_policy": "latched for whole finite epoch",
+      "transport": "PC PCM over TCP to HPS RAM/PIO; FPGA Y and sparse TSP1 drained back to PC",
+      "new_rtl_design": false,
+      "continuous_microphone": false,
+      "expected_outputs_uploaded": false
+    },
+    "authority_sha256": {
+      "repo:phase2/docs/verification/requirements_matrix.md": "39820a19f02c002863c057fe20d551b5a0d15088d2c69e8e39dbcfbc7a5fc8e0",
+      "repo:phase2/docs/verification/coverage_and_signoff.md": "4b1baabde834112962424671da4ba85680065f0d560b521d18360751c0256464",
+      "repo:phase2/docs/verification/test_catalog.md": "200b8d9278e02cc9b7059505d39575d3a97a3af2d260e4de8aff5bc3ea0f56eb",
+      "repo:phase2/docs/verification/reference_and_core.md": "1893470a07bf1e3a8381292d7d3b7f171ed8f3cd48d0edf913125ae36141221b"
+    },
+    "registered_input_indices_sha256": {
+      "archive:workspace/outputs/trecap_monitor_board_v01/inputs01/index.json": "b9a564b471d8c851ff2a66fbab9dc7a6436e4b25e3d0194b71b26ff9caca30ba",
+      "archive:workspace/outputs/trecap_stream8_v01/fixtures02/cases.json": "e8bed50c99371ef0f2c7b9fe3f9ac51da844fdc18ba1835b6f58278dba73dea5"
+    },
+    "gates": [
+      {
+        "gate_id": "G00",
+        "title": "Freeze implementation, registered cases and current evidence identity",
+        "owner": "root + assurance",
+        "mandatory_for_registered_profile": true,
+        "original_requirement_ids": [
+          "R-AUTH-01",
+          "R-ENV-01"
+        ],
+        "original_test_family_ids": [
+          "T-REF-01",
+          "T-ENV-03"
+        ],
+        "original_acceptance_ids": [
+          "AC1",
+          "AC2",
+          "AC3",
+          "AC4",
+          "AC5"
+        ],
+        "required_observables": [
+          "Source/configuration/checker/tool identities",
+          "Input/coefficient/reference SHA256",
+          "Named case inventory and selected profile",
+          "Run UTC interval, commands, retries and watchdogs"
+        ],
+        "pass_criteria": [
+          "Exact TSH2 source ID and SOF identity match registration, fitted build and assembly; relevant service/probe identities bound.",
+          "Reference fix is separately identified; old expected outputs are preserved and shown unchanged for the baseline.",
+          "Every planned case has an execution or explicit nonexecution outcome; failed attempts retained; no denominator shrink."
+        ],
+        "planned_evidence": [
+          "release manifest",
+          "source and input inventories",
+          "assurance/release_plan.json"
+        ],
+        "original_scope_limitations": [
+          "Only the selected profile is admitted. A source hash alone closes no functional requirement."
+        ],
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "gate_id": "G01",
+        "title": "Repair and independently qualify reference rounding helper",
+        "owner": "reference agent",
+        "mandatory_for_registered_profile": true,
+        "original_requirement_ids": [
+          "R-REF-01",
+          "R-NUM-02",
+          "R-ENV-01"
+        ],
+        "original_test_family_ids": [
+          "T-REF-02",
+          "T-AR-01",
+          "T-ENV-02"
+        ],
+        "original_acceptance_ids": [
+          "AC1"
+        ],
+        "required_observables": [
+          "Original failing shift63 witnesses",
+          "INT64 minimum/maximum and signs",
+          "Ties and adjacent integers at each supported shift",
+          "Independent arbitrary-integer expected outputs"
+        ],
+        "pass_criteria": [
+          "The three recorded shift63 failures return -1, 1, 1 after the fix.",
+          "Boundary/sign/rounding regressions pass using a specification-derived widened-integer oracle.",
+          "Negative checker witnesses reject a changed result and baseline expected artifacts remain byte-identical."
+        ],
+        "planned_evidence": [
+          "reference fix diff",
+          "fresh build identity",
+          "independent reference report",
+          "regression raw logs"
+        ],
+        "original_scope_limitations": [
+          "Helper qualification is not all reference-model, dynamic-adapter or normative-vector qualification."
+        ],
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "gate_id": "G02",
+        "title": "Qualify selected static reference vectors and transform anchors",
+        "owner": "reference agent",
+        "mandatory_for_registered_profile": true,
+        "original_requirement_ids": [
+          "R-REF-01",
+          "R-NUM-01",
+          "R-NUM-03",
+          "R-NUM-04",
+          "R-NUM-05",
+          "R-NUM-06"
+        ],
+        "original_test_family_ids": [
+          "T-REF-02",
+          "T-REF-03",
+          "T-AR-02",
+          "T-AR-04",
+          "T-AR-05",
+          "T-C-01"
+        ],
+        "original_acceptance_ids": [
+          "AC2",
+          "AC6",
+          "AC9",
+          "AC10",
+          "AC11",
+          "AC12"
+        ],
+        "required_observables": [
+          "Coefficient exact integer anchors",
+          "FFT/IFFT axis and ordering witnesses",
+          "Canonicalization and threshold relation",
+          "Selected complete y/frame/bin/metric comparisons where oracle exposes them"
+        ],
+        "pass_criteria": [
+          "Known DC/impulse/axis/tie/threshold anchors pass independently.",
+          "Every selected full vector matches its immutable artifacts and independent integer construction, including complete output tail.",
+          "Report exactly which per-bin, metric and internal-stage observations were checked."
+        ],
+        "planned_evidence": [
+          "reference qualification report",
+          "input identities",
+          "artifact comparison results"
+        ],
+        "original_scope_limitations": [
+          "Shared frozen coefficient bytes do not independently prove transcendental coefficient generation.",
+          "Selected static vectors do not close T-REF-04 quality bounds, T-REF-05 dynamic adapter or T-REF-06 full normative suite."
+        ],
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "gate_id": "G03",
+        "title": "Execute full-size TSH2 core geometry and exact numerical simulation",
+        "owner": "RTL agent",
+        "mandatory_for_registered_profile": true,
+        "original_requirement_ids": [
+          "R-GEO-01",
+          "R-GEO-02",
+          "R-NUM-03",
+          "R-NUM-05",
+          "R-NUM-06",
+          "R-NUM-07",
+          "R-FLOW-01",
+          "R-FLOW-02",
+          "R-FLOW-05"
+        ],
+        "original_test_family_ids": [
+          "T-C-01",
+          "T-C-02",
+          "T-C-03",
+          "T-C-06"
+        ],
+        "original_acceptance_ids": [
+          "AC4",
+          "AC6",
+          "AC7",
+          "AC9",
+          "AC12",
+          "AC14"
+        ],
+        "required_observables": [
+          "384000 accepted signed12 inputs",
+          "3001 complete spectral frames",
+          "384512 accepted full-tail Y samples",
+          "Canonical complex taps where exposed",
+          "Completion and outstanding work",
+          "Qualified overflow/fault indicators where exposed"
+        ],
+        "pass_criteria": [
+          "Both full384000_dense0 and full384000 threshold100000000 sparse complete with 384000 accepted inputs, 3001 frames and 384512 Y outputs each. Compare every Y, canonical tap and packet byte.",
+          "Reduced-length regressions and mask_threshold_boundaries cover threshold equality, below/above conditions and stalled payloads. Physical G09 separately covers full-size nonzero thresholds.",
+          "Signoff simulations do not define SYNTHESIS, have cycle and host deadlines, and report no unexpected error/fatal."
+        ],
+        "planned_evidence": [
+          "full8s RTL report",
+          "registered stimulus hashes",
+          "accepted-count and exact-output scoreboard results"
+        ],
+        "original_scope_limitations": [
+          "One fixed-length test is not full generic finite-length coverage.",
+          "A fault status is not a substitute for every internal overflow/statistic field."
+        ],
+        "execution_status": "PLANNED_NOT_EXECUTED",
+        "registered_named_tests": [
+          "full384000_dense0",
+          "full384000_thr100000000_sparse",
+          "mask_threshold_boundaries",
+          "core_busy_reset_recovery",
+          "arithmetic_rounding",
+          "finite_geometry_dense_sparse"
+        ]
+      },
+      {
+        "gate_id": "G04",
+        "title": "Exercise adapter flow, FIFO pressure and allowed reset/clear behavior",
+        "owner": "RTL agent",
+        "mandatory_for_registered_profile": true,
+        "original_requirement_ids": [
+          "R-FLOW-01",
+          "R-FLOW-02",
+          "R-FLOW-05",
+          "R-RST-01",
+          "R-CTL-01",
+          "R-CTL-02"
+        ],
+        "original_test_family_ids": [
+          "T-C-03",
+          "T-C-05",
+          "T-C-06",
+          "T-CTL-01",
+          "T-CTL-03"
+        ],
+        "original_acceptance_ids": [
+          "AC7",
+          "AC9"
+        ],
+        "required_observables": [
+          "Input/spectral/Y FIFO full and empty",
+          "Stable held valid payload",
+          "First/middle/final output stalls",
+          "Accepted/rejected register transactions",
+          "Active waiting epoch clear and recovery",
+          "Threshold/mode busy-write behavior"
+        ],
+        "pass_criteria": [
+          "Directed cases observe actual handshakes and FIFO boundaries, not just scheduled stimuli.",
+          "Normal cases drain exactly; defined negatives raise the expected error without unrelated mutation.",
+          "Busy controls and recovery match the active TSH2 epoch-latched contract."
+        ],
+        "planned_evidence": [
+          "adapter assertion report",
+          "case-level outcomes and counts",
+          "reset/fault coverage table"
+        ],
+        "original_scope_limitations": [
+          "TSH2 fixed epoch configuration is not the original dynamic per-frame commit interface.",
+          "Unexercised core reset phases remain open, even when adapter reset tests pass."
+        ],
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "gate_id": "G05",
+        "title": "Qualify active RAM packet exporter under ownership and reset pressure",
+        "owner": "RTL agent",
+        "mandatory_for_registered_profile": true,
+        "original_requirement_ids": [
+          "R-TEL-02",
+          "R-TEL-03",
+          "R-TEL-04",
+          "R-RST-01",
+          "R-FLOW-02"
+        ],
+        "original_test_family_ids": [
+          "T-TEL-01",
+          "T-TEL-02",
+          "T-TEL-03",
+          "T-TEL-05",
+          "T-XF-04"
+        ],
+        "original_acceptance_ids": [
+          "AC12"
+        ],
+        "required_observables": [
+          "Exact packet bytes and count",
+          "RAM request/response phases",
+          "Queue occupancy, concurrent distinct addresses and wrap",
+          "Discard/abort/reset terminal reasons",
+          "Stalled final packet beat"
+        ],
+        "pass_criteria": [
+          "Use the RAM exporter that is source-bound to the actual image.",
+          "Exact packet fields/checksum/count/order agree for every completed record; aborted prefixes checked against the intended terminal reason.",
+          "Registered queue depths and reset/clear at request/response boundaries execute with independent counters."
+        ],
+        "planned_evidence": [
+          "RAM exporter suite reports",
+          "negative controls",
+          "coverage counts"
+        ],
+        "original_scope_limitations": [
+          "Queue-depth alternatives are directed supplemental configurations; the image-specific parameter must be identified.",
+          "This sparse TSP1 exporter is not the original WAVE/SPEC64/METRICS/STATUS priority packet system."
+        ],
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "gate_id": "G06",
+        "title": "Qualify the actual runner, observed assertions and scoreboards",
+        "owner": "RTL + reference agents",
+        "mandatory_for_registered_profile": true,
+        "original_requirement_ids": [
+          "R-ENV-01",
+          "R-ENV-02"
+        ],
+        "original_test_family_ids": [
+          "T-ENV-01",
+          "T-ENV-02",
+          "T-ENV-03"
+        ],
+        "original_acceptance_ids": [],
+        "required_observables": [
+          "Positive completion",
+          "Corrupt payload/index/count/threshold/terminal marker",
+          "X/Z required-control injection where supported",
+          "Simulator error/fatal propagation",
+          "Host and cycle watchdog classification",
+          "Checker enable/activation inventory"
+        ],
+        "pass_criteria": [
+          "Each checker used for a mandatory gate has a positive witness and a deliberate expected rejection or explicitly bounded qualification.",
+          "An unrelated compile failure never counts as a successful negative test.",
+          "Unsupported semantics remain BLOCKED_CAPABILITY for the affected claim, not silently suppressed.",
+          "Both timeout paths or prior qualified unchanged timeout capability are evidenced and linked."
+        ],
+        "planned_evidence": [
+          "tool/harness qualification report",
+          "sensitivity report",
+          "watchdog and XZ receipts"
+        ],
+        "original_scope_limitations": [
+          "Full original R-ENV closure is unavailable if any mandatory checker semantics, activation or timeout behavior remain unqualified."
+        ],
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "gate_id": "G07",
+        "title": "Requalify native codec, monitor and host application after reference fix",
+        "owner": "assurance agent",
+        "mandatory_for_registered_profile": true,
+        "original_requirement_ids": [
+          "R-SW-03",
+          "R-TEL-02",
+          "R-ENV-01"
+        ],
+        "original_test_family_ids": [
+          "T-SW-03",
+          "T-TEL-01",
+          "T-ENV-02"
+        ],
+        "original_acceptance_ids": [],
+        "required_observables": [
+          "All21 feature columns",
+          "Big-integer total/weighted-bin edge cases",
+          "Malformed/truncated/duplicate/threshold packet rejection",
+          "Queue/fake IO/restore tests",
+          "JS progress state",
+          "Local published asset identities"
+        ],
+        "pass_criteria": [
+          "Rerun the previously registered native and host regression suites with fresh output directories.",
+          "Inputs and returned arrays are checked; DLL build reuse or rebuild is explicitly recorded.",
+          "Fake IO and local asset checks are labeled separately from actual board/browser verification."
+        ],
+        "planned_evidence": [
+          "native qualification",
+          "software suite receipts",
+          "source hashes before/after"
+        ],
+        "original_scope_limitations": [
+          "These tests do not establish live transport concurrency, native browser audio-device behavior or physical hardware safety on their own."
+        ],
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "gate_id": "G08",
+        "title": "Admit the exact physical image, kernel, current boot and service",
+        "owner": "root hardware owner",
+        "mandatory_for_registered_profile": true,
+        "original_requirement_ids": [
+          "R-AUTH-01",
+          "R-BOARD-01",
+          "R-PLAT-01",
+          "R-PLAT-02"
+        ],
+        "original_test_family_ids": [
+          "T-BRD-01",
+          "T-PHY-03",
+          "T-SW-04"
+        ],
+        "original_acceptance_ids": [
+          "AC13"
+        ],
+        "required_observables": [
+          "Idle ownership and RAM-only mounts",
+          "Fresh U-Boot/reset state when programming",
+          "Exact JTAG chain and SOF hash",
+          "Kernel/initramfs/DT identities and bridge ownership",
+          "New boot UUID",
+          "Service and qualified probe hashes",
+          "TSH2 source/geometry/idle counters"
+        ],
+        "pass_criteria": [
+          "Historical boot receipts never admit a new boot.",
+          "Before programming: qualified exact chain and bridge reset7 in U-Boot; then source-bound volatile SOF programming with immutable receipt.",
+          "Before FPGA MMIO: correct kernel/DT ownership, manager4 and bridge_reset5 verified by the separately qualified system probe.",
+          "Qualified probe_build02 reads only allowlisted registers and establishes matching source/geometry and clean IDLE or fully drained DONE.",
+          "No competing service/process/listener; only temporary RAM payload and prepared PCM are uploaded; expected outputs stay on PC."
+        ],
+        "planned_evidence": [
+          "fresh deployment admission manifest",
+          "UART lifecycle receipts",
+          "program receipt",
+          "pre/post system and FPGA probe snapshots"
+        ],
+        "original_scope_limitations": [
+          "This is active-profile bringup and admission, not original kernel-module/DDR-ring ownership verification or full original AC13."
+        ],
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "gate_id": "G09",
+        "title": "Capture complete fresh monitor and flute matrices on the admitted board",
+        "owner": "root hardware owner",
+        "mandatory_for_registered_profile": true,
+        "original_requirement_ids": [
+          "R-BOARD-01",
+          "R-GEO-02",
+          "R-FLOW-02",
+          "R-FLOW-05",
+          "R-NUM-06",
+          "R-TEL-02"
+        ],
+        "original_test_family_ids": [
+          "T-BRD-01",
+          "T-C-01",
+          "T-SW-03"
+        ],
+        "original_acceptance_ids": [
+          "AC3",
+          "AC4",
+          "AC6",
+          "AC7",
+          "AC9",
+          "AC12",
+          "AC13"
+        ],
+        "required_observables": [
+          "48 monitor epochs and10 flute epochs",
+          "Per-request input hash, threshold and monotonic epoch",
+          "Full raw40-byte reply/Y/TSP1",
+          "Before/after boot/source/geometry/counter snapshots",
+          "Service exit and final idle state"
+        ],
+        "pass_criteria": [
+          "Run all12 frozen monitor records at thresholds0/1e7 with2 repeats each; run frozen flute8s at thresholds0/1e8/1e9/1e10/1e11 with2 repeats each.",
+          "Each epoch accepts384000 inputs and produces384512 Y values and3001 frames; compare every sample and packet byte to its registered PC-only gold before the next request.",
+          "Strict decode validates sequence/threshold/protection/payload/checksum and each repeat is identical.",
+          "Threshold0 complete delay-aligned input identity passes; fresh raw counter snapshots show zero drops/faults and exact completed totals.",
+          "Keep all failed/partial captures; finite service exits cleanly and no capture remains active."
+        ],
+        "planned_evidence": [
+          "captures manifest for58 epochs",
+          "raw Y/TSP1/header files",
+          "per-epoch validation",
+          "final service and ownership receipts"
+        ],
+        "original_scope_limitations": [
+          "Original AC10/AC11 and portions ofAC12 are not exposed by TSH2; complete Y/power packets cannot close the original AC13 artifact bundle.",
+          "This is finite-file physical replication; source material is not new independent application data."
+        ],
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "gate_id": "G10",
+        "title": "Recompute monitor quality and duration-matched representation comparison",
+        "owner": "assurance",
+        "mandatory_for_registered_profile": true,
+        "original_requirement_ids": [
+          "R-SW-03",
+          "R-TEL-02"
+        ],
+        "original_test_family_ids": [
+          "T-SW-03",
+          "T-TEL-01"
+        ],
+        "original_acceptance_ids": [],
+        "required_observables": [
+          "Original-duration prefixes and frozen monitor outputs",
+          "Per-recording dominant-bin/centroid/band errors",
+          "Synthetic band-member event matching",
+          "Full8s and original support byte counts",
+          "PCM16/packed12/task-summary controls"
+        ],
+        "pass_criteria": [
+          "Unchanged monitor runs only on original5s/5.12s support; prefix outputs reproduce the prior frozen result.",
+          "All4 natural per-recording frozen numerical quality gates pass; all5 intended persistent synthetic events match with no extra clusters, including control negatives.",
+          "Natural event agreement is reported against threshold0, with no fault-diagnosis claim.",
+          "Never use padded silence to inflate original-duration byte savings."
+        ],
+        "planned_evidence": [
+          "fresh capture application analysis",
+          "per-band tables",
+          "event match table",
+          "byte-scope table"
+        ],
+        "original_scope_limitations": [
+          "These are exploratory engineering tolerances, not externally validated fault labels or AI-quality guarantees."
+        ],
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "gate_id": "G11",
+        "title": "Bind implementation timing evidence to the exact programmed image",
+        "owner": "RTL agent + root",
+        "mandatory_for_registered_profile": true,
+        "original_requirement_ids": [
+          "R-CDC-02",
+          "R-PLAT-02"
+        ],
+        "original_test_family_ids": [
+          "T-PHY-01",
+          "T-PHY-02",
+          "T-PHY-03"
+        ],
+        "original_acceptance_ids": [],
+        "required_observables": [
+          "Source/settings/platform pin/handoff identities",
+          "Per-corner setup/hold/recovery/removal",
+          "Clocks and unconstrained path inventory",
+          "Vendor calibrated DDR and explicit exceptions"
+        ],
+        "pass_criteria": [
+          "Source-bound fitted reports and exception dispositions remain hash-valid for the exact unchanged SOF.",
+          "Every required active clock/path group has the declared timing evidence; distinguish reanalysis from a new fit/STA execution.",
+          "Any unresolved active crossing or timing assumption is listed rather than inferred from functional tests."
+        ],
+        "planned_evidence": [
+          "timing reanalysis or fresh STA receipt",
+          "source/SOF binding",
+          "CDC/RDC scope review"
+        ],
+        "original_scope_limitations": [
+          "STA is not a structural CDC proof, oscillator calibration or physical DDR visibility proof.",
+          "No new fit is required merely because a software-only reference helper changes."
+        ],
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "gate_id": "G12",
+        "title": "Audit reproducibility and produce evidence-backed waveform report",
+        "owner": "assurance + root",
+        "mandatory_for_registered_profile": true,
+        "original_requirement_ids": [
+          "R-AUTH-01",
+          "R-ENV-01",
+          "R-EXT-02"
+        ],
+        "original_test_family_ids": [
+          "T-REF-01",
+          "T-ENV-03"
+        ],
+        "original_acceptance_ids": [],
+        "required_observables": [
+          "New and historical evidence labels",
+          "Every gate disposition",
+          "Full waveform mismatch/error plots",
+          "Pipeline diagrams with measured/illustrated boundaries",
+          "Final artifact hashes and report links"
+        ],
+        "pass_criteria": [
+          "Independent audit rehashes exact raw captures, checks all values and reconciles aggregate counts with case-level records.",
+          "Plots use fresh capture data and shared scales/alignment; diagrams identify actual locations and do not invent internal-stage timing.",
+          "Report states tested revision/profile, unresolved issues, excluded requirements and no complete-project/industrial certification.",
+          "Do not infer energy or system speedup from receiver timing, simulation cycle counts or service duration."
+        ],
+        "planned_evidence": [
+          "independent assurance report",
+          "waveform figures",
+          "architecture diagram",
+          "release report",
+          "artifact manifest"
+        ],
+        "original_scope_limitations": [
+          "Documentation and plots are presentation of evidence, not additional independent functional tests."
+        ],
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      },
+      {
+        "gate_id": "G13",
+        "title": "Broader core arithmetic/geometry/reset coverage",
+        "owner": "RTL agent",
+        "mandatory_for_registered_profile": false,
+        "original_requirement_ids": [
+          "R-REF-02",
+          "R-NUM-02",
+          "R-NUM-03",
+          "R-NUM-04",
+          "R-NUM-07",
+          "R-GEO-01",
+          "R-RST-01",
+          "R-FLOW-04"
+        ],
+        "original_test_family_ids": [
+          "T-REF-04",
+          "T-REF-06",
+          "T-AR-01",
+          "T-AR-03",
+          "T-AR-04",
+          "T-AR-05",
+          "T-C-02",
+          "T-C-05",
+          "T-C-07",
+          "T-C-08"
+        ],
+        "original_acceptance_ids": [
+          "AC1",
+          "AC4",
+          "AC8",
+          "AC10",
+          "AC11",
+          "AC14"
+        ],
+        "required_observables": [
+          "Saturation and signed tie boundaries",
+          "Finite lengths1/2 and H/L neighborhoods",
+          "Every transform/WOLA/output reset phase",
+          "Metric commit versus public acceptance"
+        ],
+        "pass_criteria": [
+          "Execute registered targeted cases where supported and report exact remaining bins.",
+          "Reduced/white-box fixtures are labeled with their invariants; do not alter production RTL to force a pass."
+        ],
+        "planned_evidence": [
+          "supplemental directed test receipts",
+          "unclosed-bin table"
+        ],
+        "original_scope_limitations": [
+          "Not every broader core case is a mandatory fixed-profile operational test. Original requirements remain open until all their mandatory instances are accepted."
+        ],
+        "execution_status": "PLANNED_NOT_EXECUTED"
+      }
+    ],
+    "physical_case_count": 58,
+    "physical_matrices": {
+      "monitor": 48,
+      "flute": 10
+    },
+    "physical_expected_totals": {
+      "accepted_input_samples": 22272000,
+      "waveform_samples": 22301696,
+      "spectral_frames": 174058
+    },
+    "scope_decision_rules": [
+      "A plan row is not evidence. Each gate is evaluated against fresh immutable receipts and exact registered counts.",
+      "Scoped release acceptance requires every mandatory registered-profile gate to have sufficient PASS evidence, no unresolved profile defect and an independently reconciled report.",
+      "If any mandatory gate is incomplete, report PARTIAL_VERIFICATION or BLOCKED with its exact missing observations; do not lower the denominator after results.",
+      "A bounded waiver or applicability decision must retain original requirement IDs, rationale, limitations and owner/reviewer; it never turns an observed violation into a PASS.",
+      "Original project-wide acceptance and original AC13 remain open unless every mandatory original artifact and applicable instance is separately satisfied.",
+      "The word industrial is not a certificate. Reliability, safety, continuous operation, environmental tolerance, security and energy/system speed claims need separate evidence."
+    ],
+    "oracle_limitations": [
+      "Hash equality to registered expected bytes is exact regression evidence but does not prove an oracle correct by itself.",
+      "The independent integer reference qualification covers only its declared primitives, transform anchors and complete selected vectors.",
+      "The unchanged fixed-point PC reference, native features, prior physical qualification and strict packet decoder have separate responsibilities and should remain separately labeled.",
+      "Reference helper repair must not silently regenerate or replace frozen expectations. Prove unchanged baseline outputs before reusing those expectations.",
+      "All natural/synthetic material in this board campaign has been used before; fresh board execution is replication, not a fresh independent application dataset."
+    ],
+    "physical_observability_limits": [
+      {
+        "acceptance": "AC9",
+        "available": "All384512 signed12 output values can be captured and compared exactly."
+      },
+      {
+        "acceptance": "AC10",
+        "missing": "Original per-frame statistics rows are not directly emitted by this TSH2 service. Decoded aggregate features are derived powers, not the original frame-stat artifact."
+      },
+      {
+        "acceptance": "AC11",
+        "missing": "Complete original error/statistics commit-epoch fields and internal overflow/carry flags are not included in the40-byte reply or TSP1 packets."
+      },
+      {
+        "acceptance": "AC12",
+        "partial": "129-bin thresholded power values can be reconstructed, with protected DC and threshold policy checked. Original signed complex/preliminary-mask/per-bin fields are not all exposed."
+      },
+      {
+        "acceptance": "AC13",
+        "consequence": "The58 captures can establish selected-profile physical waveform/packet replication. They do not supply the complete original BRAM y/frame/metric/bin artifact set."
+      }
+    ],
+    "evidence_classes": [
+      "fresh_software_or_RTL_execution",
+      "historical_evidence_revalidated",
+      "fresh_physical_capture",
+      "documentation_only",
+      "explicit_not_run_or_blocked"
+    ],
+    "registered_revision_utc": "2026-10-17T02:13:09.751466+00:00",
+    "supersedes_plan_sha256": "3360f311fea981a39a502e3f991d5d1f60d4bdd07c808fd7ae11192c714297e3",
+    "revision_reason": "Parent explicitly selected a second full384000 RTL case at threshold100000000 with sparse encoding before its outcome. Both full-length cases are mandatory. The finite-geometry suite was also registered before completion.",
+    "physical_case_inventory": "physical_case_inventory_revision02.json",
+    "registered_rtl_additional_tests": {
+      "arithmetic_rounding": "Production primitive against widened-integer ties/extrema at shifts 0,1,4,15.",
+      "mask_threshold_boundaries": "Constructed complex inputs including uint56 magnitude maximum, DC/interior/Nyquist, strict comparison and stall hold.",
+      "core_busy_reset_recovery": "Abort at source/FFT/IFFT/WOLA/held-Y, then exact1024 epoch restart.",
+      "environment_qualification": "Four-state X/Z, immediate assertion/error/fatal, missing completion, simulator and host watchdog controls.",
+      "finite_geometry_dense_sparse": "Ns1,2,126,127,128,129,130,254,255,256,257,258 in both dense and sparse encodings against fixed-reference gold, with exact outputs."
+    }
+  }
+}
