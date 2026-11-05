@@ -9,8 +9,8 @@
   "major_sections": 53,
   "files": {
     "assemble_spec.py": {
-      "sha256": "7bcff7d5241bc175d91c893f90e290f71235283b7fd36ac30af39afb7910046f",
-      "bytes": 3809
+      "sha256": "cac91eb2c86a764ea666015efa9b848b6772e46c07ed6a19dcbd279e4237c767",
+      "bytes": 3826
     },
     "baseline/page-001.md": {
       "sha256": "3918c96d088a1310ee95f23f932068ce7ce5dff9843926fdce2032ecfa4967bd",
@@ -441,12 +441,12 @@
       "bytes": 7398
     },
     "complete_specification.md": {
-      "sha256": "083103c772350df7f852a60f9df4a63f1ccb940fcb71f8497985a360ae4f2f67",
-      "bytes": 278846
+      "sha256": "87c19980a5596747d53777a86a4525ee80b729157bc22083b3adcb2b9f616a38",
+      "bytes": 278980
     },
     "conversion_notes.md": {
-      "sha256": "c25760ede57c1d17f8be6a49e72cd6606060313c7e2ff4770d7f2485c73d69f8",
-      "bytes": 4825
+      "sha256": "5f12272c5abd27013224d6accbebea91188142d793ca233c82a563b77f03f11a",
+      "bytes": 4870
     },
     "conversion_rules.json": {
       "sha256": "99a080c452b26758e021b23ab2481a5d0327c1a4de476f390bcbf2cfe1bfc88c",
@@ -457,8 +457,8 @@
       "bytes": 61341
     },
     "current_profiles_and_rf.md": {
-      "sha256": "2bd6fcb1d81f1c1278e5a19df61f4d2aeda2f459cccba20fa60f334d84a14a53",
-      "bytes": 14012
+      "sha256": "620cbab647c55721d41133ef9df53ed4ed1ee9db2241dd781d7949ff2fe53b24",
+      "bytes": 14129
     },
     "math/baseline-page-014-001.svg": {
       "sha256": "b507ccca8b570bff3d23dd77d107130b9803f4b39e3af5413594028f67be9cb5",
@@ -1653,8 +1653,8 @@
       "bytes": 12276
     },
     "README.md": {
-      "sha256": "9eaa71659c2f120faee90921c2f101d5133563268a58cc9f95cc63124a028d67",
-      "bytes": 7133
+      "sha256": "dc20a57ae9820220ac2a96d8ebd17ebe2538bb78b0e339d8031c00a863dde822",
+      "bytes": 7119
     },
     "render_math.py": {
       "sha256": "b07720343f746f8c2709ede8ef4c7042e6e922210f955e3db4361c6f7f2a3194",
@@ -2089,8 +2089,8 @@
       "bytes": 2294
     },
     "source/current_profiles_and_rf.md": {
-      "sha256": "de9c50a2371027b11906f8fbc6267d43326f76ec571ac457152193c8105972d9",
-      "bytes": 12693
+      "sha256": "867019398a9e261d8447a6483e7f90e2140f6f8b28cc3c7f158e89844537320a",
+      "bytes": 12810
     },
     "source_inventory.json": {
       "sha256": "c3ab3d74f0565db6031d48c42bf65e56ba99940dd69e45ea1952399b942ffe6d",

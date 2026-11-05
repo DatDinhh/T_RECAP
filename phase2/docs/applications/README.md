@@ -2,7 +2,7 @@
 
 [System architecture](../architecture/system/README.md) | [Editable algorithm specification](../algorithm/README.md)
 
-T-RECAP is a tunable spectral reduction experiment. The same FFT, threshold and IFFT/WOLA core can operate on different real signal representations. The RF profile adds an input adapter that converts recorded I/Q into real intermediate-frequency samples. This folder connects that architecture to concrete users, actual data and measurable outcomes.
+T-RECAP is a tunable spectral reduction experiment. The same FFT, threshold and IFFT/WOLA core can operate on different real signal representations. The RF input frontend converts recorded I/Q into the real intermediate-frequency samples expected by that core. This folder connects that architecture to concrete users, actual data and measurable outcomes.
 
 The scenarios below explain possible uses. The measurements determine how far each scenario has been demonstrated. The software does not know whether a weak component is unwanted noise or important information.
 

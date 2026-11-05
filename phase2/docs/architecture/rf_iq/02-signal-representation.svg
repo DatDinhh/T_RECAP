@@ -520,7 +520,7 @@ z
     <text style="font-size: 14.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(690.48 579.65157)">Same RF segment duration</text>
    </g>
    <g id="text_18">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="380.88" y="493.917188" transform="rotate(-0 380.88 493.917188)">Existing core input</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="380.88" y="493.917188" transform="rotate(-0 380.88 493.917188)">Shared core input</text>
    </g>
    <g id="text_19">
     <text style="font-size: 14.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(380.88 520.65855)">Pad only after the valid RF</text>
@@ -558,7 +558,7 @@ z
    </g>
    <g id="text_27">
     <text style="font-size: 14.1px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(676.08 724.233797)">This fixed interpolation filter supports format conversion. The adjustable</text>
-    <text style="font-size: 14.1px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(676.08 741.308368)">THR2 decision remains in the existing spectral processing core.</text>
+    <text style="font-size: 14.1px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(676.08 741.308368)">THR2 decision remains in the shared spectral processing core.</text>
    </g>
    <g id="text_28">
     <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="820.218047" transform="rotate(-0 68.4 820.218047)">I/Q / source</text>

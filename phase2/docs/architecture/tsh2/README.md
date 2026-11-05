@@ -2,7 +2,9 @@
 
 **T-RECAP: Threshold-based Reduction and Encoding for Controlled Audio Processing.** See [project naming and scope](../../project_identity.md).
 
-These eight diagrams document the registered finite-file TSH2 application: laptop PCM over TCP, HPS software feeding and draining MMIO FIFOs, a fixed-point FPGA audio pipeline, and separate waveform and spectral outputs. They describe reviewed source structure. Creating this atlas performed no new synthesis, simulation, hardware execution or timing measurement.
+For the complete audio, acceleration and RF design, start with the [unified system atlas](../system/README.md). Its 20 views include module internals and connect each input contract to the shared processing engine.
+
+This profile reference documents the finite-file TSH2 configuration in eight diagrams: laptop PCM over TCP, HPS software feeding and draining MMIO FIFOs, the fixed-point real-sample pipeline, and separate waveform and spectral outputs. The figures retain their reviewed source bindings.
 
 The [historical architecture atlas](../diagrams/README.md) describes the broader 2026-09-14 design, including paths that are inactive here. The current profile does not activate its FPGA DDR ring, UDP telemetry or live codec/ADC input. Ordinary HPS Linux RAM remains part of the TCP service.
 

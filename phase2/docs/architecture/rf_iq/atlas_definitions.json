@@ -81,8 +81,8 @@
   "plates": [
     {
       "number": 1,
-      "title": "Recorded RF through the existing T-RECAP core",
-      "subtitle": "TRF1 adds an FPGA I/Q source adapter. The transform, threshold, reconstruction and spectral exporter remain unchanged.",
+      "title": "Recorded RF through the shared T-RECAP core",
+      "subtitle": "TRF1 combines an FPGA I/Q frontend with the shared transform, threshold, reconstruction and spectral exporter.",
       "slug": "01-system",
       "source_ids": [
         "R01",
@@ -129,7 +129,7 @@
         },
         {
           "id": "rf",
-          "title": "3. New FPGA source adapter",
+          "title": "3. FPGA I/Q input frontend",
           "body": [
             "CU8 centering and 4x interpolation",
             "Quarter-rate mixing to real low IF",
@@ -146,7 +146,7 @@
         },
         {
           "id": "dsp",
-          "title": "4. Existing FPGA processing",
+          "title": "4. Shared FPGA processing",
           "body": [
             "256-point FFT and tunable threshold",
             "IFFT/WOLA reconstruction",
@@ -412,7 +412,7 @@
         },
         {
           "id": "existing",
-          "title": "Existing core input",
+          "title": "Shared core input",
           "body": [
             "Pad only after the valid RF segment",
             "FFT -> threshold -> IFFT/WOLA",
@@ -523,7 +523,7 @@
         },
         {
           "title": "What the FIR does",
-          "body": "This fixed interpolation filter supports format conversion. The adjustable THR2 decision remains in the existing spectral processing core.",
+          "body": "This fixed interpolation filter supports format conversion. The adjustable THR2 decision remains in the shared spectral processing core.",
           "rect": [
             920,
             950,
@@ -836,7 +836,7 @@
         },
         {
           "id": "core",
-          "title": "Existing finite core",
+          "title": "Shared finite core",
           "body": [
             "3,001 analysis frames",
             "384,512 reconstructed Y samples",
@@ -926,7 +926,7 @@
         },
         {
           "title": "Three different tails",
-          "body": "FIR tail pairs complete conversion. Transaction padding satisfies the core geometry. Analysis flush and WOLA tail complete the existing finite DSP schedule.",
+          "body": "FIR tail pairs complete conversion. Transaction padding satisfies the core geometry. Analysis flush and WOLA tail complete the finite DSP schedule.",
           "rect": [
             920,
             950,
@@ -1625,7 +1625,7 @@
     {
       "number": 8,
       "title": "Clock, reset and verification evidence boundaries",
-      "subtitle": "The source-bound RF extension reuses the qualified board platform. Documentation, simulation and physical captures answer different questions.",
+      "subtitle": "The RF build configuration uses the shared board platform. Documentation, simulation and physical captures answer different questions.",
       "slug": "08-clock-reset-verification",
       "source_ids": [
         "R01",
@@ -1781,8 +1781,8 @@
       ],
       "notes": [
         {
-          "title": "Scope of the new evidence",
-          "body": "Two actual-core paths share the existing FFT/IFFT. Their comparison checks RF integration equivalence. Historical audio UVM/formal results do not automatically prove the new adapter.",
+          "title": "Verification scope",
+          "body": "Two reference paths use the shared FFT/IFFT to check RF integration equivalence. RF frontend tests and TSH2 UVM/formal checks have distinct module scopes.",
           "rect": [
             80,
             965,

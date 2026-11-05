@@ -2,12 +2,12 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1296pt" height="864pt" viewBox="0 0 1296 864" xmlns="http://www.w3.org/2000/svg" version="1.1">
- <title>Recorded RF through the existing T-RECAP core</title>
+ <title>Recorded RF through the shared T-RECAP core</title>
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:title>Recorded RF through the existing T-RECAP core</dc:title>
+    <dc:title>Recorded RF through the shared T-RECAP core</dc:title>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -461,10 +461,10 @@ z
     <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="48.797812" transform="rotate(-0 68.4 48.797812)">T-RECAP  /  RECORDED RF TRF1 ARCHITECTURE</text>
    </g>
    <g id="text_7">
-    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="68.4" y="86.835469" transform="rotate(-0 68.4 86.835469)">Recorded RF through the existing T-RECAP core</text>
+    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="68.4" y="86.835469" transform="rotate(-0 68.4 86.835469)">Recorded RF through the shared T-RECAP core</text>
    </g>
    <g id="text_8">
-    <text style="font-size: 16.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="113.337422" transform="rotate(-0 68.4 113.337422)">TRF1 adds an FPGA I/Q source adapter. The transform, threshold, reconstruction and spectral exporter remain unchanged.</text>
+    <text style="font-size: 16.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="113.337422" transform="rotate(-0 68.4 113.337422)">TRF1 combines an FPGA I/Q frontend with the shared transform, threshold, reconstruction and spectral exporter.</text>
    </g>
    <g id="text_9">
     <text style="font-weight: 700; font-size: 32px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #8066a9" x="1245.6" y="71.835" transform="rotate(-0 1245.6 71.835)">01</text>
@@ -490,7 +490,7 @@ z
     <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #9c7d3f" x="488.88" y="350.110656" transform="rotate(-0 488.88 350.110656)">trf1_client.c</text>
    </g>
    <g id="text_15">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="906.48" y="227.517187" transform="rotate(-0 906.48 227.517187)">3. New FPGA source adapter</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="906.48" y="227.517187" transform="rotate(-0 906.48 227.517187)">3. FPGA I/Q input frontend</text>
    </g>
    <g id="text_16">
     <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(906.48 255.018394)">CU8 centering and 4x interpolation</text>
@@ -501,7 +501,7 @@ z
     <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #407d6c" x="906.48" y="350.110656" transform="rotate(-0 906.48 350.110656)">trecap_rf_file_source</text>
    </g>
    <g id="text_18">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="906.48" y="493.917188" transform="rotate(-0 906.48 493.917188)">4. Existing FPGA processing</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="906.48" y="493.917188" transform="rotate(-0 906.48 493.917188)">4. Shared FPGA processing</text>
    </g>
    <g id="text_19">
     <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(906.48 521.418394)">256-point FFT and tunable threshold</text>

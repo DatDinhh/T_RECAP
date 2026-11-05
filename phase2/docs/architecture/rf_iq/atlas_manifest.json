@@ -9,7 +9,7 @@
   },
   "definitions": {
     "file": "atlas_definitions.json",
-    "sha256": "b2a121c6084dc19ada22e3210979caedd2b4fdeebba6c41c8d8a56938d491fa7"
+    "sha256": "4388098b437c0a7c793e8dbcbc6d7e23ad9494189ff3793be6a1e7de61e046b0"
   },
   "sources": [
     {
@@ -87,7 +87,7 @@
   "plates": [
     {
       "number": 1,
-      "title": "Recorded RF through the existing T-RECAP core",
+      "title": "Recorded RF through the shared T-RECAP core",
       "slug": "01-system",
       "source_ids": [
         "R01",
@@ -186,29 +186,29 @@
     {
       "file": "01-system.png",
       "repo_path": "docs/architecture/rf_iq/01-system.png",
-      "sha256": "1e87bf7c3637b64ed9badac3db4d0528fa62280340bfee77479815e65a3ed9d8",
-      "bytes": 453229,
+      "sha256": "5672da4d31e9eeaaa4aba28a1c2fc529c510e34f44ce3804b627685728386b6d",
+      "bytes": 451128,
       "plate": 1
     },
     {
       "file": "01-system.svg",
       "repo_path": "docs/architecture/rf_iq/01-system.svg",
-      "sha256": "28bc4566decaad2c912301c2dc3069c08786366f88c51b57603f4c5368bfd5bb",
-      "bytes": 24105,
+      "sha256": "c0e132e275d696247c29d2e6119738b878e75b1c501adbda7351a8eccb22c437",
+      "bytes": 24089,
       "plate": 1
     },
     {
       "file": "02-signal-representation.png",
       "repo_path": "docs/architecture/rf_iq/02-signal-representation.png",
-      "sha256": "770594b8a649868b3b22fae514440cadf87229b8efe24a719454ea100eddf6ef",
-      "bytes": 461011,
+      "sha256": "4241dd5a8b2e924077d8d4b15219a198346cc03f720d055c092e61d113006957",
+      "bytes": 462410,
       "plate": 2
     },
     {
       "file": "02-signal-representation.svg",
       "repo_path": "docs/architecture/rf_iq/02-signal-representation.svg",
-      "sha256": "a0b58ad6e130960f0a0a66d042d6c5ccee714a1e966b2c43c0c7223d7821fdb7",
-      "bytes": 25283,
+      "sha256": "a99ed86a5bd4fd54e6ba58c0690522d1ed6ef0df84cb2e3eae941da097605c0e",
+      "bytes": 25279,
       "plate": 2
     },
     {
@@ -228,15 +228,15 @@
     {
       "file": "04-finite-file-completion.png",
       "repo_path": "docs/architecture/rf_iq/04-finite-file-completion.png",
-      "sha256": "e28035a2b1195c01840f49cf4e4ec7e4f0f033527de71717efd76f74dc2d193b",
-      "bytes": 404622,
+      "sha256": "ed4be24bf3a78208ea9978d837703fc9a95849fca5624eb91c7e7f474137727e",
+      "bytes": 401231,
       "plate": 4
     },
     {
       "file": "04-finite-file-completion.svg",
       "repo_path": "docs/architecture/rf_iq/04-finite-file-completion.svg",
-      "sha256": "c1b28dd6922ed2f46b019873803912909c23641956f0762d7fed0ea66172e7c5",
-      "bytes": 20269,
+      "sha256": "c51e42bce8796d09281f76ceef9bac833ac1ae27e7c788f89172573551e9f704",
+      "bytes": 20130,
       "plate": 4
     },
     {
@@ -284,15 +284,15 @@
     {
       "file": "08-clock-reset-verification.png",
       "repo_path": "docs/architecture/rf_iq/08-clock-reset-verification.png",
-      "sha256": "353b081bb58451417ffe0ab7e295a3352fbf68b92b9bb7a3f4f6a33310d4d2d6",
-      "bytes": 454618,
+      "sha256": "ea8f5c2a45c4311e2a3a2b33a6193de3410131be640c596e79dbeeb138a39c93",
+      "bytes": 446694,
       "plate": 8
     },
     {
       "file": "08-clock-reset-verification.svg",
       "repo_path": "docs/architecture/rf_iq/08-clock-reset-verification.svg",
-      "sha256": "30ccd7627b84a2a318bbab6d1163ce8d93f4bc31692528fa15d2c268d7b3a70b",
-      "bytes": 20949,
+      "sha256": "51c267b0798bcc7a79ab6d521bdce2f1026cdc6617a51d924ff9be6009487009",
+      "bytes": 20906,
       "plate": 8
     }
   ],

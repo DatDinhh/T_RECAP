@@ -1,14 +1,14 @@
-# Current finite-file profiles and the RF extension
+# T-RECAP finite-record architecture and numerical contracts
 
 [Algorithm specification index](../README.md) | [Whole-system atlas](../../architecture/system/README.md) | [Application results](../../applications/README.md)
 
 ## Status and relationship to the original specification
 
-This is an implementation supplement to the historical integrated specification transcribed in this folder. It describes the published TSH2 real-sample application and the later TRF1 recorded-RF application. It does not retrospectively change the original document's DDR ring, UDP telemetry or nonstalling assumptions. Those historical requirements and the finite-file application contracts are different configurations.
+This is an implementation supplement to the historical integrated specification transcribed in this folder. It describes the real-sample TSH2 and recorded-I/Q TRF1 build configurations of one T-RECAP architecture. It does not retrospectively change the original document's DDR ring, UDP telemetry or nonstalling assumptions. Those historical requirements and the finite-file application contracts are different configurations.
 
-TSH2 and TRF1 use separate fitted FPGA images. There is no implemented runtime switch between all input classes and no demonstrated concurrent three-input system. Recorded accelerometer axes reuse the real-sample path. Audio playback, step detection, RF decoding, plots and FLAC encoding remain host operations.
+The input frontend and host register interface are selected at build time. TSH2 and TRF1 use separate fitted FPGA images, with one input contract active in each image. Recorded accelerometer axes reuse the real-sample path. Audio playback, step detection, RF decoding, plots and FLAC encoding remain host operations.
 
-![Complete system after RF integration](../../architecture/system/01-system-overview.png)
+![T-RECAP unified system architecture](../../architecture/system/01-system-overview.png)
 
 ## 1. Shared numerical core
 
@@ -153,7 +153,7 @@ The integrated input queue has 256 pair entries plus a separately tracked regist
 | Input word | I in the low byte, Q in the next byte, upper 16 bits zero |
 | Pair count | Configured only while idle, from 1 to 96,000 |
 | Gain | Configured only while idle, shift 0 through 3 |
-| Threshold | Existing 56-bit THR2 configuration |
+| Threshold | Shared 56-bit THR2 configuration |
 | Successful core input count | 384,000 real samples |
 | Successful adapter output count | Four times the configured pair count |
 | Returned evidence | All Y, all TSP1, identity, epoch and status counters |
@@ -164,9 +164,9 @@ TSH2's real-sample service and TRF1's archive orchestration are distinct interfa
 
 ## 10. Verification and interpretation
 
-The RF extension has independent numerical-reference comparisons, self-checking RTL tests, backpressure and reset recovery tests, wrapper/admission tests, host boundary tests and archived physical captures. See [the RF verification package](../../../verification/rf_iq/README.md) and [its report](../../verification/rf_iq/README.md).
+The RF frontend and its enclosing build have independent numerical-reference comparisons, self-checking RTL tests, backpressure and reset recovery tests, wrapper/admission tests, host boundary tests and archived physical captures. See [the RF verification package](../../../verification/rf_iq/README.md) and [its report](../../verification/rf_iq/README.md).
 
-Earlier TSH2 UVM and formal results remain limited to their documented modules and assumptions. They are not evidence that the new RF adapter has a full UVM environment or a formal proof.
+TSH2 UVM and formal results cover their documented modules and assumptions. RF adapter verification is provided by its independent numerical model, self-checking RTL suites and source-bound physical captures. The RF adapter has no published UVM or formal signoff.
 
 The unchanged threshold removes components because they are weak in the chosen representation. It cannot identify thermal origin, distinguish every wanted signal from interference or guarantee preservation of every protocol. Application validation therefore measures both background reduction and retained useful behavior. The [RF application page](../../applications/rf/README.md) includes a case where a stronger threshold removes a decodable message.
 

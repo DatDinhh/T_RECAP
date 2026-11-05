@@ -418,7 +418,7 @@ z
     <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(928.08 558.716039)">These zeros are not captured RF data</text>
    </g>
    <g id="text_13">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="499.68" y="493.917188" transform="rotate(-0 499.68 493.917188)">Existing finite core</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="499.68" y="493.917188" transform="rotate(-0 499.68 493.917188)">Shared finite core</text>
    </g>
    <g id="text_14">
     <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(499.68 521.418394)">3,001 analysis frames</text>
@@ -447,8 +447,7 @@ z
    </g>
    <g id="text_20">
     <text style="font-size: 14.1px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(676.08 724.233797)">FIR tail pairs complete conversion. Transaction padding satisfies the core</text>
-    <text style="font-size: 14.1px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(676.08 741.308368)">geometry. Analysis flush and WOLA tail complete the existing finite DSP</text>
-    <text style="font-size: 14.1px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(676.08 758.382939)">schedule.</text>
+    <text style="font-size: 14.1px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(676.08 741.308368)">geometry. Analysis flush and WOLA tail complete the finite DSP schedule.</text>
    </g>
    <g id="text_21">
     <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="820.218047" transform="rotate(-0 68.4 820.218047)">I/Q / source</text>

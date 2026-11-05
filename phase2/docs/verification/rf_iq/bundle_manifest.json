@@ -2,7 +2,7 @@
   "schema": "trecap-rf-report-bundle-v1",
   "purpose": "Published artifact consistency, not a signature or a hardware attestation",
   "files": {
-    "README.md": "65f29203208aaf43e8e0451135bececacfd6e395d809b04f17d88d02771a5188",
+    "README.md": "5c63b01433f33411d3160889e8444ff009af09256e8ce28971e26fed49852b27",
     "rf_verification_supplement.tex": "23a6429b06ee4f4d9b84d23d553ef60d442b88f5a11ae515d451cef8d800a088",
     "rf_verification_supplement.pdf": "5b05a6b41b332274331a39b2f73b3f0c60f65dd0984ecaea392d6f7d9750b6c7",
     "fresh_results.tex": "2f0c7a29f6ab992121962032c2997126c50b15650edcc6c1594f50bf78341d94",
@@ -23,13 +23,13 @@
     "figures/system_boundary.pdf": "28c39462665d2d3f31827936bfab4b16a177596fbe3bcea9792002d7defe7f53",
     "figures/adapter_schedule.png": "21e5fc2fb0cd1ed022850ac871e9ff555d2041e62a4208de4a0d916a884b18ab",
     "figures/adapter_schedule.pdf": "32dfa16610063272ef04aadf717c3009ffb8e96081c2229eee29ae4fbfa77b6b",
-    "../../architecture/rf_iq/01-system.png": "1e87bf7c3637b64ed9badac3db4d0528fa62280340bfee77479815e65a3ed9d8",
-    "../../architecture/rf_iq/02-signal-representation.png": "770594b8a649868b3b22fae514440cadf87229b8efe24a719454ea100eddf6ef",
+    "../../architecture/rf_iq/01-system.png": "5672da4d31e9eeaaa4aba28a1c2fc529c510e34f44ce3804b627685728386b6d",
+    "../../architecture/rf_iq/02-signal-representation.png": "4241dd5a8b2e924077d8d4b15219a198346cc03f720d055c092e61d113006957",
     "../../architecture/rf_iq/03-adapter-hardware.png": "cd722740817a7a5e4cbb9e2f4b8d3b2418a4e84da6ecf14dae9c4d5d2f6dcd20",
-    "../../architecture/rf_iq/04-finite-file-completion.png": "e28035a2b1195c01840f49cf4e4ec7e4f0f033527de71717efd76f74dc2d193b",
+    "../../architecture/rf_iq/04-finite-file-completion.png": "ed4be24bf3a78208ea9978d837703fc9a95849fca5624eb91c7e7f474137727e",
     "../../architecture/rf_iq/05-waveform-and-spectral-outputs.png": "74bcc32986fb7fcf8043845ea92aa97a36427020df27a166f59f032cb86c3b63",
     "../../architecture/rf_iq/06-host-and-registers.png": "b7d0b995057dd1d286bf36d414f1d33fa11c34e34a68a08ac9da27d264952119",
     "../../architecture/rf_iq/07-state-and-backpressure.png": "5f43ada59ad1a579979ca644b2444d76b92183b85cc12897a0134c6f4d1265ad",
-    "../../architecture/rf_iq/08-clock-reset-verification.png": "353b081bb58451417ffe0ab7e295a3352fbf68b92b9bb7a3f4f6a33310d4d2d6"
+    "../../architecture/rf_iq/08-clock-reset-verification.png": "ea8f5c2a45c4311e2a3a2b33a6193de3410131be640c596e79dbeeb138a39c93"
   }
 }

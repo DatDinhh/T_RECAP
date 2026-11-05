@@ -14,8 +14,8 @@
 | Historical repository organization and implementation plan | [Part III](baseline/page-073.md) | 73 to 101 |
 | Vendor FFT checklist, Phase 1 anchor and file inventories | [Appendices](baseline/page-102.md) | 102 to 105 |
 | Original bibliography | [References](baseline/page-106.md) | 106 |
-| Implemented finite profiles and recorded RF integration | [Current specification](current_profiles_and_rf.md) | Later extension |
-| Whole-project diagrams after RF integration | [System architecture atlas](../architecture/system/README.md) | Later implementation views |
+| Audio, acceleration and RF implementation contracts | [Current specification](current_profiles_and_rf.md) | Implementation reference |
+| Unified system and module architecture | [System architecture atlas](../architecture/system/README.md) | Implementation reference |
 
 The [page-by-page index](page_index.md) accounts for every source page. Each page has previous, next and original-PDF links. The [read-all document](complete_specification.md) has explicit page anchors and rebased links for reading or searching the entire specification at once.
 
@@ -25,7 +25,7 @@ The original document is dated May 4, 2026. It contains Core Revision J, Telemet
 
 Part I specifies the deterministic signed 12-bit core with a 256-point FFT, a 128-sample hop, 15 fractional bits and a 384-sample nominal delay. Its mathematical and artifact rules remain distinguishable from the application wrappers.
 
-Part II proposes a continuously running core with non-stalling telemetry taps, an HPS DDR ring and UDP transport. TSH2 and TRF1 are later finite-record application profiles with bounded buffers and their own interfaces. TSH2 uses a TCP request/reply service. TRF1 uses a bounded host transfer and HPS MMIO client. The current appendix documents those differences and the RF adapter without rewriting the historical proposal as if it described the fitted applications.
+Part II proposes a continuously running core with non-stalling telemetry taps, an HPS DDR ring and UDP transport. TSH2 and TRF1 are finite-record build profiles with bounded buffers and their own interfaces. TSH2 uses a TCP request/reply service. TRF1 uses a bounded host transfer and HPS MMIO client. The current appendix documents those differences and the RF adapter without rewriting the historical proposal as if it described the fitted applications.
 
 Part III records the repository plan at that time. Its statements that verification work is outside scope are historical scope statements. Current verification evidence is documented separately in the [verification index](../verification/README.md) and [RF supplement](../verification/rf_iq/README.md).
 

@@ -2,9 +2,11 @@
 
 **T-RECAP: Threshold-based Reduction and Encoding for Controlled Audio Processing.**
 
-These eight views explain the **TRF1 recorded RF application**. Raw unsigned eight-bit I/Q pairs enter a new FPGA adapter. It converts them to real signed12 samples for the existing FFT, threshold, IFFT/WOLA and TSP1 pipeline. TRF1 identifies this application and its register interface. It is separate from the PCM-input TSH2 image.
+For the complete audio, acceleration and RF design, start with the [unified system atlas](../system/README.md). Its 20 views include the I/Q MAC, phase controller, shared numerical engine and host interfaces.
 
-Open the [offline visual viewer](index.html) for navigation and zoom, or select an image below. All diagrams have editable SVG counterparts. The [existing audio atlas](../tsh2/README.md) remains intact with its original source bindings and verification scope.
+These eight profile-specific views explain the **TRF1 recorded-I/Q build configuration**. Its input frontend converts unsigned eight-bit I/Q pairs into signed 12-bit real samples for the shared FFT, threshold, IFFT/WOLA and TSP1 pipeline. TRF1 identifies the build and its host register interface.
+
+Open the [offline visual viewer](index.html) for navigation and zoom, or select an image below. All diagrams have editable SVG counterparts. The [real-sample profile reference](../tsh2/README.md) documents TSH2 with its own source bindings and verification scope.
 
 The drawings describe the source-bound `build02` implementation. Drawing them does not run simulation, synthesize RTL or operate the board. The [RF verification supplement](../../verification/rf_iq/README.md) records executed checks and their limits. See the [published RF source profile](../../../profiles/trf1/README.md) and [runnable verification package](../../../verification/rf_iq/README.md).
 
@@ -101,7 +103,7 @@ The active application uses CLOCK_50. The HPS `h2f_reset_n` signal asserts reset
 
 Adapter checks compare RTL with an independent integer-convolution model. Integration checks compare raw-I/Q RF input against independently prepared PCM entering the existing core. Both integration paths share the numerical core, so they establish RF integration equivalence rather than an independent proof of FFT arithmetic. Physical captures exercise the complete programmed system and are documented separately.
 
-Historical audio UVM and local formal checks retain their original scope. They do not automatically prove the new RF block. The [RF verification supplement](../../verification/rf_iq/README.md) identifies fresh execution, retained physical evidence, checker qualification and remaining exclusions.
+TSH2 UVM and local formal checks cover their documented modules and assumptions. The [RF verification supplement](../../verification/rf_iq/README.md) identifies the RF frontend's executed tests, physical evidence, checker qualification and remaining exclusions.
 
 ## Editable definitions and reproducibility
 

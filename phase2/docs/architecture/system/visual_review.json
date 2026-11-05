@@ -1,59 +1,151 @@
 {
-  "schema": "trecap-system-atlas-visual-review-v1",
+  "schema": "trecap-system-atlas-visual-review-v2",
   "status": "PASS",
-  "method": "Rendered all18 LaTeX pages with Poppler. Reviewed page sheets and diagram images. Geometry checks also enforce text containment and unrelated-node route intersections.",
+  "method": "All 20 diagram images inspected as contact sheets and detailed views. All 43 LaTeX pages rendered with Poppler and reviewed for pagination, clipping and readable equations. Source-critical datapaths and controller branches also received independent RTL review. Automated checks cover text containment, module margins, overlapping module rectangles, orthogonal route intersections and wire labels crossing module bodies.",
   "plates": [
     {
       "number": 1,
       "status": "PASS",
       "serif_pastel_style": "PASS",
-      "text_and_arrow_layout": "PASS"
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
     },
     {
       "number": 2,
       "status": "PASS",
       "serif_pastel_style": "PASS",
-      "text_and_arrow_layout": "PASS"
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
     },
     {
       "number": 3,
       "status": "PASS",
       "serif_pastel_style": "PASS",
-      "text_and_arrow_layout": "PASS"
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
     },
     {
       "number": 4,
       "status": "PASS",
       "serif_pastel_style": "PASS",
-      "text_and_arrow_layout": "PASS"
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
     },
     {
       "number": 5,
       "status": "PASS",
       "serif_pastel_style": "PASS",
-      "text_and_arrow_layout": "PASS"
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
     },
     {
       "number": 6,
       "status": "PASS",
       "serif_pastel_style": "PASS",
-      "text_and_arrow_layout": "PASS"
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
     },
     {
       "number": 7,
       "status": "PASS",
       "serif_pastel_style": "PASS",
-      "text_and_arrow_layout": "PASS"
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
     },
     {
       "number": 8,
       "status": "PASS",
       "serif_pastel_style": "PASS",
-      "text_and_arrow_layout": "PASS"
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
+    },
+    {
+      "number": 9,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
+    },
+    {
+      "number": 10,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
+    },
+    {
+      "number": 11,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
+    },
+    {
+      "number": 12,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
+    },
+    {
+      "number": 13,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
+    },
+    {
+      "number": 14,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
+    },
+    {
+      "number": 15,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
+    },
+    {
+      "number": 16,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
+    },
+    {
+      "number": 17,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
+    },
+    {
+      "number": 18,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
+    },
+    {
+      "number": 19,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
+    },
+    {
+      "number": 20,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS",
+      "source_semantics": "PASS"
     }
   ],
-  "pdf_pages": 18,
-  "pdf_sha256": "dedcad81c4b81f846f827e512c291603cc9f8f24b01872dd3aaebf550fbe152d",
+  "pdf_pages": 43,
+  "pdf_sha256": "eb00aa0109551d9b771bff55caa6089e9b86c1e010a3f5377a9881da4870ffc1",
   "extracted_text_counts": {
     "semicolon": 0,
     "en_dash": 0,
@@ -61,5 +153,5 @@
   },
   "tex_overfull_boxes": 0,
   "tex_underfull_boxes": 0,
-  "scope": "Visual and document review only. No hardware execution or new performance measurements."
+  "scope": "Visual, source and document review only. No hardware execution or new performance measurements."
 }

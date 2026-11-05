@@ -2,18 +2,18 @@
 
 **T-RECAP: Threshold-based Reduction and Encoding for Controlled Audio Processing.** See [project naming and scope](project_identity.md).
 
-Start with the [main project README](https://github.com/DatDinhh/T_RECAP#readme) for the objective, complete architecture, spectrograms, workload results and verification visuals. The [unified eight-view atlas](architecture/system/README.md) connects the real-sample TSH2 application and the recorded-I/Q TRF1 application to their shared numerical core. It also places the local accelerometer capture/replay experiment in that system. The original DDR-ring, UDP and live-source design has its own historical scope.
+Start with the [main project README](https://github.com/DatDinhh/T_RECAP#readme) for the objective, complete architecture, spectrograms, workload results and verification visuals. The [unified 20-view atlas](architecture/system/README.md) describes one T-RECAP architecture from application inputs to module-level arithmetic, storage and control. Its real-sample and I/Q build configurations share the numerical core. Audio, acceleration and RF have explicit input contracts. The original DDR-ring, UDP and live-source design has its own historical scope.
 
 ## Editable specification and application studies
 
-- [Algorithm specification](algorithm/README.md) contains the full historical PDF in editable Markdown and a current RF supplement.
+- [Algorithm specification](algorithm/README.md) contains the full reference PDF in editable Markdown and the current finite-record implementation contracts.
 - [Applications](applications/README.md) contains concrete scenarios, original-source links, before/after files, plots and evaluations for acceleration, RF and audio.
 
 ## Whole-project architecture
 
 | Document | Purpose |
 |---|---|
-| [Unified architecture atlas](architecture/system/README.md) | Eight coordinated views of the complete project with block descriptions and source references |
+| [Unified architecture atlas](architecture/system/README.md) | 20 coordinated views from system structure to datapath, memory, scheduling and control internals |
 | [Academic LaTeX atlas](architecture/system/TRECAP_System_Architecture_Atlas.pdf) | Pastel diagrams and written explanations for review and presentation |
 | [RF source profile](../profiles/trf1/README.md) | Input adapter, HPS client, application wrapper and reproducible source closure |
 | [RF verification supplement](verification/rf_iq/README.md) | Fresh self-checking simulation, actual waveforms and separate historical board evidence |

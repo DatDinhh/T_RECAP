@@ -1,6 +1,6 @@
 # Transcription and review notes
 
-This is a full-content transcription of the 106-page integrated specification. It is not a new algorithm revision. The original PDF remains the reference when resolving a transcription question. The current finite-profile and RF extension is a separately identified appendix.
+This is a full-content transcription of the 106-page integrated specification. It is not a new algorithm revision. The original PDF remains the reference when resolving a transcription question. The finite-record implementation contracts for audio, acceleration and RF are documented in a separately identified appendix.
 
 ## Presentation changes
 

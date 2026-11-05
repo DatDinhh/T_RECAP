@@ -4,12 +4,12 @@
   "scope": "Source-derived architecture documentation. Rendering runs no hardware or simulation.",
   "generator": {
     "file": "build_atlas.py",
-    "sha256": "ca9281d920edbcc8f20181c5304e28df85aa446e5c69fec713c1574aa05680ad",
+    "sha256": "a71ab52b9bd62ad20cfcf238668181eb23a89d5d0b20e31bcca363445991412e",
     "matplotlib": "3.10.7"
   },
   "definitions": {
     "file": "atlas_definitions.json",
-    "sha256": "fd6c89ad59250e6cb251bf2f19c5ace3e0d220d6cff0178da53ef5e673cc99f5"
+    "sha256": "f2bb43cc9635498c971a45938ea35b5e870755a690980b314442d3d5b557287e"
   },
   "sources": [
     {
@@ -121,19 +121,65 @@
       "id": "V02",
       "path": "verification/tsh2/admission.json",
       "sha256": "ab03815268a28dd644ffd51ca908f2eae1c028bb4ff5410004b64b36e66536d4"
+    },
+    {
+      "id": "C09",
+      "path": "rtl/core/trecap_input_ring.sv",
+      "sha256": "022be1284812f1cfd98dd39ff178cb3890ec2bd3b8eb047ff2c2814ef5a5c44a"
+    },
+    {
+      "id": "C10",
+      "path": "rtl/core/trecap_frame_scheduler.sv",
+      "sha256": "6d263b88c540605e1bfb728e5b4c1bc87d7f5552a007b178031a198675f5c255"
+    },
+    {
+      "id": "C11",
+      "path": "rtl/core/trecap_analysis_window.sv",
+      "sha256": "62798c5bfed8076c54568986bd6df6d57b430e9aacb97efb582364974620c6ad"
+    },
+    {
+      "id": "C12",
+      "path": "rtl/core/trecap_hermitian_canonicalizer.sv",
+      "sha256": "6b1c11ba7badb80c18a71e157346be994cb2cec1c775a4a910f38843d4fa2b4d"
+    },
+    {
+      "id": "C13",
+      "path": "rtl/core/trecap_spectrum_mask_builder.sv",
+      "sha256": "695d9bd8c51c3ee97412854d37a4c5f5b953f793cb05a4a76f83d305e05fe3e0"
+    },
+    {
+      "id": "C14",
+      "path": "rtl/fft/trecap_fft_stage.sv",
+      "sha256": "0f8795941f9843e1f266cc0ee9d310c4be52d3103e6d750abb455f49880472d1"
+    },
+    {
+      "id": "C15",
+      "path": "rtl/common/round_sat.sv",
+      "sha256": "9fd0c659243e6df041355b6631a1ea3a791713c77472d9c067ae265058531457"
+    },
+    {
+      "id": "C16",
+      "path": "verification/tsh2/rtl/trecap_spectral_exporter.sv",
+      "sha256": "7a041daa6f32486e3f3e2c4bfdb95b9a5dc6277f6b0f4ba7f525fcb082a258be"
+    },
+    {
+      "id": "C17",
+      "path": "verification/tsh2/rtl/trecap_core_export_observed.sv",
+      "sha256": "a3e887bb2383ab6ca11d5a1d1f8eef184f9f855510171cfb531588448a9fada9"
     }
   ],
   "archived_source_bindings": [],
   "plates": [
     {
       "number": 1,
-      "title": "One project, adapted inputs, one numerical core",
+      "title": "T-RECAP multi-signal system architecture",
       "slug": "01-system-overview",
       "source_ids": [
-        "C01",
         "A01",
         "A02",
         "A03",
+        "A04",
+        "C01",
         "R01",
         "R04",
         "R05"
@@ -141,11 +187,13 @@
     },
     {
       "number": 2,
-      "title": "Input contracts and application boundaries",
+      "title": "Input contracts and build configurations",
       "slug": "02-input-profiles",
       "source_ids": [
-        "A01",
-        "A02",
+        "A04",
+        "C02",
+        "C07",
+        "C08",
         "R01",
         "R02",
         "R04"
@@ -153,7 +201,7 @@
     },
     {
       "number": 3,
-      "title": "The common spectral-processing datapath",
+      "title": "Shared fixed-point spectral datapath",
       "slug": "03-shared-dsp",
       "source_ids": [
         "C01",
@@ -162,72 +210,208 @@
         "C04",
         "C05",
         "C06",
-        "C07",
-        "C08"
+        "C12",
+        "C13",
+        "C16"
       ]
     },
     {
       "number": 4,
-      "title": "The new I/Q block inside the full architecture",
+      "title": "I/Q frontend and real-IF source formation",
       "slug": "04-rf-input-adapter",
       "source_ids": [
         "R01",
         "R02",
         "R03",
         "R04",
-        "C07"
-      ]
-    },
-    {
-      "number": 5,
-      "title": "Two outputs and the work performed on the laptop",
-      "slug": "05-outputs-and-consumers",
-      "source_ids": [
-        "A03",
-        "A04",
-        "A01",
-        "R04",
-        "R05",
         "C01"
       ]
     },
     {
+      "number": 5,
+      "title": "Output representations and laptop applications",
+      "slug": "05-outputs-and-consumers",
+      "source_ids": [
+        "C06",
+        "C16",
+        "A02",
+        "A03",
+        "A04",
+        "R05",
+        "R08"
+      ]
+    },
+    {
       "number": 6,
-      "title": "Host transport and finite-transaction ownership",
+      "title": "Host transport and finite transaction ownership",
       "slug": "06-host-and-transactions",
       "source_ids": [
         "A01",
         "A02",
+        "A03",
         "R04",
         "R05",
-        "R07",
-        "R08",
-        "C07",
-        "C08"
+        "R08"
       ]
     },
     {
       "number": 7,
-      "title": "Control, buffering and recovery across the system",
+      "title": "Control ownership and backpressure",
       "slug": "07-control-and-backpressure",
       "source_ids": [
-        "A01",
-        "R01",
-        "R02",
-        "R04",
-        "R07",
+        "C01",
         "C07",
-        "V01"
+        "C16",
+        "A01",
+        "R04",
+        "R07"
       ]
     },
     {
       "number": 8,
-      "title": "Platform and verification boundaries",
+      "title": "Platform, implementation and verification evidence",
       "slug": "08-platform-and-verification",
       "source_ids": [
         "R06",
-        "A01",
         "R04",
+        "C01",
+        "V01",
+        "V02",
+        "A01"
+      ]
+    },
+    {
+      "number": 9,
+      "title": "Frame storage and analysis-window hardware",
+      "slug": "09-frame-window-hardware",
+      "source_ids": [
+        "C01",
+        "C02",
+        "C09",
+        "C10",
+        "C11"
+      ]
+    },
+    {
+      "number": 10,
+      "title": "FFT and IFFT memory engines",
+      "slug": "10-transform-memory-engines",
+      "source_ids": [
+        "C03",
+        "C04",
+        "C14",
+        "C02"
+      ]
+    },
+    {
+      "number": 11,
+      "title": "Canonical spectrum and threshold logic",
+      "slug": "11-canonical-mask-hardware",
+      "source_ids": [
+        "C12",
+        "C05",
+        "C13",
+        "C01",
+        "C02"
+      ]
+    },
+    {
+      "number": 12,
+      "title": "Registered radix-2 butterfly arithmetic",
+      "slug": "12-butterfly-arithmetic",
+      "source_ids": [
+        "C14",
+        "C15",
+        "C03",
+        "C04"
+      ]
+    },
+    {
+      "number": 13,
+      "title": "Synthesis window and overlap-add storage",
+      "slug": "13-wola-storage",
+      "source_ids": [
+        "C06",
+        "C02",
+        "C01"
+      ]
+    },
+    {
+      "number": 14,
+      "title": "TSP1 capture, checksum and packetization",
+      "slug": "14-spectral-packet-hardware",
+      "source_ids": [
+        "C16",
+        "C17",
+        "C07",
+        "A01",
+        "R04"
+      ]
+    },
+    {
+      "number": 15,
+      "title": "I/Q polyphase multiply-accumulate datapath",
+      "slug": "15-rf-mac-datapath",
+      "source_ids": [
+        "R01",
+        "R02",
+        "R03"
+      ]
+    },
+    {
+      "number": 16,
+      "title": "I/Q adapter controller and finite alignment",
+      "slug": "16-rf-controller",
+      "source_ids": [
+        "R01",
+        "R02",
+        "R04"
+      ]
+    },
+    {
+      "number": 17,
+      "title": "Host register interface and ownership",
+      "slug": "17-mmio-register-interface",
+      "source_ids": [
+        "R04",
+        "R05",
+        "A01",
+        "A02"
+      ]
+    },
+    {
+      "number": 18,
+      "title": "FIFO storage, prefetch and backpressure",
+      "slug": "18-fifo-and-handshake",
+      "source_ids": [
+        "R04",
+        "R07",
+        "C07",
+        "C16",
+        "A01"
+      ]
+    },
+    {
+      "number": 19,
+      "title": "Finite epoch state and exact tail geometry",
+      "slug": "19-finite-epoch-lifecycle",
+      "source_ids": [
+        "C07",
+        "C08",
+        "A01",
+        "R02",
+        "R04"
+      ]
+    },
+    {
+      "number": 20,
+      "title": "Clock, reset and verification observability",
+      "slug": "20-clock-reset-observability",
+      "source_ids": [
+        "R06",
+        "R04",
+        "C01",
+        "C06",
         "V01",
         "V02"
       ]
@@ -237,170 +421,422 @@
     {
       "file": "01-system-overview.png",
       "repo_path": "docs/architecture/system/01-system-overview.png",
-      "sha256": "90bc52209063beabdd0164ce1d665a60aa3f478283de99e3550c61d407a9fa52",
-      "bytes": 401816,
+      "sha256": "d5e3bf204c70a0f6191a2435a65e7a7eeadfeb55d4914d420a21c44faaaeebf2",
+      "bytes": 446435,
       "plate": 1
     },
     {
       "file": "01-system-overview.svg",
       "repo_path": "docs/architecture/system/01-system-overview.svg",
-      "sha256": "aea228fb39642c290436adb376d4e1a37d098d899971aa49266b200346f73175",
-      "bytes": 23559,
+      "sha256": "cb76ede3b3c97230fa00dcab1a48c3a8b6323c5b625e382c33b55977a4f5a0ca",
+      "bytes": 30647,
       "plate": 1
     },
     {
       "file": "01-system-overview.pdf",
       "repo_path": "docs/architecture/system/01-system-overview.pdf",
-      "sha256": "123581c9fafe6b8419226276761ea983f20311275348a5b9ffc6b7e711b69478",
-      "bytes": 46556,
+      "sha256": "a04f0f948ea8c2e42c15e880cb2e4a05c7c3c3f97e5d9cb5d61c81cacac59457",
+      "bytes": 48664,
       "plate": 1
     },
     {
       "file": "02-input-profiles.png",
       "repo_path": "docs/architecture/system/02-input-profiles.png",
-      "sha256": "20ac0640704175f49c6a5788e56ae25875f4a11987c885dcf5f1296a268427e1",
-      "bytes": 356875,
+      "sha256": "2485f275b62c34dc06242a9d6b2b1aaf4d7b14a82e9f8b5b14332c8a69d56425",
+      "bytes": 393290,
       "plate": 2
     },
     {
       "file": "02-input-profiles.svg",
       "repo_path": "docs/architecture/system/02-input-profiles.svg",
-      "sha256": "620f6a7e93de1cb2c8ef58b6ff9ece3fd2fe4c651c1207f672faf4fb0ee1063e",
-      "bytes": 21330,
+      "sha256": "a5c5243d887b5973d7fad13ad83776393d1e5b5125004bf7689252f443f9d23d",
+      "bytes": 23654,
       "plate": 2
     },
     {
       "file": "02-input-profiles.pdf",
       "repo_path": "docs/architecture/system/02-input-profiles.pdf",
-      "sha256": "9ab52e9e0e2149de29582ef34a050801bd2e28264bfd9399602650afb41e21ee",
-      "bytes": 46261,
+      "sha256": "e6e348dfb325ba9ad2bf1f187610ec36a404625f3b6fef97cdb3b74a9be30344",
+      "bytes": 47513,
       "plate": 2
     },
     {
       "file": "03-shared-dsp.png",
       "repo_path": "docs/architecture/system/03-shared-dsp.png",
-      "sha256": "48d9f85fc17777a9986a58190d37c550ffd3efe53cc2df543fae6e8d7c1652d7",
-      "bytes": 383929,
+      "sha256": "f2d39b6417e051ec258eb1bd7c398464d44e7dd6d825cf8f592d02bda18b53e2",
+      "bytes": 402450,
       "plate": 3
     },
     {
       "file": "03-shared-dsp.svg",
       "repo_path": "docs/architecture/system/03-shared-dsp.svg",
-      "sha256": "5955ca4dfb7680e395043d4d59850e9bb68fdcac698e9f96483a958722383112",
-      "bytes": 23705,
+      "sha256": "c046212a1331ae1bd8bb5da44cedebc98de177e6fa1bc04eba963c93178855df",
+      "bytes": 25384,
       "plate": 3
     },
     {
       "file": "03-shared-dsp.pdf",
       "repo_path": "docs/architecture/system/03-shared-dsp.pdf",
-      "sha256": "c75950089e49b1dde2563a12b2fbc20bf21b4e420ddb044f2b5f0e496d9e8039",
-      "bytes": 48354,
+      "sha256": "78e15367f30df622ccf09fc4540d976ede6678494d626d2abf21fa0398685382",
+      "bytes": 49792,
       "plate": 3
     },
     {
       "file": "04-rf-input-adapter.png",
       "repo_path": "docs/architecture/system/04-rf-input-adapter.png",
-      "sha256": "a5e4ff519d746e402bf838fccc0307802f0c60f621421ea547caa7f0384386aa",
-      "bytes": 393573,
+      "sha256": "3c3068d25303135257773d866c27c61c85493c5b9926e1f2a03b47c424b8ba94",
+      "bytes": 381764,
       "plate": 4
     },
     {
       "file": "04-rf-input-adapter.svg",
       "repo_path": "docs/architecture/system/04-rf-input-adapter.svg",
-      "sha256": "c766f40dff190e3a52d5807114a2876391cf397e78b78ac30461ed94adbc18a3",
-      "bytes": 24405,
+      "sha256": "12dc9ffc92307fabe0388ce0933fe1107734562c026bb9606ab05b86fc7c395d",
+      "bytes": 25114,
       "plate": 4
     },
     {
       "file": "04-rf-input-adapter.pdf",
       "repo_path": "docs/architecture/system/04-rf-input-adapter.pdf",
-      "sha256": "53b6875f7b0d178aeb7da5ee3ee02319f30bdf11773b36a36f86de78e0bcd648",
-      "bytes": 49984,
+      "sha256": "e09064af2eee4baa4c09480b61963881a99d84cc63a50aedfe0b796860b508c8",
+      "bytes": 47883,
       "plate": 4
     },
     {
       "file": "05-outputs-and-consumers.png",
       "repo_path": "docs/architecture/system/05-outputs-and-consumers.png",
-      "sha256": "f43e0d5175bd23a9d159068e09e4cbdc5f61fbf44398499fa5722418061676ae",
-      "bytes": 418530,
+      "sha256": "b037e9dfcf805d8884a22cf7ae533fc808c6d266a485041c016c5439598051c3",
+      "bytes": 394523,
       "plate": 5
     },
     {
       "file": "05-outputs-and-consumers.svg",
       "repo_path": "docs/architecture/system/05-outputs-and-consumers.svg",
-      "sha256": "ea9a19169287d4e563ba7ea11ae268d3d7df216e3c6082a03c9a3f49f7ca4b22",
-      "bytes": 23846,
+      "sha256": "ce704668a0519b62485e9be40a997bc361651b906d8c47c54517c0a4e0ea8a42",
+      "bytes": 26162,
       "plate": 5
     },
     {
       "file": "05-outputs-and-consumers.pdf",
       "repo_path": "docs/architecture/system/05-outputs-and-consumers.pdf",
-      "sha256": "48dcf6a5b9cdd432f98f7e3595d38fe36e3457049cb05670bacf58cc39b0875b",
-      "bytes": 48066,
+      "sha256": "1113f5e99aaeb331eb766eba2a22dcc6565d4cafed39853ec387db9cae085b30",
+      "bytes": 47960,
       "plate": 5
     },
     {
       "file": "06-host-and-transactions.png",
       "repo_path": "docs/architecture/system/06-host-and-transactions.png",
-      "sha256": "acdd425a2514fc04e6180d380dc4d9a4f453a624de36fee9b02ef912fd2a057c",
-      "bytes": 409450,
+      "sha256": "be8ce9972d96af9a977440e6c5a127a513642ed33d8cf6bb41918929eec66387",
+      "bytes": 396483,
       "plate": 6
     },
     {
       "file": "06-host-and-transactions.svg",
       "repo_path": "docs/architecture/system/06-host-and-transactions.svg",
-      "sha256": "b63920f2707171feef376c78f72e86679a4a44922f4aaacf45673a5fb92e925d",
-      "bytes": 24347,
+      "sha256": "934e6636d1eea36d4634d5d4f99978a2c7bbd1962fefea6d0534fa2e93b71322",
+      "bytes": 24694,
       "plate": 6
     },
     {
       "file": "06-host-and-transactions.pdf",
       "repo_path": "docs/architecture/system/06-host-and-transactions.pdf",
-      "sha256": "486bfa6147d6e6b89ca260a26ee2504cd14090a52d40a3c3e043f9cef514711f",
-      "bytes": 48129,
+      "sha256": "f058b2c4a0e2b146d614acf6ae24e0bc7d5885f57c26b686073d40a249cc75f1",
+      "bytes": 44808,
       "plate": 6
     },
     {
       "file": "07-control-and-backpressure.png",
       "repo_path": "docs/architecture/system/07-control-and-backpressure.png",
-      "sha256": "f133225b941c8f06150750abea27438e265aaf580b7d4738c014e6b33130cef4",
-      "bytes": 426162,
+      "sha256": "ebad25f4a6c507de4007267bcf136f5cdb01726fc296a51bf75d7f798d456d0d",
+      "bytes": 407028,
       "plate": 7
     },
     {
       "file": "07-control-and-backpressure.svg",
       "repo_path": "docs/architecture/system/07-control-and-backpressure.svg",
-      "sha256": "7aa76042641875b5a28f88cefd517d2075cea499c9023622dc774aa8c378bbc3",
-      "bytes": 25789,
+      "sha256": "69e051f2336d17c6c52faeebe81decccc7706e3c0391f867e088a461cf0fa3fb",
+      "bytes": 24738,
       "plate": 7
     },
     {
       "file": "07-control-and-backpressure.pdf",
       "repo_path": "docs/architecture/system/07-control-and-backpressure.pdf",
-      "sha256": "fde98b19280d8ab9250b8f436ae2c73a7f83efba13b5e7d94a83853b92186861",
-      "bytes": 45761,
+      "sha256": "0395665b6693917c6182775298540281f853ea631879e2ea63ec22d97a7977c7",
+      "bytes": 46580,
       "plate": 7
     },
     {
       "file": "08-platform-and-verification.png",
       "repo_path": "docs/architecture/system/08-platform-and-verification.png",
-      "sha256": "e2eebaa49d304aea40a47dac8030057f49413dcf4cfefeb1b871a8fd84955fd7",
-      "bytes": 412919,
+      "sha256": "bb31f7ba93d43fae212ad5e0212b3c489ba5b3521eb086c52c89c150f926293d",
+      "bytes": 407820,
       "plate": 8
     },
     {
       "file": "08-platform-and-verification.svg",
       "repo_path": "docs/architecture/system/08-platform-and-verification.svg",
-      "sha256": "2d196982a55fafac7298c50e20a554c87fb31ea0ceb7d73ab0295b4f2dd9e67d",
-      "bytes": 23149,
+      "sha256": "73bb4be622b12f8f49ef484734d2366c47da1f09a230b6d9654c95d645281a76",
+      "bytes": 24785,
       "plate": 8
     },
     {
       "file": "08-platform-and-verification.pdf",
       "repo_path": "docs/architecture/system/08-platform-and-verification.pdf",
-      "sha256": "752a089f9342ac9c251e9880140e92dbac6a419b1b139bda2ba5724121ff277c",
-      "bytes": 48850,
+      "sha256": "90c0a2f0e978cd240d3b3d299beb0c5dfd091891ca1d84053dca76dccc62235d",
+      "bytes": 47396,
       "plate": 8
+    },
+    {
+      "file": "09-frame-window-hardware.png",
+      "repo_path": "docs/architecture/system/09-frame-window-hardware.png",
+      "sha256": "bbfc2792d8e2ba1ec867296a916ed72885dc064b2406af73aaa934e82f0d020e",
+      "bytes": 393397,
+      "plate": 9
+    },
+    {
+      "file": "09-frame-window-hardware.svg",
+      "repo_path": "docs/architecture/system/09-frame-window-hardware.svg",
+      "sha256": "614435ba0929506828c73d446ca1cb81338ba5f7fce6c9424e040681c49ec904",
+      "bytes": 31571,
+      "plate": 9
+    },
+    {
+      "file": "09-frame-window-hardware.pdf",
+      "repo_path": "docs/architecture/system/09-frame-window-hardware.pdf",
+      "sha256": "e6b8a8f6c63a2626281f9a1e4e1fff1bd63fcae5c14306ef2f2c25d5e9d2f779",
+      "bytes": 48868,
+      "plate": 9
+    },
+    {
+      "file": "10-transform-memory-engines.png",
+      "repo_path": "docs/architecture/system/10-transform-memory-engines.png",
+      "sha256": "5c2962ff1ae0533c1b14a1ac9c8471befe45e26857c3102f562e30c20e95f8ae",
+      "bytes": 408680,
+      "plate": 10
+    },
+    {
+      "file": "10-transform-memory-engines.svg",
+      "repo_path": "docs/architecture/system/10-transform-memory-engines.svg",
+      "sha256": "ad299eb1e2c9503a210a5342be34c849c141762a8fc59d14039cd29dea488e61",
+      "bytes": 31635,
+      "plate": 10
+    },
+    {
+      "file": "10-transform-memory-engines.pdf",
+      "repo_path": "docs/architecture/system/10-transform-memory-engines.pdf",
+      "sha256": "109baacfe8e5e75b6c7d025d48ee45d4d9cabddd4ed2b6b87b5f74d2b786ca60",
+      "bytes": 50141,
+      "plate": 10
+    },
+    {
+      "file": "11-canonical-mask-hardware.png",
+      "repo_path": "docs/architecture/system/11-canonical-mask-hardware.png",
+      "sha256": "8cc4d08a8fb863df842b0c359b474147d725e3f282849b435e5d22b8f106567a",
+      "bytes": 394027,
+      "plate": 11
+    },
+    {
+      "file": "11-canonical-mask-hardware.svg",
+      "repo_path": "docs/architecture/system/11-canonical-mask-hardware.svg",
+      "sha256": "f9b07cacd0d40188dcfd42c32dd7c483f443139e57b755a4d88458576b51d43b",
+      "bytes": 31638,
+      "plate": 11
+    },
+    {
+      "file": "11-canonical-mask-hardware.pdf",
+      "repo_path": "docs/architecture/system/11-canonical-mask-hardware.pdf",
+      "sha256": "391d870b9919da76352b964b535cf05f57d89b9445e26925691a45985a5dea67",
+      "bytes": 48380,
+      "plate": 11
+    },
+    {
+      "file": "12-butterfly-arithmetic.png",
+      "repo_path": "docs/architecture/system/12-butterfly-arithmetic.png",
+      "sha256": "95c7807489d1226c49271fe66c2bb9a9cd40ed31157c1e8f10c866c1ef56717e",
+      "bytes": 349320,
+      "plate": 12
+    },
+    {
+      "file": "12-butterfly-arithmetic.svg",
+      "repo_path": "docs/architecture/system/12-butterfly-arithmetic.svg",
+      "sha256": "70965fe9b6753d8e31d205c0f9f8abacf832ca58690202f0783fabefb80af040",
+      "bytes": 35245,
+      "plate": 12
+    },
+    {
+      "file": "12-butterfly-arithmetic.pdf",
+      "repo_path": "docs/architecture/system/12-butterfly-arithmetic.pdf",
+      "sha256": "19e6f106285b0707b42a66451bd55e61ee6affa69bb8eeec3daa3d5c9fc7f329",
+      "bytes": 50895,
+      "plate": 12
+    },
+    {
+      "file": "13-wola-storage.png",
+      "repo_path": "docs/architecture/system/13-wola-storage.png",
+      "sha256": "81342ee45ae5c0bccb2fc2e517f76aaf43924e03b5fec390d13a6ee7ec1bebc5",
+      "bytes": 423571,
+      "plate": 13
+    },
+    {
+      "file": "13-wola-storage.svg",
+      "repo_path": "docs/architecture/system/13-wola-storage.svg",
+      "sha256": "1871dcd7671c9edf885634dc176ea96d9e6290e2399c4ea6b536c6e75be69a7a",
+      "bytes": 32020,
+      "plate": 13
+    },
+    {
+      "file": "13-wola-storage.pdf",
+      "repo_path": "docs/architecture/system/13-wola-storage.pdf",
+      "sha256": "335db67408c2589eef842f5ec527a8e6cfe6ea41b49e5d62a3db1afcfa10d788",
+      "bytes": 48553,
+      "plate": 13
+    },
+    {
+      "file": "14-spectral-packet-hardware.png",
+      "repo_path": "docs/architecture/system/14-spectral-packet-hardware.png",
+      "sha256": "b61b05168145eac0e177d09a9bee774fd27bcc0a66266da7bf201581ef602333",
+      "bytes": 454793,
+      "plate": 14
+    },
+    {
+      "file": "14-spectral-packet-hardware.svg",
+      "repo_path": "docs/architecture/system/14-spectral-packet-hardware.svg",
+      "sha256": "352ed597bac0d66e4d80e30104f671f99f7ce1c6075f033e17ffd64dbd1baab7",
+      "bytes": 33684,
+      "plate": 14
+    },
+    {
+      "file": "14-spectral-packet-hardware.pdf",
+      "repo_path": "docs/architecture/system/14-spectral-packet-hardware.pdf",
+      "sha256": "fd38079cd02cd8ec40ead6ce0f2d112ed1d084fed25a534cac4f977a35e457f3",
+      "bytes": 52403,
+      "plate": 14
+    },
+    {
+      "file": "15-rf-mac-datapath.png",
+      "repo_path": "docs/architecture/system/15-rf-mac-datapath.png",
+      "sha256": "e0d3b5458e29bd8c647f53a131f516a93e499193dec236bedaacdb5867a6eb25",
+      "bytes": 431669,
+      "plate": 15
+    },
+    {
+      "file": "15-rf-mac-datapath.svg",
+      "repo_path": "docs/architecture/system/15-rf-mac-datapath.svg",
+      "sha256": "d9e734dfdb3dde94ccea07120878e465f249bd542f73d35440d545fa01e88191",
+      "bytes": 36710,
+      "plate": 15
+    },
+    {
+      "file": "15-rf-mac-datapath.pdf",
+      "repo_path": "docs/architecture/system/15-rf-mac-datapath.pdf",
+      "sha256": "d3e91933a3dfa87a6a62647664bb3da42c14a085702ada79d45d65669a2a6cba",
+      "bytes": 51131,
+      "plate": 15
+    },
+    {
+      "file": "16-rf-controller.png",
+      "repo_path": "docs/architecture/system/16-rf-controller.png",
+      "sha256": "e849b07c9adc6c1ef0b157a1ba24a201102870166dd5908d6b3ea40b6c01e02c",
+      "bytes": 449947,
+      "plate": 16
+    },
+    {
+      "file": "16-rf-controller.svg",
+      "repo_path": "docs/architecture/system/16-rf-controller.svg",
+      "sha256": "3b8eecf9d33f11f3576c517eec8e99cedb8ff767ae7a75c34b5bc63fde9a77cc",
+      "bytes": 31023,
+      "plate": 16
+    },
+    {
+      "file": "16-rf-controller.pdf",
+      "repo_path": "docs/architecture/system/16-rf-controller.pdf",
+      "sha256": "d217be9d03f01704c682bee84862e9d7b2960e1f37d3986f2da66f522806e441",
+      "bytes": 49668,
+      "plate": 16
+    },
+    {
+      "file": "17-mmio-register-interface.png",
+      "repo_path": "docs/architecture/system/17-mmio-register-interface.png",
+      "sha256": "4794f1cd56b346f68d191fd4d7c331fd4c82e4c6b4dca78f33a3bc64ef0f421b",
+      "bytes": 438365,
+      "plate": 17
+    },
+    {
+      "file": "17-mmio-register-interface.svg",
+      "repo_path": "docs/architecture/system/17-mmio-register-interface.svg",
+      "sha256": "9e54aab14574258f30da2da98e4217da6ba0ea9271bcb2393b6db5fbed925934",
+      "bytes": 27444,
+      "plate": 17
+    },
+    {
+      "file": "17-mmio-register-interface.pdf",
+      "repo_path": "docs/architecture/system/17-mmio-register-interface.pdf",
+      "sha256": "a6e73c19c548b768991c22307e1f7acafd385abba635ebb8790873279059dcfa",
+      "bytes": 49438,
+      "plate": 17
+    },
+    {
+      "file": "18-fifo-and-handshake.png",
+      "repo_path": "docs/architecture/system/18-fifo-and-handshake.png",
+      "sha256": "06a7752931d7ebe6dc40f3ae47dcc409e563215b015f7404577428360436c478",
+      "bytes": 434854,
+      "plate": 18
+    },
+    {
+      "file": "18-fifo-and-handshake.svg",
+      "repo_path": "docs/architecture/system/18-fifo-and-handshake.svg",
+      "sha256": "acc38f8f9b1c0106cee8bee42957cb87121e893617f35a84420629d28620e21d",
+      "bytes": 30915,
+      "plate": 18
+    },
+    {
+      "file": "18-fifo-and-handshake.pdf",
+      "repo_path": "docs/architecture/system/18-fifo-and-handshake.pdf",
+      "sha256": "aa4fde5d57a2963b014c82395d1dc76e5a88bb7127bf03f16ec360d32e0dfe3f",
+      "bytes": 50751,
+      "plate": 18
+    },
+    {
+      "file": "19-finite-epoch-lifecycle.png",
+      "repo_path": "docs/architecture/system/19-finite-epoch-lifecycle.png",
+      "sha256": "091fd0055d4583694a55cc8047c8a4bd4461396cb496f11c165693eb3a93a446",
+      "bytes": 426970,
+      "plate": 19
+    },
+    {
+      "file": "19-finite-epoch-lifecycle.svg",
+      "repo_path": "docs/architecture/system/19-finite-epoch-lifecycle.svg",
+      "sha256": "15ccbd99c4efa9810c9920b3344bf9da19f1c5bc7ee7de213454c4a5308365ed",
+      "bytes": 26145,
+      "plate": 19
+    },
+    {
+      "file": "19-finite-epoch-lifecycle.pdf",
+      "repo_path": "docs/architecture/system/19-finite-epoch-lifecycle.pdf",
+      "sha256": "ec4be8202809995d4b2a4dce4f6b772344bd09c69c43d34dac50b8e1b3981935",
+      "bytes": 49113,
+      "plate": 19
+    },
+    {
+      "file": "20-clock-reset-observability.png",
+      "repo_path": "docs/architecture/system/20-clock-reset-observability.png",
+      "sha256": "cfe11ba7c06baa1d95db6dc02d828a1cb44cda186faf5cb4ec259dcbced6a032",
+      "bytes": 462040,
+      "plate": 20
+    },
+    {
+      "file": "20-clock-reset-observability.svg",
+      "repo_path": "docs/architecture/system/20-clock-reset-observability.svg",
+      "sha256": "562fac6be2e046f14ea96f0e6eaa11ef14ef308597db52ce76d9ddec3fc08567",
+      "bytes": 28080,
+      "plate": 20
+    },
+    {
+      "file": "20-clock-reset-observability.pdf",
+      "repo_path": "docs/architecture/system/20-clock-reset-observability.pdf",
+      "sha256": "52c9341c172fbe8d5ae5fbec65af778f375e3f03d3d85458da511dadcaa0d2fb",
+      "bytes": 48374,
+      "plate": 20
     }
   ],
   "layout_audit": [
@@ -409,9 +845,12 @@
       "status": "PASS",
       "nodes": 9,
       "edges": 8,
-      "text_items": 32,
+      "text_items": 40,
       "text_containment": "PASS",
       "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
       "png_pixels": [
         2700,
         1800
@@ -421,11 +860,14 @@
     {
       "plate": 2,
       "status": "PASS",
-      "nodes": 8,
+      "nodes": 9,
       "edges": 6,
-      "text_items": 30,
+      "text_items": 32,
       "text_containment": "PASS",
       "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
       "png_pixels": [
         2700,
         1800
@@ -437,9 +879,12 @@
       "status": "PASS",
       "nodes": 9,
       "edges": 8,
-      "text_items": 32,
+      "text_items": 33,
       "text_containment": "PASS",
       "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
       "png_pixels": [
         2700,
         1800
@@ -450,10 +895,13 @@
       "plate": 4,
       "status": "PASS",
       "nodes": 9,
-      "edges": 9,
+      "edges": 8,
       "text_items": 32,
       "text_containment": "PASS",
       "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
       "png_pixels": [
         2700,
         1800
@@ -464,10 +912,13 @@
       "plate": 5,
       "status": "PASS",
       "nodes": 9,
-      "edges": 8,
-      "text_items": 32,
+      "edges": 9,
+      "text_items": 33,
       "text_containment": "PASS",
       "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
       "png_pixels": [
         2700,
         1800
@@ -478,10 +929,13 @@
       "plate": 6,
       "status": "PASS",
       "nodes": 9,
-      "edges": 9,
+      "edges": 8,
       "text_items": 32,
       "text_containment": "PASS",
       "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
       "png_pixels": [
         2700,
         1800
@@ -492,10 +946,13 @@
       "plate": 7,
       "status": "PASS",
       "nodes": 9,
-      "edges": 10,
+      "edges": 8,
       "text_items": 32,
       "text_containment": "PASS",
       "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
       "png_pixels": [
         2700,
         1800
@@ -506,10 +963,217 @@
       "plate": 8,
       "status": "PASS",
       "nodes": 9,
-      "edges": 6,
+      "edges": 8,
       "text_items": 32,
       "text_containment": "PASS",
       "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 9,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 9,
+      "text_items": 38,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 10,
+      "status": "PASS",
+      "nodes": 8,
+      "edges": 9,
+      "text_items": 39,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 11,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 11,
+      "text_items": 39,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 12,
+      "status": "PASS",
+      "nodes": 11,
+      "edges": 13,
+      "text_items": 41,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 13,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 9,
+      "text_items": 39,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 14,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 10,
+      "text_items": 41,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 15,
+      "status": "PASS",
+      "nodes": 11,
+      "edges": 13,
+      "text_items": 44,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 16,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 9,
+      "text_items": 41,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 17,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 9,
+      "text_items": 34,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 18,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 8,
+      "text_items": 38,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 19,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 9,
+      "text_items": 33,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 20,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 8,
+      "text_items": 35,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "module_rectangle_margins": "PASS",
+      "module_rectangle_overlaps": 0,
+      "wire_label_module_intersections": 0,
       "png_pixels": [
         2700,
         1800
@@ -518,10 +1182,10 @@
     }
   ],
   "documents": {
-    "README.md": "1688dd2b6d9ef49d5ef58b1031862073560aded0c3a3c33b454ea5804920c86f",
-    "index.html": "13660f5820a944eb097ada9d83b65c9a59e237fe1fbb6914bc016a9f26f89a49",
-    "TRECAP_System_Architecture_Atlas.tex": "2187fbe1943a68a9db11aa8a2e9f7e1dbb256e1bfcf07d846de4a7cb8c2ef66c",
-    "TRECAP_System_Architecture_Atlas.pdf": "dedcad81c4b81f846f827e512c291603cc9f8f24b01872dd3aaebf550fbe152d",
-    "visual_review.json": "1ef85498af84e161f7194df6bb08963a32d16205ff1b7d6be224c645ea2910d6"
+    "README.md": "01b7a53480ab9c918a61d430b69d0867dcbfa644595586a5f9d046af990af488",
+    "index.html": "539ce3f41f2ff6360183f3aede51e8502d3f76eb8e8c58eb0615b55c46fcc79b",
+    "TRECAP_System_Architecture_Atlas.tex": "606f86ba6c94b857d09432dc7d8d77163c565a4ca6e65c6eebd05b23f6d5440c",
+    "TRECAP_System_Architecture_Atlas.pdf": "eb00aa0109551d9b771bff55caa6089e9b86c1e010a3f5377a9881da4870ffc1",
+    "visual_review.json": "9ef4ebf6273a85dd5b8b92b7118f4280957065ee0178ce805d12aff24f6c41ee"
   }
 }

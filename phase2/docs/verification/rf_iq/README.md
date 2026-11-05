@@ -2,7 +2,7 @@
 
 [Read the academic LaTeX report](rf_verification_supplement.pdf). It covers the CU8 I/Q contract, adapter scheduling, requirement traceability, actual RTL waveforms, fresh simulation and the separately identified historical board qualification.
 
-The report uses the eight views from the [RF architecture atlas](../../architecture/rf_iq/index.html). It does not modify the FPGA architecture or claim RF formal/UVM coverage.
+The companion [RF architecture atlas](../../architecture/rf_iq/index.html) provides eight source-level views. The [unified system atlas](../../architecture/system/README.md) explains the complete design and module internals. RF verification has the simulation and physical-evidence scope documented below.
 
 ## Evidence scope
 
@@ -17,7 +17,7 @@ Raw RF recordings, returned sample arrays and large capture archives are exclude
 
 Use the [RF simulation guide](../../../verification/rf_iq/README.md) and its runner. The independent golden model and adapter sources are in [the TRF1 profile](../../../profiles/trf1/README.md).
 
-The earlier TSH2 formal and UVM work remains limited to its documented scope. The new RF adapter and application wrapper have directed and randomized self-checking simulation evidence. No new RF formal proof or RF UVM environment is claimed.
+TSH2 formal and UVM checks cover their documented modules and assumptions. The RF frontend and application wrapper have directed and randomized self-checking simulation evidence. RF formal proof and RF UVM coverage are outside this report's scope.
 
 ## Rebuild the PDF
 

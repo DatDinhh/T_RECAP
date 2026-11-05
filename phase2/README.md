@@ -13,23 +13,23 @@ The [main project README](https://github.com/DatDinhh/T_RECAP#readme) explains t
 ## Application examples and editable specification
 
 - [Three application studies](docs/applications/README.md) include step counting, RF background suppression and audio preprocessing before FLAC, with original-source links and threshold comparisons.
-- [Full editable algorithm specification](docs/algorithm/README.md) transcribes the historical 106-page PDF and adds a separate current-profile and RF supplement.
+- [Full editable algorithm specification](docs/algorithm/README.md) contains the complete 106-page reference transcription and the finite-record audio, acceleration and RF implementation contracts.
 
-## Whole-project architecture after RF integration
+## Unified system architecture
 
 ![Whole-project architecture](docs/architecture/system/01-system-overview.png)
 
-The [unified eight-view atlas](docs/architecture/system/README.md) explains the complete project, from audio, captured acceleration and recorded RF inputs through laptop preparation, HPS transport and FPGA processing to reconstructed Y and spectral TSP1 outputs. Each view includes a written explanation of its blocks and signal flow. The [academic LaTeX PDF](docs/architecture/system/TRECAP_System_Architecture_Atlas.pdf) and editable SVG figures use a consistent pastel palette.
+The [unified 20-view atlas](docs/architecture/system/README.md) explains the complete project, from audio, captured acceleration and recorded RF inputs through laptop preparation, HPS transport and FPGA processing to reconstructed Y and spectral TSP1 outputs. Each view includes a written explanation of its blocks and signal flow. The [academic LaTeX PDF](docs/architecture/system/TRECAP_System_Architecture_Atlas.pdf) and editable SVG figures use a consistent pastel palette.
 
-The common numerical core is shared by two separately fitted applications. TSH2 accepts prepared real samples. TRF1 adds I/Q conversion in FPGA hardware before the same core. The accelerometer experiment captures a bounded record and replays a selected axis through the real-sample path. It does not add a live accelerometer frontend to the FPGA.
+T-RECAP uses one shared numerical core and two build configurations. TSH2 instantiates the real-sample interface for audio and acceleration. TRF1 instantiates the I/Q frontend for RF. Each configuration has its own fitted image and host register contract. Accelerometer acquisition produces a bounded record whose selected axis uses the real-sample path.
 
 ## Recorded RF profile
 
-The **TRF1** profile accepts recorded CU8 I/Q pairs and converts them inside the FPGA into the real signed 12-bit stream used by the existing DSP core. The added hardware performs byte centering, fourfold FIR interpolation, real-IF mixing, rounding and finite-file padding. Audio TSH2 and RF TRF1 are separate fitted applications.
+The **TRF1** profile accepts recorded CU8 I/Q pairs and converts them inside the FPGA into the real signed 12-bit stream used by the shared DSP core. The frontend performs byte centering, fourfold FIR interpolation, real-IF mixing, rounding and finite-file padding. The real-sample TSH2 and I/Q TRF1 paths use separate fitted configurations.
 
 The [RF detail atlas](docs/architecture/rf_iq/README.md) expands the RF-specific implementation. The [RF source guide](profiles/trf1/README.md) maps the RTL, host client and platform dependencies. Start with the unified atlas above for the relationship to the rest of the project.
 
-The [portable RF verification package](verification/rf_iq/README.md) provides independent numerical checks, self-checking RTL suites and executed evidence. The [academic LaTeX report](docs/verification/rf_iq/README.md) includes requirements, waveforms, observed test counts and historical board results. Fresh offline verification and earlier physical captures are explicitly separated. The new RF block is outside the scope of the earlier TSH2 formal and UVM results.
+The [portable RF verification package](verification/rf_iq/README.md) provides independent numerical checks, self-checking RTL suites and executed evidence. The [academic LaTeX report](docs/verification/rf_iq/README.md) includes requirements, waveforms, observed test counts and historical board results. Fresh offline verification and earlier physical captures are explicitly separated. RF frontend verification and TSH2 formal/UVM verification have distinct module scopes.
 
 ## Real-sample profile and objective
 
@@ -58,7 +58,7 @@ The [results guide](docs/project_overview/README.md) separates current physical 
 | Goal | Start here |
 |---|---|
 | Understand the application and view results | [Main README](https://github.com/DatDinhh/T_RECAP#readme), [figures and provenance](docs/project_overview/README.md) |
-| Explore the current architecture in detail | [Eight-view TSH2 atlas](docs/architecture/tsh2/README.md) |
+| Explore the complete architecture and module internals | [Unified 20-view atlas](docs/architecture/system/README.md) |
 | Review the DV methodology and outcome | [Verification portfolio](verification/README.md), [academic PDF and LaTeX](docs/verification/portfolio/README.md) |
 | Run reproducible off-board RTL tests | [Portable TSH2 package](verification/tsh2/README.md) |
 | Inspect physical run evidence | [58-case campaign ledger](docs/results/verification_20261017/README.md) |
@@ -71,22 +71,23 @@ The [results guide](docs/project_overview/README.md) separates current physical 
 
 Start here if you are new to the project. **TSH2 identifies the FPGA implementation and its host interface, THR2 is a threshold setting, and TSP1 is an output format.** They refer to different things.
 
-In one sentence: the **TSH2** FPGA implementation applies **THR2** to FFT-bin power, exports retained spectral powers in **TSP1** packets, and separately produces reconstructed audio **Y**.
+In one sentence: the shared FPGA processor applies **THR2** to FFT-bin power, exports retained spectral powers in **TSP1** packets, and separately produces the reconstructed real signal **Y**.
 
 ### Project names and output labels
 
 | Term | Meaning in this repository |
 |---|---|
 | **T-RECAP** | Threshold-based Reduction and Encoding for Controlled Audio Processing. |
-| **TSH2** | T-RECAP Signal-processing Hardware, version 2. The current finite-file FPGA implementation and its host interface. HPS software uses this interface to configure processing, transfer samples and results, and inspect status and faults. |
+| **TSH2** | T-RECAP Signal-processing Hardware, version 2. The finite-record build configuration for real-valued audio and acceleration samples. HPS software uses its interface to configure processing, transfer samples and results, and inspect status and faults. |
+| **TRF1** | The recorded-I/Q build configuration and its host register interface. Its FPGA frontend converts CU8 pairs into signed 12-bit real intermediate-frequency samples for the shared core. |
 | **TSH1** | T-RECAP Signal-processing Hardware, version 1. The earlier Phase 2 implementation used for the historical 1,024-sample resident-compute comparison. Its timing results must not be read as current TSH2 measurements. |
 | **THR2** | The threshold applied to squared FFT magnitude: `Re(X)^2 + Im(X)^2`. It is expressed in the implementation's fixed-point power units, not percent, decibels or sound-pressure level. Values below it are suppressed. Equality is retained, and DC is protected. |
 | **TSP1** | The project's version-1 spectral packet format. It carries frame metadata and power values, with retained-bin indices in sparse mode. It omits phase, so these packets alone cannot reconstruct the audio. |
-| **Y** | The reconstructed time-domain audio output from the IFFT/WOLA path. This sample stream is separate from TSP1 spectral packets. |
+| **Y** | The reconstructed real sample stream from IFFT/WOLA. It represents audio, an acceleration axis or real IF according to the input contract. It is separate from TSP1 spectral packets. |
 
 ### How software uses TSH2
 
-TSH1 and TSH2 are both Phase 2 implementations. The number identifies an implementation/interface version, not a project phase. TSH2 names the current hardware implementation and the interface used to access it. The signal-processing operations are FFT, thresholding and IFFT/WOLA.
+TSH1 and TSH2 are both Phase 2 implementations. The number identifies an implementation/interface version, not a project phase. TSH2 names the real-sample build configuration and its host interface. TRF1 names the recorded-I/Q configuration. Both use the shared FFT, threshold and IFFT/WOLA processing chain.
 
 Software on the board's ARM HPS uses **memory-mapped registers and FIFO data ports** to:
 
@@ -183,7 +184,9 @@ GitHub Actions executes source hygiene, RTL frontend elaboration, reference func
 | `rtl/`, `spec/`, `config/` | Shared datapath and original architecture source/contracts |
 | `sw/reference_model/` | Fixed-point arithmetic, finite reference processing and artifact generation |
 | `profiles/tsh2/` | Archived finite TCP/MMIO profile, stream wrapper, consumer, monitor and local visualizer |
+| `profiles/trf1/` | Recorded-I/Q frontend, finite-record wrapper, host client and source-bound build configuration |
 | `verification/tsh2/` | Self-contained admitted RTL source/fixtures and portable simulator runner |
+| `verification/rf_iq/` | Independent RF reference, self-checking RTL tests and recorded execution evidence |
 | `verification/campaign_sources/` | Accepted directed bench archive for the larger campaign |
 | `sim/` | Original simulation environments and reference adapter |
 | `sw/hps/`, `sw/pc_dashboard/` | Original DDR/UDP transport and dashboard implementation |

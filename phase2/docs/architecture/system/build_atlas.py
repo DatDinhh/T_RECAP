@@ -60,7 +60,7 @@ def check(output, spec, repo_root):
         raise ValueError("Generator hash or filename changed")
     if sha(Path(__file__).with_name("atlas_definitions.json")) != manifest["definitions"]["sha256"] or manifest["definitions"]["file"] != "atlas_definitions.json":
         raise ValueError("Atlas definitions hash or filename changed")
-    if len(spec["plates"]) != 8 or [p["number"] for p in spec["plates"]] != list(range(1, 9)) or manifest["plates"] != plate_summary(spec):
+    if len(spec["plates"]) != 20 or [p["number"] for p in spec["plates"]] != list(range(1, 21)) or manifest["plates"] != plate_summary(spec):
         raise ValueError("Plate order or reviewed source mapping changed")
     expected_sources = source_bindings(spec, repo_root)
     if expected_sources != manifest["sources"]:
@@ -69,8 +69,8 @@ def check(output, spec, repo_root):
         raise ValueError("Archived-source proof mapping changed")
     expected = {p["slug"] + extension: p["number"] for p in spec["plates"] for extension in (".png", ".svg", ".pdf")}
     names = [item["file"] for item in manifest["artifacts"]]
-    if len(names) != 24 or len(set(names)) != 24 or set(names) != set(expected):
-        raise ValueError("Exactly one PNG, SVG and PDF are required for each of the eight plates")
+    if len(names) != 60 or len(set(names)) != 60 or set(names) != set(expected):
+        raise ValueError("Exactly one PNG, SVG and PDF are required for each of the twenty plates")
     for item in manifest["artifacts"]:
         if Path(item["file"]).name != item["file"] or item["repo_path"] != "docs/architecture/system/" + item["file"] or item["plate"] != expected[item["file"]]:
             raise ValueError("Unsafe artifact path or changed plate association")
@@ -97,7 +97,7 @@ def render(spec, repo_root, output):
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Rectangle
+    from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Rectangle, Ellipse, Polygon
     from matplotlib.font_manager import FontProperties
     from PIL import Image
 
@@ -121,6 +121,7 @@ def render(spec, repo_root, output):
         fig.canvas.draw()
         renderer = fig.canvas.get_renderer()
         registered = []
+        wire_labels = []
         problems = []
 
         def width(text, size, bold=False, mono=False):
@@ -160,7 +161,7 @@ def render(spec, repo_root, output):
 
         # Fixed outer geometry leaves each plate's technical layout fully editable in JSON.
         ax.add_patch(Rectangle((65, 53), 7, 105, color=palette["lav_d"]))
-        text(95, 53, "T-RECAP  /  SYSTEM ARCHITECTURE AFTER RF INTEGRATION", 14, "muted", True)
+        text(95, 53, "T-RECAP  /  MULTI-SIGNAL SYSTEM ARCHITECTURE", 14, "muted", True)
         text(95, 90, plate["title"], 29, "ink", True)
         for n, line in enumerate(wrap(plate["subtitle"], 1510, 16.5)):
             text(95, 140 + 26 * n, line, 16.5, "muted")
@@ -178,6 +179,14 @@ def render(spec, repo_root, output):
         nodes = {node["id"]: node for node in plate["nodes"]}
         if len(nodes) != len(plate["nodes"]):
             raise ValueError(f"Duplicate nodes on plate {plate['number']}")
+        for index,node in enumerate(plate['nodes']):
+            x,y,w,h=node['rect']
+            if x<55 or y<220 or x+w>1745 or y+h>1000:
+                problems.append('Module rectangle outside technical drawing region: '+node['id'])
+            for other in plate['nodes'][index+1:]:
+                ox,oy,ow,oh=other['rect']
+                if max(x,ox)<min(x+w,ox+ow) and max(y,oy)<min(y+h,oy+oh):
+                    problems.append('Overlapping module rectangles: '+node['id']+' / '+other['id'])
 
         def point(node_id, side, offset=0):
             x, y, w, h = nodes[node_id]["rect"]
@@ -196,17 +205,39 @@ def render(spec, repo_root, output):
             routes.append((edge, pts))
             if edge.get("label"):
                 lx, ly = edge["labelAt"]
-                label_lines = wrap(edge["label"], edge.get("labelWidth", 290), 12.5)
+                available = edge.get("labelWidth", 290)
+                # Keep wire labels inside the open routing corridor, never on a module body.
+                for node in plate['nodes']:
+                    nx,ny,nw,nh=node['rect']
+                    if ny-8 <= ly <= ny+nh+8:
+                        if lx <= nx:available=min(available,max(45,2*(nx-lx)-18))
+                        elif lx >= nx+nw:available=min(available,max(45,2*(lx-nx-nw)-18))
+                label_lines = wrap(edge["label"], available, 12.5)
                 content = "\n".join(label_lines)
                 maxw = max(width(line, 12.5) for line in label_lines)
                 box(lx - maxw / 2 - 6, ly - 3, maxw + 12, len(label_lines) * 21 + 4, "background", None, 4, 4)
-                text(lx, ly, content, 12.5, color, align="center", zorder=5)
+                label_artist=text(lx, ly, content, 12.5, color, align="center", zorder=5)
+                wire_labels.append((label_artist,content))
 
         for node in plate["nodes"]:
             x, y, w, h = node["rect"]
             tone = node.get("tone", "blue")
-            box(x + 2, y + 4, w, h, "#EFF1F6", None, 14, 2)
-            box(x, y, w, h, tone, tone + "_d", 14, 3)
+            shape=node.get('shape','module')
+            if shape=='operator':
+                ax.add_patch(Ellipse((x+w/2,y+h/2),w,h,facecolor=palette[tone],edgecolor=palette[tone+'_d'],linewidth=1.8,zorder=3))
+                text(x+w/2,y+h/2-22,node['title'],node.get('titleSize',25),'ink',True,align='center',owner=(x+10,y+10,w-20,h-20))
+                continue
+            if shape=='mux':
+                ax.add_patch(Polygon([(x,y),(x+w,y+18),(x+w,y+h-18),(x,y+h)],closed=True,facecolor=palette[tone],edgecolor=palette[tone+'_d'],linewidth=1.8,zorder=3))
+            else:
+                box(x + 2, y + 4, w, h, "#EFF1F6", None, 9, 2)
+                box(x, y, w, h, tone, tone + "_d", 9, 3)
+            if shape=='register':
+                ax.plot([x+9,x+9],[y+9,y+h-9],color=palette[tone+'_d'],linewidth=1.1,zorder=4)
+                ax.add_patch(Polygon([(x,y+h-31),(x+10,y+h-23),(x,y+h-15)],closed=False,fill=False,edgecolor=palette[tone+'_d'],linewidth=1.2,zorder=4))
+            elif shape=='memory':
+                for k in range(3):
+                    ax.plot([x+w-48,x+w-18],[y+17+8*k,y+17+8*k],color=palette[tone+'_d'],linewidth=1,zorder=4)
             inside = (x + 16, y + 12, w - 32, h - 24)
             title_size = node.get("titleSize", 18)
             title_lines = wrap(node["title"], w - 38, title_size, True)
@@ -237,14 +268,21 @@ def render(spec, repo_root, output):
 
         ax.plot([65, 1735], [1110, 1110], color=palette["border"], linewidth=1)
         for x, label, tone in [(70, "Signal input", "mint"), (340, "DSP / control", "lav"), (615, "Signal outputs", "rose"),
-                               (915, "Host / HPS", "sand"), (1200, "Storage / platform", "blue")]:
+                               (915, "Control / host", "sand"), (1200, "Storage / platform", "blue")]:
             box(x, 1127, 17, 17, tone, tone + "_d", 4)
             text(x + 25, 1126, label, 12.5, "muted")
         text(1730, 1127, "solid: data   dashed: control", 12, "muted", align="right")
         source_ids = ", ".join(plate["source_ids"])
-        text(70, 1160, f"SOURCE BINDINGS: {source_ids}  |  Reviewed source structure, not new execution or timing measurements.", 11.8, "muted")
+        text(70, 1160, f"SOURCE BINDINGS: {source_ids}  |  Implementation structure and numerical contracts.", 11.8, "muted")
         text(1730, 1160, f"SYSTEM / {plate['number']:02d}", 11.8, "muted", align="right")
         fig.canvas.draw()
+        for artist,value in wire_labels:
+            bounds=artist.get_window_extent(fig.canvas.get_renderer()).transformed(ax.transData.inverted())
+            lx0,ly0,lx1,ly1=min(bounds.x0,bounds.x1),min(bounds.y0,bounds.y1),max(bounds.x0,bounds.x1),max(bounds.y0,bounds.y1)
+            for node in plate['nodes']:
+                nx,ny,nw,nh=node['rect']
+                if max(lx0,nx+4)<min(lx1,nx+nw-4) and max(ly0,ny+4)<min(ly1,ny+nh-4):
+                    problems.append('Wire label crosses module '+node['id']+': '+value)
         for artist, owner, value in registered:
             bounds = artist.get_window_extent(fig.canvas.get_renderer()).transformed(ax.transData.inverted())
             xx0, yy0, xx1, yy1 = min(bounds.x0, bounds.x1), min(bounds.y0, bounds.y1), max(bounds.x0, bounds.x1), max(bounds.y0, bounds.y1)
@@ -285,6 +323,7 @@ def render(spec, repo_root, output):
                               "sha256": sha(file), "bytes": file.stat().st_size, "plate": plate["number"]})
         audits.append({"plate": plate["number"], "status": "PASS", "nodes": len(nodes), "edges": len(routes),
                        "text_items": len(registered), "text_containment": "PASS", "orthogonal_route_node_intersections": 0,
+                       "module_rectangle_margins": "PASS", "module_rectangle_overlaps": 0, "wire_label_module_intersections": 0,
                        "png_pixels": [2700, 1800], "visual_review": "See visual_review.json for separate inspection"})
     if failures:
         json_write(output / "layout_errors.json", failures)
@@ -304,13 +343,18 @@ def prose_check(text):
 
 
 def tex_escape(text):
-    for old, new in [('\\', r'\textbackslash{}'), ('&', r'\&'), ('%', r'\%'), ('$', r'\$'), ('#', r'\#'), ('_', r'\_')]:
-        text = text.replace(old, new)
-    return text
+    escape={'\\':r'\textbackslash{}','&':r'\&','%':r'\%','$':r'\$','#':r'\#','_':r'\_','^':r'\textasciicircum{}','{':r'\{','}':r'\}','~':r'\textasciitilde{}','Ã—':r'\ensuremath{\times}','Â²':r'\ensuremath{^2}','â‰¥':r'\ensuremath{\geq}'}
+    return ''.join(escape.get(c,c) for c in text)
 
 
 def write_documents(spec, output):
     import html
+    def responsibility(n):
+        if not n.get('body'):
+            return 'Transfers accepted samples to the finite real-sample source.' if n['id']=='egress' else 'Arithmetic primitive connected by the labeled operand and result wires.'
+        value='. '.join(part.rstrip('.') for part in n['body'])+'.'
+        first=value.split()[0]
+        return value[0].upper()+value[1:] if first.isalpha() and not re.match(r'^\w+\s*=',value) else value
     prose = []
     for p in spec['plates']:
         prose += [p['title'], p['subtitle'], *p['description']]
@@ -322,11 +366,11 @@ def write_documents(spec, output):
         prose_check(text)
     rows = ['# T-RECAP system architecture atlas', '',
             '**Threshold-based Reduction and Encoding for Controlled Audio Processing**', '',
-            'This is the primary whole-project architecture after recorded RF integration. Eight coordinated views connect audio and accelerometer replay, the new I/Q hardware adapter, the shared numerical core, HPS transport and laptop consumers.', '',
+            'Twenty coordinated views describe T-RECAP as a multi-signal processing system. Audio, acceleration and RF source contracts connect to a shared fixed-point spectral core, HPS transport and laptop applications. The atlas expands the overview into frame storage, arithmetic, memory schedules, packet serialization and transaction control.', '',
             '[Open the offline gallery](index.html) | [Read the academic LaTeX atlas](TRECAP_System_Architecture_Atlas.pdf)', '',
-            'TSH2 and TRF1 are alternative fitted applications. Their shared core is one implementation reused by both profiles. The diagrams do not imply a runtime input selector or simultaneous processing of all signal types.', '',
+            'The build configuration selects TSH2 for real-sample inputs or TRF1 for I/Q inputs. Each profile has its own fitted image and instantiates the same numerical core. Profile identity, source geometry and result metadata define each finite transaction.', '',
             'The colors identify responsibilities consistently. Sage denotes signal input, blue denotes storage or platform interfaces, lilac denotes DSP, peach denotes returned signal representations, and warm cream denotes host software or transaction control.', '',
-            '## Eight views', '', '| View | What it explains |', '|---|---|']
+            '## Twenty coordinated views', '', '| View | What it explains |', '|---|---|']
     for p in spec['plates']:
         rows.append(f"| [{p['number']}. {p['title']}]({p['slug']}.png) | {p['subtitle']} |")
     for p in spec['plates']:
@@ -334,7 +378,7 @@ def write_documents(spec, output):
         rows += [item+'\n' for item in p['description']]
         rows += ['| Block | Responsibility |', '|---|---|']
         for n in p['nodes']:
-            rows.append('| '+n['title']+' | '+'. '.join(n['body'])+'. |')
+            rows.append('| '+n['title']+' | '+responsibility(n)+' |')
         rows += ['', '**Interpretation:** '+p['notes'][0]['body'], '',
                  'Source bindings: '+', '.join(p['source_ids'])+'.', '',
                  '[Editable SVG]('+p['slug']+'.svg) | [Vector PDF]('+p['slug']+'.pdf)']
@@ -354,27 +398,27 @@ def write_documents(spec, output):
     cards=[]
     for p in spec['plates']:
         paragraphs=''.join('<p>'+html.escape(x)+'</p>' for x in p['description'])
-        blocks=''.join('<tr><th>'+html.escape(n['title'])+'</th><td>'+html.escape('. '.join(n['body'])+'.')+'</td></tr>' for n in p['nodes'])
+        blocks=''.join('<tr><th>'+html.escape(n['title'])+'</th><td>'+html.escape(responsibility(n))+'</td></tr>' for n in p['nodes'])
         cards.append(f'<section id="view{p["number"]}"><h2>{p["number"]}. {html.escape(p["title"])}</h2><p class="lead">{html.escape(p["subtitle"])}</p><a class="figure" href="{p["slug"]}.svg" target="_blank"><img src="{p["slug"]}.png" alt="{html.escape(p["title"])}"></a><div class="description">{paragraphs}<details><summary>Block responsibilities and source bindings</summary><table>{blocks}</table><p>Source bindings: {html.escape(", ".join(p["source_ids"]))}.</p></details><p class="note">{html.escape(p["notes"][0]["body"])}</p></div></section>')
     nav=''.join(f'<a href="#view{p["number"]}">{p["number"]}. {html.escape(p["title"])}</a>' for p in spec['plates'])
     doc='''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>T-RECAP System Architecture Atlas</title><style>
     :root{color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#fffcf6;color:#263540;font-family:Georgia,"Times New Roman",serif;line-height:1.65}header,main{max-width:1280px;margin:auto;padding:28px}header{padding-top:50px}h1{font-size:clamp(30px,4vw,52px);line-height:1.12;margin:10px 0}h2{font-size:29px;line-height:1.2}.eyebrow{letter-spacing:.12em;color:#65798d;font-family:Arial,sans-serif;font-size:12px;text-transform:uppercase}.intro{font-size:19px;max-width:900px}nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}nav a{display:block;background:#e4eef7;padding:10px 14px;border-radius:8px;font-size:15px}a{color:#315f80;text-underline-offset:3px}section{margin:25px 0 55px;padding:26px;background:white;border:1px solid #dce1e5;border-radius:15px;scroll-margin-top:20px}.lead{color:#5d6975}.figure{display:block;background:#fffefa;border:1px solid #e3e5e6;border-radius:9px;overflow:auto}.figure img{width:100%;height:auto;display:block}.description{max-width:980px;margin:25px auto 0;font-size:18px}.note{background:#f6edd9;padding:16px 19px;border-left:4px solid #b49b65}details{background:#f4f1f7;padding:15px 20px;border-radius:8px}summary{cursor:pointer;font-weight:bold}table{border-collapse:collapse;width:100%;font-size:15px;margin-top:16px}th,td{padding:9px 8px;text-align:left;vertical-align:top;border-bottom:1px solid #d7d3df}th{width:32%}footer{max-width:1280px;margin:auto;padding:28px;color:#617282}.links a{display:inline-block;margin-right:20px}@media(max-width:700px){header,main{padding:18px}nav{grid-template-columns:1fr}section{padding:15px}.description{font-size:16px}h2{font-size:25px}}
-    </style></head><body><header><div class="eyebrow">Senior design project / source-derived architecture</div><h1>T-RECAP System Architecture Atlas</h1><p class="intro">Eight coordinated views of the complete project after RF integration, from recorded signal inputs through HPS and FPGA processing to laptop results.</p><p>Audio TSH2 and RF TRF1 are separate fitted applications that reuse the same numerical core. Accelerometer data follows a local capture-and-replay workflow into the real-sample path.</p><p class="links"><a href="TRECAP_System_Architecture_Atlas.pdf">Academic LaTeX atlas</a><a href="README.md">Full written guide</a></p><nav>'''+nav+'</nav></header><main>'+''.join(cards)+'</main><footer>Click a diagram to open its scalable SVG. These views describe source structure and evidence boundaries. They do not represent a new hardware run.</footer></body></html>\n'
+    </style></head><body><header><div class="eyebrow">Senior design project / source-derived architecture</div><h1>T-RECAP System Architecture Atlas</h1><p class="intro">Twenty coordinated views of the multi-signal system, from recorded input contracts to individual arithmetic resources, memories, controllers and laptop applications.</p><p>Audio TSH2 and RF TRF1 are separate fitted applications that reuse the same numerical core. Accelerometer data follows a local capture-and-replay workflow into the real-sample path.</p><p class="links"><a href="TRECAP_System_Architecture_Atlas.pdf">Academic LaTeX atlas</a><a href="README.md">Full written guide</a></p><nav>'''+nav+'</nav></header><main>'+''.join(cards)+'</main><footer>Click a diagram to open its scalable SVG. These views describe source structure and evidence boundaries. They do not represent a new hardware run.</footer></body></html>\n'
     (output/'index.html').write_text(doc, encoding='utf-8')
 
     tex=[r'\documentclass[11pt,letterpaper]{article}',r'\usepackage[margin=0.65in,headheight=15pt]{geometry}',
-         r'\usepackage[T1]{fontenc}',r'\usepackage{mathptmx,graphicx,booktabs,tabularx,array,xcolor,caption,fancyhdr,float}',
+         r'\usepackage[T1]{fontenc}',r'\usepackage{mathptmx,graphicx,booktabs,tabularx,longtable,array,xcolor,caption,fancyhdr,float}',
          r'\usepackage[hyphens]{url}',r'\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue]{hyperref}',
          r'\hypersetup{pdftitle={T-RECAP System Architecture Atlas},pdfauthor={T-RECAP Senior Design Project}}',
-         r'\pagestyle{fancy}\fancyhf{}\lhead{\small T-RECAP System Architecture}\rhead{\small After RF integration}\cfoot{\thepage}',
+         r'\pagestyle{fancy}\fancyhf{}\lhead{\small T-RECAP System Architecture}\rhead{\small Multi-signal architecture}\cfoot{\thepage}',
          r'\setlength{\parindent}{1em}\setlength{\parskip}{4pt}\setlength{\emergencystretch}{2em}',
          r'\captionsetup{font=small,labelfont=bf}',r'\newcolumntype{Y}{>{\raggedright\arraybackslash}X}',r'\begin{document}',
          r'\begin{center}{\LARGE\bfseries T-RECAP System Architecture Atlas}\par\vspace{6pt}',
-         r'{\large Complete project after recorded RF integration}\par\vspace{6pt}',
+         r'{\large Multi-signal system and detailed hardware design}\par\vspace{6pt}',
          r'{\small Threshold-based Reduction and Encoding for Controlled Audio Processing}\par\vspace{4pt}',
          r'{\small Senior design project}\end{center}',
-         'This atlas explains the complete project through eight coordinated views. The RF extension is placed in the same system context as audio processing, accelerometer replay, HPS transport and laptop analysis. The source-derived diagrams use a consistent academic pastel palette.',
-         'TSH2 and TRF1 are separate fitted FPGA applications. They reuse the same numerical core without an implemented runtime audio/RF selector. The accelerometer acquisition and axis-preparation scripts describe a local capture-and-replay workflow rather than a new live FPGA sensor frontend.',
+         'This atlas explains T-RECAP through twenty coordinated views. Audio, acceleration and RF inputs connect to a shared fixed-point spectral-processing design. System boundaries lead into arithmetic, storage, control schedules and output contracts. The source-derived diagrams use a consistent academic pastel palette.',
+         'The build configuration selects TSH2 for real-sample inputs or TRF1 for I/Q inputs. Each profile has its own fitted image and instantiates the same numerical core. Captured accelerometer axes use the real-sample frontend with their physical scale and sample-rate metadata.',
          r'\section*{Reading the atlas}',r'\begin{tabularx}{\linewidth}{@{}p{0.35in}X@{}}\toprule']
     for p in spec['plates']:
         tex += [str(p['number'])+' & '+tex_escape(p['title'])+r' \\']
@@ -392,14 +436,16 @@ def write_documents(spec, output):
                 tex_escape(p['description'][2]),r'\par\medskip\noindent',
                 r'\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{1.65in}Y@{}}\toprule',r'\textbf{Block} & \textbf{Responsibility} \\ \midrule']
         for n in p['nodes']:
-            tex.append(tex_escape(n['title'])+' & '+tex_escape('. '.join(n['body'])+'.')+r' \\[5pt]')
+            tex.append(tex_escape(n['title'])+' & '+tex_escape(responsibility(n))+r' \\[5pt]')
         tex += [r'\bottomrule\end{tabularx}',r'\vspace{8pt}',r'\noindent\textbf{Interpretation.} '+tex_escape(p['notes'][0]['body']),r'\clearpage']
     tex += [r'\section*{Reproduction and source review}',
             'The companion atlas definitions contain the exact source hashes, block text, routing coordinates and local workflow review identities. The generator creates the PNG, SVG and vector PDF diagrams together with the written guide and offline gallery.',
             r'\begin{verbatim}',r'python phase2/docs/architecture/system/build_atlas.py --check',r'\end{verbatim}',
             'This check uses only the Python standard library. It validates public source bindings and artifact hashes. Local accelerometer source identities are recorded for provenance but their files are not bundled. The checker does not claim to rerun that acquisition workflow.',
             r'\par\medskip\noindent\begin{tabularx}{\linewidth}{@{}p{0.4in}Y@{}}\toprule',r'\textbf{ID} & \textbf{Published source path} \\ \midrule']
-    for s in spec['sources']:
+    for source_number,s in enumerate(spec['sources']):
+        if source_number and source_number%16==0:
+            tex += [r'\bottomrule\end{tabularx}\clearpage',r'\section*{Source review continued}',r'\begin{tabularx}{\linewidth}{@{}p{0.4in}Y@{}}\toprule',r'\textbf{ID} & \textbf{Published source path} \\ \midrule']
         tex += [s['id']+r' & \path{'+s['path']+r'} \\[4pt]']
     tex += [r'\bottomrule\end{tabularx}',r'\end{document}','']
     textext='\n'.join(tex)
@@ -425,8 +471,10 @@ def check_documents(output):
     for name in ['README.md','TRECAP_System_Architecture_Atlas.tex']:
         prose_check((output/name).read_text(encoding='utf-8'))
     review=read_json(output/'visual_review.json')
-    if review['status']!='PASS' or len(review['plates'])!=8:
-        raise ValueError('Eight reviewed diagrams are required')
+    if review['status']!='PASS' or [p['number'] for p in review['plates']]!=list(range(1,21)):
+        raise ValueError('Twenty reviewed diagrams are required')
+    if review['pdf_sha256']!=sha(output/'TRECAP_System_Architecture_Atlas.pdf'):
+        raise ValueError('Visual review refers to a different PDF')
 
 
 def main():

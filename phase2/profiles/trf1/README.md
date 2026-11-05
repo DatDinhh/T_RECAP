@@ -77,4 +77,4 @@ The initial physical campaign completed five full-size epochs with exact Y and T
 
 RF sparsification trades retained spectral information for a smaller spectral representation. Packet reductions use dense TSP1 over the same valid interval as baseline. They are not reductions relative to the raw CU8 recording. Error against the fixed-point adapter output excludes the adapter's own conversion error.
 
-This profile demonstrates buffered recorded-file processing. The reported checks do not establish live RF reception, lossless conversion, arbitrary-protocol preservation, power savings, or a CPU speedup. The separate historical TSH2 UVM and formal results do not automatically verify the new RF blocks.
+This profile demonstrates buffered recorded-file processing. The reported checks do not establish live RF reception, lossless conversion, arbitrary-protocol preservation, power savings, or a CPU speedup. TSH2 UVM and formal results cover their documented modules and assumptions. RF verification is provided by the numerical model, self-checking RTL tests and source-bound physical captures listed above.
