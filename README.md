@@ -1,6 +1,6 @@
 # T-RECAP
 
-**Threshold-based Reduction and Encoding for Controlled Audio Processing**
+**Threshold-based Reduction and Encoding for Configurable Analysis Pipelines**
 
 **A shared FPGA signal-processing architecture for finite audio, captured acceleration and recorded RF experiments.**
 
@@ -339,7 +339,7 @@ In one sentence: the shared FPGA processor applies **THR2** to FFT-bin power, ex
 
 | Term | Meaning in this repository |
 |---|---|
-| **T-RECAP** | Threshold-based Reduction and Encoding for Controlled Audio Processing. |
+| **T-RECAP** | Threshold-based Reduction and Encoding for Configurable Analysis Pipelines. |
 | **TSH2** | T-RECAP Signal-processing Hardware, version 2. The finite-record build configuration for real-valued audio and acceleration samples. HPS software uses its interface to configure processing, transfer samples and results, and inspect status and faults. |
 | **TSH1** | T-RECAP Signal-processing Hardware, version 1. The earlier Phase 2 implementation used for the historical 1,024-sample resident-compute comparison. Its timing results must not be read as current TSH2 measurements. |
 | **THR2** | The threshold applied to squared FFT magnitude: `Re(X)^2 + Im(X)^2`. It is expressed in the implementation's fixed-point power units, not percent, decibels or sound-pressure level. Values below it are suppressed. Equality is retained, and DC is protected. |

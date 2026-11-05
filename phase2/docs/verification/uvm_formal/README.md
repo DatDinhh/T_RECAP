@@ -1,6 +1,6 @@
 # UVM and formal verification supplement
 
-**T-RECAP: Threshold-based Reduction and Encoding for Controlled Audio Processing.** See [project naming and scope](../../project_identity.md).
+**T-RECAP: Threshold-based Reduction and Encoding for Configurable Analysis Pipelines.** See [project naming and scope](../../project_identity.md).
 
 Read [TRECAP_UVM_Formal_Report.pdf](TRECAP_UVM_Formal_Report.pdf), an academic article written in LaTeX with Latin Modern typography. This is an additive report for the unchanged finite-file TSH2 design. The [original portfolio](../portfolio/README.md) and its board results remain historical evidence.
 

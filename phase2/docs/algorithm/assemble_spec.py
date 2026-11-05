@@ -40,7 +40,7 @@ def rebase_links(text, origin):
 def combined_text():
     out = [
         '# T-RECAP complete editable specification',
-        '**Threshold-based Reduction and Encoding for Controlled Audio Processing.**',
+        '**Threshold-based Reduction and Encoding for Configurable Analysis Pipelines.**',
         'This document contains the complete historical 106-page specification followed by the finite-record audio, acceleration and RF implementation contracts. The historical core, DDR/UDP telemetry proposal and repository plan retain their original scope. The current appendix states how TSH2 and TRF1 differ from that plan. Historical requirements are not statements that every proposed feature is implemented.',
         '[Reading guide and page index](README.md) | [Current profiles and RF](#current-profiles-and-rf)',
         '| Historical part | Source PDF pages | Start |\n| --- | --- | --- |\n| Front matter | 1 to 13 | [Cover](#pdf-page-001) |\n| Part I, algorithm and signoff | 14 to 36 | [Part I](#pdf-page-014) |\n| Part II, DDR and UDP telemetry | 37 to 72 | [Part II](#pdf-page-037) |\n| Part III, repository architecture | 73 to 101 | [Part III](#pdf-page-073) |\n| Appendices and references | 102 to 106 | [Appendices](#pdf-page-102) |',

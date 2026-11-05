@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- On 2026-11-05, adopted **Threshold-based Reduction and Encoding for Configurable Analysis Pipelines** as the full project name while keeping **T-RECAP**. Aligned current descriptions with audio, accelerometer and RF application pipelines. Retained historical source and result identities.
+
 - Adopted **Threshold-based Reduction and Encoding for Controlled Audio Processing** as the full project name while retaining **T-RECAP**. Updated current documentation and the terminology glossary. Preserved the original specification identity, interface identifiers, and measured evidence. See [project naming and scope](docs/project_identity.md).
 
 - Prepared the Phase 2 source and reviewed September 2026 result packages for publication to `DatDinhh/T_RECAP`. Corrected stale status text and report typography while preserving numerical evidence, historical identities, and the FFT/threshold/IFFT baseline.

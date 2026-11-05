@@ -3,8 +3,8 @@
   "purpose": "Published artifact consistency, not a signature or a hardware attestation",
   "files": {
     "README.md": "5c63b01433f33411d3160889e8444ff009af09256e8ce28971e26fed49852b27",
-    "rf_verification_supplement.tex": "23a6429b06ee4f4d9b84d23d553ef60d442b88f5a11ae515d451cef8d800a088",
-    "rf_verification_supplement.pdf": "5b05a6b41b332274331a39b2f73b3f0c60f65dd0984ecaea392d6f7d9750b6c7",
+    "rf_verification_supplement.tex": "5ede014188f3dd0d8f172bd1c9fb56bb3d40d98ec161462254e21f81a23068ef",
+    "rf_verification_supplement.pdf": "a714ada0668c0fceb381401199a416a8fdc4fda55fc60c43f63ce6b30e8ec79a",
     "fresh_results.tex": "2f0c7a29f6ab992121962032c2997126c50b15650edcc6c1594f50bf78341d94",
     "check_bundle.py": "3e9816c5ddb36b81e6338309f730e49112eb0418431b9ac425b40122aea3af18",
     "export_historical.py": "6e349f98b8b820ad7b6672b9a66bcbfc25283ad3c7fff838c50574893fee87d9",

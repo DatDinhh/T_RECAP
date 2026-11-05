@@ -1,6 +1,6 @@
 # Documentation guide
 
-**T-RECAP: Threshold-based Reduction and Encoding for Controlled Audio Processing.** See [project naming and scope](project_identity.md).
+**T-RECAP: Threshold-based Reduction and Encoding for Configurable Analysis Pipelines.** See [project naming and scope](project_identity.md).
 
 Start with the [main project README](https://github.com/DatDinhh/T_RECAP#readme) for the objective, complete architecture, three application studies, before/after signals and verification visuals. The [unified 20-view atlas](architecture/system/README.md) describes one T-RECAP architecture from application inputs to module-level arithmetic, storage and control. Its real-sample and I/Q build configurations share the numerical core. Audio, acceleration and RF have explicit input contracts. The original DDR-ring, UDP and live-source design has its own historical scope.
 

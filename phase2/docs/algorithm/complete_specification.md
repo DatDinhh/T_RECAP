@@ -1,6 +1,6 @@
 # T-RECAP complete editable specification
 
-**Threshold-based Reduction and Encoding for Controlled Audio Processing.**
+**Threshold-based Reduction and Encoding for Configurable Analysis Pipelines.**
 
 This document contains the complete historical 106-page specification followed by the finite-record audio, acceleration and RF implementation contracts. The historical core, DDR/UDP telemetry proposal and repository plan retain their original scope. The current appendix states how TSH2 and TRF1 differ from that plan. Historical requirements are not statements that every proposed feature is implemented.
 

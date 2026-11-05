@@ -49,7 +49,7 @@ For the recorded 250 ksample/s complex input, the real output represents 1 Msamp
 | [snapshot](snapshot) | Frozen non-vendor DSP and adapter closure used by public simulation |
 | [source_manifest.json](source_manifest.json) | Original and published source hashes with transformations identified |
 
-The project name remains **Threshold-based Reduction and Encoding for Controlled Audio Processing**. RF extends the input applications while retaining the numerical core.
+The project name remains **Threshold-based Reduction and Encoding for Configurable Analysis Pipelines**. This build configuration provides recorded I/Q input to the shared processing architecture used for audio, acceleration and RF analysis.
 
 ## Reproduce offline
 

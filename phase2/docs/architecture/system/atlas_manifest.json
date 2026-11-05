@@ -4,7 +4,7 @@
   "scope": "Source-derived architecture documentation. Rendering runs no hardware or simulation.",
   "generator": {
     "file": "build_atlas.py",
-    "sha256": "a71ab52b9bd62ad20cfcf238668181eb23a89d5d0b20e31bcca363445991412e",
+    "sha256": "cd24be7081859bf868ee0f7502dbd44c645cb4b682f6b27e9b1dc24464486914",
     "matplotlib": "3.10.7"
   },
   "definitions": {
@@ -1182,10 +1182,10 @@
     }
   ],
   "documents": {
-    "README.md": "01b7a53480ab9c918a61d430b69d0867dcbfa644595586a5f9d046af990af488",
+    "README.md": "efe6779e26f76c985cc8e269b242f7d583dc2a277dd376d69e40b2a47e005b71",
     "index.html": "539ce3f41f2ff6360183f3aede51e8502d3f76eb8e8c58eb0615b55c46fcc79b",
-    "TRECAP_System_Architecture_Atlas.tex": "606f86ba6c94b857d09432dc7d8d77163c565a4ca6e65c6eebd05b23f6d5440c",
-    "TRECAP_System_Architecture_Atlas.pdf": "eb00aa0109551d9b771bff55caa6089e9b86c1e010a3f5377a9881da4870ffc1",
-    "visual_review.json": "9ef4ebf6273a85dd5b8b92b7118f4280957065ee0178ce805d12aff24f6c41ee"
+    "TRECAP_System_Architecture_Atlas.tex": "90565cd1d04207effed21f45fbe956842523563cde17b346bd3a04d6eb16071d",
+    "TRECAP_System_Architecture_Atlas.pdf": "b6dddaa884a1dc91c7b4dd5ff74360f491e0e259e789989b4de4d56c6d86a374",
+    "visual_review.json": "9bfec95293b691d3a5c12695a20cf228ff5129727005c0457f445ed1aacc9e9b"
   }
 }

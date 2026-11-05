@@ -1,6 +1,6 @@
 # Integrated specification
 
-**T-RECAP: Threshold-based Reduction and Encoding for Controlled Audio Processing.** See [project naming and scope](../project_identity.md).
+**T-RECAP: Threshold-based Reduction and Encoding for Configurable Analysis Pipelines.** See [project naming and scope](../project_identity.md).
 
 We include the Phase 2 specification at [t_recap_phase2_integrated_spec.pdf](t_recap_phase2_integrated_spec.pdf). This is the canonical repository copy of the integrated algorithm, telemetry, and repository-architecture document.
 

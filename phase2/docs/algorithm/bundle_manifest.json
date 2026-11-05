@@ -9,8 +9,8 @@
   "major_sections": 53,
   "files": {
     "assemble_spec.py": {
-      "sha256": "cac91eb2c86a764ea666015efa9b848b6772e46c07ed6a19dcbd279e4237c767",
-      "bytes": 3826
+      "sha256": "9fe8695fc23f5547c3cdd31c88063dbb596984de582879854c127fee602641fe",
+      "bytes": 3830
     },
     "baseline/page-001.md": {
       "sha256": "3918c96d088a1310ee95f23f932068ce7ce5dff9843926fdce2032ecfa4967bd",
@@ -441,8 +441,8 @@
       "bytes": 7398
     },
     "complete_specification.md": {
-      "sha256": "87c19980a5596747d53777a86a4525ee80b729157bc22083b3adcb2b9f616a38",
-      "bytes": 278980
+      "sha256": "014d583eb138e1c72b2f2ab44b37362202d6d61a200455c72255b412c0b1e18f",
+      "bytes": 278984
     },
     "conversion_notes.md": {
       "sha256": "5f12272c5abd27013224d6accbebea91188142d793ca233c82a563b77f03f11a",
@@ -1653,8 +1653,8 @@
       "bytes": 12276
     },
     "README.md": {
-      "sha256": "dc20a57ae9820220ac2a96d8ebd17ebe2538bb78b0e339d8031c00a863dde822",
-      "bytes": 7119
+      "sha256": "08f52e85f0e25959063efd6be9a3f1052f7e1909ac8aa2102251addaeeef3802",
+      "bytes": 7123
     },
     "render_math.py": {
       "sha256": "b07720343f746f8c2709ede8ef4c7042e6e922210f955e3db4361c6f7f2a3194",

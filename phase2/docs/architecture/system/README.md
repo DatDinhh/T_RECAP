@@ -1,6 +1,6 @@
 # T-RECAP system architecture atlas
 
-**Threshold-based Reduction and Encoding for Controlled Audio Processing**
+**Threshold-based Reduction and Encoding for Configurable Analysis Pipelines**
 
 Twenty coordinated views describe T-RECAP as a multi-signal processing system. Audio, acceleration and RF source contracts connect to a shared fixed-point spectral core, HPS transport and laptop applications. The atlas expands the overview into frame storage, arithmetic, memory schedules, packet serialization and transaction control.
 

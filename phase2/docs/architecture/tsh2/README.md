@@ -1,6 +1,6 @@
 # Current TSH2 architecture atlas
 
-**T-RECAP: Threshold-based Reduction and Encoding for Controlled Audio Processing.** See [project naming and scope](../../project_identity.md).
+**T-RECAP: Threshold-based Reduction and Encoding for Configurable Analysis Pipelines.** See [project naming and scope](../../project_identity.md).
 
 For the complete audio, acceleration and RF design, start with the [unified system atlas](../system/README.md). Its 20 views include module internals and connect each input contract to the shared processing engine.
 

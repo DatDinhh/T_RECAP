@@ -1,6 +1,6 @@
 # Historical benchmark figures and result provenance
 
-**T-RECAP: Threshold-based Reduction and Encoding for Controlled Audio Processing.** See [project naming and scope](../project_identity.md).
+**T-RECAP: Threshold-based Reduction and Encoding for Configurable Analysis Pipelines.** See [project naming and scope](../project_identity.md).
 
 For the project application results, start with [audio preprocessing, accelerometer step analysis and RF background suppression](../applications/README.md). This folder preserves supporting benchmarks and their original numerical provenance. The [archived result presentation](historical_benchmarks.md) retains the detailed waveform, host-consumer and initial RF qualification tables formerly shown in the main README. It redraws selected measurements and supplies reviewable numerical tables. It performs **no new hardware run or timing experiment**. The reviewed repository baseline is commit `351ff6a8ef9f7ebd9893a531d71ac7626f95a0e2`.
 

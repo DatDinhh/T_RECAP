@@ -1,6 +1,6 @@
 # Complete editable T-RECAP specification
 
-**Threshold-based Reduction and Encoding for Controlled Audio Processing.**
+**Threshold-based Reduction and Encoding for Configurable Analysis Pipelines.**
 
 [Read the complete specification](complete_specification.md). It contains the entire 106-page historical specification in Markdown, followed by the [current finite-profile and recorded-RF specification](current_profiles_and_rf.md). Equations are editable LaTeX math, tables are Markdown, and algorithms, schemas and directory trees are editable code blocks.
 

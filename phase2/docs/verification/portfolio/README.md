@@ -1,6 +1,6 @@
 # TRECAP design verification portfolio
 
-**T-RECAP: Threshold-based Reduction and Encoding for Controlled Audio Processing.** See [project naming and scope](../../project_identity.md).
+**T-RECAP: Threshold-based Reduction and Encoding for Configurable Analysis Pipelines.** See [project naming and scope](../../project_identity.md).
 
 This editable LaTeX portfolio presents the registered TSH2 finite-file verification campaign, a reproduced and repaired arithmetic defect, exact RTL scoreboards, observed event coverage, and fresh DE1-SoC captures. The supplemental seeded runner section reports executed results and a qualified negative control. It does not claim UVM, concurrent SVA, coverage closure percentages, formal proof, or complete signoff of the original project specification.
 

@@ -1,6 +1,6 @@
 # Recorded RF architecture atlas
 
-**T-RECAP: Threshold-based Reduction and Encoding for Controlled Audio Processing.**
+**T-RECAP: Threshold-based Reduction and Encoding for Configurable Analysis Pipelines.**
 
 For the complete audio, acceleration and RF design, start with the [unified system atlas](../system/README.md). Its 20 views include the I/Q MAC, phase controller, shared numerical engine and host interfaces.
 

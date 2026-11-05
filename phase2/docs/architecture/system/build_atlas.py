@@ -365,7 +365,7 @@ def write_documents(spec, output):
     for text in prose:
         prose_check(text)
     rows = ['# T-RECAP system architecture atlas', '',
-            '**Threshold-based Reduction and Encoding for Controlled Audio Processing**', '',
+            '**Threshold-based Reduction and Encoding for Configurable Analysis Pipelines**', '',
             'Twenty coordinated views describe T-RECAP as a multi-signal processing system. Audio, acceleration and RF source contracts connect to a shared fixed-point spectral core, HPS transport and laptop applications. The atlas expands the overview into frame storage, arithmetic, memory schedules, packet serialization and transaction control.', '',
             '[Open the offline gallery](index.html) | [Read the academic LaTeX atlas](TRECAP_System_Architecture_Atlas.pdf)', '',
             'The build configuration selects TSH2 for real-sample inputs or TRF1 for I/Q inputs. Each profile has its own fitted image and instantiates the same numerical core. Profile identity, source geometry and result metadata define each finite transaction.', '',
@@ -415,7 +415,7 @@ def write_documents(spec, output):
          r'\captionsetup{font=small,labelfont=bf}',r'\newcolumntype{Y}{>{\raggedright\arraybackslash}X}',r'\begin{document}',
          r'\begin{center}{\LARGE\bfseries T-RECAP System Architecture Atlas}\par\vspace{6pt}',
          r'{\large Multi-signal system and detailed hardware design}\par\vspace{6pt}',
-         r'{\small Threshold-based Reduction and Encoding for Controlled Audio Processing}\par\vspace{4pt}',
+         r'{\small Threshold-based Reduction and Encoding for Configurable Analysis Pipelines}\par\vspace{4pt}',
          r'{\small Senior design project}\end{center}',
          'This atlas explains T-RECAP through twenty coordinated views. Audio, acceleration and RF inputs connect to a shared fixed-point spectral-processing design. System boundaries lead into arithmetic, storage, control schedules and output contracts. The source-derived diagrams use a consistent academic pastel palette.',
          'The build configuration selects TSH2 for real-sample inputs or TRF1 for I/Q inputs. Each profile has its own fitted image and instantiates the same numerical core. Captured accelerometer axes use the real-sample frontend with their physical scale and sample-rate metadata.',
