@@ -4,9 +4,9 @@
 
 See [project naming and scope](docs/project_identity.md) for the current name and historical document labels.
 
-**Current verified application: finite-file FPGA spectral sparsification, waveform reconstruction, and laptop spectral monitoring.**
+**Application studies: audio preprocessing before FLAC, accelerometer step-event analysis and RF background suppression using one finite-record FPGA processing architecture.**
 
-The [main project README](https://github.com/DatDinhh/T_RECAP#readme) explains the objective, architecture, processed-audio spectrograms, measured data/workload tradeoffs, and design verification. Start there for a visual overview. This page maps the implementation and reproduction paths.
+The [main project README](https://github.com/DatDinhh/T_RECAP#readme) explains the objective, architecture, three application studies, before/after signals and measured tradeoffs, and design verification. Start there for a visual overview. This page maps the implementation and reproduction paths.
 
 **New to the terminology?** See [Terms and abbreviations](#terms-and-abbreviations), including the difference between TSH2, THR2 and TSP1.
 
@@ -51,13 +51,13 @@ This path is finite and unpaced. Threshold and packet mode remain fixed during a
 | Hardware | DE1-SoC at nominal 50 MHz. Source-bound fit uses 6,521 ALMs, 47 M10Ks and 35 DSP blocks |
 | Latest registered campaign | 14 fresh RTL suites and 58 physical epochs, with exact numerical/packet checks |
 
-The [results guide](docs/project_overview/README.md) separates current physical captures, historical host timing, software-reference monitor replay, and original architecture studies. Read the denominators before comparing figures. No qualified electrical energy saving or FPGA advantage over the laptop is claimed.
+The [three application studies](docs/applications/README.md) contain the current audio, acceleration and RF evaluations. The [historical benchmark guide](docs/project_overview/README.md) retains waveform, spectral-packet and host-timing measurements with their original inputs and measurement boundaries.
 
 ## Choose an entry point
 
 | Goal | Start here |
 |---|---|
-| Understand the application and view results | [Main README](https://github.com/DatDinhh/T_RECAP#readme), [figures and provenance](docs/project_overview/README.md) |
+| Understand the application and view results | [Main README](https://github.com/DatDinhh/T_RECAP#readme), [three application results](docs/applications/README.md) |
 | Explore the complete architecture and module internals | [Unified 20-view atlas](docs/architecture/system/README.md) |
 | Review the DV methodology and outcome | [Verification portfolio](verification/README.md), [academic PDF and LaTeX](docs/verification/portfolio/README.md) |
 | Run reproducible off-board RTL tests | [Portable TSH2 package](verification/tsh2/README.md) |

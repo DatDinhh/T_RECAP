@@ -14,7 +14,7 @@ The architecture has input preparation, a shared spectral-processing engine, out
 
 ## Objective
 
-**Reduce the spectral data a host receives and the work a compatible spectral consumer performs, while measuring the information lost at each threshold.** The project studies this tradeoff through audio preprocessing, motion analysis and RF monitoring. The reconstructed output provides a separate way to inspect distortion.
+**Reduce the spectral data a host receives and the work a compatible spectral consumer performs, while measuring the information lost at each threshold.** The project studies this tradeoff through audio preprocessing, motion analysis and RF monitoring. The reconstructed Y output supplies FLAC encoding, step-event detection and RF recovery. TSP1 supplies spectral inspection and compatible sparse consumers. Each application measures its own output quality and benefit.
 
 There are two comparisons. Comparing the original signal with the thresholded result measures information loss. Comparing dense and sparse storage of the same thresholded values isolates the effect of representation on packet size and host processing time. A benefit in the second comparison does not establish that every application tolerates the loss in the first.
 
@@ -23,7 +23,7 @@ There are two comparisons. Comparing the original signal with the thresholded re
 | Input class | Preparation and FPGA entry | Application status |
 |---|---|---|
 | Audio file | Laptop prepares signed 12-bit samples. The TSH2 application feeds them into the shared core | Published source, physical capture evidence and audio visualization examples |
-| Captured acceleration | A bounded sensor capture or an existing dataset is mapped to one real-valued axis and replayed through TSH2 | Local application experiments using the shared real-sample path. The capture helpers are not part of the public source package |
+| Captured acceleration | A bounded sensor capture or an existing dataset is mapped to one real-valued axis and replayed through TSH2 | Published five-threshold FPGA captures and scored walking-event results from recorded XYZ data. Local sensor-capture helpers remain outside the public source package |
 | Recorded RF | A CU8 file supplies unsigned I/Q byte pairs. The TRF1 application performs centering, interpolation and real-IF conversion in FPGA hardware | Published RF adapter, host source, fresh RTL regression and separately recorded physical results |
 
 **One architecture is realized through two build configurations.** TSH2 instantiates the real-sample input path for audio and captured acceleration. TRF1 instantiates the I/Q frontend for recorded RF. Each has its own fitted image and host register contract. Profile selection happens when building and loading the image. The qualified workflows process finite records.
@@ -208,102 +208,55 @@ Ready/valid transfers determine when each module advances. State is distributed 
 
 ## Three concrete applications
 
-The [application collection](phase2/docs/applications/README.md) includes source files, before/after comparisons, threshold sweeps and downloadable results. Each page separates the proposed scenario from what the measurements actually demonstrate.
+The project demonstrates one processing architecture through three application studies. Each has a practical scenario, a downstream consumer, original input files and measured threshold tradeoffs. The [application collection](phase2/docs/applications/README.md) provides the full methods and downloadable results.
 
-| Scenario | Measured result | What the tradeoff costs |
+| Application | Downstream consumer | Measured benefit and tradeoff |
 | --- | --- | --- |
-| [Step counting as a component of indoor movement sensing without GPS](phase2/docs/applications/accelerometer/README.md) | With added synthetic noise, threshold 10^10 reduces extra detections from 989 to 360 | Missed events rise from 232 to 279. Lower thresholds have much smaller effects. Position and heading estimation are not implemented |
-| [RF background suppression before monitoring and decoding](phase2/docs/applications/rf/README.md) | About 44% less quiet-window power in two recorded fixtures at 10^10, with messages retained. A generated noisy case gains about 5.40 dB SNR on hardware at 10^9 | One recorded message is lost at 10^11. Weak useful components can be removed with the background |
-| [Audio cleanup experiments and smaller FLAC archives](phase2/docs/applications/audio/README.md) | Across four clips, nonzero thresholds reduce FLAC bytes by an extra 4.11% and 15.97% relative to the same quantized threshold-0 baseline | Higher thresholds remove audible detail. Encoder timing does not show a consistent speedup. Separate software denoising trials include degraded cases |
+| [Audio preprocessing before FLAC](phase2/docs/applications/audio/README.md) | Laptop FLAC encoder consumes reconstructed Y | Across four clips, threshold 10^8 reduces FLAC bytes by 4.11% and 10^10 by 15.97% relative to the same quantized threshold-0 baseline. Higher thresholds remove audible detail. Encoding time does not improve consistently |
+| [Accelerometer step-event analysis](phase2/docs/applications/accelerometer/README.md) | Laptop step detector consumes reconstructed XYZ | With added synthetic noise, 10^10 reduces extra detections from 989 to 360 but increases missed events from 232 to 279. Original recordings get worse at that threshold, and no nonzero threshold passed the frozen calibration gate |
+| [RF background suppression](phase2/docs/applications/rf/README.md) | Laptop inspects TSP1 and recovers messages from reconstructed Y | At 10^10, two recorded fixtures lose about 44% of quiet-window power while retaining their messages. At 10^11, one loses its message. A separate generated noisy case gains about 5.40 dB SNR on hardware at 10^9 |
 
-The pages include actual physical captures where indicated. Audio noise tests using the fixed-point reference are explicitly labeled as software. The RF listening demo is an audible mapping of a signal envelope, not sound transmitted by the sensor. The accelerometer demonstration evaluates a step detector, not a full navigation system.
+### 1. Audio: compare recording detail and FLAC archive size
 
-![False and missed walking events at all five thresholds](phase2/docs/applications/accelerometer/figures/event_errors.png)
+The demo scenario is a narration or music recording that a user wants to inspect, preprocess and archive. The physical study uses **Speech A, Speech B, piano and jazz**, with 12 DE1-SoC captures across thresholds 0, 10^8 and 10^10. The laptop encodes the returned waveform as FLAC, decodes it and compares size, encoding time and signal error.
 
-![Recorded RF background and message-retention tradeoff](phase2/docs/applications/rf/figures/recorded_rf_hardware.png)
+![Original and FPGA-processed speech, piano and jazz spectrograms](phase2/docs/applications/audio/figures/decoded_spectrograms.png)
 
-![Actual audio compression size, timing and error](phase2/docs/applications/audio/figures/flac_tradeoff.png)
+![FLAC size, encoder time and waveform error for the four application clips](phase2/docs/applications/audio/figures/flac_tradeoff.png)
 
-The [audio listening page](phase2/docs/applications/audio/listen.html) contains original and processed WAV files and actual FLAC files for each threshold. Open it locally after cloning to use its playback controls. The corresponding application pages show how the acceleration traces and RF spectra change.
+The extra 4.11% and 15.97% size reductions isolate thresholding from the shared 12-bit input preparation. FLAC preserves its encoder input exactly, while the FPGA preprocessing has already changed that waveform. The separate software denoising pilot has both improved and degraded cases, so suppressing weak components is not equivalent to identifying unwanted noise.
+
+[Original and processed files](phase2/docs/applications/audio/README.md#see-the-spectrum-and-hear-the-result) | [Offline listening page](phase2/docs/applications/audio/listen.html) | [Sources and credits](phase2/docs/applications/audio/CREDITS.md)
+
+### 2. Accelerometer: reduce false walking events while tracking missed events
+
+The scenario is an activity logger, or a step-event component that could feed an indoor navigation system when GPS is unavailable. The study evaluates recorded hip acceleration against independent video annotations. Each axis passes through the FPGA, then a frozen laptop detector processes the reconstructed XYZ samples. Heading and position estimation are outside this step-event experiment.
+
+![Recorded and noisy acceleration before and after the five FPGA thresholds](phase2/docs/applications/accelerometer/figures/waveform_thresholds.png)
+
+![Extra and missed walking events at all five thresholds](phase2/docs/applications/accelerometer/figures/event_errors.png)
+
+At 10^10, the synthetic-noise condition has fewer extra detections but loses more true events. The original recordings also become less accurate at that setting. This demonstrates a measurable tradeoff, with threshold zero retained by the frozen calibration gate.
+
+[Input and returned XYZ excerpts](phase2/docs/applications/accelerometer/README.md#inspect-the-actual-signals) | [Detector evaluation and source dataset](phase2/docs/applications/accelerometer/README.md#method-and-source)
+
+### 3. RF: suppress background while checking message preservation
+
+The scenario is inspecting recorded sensor bursts surrounded by weak background energy. The FPGA converts raw I/Q and applies the shared spectral processing chain. The laptop visualizes the returned TSP1 spectrum and checks messages using the separate reconstructed waveform. The application includes two recorded sensor fixtures and a controlled generated burst with added white noise.
+
+![Recorded RF spectra, background and message retention after FPGA processing](phase2/docs/applications/rf/figures/recorded_rf_hardware.png)
+
+![Controlled RF noise experiment using physical FPGA output](phase2/docs/applications/rf/figures/awgn_hardware.png)
+
+Moderate thresholds can suppress background while retaining these messages. A cleaner-looking spectrum at 10^11 nevertheless loses the g001 message. The RF audio demo maps the signal envelope to an audible tone so viewers can hear the comparison. It is a visualization of RF activity rather than sound transmitted by the sensor.
+
+[Recorded sources and physical results](phase2/docs/applications/rf/README.md) | [Offline RF visual and listening demo](phase2/docs/applications/rf/index.html)
 
 ## Editable algorithm specification
 
 The [algorithm folder](phase2/docs/algorithm/README.md) provides an editable Markdown transcription of the full 106-page integrated PDF, with source-page coverage and its original historical scope. A separate [current-profile and RF supplement](phase2/docs/algorithm/current_profiles_and_rf.md) documents CU8 centering, fourfold interpolation, real-IF mixing, gain, rounding, finite alignment, backpressure and the TRF1 host contract.
 
 The original PDF remains available for comparison. Historical DDR-ring and UDP requirements are distinguished from the current finite-file profiles instead of being silently rewritten as the same deployment.
-
-## Audio results
-
-The following plots use the actual reconstructed waveform captured from the board. They show an eight-second flute excerpt credited to the University of Iowa Musical Instrument Samples collection. Output is aligned by the known 384-sample delay before comparison. The full output tail is still checked during verification.
-
-![Original and FPGA-processed flute spectrograms](phase2/docs/project_overview/figures/flute_captured_spectrograms.png)
-
-The spectrograms use one shared scale. Threshold zero reproduces this prepared input exactly after alignment. Increasing the threshold removes weak spectral components. At high thresholds the audible waveform changes substantially. This is selective suppression, not a general-purpose denoising guarantee.
-
-![Captured waveform before and after thresholding](phase2/docs/project_overview/figures/flute_waveform.png)
-
-| `THR2` | Waveform NRMSE vs input | Sparse spectral bytes | Reduction vs dense spectral format |
-|---:|---:|---:|---:|
-| `0` | 0.00% | 3,241,080 | **13.45% larger** |
-| `10^8` | 1.76% | 523,200 | 81.69% smaller |
-| `10^9` | 3.80% | 410,192 | 85.64% smaller |
-| `10^10` | 9.62% | 318,360 | 88.86% smaller |
-| `10^11` | 27.19% | 237,232 | 91.70% smaller |
-
-The dense baseline is **2,856,952 bytes** for the same 3,001 spectral frames. Sparse encoding adds an index to every retained bin, so it loses at threshold zero when all bins remain. These counts include TSP1 headers and padding but exclude the separately returned waveform and TCP/IP framing. They do not measure WAV compression or total network traffic reduction.
-
-![Waveform distortion and exact reference agreement](phase2/docs/project_overview/figures/flute_error_agreement.png)
-
-NRMSE is `100 × ||aligned_output - input||₂ / ||input||₂`. It measures total waveform error, not perceived quality. Every thresholded FPGA output matched its corresponding numerical reference exactly, even when it differed considerably from the input. A low aggregate error can also hide large relative losses in weak frequency bands.
-
-![Spectral packet size by threshold](phase2/docs/project_overview/figures/flute_packet_sizes.png)
-
-The physical campaign also processed natural environmental recordings and synthetic signals. The [case ledger](phase2/docs/results/verification_20261017/hardware/cases.csv) identifies all 58 runs. The [application results](phase2/docs/project_overview/README.md) explain the monitor quality gates and recording provenance. No new hardware execution was performed to redraw these overview figures.
-
-## What work is reduced on the laptop?
-
-A dense consumer visits every spectral bin, including bins that the FPGA has already zeroed. A sparse consumer iterates over retained `(bin index, power)` entries. It can validate fewer bytes and skip arithmetic for omitted bins while producing the same thresholded features.
-
-![Laptop workload using actual captured FPGA spectra](phase2/docs/project_overview/figures/host_workload_flute.png)
-
-This experiment replays actual captured sparse FPGA packets from RAM on an **Intel Core i7-8750H**, with 3,001 frames per eight-second flute clip and 30 matched dense/sparse trials. The host re-encodes the same thresholded values into dense control packets. Those controls are not additional FPGA captures. Both paths produce identical integer 16-band features.
-
-| Threshold | Feature computation: paired elapsed-time reduction | Packet validation + features: paired elapsed-time reduction |
-|---:|---:|---:|
-| `0` | 185.8% more time | 20.8% more time |
-| `10^8` | 58.2% less time | 77.2% less time |
-| `10^9` | 65.5% less time | 77.7% less time |
-| `10^10` | 74.4% less time | 83.3% less time |
-| `10^11` | 78.6% less time | 85.6% less time |
-
-Percentages are medians of `100 × (dense_time - sparse_time) / dense_time` across 30 matched pairs. These are elapsed times for the measured consumer stages, with input already resident in RAM. FPGA execution, Ethernet, disk access, and AI inference are excluded. At `10^8`, the median paired saving for validation plus features is **3.84 ms per eight-second clip**. That is a small absolute saving for one stream. It establishes a benefit for this consumer, not a whole-laptop utilization reduction or an end-to-end system speedup. Raw trial extracts and calculation rules are linked in the [results guide](phase2/docs/project_overview/README.md).
-
-The application adds a **causal spectral-activity monitor** with grouped band energy, peak frequency, centroid, and activity-change events. At `10^7`, all four held-out natural recordings passed its registered quality gates in the physical capture audit. A separate software-reference replay benchmark measured a dense/sparse receiver time ratio of **1.311x**, the median of four per-recording median paired ratios, with 30 pairs per recording. That receiver result has its own timing boundary and is not a fresh physical-board timing measurement.
-
-![Complete spectral monitor receiver, software-reference replay](phase2/docs/project_overview/figures/host_workload_monitor_replay.png)
-
-### Findings that limit the claim
-
-- In an earlier resident-compute comparison of six 1,024-sample jobs, the TSH1 FPGA implementation took **4.23 to 6.25 times** the i7-8750H laptop's median time. This is a historical compute-only result, not a new TSH2 timing measurement. Sparse host processing is a different benefit.
-- The FFT/IFFT schedule still runs at every threshold. Fewer retained bins do not imply fewer FPGA transform cycles.
-- Thresholding a waveform did not establish fewer YAMNet inference calls or an AI inference speedup. This repository's demonstrated consumer is spectral monitoring.
-- Electrical energy savings, live microphone acceptance, production reliability, and recognition accuracy remain unproven.
-
-## Recorded RF results
-
-The initial physical RF campaign processed one public 0.262144-second OOK recording in five complete hardware epochs. All 1,922,560 returned Y samples and 8,518,600 TSP1 bytes matched their threshold-specific reference. The CPU decoder recovered the one expected payload at every tested setting.
-
-| Threshold | Valid-interval spectral byte reduction against dense TSP1 | Relative L2 error against fixed-point adapter output |
-|---|---:|---:|
-| `10^8` | 34.06% | 0.353% |
-| `10^10` | 59.39% | 8.086% |
-| `10^11` | 90.66% | 35.115% |
-
-![Recorded RF spectral-size and waveform-error tradeoff](phase2/docs/verification/rf_iq/figures/historical_tradeoff.png)
-
-Only the 2,049 frames touching valid input contribute to this table. Padding-only frames are excluded. The byte baseline is dense spectral packets, not raw CU8 file size. The error baseline excludes the adapter's own conversion error. Recovery of one payload demonstrates compatibility for that recording, not general protection of weak signals or arbitrary RF protocols. These results do not measure RF CPU workload or power savings.
-
-The [RF verification report](phase2/docs/verification/rf_iq/README.md) preserves the original physical evidence separately from the fresh publication regression. The accelerometer route is shown in the unified architecture as a local application experiment, without assigning the audio or RF result percentages to that input class.
 
 ## Design verification
 
@@ -535,8 +488,14 @@ The [RF reproduction guide](phase2/verification/rf_iq/README.md) explains refere
 
 The earlier [architecture atlas](phase2/docs/architecture/diagrams/README.md), [board-power study](phase2/docs/results/board_power_20260925/README.md), and [ARM HPS benchmark](phase2/docs/results/hps_cpu_benchmark_20260925/README.md) remain available with their original scope. The HPS benchmark compares the CPU on the board, not the laptop CPU.
 
+## Supporting benchmark archive
+
+The [historical waveform and consumer benchmarks](phase2/docs/project_overview/historical_benchmarks.md) retain the earlier signal-fidelity, packet-size, host-timing and initial RF qualification results. They characterize particular fixtures and consumers. The three application studies above provide the project's application scenarios and evaluations.
+
+Benchmark figures, raw trial tables and numerical provenance remain available in the [benchmark evidence guide](phase2/docs/project_overview/README.md). Their data sources, error references and timing boundaries are kept separate from the application studies.
+
 ## About
 
 T-RECAP is a senior capstone engineering project investigating the connection between fixed-point FPGA signal processing, sparse spectral data, and measurable downstream work. Its portfolio spans RTL design, numerical debugging, hardware/software integration, application evaluation, and reproducible design verification.
 
-Project-authored code is distributed under the [MIT license](LICENSE). Third-party toolchains and audio datasets retain their own terms. The flute example is credited to Lawrence Fritts and the [University of Iowa Musical Instrument Samples collection](https://theremin.music.uiowa.edu/MIS.html). Environmental recording credits and dataset distinctions are preserved in the [data provenance](phase2/docs/results/verification_20261017/data_provenance/dataset_terms.json). Raw third-party recordings are not bundled with the verification package.
+Project-authored code is distributed under the [MIT license](LICENSE). Third-party toolchains and audio datasets retain their own terms. Source attribution is recorded in the [application studies](phase2/docs/applications/README.md), [historical benchmark archive](phase2/docs/project_overview/historical_benchmarks.md) and [campaign data provenance](phase2/docs/results/verification_20261017/data_provenance/dataset_terms.json). Raw third-party recordings are not bundled with the verification package.

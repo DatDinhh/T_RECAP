@@ -1220,9 +1220,14 @@
     {
       "path": "phase2/docs/project_overview/manifest.json",
       "original_sha256": "89f6ac6af2559b26f63c90a1271011884ceca9af64bb1250b5baef396b3d01a2",
-      "current_sha256": "5a313856d43e44daf802608637f8bfc498dc548d5908724233bf975aea1935ef",
+      "current_sha256": "466b83bd5210e1cb2a9839718f4a0f5e57d1a9424ee8aff68f299d92236c627e",
       "purpose": "Current publication inventory refreshed for prose edits and four duplicate pastel verification previews. Historical source and measured-result records retained.",
-      "punctuation_only_publication_sha256": "4104feb09daae64cad608fbbb22aa77608506f3c5c7799424619216dd4fed0cf"
+      "punctuation_only_publication_sha256": "4104feb09daae64cad608fbbb22aa77608506f3c5c7799424619216dd4fed0cf",
+      "application_presentation_revision": {
+        "date": "2026-11-05",
+        "previous_publication_sha256": "5a313856d43e44daf802608637f8bfc498dc548d5908724233bf975aea1935ef",
+        "scope": "Relabel the benchmark evidence guide and retain the historical README benchmark tables in a separate page. Numerical results, figures and recorded evidence are unchanged."
+      }
     },
     {
       "path": "phase2/docs/results/board_power_20260925/publication_manifest.json",

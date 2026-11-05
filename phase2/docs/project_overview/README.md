@@ -1,8 +1,8 @@
-# Project overview figures and result provenance
+# Historical benchmark figures and result provenance
 
 **T-RECAP: Threshold-based Reduction and Encoding for Controlled Audio Processing.** See [project naming and scope](../project_identity.md).
 
-This bundle supports the [main README](https://github.com/DatDinhh/T_RECAP#readme). It redraws selected measurements and supplies reviewable numerical tables. It performs **no new hardware run or timing experiment**. The reviewed repository baseline is commit `351ff6a8ef9f7ebd9893a531d71ac7626f95a0e2`.
+For the project application results, start with [audio preprocessing, accelerometer step analysis and RF background suppression](../applications/README.md). This folder preserves supporting benchmarks and their original numerical provenance. The [archived result presentation](historical_benchmarks.md) retains the detailed waveform, host-consumer and initial RF qualification tables formerly shown in the main README. It redraws selected measurements and supplies reviewable numerical tables. It performs **no new hardware run or timing experiment**. The reviewed repository baseline is commit `351ff6a8ef9f7ebd9893a531d71ac7626f95a0e2`.
 
 ## Evidence boundaries
 
@@ -74,7 +74,7 @@ The [public evidence ledger](../results/verification_20261017/README.md) and [La
 
 The documentation audit inventoried **1,454 tracked files** at the baseline commit, classified their roles, checked current-profile and portable-package hashes, and focused source review on the claims used in the new README. It did not functionally retest every historical file. See the [review notes](data/readme_audit.md), [inventory summary](data/tracked_inventory_summary.json), [18-claim matrix](data/claims_matrix.csv), [claim source bindings](data/claim_source_bindings.json), and [independent timing audit](data/host_workload_audit.json).
 
-The main README also records an unfavorable historical compute-only result. Six resident 1,024-sample jobs on the earlier TSH1 FPGA image each took 1.77048 ms, or 88,524 clocks at nominal 50 MHz. Laptop i7-8750H medians ranged from 0.28330 to 0.41865 ms, giving FPGA/laptop ratios of 4.23 to 6.25. These are ratios of separate medians. Input/output transfers are excluded. The [source-bound addendum](data/review_addendum.json) independently reconciles 396 retained raw rows and identifies the original timing artifacts. This is not a current TSH2 or end-to-end benchmark.
+The archive also records an unfavorable historical compute-only result. Six resident 1,024-sample jobs on the earlier TSH1 FPGA image each took 1.77048 ms, or 88,524 clocks at nominal 50 MHz. Laptop i7-8750H medians ranged from 0.28330 to 0.41865 ms, giving FPGA/laptop ratios of 4.23 to 6.25. These are ratios of separate medians. Input/output transfers are excluded. The [source-bound addendum](data/review_addendum.json) independently reconciles 396 retained raw rows and identifies the original timing artifacts. This is not a current TSH2 or end-to-end benchmark.
 
 ## Files and integrity
 

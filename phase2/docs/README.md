@@ -2,7 +2,7 @@
 
 **T-RECAP: Threshold-based Reduction and Encoding for Controlled Audio Processing.** See [project naming and scope](project_identity.md).
 
-Start with the [main project README](https://github.com/DatDinhh/T_RECAP#readme) for the objective, complete architecture, spectrograms, workload results and verification visuals. The [unified 20-view atlas](architecture/system/README.md) describes one T-RECAP architecture from application inputs to module-level arithmetic, storage and control. Its real-sample and I/Q build configurations share the numerical core. Audio, acceleration and RF have explicit input contracts. The original DDR-ring, UDP and live-source design has its own historical scope.
+Start with the [main project README](https://github.com/DatDinhh/T_RECAP#readme) for the objective, complete architecture, three application studies, before/after signals and verification visuals. The [unified 20-view atlas](architecture/system/README.md) describes one T-RECAP architecture from application inputs to module-level arithmetic, storage and control. Its real-sample and I/Q build configurations share the numerical core. Audio, acceleration and RF have explicit input contracts. The original DDR-ring, UDP and live-source design has its own historical scope.
 
 ## Editable specification and application studies
 
@@ -24,7 +24,7 @@ Start with the [main project README](https://github.com/DatDinhh/T_RECAP#readme)
 |---|---|
 | [Current Phase 2 entry point](../README.md) | Profile responsibilities, source map and reproducible checks |
 | [Current TSH2 architecture atlas](architecture/tsh2/README.md) | Eight views of the finite-file datapath, storage, control, transport and verification boundaries |
-| [Overview results and figures](project_overview/README.md) | Physical audio comparisons, host timing boundaries, claims audit and provenance |
+| [Historical benchmark evidence](project_overview/README.md) | Supporting waveform, packet-size and host-timing experiments with their original provenance |
 | [Verification portfolio](../verification/README.md) | Methodology, executed evidence and sign-off limits |
 | [Academic report and LaTeX](verification/portfolio/README.md) | Sixteen-page report with editable source |
 | [UVM and formal supplement](verification/uvm_formal/README.md) | Academic LaTeX report, diagrams and actual simulation/proof trace excerpts |
