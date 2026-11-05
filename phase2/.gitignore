@@ -204,3 +204,7 @@ artifacts/telemetry_captures/*
 !/verification/formal/evidence/round_i8_o4_s9_cover/result/engine_0/trace1.vcd
 !/verification/formal/evidence/round_i8_o4_s9_cover/result/engine_0/trace2.vcd
 !/verification/formal/evidence/round_negative_no_saturation/result/engine_0/trace.vcd
+
+# Reviewed RF traces required by the public execution manifest.
+!/verification/rf_iq/evidence/adapter/observed.vcd
+!/verification/rf_iq/evidence/admission/observed.vcd
