@@ -1,0 +1,16 @@
+fixtures/tone128.iq.hex fixtures/tone128.pcm.hex 128 1 0 0 0
+fixtures/tone128.iq.hex fixtures/tone128.pcm.hex 128 1 0 0 1
+fixtures/tone128.iq.hex fixtures/tone128.pcm.hex 128 1 0 5f5e100 0
+fixtures/tone128.iq.hex fixtures/tone128.pcm.hex 128 1 0 5f5e100 1
+fixtures/random512.iq.hex fixtures/random512.pcm.hex 512 1 0 0 0
+fixtures/random512.iq.hex fixtures/random512.pcm.hex 512 1 0 0 1
+fixtures/random512.iq.hex fixtures/random512.pcm.hex 512 1 0 5f5e100 0
+fixtures/random512.iq.hex fixtures/random512.pcm.hex 512 1 0 5f5e100 1
+fixtures/clip21.iq.hex fixtures/clip21.pcm.hex 21 3 3 0 0
+fixtures/clip21.iq.hex fixtures/clip21.pcm.hex 21 3 3 0 1
+fixtures/clip21.iq.hex fixtures/clip21.pcm.hex 21 3 3 5f5e100 0
+fixtures/clip21.iq.hex fixtures/clip21.pcm.hex 21 3 3 5f5e100 1
+fixtures/minimum1_gain0.iq.hex fixtures/minimum1_gain0.pcm.hex 1 0 0 0 1
+fixtures/minimum1_gain0.iq.hex fixtures/minimum1_gain0.pcm.hex 1 0 0 ffffffffffffff 1
+fixtures/tone128_gain2.iq.hex fixtures/tone128_gain2.pcm.hex 128 2 0 5f5e100 0
+fixtures/tone128_gain2.iq.hex fixtures/tone128_gain2.pcm.hex 128 2 0 ffffffffffffff 1

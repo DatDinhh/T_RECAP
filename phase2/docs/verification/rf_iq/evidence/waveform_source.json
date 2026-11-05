@@ -1,0 +1,23 @@
+{
+  "artifact_kind": "extracted_actual_rtl_simulation_trace",
+  "source_vcd_name": "observed.vcd",
+  "source_vcd_sha256": "b6d8fdef567989be75d9bf514e8e1cf57316acb15013fd79973fff56c92be01a",
+  "timescale": "1 ps",
+  "window_ps": [
+    8960000,
+    10510000
+  ],
+  "stalled_interval_ps": [
+    9210000,
+    9860000
+  ],
+  "stable_fields_checked": [
+    "sample_data_o",
+    "output_count_o",
+    "sample_last_o",
+    "sample_clipped_o"
+  ],
+  "trace": "waveform_trace.csv",
+  "trace_sha256": "5ae4e85abb589269b7fb30851aa4b07d6bb9f497653ed3756ad8d590e455c413",
+  "hardware_measurement": false
+}

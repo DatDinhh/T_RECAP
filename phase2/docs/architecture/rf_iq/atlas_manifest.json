@@ -1,0 +1,413 @@
+{
+  "schema": "trecap-rf-iq-atlas-v1",
+  "profile": "TRF1",
+  "scope": "Source-derived architecture documentation. Rendering runs no hardware or simulation.",
+  "generator": {
+    "file": "build_atlas.py",
+    "sha256": "2a62d7303658d9b15409e476f402a72c8bcd4b2f209159b431a54c4e1bd8c727",
+    "matplotlib": "3.10.7"
+  },
+  "definitions": {
+    "file": "atlas_definitions.json",
+    "sha256": "b2a121c6084dc19ada22e3210979caedd2b4fdeebba6c41c8d8a56938d491fa7"
+  },
+  "sources": [
+    {
+      "id": "R01",
+      "path": "profiles/trf1/adapter/rtl/trecap_rf_iq_adapter.sv",
+      "sha256": "49f2410c2593aa6d0fcc6ef032b19f5bdf6d059f594c3bfdfa081a2da6f1faa8"
+    },
+    {
+      "id": "R02",
+      "path": "profiles/trf1/adapter/rtl/trecap_rf_file_source.sv",
+      "sha256": "28499650aca794ecc6341e27a195fb69f4ef444cd8f78a0f1b4377fd3e8f4935"
+    },
+    {
+      "id": "R03",
+      "path": "profiles/trf1/adapter/coefficients/rf_coefficients.svh",
+      "sha256": "4d0cb2bbe836fa9f975349fdb01c5c033fdcd028d4a991c841b4805e736635f8"
+    },
+    {
+      "id": "R04",
+      "path": "profiles/trf1/adapter/model/reference.py",
+      "sha256": "3b0dfc4dce536db003cd695dd370aa4ecf8fc812b617c70f3e8a910592792fb9"
+    },
+    {
+      "id": "R05",
+      "path": "profiles/trf1/board/rtl/trecap_rf_board_adapter.sv",
+      "sha256": "a83dd1a68945f11b75fe045f5d7433e248bcfbecea4bf68f4275f3f13980f6d5"
+    },
+    {
+      "id": "R06",
+      "path": "profiles/trf1/board/rtl/stream_fifo.sv",
+      "sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b"
+    },
+    {
+      "id": "R07",
+      "path": "profiles/trf1/board/host/trf1_client.c",
+      "sha256": "48e0d6bfa725aeea8c2ce7899a3c331e02a067e30fa3781366560ada8ab1cdf9"
+    },
+    {
+      "id": "R08",
+      "path": "profiles/trf1/board/platform/trecap_hps_top.sv",
+      "sha256": "81ab0084e276bc57c18cee4a5185cc49b18aaa81e09716e32946d34ac07c8502"
+    },
+    {
+      "id": "R09",
+      "path": "profiles/trf1/board/platform/platform_designer_wrapper.sv",
+      "sha256": "3123d253447c91903e41c646049a3f4c837ff871f3ca493b3019382d00934c4e"
+    },
+    {
+      "id": "R10",
+      "path": "profiles/trf1/snapshot/generated/trecap_pcm_stream_top.sv",
+      "sha256": "2d8e7794a5629cf88e9d47ee0f2dd68ab28d1b73e3c071d701e2d5e3ab1780d2"
+    },
+    {
+      "id": "R11",
+      "path": "profiles/trf1/snapshot/generated/trecap_pcm_stream_source.sv",
+      "sha256": "79e402d7314b6540aea813bab2a42efa4d3107a34a63d61ff5ea3549bb4101f7"
+    },
+    {
+      "id": "R12",
+      "path": "profiles/trf1/snapshot/generated/trecap_core_export_observed.sv",
+      "sha256": "a3e887bb2383ab6ca11d5a1d1f8eef184f9f855510171cfb531588448a9fada9"
+    },
+    {
+      "id": "R13",
+      "path": "profiles/trf1/snapshot/generated/trecap_spectral_exporter.sv",
+      "sha256": "7a041daa6f32486e3f3e2c4bfdb95b9a5dc6277f6b0f4ba7f525fcb082a258be"
+    },
+    {
+      "id": "R14",
+      "path": "profiles/trf1/board/TRANSPORT.md",
+      "sha256": "d38391eb5472402e409e716048072af447ffb510196cb33de3667096457bf846"
+    }
+  ],
+  "archived_source_bindings": [],
+  "plates": [
+    {
+      "number": 1,
+      "title": "Recorded RF through the existing T-RECAP core",
+      "slug": "01-system",
+      "source_ids": [
+        "R01",
+        "R02",
+        "R05",
+        "R07",
+        "R10",
+        "R13"
+      ]
+    },
+    {
+      "number": 2,
+      "title": "How two I/Q components become one real stream",
+      "slug": "02-signal-representation",
+      "source_ids": [
+        "R01",
+        "R02",
+        "R03",
+        "R04"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Inside the I/Q adapter: reused arithmetic hardware",
+      "slug": "03-adapter-hardware",
+      "source_ids": [
+        "R01",
+        "R03"
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Finite-file geometry and completion ownership",
+      "slug": "04-finite-file-completion",
+      "source_ids": [
+        "R01",
+        "R02",
+        "R05",
+        "R10",
+        "R11",
+        "R07"
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Two useful outputs, with different information",
+      "slug": "05-waveform-and-spectral-outputs",
+      "source_ids": [
+        "R05",
+        "R10",
+        "R12",
+        "R13",
+        "R07"
+      ]
+    },
+    {
+      "number": 6,
+      "title": "HPS file handling and the TRF1 register interface",
+      "slug": "06-host-and-registers",
+      "source_ids": [
+        "R05",
+        "R06",
+        "R07",
+        "R08",
+        "R09",
+        "R14"
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Adapter sequencing, flow control and recovery",
+      "slug": "07-state-and-backpressure",
+      "source_ids": [
+        "R01",
+        "R02",
+        "R05",
+        "R06",
+        "R10"
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Clock, reset and verification evidence boundaries",
+      "slug": "08-clock-reset-verification",
+      "source_ids": [
+        "R01",
+        "R05",
+        "R08",
+        "R09",
+        "R10",
+        "R13"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "01-system.png",
+      "repo_path": "docs/architecture/rf_iq/01-system.png",
+      "sha256": "1e87bf7c3637b64ed9badac3db4d0528fa62280340bfee77479815e65a3ed9d8",
+      "bytes": 453229,
+      "plate": 1
+    },
+    {
+      "file": "01-system.svg",
+      "repo_path": "docs/architecture/rf_iq/01-system.svg",
+      "sha256": "28bc4566decaad2c912301c2dc3069c08786366f88c51b57603f4c5368bfd5bb",
+      "bytes": 24105,
+      "plate": 1
+    },
+    {
+      "file": "02-signal-representation.png",
+      "repo_path": "docs/architecture/rf_iq/02-signal-representation.png",
+      "sha256": "770594b8a649868b3b22fae514440cadf87229b8efe24a719454ea100eddf6ef",
+      "bytes": 461011,
+      "plate": 2
+    },
+    {
+      "file": "02-signal-representation.svg",
+      "repo_path": "docs/architecture/rf_iq/02-signal-representation.svg",
+      "sha256": "a0b58ad6e130960f0a0a66d042d6c5ccee714a1e966b2c43c0c7223d7821fdb7",
+      "bytes": 25283,
+      "plate": 2
+    },
+    {
+      "file": "03-adapter-hardware.png",
+      "repo_path": "docs/architecture/rf_iq/03-adapter-hardware.png",
+      "sha256": "cd722740817a7a5e4cbb9e2f4b8d3b2418a4e84da6ecf14dae9c4d5d2f6dcd20",
+      "bytes": 434216,
+      "plate": 3
+    },
+    {
+      "file": "03-adapter-hardware.svg",
+      "repo_path": "docs/architecture/rf_iq/03-adapter-hardware.svg",
+      "sha256": "de291f7af01919f5f2a251b39d328d2e3fd9ce61076ecd7bfe6c6dfe055ee994",
+      "bytes": 23756,
+      "plate": 3
+    },
+    {
+      "file": "04-finite-file-completion.png",
+      "repo_path": "docs/architecture/rf_iq/04-finite-file-completion.png",
+      "sha256": "e28035a2b1195c01840f49cf4e4ec7e4f0f033527de71717efd76f74dc2d193b",
+      "bytes": 404622,
+      "plate": 4
+    },
+    {
+      "file": "04-finite-file-completion.svg",
+      "repo_path": "docs/architecture/rf_iq/04-finite-file-completion.svg",
+      "sha256": "c1b28dd6922ed2f46b019873803912909c23641956f0762d7fed0ea66172e7c5",
+      "bytes": 20269,
+      "plate": 4
+    },
+    {
+      "file": "05-waveform-and-spectral-outputs.png",
+      "repo_path": "docs/architecture/rf_iq/05-waveform-and-spectral-outputs.png",
+      "sha256": "74bcc32986fb7fcf8043845ea92aa97a36427020df27a166f59f032cb86c3b63",
+      "bytes": 423638,
+      "plate": 5
+    },
+    {
+      "file": "05-waveform-and-spectral-outputs.svg",
+      "repo_path": "docs/architecture/rf_iq/05-waveform-and-spectral-outputs.svg",
+      "sha256": "d9a33f550d24c835f6fc7e338fd477126b1d36e62a565a8156df164e4e7e6e6c",
+      "bytes": 22636,
+      "plate": 5
+    },
+    {
+      "file": "06-host-and-registers.png",
+      "repo_path": "docs/architecture/rf_iq/06-host-and-registers.png",
+      "sha256": "b7d0b995057dd1d286bf36d414f1d33fa11c34e34a68a08ac9da27d264952119",
+      "bytes": 440589,
+      "plate": 6
+    },
+    {
+      "file": "06-host-and-registers.svg",
+      "repo_path": "docs/architecture/rf_iq/06-host-and-registers.svg",
+      "sha256": "779bb8fa8034bcb6df274c94c4d31859f2ec44b1c895d0da5de37c8eb7d8462f",
+      "bytes": 22060,
+      "plate": 6
+    },
+    {
+      "file": "07-state-and-backpressure.png",
+      "repo_path": "docs/architecture/rf_iq/07-state-and-backpressure.png",
+      "sha256": "5f43ada59ad1a579979ca644b2444d76b92183b85cc12897a0134c6f4d1265ad",
+      "bytes": 389206,
+      "plate": 7
+    },
+    {
+      "file": "07-state-and-backpressure.svg",
+      "repo_path": "docs/architecture/rf_iq/07-state-and-backpressure.svg",
+      "sha256": "89a05b469a99b9a36fc3a2152c0da0fd73c1d038addc445cb6390deb53c80380",
+      "bytes": 23270,
+      "plate": 7
+    },
+    {
+      "file": "08-clock-reset-verification.png",
+      "repo_path": "docs/architecture/rf_iq/08-clock-reset-verification.png",
+      "sha256": "353b081bb58451417ffe0ab7e295a3352fbf68b92b9bb7a3f4f6a33310d4d2d6",
+      "bytes": 454618,
+      "plate": 8
+    },
+    {
+      "file": "08-clock-reset-verification.svg",
+      "repo_path": "docs/architecture/rf_iq/08-clock-reset-verification.svg",
+      "sha256": "30ccd7627b84a2a318bbab6d1163ce8d93f4bc31692528fa15d2c268d7b3a70b",
+      "bytes": 20949,
+      "plate": 8
+    }
+  ],
+  "layout_audit": [
+    {
+      "plate": 1,
+      "status": "PASS",
+      "nodes": 6,
+      "edges": 5,
+      "text_items": 36,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "Pending separate human/agent inspection"
+    },
+    {
+      "plate": 2,
+      "status": "PASS",
+      "nodes": 8,
+      "edges": 6,
+      "text_items": 35,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "Pending separate human/agent inspection"
+    },
+    {
+      "plate": 3,
+      "status": "PASS",
+      "nodes": 6,
+      "edges": 7,
+      "text_items": 35,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "Pending separate human/agent inspection"
+    },
+    {
+      "plate": 4,
+      "status": "PASS",
+      "nodes": 6,
+      "edges": 5,
+      "text_items": 28,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "Pending separate human/agent inspection"
+    },
+    {
+      "plate": 5,
+      "status": "PASS",
+      "nodes": 6,
+      "edges": 6,
+      "text_items": 32,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "Pending separate human/agent inspection"
+    },
+    {
+      "plate": 6,
+      "status": "PASS",
+      "nodes": 6,
+      "edges": 5,
+      "text_items": 31,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "Pending separate human/agent inspection"
+    },
+    {
+      "plate": 7,
+      "status": "PASS",
+      "nodes": 7,
+      "edges": 6,
+      "text_items": 32,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "Pending separate human/agent inspection"
+    },
+    {
+      "plate": 8,
+      "status": "PASS",
+      "nodes": 6,
+      "edges": 4,
+      "text_items": 30,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "Pending separate human/agent inspection"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "artifact_kind": "derived_plot_from_historical_scalar_results",
+  "input": "historical_projection.json",
+  "input_sha256": "8efa861d95a4398ae5ac9c29b95b5bc576eb8929d91262f1614029c65cd1cddd",
+  "no_new_hardware_execution": true
+}

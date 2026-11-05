@@ -1,0 +1,28 @@
+{
+  "status": "RECORDED",
+  "production_rtl_changed": false,
+  "attempts": [
+    {
+      "run": "run01/wrapper",
+      "disposition": "FAIL_COMPILE_POLICY",
+      "detail": "ModelSim treated inherited implicit-net declarations as errors. The established -warning 2892 policy was applied. No RTL changes.",
+      "original_receipt_sha256": "bf3d3c97ece98105d616e945e5c5d55419cdcd6890c5a82ffdd12332dba446ea",
+      "diagnostic": "attempts/run01_wrapper.txt",
+      "diagnostic_sha256": "95de122959c4f8bf08905e09287a11422e1a7e54bb7176a08f17c68cdfc4f3e8"
+    },
+    {
+      "run": "run01/admission",
+      "disposition": "FAIL_TESTBENCH_TIMING",
+      "detail": "New held-prefetch assertion ran before the stage was valid. Replaced the fixed observation instant with a bounded poll. The DUT and numerical expectations did not change.",
+      "original_receipt_sha256": "c4f5048b9ce00838d8e9fd33e829a18739b1543919b3be4a5f9f3cbdb2854496",
+      "diagnostic": "attempts/run01_admission.txt",
+      "diagnostic_sha256": "87d1086227b7ffa8a46328ebf51cac4d188c0e5f41c46e9bab101017e439a67d"
+    },
+    {
+      "run": "run01/integration",
+      "disposition": "INCOMPLETE_SUPERSEDED",
+      "detail": "Stopped the owned preliminary process to restart with copied-test integrity checks and immutable package-manifest admission. Not counted as a passing run.",
+      "original_receipt_sha256": "da973b876450eb6cd6d9a07dbf5e66ffe092bfa1b739e78c9f797ac067ee915b"
+    }
+  ]
+}

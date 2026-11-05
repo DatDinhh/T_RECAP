@@ -1,0 +1,59 @@
+{
+  "schema": "trf1-atlas-visual-review-v1",
+  "review_date": "2026-11-04",
+  "status": "PASS",
+  "method": "Agent visual inspection of PNG renders, source review and automatic layout checks.",
+  "reviewer": "rf_atlas_review",
+  "checks": [
+    "All eight plates inspected",
+    "Node text is contained",
+    "No routed edge passes through an unrelated node",
+    "Narrow overview labels fit between cards",
+    "Clock and signal-rate metadata are distinguished",
+    "New RF conversion and unchanged numerical core are distinguished",
+    "Historical verification is not reassigned to the RF extension"
+  ],
+  "revision_notes": [
+    "Corrected two wrapped text overflows in plate 2",
+    "Wrapped the narrow overview arrow labels",
+    "Separated the plate 6 control route from the admission arrow",
+    "Added explicit coefficient and phase control edges in plate 3"
+  ],
+  "limits": "Visual review and hashes do not establish RTL correctness. Full source and test evidence are documented separately.",
+  "reviewed_images": [
+    {
+      "file": "01-system.png",
+      "sha256": "1e87bf7c3637b64ed9badac3db4d0528fa62280340bfee77479815e65a3ed9d8"
+    },
+    {
+      "file": "02-signal-representation.png",
+      "sha256": "770594b8a649868b3b22fae514440cadf87229b8efe24a719454ea100eddf6ef"
+    },
+    {
+      "file": "03-adapter-hardware.png",
+      "sha256": "cd722740817a7a5e4cbb9e2f4b8d3b2418a4e84da6ecf14dae9c4d5d2f6dcd20"
+    },
+    {
+      "file": "04-finite-file-completion.png",
+      "sha256": "e28035a2b1195c01840f49cf4e4ec7e4f0f033527de71717efd76f74dc2d193b"
+    },
+    {
+      "file": "05-waveform-and-spectral-outputs.png",
+      "sha256": "74bcc32986fb7fcf8043845ea92aa97a36427020df27a166f59f032cb86c3b63"
+    },
+    {
+      "file": "06-host-and-registers.png",
+      "sha256": "b7d0b995057dd1d286bf36d414f1d33fa11c34e34a68a08ac9da27d264952119"
+    },
+    {
+      "file": "07-state-and-backpressure.png",
+      "sha256": "5f43ada59ad1a579979ca644b2444d76b92183b85cc12897a0134c6f4d1265ad"
+    },
+    {
+      "file": "08-clock-reset-verification.png",
+      "sha256": "353b081bb58451417ffe0ab7e295a3352fbf68b92b9bb7a3f4f6a33310d4d2d6"
+    }
+  ],
+  "atlas_manifest_sha256": "62fc6d111cfe8b5d09467f211e4f2e4c3dbc8375069bd903cfb99f455a103ae9",
+  "viewer_sha256": "080af4d5a765cfb0928005d48c03e697b3a3b12c6825f621f158ea61699afcd3"
+}

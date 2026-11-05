@@ -10,7 +10,17 @@ The [main project README](https://github.com/DatDinhh/T_RECAP#readme) explains t
 
 **New to the terminology?** See [Terms and abbreviations](#terms-and-abbreviations), including the difference between TSH2, THR2 and TSP1.
 
-## Current profile and objective
+## Recorded RF extension
+
+The **TRF1** profile accepts recorded CU8 I/Q pairs and converts them inside the FPGA into the real signed 12-bit stream used by the existing DSP core. The added hardware performs byte centering, fourfold FIR interpolation, real-IF mixing, rounding and finite-file padding. Audio TSH2 and RF TRF1 are separate fitted applications.
+
+![Recorded RF architecture](docs/architecture/rf_iq/01-system.png)
+
+The [eight-view RF atlas](docs/architecture/rf_iq/README.md) explains the complete path from recorded file through HPS transport, the new adapter, unchanged DSP and returned Y/TSP1 outputs. The [RF source guide](profiles/trf1/README.md) maps the RTL, host client and platform dependencies.
+
+The [portable RF verification package](verification/rf_iq/README.md) provides independent numerical checks, self-checking RTL suites and executed evidence. The [academic LaTeX report](docs/verification/rf_iq/README.md) includes requirements, waveforms, observed test counts and historical board results. Fresh offline verification and earlier physical captures are explicitly separated. The new RF block is outside the scope of the earlier TSH2 formal and UVM results.
+
+## Audio profile and objective
 
 **TSH2** means **T-RECAP Signal-processing Hardware, version 2**. This finite-file FPGA implementation retains the FFT, tunable squared-magnitude threshold, and IFFT/WOLA reconstruction. It additionally exports sparse spectral powers so a compatible host consumer can avoid processing omitted bins. Evaluation measures waveform distortion, spectral packet bytes, and host consumer time separately.
 

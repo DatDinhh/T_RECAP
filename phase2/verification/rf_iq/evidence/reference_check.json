@@ -1,0 +1,263 @@
+{
+  "status": "PASS",
+  "scope": "Independent full-convolution fixture and coefficient regeneration",
+  "rtl_simulation_performed": false,
+  "fixtures": 42,
+  "samples": 405304,
+  "coefficients_checked": 81,
+  "reference_sha256": "3b0dfc4dce536db003cd695dd370aa4ecf8fc812b617c70f3e8a910592792fb9",
+  "results": [
+    {
+      "fixture": "single_min",
+      "samples": 4,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "single_max",
+      "samples": 4,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "single_mid",
+      "samples": 4,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "short_2",
+      "samples": 8,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "short_3",
+      "samples": 12,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "short_9",
+      "samples": 36,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "short_10",
+      "samples": 40,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "short_11",
+      "samples": 44,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "dc_0",
+      "samples": 384,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "dc_127",
+      "samples": 384,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "dc_128",
+      "samples": 384,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "dc_255",
+      "samples": 384,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "impulse_i_0",
+      "samples": 256,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "impulse_i_32",
+      "samples": 256,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "impulse_i_63",
+      "samples": 256,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "impulse_q_0",
+      "samples": 256,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "impulse_q_32",
+      "samples": 256,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "impulse_q_63",
+      "samples": 256,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "tone_negative",
+      "samples": 512,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "tone_positive",
+      "samples": 512,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "random_g0",
+      "samples": 1028,
+      "gain": 0,
+      "status": "PASS"
+    },
+    {
+      "fixture": "extremes_g0",
+      "samples": 508,
+      "gain": 0,
+      "status": "PASS"
+    },
+    {
+      "fixture": "random_g1",
+      "samples": 1028,
+      "gain": 1,
+      "status": "PASS"
+    },
+    {
+      "fixture": "extremes_g1",
+      "samples": 508,
+      "gain": 1,
+      "status": "PASS"
+    },
+    {
+      "fixture": "random_g2",
+      "samples": 1028,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "extremes_g2",
+      "samples": 508,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "random_g3",
+      "samples": 1028,
+      "gain": 3,
+      "status": "PASS"
+    },
+    {
+      "fixture": "extremes_g3",
+      "samples": 508,
+      "gain": 3,
+      "status": "PASS"
+    },
+    {
+      "fixture": "l1_p0_neg",
+      "samples": 84,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "l1_p0_pos",
+      "samples": 84,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "l1_p1_neg",
+      "samples": 84,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "l1_p1_pos",
+      "samples": 84,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "l1_p2_neg",
+      "samples": 84,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "l1_p2_pos",
+      "samples": 84,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "l1_p3_neg",
+      "samples": 84,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "l1_p3_pos",
+      "samples": 84,
+      "gain": 2,
+      "status": "PASS"
+    },
+    {
+      "fixture": "max96000",
+      "samples": 384000,
+      "gain": 3,
+      "status": "PASS"
+    },
+    {
+      "fixture": "tone128",
+      "samples": 2048,
+      "gain": 1,
+      "status": "PASS"
+    },
+    {
+      "fixture": "random512",
+      "samples": 2048,
+      "gain": 1,
+      "status": "PASS"
+    },
+    {
+      "fixture": "clip21",
+      "samples": 2048,
+      "gain": 3,
+      "status": "PASS"
+    },
+    {
+      "fixture": "minimum1_gain0",
+      "samples": 2048,
+      "gain": 0,
+      "status": "PASS"
+    },
+    {
+      "fixture": "tone128_gain2",
+      "samples": 2048,
+      "gain": 2,
+      "status": "PASS"
+    }
+  ]
+}

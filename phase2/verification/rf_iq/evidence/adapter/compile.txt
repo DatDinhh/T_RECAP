@@ -1,0 +1,10 @@
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+Start time: 20:35:30 on Nov 04,2026
+vlog -sv -work work -warning 2892 "+incdir+." "+incdir+sources" "+incdir+source/rtl/include" "+incdir+source/rtl/include/generated" "+incdir+source/rtl/interfaces" sources/trecap_rf_iq_adapter.sv benches/rf_iq_adapter_tb.sv 
+-- Compiling module trecap_rf_iq_adapter
+-- Compiling module rf_iq_adapter_tb
+
+Top level modules:
+	rf_iq_adapter_tb
+End time: 20:35:30 on Nov 04,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

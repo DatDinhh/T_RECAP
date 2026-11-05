@@ -1,0 +1,20 @@
+Reading pref.tcl
+
+# 2020.1
+
+# vsim -c -onfinish stop -voptargs="+acc" work.rf_file_source_tb "+SEED=20261103" -do "run.do" 
+# Start time: 20:35:16 on Nov 04,2026
+# Loading sv_std.std
+# Loading work.rf_file_source_tb
+# Loading work.trecap_rf_file_source
+# Loading work.trecap_rf_iq_adapter
+# do run.do
+# RF_FILE_SOURCE_PASS completed=4 aborted=2 checked_samples=264 stalled_cycles=535
+# ** Note: $finish    : benches/rf_file_source_tb.sv(198)
+#    Time: 85156 ns  Iteration: 0  Instance: /rf_file_source_tb
+# Break in Module rf_file_source_tb at benches/rf_file_source_tb.sv line 198
+# Stopped at benches/rf_file_source_tb.sv line 198
+# 1
+DV_CHECKER_DONE=1
+# End time: 20:35:17 on Nov 04,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

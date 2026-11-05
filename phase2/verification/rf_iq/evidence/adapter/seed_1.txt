@@ -1,0 +1,59 @@
+Reading pref.tcl
+
+# 2020.1
+
+# vsim -c -onfinish stop -voptargs="+acc" work.rf_iq_adapter_tb "+SEED=1" "+VCD=observed.vcd" -do "run.do" 
+# Start time: 20:35:31 on Nov 04,2026
+# Loading sv_std.std
+# Loading work.rf_iq_adapter_tb
+# Loading work.trecap_rf_iq_adapter
+# do run.do
+# CASE_PASS single_min N=1 gain=2 samples=4 clips=0 cycles=1048
+# CASE_PASS single_max N=1 gain=2 samples=4 clips=0 cycles=1048
+# CASE_PASS single_mid N=1 gain=2 samples=4 clips=0 cycles=1049
+# CASE_PASS short_2 N=2 gain=2 samples=8 clips=0 cycles=1142
+# CASE_PASS short_3 N=3 gain=2 samples=12 clips=0 cycles=1235
+# CASE_PASS short_9 N=9 gain=2 samples=36 clips=0 cycles=1806
+# CASE_PASS short_10 N=10 gain=2 samples=40 clips=0 cycles=1902
+# CASE_PASS short_11 N=11 gain=2 samples=44 clips=0 cycles=1995
+# CASE_PASS dc_0 N=96 gain=2 samples=384 clips=0 cycles=10017
+# CASE_PASS dc_127 N=96 gain=2 samples=384 clips=0 cycles=9999
+# CASE_PASS dc_128 N=96 gain=2 samples=384 clips=0 cycles=10022
+# CASE_PASS dc_255 N=96 gain=2 samples=384 clips=0 cycles=10010
+# CASE_PASS impulse_i_0 N=64 gain=2 samples=256 clips=0 cycles=6996
+# CASE_PASS impulse_i_32 N=64 gain=2 samples=256 clips=0 cycles=6988
+# CASE_PASS impulse_i_63 N=64 gain=2 samples=256 clips=0 cycles=6991
+# CASE_PASS impulse_q_0 N=64 gain=2 samples=256 clips=0 cycles=6977
+# CASE_PASS impulse_q_32 N=64 gain=2 samples=256 clips=0 cycles=6984
+# CASE_PASS impulse_q_63 N=64 gain=2 samples=256 clips=0 cycles=6990
+# CASE_PASS tone_negative N=128 gain=2 samples=512 clips=0 cycles=13034
+# CASE_PASS tone_positive N=128 gain=2 samples=512 clips=0 cycles=13036
+# CASE_PASS random_g0 N=257 gain=0 samples=1028 clips=0 cycles=25191
+# CASE_PASS extremes_g0 N=127 gain=0 samples=508 clips=0 cycles=12917
+# CASE_PASS random_g1 N=257 gain=1 samples=1028 clips=0 cycles=25208
+# CASE_PASS extremes_g1 N=127 gain=1 samples=508 clips=0 cycles=12927
+# CASE_PASS random_g2 N=257 gain=2 samples=1028 clips=0 cycles=25174
+# CASE_PASS extremes_g2 N=127 gain=2 samples=508 clips=0 cycles=12934
+# CASE_PASS random_g3 N=257 gain=3 samples=1028 clips=40 cycles=25186
+# CASE_PASS extremes_g3 N=127 gain=3 samples=508 clips=158 cycles=12942
+# CASE_PASS l1_p0_neg N=21 gain=2 samples=84 clips=0 cycles=2932
+# CASE_PASS l1_p0_pos N=21 gain=2 samples=84 clips=0 cycles=2932
+# CASE_PASS l1_p1_neg N=21 gain=2 samples=84 clips=0 cycles=2934
+# CASE_PASS l1_p1_pos N=21 gain=2 samples=84 clips=0 cycles=2928
+# CASE_PASS l1_p2_neg N=21 gain=2 samples=84 clips=1 cycles=2938
+# CASE_PASS l1_p2_pos N=21 gain=2 samples=84 clips=1 cycles=2938
+# CASE_PASS l1_p3_neg N=21 gain=2 samples=84 clips=0 cycles=2938
+# CASE_PASS l1_p3_pos N=21 gain=2 samples=84 clips=0 cycles=2929
+# CASE_PASS single_mid N=1 gain=2 samples=4 clips=0 cycles=1049
+# CASE_PASS single_mid N=1 gain=2 samples=4 clips=0 cycles=1047
+# CASE_PASS single_mid N=1 gain=2 samples=4 clips=0 cycles=1048
+# CASE_PASS single_mid N=1 gain=2 samples=4 clips=0 cycles=1049
+# PASS_RF_ADAPTER seed=1 cases=40 samples=11080 stalls=6198 source_gaps=41941 long_stalls=2560 aborts=4
+# ** Note: $finish    : benches/rf_iq_adapter_tb.sv(182)
+#    Time: 3017490 ns  Iteration: 1  Instance: /rf_iq_adapter_tb
+# Break in Module rf_iq_adapter_tb at benches/rf_iq_adapter_tb.sv line 182
+# Stopped at benches/rf_iq_adapter_tb.sv line 182
+# 1
+DV_CHECKER_DONE=1
+# End time: 20:35:36 on Nov 04,2026, Elapsed time: 0:00:05
+# Errors: 0, Warnings: 0

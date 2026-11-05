@@ -1,0 +1,176 @@
+Reading pref.tcl
+
+# 2020.1
+
+# vsim -c -onfinish stop -voptargs="+acc" work.rf_board_adapter_tb "+SEED=20261103" "+OUT=." "+CASES=fixtures/cases.txt" -do "run.do" 
+# Start time: 20:35:31 on Nov 04,2026
+# Loading sv_std.std
+# Loading work.rf_board_adapter_tb
+# Loading work.trecap_rf_board_adapter
+# Loading work.stream_fifo
+# Loading work.trecap_rf_file_source
+# Loading work.trecap_rf_iq_adapter
+# Loading work.trecap_core_pkg
+# Loading work.trecap_math_pkg
+# Loading work.trecap_packet_pkg
+# Loading work.trecap_iface_pkg
+# Loading work.trecap_csr_pkg
+# Loading work.trecap_build_pkg
+# Loading work.trecap_pcm_stream_top
+# Loading work.trecap_pcm_stream_source
+# Loading work.trecap_core_export_observed
+# Loading work.trecap_input_ring
+# Loading work.trecap_frame_scheduler
+# Loading work.trecap_analysis_window
+# Loading work.window_rom
+# Loading work.trecap_round_sat
+# Loading work.trecap_fft256
+# Loading work.trecap_bit_reverse_addr
+# Loading work.trecap_twiddle_rom
+# Loading work.trecap_fft_stage
+# Loading work.trecap_hermitian_canonicalizer
+# Loading work.trecap_mag2_mask
+# Loading work.trecap_spectrum_mask_builder
+# Loading work.trecap_ifft256
+# Loading work.trecap_synthesis_wola
+# Loading work.trecap_delay_error_metrics
+# Loading work.trecap_spectral_exporter
+# Loading work.trecap_stream_adapter
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'core'.  Expected 82, found 42.
+#    Time: 0 ps  Iteration: 0  Instance: /rf_board_adapter_tb/dut/core File: sources/trecap_rf_board_adapter.sv Line: 275
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'y_sample_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'source_sample_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'source_sample_data_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'tap_sample_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'tap_frame_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'tap_bin_re_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'tap_bin_im_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'tap_bin_pre_mask_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'frame_boundary_pulse_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'core_alive_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'core_sample_count_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'core_error_sample_count_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'core_sum_abs_err_lo_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'core_sum_sq_err_lo_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'core_max_abs_err_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'core_overflow_flags_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_active_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_done_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_input_phase_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_flush_phase_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_analysis_flush_phase_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_tail_drain_phase_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_output_accept_pulse_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_last_sample_pulse_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_done_pulse_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_next_issue_idx_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_output_accept_count_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_configured_input_samples_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_configured_flush_samples_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'tail_drain_active_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'tail_drain_accept_pulse_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'tail_drain_done_pulse_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'wola_output_count_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_config_error_sticky_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_mem_range_error_sticky_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'replay_overrun_sticky_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'top_alive_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'top_done_pulse_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'top_output_accept_count_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(275): [TFMPC] - Missing connection for port 'top_expected_output_count_o'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'exporter'.  Expected 27, found 23.
+#    Time: 0 ps  Iteration: 0  Instance: /rf_board_adapter_tb/dut/exporter File: sources/trecap_rf_board_adapter.sv Line: 293
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(293): [TFMPC] - Missing connection for port 'out_bytes_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(293): [TFMPC] - Missing connection for port 'out_frame_id_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(293): [TFMPC] - Missing connection for port 'out_thr2_o'.
+# ** Warning: (vsim-3722) sources/trecap_rf_board_adapter.sv(293): [TFMPC] - Missing connection for port 'out_sparse_o'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'core'.  Expected 82, found 42.
+#    Time: 0 ps  Iteration: 0  Instance: /rf_board_adapter_tb/baseline/core File: benches/trecap_stream_adapter.sv Line: 213
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'y_sample_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'source_sample_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'source_sample_data_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'tap_sample_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'tap_frame_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'tap_bin_re_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'tap_bin_im_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'tap_bin_pre_mask_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'frame_boundary_pulse_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'core_alive_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'core_sample_count_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'core_error_sample_count_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'core_sum_abs_err_lo_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'core_sum_sq_err_lo_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'core_max_abs_err_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'core_overflow_flags_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_active_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_done_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_input_phase_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_flush_phase_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_analysis_flush_phase_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_tail_drain_phase_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_output_accept_pulse_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_last_sample_pulse_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_done_pulse_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_next_issue_idx_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_output_accept_count_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_configured_input_samples_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_configured_flush_samples_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'tail_drain_active_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'tail_drain_accept_pulse_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'tail_drain_done_pulse_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'wola_output_count_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_config_error_sticky_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_mem_range_error_sticky_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'replay_overrun_sticky_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'top_alive_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'top_done_pulse_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'top_output_accept_count_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(213): [TFMPC] - Missing connection for port 'top_expected_output_count_o'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'exporter'.  Expected 27, found 23.
+#    Time: 0 ps  Iteration: 0  Instance: /rf_board_adapter_tb/baseline/exporter File: benches/trecap_stream_adapter.sv Line: 231
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(231): [TFMPC] - Missing connection for port 'out_bytes_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(231): [TFMPC] - Missing connection for port 'out_frame_id_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(231): [TFMPC] - Missing connection for port 'out_thr2_o'.
+# ** Warning: (vsim-3722) benches/trecap_stream_adapter.sv(231): [TFMPC] - Missing connection for port 'out_sparse_o'.
+# do run.do
+# EPOCH PASS case=0 RF=0 pairs=128 thr=0 sparse=0 bytes=16184 cycles=278754
+# EPOCH PASS case=0 RF=1 pairs=128 thr=0 sparse=0 bytes=16184 cycles=278764
+# EPOCH PASS case=1 RF=0 pairs=128 thr=0 sparse=1 bytes=18360 cycles=280295
+# EPOCH PASS case=1 RF=1 pairs=128 thr=0 sparse=1 bytes=18360 cycles=280294
+# EPOCH PASS case=2 RF=0 pairs=128 thr=100000000 sparse=0 bytes=16184 cycles=278754
+# EPOCH PASS case=2 RF=1 pairs=128 thr=100000000 sparse=0 bytes=16184 cycles=278764
+# EPOCH PASS case=3 RF=0 pairs=128 thr=100000000 sparse=1 bytes=2656 cycles=266451
+# EPOCH PASS case=3 RF=1 pairs=128 thr=100000000 sparse=1 bytes=2656 cycles=266490
+# EPOCH PASS case=4 RF=0 pairs=512 thr=0 sparse=0 bytes=16184 cycles=278754
+# EPOCH PASS case=4 RF=1 pairs=512 thr=0 sparse=0 bytes=16184 cycles=278762
+# EPOCH PASS case=5 RF=0 pairs=512 thr=0 sparse=1 bytes=18360 cycles=280295
+# EPOCH PASS case=5 RF=1 pairs=512 thr=0 sparse=1 bytes=18360 cycles=280303
+# EPOCH PASS case=6 RF=0 pairs=512 thr=100000000 sparse=0 bytes=16184 cycles=278754
+# EPOCH PASS case=6 RF=1 pairs=512 thr=100000000 sparse=0 bytes=16184 cycles=278762
+# EPOCH PASS case=7 RF=0 pairs=512 thr=100000000 sparse=1 bytes=11568 cycles=274703
+# EPOCH PASS case=7 RF=1 pairs=512 thr=100000000 sparse=1 bytes=11568 cycles=274714
+# EPOCH PASS case=8 RF=0 pairs=21 thr=0 sparse=0 bytes=16184 cycles=278754
+# EPOCH PASS case=8 RF=1 pairs=21 thr=0 sparse=0 bytes=16184 cycles=278763
+# EPOCH PASS case=9 RF=0 pairs=21 thr=0 sparse=1 bytes=18360 cycles=280295
+# EPOCH PASS case=9 RF=1 pairs=21 thr=0 sparse=1 bytes=18360 cycles=280293
+# EPOCH PASS case=10 RF=0 pairs=21 thr=100000000 sparse=0 bytes=16184 cycles=278754
+# EPOCH PASS case=10 RF=1 pairs=21 thr=100000000 sparse=0 bytes=16184 cycles=278763
+# EPOCH PASS case=11 RF=0 pairs=21 thr=100000000 sparse=1 bytes=3000 cycles=266450
+# EPOCH PASS case=11 RF=1 pairs=21 thr=100000000 sparse=1 bytes=3000 cycles=266491
+# EPOCH PASS case=12 RF=0 pairs=1 thr=0 sparse=1 bytes=18360 cycles=280295
+# EPOCH PASS case=12 RF=1 pairs=1 thr=0 sparse=1 bytes=18360 cycles=280309
+# EPOCH PASS case=13 RF=0 pairs=1 thr=72057594037927935 sparse=1 bytes=952 cycles=266454
+# EPOCH PASS case=13 RF=1 pairs=1 thr=72057594037927935 sparse=1 bytes=952 cycles=266492
+# EPOCH PASS case=14 RF=0 pairs=128 thr=100000000 sparse=0 bytes=16184 cycles=278754
+# EPOCH PASS case=14 RF=1 pairs=128 thr=100000000 sparse=0 bytes=16184 cycles=278764
+# EPOCH PASS case=15 RF=0 pairs=128 thr=72057594037927935 sparse=1 bytes=952 cycles=266454
+# EPOCH PASS case=15 RF=1 pairs=128 thr=72057594037927935 sparse=1 bytes=952 cycles=266477
+# PASS_RF_BOARD_ADAPTER epochs=32 negatives=18 checks=5634999 transactions=1908357 cycles=8847584 iqfull=411181 spectralfull=775347 yfull=912646 rfstalls=3297298
+# ** Note: $finish    : benches/rf_board_adapter_tb.sv(184)
+#    Time: 88475840 ns  Iteration: 1  Instance: /rf_board_adapter_tb
+# Break in Module rf_board_adapter_tb at benches/rf_board_adapter_tb.sv line 184
+# Stopped at benches/rf_board_adapter_tb.sv line 184
+# 1
+DV_CHECKER_DONE=1
+# End time: 20:43:59 on Nov 04,2026, Elapsed time: 0:08:28
+# Errors: 0, Warnings: 92

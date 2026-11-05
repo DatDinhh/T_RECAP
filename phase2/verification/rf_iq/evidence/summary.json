@@ -1,0 +1,135 @@
+{
+  "schema": "rf-publication-verification-v1",
+  "status": "PASS",
+  "hardware_used": false,
+  "source_id": "1f567ac68e2f8d3affd51e73c7dad1c144795df2045eeb290d33a806f8a9d700",
+  "suites": {
+    "adapter": {
+      "status": "PASS",
+      "observations": [
+        {
+          "seed": 1,
+          "marker": "PASS_RF_ADAPTER seed=1 cases=40 samples=11080 stalls=6198 source_gaps=41941 long_stalls=2560 aborts=4",
+          "counters": {
+            "seed": 1,
+            "cases": 40,
+            "samples": 11080,
+            "stalls": 6198,
+            "source_gaps": 41941,
+            "long_stalls": 2560,
+            "aborts": 4
+          }
+        },
+        {
+          "seed": 7,
+          "marker": "PASS_RF_ADAPTER seed=7 cases=40 samples=11080 stalls=6272 source_gaps=41915 long_stalls=2560 aborts=4",
+          "counters": {
+            "seed": 7,
+            "cases": 40,
+            "samples": 11080,
+            "stalls": 6272,
+            "source_gaps": 41915,
+            "long_stalls": 2560,
+            "aborts": 4
+          }
+        },
+        {
+          "seed": 20261103,
+          "marker": "PASS_RF_ADAPTER seed=20261103 cases=40 samples=11080 stalls=6284 source_gaps=41942 long_stalls=2560 aborts=4",
+          "counters": {
+            "seed": 20261103,
+            "cases": 40,
+            "samples": 11080,
+            "stalls": 6284,
+            "source_gaps": 41942,
+            "long_stalls": 2560,
+            "aborts": 4
+          }
+        }
+      ],
+      "report_sha256": "ea4d63b81c0e0f61cbf28410349d500068dc589c6719815fb5d2d4b93b29b316"
+    },
+    "limit": {
+      "status": "PASS",
+      "observations": [
+        {
+          "seed": 20261103,
+          "marker": "PASS_RF_LIMIT seed=20261103 cases=1 samples=384000 stalls=128000 source_gaps=7339 long_stalls=64",
+          "counters": {
+            "seed": 20261103,
+            "cases": 1,
+            "samples": 384000,
+            "stalls": 128000,
+            "source_gaps": 7339,
+            "long_stalls": 64
+          }
+        }
+      ],
+      "report_sha256": "5a1d5fc6552e0997294e50ef0f17c7f0501007b97dea813efc702871122170c1"
+    },
+    "wrapper": {
+      "status": "PASS",
+      "observations": [
+        {
+          "seed": 20261103,
+          "marker": "RF_FILE_SOURCE_PASS completed=4 aborted=2 checked_samples=264 stalled_cycles=535",
+          "counters": {
+            "completed": 4,
+            "aborted": 2,
+            "checked_samples": 264,
+            "stalled_cycles": 535
+          }
+        }
+      ],
+      "report_sha256": "a7072634da69aef85aa6ef1ba5e619514c79e25e36ca38e24c6d3989d0df79bb"
+    },
+    "integration": {
+      "status": "PASS",
+      "observations": [
+        {
+          "seed": 20261103,
+          "marker": "PASS_RF_BOARD_ADAPTER epochs=32 negatives=18 checks=5634999 transactions=1908357 cycles=8847584 iqfull=411181 spectralfull=775347 yfull=912646 rfstalls=3297298",
+          "counters": {
+            "epochs": 32,
+            "negatives": 18,
+            "checks": 5634999,
+            "transactions": 1908357,
+            "cycles": 8847584,
+            "iqfull": 411181,
+            "spectralfull": 775347,
+            "yfull": 912646,
+            "rfstalls": 3297298
+          }
+        }
+      ],
+      "report_sha256": "b399491462515cd2557da0875d12adf1e62e4b0e2be62e5195422ccd9bfcce9f"
+    },
+    "admission": {
+      "status": "PASS",
+      "observations": [
+        {
+          "seed": 20261103,
+          "marker": "PASS_RF_BOARD_ADMISSION checks=4260 cycles=16193 ready_bad_word=1 busy_config=1 watchdog_recovery=1 pending_prefetch_reset=1 held_prefetch_clear=1",
+          "counters": {
+            "checks": 4260,
+            "cycles": 16193,
+            "ready_bad_word": 1,
+            "busy_config": 1,
+            "watchdog_recovery": 1,
+            "pending_prefetch_reset": 1,
+            "held_prefetch_clear": 1
+          }
+        }
+      ],
+      "report_sha256": "3eb57b352b1c7e6c337afcecdfdae46ba7c68c08ea65d71264824861ecdbcc06"
+    }
+  },
+  "adapter_transactions": 120,
+  "adapter_samples": 33240,
+  "maximum_samples": 384000,
+  "reference_fixtures": 42,
+  "reference_samples": 405304,
+  "note": "Fresh simulation and independent reference checks. Historical physical captures are reported separately.",
+  "integration_y_samples": 81920,
+  "integration_tsp1_bytes": 411712
+}

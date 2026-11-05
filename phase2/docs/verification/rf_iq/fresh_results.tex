@@ -1,0 +1,17 @@
+The fresh publication run passed all five RTL layers. Its adapter negative control also failed as intended when one expected value was deliberately corrupted. Native host tests ran separately under the undefined-behavior sanitizer. No board was accessed by this refresh.
+
+\begin{table}[H]\centering\small
+\caption{Fresh publication verification. See the machine-readable projection for exact receipt identities.}
+\begin{tabularx}{\linewidth}{@{}p{1.65in}Y@{}}\toprule
+Layer & Executed result \\ \midrule
+Adapter & 3 seeds, 120 transactions, 33,240 exact samples \\
+Maximum record & 384,000 exact samples and signed clipping/rounding checks \\
+Finite wrapper & 4 completed, 2 aborted, 264 sample checks \\
+Actual-core MMIO & 32 epochs, 5,634,999 checks, 18 fault/abort cases \\
+Admission and recovery & 4,260 checks over 16,193 cycles \\
+Native host tests & 28 register-mock checks, 11 file cases and 4 numeric cases \\
+\bottomrule\end{tabularx}
+\end{table}
+
+The fresh integration cases extend the prior matrix with a one-pair minimum record, legal gains 0 and 2, and the maximum legal 56-bit threshold. The admission extension exercises pending FIFO-prefetch recovery. These are specific executed cases, not an exhaustive cross-product claim.
+Independent regeneration checked 42 numerical fixtures, 405,304 samples and all 81 FIR coefficients. The package checker rejected all 5 deliberately corrupted source or fixture variants.

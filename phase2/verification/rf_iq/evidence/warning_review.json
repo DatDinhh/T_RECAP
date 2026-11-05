@@ -1,0 +1,201 @@
+{
+  "status": "PASS",
+  "runs": {
+    "adapter": {
+      "compile.txt": {
+        "categories": {},
+        "omitted_output_names": [],
+        "missing_input_ports": [],
+        "log_sha256": "9ace1590314ab486c8b7fb27f84d860e43df7aaf50ed8440800aff919087e742"
+      },
+      "seed_1.txt": {
+        "categories": {},
+        "omitted_output_names": [],
+        "missing_input_ports": [],
+        "log_sha256": "d1cb2bdc25079aa1d3584b37182478385721b8eaac3e0a87f3f7ad94afb8b4a1"
+      },
+      "seed_7.txt": {
+        "categories": {},
+        "omitted_output_names": [],
+        "missing_input_ports": [],
+        "log_sha256": "21b23c45c62179153d305c6294316790d944420c8137ca4b29d7dade9ae75698"
+      },
+      "seed_20261103.txt": {
+        "categories": {},
+        "omitted_output_names": [],
+        "missing_input_ports": [],
+        "log_sha256": "c3ce5d349caec020f67610816ad8ad6bd9480c2844a9b388ccac0915e20608e4"
+      }
+    },
+    "limit": {
+      "compile.txt": {
+        "categories": {},
+        "omitted_output_names": [],
+        "missing_input_ports": [],
+        "log_sha256": "a746af4db89dd6153fe11a64937086cd61f4f4214edae694fcefd7fdea8a5018"
+      },
+      "seed_20261103.txt": {
+        "categories": {},
+        "omitted_output_names": [],
+        "missing_input_ports": [],
+        "log_sha256": "caf9f01d1fc0c216caf3efb0d2f5005b3328d4c295bed4f92cf4166663a3944d"
+      }
+    },
+    "wrapper": {
+      "compile.txt": {
+        "categories": {
+          "2892": 10
+        },
+        "omitted_output_names": [],
+        "missing_input_ports": [],
+        "log_sha256": "5456a100b49411d041b46750448ec037ab3b86b561d742a2e22d0e0e62976834"
+      },
+      "seed_20261103.txt": {
+        "categories": {},
+        "omitted_output_names": [],
+        "missing_input_ports": [],
+        "log_sha256": "d89b0dc22c33f5900e61db6376855282d17724ded98b2a28a343989ecb2e104d"
+      }
+    },
+    "integration": {
+      "compile.txt": {
+        "categories": {
+          "2892": 396,
+          "13314": 7,
+          "2583": 12
+        },
+        "omitted_output_names": [],
+        "missing_input_ports": [],
+        "log_sha256": "e80099c7b0c4d0913b8b4e7d96dc9e371bf564a9313de88189644a07abc029a0"
+      },
+      "seed_20261103.txt": {
+        "categories": {
+          "2685": 4,
+          "3722": 88
+        },
+        "omitted_output_names": [
+          "core_alive_o",
+          "core_error_sample_count_o",
+          "core_max_abs_err_o",
+          "core_overflow_flags_o",
+          "core_sample_count_o",
+          "core_sum_abs_err_lo_o",
+          "core_sum_sq_err_lo_o",
+          "frame_boundary_pulse_o",
+          "out_bytes_o",
+          "out_frame_id_o",
+          "out_sparse_o",
+          "out_thr2_o",
+          "replay_active_o",
+          "replay_analysis_flush_phase_o",
+          "replay_config_error_sticky_o",
+          "replay_configured_flush_samples_o",
+          "replay_configured_input_samples_o",
+          "replay_done_o",
+          "replay_done_pulse_o",
+          "replay_flush_phase_o",
+          "replay_input_phase_o",
+          "replay_last_sample_pulse_o",
+          "replay_mem_range_error_sticky_o",
+          "replay_next_issue_idx_o",
+          "replay_output_accept_count_o",
+          "replay_output_accept_pulse_o",
+          "replay_overrun_sticky_o",
+          "replay_tail_drain_phase_o",
+          "source_sample_data_o",
+          "source_sample_o",
+          "tail_drain_accept_pulse_o",
+          "tail_drain_active_o",
+          "tail_drain_done_pulse_o",
+          "tap_bin_im_o",
+          "tap_bin_pre_mask_o",
+          "tap_bin_re_o",
+          "tap_frame_o",
+          "tap_sample_o",
+          "top_alive_o",
+          "top_done_pulse_o",
+          "top_expected_output_count_o",
+          "top_output_accept_count_o",
+          "wola_output_count_o",
+          "y_sample_o"
+        ],
+        "missing_input_ports": [],
+        "log_sha256": "9c29f5c8e0ede44663c36d9a8554432766b079d2e4174b55794ba5f0122bfe8f"
+      }
+    },
+    "admission": {
+      "compile.txt": {
+        "categories": {
+          "2892": 396,
+          "13314": 7,
+          "2583": 12
+        },
+        "omitted_output_names": [],
+        "missing_input_ports": [],
+        "log_sha256": "372cc094e557c08852cbc224bfdeaf9f72c4c459224db488c6bac51ac560aec7"
+      },
+      "seed_20261103.txt": {
+        "categories": {
+          "2685": 2,
+          "3722": 44
+        },
+        "omitted_output_names": [
+          "core_alive_o",
+          "core_error_sample_count_o",
+          "core_max_abs_err_o",
+          "core_overflow_flags_o",
+          "core_sample_count_o",
+          "core_sum_abs_err_lo_o",
+          "core_sum_sq_err_lo_o",
+          "frame_boundary_pulse_o",
+          "out_bytes_o",
+          "out_frame_id_o",
+          "out_sparse_o",
+          "out_thr2_o",
+          "replay_active_o",
+          "replay_analysis_flush_phase_o",
+          "replay_config_error_sticky_o",
+          "replay_configured_flush_samples_o",
+          "replay_configured_input_samples_o",
+          "replay_done_o",
+          "replay_done_pulse_o",
+          "replay_flush_phase_o",
+          "replay_input_phase_o",
+          "replay_last_sample_pulse_o",
+          "replay_mem_range_error_sticky_o",
+          "replay_next_issue_idx_o",
+          "replay_output_accept_count_o",
+          "replay_output_accept_pulse_o",
+          "replay_overrun_sticky_o",
+          "replay_tail_drain_phase_o",
+          "source_sample_data_o",
+          "source_sample_o",
+          "tail_drain_accept_pulse_o",
+          "tail_drain_active_o",
+          "tail_drain_done_pulse_o",
+          "tap_bin_im_o",
+          "tap_bin_pre_mask_o",
+          "tap_bin_re_o",
+          "tap_frame_o",
+          "tap_sample_o",
+          "top_alive_o",
+          "top_done_pulse_o",
+          "top_expected_output_count_o",
+          "top_output_accept_count_o",
+          "wola_output_count_o",
+          "y_sample_o"
+        ],
+        "missing_input_ports": [],
+        "log_sha256": "1805f9c7a1a93a274819f8d5d15bc61fec7014ca4cced9bb5f2d0cca081de713"
+      }
+    }
+  },
+  "disposition": {
+    "2892": "Inherited implicit net declarations, downgraded using the established compiler policy",
+    "13314": "Inherited port-kind default",
+    "2583": "Inherited always_comb optimization checks",
+    "2685": "Optional observation outputs omitted",
+    "3722": "Every missing named connection checked as output in frozen source"
+  },
+  "warning_free": false
+}

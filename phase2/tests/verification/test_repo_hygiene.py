@@ -104,6 +104,17 @@ class PublicationHygiene(unittest.TestCase):
         self.assertTrue(any("profiles/tsh2/work/example" in issue for issue in issues))
         self.assertTrue(any("trecap_stream8_v01/build/source.txt" in issue for issue in issues))
 
+    def test_rf_waveform_allowlist_does_not_hide_unreviewed_files(self):
+        for name in ("adapter", "admission"):
+            self.write("verification/rf_iq/evidence/" + name + "/observed.vcd",
+                       "$timescale 1ns $end\n#0\n")
+        self.assertEqual(self.audit(), [])
+        self.write("verification/rf_iq/evidence/adapter/unreviewed.vcd", "#0\n")
+        issues = self.audit()
+        self.assertEqual(len(issues), 1, issues)
+        self.assertIn("unreviewed.vcd", issues[0])
+        self.assertIn("local build/output", issues[0])
+
     def test_other_logs_are_not_allowed_as_public_receipts(self):
         self.write("docs/results/other/fixture.log", "raw capture\n")
         self.assertTrue(any("local build/output" in issue for issue in self.audit()))

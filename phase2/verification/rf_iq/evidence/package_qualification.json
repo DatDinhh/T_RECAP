@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "scope": "Package integrity checker qualification. No RTL simulation.",
+  "negative_controls": 5,
+  "results": [
+    {
+      "mutation": "snapshot RTL",
+      "status": "PASS_EXPECTED_REJECTION",
+      "reason": "Snapshot source mismatch: sources/trecap_rf_iq_adapter.sv"
+    },
+    {
+      "mutation": "editable RTL",
+      "status": "PASS_EXPECTED_REJECTION",
+      "reason": "Editable/snapshot source mismatch: profiles/trf1/adapter/rtl/trecap_rf_iq_adapter.sv"
+    },
+    {
+      "mutation": "independent reference",
+      "status": "PASS_EXPECTED_REJECTION",
+      "reason": "Independent reference mismatch: profiles/trf1/adapter/model/reference.py"
+    },
+    {
+      "mutation": "testbench",
+      "status": "PASS_EXPECTED_REJECTION",
+      "reason": "Package source mismatch: benches/rf_iq_adapter_tb.sv"
+    },
+    {
+      "mutation": "expected numerical fixture",
+      "status": "PASS_EXPECTED_REJECTION",
+      "reason": "Package source mismatch: vectors/single_min.output.hex"
+    }
+  ]
+}

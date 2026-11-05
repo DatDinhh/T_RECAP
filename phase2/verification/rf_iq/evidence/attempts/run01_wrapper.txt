@@ -1,0 +1,18 @@
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+Start time: 20:30:02 on Nov 04,2026
+vlog -sv -work work "+incdir+." "+incdir+sources" "+incdir+source/rtl/include" "+incdir+source/rtl/include/generated" "+incdir+source/rtl/interfaces" sources/trecap_rf_iq_adapter.sv sources/trecap_rf_file_source.sv benches/rf_file_source_tb.sv 
+-- Compiling module trecap_rf_iq_adapter
+-- Compiling module trecap_rf_file_source
+** Error (suppressible): sources/trecap_rf_file_source.sv(7): (vlog-2892) Net type of 'clk' was not explicitly declared.
+** Error (suppressible): sources/trecap_rf_file_source.sv(8): (vlog-2892) Net type of 'rst_n' was not explicitly declared.
+** Error (suppressible): sources/trecap_rf_file_source.sv(9): (vlog-2892) Net type of 'clear_i' was not explicitly declared.
+** Error (suppressible): sources/trecap_rf_file_source.sv(10): (vlog-2892) Net type of 'start_valid_i' was not explicitly declared.
+** Error (suppressible): sources/trecap_rf_file_source.sv(12): (vlog-2892) Net type of 'pair_count_i' was not explicitly declared.
+** Error (suppressible): sources/trecap_rf_file_source.sv(13): (vlog-2892) Net type of 'gain_shift_i' was not explicitly declared.
+** Error (suppressible): sources/trecap_rf_file_source.sv(14): (vlog-2892) Net type of 'iq_valid_i' was not explicitly declared.
+** Error (suppressible): sources/trecap_rf_file_source.sv(16): (vlog-2892) Net type of 'iq_i_i' was not explicitly declared.
+** Error (suppressible): sources/trecap_rf_file_source.sv(17): (vlog-2892) Net type of 'iq_q_i' was not explicitly declared.
+** Error (suppressible): sources/trecap_rf_file_source.sv(19): (vlog-2892) Net type of 'sample_ready_i' was not explicitly declared.
+-- Compiling module rf_file_source_tb
+End time: 20:30:02 on Nov 04,2026, Elapsed time: 0:00:00
+Errors: 10, Warnings: 0

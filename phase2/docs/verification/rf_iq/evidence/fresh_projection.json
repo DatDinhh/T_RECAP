@@ -1,0 +1,337 @@
+{
+  "schema": "trecap-rf-fresh-report-projection-v1",
+  "artifact_kind": "sanitized_projection_of_fresh_execution_receipts",
+  "status": "PASS",
+  "hardware_used": false,
+  "layers": [
+    {
+      "suite": "adapter",
+      "status": "PASS",
+      "source_id": "1f567ac68e2f8d3affd51e73c7dad1c144795df2045eeb290d33a806f8a9d700",
+      "hardware_used": false,
+      "package_manifest_sha256": "2b2619abdd10861ff9c06a975e3c2796ec1f528c673ad7facd35b7901edc821e",
+      "observations": [
+        {
+          "seed": 1,
+          "marker": "PASS_RF_ADAPTER seed=1 cases=40 samples=11080 stalls=6198 source_gaps=41941 long_stalls=2560 aborts=4",
+          "counters": {
+            "seed": 1,
+            "cases": 40,
+            "samples": 11080,
+            "stalls": 6198,
+            "source_gaps": 41941,
+            "long_stalls": 2560,
+            "aborts": 4
+          }
+        },
+        {
+          "seed": 7,
+          "marker": "PASS_RF_ADAPTER seed=7 cases=40 samples=11080 stalls=6272 source_gaps=41915 long_stalls=2560 aborts=4",
+          "counters": {
+            "seed": 7,
+            "cases": 40,
+            "samples": 11080,
+            "stalls": 6272,
+            "source_gaps": 41915,
+            "long_stalls": 2560,
+            "aborts": 4
+          }
+        },
+        {
+          "seed": 20261103,
+          "marker": "PASS_RF_ADAPTER seed=20261103 cases=40 samples=11080 stalls=6284 source_gaps=41942 long_stalls=2560 aborts=4",
+          "counters": {
+            "seed": 20261103,
+            "cases": 40,
+            "samples": 11080,
+            "stalls": 6284,
+            "source_gaps": 41942,
+            "long_stalls": 2560,
+            "aborts": 4
+          }
+        }
+      ],
+      "tools": {
+        "vlib": {
+          "sha256": "1be6b62216ae7323042a7e602381fa6550c2650c5b16c51f5963dfcea91d06b1",
+          "executable": "vlib.exe"
+        },
+        "vmap": {
+          "sha256": "635697d5cdbf2ef218ad0e377b3a093ab85b40e3cd462291cc77100ea61d2f95",
+          "executable": "vmap.exe"
+        },
+        "vlog": {
+          "sha256": "8a01969d8154b4a6415e4d908de0b1dc48ab2f4b893dda8586b2b5d7a87dc232",
+          "executable": "vlog.exe"
+        },
+        "vsim": {
+          "sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+          "executable": "vsim.exe"
+        }
+      },
+      "report_sha256": "ea4d63b81c0e0f61cbf28410349d500068dc589c6719815fb5d2d4b93b29b316",
+      "published_evidence": "phase2/verification/rf_iq/evidence/adapter/report.json",
+      "negative_control": "PASS_EXPECTED_GOLD_MISMATCH",
+      "waveform": {
+        "path": "observed.vcd",
+        "raw_sha256": "46d89e624cc7d3bc1722ae89f335500828db951cad07a50f10e4e2380dff9d5e",
+        "public_sha256": "b6d8fdef567989be75d9bf514e8e1cf57316acb15013fd79973fff56c92be01a"
+      }
+    },
+    {
+      "suite": "limit",
+      "status": "PASS",
+      "source_id": "1f567ac68e2f8d3affd51e73c7dad1c144795df2045eeb290d33a806f8a9d700",
+      "hardware_used": false,
+      "package_manifest_sha256": "2b2619abdd10861ff9c06a975e3c2796ec1f528c673ad7facd35b7901edc821e",
+      "observations": [
+        {
+          "seed": 20261103,
+          "marker": "PASS_RF_LIMIT seed=20261103 cases=1 samples=384000 stalls=128000 source_gaps=7339 long_stalls=64",
+          "counters": {
+            "seed": 20261103,
+            "cases": 1,
+            "samples": 384000,
+            "stalls": 128000,
+            "source_gaps": 7339,
+            "long_stalls": 64
+          }
+        }
+      ],
+      "tools": {
+        "vlib": {
+          "sha256": "1be6b62216ae7323042a7e602381fa6550c2650c5b16c51f5963dfcea91d06b1",
+          "executable": "vlib.exe"
+        },
+        "vmap": {
+          "sha256": "635697d5cdbf2ef218ad0e377b3a093ab85b40e3cd462291cc77100ea61d2f95",
+          "executable": "vmap.exe"
+        },
+        "vlog": {
+          "sha256": "8a01969d8154b4a6415e4d908de0b1dc48ab2f4b893dda8586b2b5d7a87dc232",
+          "executable": "vlog.exe"
+        },
+        "vsim": {
+          "sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+          "executable": "vsim.exe"
+        }
+      },
+      "report_sha256": "5a1d5fc6552e0997294e50ef0f17c7f0501007b97dea813efc702871122170c1",
+      "published_evidence": "phase2/verification/rf_iq/evidence/limit/report.json"
+    },
+    {
+      "suite": "wrapper",
+      "status": "PASS",
+      "source_id": "1f567ac68e2f8d3affd51e73c7dad1c144795df2045eeb290d33a806f8a9d700",
+      "hardware_used": false,
+      "package_manifest_sha256": "2b2619abdd10861ff9c06a975e3c2796ec1f528c673ad7facd35b7901edc821e",
+      "observations": [
+        {
+          "seed": 20261103,
+          "marker": "RF_FILE_SOURCE_PASS completed=4 aborted=2 checked_samples=264 stalled_cycles=535",
+          "counters": {
+            "completed": 4,
+            "aborted": 2,
+            "checked_samples": 264,
+            "stalled_cycles": 535
+          }
+        }
+      ],
+      "tools": {
+        "vlib": {
+          "sha256": "1be6b62216ae7323042a7e602381fa6550c2650c5b16c51f5963dfcea91d06b1",
+          "executable": "vlib.exe"
+        },
+        "vmap": {
+          "sha256": "635697d5cdbf2ef218ad0e377b3a093ab85b40e3cd462291cc77100ea61d2f95",
+          "executable": "vmap.exe"
+        },
+        "vlog": {
+          "sha256": "8a01969d8154b4a6415e4d908de0b1dc48ab2f4b893dda8586b2b5d7a87dc232",
+          "executable": "vlog.exe"
+        },
+        "vsim": {
+          "sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+          "executable": "vsim.exe"
+        }
+      },
+      "report_sha256": "a7072634da69aef85aa6ef1ba5e619514c79e25e36ca38e24c6d3989d0df79bb",
+      "published_evidence": "phase2/verification/rf_iq/evidence/wrapper/report.json"
+    },
+    {
+      "suite": "integration",
+      "status": "PASS",
+      "source_id": "1f567ac68e2f8d3affd51e73c7dad1c144795df2045eeb290d33a806f8a9d700",
+      "hardware_used": false,
+      "package_manifest_sha256": "2b2619abdd10861ff9c06a975e3c2796ec1f528c673ad7facd35b7901edc821e",
+      "observations": [
+        {
+          "seed": 20261103,
+          "marker": "PASS_RF_BOARD_ADAPTER epochs=32 negatives=18 checks=5634999 transactions=1908357 cycles=8847584 iqfull=411181 spectralfull=775347 yfull=912646 rfstalls=3297298",
+          "counters": {
+            "epochs": 32,
+            "negatives": 18,
+            "checks": 5634999,
+            "transactions": 1908357,
+            "cycles": 8847584,
+            "iqfull": 411181,
+            "spectralfull": 775347,
+            "yfull": 912646,
+            "rfstalls": 3297298
+          }
+        }
+      ],
+      "tools": {
+        "vlib": {
+          "sha256": "1be6b62216ae7323042a7e602381fa6550c2650c5b16c51f5963dfcea91d06b1",
+          "executable": "vlib.exe"
+        },
+        "vmap": {
+          "sha256": "635697d5cdbf2ef218ad0e377b3a093ab85b40e3cd462291cc77100ea61d2f95",
+          "executable": "vmap.exe"
+        },
+        "vlog": {
+          "sha256": "8a01969d8154b4a6415e4d908de0b1dc48ab2f4b893dda8586b2b5d7a87dc232",
+          "executable": "vlog.exe"
+        },
+        "vsim": {
+          "sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+          "executable": "vsim.exe"
+        }
+      },
+      "report_sha256": "b399491462515cd2557da0875d12adf1e62e4b0e2be62e5195422ccd9bfcce9f",
+      "published_evidence": "phase2/verification/rf_iq/evidence/integration/report.json"
+    },
+    {
+      "suite": "admission",
+      "status": "PASS",
+      "source_id": "1f567ac68e2f8d3affd51e73c7dad1c144795df2045eeb290d33a806f8a9d700",
+      "hardware_used": false,
+      "package_manifest_sha256": "2b2619abdd10861ff9c06a975e3c2796ec1f528c673ad7facd35b7901edc821e",
+      "observations": [
+        {
+          "seed": 20261103,
+          "marker": "PASS_RF_BOARD_ADMISSION checks=4260 cycles=16193 ready_bad_word=1 busy_config=1 watchdog_recovery=1 pending_prefetch_reset=1 held_prefetch_clear=1",
+          "counters": {
+            "checks": 4260,
+            "cycles": 16193,
+            "ready_bad_word": 1,
+            "busy_config": 1,
+            "watchdog_recovery": 1,
+            "pending_prefetch_reset": 1,
+            "held_prefetch_clear": 1
+          }
+        }
+      ],
+      "tools": {
+        "vlib": {
+          "sha256": "1be6b62216ae7323042a7e602381fa6550c2650c5b16c51f5963dfcea91d06b1",
+          "executable": "vlib.exe"
+        },
+        "vmap": {
+          "sha256": "635697d5cdbf2ef218ad0e377b3a093ab85b40e3cd462291cc77100ea61d2f95",
+          "executable": "vmap.exe"
+        },
+        "vlog": {
+          "sha256": "8a01969d8154b4a6415e4d908de0b1dc48ab2f4b893dda8586b2b5d7a87dc232",
+          "executable": "vlog.exe"
+        },
+        "vsim": {
+          "sha256": "32d0ee62596766af6a2a2b4756645908676115aea3fa6a1995eeb7b7dff63c80",
+          "executable": "vsim.exe"
+        }
+      },
+      "report_sha256": "3eb57b352b1c7e6c337afcecdfdae46ba7c68c08ea65d71264824861ecdbcc06",
+      "published_evidence": "phase2/verification/rf_iq/evidence/admission/report.json",
+      "waveform": {
+        "path": "observed.vcd",
+        "raw_sha256": "557f1c416d373eed01d577cfcf13fd67ca508a0e8c980ba593e51a74e2486354",
+        "public_sha256": "6ee8149a05df3e34c3f036f0d0f2b91d4e087b6c6d9418f456365a24a02873e6"
+      }
+    }
+  ],
+  "adapter_vcd_sha256": "b6d8fdef567989be75d9bf514e8e1cf57316acb15013fd79973fff56c92be01a",
+  "native_host_checks": {
+    "native_mock.json": {
+      "original_sha256": "8ad3f31af58d7a14a9a35ea321be57a60411efacdec5291ff07949a91031dc20",
+      "result": {
+        "status": "PASS_OFFBOARD_REGISTER_MOCK",
+        "tests": 28,
+        "hardware_access": false,
+        "raw_cu8_transport": true,
+        "full_stream_samples": 384000
+      }
+    },
+    "input_tests.json": {
+      "original_sha256": "1f1849ad13cd1f0002b0fc35f971529266d0fddac52c6a560ebf46d9c4c419fd",
+      "result": {
+        "status": "PASS_INPUT_BOUNDARIES",
+        "file_cases": 11,
+        "numeric_cases": 4,
+        "hardware_access": false
+      }
+    },
+    "sources": [
+      {
+        "published_path": "phase2/profiles/trf1/board/host/trf1_client.c",
+        "sha256": "48e0d6bfa725aeea8c2ce7899a3c331e02a067e30fa3781366560ada8ab1cdf9"
+      },
+      {
+        "published_path": "phase2/profiles/trf1/board/host/test_input.c",
+        "sha256": "7fcc6541f5221034ebe264a950e9f1d36f9567b62bf1d46eddec3c114d7d18e6"
+      },
+      {
+        "published_path": "phase2/profiles/trf1/board/host/build_offline.sh",
+        "sha256": "8c3a6d269cce061096ecc6e6ab1e73723cd3b540a9e32103073efd99b0a8d4de"
+      }
+    ],
+    "original_source_list_sha256": "5393772cdaa0ba52ba4d32e31745962f9fa77e775cbc773ac0c8a0c68c5c4de7",
+    "runtime": "Native Linux process under WSL with undefined-behavior sanitizer, no MMIO mapping or board access"
+  },
+  "reference_check": {
+    "status": "PASS",
+    "fixtures": 42,
+    "samples": 405304,
+    "coefficients_checked": 81,
+    "reference_sha256": "3b0dfc4dce536db003cd695dd370aa4ecf8fc812b617c70f3e8a910592792fb9"
+  },
+  "reference_check_sha256": "5154f12248d48104b4589f62e8f08062bd10a7d161d3d0b0c13731b771d8d8a0",
+  "package_qualification": {
+    "status": "PASS",
+    "scope": "Package integrity checker qualification. No RTL simulation.",
+    "negative_controls": 5,
+    "results": [
+      {
+        "mutation": "snapshot RTL",
+        "status": "PASS_EXPECTED_REJECTION",
+        "reason": "Snapshot source mismatch: sources/trecap_rf_iq_adapter.sv"
+      },
+      {
+        "mutation": "editable RTL",
+        "status": "PASS_EXPECTED_REJECTION",
+        "reason": "Editable/snapshot source mismatch: profiles/trf1/adapter/rtl/trecap_rf_iq_adapter.sv"
+      },
+      {
+        "mutation": "independent reference",
+        "status": "PASS_EXPECTED_REJECTION",
+        "reason": "Independent reference mismatch: profiles/trf1/adapter/model/reference.py"
+      },
+      {
+        "mutation": "testbench",
+        "status": "PASS_EXPECTED_REJECTION",
+        "reason": "Package source mismatch: benches/rf_iq_adapter_tb.sv"
+      },
+      {
+        "mutation": "expected numerical fixture",
+        "status": "PASS_EXPECTED_REJECTION",
+        "reason": "Package source mismatch: vectors/single_min.output.hex"
+      }
+    ]
+  },
+  "package_qualification_sha256": "bc04434ec229a549b804c917f3cb4bae97fc3bd298f1ae5750210cfa88d3943b",
+  "limits": [
+    "Simulation results do not imply a fresh FPGA fit or physical run.",
+    "The fresh RF suite has no formal proof or UVM coverage claim.",
+    "Native host mocks do not exercise physical HPS bus timing or ARM execution."
+  ]
+}

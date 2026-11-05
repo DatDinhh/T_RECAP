@@ -55,6 +55,23 @@ jobs:
         run: python docs/project_overview/check_bundle.py
       - name: Check current TSH2 architecture atlas integrity
         run: python docs/architecture/tsh2/build_atlas.py --repo-root . --output docs/architecture/tsh2 --check
+      - name: Install RF reference dependencies
+        run: python -m pip install -r verification/rf_iq/requirements.txt
+      - name: Check RF source package and recorded verification integrity
+        run: python verification/rf_iq/run.py --check-package
+      - name: Check RF application source identities
+        run: python profiles/trf1/check_sources.py
+      - name: Check executed RF evidence against the published sources
+        run: python verification/rf_iq/check_evidence.py
+      - name: Check independent RF numerical reference
+        run: python -m unittest discover -s profiles/trf1/adapter/model -p test_reference.py -v
+      - name: Check RF architecture atlas integrity
+        run: python docs/architecture/rf_iq/build_atlas.py --repo-root . --output docs/architecture/rf_iq --check
+      - name: Check RF academic report integrity
+        run: python docs/verification/rf_iq/check_bundle.py
+      - name: Compile and test RF host client without hardware access
+        if: runner.os == 'Linux'
+        run: bash profiles/trf1/board/host/build_offline.sh "$RUNNER_TEMP/trf1-client-offline"
       - name: Configure HPS transport on Linux
         if: runner.os == 'Linux'
         run: cmake --preset hps

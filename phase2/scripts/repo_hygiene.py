@@ -56,6 +56,8 @@ PUBLIC_RECEIPT_DIR = "docs/results/hps_cpu_benchmark_20260925/data/qualification
 # Exact reviewed simulation excerpts only. They remain subject to text, path
 # and credential checks; arbitrary traces and simulator logs stay excluded.
 PUBLIC_WAVEFORMS = {
+    "verification/rf_iq/evidence/adapter/observed.vcd",
+    "verification/rf_iq/evidence/admission/observed.vcd",
     "verification/formal/evidence/fifo_d3_w8_cover/result/engine_0/trace0.vcd",
     "verification/formal/evidence/fifo_d3_w8_cover/result/engine_0/trace1.vcd",
     "verification/formal/evidence/fifo_d3_w8_cover/result/engine_0/trace2.vcd",

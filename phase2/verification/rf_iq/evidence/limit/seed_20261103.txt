@@ -1,0 +1,20 @@
+Reading pref.tcl
+
+# 2020.1
+
+# vsim -c -onfinish stop -voptargs="+acc" work.rf_limit_tb "+SEED=20261103" -do "run.do" 
+# Start time: 20:35:31 on Nov 04,2026
+# Loading sv_std.std
+# Loading work.rf_limit_tb
+# Loading work.trecap_rf_iq_adapter
+# do run.do
+# CASE_PASS max96000 N=96000 gain=3 samples=384000 clips=16298 cycles=9056890
+# PASS_RF_LIMIT seed=20261103 cases=1 samples=384000 stalls=128000 source_gaps=7339 long_stalls=64
+# ** Note: $finish    : benches/rf_limit_tb.sv(176)
+#    Time: 90569060 ns  Iteration: 1  Instance: /rf_limit_tb
+# Break in Module rf_limit_tb at benches/rf_limit_tb.sv line 176
+# Stopped at benches/rf_limit_tb.sv line 176
+# 1
+DV_CHECKER_DONE=1
+# End time: 20:37:12 on Nov 04,2026, Elapsed time: 0:01:41
+# Errors: 0, Warnings: 0

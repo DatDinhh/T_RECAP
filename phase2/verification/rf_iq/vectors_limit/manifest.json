@@ -1,0 +1,15 @@
+{
+  "name": "max96000",
+  "pair_count": 96000,
+  "output_count": 384000,
+  "gain_shift": 3,
+  "expected_clip_count": 16298,
+  "seed": 20261103,
+  "positive_unsaturated_rounding_ties": 25,
+  "negative_unsaturated_rounding_ties": 28,
+  "files": {
+    "max96000.clip.hex": "558896bdfb1e594003093b134d331a30251e8b5d08b6090dac34e411e2556e53",
+    "max96000.input.hex": "c57f45898e8af4cbc286b40ed6ea469f866bef83531c6a4c56d55f5c68eedec8",
+    "max96000.output.hex": "fd7a961d4cddfd4bee879f6ad8c8b349e70b41bc59a6f120d3d352e44fc34f0f"
+  }
+}

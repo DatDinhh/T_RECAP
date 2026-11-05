@@ -1,0 +1,15 @@
+{
+  "original_sha256": {
+    "rf_iq_adapter_tb.sv": "566337d292ce1b33df9914d7510af0501c2a03d3e672cdff20743e28ff2e11ce",
+    "rf_limit_tb.sv": "b55c18b235189e25ff3570a9b88c7ca87ca7a7934581a5735fe213886de1deeb",
+    "rf_file_source_tb.sv": "91b30c30141b5d830a1f3648c27dceea592c6e8ff69097a2f3bcc63fbff32b9e",
+    "rf_board_adapter_tb.sv": "5affc7d35877ffaeef9c0ab41f7e805e932dad9aa703323d493b11a80adf8f7e",
+    "rf_board_admission_tb.sv": "9b703855dbd50ad80a20d6e00f44e3df8cd74ce2ddfa3ca0f56938bcc9ddffb6"
+  },
+  "changes": {
+    "rf_board_adapter_tb.sv": "16 configurations instead of 12 and corresponding bounded watchdog",
+    "rf_file_source_tb.sv": "Explicit checker_done gate added before existing completion marker",
+    "rf_board_admission_tb.sv": "Two directed prefetch abort/recovery cases plus optional observed VCD",
+    "rf_iq_adapter_tb.sv": "Exact 40 completed transactions required per seed, comprising 36 synthetic fixtures and four recovery replays. Third-party recorded fixtures excluded."
+  }
+}

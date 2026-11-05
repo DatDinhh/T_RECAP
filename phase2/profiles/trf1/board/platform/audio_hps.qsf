@@ -1,0 +1,99 @@
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CSEMA5F31C6
+set_global_assignment -name TOP_LEVEL_ENTITY trecap_hps_top
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name VERILOG_MACRO SYNTHESIS=1
+set_global_assignment -name NUM_PARALLEL_PROCESSORS 4
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"
+set_global_assignment -name QIP_FILE legacy/platform/de1soc/qsys/system/synthesis/system.qip
+set_global_assignment -name SDC_FILE hps_image.sdc
+set_global_assignment -name SDC_FILE hps_peripheral_timing.sdc
+source hps_peripheral_io.tcl
+source hps_ddr_assignments.qsf
+set_location_assignment PIN_AF14 -to CLOCK_50
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50
+set_location_assignment PIN_V16 -to LEDR[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[0]
+set_location_assignment PIN_W16 -to LEDR[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[1]
+set_location_assignment PIN_V17 -to LEDR[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[2]
+set_location_assignment PIN_V18 -to LEDR[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[3]
+set_location_assignment PIN_W17 -to LEDR[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[4]
+set_location_assignment PIN_W19 -to LEDR[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[5]
+set_location_assignment PIN_Y19 -to LEDR[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[6]
+set_location_assignment PIN_W20 -to LEDR[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[7]
+set_location_assignment PIN_W21 -to LEDR[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[8]
+set_location_assignment PIN_Y21 -to LEDR[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LEDR[9]
+set_global_assignment -name VERILOG_MACRO "TSH_SOURCE_ID=256'h1f567ac68e2f8d3affd51e73c7dad1c144795df2045eeb290d33a806f8a9d700"
+set_global_assignment -name SEARCH_PATH .
+set_global_assignment -name SEARCH_PATH source/rtl/include
+set_global_assignment -name SEARCH_PATH source/rtl/include/generated
+set_global_assignment -name SEARCH_PATH source/rtl/interfaces
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/include/generated/trecap_core_pkg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/include/generated/trecap_csr_pkg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/include/generated/trecap_packet_pkg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/include/generated/trecap_iface_pkg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/include/trecap_math_pkg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/include/trecap_build_pkg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/common/round_sat.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/common/reset_sync.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/common/sync_pulse.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/common/sync_bus_snapshot.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/common/skid_buffer.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/common/simple_dual_port_ram.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/common/true_dual_port_ram.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/common/sync_fifo.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/common/async_fifo.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/interfaces/trecap_sample_if.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/interfaces/trecap_frame_if.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/interfaces/trecap_core_tap_if.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/interfaces/trecap_record_if.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/interfaces/trecap_csr_if.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/interfaces/trecap_avmm_if.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/sources/trecap_bram_replay_source.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/sources/trecap_diagnostic_source.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/sources/trecap_source_mux.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/sources/trecap_audio_adapter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/sources/trecap_adc_adapter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/fft/complex_mul_q.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/fft/bit_reverse_addr.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/fft/twiddle_rom.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/fft/trecap_fft_stage.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/fft/trecap_fft256.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/fft/trecap_ifft256.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/core/trecap_input_ring.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/core/trecap_frame_scheduler.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/core/window_rom.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/core/trecap_analysis_window.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/core/trecap_hermitian_canonicalizer.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/core/trecap_mag2_mask.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/core/trecap_spectrum_mask_builder.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/core/trecap_synthesis_wola.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/core/trecap_delay_error_metrics.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/core/trecap_core_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/top/trecap_core_only_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/top/trecap_core_bram_replay_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE source/rtl/top/trecap_source_core_integration.sv
+set_global_assignment -name SEARCH_PATH sources
+set_global_assignment -name SYSTEMVERILOG_FILE generated/trecap_core_export_observed.sv
+set_global_assignment -name SYSTEMVERILOG_FILE generated/trecap_spectral_exporter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE generated/trecap_pcm_stream_source.sv
+set_global_assignment -name SYSTEMVERILOG_FILE generated/trecap_pcm_stream_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE sources/platform_designer_wrapper.sv
+set_global_assignment -name SYSTEMVERILOG_FILE sources/stream_fifo.sv
+set_global_assignment -name SYSTEMVERILOG_FILE sources/trecap_rf_iq_adapter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE sources/trecap_rf_file_source.sv
+set_global_assignment -name SYSTEMVERILOG_FILE sources/trecap_rf_board_adapter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE sources/trecap_hps_top.sv

@@ -1,0 +1,189 @@
+{
+  "schema": "trf1-public-source-v1",
+  "historical_source_id": "1f567ac68e2f8d3affd51e73c7dad1c144795df2045eeb290d33a806f8a9d700",
+  "scope": "New RF application sources and host client. Snapshot closure has a separate verification manifest.",
+  "files": [
+    {
+      "path": "adapter/rtl/trecap_rf_iq_adapter.sv",
+      "original_workspace_path": "work/trecap_rf_adapter_v01/rtl/trecap_rf_iq_adapter.sv",
+      "original_sha256": "49f2410c2593aa6d0fcc6ef032b19f5bdf6d059f594c3bfdfa081a2da6f1faa8",
+      "published_sha256": "49f2410c2593aa6d0fcc6ef032b19f5bdf6d059f594c3bfdfa081a2da6f1faa8",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "adapter/rtl/trecap_rf_file_source.sv",
+      "original_workspace_path": "work/trecap_rf_adapter_v01/rtl/trecap_rf_file_source.sv",
+      "original_sha256": "28499650aca794ecc6341e27a195fb69f4ef444cd8f78a0f1b4377fd3e8f4935",
+      "published_sha256": "28499650aca794ecc6341e27a195fb69f4ef444cd8f78a0f1b4377fd3e8f4935",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "adapter/coefficients/rf_coefficients.svh",
+      "original_workspace_path": "work/trecap_rf_adapter_v01/coefficients/rf_coefficients.svh",
+      "original_sha256": "4d0cb2bbe836fa9f975349fdb01c5c033fdcd028d4a991c841b4805e736635f8",
+      "published_sha256": "4d0cb2bbe836fa9f975349fdb01c5c033fdcd028d4a991c841b4805e736635f8",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "adapter/coefficients/rf_coefficients.hex",
+      "original_workspace_path": "work/trecap_rf_adapter_v01/coefficients/rf_coefficients.hex",
+      "original_sha256": "1e41856e4d6b84c355fc80e5c43a1ee32277ccda8988d5cc4f38816eb74793c1",
+      "published_sha256": "1e41856e4d6b84c355fc80e5c43a1ee32277ccda8988d5cc4f38816eb74793c1",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "adapter/coefficients/coefficients.json",
+      "original_workspace_path": "work/trecap_rf_adapter_v01/coefficients/coefficients.json",
+      "original_sha256": "026bc1755126a4a7da2c27613e264c1eaf3cde4a339a5493014a812ece26a077",
+      "published_sha256": "026bc1755126a4a7da2c27613e264c1eaf3cde4a339a5493014a812ece26a077",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "adapter/model/reference.py",
+      "original_workspace_path": "work/trecap_rf_adapter_v01/model/reference.py",
+      "original_sha256": "3b0dfc4dce536db003cd695dd370aa4ecf8fc812b617c70f3e8a910592792fb9",
+      "published_sha256": "3b0dfc4dce536db003cd695dd370aa4ecf8fc812b617c70f3e8a910592792fb9",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "adapter/model/test_reference.py",
+      "original_workspace_path": "work/trecap_rf_adapter_v01/model/test_reference.py",
+      "original_sha256": "56fd1d54a68c348d433b746c7a39920b201b6e6373c2bfce68774d7f28924527",
+      "published_sha256": "56fd1d54a68c348d433b746c7a39920b201b6e6373c2bfce68774d7f28924527",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "adapter/model/limit_fixture.py",
+      "original_workspace_path": "work/trecap_rf_adapter_v01/model/limit_fixture.py",
+      "original_sha256": "18599293bcc280913b82e30e7089fca34bfdd2700f43a57b4b04971ca24f3426",
+      "published_sha256": "18599293bcc280913b82e30e7089fca34bfdd2700f43a57b4b04971ca24f3426",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "adapter/model/generate.py",
+      "original_workspace_path": "work/trecap_rf_adapter_v01/model/generate.py",
+      "original_sha256": "16eb44c6cc871d71bd14b9c3f2bede678bcb9ad873095a5f8a99c9c5626beb2e",
+      "published_sha256": "1668e3185da8071e6e969472e0d1de88440b5cf97524d109eb23262fd27bbd71",
+      "disposition": "Optional local recorded-data loading removed. Arithmetic and synthetic cases unchanged."
+    },
+    {
+      "path": "adapter/CONTRACT.md",
+      "original_workspace_path": "work/trecap_rf_adapter_v01/CONTRACT.md",
+      "original_sha256": "e6ddf5440818ad9a438cb018ffed7420a383dc14f3c9fbd2cd97102438c55966",
+      "published_sha256": "a25626c462ab534fe0760d36df0dc88f5137e2cda95a24aa054dd6f590185d1b",
+      "disposition": "Historical integration wording updated to reflect the implemented TRF1 interface."
+    },
+    {
+      "path": "board/rtl/trecap_rf_board_adapter.sv",
+      "original_workspace_path": "work/trecap_rf_board_v01/rtl/trecap_rf_board_adapter.sv",
+      "original_sha256": "a83dd1a68945f11b75fe045f5d7433e248bcfbecea4bf68f4275f3f13980f6d5",
+      "published_sha256": "a83dd1a68945f11b75fe045f5d7433e248bcfbecea4bf68f4275f3f13980f6d5",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "board/rtl/stream_fifo.sv",
+      "original_workspace_path": "work/trecap_rf_board_v01/rtl/stream_fifo.sv",
+      "original_sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b",
+      "published_sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "board/host/trf1_client.c",
+      "original_workspace_path": "work/trecap_rf_board_v01/host/trf1_client.c",
+      "original_sha256": "48e0d6bfa725aeea8c2ce7899a3c331e02a067e30fa3781366560ada8ab1cdf9",
+      "published_sha256": "48e0d6bfa725aeea8c2ce7899a3c331e02a067e30fa3781366560ada8ab1cdf9",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "board/host/test_input.c",
+      "original_workspace_path": "work/trecap_rf_board_v01/host/test_input.c",
+      "original_sha256": "7fcc6541f5221034ebe264a950e9f1d36f9567b62bf1d46eddec3c114d7d18e6",
+      "published_sha256": "7fcc6541f5221034ebe264a950e9f1d36f9567b62bf1d46eddec3c114d7d18e6",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "board/CONTRACT.md",
+      "original_workspace_path": "work/trecap_rf_board_v01/CONTRACT.md",
+      "original_sha256": "e13ec0b31b9897fcafa5dca12132d6607e90c3dfc9b119d69f968340055b8ba1",
+      "published_sha256": "e13ec0b31b9897fcafa5dca12132d6607e90c3dfc9b119d69f968340055b8ba1",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "board/platform/trecap_hps_top.sv",
+      "original_workspace_path": "outputs/trecap_rf_board_v01/build02/sources/trecap_hps_top.sv",
+      "original_sha256": "81ab0084e276bc57c18cee4a5185cc49b18aaa81e09716e32946d34ac07c8502",
+      "published_sha256": "81ab0084e276bc57c18cee4a5185cc49b18aaa81e09716e32946d34ac07c8502",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "board/platform/platform_designer_wrapper.sv",
+      "original_workspace_path": "outputs/trecap_rf_board_v01/build02/sources/platform_designer_wrapper.sv",
+      "original_sha256": "3123d253447c91903e41c646049a3f4c837ff871f3ca493b3019382d00934c4e",
+      "published_sha256": "3123d253447c91903e41c646049a3f4c837ff871f3ca493b3019382d00934c4e",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "board/platform/audio_hps.qsf",
+      "original_workspace_path": "outputs/trecap_rf_board_v01/build02/audio_hps.qsf",
+      "original_sha256": "53b675067ca7a94d77b29cbbef606a34ea627b3219e421886e43f051f2290db5",
+      "published_sha256": "53b675067ca7a94d77b29cbbef606a34ea627b3219e421886e43f051f2290db5",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "board/platform/audio_hps.qpf",
+      "original_workspace_path": "outputs/trecap_rf_board_v01/build02/audio_hps.qpf",
+      "original_sha256": "f4e3f724fb0ffd3ecb2a33947b1867b60d7f51d0834529425015b21e02d7598c",
+      "published_sha256": "f4e3f724fb0ffd3ecb2a33947b1867b60d7f51d0834529425015b21e02d7598c",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "board/platform/hps_image.sdc",
+      "original_workspace_path": "outputs/trecap_rf_board_v01/build02/hps_image.sdc",
+      "original_sha256": "08ea77a1accc64362daf283fa8ab4ceccde4d010ae3b45676de63fe5c7507ff4",
+      "published_sha256": "08ea77a1accc64362daf283fa8ab4ceccde4d010ae3b45676de63fe5c7507ff4",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "board/platform/hps_peripheral_timing.sdc",
+      "original_workspace_path": "outputs/trecap_rf_board_v01/build02/hps_peripheral_timing.sdc",
+      "original_sha256": "ad6c78e07e9a74c3c9f790fc03c0958ab9b9fc4ad702e78d33a592bc8ea642bc",
+      "published_sha256": "ad6c78e07e9a74c3c9f790fc03c0958ab9b9fc4ad702e78d33a592bc8ea642bc",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "board/platform/hps_peripheral_io.tcl",
+      "original_workspace_path": "outputs/trecap_rf_board_v01/build02/hps_peripheral_io.tcl",
+      "original_sha256": "edd314814b81a68f1458e028bbfe99b9d7067d2853acca5f8640e7ff3c1ee0c3",
+      "published_sha256": "edd314814b81a68f1458e028bbfe99b9d7067d2853acca5f8640e7ff3c1ee0c3",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "board/platform/capture_hps_ddr_assignments.tcl",
+      "original_workspace_path": "outputs/trecap_rf_board_v01/build02/capture_hps_ddr_assignments.tcl",
+      "original_sha256": "49a314a2d6ef39aa2b1b2a38133e3719894e32598496fefec430536fd4868d49",
+      "published_sha256": "49a314a2d6ef39aa2b1b2a38133e3719894e32598496fefec430536fd4868d49",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "board/platform/hps_ddr_assignments.qsf",
+      "original_workspace_path": "outputs/trecap_rf_board_v01/build02/hps_ddr_assignments.qsf",
+      "original_sha256": "2568994565d2258d84582c5bac05f7322c88738edd717c03f56c092b6aabbad6",
+      "published_sha256": "2568994565d2258d84582c5bac05f7322c88738edd717c03f56c092b6aabbad6",
+      "disposition": "Exact original bytes"
+    },
+    {
+      "path": "board/orchestration/board_control.py",
+      "original_workspace_path": "work/trecap_rf_board_v01/board_control.py",
+      "original_sha256": "81f9cbf2a1bd8eb0d2455bcef1df7da507d5e1792b9fdfc17838cb0c3230bde9",
+      "published_sha256": "a7ac097e3235ca11ce4bd4ea3597b8235d955daf79546ff024bac61f0106b98a",
+      "disposition": "Workspace root and PowerShell location configurable. Hardware transaction logic unchanged. External qualified workspace required."
+    },
+    {
+      "path": "board/orchestration/capture.py",
+      "original_workspace_path": "work/trecap_rf_board_v01/capture.py",
+      "original_sha256": "ae3b25868b626a1582a4b2af4da7b31cbbae89550b8fedcb5e479cc24188497f",
+      "published_sha256": "ae3b25868b626a1582a4b2af4da7b31cbbae89550b8fedcb5e479cc24188497f",
+      "disposition": "Exact original bytes"
+    }
+  ]
+}

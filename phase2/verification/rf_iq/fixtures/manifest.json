@@ -1,0 +1,124 @@
+{
+  "schema": "rf-synthetic-integration-fixtures-v1",
+  "cases": [
+    {
+      "name": "tone128",
+      "pairs": 128,
+      "gain": 1,
+      "clips": 0,
+      "configurations": [
+        {
+          "threshold": 0,
+          "sparse": 0
+        },
+        {
+          "threshold": 0,
+          "sparse": 1
+        },
+        {
+          "threshold": 100000000,
+          "sparse": 0
+        },
+        {
+          "threshold": 100000000,
+          "sparse": 1
+        }
+      ]
+    },
+    {
+      "name": "random512",
+      "pairs": 512,
+      "gain": 1,
+      "clips": 0,
+      "configurations": [
+        {
+          "threshold": 0,
+          "sparse": 0
+        },
+        {
+          "threshold": 0,
+          "sparse": 1
+        },
+        {
+          "threshold": 100000000,
+          "sparse": 0
+        },
+        {
+          "threshold": 100000000,
+          "sparse": 1
+        }
+      ]
+    },
+    {
+      "name": "clip21",
+      "pairs": 21,
+      "gain": 3,
+      "clips": 3,
+      "configurations": [
+        {
+          "threshold": 0,
+          "sparse": 0
+        },
+        {
+          "threshold": 0,
+          "sparse": 1
+        },
+        {
+          "threshold": 100000000,
+          "sparse": 0
+        },
+        {
+          "threshold": 100000000,
+          "sparse": 1
+        }
+      ]
+    },
+    {
+      "name": "minimum1_gain0",
+      "pairs": 1,
+      "gain": 0,
+      "clips": 0,
+      "configurations": [
+        {
+          "threshold": 0,
+          "sparse": 1
+        },
+        {
+          "threshold": 72057594037927935,
+          "sparse": 1
+        }
+      ]
+    },
+    {
+      "name": "tone128_gain2",
+      "pairs": 128,
+      "gain": 2,
+      "clips": 0,
+      "configurations": [
+        {
+          "threshold": 100000000,
+          "sparse": 0
+        },
+        {
+          "threshold": 72057594037927935,
+          "sparse": 1
+        }
+      ]
+    }
+  ],
+  "configuration_count": 16,
+  "reference": "profiles/trf1/adapter/model/reference.py",
+  "reference_sha256": "3b0dfc4dce536db003cd695dd370aa4ecf8fc812b617c70f3e8a910592792fb9",
+  "files": {
+    "clip21.iq.hex": "16cd25c3d4e9e4bc09187a8f4305628c38ef2e7d3a699121e7fdf8bd8132f953",
+    "clip21.pcm.hex": "0b754452b277dffe6d8bfef1e7505c5f9c1e0de59ec391a7ca1777a4fef39a00",
+    "minimum1_gain0.iq.hex": "cd2c04a30fea0536e76a8a6664a85aed3123fd697e1cacd131877e2ba84237ad",
+    "minimum1_gain0.pcm.hex": "0b622d0b16bf10cc5d84b5294fb39b2fca617caf1586b008fa5a265d09ba4ae6",
+    "random512.iq.hex": "731c916ad8c25f7d284a1dca828a3fb71a645e1cdc9a79ed1d48f1de2c902b6e",
+    "random512.pcm.hex": "275c6d6a406911c375865691c1f443e00cb8c4e76157b6512da0d307d3c1a8cc",
+    "tone128.iq.hex": "abaef488271699b52adabf3665ed7a4f6164426fc7b2f6b96c310a14fc18e234",
+    "tone128.pcm.hex": "442cfed6689f06dd90c37474808aa220dfb69ac7506a2ac94977e0a90c9757bf",
+    "tone128_gain2.iq.hex": "abaef488271699b52adabf3665ed7a4f6164426fc7b2f6b96c310a14fc18e234",
+    "tone128_gain2.pcm.hex": "d335da70139e81d2f40037def23c22a239ce8ae8f2af713b4544154c84d35d23"
+  }
+}
