@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 65. [Original PDF pag
 
 [Previous](page-077.md) | [Index](../README.md) | [Next](page-079.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-078.md). Equations are rendered locally as SVG.
+
 ```text
 legacy/
   phase1/

@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 45. [Original PDF page](
 
 [Previous](page-057.md) | [Index](../README.md) | [Next](page-059.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-058.md). Equations are rendered locally as SVG.
+
 **Table 20. Exact SPEC64 payload layout.**
 
 | Offset | Field | Type | Meaning |
@@ -21,9 +23,7 @@ Historical Part II, DDR and UDP telemetry. Printed page 45. [Original PDF page](
 
 For L = 256, `payload_bytes`=268. The PC may display bucket suppression as the ratio
 
-$$
-\frac{\mathrm{suppressed\_count}[b]}{\mathrm{eligible\_count}[b]}
-$$
+![&#92;frac{&#92;mathrm{suppressed&#92;_count}&#91;b&#93;}{&#92;mathrm{eligible&#92;_count}&#91;b&#93;}](../math/baseline-page-058-001.svg)
 
 when `eligible_count`[b] is nonzero.
 

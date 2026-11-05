@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 52. [Original PDF page](
 
 [Previous](page-064.md) | [Index](../README.md) | [Next](page-066.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-065.md). Equations are rendered locally as SVG.
+
 ### 21.3 Command Source Rule and Security Scope
 
 The HPS command listener shall accept commands only from a configured trusted PC IP address, or from the direct-link peer established by the first valid PING handshake. Commands from other source IP addresses or unexpected source ports shall be rejected and counted. This Revision G command protocol is intended for isolated lab/demo networks. It is not authenticated or encrypted and shall not be exposed to an untrusted network.
@@ -18,9 +20,7 @@ The HPS shall reject commands with invalid magic, unsupported version, a packet 
 
 For the Phase 2 baseline with hop H = 128, the frame rate is:
 
-$$
-F_{\mathrm{frame}}=\frac{F_s}{128}.\tag{22.1}
-$$
+![Equation 22.1: F_{&#92;mathrm{frame}}=&#92;frac{F_s}{128}.&#92;tag{22.1}](../math/baseline-page-065-001.svg)
 
 At Fs = 48 kS/s, this is 375 frames/s. At Fs = 100 kS/s, this is 781.25 frames/s.
 

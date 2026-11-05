@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 66. [Original PDF pag
 
 [Previous](page-078.md) | [Index](../README.md) | [Next](page-080.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-079.md). Equations are rendered locally as SVG.
+
 **Table 28. Repository directory responsibilities, continued.**
 
 | Directory | Responsibility |

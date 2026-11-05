@@ -4,6 +4,8 @@ Historical Part I, core algorithm. Printed page 16. [Original PDF page](../../sp
 
 [Previous](page-028.md) | [Index](../README.md) | [Next](page-030.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-029.md). Equations are rendered locally as SVG.
+
 ### 7.9 CSV field contracts
 
 The required `frame_stats.csv` header is exactly one logical CSV line, wrapped below only for page layout:
@@ -14,7 +16,7 @@ eligible_unique_bins,eligible_suppressed_bins,
 eligible_kept_mag2,eligible_total_mag2
 ```
 
-For `frame_stats.csv`, all values are decimal unsigned integers. The field `frame_idx` is zero-based and equals m for trigger τm = (m + 1)H. Rows shall be emitted in increasing `frame_idx` order from 0 to Nframes - 1. When present, the required `bin_stats.csv` header is exactly:
+For `frame_stats.csv`, all values are decimal unsigned integers. The field `frame_idx` is zero-based and equals m for trigger ![&#92;tau_m=(m+1)H](../math/baseline-page-029-001.svg). Rows shall be emitted in increasing `frame_idx` order from 0 to ![N_{&#92;mathrm{frames}}-1](../math/baseline-page-029-002.svg). When present, the required `bin_stats.csv` header is exactly:
 
 ```csv
 frame_idx,bin_idx,real,imag,mag2,eligible,pre_mask,mask

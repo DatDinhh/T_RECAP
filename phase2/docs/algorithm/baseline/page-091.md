@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 78. [Original PDF pag
 
 [Previous](page-090.md) | [Index](../README.md) | [Next](page-092.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-091.md). Equations are rendered locally as SVG.
+
 `hps_config.tcl` `generate_system.sh` `address_map/` `address_map.md` `hps_bridge_regions.json` `sopcinfo_location.md` `generated_notes/` `generated_files_readme.md`
 
 constraints/de1soc/ de1soc.qsf de1soc.sdc `pin_assignments.tcl` clocks.sdc

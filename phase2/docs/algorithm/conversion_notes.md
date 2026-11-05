@@ -7,7 +7,7 @@ This is a full-content transcription of the 106-page integrated specification. I
 - The repeated running header and printed page footer are omitted from the body. Every physical PDF page has a corresponding Markdown page and original-PDF link.
 - Line wrapping is removed from prose. Words, identifiers and paths split by typesetting are rejoined.
 - Numbered tables use editable Markdown rows. Continued tables retain the original table number.
-- Numbered equations use LaTeX math with their original labels. Fractions, powers, floor operations, sums, subscripts, piecewise cases and conjugation are restored from the typeset source.
+- Numbered equations retain editable LaTeX source and their original labels. The reading views embed locally rendered SVG formulas. Fractions, powers, floor operations, sums, subscripts, piecewise cases and conjugation are restored from the typeset source.
 - Algorithms retain their inputs, outputs, steps and ordering. ASCII forms such as `sum(k=0..L/2, expression)` express summation in editable pseudocode without changing the operation.
 - JSON examples and SystemVerilog declarations remain code. JSON fragments that continue onto another source page are intentionally still fragments on the corresponding page.
 - The executive-summary flow is an editable Mermaid diagram with the same historical sequence. Other ownership and dependency flows remain editable text diagrams. The current architecture atlas provides the later whole-project implementation drawings.
@@ -15,11 +15,11 @@ This is a full-content transcription of the 106-page integrated specification. I
 
 ## Notation repairs
 
-The PDF text layer separates superscripts and subscripts from their bases. The conversion restores the original distinction between `256` and $2^{56}$, between `232` and $2^{32}$, and between a plain variable and its indexed form. The 56-bit threshold range remains $0\le\mathrm{THR2}<2^{56}$.
+The PDF text layer separates superscripts and subscripts from their bases. The conversion restores the original distinction between `256` and `2^56`, between `232` and `2^32`, and between a plain variable and its indexed form. The 56-bit threshold range remains `0 <= THR2 < 2^56`.
 
 The core uses round-to-nearest with ties away from zero. The restored formula retains the sign term and floor operation. It does not replace the rule with a programming language's default `round` function. The arithmetic right-shift formula retains its floor on negative inputs.
 
-The full-tail frame count retains the floor of $(N_s+L-2)/H$. The exact output length remains $N_y=N_{\mathrm{frames}}H+G+L$. The forward FFT retains its $1/L$ scaling and per-stage rounding. The inverse retains the unscaled butterfly additions.
+The full-tail frame count retains the floor of `(N_s + L - 2) / H`. The exact output length remains `N_y = N_frames * H + G + L`. The forward FFT retains its `1/L` scaling and per-stage rounding. The inverse retains the unscaled butterfly additions.
 
 In Table 11, the wrapped names `thr2_commit` plus `pending` and `source_commit` plus `pending` are written as `thr2_commit_pending` and `source_commit_pending`. These spellings also appear in the historical generated CSR schema. Table 26 rejoins the broken counter labels as `PACKET_FIFO_DROP_COUNT` and `CSR_COMMAND_REJECT_COUNT`, consistent with the full CSR map in Table 8.
 

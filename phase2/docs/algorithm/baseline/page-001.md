@@ -4,6 +4,8 @@ Historical baseline. Cover. [Original PDF page](../../specs/t_recap_phase2_integ
 
 [Index](../README.md) | [Next](page-002.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-001.md). Equations are rendered locally as SVG.
+
 ## T-RECAP: Transform-domain Representation and Energy-aware Computation Accelerator with Controlled Precision
 
 ### Phase 2 Algorithm, Ethernet/HPS Telemetry, and Repository Architecture Specification

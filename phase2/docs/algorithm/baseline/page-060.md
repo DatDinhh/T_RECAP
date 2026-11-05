@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 47. [Original PDF page](
 
 [Previous](page-059.md) | [Index](../README.md) | [Next](page-061.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-060.md). Equations are rendered locally as SVG.
+
 ### 19.7 STATUS Payload
 
 The STATUS packet is low-rate and shall be sent even when waveform or spectrum packets are disabled, unless `STATUS_EN`=0.

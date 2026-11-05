@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 76. [Original PDF pag
 
 [Previous](page-088.md) | [Index](../README.md) | [Next](page-090.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-089.md). Equations are rendered locally as SVG.
+
 **Table 40. Top-level build variants.**
 
 | Top module | Purpose |

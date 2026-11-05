@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 49. [Original PDF page](
 
 [Previous](page-061.md) | [Index](../README.md) | [Next](page-063.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-062.md). Equations are rendered locally as SVG.
+
 5. continue streaming unless a diagnostic mode explicitly requests stop-on-error. The HPS shall not stop advancing Rd indefinitely because the PC dashboard is slow or disconnected.
 
 ### 20.4 HPS Streamer Algorithm

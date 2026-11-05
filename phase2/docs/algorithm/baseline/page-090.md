@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 77. [Original PDF pag
 
 [Previous](page-089.md) | [Index](../README.md) | [Next](page-091.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-090.md). Equations are rendered locally as SVG.
+
 ## 41 Clock and Reset Ownership
 
 ### 41.1 Clock-domain baseline

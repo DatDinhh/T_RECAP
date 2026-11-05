@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 48. [Original PDF page](
 
 [Previous](page-060.md) | [Index](../README.md) | [Next](page-062.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-061.md). Equations are rendered locally as SVG.
+
 the DDR writer accepts a record.
 
 ## 20 HPS UDP Streamer Contract
@@ -36,9 +38,7 @@ The HPS software shall:
 
 Revision G does not support telemetry protocol fragmentation. The FPGA packet scheduler shall not generate records whose header plus payload exceeds:
 
-$$
-P_{\mathrm{udp,max}}=1200\text{ bytes}.\tag{20.1}
-$$
+![Equation 20.1: P_{&#92;mathrm{udp,max}}=1200&#92;text{ bytes}.&#92;tag{20.1}](../math/baseline-page-061-001.svg)
 
 The HPS shall drop and count any oversized record instead of fragmenting it. This avoids IP fragmentation under a standard Ethernet MTU and keeps the PC parser deterministic. Each UDP datagram shall contain exactly one telemetry record header and its payload. Padding bytes used for DDR 64-byte alignment shall not be transmitted over UDP.
 

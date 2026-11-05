@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 25. [Original PDF page](
 
 [Previous](page-037.md) | [Index](../README.md) | [Next](page-039.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-038.md). Equations are rendered locally as SVG.
+
 - using the HPS to compute FFT, IFFT, WOLA, magnitude-squared, masks, or error metrics.
 
 - treating Ethernet dashboard output as a replacement for BRAM replay signoff.
@@ -26,8 +28,6 @@ The HPS owns Ethernet because the DE1-SoC Ethernet path is HPS-facing. The board
 
 The telemetry system shall not backpressure the STFT/WOLA core. Telemetry taps are valid-only from the point of view of the core. The telemetry formatter may sample, buffer, or drop tap events, but it shall never assert backpressure into the sample path, frame-trigger path, FFT/IFFT path, WOLA path, or core metrics path. If a packet FIFO is full, the DDR writer is busy, a DDR waitrequest persists, the ring does not have enough free space, HPS is late, or Ethernet is unavailable, the implementation shall drop telemetry records according to the packet-priority order frozen below and increment a drop counter. It shall not stall the sample clock, frame trigger, FFT/IFFT schedule, WOLA output, or core metrics accumulation.
 
-$$
-\mathrm{transport\_blocked}\Rightarrow\begin{cases}\text{drop telemetry record}\\\text{increment the relevant drop/error counter}\\\text{continue core processing.}\end{cases}\tag{13.1}
-$$
+![Equation 13.1: &#92;mathrm{transport&#92;_blocked}&#92;Rightarrow&#92;begin{cases}&#92;text{drop telemetry record}&#92;&#92;&#92;text{increment the relevant drop/error counter}&#92;&#92;&#92;text{continue core processing.}&#92;end{cases}&#92;tag{13.1}](../math/baseline-page-038-001.svg)
 
 Revision G freezes the packet-priority order for priority-based telemetry shedding: priority 0 is lowest and is dropped first for WAVE. Priority 1 is used for SPEC64/SPEC129. Priority 2 is used for METRICS. Priority 3 is highest and is dropped last for STATUS. WRAP is a ring-control record rather than a normal telemetry record and does not participate in PC-visible packet scheduling. Priority shedding is an admission guarantee, not merely a descriptive label. A priority-aware packet FIFO shall not drop an incoming higher-priority record while a lower-priority resident record is

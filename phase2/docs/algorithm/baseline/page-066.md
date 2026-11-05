@@ -4,23 +4,19 @@ Historical Part II, DDR and UDP telemetry. Printed page 53. [Original PDF page](
 
 [Previous](page-065.md) | [Index](../README.md) | [Next](page-067.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-066.md). Equations are rendered locally as SVG.
+
 ### 22.3 Bandwidth Estimates
 
 For waveform telemetry with three signed 16-bit channels:
 
-$$
-B_{\mathrm{wave}}=F_s\cdot3\cdot2\text{ bytes/s}.\tag{22.2}
-$$
+![Equation 22.2: B_{&#92;mathrm{wave}}=F_s&#92;cdot3&#92;cdot2&#92;text{ bytes/s}.&#92;tag{22.2}](../math/baseline-page-066-001.svg)
 
 Thus:
 
-$$
-F_s=48\text{ kS/s}\Rightarrow B_{\mathrm{wave}}\approx288\text{ kB/s}.\tag{22.3}
-$$
+![Equation 22.3: F_s=48&#92;text{ kS/s}&#92;Rightarrow B_{&#92;mathrm{wave}}&#92;approx288&#92;text{ kB/s}.&#92;tag{22.3}](../math/baseline-page-066-002.svg)
 
-$$
-F_s=100\text{ kS/s}\Rightarrow B_{\mathrm{wave}}\approx600\text{ kB/s}.\tag{22.4}
-$$
+![Equation 22.4: F_s=100&#92;text{ kS/s}&#92;Rightarrow B_{&#92;mathrm{wave}}&#92;approx600&#92;text{ kB/s}.&#92;tag{22.4}](../math/baseline-page-066-003.svg)
 
 These rates are small for Ethernet. PC plotting and HPS software behavior are more likely bottlenecks than Ethernet bandwidth.
 

@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 51. [Original PDF page](
 
 [Previous](page-063.md) | [Index](../README.md) | [Next](page-065.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-064.md). Equations are rendered locally as SVG.
+
 ## 21 PC Command Contract
 
 ### 21.1 Command Header
@@ -30,7 +32,7 @@ Commands sent from PC to HPS use a compact UDP command format. The HPS validates
 
 | Code | Name | Action and range |
 | --- | --- | --- |
-| 0x0001 | `SET_THR2` | arg0=low 32 bits, arg1=high bits. Upper bits beyond bit 55 shall be zero. Valid $0 \le\mathrm{THR2}<2^{56}$ . |
+| 0x0001 | `SET_THR2` | arg0=low 32 bits, arg1=high bits. Upper bits beyond bit 55 shall be zero. Valid ![0 &#92;le&#92;mathrm{THR2}<2^{56}](../math/baseline-page-064-001.svg) . |
 | 0x0002 | `CLEAR_METRICS` | HPS pulses metrics clear through `CONTROL.clear_metrics`. Arguments shall be zero. |
 | 0x0003 | `SET_SOURCE_MODE` | arg0∈ {0, 1, 2, 3}. Source-mode change rule applies. |
 | 0x0004 | `SET_PACKET_ENABLE` | arg0 uses bits from Table 10. Reserved bits shall be zero. `PEAKS_EN` and `DEBUG_EN` shall also be zero in Revision G unless a later exact extension is defined. |

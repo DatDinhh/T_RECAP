@@ -4,35 +4,29 @@ Historical Part I, core algorithm. Printed page 23. [Original PDF page](../../sp
 
 [Previous](page-035.md) | [Index](../README.md) | [Next](page-037.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-036.md). Equations are rendered locally as SVG.
+
 Human-facing threshold controls are wrappers. If an amplitude-domain threshold Tamp,QF is exposed, then
 
-$$
-\mathrm{THR2}=T_{\mathrm{amp},QF}^{\,2}.\tag{9.6}
-$$
+![Equation 9.6: &#92;mathrm{THR2}=T_{&#92;mathrm{amp},QF}^{&#92;,2}.&#92;tag{9.6}](../math/baseline-page-036-001.svg)
 
 For an 8-bit switch preset, a valid wrapper may define
 
-$$
-T_{\mathrm{amp},QF}=\mathrm{SW}[7:0]\ll K_{\mathrm{thr}},\qquad\mathrm{THR2}=T_{\mathrm{amp},QF}^{\,2}.\tag{9.7}
-$$
+![Equation 9.7: T_{&#92;mathrm{amp},QF}=&#92;mathrm{SW}&#91;7:0&#93;&#92;ll K_{&#92;mathrm{thr}},&#92;qquad&#92;mathrm{THR2}=T_{&#92;mathrm{amp},QF}^{&#92;,2}.&#92;tag{9.7}](../math/baseline-page-036-002.svg)
 
 but Kthr and the preset mapping shall be frozen in config.json. Directly interpreting the switch value as raw THR2 is allowed only if declared explicitly.
 
-Wrapper computation of $\mathrm{THR2}=T_{\mathrm{amp},QF}^{\,2}$ shall be performed in a width large enough to hold the full square. The resulting threshold shall then be checked against $0\le\mathrm{THR2}<2^{W_{\mathrm{mag2}}}$. Out-of-range wrapper thresholds are illegal for the core signoff contract unless the wrapper explicitly defines saturation or clipping outside the core contract and records that policy in `config.json`.
+Wrapper computation of ![&#92;mathrm{THR2}=T_{&#92;mathrm{amp},QF}^{&#92;,2}](../math/baseline-page-036-003.svg) shall be performed in a width large enough to hold the full square. The resulting threshold shall then be checked against ![0&#92;le&#92;mathrm{THR2}<2^{W_{&#92;mathrm{mag2}}}](../math/baseline-page-036-004.svg). Out-of-range wrapper thresholds are illegal for the core signoff contract unless the wrapper explicitly defines saturation or clipping outside the core contract and records that policy in `config.json`.
 
 ## 10 Throughput and Power Interpretation
 
 Let Fs be the input sample rate and fclk be the FPGA fabric clock. The number of fabric cycles per hop is
 
-$$
-C_{\mathrm{hop}}=f_{\mathrm{clk}}\frac{H}{F_s}.\tag{10.1}
-$$
+![Equation 10.1: C_{&#92;mathrm{hop}}=f_{&#92;mathrm{clk}}&#92;frac{H}{F_s}.&#92;tag{10.1}](../math/baseline-page-036-005.svg)
 
 A burst-style implementation that begins frame processing at τm must make its frame contribution available before slot τm + G, so
 
-$$
-T_{\mathrm{frame}}<\frac{G}{F_s}.\tag{10.2}
-$$
+![Equation 10.2: T_{&#92;mathrm{frame}}<&#92;frac{G}{F_s}.&#92;tag{10.2}](../math/baseline-page-036-006.svg)
 
 With G = H, this becomes Tframe < H/Fs . The baseline core computes the STFT every frame. Suppressed-bin count is therefore a workload proxy, not direct proof of power reduction. A real power-reduction claim requires a later downstream stage that uses the mask to skip feature extraction, detector operations, coefficient transport, memory writes, or other work.
 

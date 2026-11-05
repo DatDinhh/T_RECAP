@@ -75,6 +75,8 @@ jobs:
         run: python docs/applications/check_bundle.py
       - name: Check full algorithm transcription and RF supplement
         run: python docs/algorithm/check_spec.py
+      - name: Check equation rendering regressions
+        run: python tests/verification/test_algorithm_math.py
       - name: Check accelerometer score and publication bindings
         run: python docs/applications/accelerometer/replot.py --check
       - name: Check authored prose and preserved editorial identities

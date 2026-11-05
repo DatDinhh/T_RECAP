@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 67. [Original PDF pag
 
 [Previous](page-079.md) | [Index](../README.md) | [Next](page-081.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-080.md). Equations are rendered locally as SVG.
+
 **Table 29. Generated-contract schema files.**
 
 | File | Purpose |

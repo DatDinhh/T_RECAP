@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 88. [Original PDF pag
 
 [Previous](page-100.md) | [Index](../README.md) | [Next](page-102.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-101.md). Equations are rendered locally as SVG.
+
 7. `sw/hps/config/trecap_hps_config.json` exists and documents CSR base, ring addresses, ring size, and UDP ports.
 
 8. legacy/phase1/ contains the old Haar proof-of-concept files, and those files are not part of the Phase 2 root build.

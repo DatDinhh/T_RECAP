@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 83. [Original PDF pag
 
 [Previous](page-095.md) | [Index](../README.md) | [Next](page-097.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-096.md). Equations are rendered locally as SVG.
+
 ```text
   twiddle_im.memh
   twiddle_inv_re.memh

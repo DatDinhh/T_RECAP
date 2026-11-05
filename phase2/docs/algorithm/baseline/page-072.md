@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 59. [Original PDF page](
 
 [Previous](page-071.md) | [Index](../README.md) | [Next](page-073.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-072.md). Equations are rendered locally as SVG.
+
 ## 29 Development Milestones
 
 **Table 27. Recommended Level-3 development milestones.**

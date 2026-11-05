@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 56. [Original PDF page](
 
 [Previous](page-068.md) | [Index](../README.md) | [Next](page-070.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-069.md). Equations are rendered locally as SVG.
+
 **Table 26. Failure modes and required observability, continued.**
 
 | Failure mode | Required behavior | Required counter/status |

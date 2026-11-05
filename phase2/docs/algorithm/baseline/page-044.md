@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 31. [Original PDF page](
 
 [Previous](page-043.md) | [Index](../README.md) | [Next](page-045.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-044.md). Equations are rendered locally as SVG.
+
 **Table 10. PACKET_ENABLE bit definitions.**
 
 | Bit | Name | Meaning |

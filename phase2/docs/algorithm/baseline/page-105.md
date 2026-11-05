@@ -4,6 +4,8 @@ Historical appendices and references. Printed page 92. [Original PDF page](../..
 
 [Previous](page-104.md) | [Index](../README.md) | [Next](page-106.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-105.md). Equations are rendered locally as SVG.
+
 ```text
   clock_reset_plan.md
   coding_style.md

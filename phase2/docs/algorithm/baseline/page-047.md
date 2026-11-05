@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 34. [Original PDF page](
 
 [Previous](page-046.md) | [Index](../README.md) | [Next](page-048.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-047.md). Equations are rendered locally as SVG.
+
 Independent low/high half updates are not a valid pointer transfer.
 
 ### 16.7 Core Counter Snapshot Rule

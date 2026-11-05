@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 55. [Original PDF page](
 
 [Previous](page-067.md) | [Index](../README.md) | [Next](page-069.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-068.md). Equations are rendered locally as SVG.
+
 8. Verify that the FPGA producer pointer W is reset to zero using `RING_WR_SNAPSHOT`.
 
 9. Configure THR2 shadow registers and pulse `THR2_COMMIT` if a non-default threshold is required.

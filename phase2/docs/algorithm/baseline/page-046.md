@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 33. [Original PDF page](
 
 [Previous](page-045.md) | [Index](../README.md) | [Next](page-047.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-046.md). Equations are rendered locally as SVG.
+
 **Table 13. OVERFLOW_FLAGS and CLEAR_STICKY_FLAGS bit definitions.**
 
 | Bit | Name | Meaning / clear behavior |

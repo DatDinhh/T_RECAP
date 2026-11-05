@@ -1,7 +1,7 @@
 {
-  "schema": "trecap-complete-editable-specification-v1",
+  "schema": "trecap-complete-editable-specification-v2",
   "source_pdf_sha256": "7de45d2764bacc090d2837501382c82a7f081884b7c929b8b4aa4b536bff2aaf",
-  "scope": "Structural completeness and reviewed publication identities, not semantic certification or RTL signoff.",
+  "scope": "Source completeness, source-to-SVG coverage and reviewed publication identities, not semantic certification or RTL signoff.",
   "source_pages": 106,
   "numbered_equations": 116,
   "numbered_tables": 45,
@@ -9,472 +9,2096 @@
   "major_sections": 53,
   "files": {
     "assemble_spec.py": {
-      "sha256": "83b71c8c003100df87f812ff7fffb9c9f6fcbe4f86dfc985d408053d652ae489",
-      "bytes": 3473
+      "sha256": "7bcff7d5241bc175d91c893f90e290f71235283b7fd36ac30af39afb7910046f",
+      "bytes": 3809
     },
     "baseline/page-001.md": {
-      "sha256": "4b1f6224a1dbe3360392b1b11e099892d112bf4ca072969cdb131e9286842766",
-      "bytes": 1342
+      "sha256": "3918c96d088a1310ee95f23f932068ce7ce5dff9843926fdce2032ecfa4967bd",
+      "bytes": 1450
     },
     "baseline/page-002.md": {
-      "sha256": "599fb0f356243c326a4b06899705087e1eafc8a4f6685eb99caf35c2745504d1",
-      "bytes": 3444
+      "sha256": "b6357e745616bbec3fac92de808e6aca864f43b72cc790145bdb717d52e72633",
+      "bytes": 3552
     },
     "baseline/page-003.md": {
-      "sha256": "7262690c4de8fe657c3c0780737abe5deb6a22dd5e61af0a03941a79eb82653a",
-      "bytes": 1878
+      "sha256": "f29b4cdeabab10a78f372db61aa9684ecfd75224b91f68aca5fb98cbd4023ac6",
+      "bytes": 1986
     },
     "baseline/page-004.md": {
-      "sha256": "653d737f193a19ff87365e9eee37530fd232bdf869128f5500b4e242ee7ee6a5",
-      "bytes": 1868
+      "sha256": "23ad1e86a777aa1feb888a9e1ee5a6739841a6d07904bbb96a6621f118e293af",
+      "bytes": 1976
     },
     "baseline/page-005.md": {
-      "sha256": "aa0896b77fc1e72720239f3e0346cac28d6e0fb1996263b9b30853f8e519d582",
-      "bytes": 1979
+      "sha256": "54126100cd3219658a57fe66f90e3aae9f0dcc1fa1f5f47fb2731ecdd9d79269",
+      "bytes": 2087
     },
     "baseline/page-006.md": {
-      "sha256": "9de2d9dcbd3910c2bc530dc4279b016534c217fcb415baa0ef2b1e80a02acb67",
-      "bytes": 1880
+      "sha256": "2cc8e89704ed60ffc8b33d158147694c58c97fb285d75a8ae24e20b3a7551c96",
+      "bytes": 1988
     },
     "baseline/page-007.md": {
-      "sha256": "25bfe9b96f4c7e82053d04f062e99b095d80825f7acb804817fbe1281f6c8100",
-      "bytes": 1649
+      "sha256": "9ba6e887077fba0f5ea27250db31a5e023869d7fa9207a15f0590ec8002b36fc",
+      "bytes": 1757
     },
     "baseline/page-008.md": {
-      "sha256": "9e44d38e59dc182b29d81e5f05231677338229d8d30734286b38ab07d758763c",
-      "bytes": 1756
+      "sha256": "5b5ff70ce83d9934cebd12a61858e4f12f2ba7e78c88826827b43ef4d14a6cae",
+      "bytes": 1864
     },
     "baseline/page-009.md": {
-      "sha256": "b31a6e42b365500a0c5fb18b8cc219f327a16758633202d690aaa65f2fdc6aa4",
-      "bytes": 1798
+      "sha256": "f69054b780bbdbd100a91af13e9f2710b56206159b7594856ef76b63a8cf4bdf",
+      "bytes": 1906
     },
     "baseline/page-010.md": {
-      "sha256": "236515ad79c7ecd869d333659f395fe67730dbfe8ac950bef8bb1658db12d4c8",
-      "bytes": 1040
+      "sha256": "df14bdd0c4dbea0245747c501e03780fd32f358732fdfcdabe84bdb8cbbee19a",
+      "bytes": 1148
     },
     "baseline/page-011.md": {
-      "sha256": "6cd40cb7445efd53e7fe7512d8f734a4794333468cad98b484bfacfdedf9b0f1",
-      "bytes": 905
+      "sha256": "464f1677fca94a2df5895539f6ab0ce94130d88701c1eb79d363b49b639e48ce",
+      "bytes": 1013
     },
     "baseline/page-012.md": {
-      "sha256": "8345f27781de08b324c541898d288196337ec3375ad60fb32cc7e9ce024c0cd5",
-      "bytes": 2324
+      "sha256": "9c83deb446d3f6f427bd659cf25dadf49a56962675e888517410f8ba4695cc89",
+      "bytes": 2432
     },
     "baseline/page-013.md": {
-      "sha256": "f7c2d96a8a394ad2f594243a87c801571b1bd531b5e448030398583b98abe64a",
-      "bytes": 1041
+      "sha256": "a413af19644fc232e309ebc4e1559c255d89053152e5b2d02409e5064ec480c6",
+      "bytes": 1149
     },
     "baseline/page-014.md": {
-      "sha256": "bf06c662ff9e49a5d3b75320e976edc3a6cdafe8f84f5da89380e38e08b3903b",
-      "bytes": 2572
+      "sha256": "39b17c662009e98870fca092231150675467ea727154ea7f48db340fa774bc79",
+      "bytes": 3180
     },
     "baseline/page-015.md": {
-      "sha256": "6e59d49a0a5494d3cd3ee577aae32552251ae7f1c96cf1e77517d8c45cbc5921",
-      "bytes": 1945
+      "sha256": "f26e3ae923369f7343540c9e713b1d530f3e78beb94cdef1c3d59e16f68fc20b",
+      "bytes": 2641
     },
     "baseline/page-016.md": {
-      "sha256": "6ce27dbd7acc0dc26f06504758126bce126ed9013ae5d23e2e1d05d9c35a7c4a",
-      "bytes": 2731
+      "sha256": "bb2d645225ec2c9c4bfdf72cd515600aa83f885ab8d7bf66354c9a305cc2abe1",
+      "bytes": 4232
     },
     "baseline/page-017.md": {
-      "sha256": "1d6a10bf7ec2a932fb63a74d710b0845c20b7ba8fee50ac50ea733882ce852aa",
-      "bytes": 2287
+      "sha256": "f58f7262b6279f6d3549c65e7ec095a6058acd189807d352313a43be2e8eb2ba",
+      "bytes": 3001
     },
     "baseline/page-018.md": {
-      "sha256": "7cbebe3e1ff3883a0eac6c7de75b190099a73f37cb018d40f7361b951c9e8bdd",
-      "bytes": 2058
+      "sha256": "e3426460cf952dc688e01d525f99a530225d2043b945e691ecd4e5eee3f39914",
+      "bytes": 3193
     },
     "baseline/page-019.md": {
-      "sha256": "54de08d600493737968745da12fa30610f4b18b4988a1c0672a7be0934313f62",
-      "bytes": 2629
+      "sha256": "8de75005e8fa09a29634afeb2352d66b49b862e33d5fb9779cf318ccfb7a83ac",
+      "bytes": 4347
     },
     "baseline/page-020.md": {
-      "sha256": "1ff32d5825678db4b55ba72cf5154426922561ead08f44459bae0f3b79d3d058",
-      "bytes": 2043
+      "sha256": "447fabf6a068f0c0c784225d05bb2314fff5bcf20924c27ceb878a7494d89285",
+      "bytes": 3387
     },
     "baseline/page-021.md": {
-      "sha256": "49dbda6f26ee2bb9dffa6ee16902e1e2af8af7779edb38fa47486ac07daf685d",
-      "bytes": 1930
+      "sha256": "8be2e927761f02c7dd7c925c42b770bd6165bed2311dee2d8b507b1c6093d3a1",
+      "bytes": 3179
     },
     "baseline/page-022.md": {
-      "sha256": "b8821167d0b45ea55dde34ff4264ceb8b6502faf102e4036be687f5b1286ec01",
-      "bytes": 3093
+      "sha256": "bfc417159d7a6d7d0dd92caaf160ad3d17a5ccc7ada526d8d10e403ac371b53c",
+      "bytes": 3201
     },
     "baseline/page-023.md": {
-      "sha256": "c5371795b31b6d7e07804487218ae9947eca3867212473e78bf900903124e42f",
-      "bytes": 2352
+      "sha256": "a3427322570be5f6fcecf97d36cdf98724b757e94acb0f17d92ddf27a89cf12f",
+      "bytes": 2460
     },
     "baseline/page-024.md": {
-      "sha256": "5d839b926d335448fe084c2b5586ff334cbd120cc6f6569c12547219368791eb",
-      "bytes": 2043
+      "sha256": "33fbe71d09f6bf2f528f62ff833e4e9396472a279c20e32d910c35c62eaa6685",
+      "bytes": 2905
     },
     "baseline/page-025.md": {
-      "sha256": "fc958687ad73fb85a020585eb03187e10c37ba6712091fa4b75e7f00ff09be2b",
-      "bytes": 1790
+      "sha256": "7e700f0a90d342fbec3e187b726ad38d9f4eb335a3d74bab0eb34026dd84f360",
+      "bytes": 1990
     },
     "baseline/page-026.md": {
-      "sha256": "f644a3d1ee208367d917c3d5d8be94948af937c4b5be556eee113c76b194f223",
-      "bytes": 2621
+      "sha256": "7201f0b585a058ba07bcbbd85984e6484b503ef8600ca534b446034561188d70",
+      "bytes": 3682
     },
     "baseline/page-027.md": {
-      "sha256": "fb3d1346d4069e193cbe99da8fb8948ca085968a09f8d4402942ba3b64b39c21",
-      "bytes": 2945
+      "sha256": "545b24474733ef280acc3cf0162210edc58e57ebb1f118cea429748683c92ab9",
+      "bytes": 3326
     },
     "baseline/page-028.md": {
-      "sha256": "ce0cdbf77d7effb561e9e16eed71eb9db322c2df69aa8308802d57ec212ab11c",
-      "bytes": 2799
+      "sha256": "ca6a841bebe13552d786a4f7fc4d93d73bb23cafb135ce22d631e21d6dbf6933",
+      "bytes": 3614
     },
     "baseline/page-029.md": {
-      "sha256": "fe40bb403599efe4c09cf9ee0e73ccf0090637b70c64ed6d16b0dd34dd15cdfb",
-      "bytes": 2693
+      "sha256": "3eff1c56adff94bc70ff138eac8da6601226a066bc461cbf0772d95c1f614a1a",
+      "bytes": 2894
     },
     "baseline/page-030.md": {
-      "sha256": "75ffb1f647cc8f33fef22963e301fe13b86fcfe0492d859010ecdb5a9e6d0619",
-      "bytes": 2221
+      "sha256": "c3d967c2bff3cce867c54c834c03b8aaa020f8242d1b798ba69cf7616a9a6baf",
+      "bytes": 2329
     },
     "baseline/page-031.md": {
-      "sha256": "abd1047c785940947cc33e120ccbf0c7fdd3a6faad3d2c5a55940c7a23b3b11b",
-      "bytes": 2252
+      "sha256": "8ce4560463150167b3b73880e0233329518c715cb295e8b02a5b38b8ec04ddef",
+      "bytes": 2360
     },
     "baseline/page-032.md": {
-      "sha256": "3019306e1dd7e1911242834f04338ae7b1ff05e7e825b9041bfce6c41e333b6c",
-      "bytes": 1559
+      "sha256": "3a327c647784660a7ec250ce22ff21e12ae04b7d439f58b4b2910b4c0acdf5e1",
+      "bytes": 1667
     },
     "baseline/page-033.md": {
-      "sha256": "3737cfbad671cf856b74f43b95821baa209bd19f87a9cbf456b5767ffd2d7bf5",
-      "bytes": 2714
+      "sha256": "3445f68db472ada6cbb14279f55c8cb06e19fc81493942f39cab59570c1918c9",
+      "bytes": 3042
     },
     "baseline/page-034.md": {
-      "sha256": "0f31d4763241f263bbde3ea8547e0b4f67f3e5769355920549937a069e53c536",
-      "bytes": 2794
+      "sha256": "8f4836380712bff26249ea873f50fc15be1d552840725bdd2732be16ce3a84b6",
+      "bytes": 3488
     },
     "baseline/page-035.md": {
-      "sha256": "c19875aba827675bc8c0f99356da276a3b52b0bf8402819114363f8527723a8f",
-      "bytes": 2440
+      "sha256": "3b9450b48da57ed9d25affc75a5927e9c8a55c2179ca890c4375237e6d0269f0",
+      "bytes": 3245
     },
     "baseline/page-036.md": {
-      "sha256": "d0d55ffa811efab4bdf17fe1d8a01863d444efaab6c58a39047a4fa7aba0d446",
-      "bytes": 2861
+      "sha256": "f6ab5ef74676e0a66f2856b7a189ffa33b398ae6bc1435bb838b10bb608780d3",
+      "bytes": 3331
     },
     "baseline/page-037.md": {
-      "sha256": "aa9274d78014fe671df1fd117d1ffaec67ce2f2a1e938ac03175527bb370c6cd",
-      "bytes": 2116
+      "sha256": "295af181b106177770890567a262093f984eb655ee75fb9182a9f555dfac238d",
+      "bytes": 2224
     },
     "baseline/page-038.md": {
-      "sha256": "e8b6527e0e9a5e6638e38098bf67ee535c312f80f51e9e8b069db63dbf4a12cf",
-      "bytes": 2674
+      "sha256": "72af0a56ff9d24dba6e4c0913e08778c13b838e1c641dc78ef7acf1114897a3d",
+      "bytes": 2879
     },
     "baseline/page-039.md": {
-      "sha256": "1d65ea52ae28ea3a2a4171f4535407026c9bffed9fb7daf3b7f529c6eeda2f57",
-      "bytes": 2050
+      "sha256": "ec7f20a10e71259a468b5d7d8f2a0463443633a9e6516ea1f518b2c9dd764e88",
+      "bytes": 2264
     },
     "baseline/page-040.md": {
-      "sha256": "9677da0e6df4bc2a724353e64136beb35d6ba254582616482a5fbc11b1c68c17",
-      "bytes": 2389
+      "sha256": "7651abdfddb21c0c43817771966e1b33e1478bed43bd3aabcd6b1bd489e7f1a8",
+      "bytes": 2497
     },
     "baseline/page-041.md": {
-      "sha256": "1ef6f243ee23f3d4e45c16039aa164b5a2cd69e93d9f6b1cd5b9f2bf21f78120",
-      "bytes": 2486
+      "sha256": "11f78b7334f59a807ac0d55720a0723463beeaf399b40099a0c45b6e72d0d915",
+      "bytes": 2594
     },
     "baseline/page-042.md": {
-      "sha256": "3b1d148cf84858379ca8aa98b206e2302cd0ce6eaf1908123f92f45d694a4d39",
-      "bytes": 2838
+      "sha256": "20edf491bd84839c9250cab7bbcb49417fae85de2712196e97770e62575af374",
+      "bytes": 2946
     },
     "baseline/page-043.md": {
-      "sha256": "41226fb5d4225974efb64dc83ed265804adbc41b1bf5f69a4293c3785048b821",
-      "bytes": 2094
+      "sha256": "790f4f11f8e39e69eb7cdc3a738d61047cef50a495c7bf2000f488529036eee4",
+      "bytes": 2202
     },
     "baseline/page-044.md": {
-      "sha256": "ab26ecaef70e5dac28e8c2ab029ceef6e999d8937efb84aa3d7a445f64021e10",
-      "bytes": 2100
+      "sha256": "06e384651911e252700bb881bf9e134495cffa5f7362cad58e0cf3564f996f37",
+      "bytes": 2208
     },
     "baseline/page-045.md": {
-      "sha256": "15d7e8808fe7e6c73141a4d78f7e65bdb94b8556b11ace0bb39ec433b73ef4f0",
-      "bytes": 2123
+      "sha256": "3a64a9c855f91835748b07967465dd7b1b0360064552b555741c774296a83730",
+      "bytes": 2231
     },
     "baseline/page-046.md": {
-      "sha256": "b31e6d7b64d1b56057b858a484aad377d3a520ce3ea6929f7357381ab9a3c627",
-      "bytes": 2372
+      "sha256": "7093a39a40bcad5c87ae69e8fc8e0e769e10350f88fde84ec1a0c402eb30d3b5",
+      "bytes": 2480
     },
     "baseline/page-047.md": {
-      "sha256": "75a7f0f19dc8263f3ca9234aa4b53603428167508a049bf6780222f05720a15e",
-      "bytes": 2821
+      "sha256": "73cbc7f23753c89c0ca1be0ed6ccf91f06b5957f1e7c19bd8d892ceb2d61b9a5",
+      "bytes": 2929
     },
     "baseline/page-048.md": {
-      "sha256": "06fadef11edfb337c8effffd4627761ee48d81506b04c3841b9d586b01844891",
-      "bytes": 2576
+      "sha256": "c23cad9115adcff90b69b9251acd8dc5a7a67902ed7d48eebd7cdf1c63196157",
+      "bytes": 2854
     },
     "baseline/page-049.md": {
-      "sha256": "7fdcdace9d6117317bc8d043a6153402366d1f7bc3619cc50f42eb6dcced0476",
-      "bytes": 1976
+      "sha256": "ee770b43f7f8eb5473de3bad3bb4ee5d0544b67c4a61e986b600efb4a4b643d8",
+      "bytes": 2483
     },
     "baseline/page-050.md": {
-      "sha256": "a448bd96f602f403fdc6da0b5474b9efbc5b9d98097fcf914e7ff81a3ecb1339",
-      "bytes": 2307
+      "sha256": "1237de9c6ea92a1fc5ca910d9af34b7724b238c1de286d6ce9aad001a1eb2418",
+      "bytes": 2801
     },
     "baseline/page-051.md": {
-      "sha256": "d0f0d016674eea11efe586c82e8508bb5d6dad93eac4db5f44ab47e6cd280531",
-      "bytes": 3173
+      "sha256": "930ebeb165ae1c25e817d44b57266c3dab46744e7b76bb92ac0688630df4fbf9",
+      "bytes": 3317
     },
     "baseline/page-052.md": {
-      "sha256": "727797d3cf9af28dfe4d67eb3d91a2a9d14e123edc355814d1c23b4eb4fe00f8",
-      "bytes": 2555
+      "sha256": "b371c3a60b0b3c8fbe0b62500a479d74b2f1de3800356d8250f853c2e524a36c",
+      "bytes": 2663
     },
     "baseline/page-053.md": {
-      "sha256": "daaa2de8d034e1a0947dd89f46954571d7c4086068942debdf395fa29a99abfc",
-      "bytes": 2095
+      "sha256": "9c93a86600cc6a016230a72c1e3b90d8e6b72cd3da7b799890090b77442c4f8d",
+      "bytes": 2203
     },
     "baseline/page-054.md": {
-      "sha256": "7194238cfe9ff47fca3202f044fbba261ed3d72571fbd12249fdabf4a005aed8",
-      "bytes": 2553
+      "sha256": "417ed746c8f2f72a95d3b0193bcc785b05d1e48f0724749c3bb7e311397a43d4",
+      "bytes": 2726
     },
     "baseline/page-055.md": {
-      "sha256": "a298fed783b5ee7af493094b9ad92895785f071528c8d2b7c0a3021b2ec614c2",
-      "bytes": 1723
+      "sha256": "8c537d42d4d0aca67253c469571af270efebf12ea616b80c4397202b969df76e",
+      "bytes": 1831
     },
     "baseline/page-056.md": {
-      "sha256": "c23953a5f08e650ad385c29b85d258e25d659f8a91398b109b5fa2eefdb60b43",
-      "bytes": 2257
+      "sha256": "aa4c7266c0b5501f92782571a165f6eacc27405bca2a1fc19077c844d60d49d8",
+      "bytes": 2422
     },
     "baseline/page-057.md": {
-      "sha256": "4c4be315b0dce90facb8dfe1aef465ca27328addf4ddf4629e182cc285fe78e8",
-      "bytes": 2344
+      "sha256": "d7d4f7a3c60b251a080e67f246806ae5591d18dce4c2533d93027a8602e823b4",
+      "bytes": 2715
     },
     "baseline/page-058.md": {
-      "sha256": "c00a94cfb499a090f3d403c964f0815d70c162da7fde4f01c545a55f78a5c737",
-      "bytes": 1896
+      "sha256": "d24ecbf22b79e7bf330da8c0f793f2417f5e7e2edbfed2464847fab24f4c6ece",
+      "bytes": 2070
     },
     "baseline/page-059.md": {
-      "sha256": "abab3ffd2d761e3b3b0119741925d9c28d5fbb09bd403aa5290c8c9df41060d3",
-      "bytes": 2861
+      "sha256": "502bc1112dd0324bfdfbc0c4e556fc459871d6cc86956608bee48cad49644a5e",
+      "bytes": 3041
     },
     "baseline/page-060.md": {
-      "sha256": "c84ef0be217fca6ef715f1f1be30a117bd93f1e24819bff9e95834cfd75388ad",
-      "bytes": 2562
+      "sha256": "fcdad62d77e182cc2b8bd5f9debb65f1db1a9da1e4104e8040be5e834d1f705e",
+      "bytes": 2670
     },
     "baseline/page-061.md": {
-      "sha256": "b2d89666193d5480182c3f9cb9c84f76116f1d7e364e7e70003333ecfb84137d",
-      "bytes": 2077
+      "sha256": "bfb52cd1770184e675c33f16369b92bb9cd27df978bcec0aa68979fca9e9f018",
+      "bytes": 2242
     },
     "baseline/page-062.md": {
-      "sha256": "f9817291888b200a9dd6cff453728c4c1a179d40d490da41dfce4ab337a0ea69",
-      "bytes": 2241
+      "sha256": "d850f3a9e875d76beaeaa65f053f4efa797428ae70d914c4e5ef65e6b0f3b7b9",
+      "bytes": 2349
     },
     "baseline/page-063.md": {
-      "sha256": "09fd57929694300fe9d1a3f59212add556e71d571b64a5402dbbb0f2d17edfc1",
-      "bytes": 1692
+      "sha256": "877b3da2a63652219db3936c3a3be487e73842987a78f8d1e02c2be4627f72d1",
+      "bytes": 2012
     },
     "baseline/page-064.md": {
-      "sha256": "517d44d01da8af8b358d7b1910760af25e390dce9471798fac7e23db3740d9d2",
-      "bytes": 2570
+      "sha256": "412131890ae83716d65a71c2b44a8463e9ede1a70ecc036c864d2e105bb68783",
+      "bytes": 2722
     },
     "baseline/page-065.md": {
-      "sha256": "20c1e8a65db9ecd14447691b4a13f2fb11a88c892ddee47239e00feac3783bcd",
-      "bytes": 2300
+      "sha256": "9165b74bfd237a57636e94bac709b4a32e0bcb81d6d465391168201da641d50e",
+      "bytes": 2465
     },
     "baseline/page-066.md": {
-      "sha256": "98057b774a64be1eb3f651e72f0f6b4abaec0371078179313c89da41a7d4aaf3",
-      "bytes": 1902
+      "sha256": "9113ac075c934bbe50454ee7c4c3fbe78fdbe72be403569eed047035c2d3eb4b",
+      "bytes": 2213
     },
     "baseline/page-067.md": {
-      "sha256": "20f911975e9e2b6bb85ff8bd895a91216a9809c2eca2e3fba450a31d1d763e2e",
-      "bytes": 2396
+      "sha256": "3ac4268c447306cde0c9d69353adbe8e71d4009273caa108bbac817547be3e0e",
+      "bytes": 2609
     },
     "baseline/page-068.md": {
-      "sha256": "6652db21c5c1bed607c398d0b24eb02cf73a38fdff6e16bc3e58b613f3dcc909",
-      "bytes": 2125
+      "sha256": "710e36108dd1f390a2ded6e1700972bc52833adeda52fb7247b79fc1d34910fa",
+      "bytes": 2233
     },
     "baseline/page-069.md": {
-      "sha256": "a0266dac007f7239e3396a1b0b6d630d2a70ec7386a6e0e9c1548f8e5a2975c2",
-      "bytes": 2920
+      "sha256": "9ba30e27fc716c0519f59eecb120d4d512a1aec0d52a10a49c449e0c96673139",
+      "bytes": 3028
     },
     "baseline/page-070.md": {
-      "sha256": "251b638a0db00c6620acf0cc0e582ccedc6770605b7c49e1e66d1105ced87f1f",
-      "bytes": 3016
+      "sha256": "0308244ec1cc0f6af149d64307adcb0f88096f86315be1d2afdee7f33447dca6",
+      "bytes": 3276
     },
     "baseline/page-071.md": {
-      "sha256": "11980dfd1c9697e0e45863c6e8de07d9df7c34221080f9a3e5516cc75f145e84",
-      "bytes": 1370
+      "sha256": "3a883f6a340d6c4e996155034424504c989d8b7bacf39d72b504c245eef40072",
+      "bytes": 1478
     },
     "baseline/page-072.md": {
-      "sha256": "4b6e07c73d2daa7336346f38b80b06e2007d6118cc3512a1b0b1b1cba7690545",
-      "bytes": 2089
+      "sha256": "8ce7dd75f38518e5376852690776a6693e6ef4de78ea78c4ca43e484ae5c51d3",
+      "bytes": 2197
     },
     "baseline/page-073.md": {
-      "sha256": "0c901dcd6561495542f85f06b795cf0193c3bb183a239ce7d303514a9950f91a",
-      "bytes": 3138
+      "sha256": "fb7b83a1b1a31cf87d52d0a0119be040d4b012babcc7fecf1891097205512b7a",
+      "bytes": 3246
     },
     "baseline/page-074.md": {
-      "sha256": "3984358b9e13819324e915e84461f1597c12818d191cc0084e5c41c86363a02b",
-      "bytes": 2116
+      "sha256": "0ba8822d6b626ff557d4628e32d47cedc920bac151e44f66cefd4f29ed8c66f1",
+      "bytes": 2224
     },
     "baseline/page-075.md": {
-      "sha256": "c59f01f67ec221049affa7f19834c1957a09e1e0bbcf06521545662fc5e3e889",
-      "bytes": 2279
+      "sha256": "a4f73c7b49f5de1c583f064c89f67b0284e71198b5d9aaf14d7478b4c15dc105",
+      "bytes": 2387
     },
     "baseline/page-076.md": {
-      "sha256": "2dd84826edf30bd0bbfc73e33c9d91f301a8edec3cfbfcf2aa69a728ba9b0b5f",
-      "bytes": 1414
+      "sha256": "3caa331068b62de54444bc9366b0175a126854ae3ad116d50081591bfead060b",
+      "bytes": 1522
     },
     "baseline/page-077.md": {
-      "sha256": "397f78da3fe831f32546a5af37175af48724208f77b9adb51a986fb46600a73f",
-      "bytes": 1023
+      "sha256": "a26e94e090fa2a0e94a7862f856c0c15b6c0dc461b920dcf2f1977d581bb80d7",
+      "bytes": 1131
     },
     "baseline/page-078.md": {
-      "sha256": "82df464785191f20a1c4c603e32a1fed31042419754ec9b7acbe111c0b161d47",
-      "bytes": 2527
+      "sha256": "f96dee64199fba5a21b8842694ad89348fc5214189cb76815564347cd5e4b632",
+      "bytes": 2635
     },
     "baseline/page-079.md": {
-      "sha256": "fc6dfc7398f1035208eae50e68f5e383699d6838a5285b5edbb6303a212a370d",
-      "bytes": 2154
+      "sha256": "843356c91539c86caf24aabf45ea86ab741e7cd71ea0261a69287c335b53a589",
+      "bytes": 2262
     },
     "baseline/page-080.md": {
-      "sha256": "6b430a6fef7038b07f6d272142793af2d078dd2921287bf11f61be3a69fe6cd3",
-      "bytes": 2705
+      "sha256": "04a6905b3b713d7a33214d2da1596462b17b9883f7d9cc30759b0a1fa79799e8",
+      "bytes": 2813
     },
     "baseline/page-081.md": {
-      "sha256": "9a620ddebea57e6018d929f0fd987007bff1f1e1bbed188d84b03680d4f6008c",
-      "bytes": 2759
+      "sha256": "dfcbb09ddba65a1b137c2a8f6bcf4682d36b971a6c521463550d433da918dfe2",
+      "bytes": 2867
     },
     "baseline/page-082.md": {
-      "sha256": "725105df4da4020e3d701043ffb5f7e8f8c6b8993b8e027c3035e259b34afa30",
-      "bytes": 1916
+      "sha256": "933e76b38974fced14809c6ecb5fc18eed3e595b55e4688f7d8f97f05051fb12",
+      "bytes": 2024
     },
     "baseline/page-083.md": {
-      "sha256": "63e9ad9779f6338767897bd41a68799156a89b2725a7c10b28072ad644dca8ac",
-      "bytes": 2288
+      "sha256": "18ff35b1a8a447d636bcb572b86da1bcf83ec72b2dbfdef5809654dabcf403ae",
+      "bytes": 2396
     },
     "baseline/page-084.md": {
-      "sha256": "e92f0318dce971760ac8de01ce5244a2d51039a6ac9cb1a0767b13c4c513b509",
-      "bytes": 2321
+      "sha256": "dc8e3d8814ef23d1354adf69efc7ebe414871ce22b269fc290bb23dfcb166f03",
+      "bytes": 2429
     },
     "baseline/page-085.md": {
-      "sha256": "7835ee7e574ac0246419bca2c3c45c763550fc88a08682b0f2581a938515d290",
-      "bytes": 1696
+      "sha256": "c2b0040361d626d3c2b3ca67bc015c6051bd377a2b3751c243ce301dc6ad9882",
+      "bytes": 1804
     },
     "baseline/page-086.md": {
-      "sha256": "3f6a0c22134d23a0bcbec4ee586cd05bc3e52174ca1db9b0611221382dc97ae2",
-      "bytes": 2219
+      "sha256": "b6d5ab89740a1b8372e825ac0cb30b7762ce09b0383573f075bd246c11170dd1",
+      "bytes": 2327
     },
     "baseline/page-087.md": {
-      "sha256": "eee8691229d3069723d38e86f949f718cfaf2a3055bfb0ad930cf9d4bbd86736",
-      "bytes": 1948
+      "sha256": "6732ddd62606fbbaeae9249e39983f09e42809bad9775ade5953c14cd65d0f5b",
+      "bytes": 2056
     },
     "baseline/page-088.md": {
-      "sha256": "8e6e863ab5ff4041318fb6529b7bd7d003e70e849f70fcc52636618429338e01",
-      "bytes": 1976
+      "sha256": "895ac3e2a72d785e1d53c90743b29482b68bd9eaebba7322332399e554bb0c03",
+      "bytes": 2084
     },
     "baseline/page-089.md": {
-      "sha256": "8b704d0bc175cb6dc72531ed2e56d12edf97ba9133e63c6048f444e300834d2f",
-      "bytes": 2281
+      "sha256": "fec94e9a3a0ab8babf153f94e40dbc957155f1103c32f8967c537fc48b82b6ba",
+      "bytes": 2389
     },
     "baseline/page-090.md": {
-      "sha256": "e6d08a1090901407b29ad861c255fb43eb4958a8e81189a0e5fdd9a5b891a55b",
-      "bytes": 2176
+      "sha256": "8f7793370abafda792b1af3076f9dbd35c57aca1894665c4cda857aa221986fc",
+      "bytes": 2284
     },
     "baseline/page-091.md": {
-      "sha256": "16f94b5f3f98ea105e38f5dd87cdd82b4beb2e2a953f2aabbdf9c53bcb1e43a2",
-      "bytes": 1853
+      "sha256": "59e327e7c30eb5948ada0d2e1fde9453046598e08f9b3e72316b16e39db6a938",
+      "bytes": 1961
     },
     "baseline/page-092.md": {
-      "sha256": "1ed571b0cc1beb6ea839223d5fd58e2b43bc60e16c957eb92c375df09ec96ef0",
-      "bytes": 1493
+      "sha256": "c51f422f8966e3cb34edec2018e1d72b895e3c3803a7ddc894c78e8ea917bce8",
+      "bytes": 1601
     },
     "baseline/page-093.md": {
-      "sha256": "280c8e889591c4622f7fde83823f751e8bedd51b59ef5cc758e5a9d401f57569",
-      "bytes": 1653
+      "sha256": "3ee52f4950d57bdc4b8174147fdc5b82690de48e65bfb2ffaa2d256f54cdc482",
+      "bytes": 1761
     },
     "baseline/page-094.md": {
-      "sha256": "e4babe9bd6a6250371fc29b598fe250b572fab551e195e871a9dafc340a192b1",
-      "bytes": 1955
+      "sha256": "d1562c2e227e370ef1d49655b6344504c8a1b0113478f6c10b3011e47b00b722",
+      "bytes": 2063
     },
     "baseline/page-095.md": {
-      "sha256": "befdee725611a402860a37856dfec1c0ad8592f1355a4b769863130a74bf7484",
-      "bytes": 1894
+      "sha256": "736def231def960d45dcc5a990d95e74da7d5659230f6fa4f44977b08b760c88",
+      "bytes": 2002
     },
     "baseline/page-096.md": {
-      "sha256": "a47eff59020b1e5aea98c0d366c35f21b622e9e11c2c9782de7d3468b6eb4ad3",
-      "bytes": 1553
+      "sha256": "35c2df4de222cf7ba3571fb7ccae455d22500a738f3665aa1994e23c84b7d329",
+      "bytes": 1661
     },
     "baseline/page-097.md": {
-      "sha256": "3f1e52ca625caccda0f3a1aefc5023f8f7655b205227d928ddf7edf814325b05",
-      "bytes": 2512
+      "sha256": "aa5bc088623dd35ba3dd63235bbd01d5ed138e304a06b7fe2fe9c5dcbd7048ca",
+      "bytes": 2620
     },
     "baseline/page-098.md": {
-      "sha256": "b32b94321f885c81f41a73a24954a93f398305613f9a06da22eed3a214a8cbfd",
-      "bytes": 2082
+      "sha256": "740481c79e9c8bcdb7c7ff7cc6a04340c119f92d021dc2ead3a5ae0d3eead8ab",
+      "bytes": 2190
     },
     "baseline/page-099.md": {
-      "sha256": "42c00e21e61aa1c45b556b8c90e9cf86e0397291fedf04ba4ba6622e6ec0b172",
-      "bytes": 2386
+      "sha256": "d3e15d2e55d76e92b648e59fa8004c439096e44bc3a8e7d71fe86f0280c29e94",
+      "bytes": 2494
     },
     "baseline/page-100.md": {
-      "sha256": "26acb0dda88a9733171e1b8957793ddfd40e5cc88c5ba0b1fa8cf5888ddedb1e",
-      "bytes": 1885
+      "sha256": "f5017f47a93543dec481fbfb7c42a70fd0a12b18deee54cf73db52d879505166",
+      "bytes": 1993
     },
     "baseline/page-101.md": {
-      "sha256": "829b6166903645668e0917124aeab4656fa68d64afa246698436acc3f1c7b779",
-      "bytes": 2554
+      "sha256": "9c8c73008ae28ce7e14c2b158477ffa1a750691c27899d58d9d087008783018a",
+      "bytes": 2662
     },
     "baseline/page-102.md": {
-      "sha256": "ae775979548b6024b6071eeaea50d022528089c0de52bb13510a9ace2d624487",
-      "bytes": 1800
+      "sha256": "d3cf49d34279e69aa5045d3485764e96fc11993b6983ec31baaeffb17edf12b4",
+      "bytes": 2280
     },
     "baseline/page-103.md": {
-      "sha256": "bf441f2985db8435703e0362732f5443702381b1a49687fa438991e95ede302d",
-      "bytes": 1351
+      "sha256": "d07979cdf0947a741baa117ec8aafb214a2279869704b33c6db8c39c91d1576f",
+      "bytes": 1459
     },
     "baseline/page-104.md": {
-      "sha256": "e8fd56b68145a8860ac623f0b135874621d09ee852b21eb6d88ede9ffd359357",
-      "bytes": 1373
+      "sha256": "e5b2634e214961c62f59a7d751c35481ede58734782550081058ed4e8b9e3f67",
+      "bytes": 1481
     },
     "baseline/page-105.md": {
-      "sha256": "f54bccdb51faf79346547152cf49102417692f92047ea0e7aee81173fd9f660a",
-      "bytes": 728
+      "sha256": "e2fbbe7158375c77b73dadf7e643ac532dbe61d8bb734e0776ff39ce39e96a5f",
+      "bytes": 836
     },
     "baseline/page-106.md": {
-      "sha256": "bf1bc5374c15959bd4bf63ad9e0a4093bfb3ad18a07ad31c552588a43626e0eb",
-      "bytes": 2273
+      "sha256": "d78aba7cbb1de6d07310d52a8b24b37b1970ab490e7a56b05b209721e946deb1",
+      "bytes": 2381
     },
     "check_spec.py": {
-      "sha256": "6d2b627a60df34150e188484d2ef5ecd76142eb5e09329f6fd38ed7223cecafd",
-      "bytes": 6437
+      "sha256": "89fd387faaf72c5c9aacc55922b84a0d24302cc4b5c61470e86eb58ebaebef3b",
+      "bytes": 7398
     },
     "complete_specification.md": {
-      "sha256": "2bea7bb37f29c85698808793ade68c47323efe2c29b08cdad6087d91b6be208f",
-      "bytes": 251162
+      "sha256": "083103c772350df7f852a60f9df4a63f1ccb940fcb71f8497985a360ae4f2f67",
+      "bytes": 278846
     },
     "conversion_notes.md": {
-      "sha256": "d5d760c014cb29016a1d041b1bde7e47a91d5d997cc63eb64dad66730ea5b977",
-      "bytes": 4725
+      "sha256": "c25760ede57c1d17f8be6a49e72cd6606060313c7e2ff4770d7f2485c73d69f8",
+      "bytes": 4825
     },
     "conversion_rules.json": {
-      "sha256": "a1aad42e30be1294c4190a9ecd06cb342fe3dc44dc5ca88e8e0f2c57af8fdf37",
-      "bytes": 95629
+      "sha256": "99a080c452b26758e021b23ab2481a5d0327c1a4de476f390bcbf2cfe1bfc88c",
+      "bytes": 114601
     },
     "coverage_manifest.json": {
-      "sha256": "cf99560a632a6363a8d21b898e12ba432ada0f3e65a8496b7716a5a6d6d97ad8",
-      "bytes": 40036
+      "sha256": "0c2f911ff8e1ea414fc4a699f0349ca7eb63d6b6a8f93a7c1f1d032ff39c70cb",
+      "bytes": 61341
     },
     "current_profiles_and_rf.md": {
-      "sha256": "e27af0c2cb52dca933b30d4c101bc334b20f9f184e9cebbea3f1623bbe99161c",
-      "bytes": 12481
+      "sha256": "2bd6fcb1d81f1c1278e5a19df61f4d2aeda2f459cccba20fa60f334d84a14a53",
+      "bytes": 14012
+    },
+    "math/baseline-page-014-001.svg": {
+      "sha256": "b507ccca8b570bff3d23dd77d107130b9803f4b39e3af5413594028f67be9cb5",
+      "bytes": 8081
+    },
+    "math/baseline-page-014-002.svg": {
+      "sha256": "d73032f785f909d08a3894bfe341478bb2693cb78c780a6de299dc8fac0d6667",
+      "bytes": 7920
+    },
+    "math/baseline-page-014-003.svg": {
+      "sha256": "a8822a6854867c678de9b486963a80f146ba47ae6d8092509dd59f51142553b6",
+      "bytes": 6088
+    },
+    "math/baseline-page-014-004.svg": {
+      "sha256": "ae94337f404682ca991d2984cbdc7c82dc1a930c68073ecc5275f79ec3e026c8",
+      "bytes": 7007
+    },
+    "math/baseline-page-014-005.svg": {
+      "sha256": "706a1339e100c4a4282208275727d163c3927af81eea1ecb085c092bddbb2358",
+      "bytes": 6479
+    },
+    "math/baseline-page-014-006.svg": {
+      "sha256": "1548cfd9396d3ba1fafd6a8d1b7a9906f10fd4a769b061ce73168654dd4b0f47",
+      "bytes": 11465
+    },
+    "math/baseline-page-014-007.svg": {
+      "sha256": "fdf423d7260b96930ac6bfaa2e966765d023c62faee2f42c4bd0c258f6c61e6c",
+      "bytes": 10083
+    },
+    "math/baseline-page-014-008.svg": {
+      "sha256": "de02b0d6e4ec6c7bb2901fed962aa8341722f9515fca27736a2a971048f4d6f0",
+      "bytes": 17546
+    },
+    "math/baseline-page-014-009.svg": {
+      "sha256": "9e23cc60922a159d982783ca91321710f3fb3ac839196ec689085432a45ca222",
+      "bytes": 3386
+    },
+    "math/baseline-page-014-010.svg": {
+      "sha256": "d63f03756572fa19255486cc71a8f86df20b125b47d327cfe221156cfb069f08",
+      "bytes": 5721
+    },
+    "math/baseline-page-015-001.svg": {
+      "sha256": "693d25107d4ff6923c4dcfbc7630732d10063aef9bf71f1743eff42b9b31c1e8",
+      "bytes": 2522
+    },
+    "math/baseline-page-015-002.svg": {
+      "sha256": "2a7fb080431b6342eb87739da1382c3f2c8f5b4243dae8af03cbeb27b1e0ed7d",
+      "bytes": 8347
+    },
+    "math/baseline-page-015-003.svg": {
+      "sha256": "573726acffc6a5712cfebfceac70bb9b31d53b796d56be626b21917cf3b8c5f7",
+      "bytes": 1840
+    },
+    "math/baseline-page-015-004.svg": {
+      "sha256": "5e01a31944c294faff55770e9ca29ea51ef67c6f909a8f35feca0ab0818dec77",
+      "bytes": 1615
+    },
+    "math/baseline-page-015-005.svg": {
+      "sha256": "417b85ba7db23b0f8320fc0f6de9d88cbf97b7d45ff54ce6aaef7143c7cc14e3",
+      "bytes": 1631
+    },
+    "math/baseline-page-015-006.svg": {
+      "sha256": "923f37a88905e6244ae4c5d30067cbd6a4174fd202aeb6302d04c2632fbdb511",
+      "bytes": 7157
+    },
+    "math/baseline-page-015-007.svg": {
+      "sha256": "e65b871787f08a366e9f8de90b79c8590fdf7b3e61f673e687dd3b26ae99c545",
+      "bytes": 2621
+    },
+    "math/baseline-page-015-008.svg": {
+      "sha256": "04c6d3b50b00bb3958bbf267cfbd4b9370c27784d658660b24418153fa3673f5",
+      "bytes": 5039
+    },
+    "math/baseline-page-015-009.svg": {
+      "sha256": "276a97784feebf45a5a93a10bc5ff1ccc77b291e954b94b791994a712a50d4c7",
+      "bytes": 2155
+    },
+    "math/baseline-page-015-010.svg": {
+      "sha256": "7c3c740398b14b44fe551fefb125953b3b2b20f912cb4662d63e8a9c6661cc36",
+      "bytes": 2045
+    },
+    "math/baseline-page-015-011.svg": {
+      "sha256": "8d1dec196f55e643f1f719a78e2fafc4053863e37c81dcc19b025d8fb4929380",
+      "bytes": 5573
+    },
+    "math/baseline-page-015-012.svg": {
+      "sha256": "0f2124df0752b4eadd8b6502e08ec8eeaf82ba8daf79a0cdea801d98854fe293",
+      "bytes": 1433
+    },
+    "math/baseline-page-015-013.svg": {
+      "sha256": "469adf9b803e700acb4898fb6631743b22f7694c592d1ddecc9132a038497b46",
+      "bytes": 7208
+    },
+    "math/baseline-page-015-014.svg": {
+      "sha256": "5341321ebab502b760a2baf17bb4f24c7b7b44b107f8101e151060689fd4fbd8",
+      "bytes": 7203
+    },
+    "math/baseline-page-015-015.svg": {
+      "sha256": "5eb50b953243f334c45cfb68bd53bbf09e7437a4c0e1c555e18feda88a1bc9f2",
+      "bytes": 15181
+    },
+    "math/baseline-page-016-001.svg": {
+      "sha256": "15e738636dac645f87dc4f4199ac46ff79d40044dffa913fff3b0bd5a71043c0",
+      "bytes": 3348
+    },
+    "math/baseline-page-016-002.svg": {
+      "sha256": "cf5ef5f5b289424ced38e91229c2a681e76dd36e8bb4df82b9e7573cc54e9129",
+      "bytes": 1615
+    },
+    "math/baseline-page-016-003.svg": {
+      "sha256": "8ed268d5899ad70b81c904500cfbe52594ab2c2585fc8ffee26813bbd2910d60",
+      "bytes": 4136
+    },
+    "math/baseline-page-016-004.svg": {
+      "sha256": "f08541684f4c5ec63bc39fe6465e43fde3dce201a3fda6b7cb3061117a4ac890",
+      "bytes": 16067
+    },
+    "math/baseline-page-016-005.svg": {
+      "sha256": "c05abb393cfb7aa4569009dad2f65aea13585d3bd47200c64904226d8e6bec19",
+      "bytes": 6859
+    },
+    "math/baseline-page-016-006.svg": {
+      "sha256": "ad844572147b5539eaf3557dc466d19a81f4d4e7ecb0f7be8b8c1739febec09e",
+      "bytes": 8544
+    },
+    "math/baseline-page-016-007.svg": {
+      "sha256": "4c071360cfa40a5100fb4f2025fbdeef2af3299355bc3f6be4676f0ff2bda1d0",
+      "bytes": 8769
+    },
+    "math/baseline-page-016-008.svg": {
+      "sha256": "698036501fea2179819b29287121930ce65d709614a28e827d1c584948fa5613",
+      "bytes": 5327
+    },
+    "math/baseline-page-016-009.svg": {
+      "sha256": "82d7699472f03de114bc56077afa45819f9832edc4a69026dd48daf10b731b17",
+      "bytes": 7829
+    },
+    "math/baseline-page-016-010.svg": {
+      "sha256": "54bde19991f341c29d4a483acf316603e0ac11805df6405ef2ada12e59194f3c",
+      "bytes": 23167
+    },
+    "math/baseline-page-016-011.svg": {
+      "sha256": "a7fc992b4b51211055126746b1c430fafba4cebc62b6e2000be8406f5e730510",
+      "bytes": 4578
+    },
+    "math/baseline-page-016-012.svg": {
+      "sha256": "0c9fee53fba226c5a7c2efa31518b22054cca90a6e64647e6d2f3b5883b3c33e",
+      "bytes": 43321
+    },
+    "math/baseline-page-016-013.svg": {
+      "sha256": "fdc6fd0aad1520d880bad15e6541d68a51fc47850fd88b29c2f85da02ebdccf6",
+      "bytes": 5338
+    },
+    "math/baseline-page-016-014.svg": {
+      "sha256": "d2779e5cdb67ed42e09835a4e2e0738306de308c39cd72122b3e8d8cd7378c5f",
+      "bytes": 6618
+    },
+    "math/baseline-page-016-015.svg": {
+      "sha256": "b1a4fa27deb10a39aa3b2f374e4b7b06d55eefc602c1dd97f1b47c2427017e91",
+      "bytes": 4699
+    },
+    "math/baseline-page-016-016.svg": {
+      "sha256": "13848daceb6d3a901f321f9185bbe186a04a513e3918eb05305fc4ce6960f2b8",
+      "bytes": 29783
+    },
+    "math/baseline-page-016-017.svg": {
+      "sha256": "64c57fa7797f6f9844d9390c6d9764e8392195e8aa74377e3f57e3869e09309b",
+      "bytes": 4578
+    },
+    "math/baseline-page-016-018.svg": {
+      "sha256": "6f070d8c4444b53b12223f5152d7f8536a9c708ac5a3a092dec740c6317fb0d0",
+      "bytes": 17584
+    },
+    "math/baseline-page-016-019.svg": {
+      "sha256": "7728c0663b305a12c42fbff310e4ca4d99684cb7babd6479eec5d33e58b03b61",
+      "bytes": 15836
+    },
+    "math/baseline-page-016-020.svg": {
+      "sha256": "c4d38918381609bb3cffe2db1922fab76ed469d9ec6c0803f6c4d5b01f08c89c",
+      "bytes": 14992
+    },
+    "math/baseline-page-016-021.svg": {
+      "sha256": "b33954c3b5a664df3032f3b0c0c2c5413a5317fbe4762d321e6dc404c6e978cd",
+      "bytes": 6684
+    },
+    "math/baseline-page-016-022.svg": {
+      "sha256": "e8b45e0b6e7438ef0a9014d6b3bc4abb58a07f72ce6781778bd5fab2d23ef6ef",
+      "bytes": 3083
+    },
+    "math/baseline-page-016-023.svg": {
+      "sha256": "a3b708429d45edd82bf84d82739e865407b6b02e75dbba644b92aef0b5a37101",
+      "bytes": 4866
+    },
+    "math/baseline-page-016-024.svg": {
+      "sha256": "7a53779a1e77d88cd560813d2854772d43ad261e57b3d2b29029376ebb3c5bca",
+      "bytes": 3408
+    },
+    "math/baseline-page-016-025.svg": {
+      "sha256": "02cbd62b705458c02ddf95990272014312e43fd52e47f5034cdd3a091b97bc3f",
+      "bytes": 3083
+    },
+    "math/baseline-page-016-026.svg": {
+      "sha256": "2d70d84708667ce161377eb04c645fe624b8cd021453282aba918a924a835a61",
+      "bytes": 10726
+    },
+    "math/baseline-page-017-001.svg": {
+      "sha256": "6793eaeb71a435af2b002e238debe18fc60b58f7ad58f9fbfe729fc79735757e",
+      "bytes": 1840
+    },
+    "math/baseline-page-017-002.svg": {
+      "sha256": "e32d638ee54acae18cb1c2585a213ed22a1e5df79c8bf39699f0ed215cd0e3e3",
+      "bytes": 12120
+    },
+    "math/baseline-page-017-003.svg": {
+      "sha256": "30d048b26d6fec00044a2ca6b1225180b230a2c35343a49aec529c2ed3e3d732",
+      "bytes": 19016
+    },
+    "math/baseline-page-017-004.svg": {
+      "sha256": "0db3d60cdf2647d4cd4e650192efaaca696cc21eaa47e57a838f8b33fbb2411c",
+      "bytes": 1840
+    },
+    "math/baseline-page-017-005.svg": {
+      "sha256": "a4f5854285502fcf92cc0be6854c266fe1298b92569d6cdc64ed026ba204d6c9",
+      "bytes": 14419
+    },
+    "math/baseline-page-017-006.svg": {
+      "sha256": "1e1193cd05bef478099eff462e9d5a3ce83fe83ecf0039d00625cd421f72f951",
+      "bytes": 18777
+    },
+    "math/baseline-page-017-007.svg": {
+      "sha256": "cb857092ab01c3bd05d9f9ade9ee1e29de4251bb4e06030276481809d2e09175",
+      "bytes": 17609
+    },
+    "math/baseline-page-017-008.svg": {
+      "sha256": "199027bc4db9060adb9137503f35316881f6c80665d8613e6c7f2534952c6b91",
+      "bytes": 12620
+    },
+    "math/baseline-page-017-009.svg": {
+      "sha256": "6994fe3f83b44906f066ef35635ddc8cea843b30711098e196cd198dcd07fcb9",
+      "bytes": 20604
+    },
+    "math/baseline-page-018-001.svg": {
+      "sha256": "c750eb509062f601f317ec1f0377e1363707baffb48a50608aef305e9688bbbf",
+      "bytes": 5125
+    },
+    "math/baseline-page-018-002.svg": {
+      "sha256": "f78d9a59623f37561f6e405233404ed8e184d592404da015e77e4e02c46548cd",
+      "bytes": 8535
+    },
+    "math/baseline-page-018-003.svg": {
+      "sha256": "082429a2f88e233448dce23967c2567c1a073ffd0f03f8a79f5e8d7996cc7c5f",
+      "bytes": 7653
+    },
+    "math/baseline-page-018-004.svg": {
+      "sha256": "61da7ed60aabd355ea1dd10171c2543e8c60fc30569e0bc52b55643a7550f3d5",
+      "bytes": 3482
+    },
+    "math/baseline-page-018-005.svg": {
+      "sha256": "13e3ca5089108267e160011496979194fdb67aeb13e61fdbcb5e12a8a932502c",
+      "bytes": 3335
+    },
+    "math/baseline-page-018-006.svg": {
+      "sha256": "30b9bf4dc1a13c7a487f6184f3cea0b536bf755290246735c706703671a284bb",
+      "bytes": 5241
+    },
+    "math/baseline-page-018-007.svg": {
+      "sha256": "197631266031ced67304ba0c94c16fc44ac94bf99713002d88be00a30773d1b4",
+      "bytes": 22982
+    },
+    "math/baseline-page-018-008.svg": {
+      "sha256": "1dcc5deafb6aa9619c36306fe4d7f38fc3bd0e7b2ade3b83159afc08b9f2598f",
+      "bytes": 6077
+    },
+    "math/baseline-page-018-009.svg": {
+      "sha256": "f71029f8976b844fc0f8d98a677d05e99d96d714e7b5a02aca7df7f882633f3e",
+      "bytes": 6279
+    },
+    "math/baseline-page-018-010.svg": {
+      "sha256": "4fc04b1e2a62258d43b5c0dd1a7d5f5fbdf541dfb2913ec8085fe7c5c95c816a",
+      "bytes": 6907
+    },
+    "math/baseline-page-018-011.svg": {
+      "sha256": "ddbbd151ef346046b09e60d064820cb3e54142092edc0b307ef90e3cfe717f7a",
+      "bytes": 21729
+    },
+    "math/baseline-page-018-012.svg": {
+      "sha256": "edd2996c638b28a713b41b88fdd729fd30cc9f819b19944d2e48044f5ef4bac6",
+      "bytes": 22258
+    },
+    "math/baseline-page-018-013.svg": {
+      "sha256": "ea14513f24ba5499454f785e48a51e90599699bb430228ddf27c0555a4da939d",
+      "bytes": 3696
+    },
+    "math/baseline-page-018-014.svg": {
+      "sha256": "f95171ecec5ec169d938daa7a3a61f2b805866715017a20aa178908371a939bd",
+      "bytes": 4019
+    },
+    "math/baseline-page-018-015.svg": {
+      "sha256": "44dbabca09846452f1210b6f429f0801dae5bbdd9916691c8beb98379052f1c2",
+      "bytes": 6102
+    },
+    "math/baseline-page-018-016.svg": {
+      "sha256": "c1755e4f1a50e785e8ddcd29b133a4336acc0cedeeb52176ce5c82d6e873d5c6",
+      "bytes": 6664
+    },
+    "math/baseline-page-018-017.svg": {
+      "sha256": "5c10cea502390dc08d53c685461d0ee5136ba98d47a36d4c4313d5c86dcf8de2",
+      "bytes": 6861
+    },
+    "math/baseline-page-018-018.svg": {
+      "sha256": "868b74c615fa6c503c0a6f5409df9a02c05c67ad151e33856810a6c25d295ddc",
+      "bytes": 7363
+    },
+    "math/baseline-page-018-019.svg": {
+      "sha256": "a4b18aa3eab5994175cced7c642d3324e69cf11cd54c437c397b4bf9090da044",
+      "bytes": 10661
+    },
+    "math/baseline-page-018-020.svg": {
+      "sha256": "392fddeacb8f9cfefefb2b91c56916b3d90a7d4e7fe163dab254ffe609b6d58b",
+      "bytes": 8313
+    },
+    "math/baseline-page-018-021.svg": {
+      "sha256": "b0a180901a545b7af0867ac8d78d148f5e9e754ba089383a76a6acc4cb4b59b8",
+      "bytes": 5789
+    },
+    "math/baseline-page-019-001.svg": {
+      "sha256": "302b6f1a3caaf91e086d43ac36ce931f5d78c01b68cb4664523f23f475b7a339",
+      "bytes": 3721
+    },
+    "math/baseline-page-019-002.svg": {
+      "sha256": "eec1d3e68e9283964b6324d8ad7bc5bd76170efe4503fb5fa9f279e4874c9bfe",
+      "bytes": 1840
+    },
+    "math/baseline-page-019-003.svg": {
+      "sha256": "c4d3fa8075f5c3760dfd63aa259d0266ae1bb682bb7861b61a8f666fe03d02de",
+      "bytes": 5256
+    },
+    "math/baseline-page-019-004.svg": {
+      "sha256": "95eccd7c8d389ad9ab43a55ef4392e579037ffc7a069714716cbe9ba0fd561e0",
+      "bytes": 3169
+    },
+    "math/baseline-page-019-005.svg": {
+      "sha256": "20375464f5a0c30f33c18b9f68d4aa4f12d36d2001f1d99cf8f77b5bf67b8bfe",
+      "bytes": 4019
+    },
+    "math/baseline-page-019-006.svg": {
+      "sha256": "1124b836095eabc39e1914a46c56b0c780901ced71ea2e3f8c6413825fb33870",
+      "bytes": 3521
+    },
+    "math/baseline-page-019-007.svg": {
+      "sha256": "db92fb914c2afb076753ffe56c1a3c6a2f1eea2bd8cc338af26fe79cf71c1722",
+      "bytes": 3765
+    },
+    "math/baseline-page-019-008.svg": {
+      "sha256": "ea4fa1424a528fd6fae04ec60a223cb6845d6383750866aa2c7779eb7a7062da",
+      "bytes": 4114
+    },
+    "math/baseline-page-019-009.svg": {
+      "sha256": "7186f75f109fc79ac340d07e63731db80e33d7318c1aaec356ee4a4ec6475f81",
+      "bytes": 4048
+    },
+    "math/baseline-page-019-010.svg": {
+      "sha256": "37b6b20f664a351e8b8bc5db98f82ee58f17b2f0476541a6497b22d6d07f9067",
+      "bytes": 4786
+    },
+    "math/baseline-page-019-011.svg": {
+      "sha256": "3a38479cd776d1f977f04e691dc6249527a355820af6e46e6b7abf8e3440615e",
+      "bytes": 6904
+    },
+    "math/baseline-page-019-012.svg": {
+      "sha256": "55c9bcfbb817fbe4cd7d0c3b6842fb3b7eb5083c864d13e11c309d19a298776d",
+      "bytes": 5061
+    },
+    "math/baseline-page-019-013.svg": {
+      "sha256": "8694c057a2e00d4f4e317a29871377c5e2f23d2e1d1b496fb2410714ecf2a183",
+      "bytes": 7795
+    },
+    "math/baseline-page-019-014.svg": {
+      "sha256": "dd26ef444dcec3d26449ad90a18d7512d947b7f23079fad44ece4ca3f2c3d9af",
+      "bytes": 5061
+    },
+    "math/baseline-page-019-015.svg": {
+      "sha256": "e6a4c1dc157982e460a552e989211a064335735b1f69c3a846b7c4fe3400be8c",
+      "bytes": 4940
+    },
+    "math/baseline-page-019-016.svg": {
+      "sha256": "192a0189c43841b5ecd59238bbbf481b1200e6cf009eea8ea22a35b4f7a05586",
+      "bytes": 4048
+    },
+    "math/baseline-page-019-017.svg": {
+      "sha256": "00ccba844597a2d77ddbb4258970f86b455c71c727974adba099aee77def45a6",
+      "bytes": 7203
+    },
+    "math/baseline-page-019-018.svg": {
+      "sha256": "e99f2e0337054c42701b4c065789867a7a14f05bb92fcb801e9f7aa6298d3376",
+      "bytes": 5789
+    },
+    "math/baseline-page-019-019.svg": {
+      "sha256": "29db65d59c628b58f86724cb2d2174e5436b4ec34a291fcfa714a38aec93ce25",
+      "bytes": 4673
+    },
+    "math/baseline-page-019-020.svg": {
+      "sha256": "db7baac8152c299c6b0c00d860994e57e70f9ba8b5cba32e54bc38ff48518d1f",
+      "bytes": 6699
+    },
+    "math/baseline-page-019-021.svg": {
+      "sha256": "461f73b2262201cbd2dca1fef1ec6d904dda5218b65ed903f03e783d2f348a17",
+      "bytes": 3768
+    },
+    "math/baseline-page-019-022.svg": {
+      "sha256": "344c9ae347d064d3547067d064918ff060fd64f3d232597d7c660694138b8ac4",
+      "bytes": 4673
+    },
+    "math/baseline-page-019-023.svg": {
+      "sha256": "475d8c1a7221553a1f9fcdfba06e87ffe118b672277ca1f558acae7051899106",
+      "bytes": 4407
+    },
+    "math/baseline-page-019-024.svg": {
+      "sha256": "0055c94621caf7540c0ff47bf1a276d39bdbe87d23040c068b4b42b3ef9706bb",
+      "bytes": 4780
+    },
+    "math/baseline-page-019-025.svg": {
+      "sha256": "530affa889ee0634bb9051eb66039a021e63fb86da21ee63d99b9bf59b66b02a",
+      "bytes": 7223
+    },
+    "math/baseline-page-019-026.svg": {
+      "sha256": "361f942c6f100e482ee48a7b615620b37e70935c558c1d4c6863861aa500a3e3",
+      "bytes": 19883
+    },
+    "math/baseline-page-019-027.svg": {
+      "sha256": "94ef5565a002672d4f0a3cd3c2bcbb3bf95add16d8c96dae2aa76f7078f9915f",
+      "bytes": 3752
+    },
+    "math/baseline-page-019-028.svg": {
+      "sha256": "08752312f8130fc1a3b316c133b3bb686709c18374ef42b01d7c64e9c2765eaa",
+      "bytes": 9160
+    },
+    "math/baseline-page-019-029.svg": {
+      "sha256": "66b86ffc0c053a68b7cff720e92a78552fc72677f4947dd373c007db3e65e3b3",
+      "bytes": 7364
+    },
+    "math/baseline-page-019-030.svg": {
+      "sha256": "93038c3cfca4b849d19006fcc6985e7b3b82566fd18bc5dc6be5cf7327934273",
+      "bytes": 9519
+    },
+    "math/baseline-page-019-031.svg": {
+      "sha256": "31e6a83d8226306398e0b6fefd70eced1736e2acea9e7d7af5251b7b97c0ec93",
+      "bytes": 8000
+    },
+    "math/baseline-page-019-032.svg": {
+      "sha256": "51e289e90e964a28b0e433b15ec588841aa68bfca173c3ec56a2e939503a5610",
+      "bytes": 3766
+    },
+    "math/baseline-page-019-033.svg": {
+      "sha256": "bfe4ca2c8c04fbb0f0a3a2029a8985015734232576c5889e11df44ffd3208e78",
+      "bytes": 2981
+    },
+    "math/baseline-page-019-034.svg": {
+      "sha256": "1a5224550aad8d463ce9c2cacaad1d8915acfbbbd6993c8e49741a79b10b22da",
+      "bytes": 3766
+    },
+    "math/baseline-page-019-035.svg": {
+      "sha256": "cd1daafb607e3c176450bd34eb1c68ef5f6b0bb8b7e242b0498510e8eaf626d8",
+      "bytes": 19730
+    },
+    "math/baseline-page-019-036.svg": {
+      "sha256": "ed6439a79145b6250db4de55a4f2db929bd5ad4bb6ab467ed7c77e3b8885837f",
+      "bytes": 14294
+    },
+    "math/baseline-page-019-037.svg": {
+      "sha256": "03c0aba77f13a5e544aaf2b75f4ce1e26f6837cf8d563ee1920b02a9ac3181e7",
+      "bytes": 17467
+    },
+    "math/baseline-page-020-001.svg": {
+      "sha256": "569d5c619b9c4ee769f4c548ed629106841f5f98c4c7413b355c5eb26b7b512e",
+      "bytes": 14997
+    },
+    "math/baseline-page-020-002.svg": {
+      "sha256": "71c6e2b87f43afbc22378ea9f8eda61aec6fb98248a1320eceb3f3c5a31bd3d4",
+      "bytes": 20936
+    },
+    "math/baseline-page-020-003.svg": {
+      "sha256": "479860072734d29a45662e1f29b6a0e19f22e6fcdc65e2e2a8be9e702697a486",
+      "bytes": 30785
+    },
+    "math/baseline-page-020-004.svg": {
+      "sha256": "d07611213ac20dd9061a4c18589428085eea7ca31cc93026f822e2b14f0d0f2f",
+      "bytes": 18974
+    },
+    "math/baseline-page-020-005.svg": {
+      "sha256": "5a7797ae119e8988ba85f95ca24c5e51da770eccf0d7240edc0b0d12a907cb44",
+      "bytes": 21136
+    },
+    "math/baseline-page-020-006.svg": {
+      "sha256": "715caec9995e565b4e9502aa1a2668ec97055724963f4d715df67e1c228fe25f",
+      "bytes": 23390
+    },
+    "math/baseline-page-020-007.svg": {
+      "sha256": "b9750a2143b3729d95d7cf02a465c38ee12817d6360b390c437a324cbd786652",
+      "bytes": 22064
+    },
+    "math/baseline-page-020-008.svg": {
+      "sha256": "eb4e1fbd4faca048c8d44c481e0c1f6a16d3f1d5d645e9f273bd3a70f61348f4",
+      "bytes": 18949
+    },
+    "math/baseline-page-020-009.svg": {
+      "sha256": "266a233087c9a844a86c391bc0227cd2c090f09a77bce972e410dae3caf98184",
+      "bytes": 19127
+    },
+    "math/baseline-page-020-010.svg": {
+      "sha256": "88d2e37d762b6c6c98ffc8cce1d585aae54dda2fa4c9b15de72ad5f5f4aa7b1c",
+      "bytes": 5259
+    },
+    "math/baseline-page-020-011.svg": {
+      "sha256": "9a71d81c5da98e7129c6fde865d368401fa77aba9738e69a73c3e545d1851b38",
+      "bytes": 25548
+    },
+    "math/baseline-page-020-012.svg": {
+      "sha256": "b3ff1f800fd3da9b8b5a205dac07a65bc3a8182b4aa6763fca987f6afc6d8bc3",
+      "bytes": 28141
+    },
+    "math/baseline-page-020-013.svg": {
+      "sha256": "08cafea1dbc809698ba4ca77044e665d8a00382caed3a025368724ecf210809d",
+      "bytes": 13398
+    },
+    "math/baseline-page-020-014.svg": {
+      "sha256": "71a89ccb9f7790af0fb3ba11c08f1183d010d011cbfcef33035d5569804d8de7",
+      "bytes": 7204
+    },
+    "math/baseline-page-020-015.svg": {
+      "sha256": "d18be930c98a0d963bc9a069c2d08fdeacb2507a3b580a11bce6f402ac01cd2a",
+      "bytes": 16276
+    },
+    "math/baseline-page-021-001.svg": {
+      "sha256": "d09d2677f58ce22ad7a91c54d1c417fc378c96a9104b299679d3ea14d66973e6",
+      "bytes": 34379
+    },
+    "math/baseline-page-021-002.svg": {
+      "sha256": "a9d67907296d6b9f8b7254f5eec3cd118c467dbac4f0703dc5bfdc59b4310d90",
+      "bytes": 9484
+    },
+    "math/baseline-page-021-003.svg": {
+      "sha256": "e2d88781490b01c2c281c711580da893ff52583260d86b9759d6d83bee70f68a",
+      "bytes": 11933
+    },
+    "math/baseline-page-021-004.svg": {
+      "sha256": "79a531f9408e0d2238936e776645feb643f4965c8ce7bdf266ee35c91b6a2e11",
+      "bytes": 2633
+    },
+    "math/baseline-page-021-005.svg": {
+      "sha256": "882f4291a6b85dd1cfffaad6600ad4e428f29e38c1f839e9f14d57161a363d07",
+      "bytes": 6455
+    },
+    "math/baseline-page-021-006.svg": {
+      "sha256": "e37a85f5930ea741e76da0da858b3e8f6a3cd932f1b396ac434bcfb2b0f75e05",
+      "bytes": 25418
+    },
+    "math/baseline-page-021-007.svg": {
+      "sha256": "73d1b49d34adbb6b967d2ed155d58ac4e96fd0d730b5b91985ead83863d3790c",
+      "bytes": 26646
+    },
+    "math/baseline-page-021-008.svg": {
+      "sha256": "13a5e21373b443b3bd5f60c7432179fe2e76b5a9fb1297a9f4aaec6d4a917e38",
+      "bytes": 21331
+    },
+    "math/baseline-page-021-009.svg": {
+      "sha256": "6cf165a17ec6ef7bfa589582a648a1ce01af948b6e167ed03d62e520d5c894fc",
+      "bytes": 23140
+    },
+    "math/baseline-page-021-010.svg": {
+      "sha256": "a9157fd34feb186e6f508456a90cf81157fe1d44220a0992bf0f9d6d4b0ef12c",
+      "bytes": 29292
+    },
+    "math/baseline-page-021-011.svg": {
+      "sha256": "feaae3175ceed86ba7e470c408b0360e066bb8bdb3594f13df141d247493ff17",
+      "bytes": 26292
+    },
+    "math/baseline-page-021-012.svg": {
+      "sha256": "61459cbabaf46e92f1ce6a914994992a59d68f926c988e284682efceaf0db8a1",
+      "bytes": 14635
+    },
+    "math/baseline-page-021-013.svg": {
+      "sha256": "bbe92f4b687517cd477278643e0e453e361e75181094d2a8b8b21219be6b1a92",
+      "bytes": 20694
+    },
+    "math/baseline-page-021-014.svg": {
+      "sha256": "aa120c3e7c048334e3a9281555d8f48c12422573f3b00b2e1795ad300fe25b87",
+      "bytes": 13266
+    },
+    "math/baseline-page-024-001.svg": {
+      "sha256": "7657765a91a383fa28b87a6890637421adb3725c2e9c80d0a310e766cf680292",
+      "bytes": 6455
+    },
+    "math/baseline-page-024-002.svg": {
+      "sha256": "52b5b09a7437cbab52b66b3840186f7cb81fb21d9b1462ad49729c8f84f9d48a",
+      "bytes": 8501
+    },
+    "math/baseline-page-024-003.svg": {
+      "sha256": "593e243b346d7e8beb35e97af64aadaaa3858eec010d45010dbbbf983257fc09",
+      "bytes": 10553
+    },
+    "math/baseline-page-024-004.svg": {
+      "sha256": "62ae078f31e642fe25ff55bb5a6a4c7716d8f776e54217758d933d8a57f6299f",
+      "bytes": 9140
+    },
+    "math/baseline-page-024-005.svg": {
+      "sha256": "e5dfc0d6195d0f701b51023decc5ccb2ef7fa093c42cf75277f616c1d3680bf2",
+      "bytes": 1632
+    },
+    "math/baseline-page-024-006.svg": {
+      "sha256": "17805b5921b1ce0f95aebd6193b462d5e391e81c59bbf9decbfa57ac822a4cba",
+      "bytes": 21057
+    },
+    "math/baseline-page-024-007.svg": {
+      "sha256": "1ff3c90772a4ff81af98b7af71b9c7ca580bc4ec405773fc31f75a73628ace99",
+      "bytes": 22373
+    },
+    "math/baseline-page-024-008.svg": {
+      "sha256": "3a573f1bf291ecdf0b3aa7cc80f73574950a6f1dfd0a10e1bb0297e66ce458bb",
+      "bytes": 22365
+    },
+    "math/baseline-page-024-009.svg": {
+      "sha256": "a690622c664d6cca7bfe93c7e85d1386607b6007a305f8259a2004ca0022f4c9",
+      "bytes": 23660
+    },
+    "math/baseline-page-024-010.svg": {
+      "sha256": "f9919caeac2a0f6c56c15df90f720fbdc6e3b1473564c1b48809b697ef3f158d",
+      "bytes": 15635
+    },
+    "math/baseline-page-024-011.svg": {
+      "sha256": "b813410b62323570649398f3265474eae9b3735f1b4a193b07c7d1fb18d1552f",
+      "bytes": 14286
+    },
+    "math/baseline-page-025-001.svg": {
+      "sha256": "140bced9033d5b0fdb8c12ccf7f6956ca9e5c90d9bb9772f1758ca0b4156fe26",
+      "bytes": 15381
+    },
+    "math/baseline-page-026-001.svg": {
+      "sha256": "f5fd1724e6aa86b0a391c13a9ead2d8da2d75576f5974f56433922eaf8b96b3b",
+      "bytes": 13466
+    },
+    "math/baseline-page-026-002.svg": {
+      "sha256": "f0ac12c5fb5f9d16415b02a6ff482c6878b63df784e7346c08ec4befa3285432",
+      "bytes": 27441
+    },
+    "math/baseline-page-026-003.svg": {
+      "sha256": "2f19d2aa21a1ca5b31d7ea1531cae7f72a921fb8d18bc4b8724b3cd01f900147",
+      "bytes": 25354
+    },
+    "math/baseline-page-026-004.svg": {
+      "sha256": "51316135f3dcdef1401a49aba3a9b96e21de1d8a27aef36d4463e791c6151358",
+      "bytes": 33155
+    },
+    "math/baseline-page-026-005.svg": {
+      "sha256": "89beba13f1d20852e4f88b451405aeec7b725ce4b6fe9a3afcb779a5aeeb9dbf",
+      "bytes": 7240
+    },
+    "math/baseline-page-026-006.svg": {
+      "sha256": "b7a99dae58c0e93ae6ca572b2fcd51075fca3bd5e955a1834eaff8545bfd75a3",
+      "bytes": 13849
+    },
+    "math/baseline-page-026-007.svg": {
+      "sha256": "566c44ef88fa9d07ca4fad22b845baf8bbd022f2f45253f6795f8745c73954e9",
+      "bytes": 22136
+    },
+    "math/baseline-page-026-008.svg": {
+      "sha256": "9b8876d411ea002e4fca74bd1b217cde4b733d7f8ec36b4ff9a81d9a4245a766",
+      "bytes": 20391
+    },
+    "math/baseline-page-026-009.svg": {
+      "sha256": "d3899b9b43d7f83f1032faf6b8538e265fd9788750c83b7c34b9c9eca98112c9",
+      "bytes": 22155
+    },
+    "math/baseline-page-026-010.svg": {
+      "sha256": "c2f141c52352581a15b89a1e6cdb4b2738ae3f9ae58c7d8b298bbf5c0a78294f",
+      "bytes": 17945
+    },
+    "math/baseline-page-026-011.svg": {
+      "sha256": "5a611c71f949a6afb0e67a137061f275b0166d0a0776e4d88fa593ec69967c81",
+      "bytes": 2186
+    },
+    "math/baseline-page-026-012.svg": {
+      "sha256": "ca09f4ca24fc10f9a7d474925815d20c9294e8037b198f0f2c1525fe2e853348",
+      "bytes": 3906
+    },
+    "math/baseline-page-026-013.svg": {
+      "sha256": "9d984595b13c4c2be472b6d5a649645788f76734534cfc1349be377770ce16d6",
+      "bytes": 9125
+    },
+    "math/baseline-page-027-001.svg": {
+      "sha256": "1629f67a627fa875f7a26e9efc927ffab2e5eeb08af2f0733b55d9aed5a8f272",
+      "bytes": 2186
+    },
+    "math/baseline-page-027-002.svg": {
+      "sha256": "3f7717b7ce66200a1a36d538a6a3b389f3c64881ce578bf3a4b75027c8416e6a",
+      "bytes": 3906
+    },
+    "math/baseline-page-027-003.svg": {
+      "sha256": "7c32352e08b22bfc09a523456772a426ebe019109bdb1d81360e379a608745be",
+      "bytes": 1841
+    },
+    "math/baseline-page-027-004.svg": {
+      "sha256": "0b2403581c8fff613f09bf69b8468d021327b3667a65232f724b88aa94709dfa",
+      "bytes": 5257
+    },
+    "math/baseline-page-027-005.svg": {
+      "sha256": "af1b06338e8fd265eca9c299a45d4936659ae6ce775502801c9c0057f7f83efb",
+      "bytes": 4020
+    },
+    "math/baseline-page-027-006.svg": {
+      "sha256": "7df7cbe27f0d24b891f06f5b8ed547ffe35a83eebfb2b8b46f37c663f5b4307d",
+      "bytes": 5703
+    },
+    "math/baseline-page-028-001.svg": {
+      "sha256": "34eaefbf61db75130ae41674f47b00678fe9bb8e807f04f6d1bd019b4769199c",
+      "bytes": 5126
+    },
+    "math/baseline-page-028-002.svg": {
+      "sha256": "04a39b2b0afc753ae0684542e035819d30fa0acc367471e3a84f710e11f820a6",
+      "bytes": 3084
+    },
+    "math/baseline-page-028-003.svg": {
+      "sha256": "2892e9d0ec5fece387451eb4fb8b550aeaa67801b5982b090ee4249e8d359e57",
+      "bytes": 3409
+    },
+    "math/baseline-page-028-004.svg": {
+      "sha256": "0d2607c903482da8e277d96b6bf591e74f9dabb19a312bf10aca441af3f15271",
+      "bytes": 7810
+    },
+    "math/baseline-page-028-005.svg": {
+      "sha256": "07ed6517837ce855b3564d16af14d3b66c97db5faec381ffce508435126783c3",
+      "bytes": 12529
+    },
+    "math/baseline-page-028-006.svg": {
+      "sha256": "e38633e009b41123f24414594f4e0ff272bc79f7752a5faac53661992dcad354",
+      "bytes": 1841
+    },
+    "math/baseline-page-028-007.svg": {
+      "sha256": "de2d195ec4a01231db3b9c0518a516aaf73a3bc66495e7fc7fc526ce29363181",
+      "bytes": 3552
+    },
+    "math/baseline-page-028-008.svg": {
+      "sha256": "a16df63d52936a1905e338e36f9fb409b926d80ae69f4628696283c0d2843338",
+      "bytes": 8174
+    },
+    "math/baseline-page-028-009.svg": {
+      "sha256": "5df88b8c20de0d911cf4308b46e1d86723dd0b35138bdff4761231b780483f3f",
+      "bytes": 1841
+    },
+    "math/baseline-page-028-010.svg": {
+      "sha256": "2a88da712dca322bffb8050693d88eaa71a84c5fc6e99bd62f39040e2504a51d",
+      "bytes": 5126
+    },
+    "math/baseline-page-028-011.svg": {
+      "sha256": "412ab2d3b6563f699b20fda7cacf721f45d9ee1c9e462dff2b627c4363563c26",
+      "bytes": 8536
+    },
+    "math/baseline-page-028-012.svg": {
+      "sha256": "c629e0b931ba97081adfd39fc76657b6977a879b24d89e3a998018497a533612",
+      "bytes": 4020
+    },
+    "math/baseline-page-028-013.svg": {
+      "sha256": "77afaf8b84a3f393309786916d64320bfeeb9858ccc35b08d785a2dcd5a8298b",
+      "bytes": 4020
+    },
+    "math/baseline-page-028-014.svg": {
+      "sha256": "e360c3b121c4372f8597b0692f40aa598417240412e6f4edbc258e2ed7b6de93",
+      "bytes": 4020
+    },
+    "math/baseline-page-028-015.svg": {
+      "sha256": "465de60d5de11f991f3cb5e71da45ea87045f81eb49c8bb13f6fb6f6016e5d06",
+      "bytes": 4020
+    },
+    "math/baseline-page-029-001.svg": {
+      "sha256": "2373b696f00a575c1c513d6f56bf4eadb242f7875a6c1825196629a7bfd027a7",
+      "bytes": 10434
+    },
+    "math/baseline-page-029-002.svg": {
+      "sha256": "d5e700549fcf6d6ce6c963467fe54a5fae9e50f391e9d095fb2451236573c87b",
+      "bytes": 8595
+    },
+    "math/baseline-page-033-001.svg": {
+      "sha256": "5e41b91b40322b10fe8b82d5ef958fb86e5961ae80fd40fec68cf566b905bc59",
+      "bytes": 13025
+    },
+    "math/baseline-page-033-002.svg": {
+      "sha256": "3d2cf568238e2ca8400943c808a587ea0571ca2fc9307130322743bdcd14de11",
+      "bytes": 18151
+    },
+    "math/baseline-page-033-003.svg": {
+      "sha256": "faaf9434406e8605e3e4e5466bea9559f5812aed44a69960d223220023badf4f",
+      "bytes": 19307
+    },
+    "math/baseline-page-034-001.svg": {
+      "sha256": "71ec3711fe33bf7cccbb531da27018f6219ec839a946d89db5b3e3720c6f4414",
+      "bytes": 25489
+    },
+    "math/baseline-page-034-002.svg": {
+      "sha256": "452751b6cc2e125bfebceac02a0609034036487718ad7739da8f110a32ca19d5",
+      "bytes": 24867
+    },
+    "math/baseline-page-034-003.svg": {
+      "sha256": "6f851320b1630149d990d196c6c4ff5de80994470cec3ee59e372d8073fa4a29",
+      "bytes": 22727
+    },
+    "math/baseline-page-034-004.svg": {
+      "sha256": "0eb464a46f436abfa961ee46e6ca334ee19973e92c5fce331e1c4cf1dae02d66",
+      "bytes": 19094
+    },
+    "math/baseline-page-034-005.svg": {
+      "sha256": "fe9ec9628941ceea70d3e7472797c5165371932300e5258c7d5bbac6ef21bcc2",
+      "bytes": 14995
+    },
+    "math/baseline-page-034-006.svg": {
+      "sha256": "8a5268a659b387f0a63d7b8c2e261c961994908ce4c50ea1ddba919a18bb8684",
+      "bytes": 9313
+    },
+    "math/baseline-page-034-007.svg": {
+      "sha256": "eb002638125623800558a62910ccc07d86d649bebbf1965cf8bec9ec8a2d05e6",
+      "bytes": 15987
+    },
+    "math/baseline-page-034-008.svg": {
+      "sha256": "791f14a201c9ece476662c97d4813b965785cfb34c6e0785f5d4d5e546f14ef8",
+      "bytes": 22261
+    },
+    "math/baseline-page-035-001.svg": {
+      "sha256": "2d7248047750185bf2e31dda1fe36f3dabef79f0048fbdf4405914b06e796f5f",
+      "bytes": 7204
+    },
+    "math/baseline-page-035-002.svg": {
+      "sha256": "3d59bfd94a52ccd52a56a7bd66688064650dc5fe2cefda674ed5f58204b0598a",
+      "bytes": 13465
+    },
+    "math/baseline-page-035-003.svg": {
+      "sha256": "f7197c4e016482985b334a0f7e71a80a6439713971d2f0f28a8061d9d5a09ce5",
+      "bytes": 3409
+    },
+    "math/baseline-page-035-004.svg": {
+      "sha256": "1ff6cfd7d60b65192fc2d68ddbef478d9fe6d3a48eb313490a42a601816613b5",
+      "bytes": 7199
+    },
+    "math/baseline-page-035-005.svg": {
+      "sha256": "c68204dfc82b7460b45f1d6314fbd9da81e2212c308bbea0341f98506fbb0da2",
+      "bytes": 15550
+    },
+    "math/baseline-page-035-006.svg": {
+      "sha256": "a6b520cfda019a8bdb819779dc97e5800482744bd96fa4a4c2af31e9ff93e658",
+      "bytes": 8838
+    },
+    "math/baseline-page-035-007.svg": {
+      "sha256": "bf96642a44d5321838b552575daae8cab589e2820d02293a1179a7fa4b3df3d0",
+      "bytes": 19890
+    },
+    "math/baseline-page-035-008.svg": {
+      "sha256": "1f34f0de629b755707aab1e45b6ca23361b8673ff54cb1b50c3c0788c776f342",
+      "bytes": 16619
+    },
+    "math/baseline-page-035-009.svg": {
+      "sha256": "f3325e4148857f07db46b32d7733995ec61582ac2000846ead4e5b99730b2f4f",
+      "bytes": 7790
+    },
+    "math/baseline-page-035-010.svg": {
+      "sha256": "eef87b04b4c5de5e3b87f7bf711605f68278fa680dafc1061a4093d216f7c3b2",
+      "bytes": 26142
+    },
+    "math/baseline-page-035-011.svg": {
+      "sha256": "751734f0de8a7a4e8ccf1ab661dd1116d1af34859469bf78dcd2bdbcd80901c6",
+      "bytes": 7542
+    },
+    "math/baseline-page-036-001.svg": {
+      "sha256": "d14cf25ca79972200c30b76efdb4dfbdd3f2796d234a410c3dcd3a2ef2effefc",
+      "bytes": 17950
+    },
+    "math/baseline-page-036-002.svg": {
+      "sha256": "3fd9e6c9208d3f98b7c16bc6b8847dbef3db9bd02fbb9612a23e9801e3f76bd7",
+      "bytes": 28424
+    },
+    "math/baseline-page-036-003.svg": {
+      "sha256": "19329df05f1861c0f19c9bf3ad0d2d2169f498ae822a9c8bcd72b302b55eb6d2",
+      "bytes": 14053
+    },
+    "math/baseline-page-036-004.svg": {
+      "sha256": "f95f9125a0fa68065142d27f09b11ccf752ff9baafe20925a78a20846bbc7cf6",
+      "bytes": 13465
+    },
+    "math/baseline-page-036-005.svg": {
+      "sha256": "4df90366583bba2d67ec497b34d9efaae0093b32905ffe1363d9c53e5993e96e",
+      "bytes": 16345
+    },
+    "math/baseline-page-036-006.svg": {
+      "sha256": "e56a905650bbf0cf3f6ef9ee6587e8589f140ff7567b42f537d5205ff01ea6b6",
+      "bytes": 15906
+    },
+    "math/baseline-page-038-001.svg": {
+      "sha256": "734aae3c31f03239b93c4ac2b0839afd36a222a4471de12b403a7b1333b5d4f1",
+      "bytes": 30260
+    },
+    "math/baseline-page-039-001.svg": {
+      "sha256": "959ed726e4d2e0f4b0064637a0cef3a0ed9993d93823221e4d2ca917c0d4bb36",
+      "bytes": 16605
+    },
+    "math/baseline-page-039-002.svg": {
+      "sha256": "5be7bb976f55691170fbf1798356b1c928a06f8ab73d2f57e80b28285cf3addb",
+      "bytes": 16807
+    },
+    "math/baseline-page-048-001.svg": {
+      "sha256": "297a4556c54895056c283b5e766b846a072674dc5f57af6401b2fdd5a830ecca",
+      "bytes": 12354
+    },
+    "math/baseline-page-048-002.svg": {
+      "sha256": "ef421a14917488fa18a146aa6d364c3771967f6cd5899200b088c00699393599",
+      "bytes": 43176
+    },
+    "math/baseline-page-049-001.svg": {
+      "sha256": "87b32c592651da163a094f0ec82e5463a097ded3cab8ed0e320d54593fbb8d10",
+      "bytes": 19721
+    },
+    "math/baseline-page-049-002.svg": {
+      "sha256": "e9757e2463b47d0e1019f709458a058d441f99a7f715a0c3a09e741213b28ba6",
+      "bytes": 16027
+    },
+    "math/baseline-page-049-003.svg": {
+      "sha256": "9d768095b163b2761e5cdaa1866934e29d2ab12917ee625a732cbd120b272be0",
+      "bytes": 18338
+    },
+    "math/baseline-page-049-004.svg": {
+      "sha256": "f709a58d326ddd5e210dde2d760bc4d514f22368cb3ad45193a2b9ebfee4c814",
+      "bytes": 10946
+    },
+    "math/baseline-page-049-005.svg": {
+      "sha256": "235e637956cf5cbe82da6e07b1db3bed3e86ba585a56d165287705f646e08bb5",
+      "bytes": 12968
+    },
+    "math/baseline-page-049-006.svg": {
+      "sha256": "037b56f96fdf97f42220bfde121ba0dc40949495ee0d7522c6dc66d00800b511",
+      "bytes": 11775
+    },
+    "math/baseline-page-049-007.svg": {
+      "sha256": "69826cb41e0f1e4513d8b08371663721d2239b67c37246ead3210f66f6aaf4ff",
+      "bytes": 8424
+    },
+    "math/baseline-page-050-001.svg": {
+      "sha256": "5c2a3620a407e5c8686fff7ba17616bc413b91e52bf510eabd0c558e5da7aa06",
+      "bytes": 9577
+    },
+    "math/baseline-page-050-002.svg": {
+      "sha256": "363e3dbd44c5e38cc156237216f9a52a278f533e3292a0e15646677e88637d27",
+      "bytes": 11819
+    },
+    "math/baseline-page-050-003.svg": {
+      "sha256": "3899132b34816d1f4ccd2bfaf621678214e53d6a526d241ee6142dae1726d8e0",
+      "bytes": 20752
+    },
+    "math/baseline-page-050-004.svg": {
+      "sha256": "e97fd4ebab5af7ed506fc489045327d0667a06673ef183d5fc0ab5903d63b3ca",
+      "bytes": 19742
+    },
+    "math/baseline-page-050-005.svg": {
+      "sha256": "596b62cc47ad875d9508a69a97aef0b17649a0ff0e505fc439b1beda3de361e7",
+      "bytes": 11222
+    },
+    "math/baseline-page-050-006.svg": {
+      "sha256": "d2c35ed26fae72ae766337bbdc075a870562bd6d89b65bd82c7893f891ac3f6e",
+      "bytes": 23304
+    },
+    "math/baseline-page-051-001.svg": {
+      "sha256": "5f5bdf2c33a0545b6a2f2ad951fbcf9505a232fe9401f134a9168f5796c8bfaf",
+      "bytes": 3300
+    },
+    "math/baseline-page-054-001.svg": {
+      "sha256": "f32d4a484faecedcbff857bf0dafde7d794f51d41803029074dec52f6b2d9f8e",
+      "bytes": 25659
+    },
+    "math/baseline-page-056-001.svg": {
+      "sha256": "b931e5773f8b2178e7916b6133e927095b121094f0eadcc6f72a0abcd2650e9c",
+      "bytes": 17095
+    },
+    "math/baseline-page-057-001.svg": {
+      "sha256": "1d803c1c47045c63a53e2f0a630baa1a46d0fb3857472386d301d148c8f47e61",
+      "bytes": 13227
+    },
+    "math/baseline-page-057-002.svg": {
+      "sha256": "18549f92d4b98d0454b96a8936b613a5d2fb56d4e3a76cda1070e6fe177b341e",
+      "bytes": 16585
+    },
+    "math/baseline-page-057-003.svg": {
+      "sha256": "f4ef3218d6fba797f40eb99353229e794557ab9041bbaf0d5c918a640541e355",
+      "bytes": 38492
+    },
+    "math/baseline-page-058-001.svg": {
+      "sha256": "fc625557b1983d6dbd6a00a66d18a401e651d053b22229467939070e6bc3ec6e",
+      "bytes": 15061
+    },
+    "math/baseline-page-059-001.svg": {
+      "sha256": "8e7b1b40f647537524068b7d7e4b4e32e27f18f65b1aa91f6a520634e139a85d",
+      "bytes": 3300
+    },
+    "math/baseline-page-059-002.svg": {
+      "sha256": "953e164fe906904abdde2003382d38090810a6ce8373121df90594cbb1765a80",
+      "bytes": 2904
+    },
+    "math/baseline-page-061-001.svg": {
+      "sha256": "23a3ed25b140a8408f51636b999ba1eab5e958b385606c76d50c092e5cb57e58",
+      "bytes": 17664
+    },
+    "math/baseline-page-063-001.svg": {
+      "sha256": "a4064a1d779dbf1d1fa4c86e94697109a0edd83f5777ab61d1feb101dde203f0",
+      "bytes": 15074
+    },
+    "math/baseline-page-063-002.svg": {
+      "sha256": "b2924ba65021897ba9457214e1da34af54c283ecb2289a104df8cf11e1272bc6",
+      "bytes": 18594
+    },
+    "math/baseline-page-063-003.svg": {
+      "sha256": "9e5cf4701f9ead3ac15a6e43f19f5f8413b138545b4a33d83163be533cd5820a",
+      "bytes": 10656
+    },
+    "math/baseline-page-063-004.svg": {
+      "sha256": "87fed7f1213a23c00d0527655e2f5cb45d2aa68cc89752fcae6e9fba5057587a",
+      "bytes": 16324
+    },
+    "math/baseline-page-064-001.svg": {
+      "sha256": "d49e18d02d0391a83a440fb12397a3433e7f3236bad391775de27ca525e39d46",
+      "bytes": 9030
+    },
+    "math/baseline-page-065-001.svg": {
+      "sha256": "6a8a8072365a0399a83bd6acbcc3082bfcc3c9a76ad881c78498f4cdc04dd42f",
+      "bytes": 13050
+    },
+    "math/baseline-page-066-001.svg": {
+      "sha256": "c17a57aa3e9668eaeb053a8b446b1a6a03351b9def73f2845c3f467599f31cdf",
+      "bytes": 18642
+    },
+    "math/baseline-page-066-002.svg": {
+      "sha256": "2d09164142449541c7ccd1061bbd3e8de78c529577b7dd152d82635b0ca9a19a",
+      "bytes": 22773
+    },
+    "math/baseline-page-066-003.svg": {
+      "sha256": "c41f4dda972aacda12a0492c815ab56de6a744f076de75022dd090f7462f2de8",
+      "bytes": 22918
+    },
+    "math/baseline-page-067-001.svg": {
+      "sha256": "0ca2a02f33d2a23dcf2eaf003bc12245c4c1f90ae4390279c440d7ed3d2d15d8",
+      "bytes": 3300
+    },
+    "math/baseline-page-067-002.svg": {
+      "sha256": "a2d1047b6aa00352cb9a0940979c1e42a8f3a59f395ad9d59c94cba857c8b945",
+      "bytes": 21298
+    },
+    "math/baseline-page-070-001.svg": {
+      "sha256": "7b6511cf7b0349dbe7d79a953ad0dfb6e875a6ec49b98de2045b149a2249679f",
+      "bytes": 7549
+    },
+    "math/baseline-page-070-002.svg": {
+      "sha256": "6f132b46a460c69183f6d28d25f65f3f4beb90ef0571e76b3e7643d1c557817d",
+      "bytes": 3300
+    },
+    "math/baseline-page-070-003.svg": {
+      "sha256": "604fc662a96f90651577e5ec2bd47713dda3cc5116653d121d4fde7825505139",
+      "bytes": 3300
+    },
+    "math/baseline-page-070-004.svg": {
+      "sha256": "155788da0c6a4134e3662e23962f04df6301605e0c5084655135f09f5a5833e3",
+      "bytes": 2904
+    },
+    "math/baseline-page-102-001.svg": {
+      "sha256": "ed78fbad35845533f58e80f4b3b5791f57675d04153fafb690e57305415d9df1",
+      "bytes": 14317
+    },
+    "math/baseline-page-102-002.svg": {
+      "sha256": "38650279727b9cdcca0dfd348dbe335391d87d5580957d4979867c426180a53a",
+      "bytes": 17840
+    },
+    "math/baseline-page-102-003.svg": {
+      "sha256": "fa6fb6397d9e9815be65c076067aa3a58ea6e312ac2bd3f23203100ec4ecc881",
+      "bytes": 21434
+    },
+    "math/baseline-page-102-004.svg": {
+      "sha256": "7761bd3f83e737dea5c87713ed6db0fd81be665c9c80295611be5c2ed9758173",
+      "bytes": 20274
+    },
+    "math/current_profiles_and_rf-001.svg": {
+      "sha256": "0481b36eac945e409f3b162ae64865329ab540364de679c5cc9d224b93679461",
+      "bytes": 10093
+    },
+    "math/current_profiles_and_rf-002.svg": {
+      "sha256": "fbb6169a4ccac0a8d08ca7ca79e7aa3350f4d6169dcd9620671fa50a59365e30",
+      "bytes": 9209
+    },
+    "math/current_profiles_and_rf-003.svg": {
+      "sha256": "5f3f76a24db3b026e1653c1ad01e272ea01ec6aa931d91c3acd513229ff02fc7",
+      "bytes": 2651
+    },
+    "math/current_profiles_and_rf-004.svg": {
+      "sha256": "b4140c0df400024e139650e30d7cb58a5de31fb3a70837c347a55fc30a046956",
+      "bytes": 4887
+    },
+    "math/current_profiles_and_rf-005.svg": {
+      "sha256": "33b6cbdf8e5042945d7cce1c306106625bded456a3928ba3122ae6afa8e26909",
+      "bytes": 7003
+    },
+    "math/current_profiles_and_rf-006.svg": {
+      "sha256": "2b90cd5ea1e1bc0a05d6abd74c6f42c2a2676c61fc097fecb3021755222e0afd",
+      "bytes": 1497
+    },
+    "math/current_profiles_and_rf-007.svg": {
+      "sha256": "9c2c827b4f4ac4a4fd65f4f61fd2b367eb7aca216bd644fbd22a7e190566d99c",
+      "bytes": 10168
+    },
+    "math/current_profiles_and_rf-008.svg": {
+      "sha256": "fa0bd4e18add87a9624071a65907008e2aede8e457b210e1bb54715ef60640f3",
+      "bytes": 3405
+    },
+    "math/current_profiles_and_rf-009.svg": {
+      "sha256": "a946a1f7ed72c7ef0851864cca731120c2466d3f0855c6ca04473249631deb3a",
+      "bytes": 5602
+    },
+    "math/current_profiles_and_rf-010.svg": {
+      "sha256": "5552c76fac39658b5037d17e543726b06514b1d9ad4200b3383a671e74ae1b4a",
+      "bytes": 5683
+    },
+    "math/current_profiles_and_rf-011.svg": {
+      "sha256": "03500c5d914fae92901d7372f0174614b5cfe0f25a0cf353e76f46ebf54738c6",
+      "bytes": 18727
+    },
+    "math/current_profiles_and_rf-012.svg": {
+      "sha256": "4f48261e8757208dd6c1d4f05c6c74411d3f8b6a73ef311883a2cda2e464660a",
+      "bytes": 6734
+    },
+    "math/current_profiles_and_rf-013.svg": {
+      "sha256": "cd45a83ed84203fd008621f453bceee365771639d6ef03750d53f57065a7c5c7",
+      "bytes": 22606
+    },
+    "math/current_profiles_and_rf-014.svg": {
+      "sha256": "bbd60e0243f477838bb17e0762910cef7f69c194c795150a055a4773cefd23f3",
+      "bytes": 3399
+    },
+    "math/current_profiles_and_rf-015.svg": {
+      "sha256": "e791750d6363ef91bac06fbb735a69d38ce29ea1d8e55c5d87c0516ff5f096b7",
+      "bytes": 3962
+    },
+    "math/current_profiles_and_rf-016.svg": {
+      "sha256": "c2707d8eb416468ac8c43d43cb55c94aa2abade66b85d5ac8a9d1887412c70fe",
+      "bytes": 3399
+    },
+    "math/current_profiles_and_rf-017.svg": {
+      "sha256": "76910c44e97c35fa9a448edf3c65953417d0ff9168dd4754e69c17ebce4b375d",
+      "bytes": 1657
+    },
+    "math/current_profiles_and_rf-018.svg": {
+      "sha256": "0d48e0542a76f0c05a56d08ebfe2de067ebc75a770a4f210d07bd51cbb1a377c",
+      "bytes": 6835
+    },
+    "math/current_profiles_and_rf-019.svg": {
+      "sha256": "06850a8e4c24efe7f5b2bb12f3d9c5e855a9cb285096dd6305c0db49a348c43e",
+      "bytes": 1712
+    },
+    "math/current_profiles_and_rf-020.svg": {
+      "sha256": "962dc97c5497299cca5c48dc35e0544f6279b8209b7283c144cae5d22e6d635d",
+      "bytes": 4442
+    },
+    "math/current_profiles_and_rf-021.svg": {
+      "sha256": "fd6642039160eb36b30330014efc17ca8a85ba6c195a0b5786de3c4bac4b6819",
+      "bytes": 16067
+    },
+    "math/current_profiles_and_rf-022.svg": {
+      "sha256": "3cbf0e20360d8bcd3ea2eb0572170d76e376d4b1ab4befd7eab57e1e5d62f49b",
+      "bytes": 15938
+    },
+    "math/current_profiles_and_rf-023.svg": {
+      "sha256": "ae583711a4f143c52ef96d6572ea8bef498aa4c628507d12aca6c7c142f9c972",
+      "bytes": 1680
+    },
+    "math/current_profiles_and_rf-024.svg": {
+      "sha256": "d5f6f8976c15445f5804f20d4b4c46c78156e450b928b1e81e9d241cdc181964",
+      "bytes": 1841
+    },
+    "math/current_profiles_and_rf-025.svg": {
+      "sha256": "019fce9afc205676253ac3ba5299db3673a3770485227c03771fc1da2b92b29c",
+      "bytes": 2412
+    },
+    "math/current_profiles_and_rf-026.svg": {
+      "sha256": "b125c24436b07830abdaed4e9fcc7e8dc714dca2a8b99e739f121c382eff8828",
+      "bytes": 2412
+    },
+    "math_manifest.json": {
+      "sha256": "e584d04f7e7c43cabc3eed68c3f817cd4c5d4e40e9a32584f30d087394f177e7",
+      "bytes": 148325
     },
     "page_index.md": {
       "sha256": "8c0b246e0f095fff9e71e6d5df08c8cbc52eb8325d5455bd24e6b7e66ea45ebe",
       "bytes": 12276
     },
     "README.md": {
-      "sha256": "0ffa88c158f1cda749db75f5aa2dfbc7f7f3f50205d9a4a28ac37581e87f8076",
-      "bytes": 6034
+      "sha256": "9eaa71659c2f120faee90921c2f101d5133563268a58cc9f95cc63124a028d67",
+      "bytes": 7133
+    },
+    "render_math.py": {
+      "sha256": "b07720343f746f8c2709ede8ef4c7042e6e922210f955e3db4361c6f7f2a3194",
+      "bytes": 9569
+    },
+    "rendering_verification.md": {
+      "sha256": "76d501d892c648fb6afbf071bfc71a2173d88a866a31811750092054be4de240",
+      "bytes": 3894
+    },
+    "source/baseline/page-001.md": {
+      "sha256": "dfc12b6b9f316c68bdadc4f54c3d3911055a355b0ee58d338b4cf6e60257c02a",
+      "bytes": 1363
+    },
+    "source/baseline/page-002.md": {
+      "sha256": "4f0e86e43e00fd41eb3ec445c9e9eabbf98ba6bc3c05f7e1925c22c2f2192065",
+      "bytes": 3480
+    },
+    "source/baseline/page-003.md": {
+      "sha256": "ff2348d036ef8d7adb669455584b345ba51e65e110f44178f30a4453e94a0298",
+      "bytes": 2334
+    },
+    "source/baseline/page-004.md": {
+      "sha256": "ecc0959ebd18e833378fbe31f97ae826f6224d58e713353a055d58a9e7c38bbc",
+      "bytes": 2339
+    },
+    "source/baseline/page-005.md": {
+      "sha256": "97c46453468ea3be926bc5f0f4a7308ceb7ba333a6c7a1fb7bf4edf1de43f369",
+      "bytes": 2480
+    },
+    "source/baseline/page-006.md": {
+      "sha256": "09c6c112ac8b3933225f4901130682a928ae5af655340f1ac620212c877729c5",
+      "bytes": 2366
+    },
+    "source/baseline/page-007.md": {
+      "sha256": "2816df8e0c633b04f7f2e24993f6f6bde48be0473b12ff5bd2f5762858117fab",
+      "bytes": 2075
+    },
+    "source/baseline/page-008.md": {
+      "sha256": "bea4c2942be1544d255b7133b15ab00c62f205fd9a90552c4ac2abfad7151e8f",
+      "bytes": 2227
+    },
+    "source/baseline/page-009.md": {
+      "sha256": "c4feefd786f77eacdc25a77eff4ab0399bddb6f1d5d540bf67771bff3105d1a2",
+      "bytes": 2254
+    },
+    "source/baseline/page-010.md": {
+      "sha256": "bc3aa7d42f7cb470110f9da2f592d95a28c22d031c96789761ce16102b408d33",
+      "bytes": 1286
+    },
+    "source/baseline/page-011.md": {
+      "sha256": "9da70b3e1e7c7fdd3ca775798aad2fdacce524ee0624f8513f8bb8c3cac1a34a",
+      "bytes": 1046
+    },
+    "source/baseline/page-012.md": {
+      "sha256": "494232d935bafd621fc2287a1feec0ce792afa7c8c57954e1518e06ef9c6be2a",
+      "bytes": 2840
+    },
+    "source/baseline/page-013.md": {
+      "sha256": "e484c6b3813a89de00755bec6dcda0090e1fc872002ebb2c89e7ab2f1d941e69",
+      "bytes": 1272
+    },
+    "source/baseline/page-014.md": {
+      "sha256": "f0fc579cc0a6ee2d03d11fa6c53a5bcafd554f10c5aa3702253f50baa9cd4066",
+      "bytes": 2608
+    },
+    "source/baseline/page-015.md": {
+      "sha256": "94e6f39fc3cbacf313c98ec1ac6d522f976b36c1b48168c7f310f6e9153f20d6",
+      "bytes": 1981
+    },
+    "source/baseline/page-016.md": {
+      "sha256": "6233aea95f8c65f01085a0bff0d615fe7f4f85907b4ef419ac29483fb4edd9a4",
+      "bytes": 2823
+    },
+    "source/baseline/page-017.md": {
+      "sha256": "2b910628631b713503e6d02d8c760804ea68f0c403ed3ac3c1c4f5af8f8e829e",
+      "bytes": 2325
+    },
+    "source/baseline/page-018.md": {
+      "sha256": "99c1b3d3385dc6c37c355158764da199a6bf5466f494b8cb00ea7d82c60240e0",
+      "bytes": 2212
+    },
+    "source/baseline/page-019.md": {
+      "sha256": "f77874e47fbf71eb639cfc7c2e5f8c84ed5108d6e94b207b31f89112f40c5bc4",
+      "bytes": 2671
+    },
+    "source/baseline/page-020.md": {
+      "sha256": "a43224919cb6f67344bc246f4f97a9a0ca1969a2809ec4c6d778731a3e17f734",
+      "bytes": 2146
+    },
+    "source/baseline/page-021.md": {
+      "sha256": "3587b02bb7050b3e50df9500f354352df2c681a544d93e72bfd90f480ac0c3ee",
+      "bytes": 2005
+    },
+    "source/baseline/page-022.md": {
+      "sha256": "1839413922dd2d16e2f1193a5f3f4f0908b7cee767b97525967d031d74fd647b",
+      "bytes": 3129
+    },
+    "source/baseline/page-023.md": {
+      "sha256": "b9f70666cb960a03e23bb757c36687a35bc54859d3dac1735d0cccde51acb133",
+      "bytes": 2388
+    },
+    "source/baseline/page-024.md": {
+      "sha256": "3c1418df2a4dfdd5f4c3802d4d007a004fd1c6525f53c79870462d8c6e0bfd3b",
+      "bytes": 2121
+    },
+    "source/baseline/page-025.md": {
+      "sha256": "93d599933175d0008b094327bb66d9c70e3954ec864ee4778b25e0f2cc601fda",
+      "bytes": 1826
+    },
+    "source/baseline/page-026.md": {
+      "sha256": "0b49f5efea2acf0e6d85d87d887f220d98bd848f86d85543f69a4d9043f42fbc",
+      "bytes": 2680
+    },
+    "source/baseline/page-027.md": {
+      "sha256": "6b19ffca080300dafe383b1516ddb2841f4f2e9c6eeaaa69aee847f22e78f752",
+      "bytes": 3022
+    },
+    "source/baseline/page-028.md": {
+      "sha256": "e96bf14f56fa9da15aa4d56c2058b628ce240d3ba83e08b4daaf78ab62dd2e60",
+      "bytes": 2934
+    },
+    "source/baseline/page-029.md": {
+      "sha256": "a0b2c34a30a0b3dc2d8f4bd0658e0cd6662dfa7eee39cdd96b2a7a9484502229",
+      "bytes": 2742
+    },
+    "source/baseline/page-030.md": {
+      "sha256": "78c80fc55b576e14481c764e5125590e563213a479d1e2a4cc6e621740f324ee",
+      "bytes": 2257
+    },
+    "source/baseline/page-031.md": {
+      "sha256": "100526481449a935eb986a94ea62a4d43dd7eda9bc381ab4b2e8145d5e750f32",
+      "bytes": 2288
+    },
+    "source/baseline/page-032.md": {
+      "sha256": "b8eeef84293b0193720a38aa15cfa0e99953463269cbec27f8bb9c544740f493",
+      "bytes": 1595
+    },
+    "source/baseline/page-033.md": {
+      "sha256": "fece21d9c0e0faed143964b0ad6888ea1370fc9598ba4cf75bf7f4a3b09d0ae5",
+      "bytes": 2750
+    },
+    "source/baseline/page-034.md": {
+      "sha256": "a4a6f3fee929c97377ebf05452272b5676d1d6d7473866ababddaf1948c7da4a",
+      "bytes": 2830
+    },
+    "source/baseline/page-035.md": {
+      "sha256": "023956e9b072905195bef033330d4cbd83a7d321586f27a4ba3eef02e10d7b84",
+      "bytes": 2541
+    },
+    "source/baseline/page-036.md": {
+      "sha256": "98aa994016a2eb3300a568ff659a34654b6c80f7ee1f8aa52404457c1f880b81",
+      "bytes": 2897
+    },
+    "source/baseline/page-037.md": {
+      "sha256": "4a0d91c70a3c42a66796f4ae674ff481c2e9e7f72d62528dfb72a105f5f7e08a",
+      "bytes": 2152
+    },
+    "source/baseline/page-038.md": {
+      "sha256": "bec1f9fed2c05c0882f29756626a52dd5596a611f599ef5a72e89b63443a5c06",
+      "bytes": 2710
+    },
+    "source/baseline/page-039.md": {
+      "sha256": "54b39b08e0b72991773859a6f5f00d09d872702971543fc7f219d8dc5e0ff0cb",
+      "bytes": 2086
+    },
+    "source/baseline/page-040.md": {
+      "sha256": "ccef27c6cdbc78612a89511c1faa1045a3d870a31326b82861d24c6013b87a8b",
+      "bytes": 2425
+    },
+    "source/baseline/page-041.md": {
+      "sha256": "3a4fbf0672c7283492355ed8ae1287e2d7ff4e2c7b76a5294251186a4734caa8",
+      "bytes": 2522
+    },
+    "source/baseline/page-042.md": {
+      "sha256": "fea91dc9b04211122454fe82006840495130ab4dc558553907f5703aff475313",
+      "bytes": 2874
+    },
+    "source/baseline/page-043.md": {
+      "sha256": "e929df606db591e62e396510a7f5392146e1b226ec2b4f16287f53e06388a0b6",
+      "bytes": 2130
+    },
+    "source/baseline/page-044.md": {
+      "sha256": "10a8c15c1e068dc2398ae67a83e66cd103efb27a0b999e96d6f69d6266b197ca",
+      "bytes": 2136
+    },
+    "source/baseline/page-045.md": {
+      "sha256": "dc0fc7bd9cff8d73ba913d561da7c5be4b6285b909d74e0e34d67113492ddcff",
+      "bytes": 2159
+    },
+    "source/baseline/page-046.md": {
+      "sha256": "dc4889c9d10646cb09e5590e55ac52b84da185ef40f4926a8a9e92c92c85dd3a",
+      "bytes": 2408
+    },
+    "source/baseline/page-047.md": {
+      "sha256": "a50f3c5ebbeddf487c8fff827b80a158ae25eadf23d358baa6e8eaeaba638c59",
+      "bytes": 2857
+    },
+    "source/baseline/page-048.md": {
+      "sha256": "4020362af97d22c8261cdfb9042b78c61579168dab8b9f7970af8ddeed0cb136",
+      "bytes": 2612
+    },
+    "source/baseline/page-049.md": {
+      "sha256": "a38bb046e35caabd060c599ba678935d3743f6db917d9c01f00f418141e6cfad",
+      "bytes": 2012
+    },
+    "source/baseline/page-050.md": {
+      "sha256": "e019686df6c75f84bd0419c1dca0944cfb285c975ae9d358ec26ecc3fcf988e0",
+      "bytes": 2343
+    },
+    "source/baseline/page-051.md": {
+      "sha256": "51da945d16fd3b829e874933d2f3b82e6e3e5e0f8a890ec122fbf9c0316416db",
+      "bytes": 3209
+    },
+    "source/baseline/page-052.md": {
+      "sha256": "0c16b2655bf82011636073bd9c6e59b7ac79e6ac7d0a435561d1645c04a46fa2",
+      "bytes": 2591
+    },
+    "source/baseline/page-053.md": {
+      "sha256": "9c083abf29685e11b4f356c41f2382eee806d19a6ceb2518e6588d4b3bfe4e0a",
+      "bytes": 2131
+    },
+    "source/baseline/page-054.md": {
+      "sha256": "6c1e9d3fc8ec83de91bee693a80c64c883e2a7787f72e145ba7077346ffb901e",
+      "bytes": 2589
+    },
+    "source/baseline/page-055.md": {
+      "sha256": "074f1066931a6186631b06f13d9dc362a92ac8c2e822b13fe9a59f86bfa1ea3a",
+      "bytes": 1759
+    },
+    "source/baseline/page-056.md": {
+      "sha256": "4a6321a2bd656103e913d4dc24c98136b686cc5d8d0afa277fc36144ed14ad7c",
+      "bytes": 2293
+    },
+    "source/baseline/page-057.md": {
+      "sha256": "54b6998566c01a23bb6022aba43410aa3af5bb46b1befc1d27ba38e976e5cf75",
+      "bytes": 2380
+    },
+    "source/baseline/page-058.md": {
+      "sha256": "7c3d3b20065e9932178af34faca44eff0ed5e454f16d7cecb69785ca666d807e",
+      "bytes": 1932
+    },
+    "source/baseline/page-059.md": {
+      "sha256": "ed8f301e907f0d0f8997919fe670806826cb5722fef87b803fa032dc4c5d8eaa",
+      "bytes": 2897
+    },
+    "source/baseline/page-060.md": {
+      "sha256": "6fdc741f845388608fa7c65070acb0ff952d2dab50084ae4c90e44a2ac3b39e7",
+      "bytes": 2598
+    },
+    "source/baseline/page-061.md": {
+      "sha256": "11d04be20abb0e3ccf1c3508477745e98f7a0e53d1af1bdcce14c4bbbd6baa65",
+      "bytes": 2113
+    },
+    "source/baseline/page-062.md": {
+      "sha256": "4477ec4353ff4012ec532aa3236995e7ba3d1f891140df0d3f50473aca2be9b3",
+      "bytes": 2277
+    },
+    "source/baseline/page-063.md": {
+      "sha256": "6e6cd26259412bf87fbe8b09ac0d7243277d327c8e988ea696582eeb80064acb",
+      "bytes": 1728
+    },
+    "source/baseline/page-064.md": {
+      "sha256": "3ffecd220d38cf3286156b32030063606ef8c81ef208040396b2eb29506d02e2",
+      "bytes": 2606
+    },
+    "source/baseline/page-065.md": {
+      "sha256": "88543d9ec9513054564375818e1d1e1213e17beddd231cda64676eead831d1a1",
+      "bytes": 2336
+    },
+    "source/baseline/page-066.md": {
+      "sha256": "071339ef3e78e3082829741eeb19c6c4cbd3cc90fa7f2b7fd32b32cd45dcadb6",
+      "bytes": 1938
+    },
+    "source/baseline/page-067.md": {
+      "sha256": "8c1f9700221c391ad4174ffe0097eb699c68869810a03e9d93c1c32adb222473",
+      "bytes": 2432
+    },
+    "source/baseline/page-068.md": {
+      "sha256": "e8dce5f079e96a81290c3ec0c946a64f4835e23f0790dddedacb438d88e939aa",
+      "bytes": 2161
+    },
+    "source/baseline/page-069.md": {
+      "sha256": "23db8638ae4d8cfe4274fbce5db14b46e59c5566a7280fb9ac84beed8fd87756",
+      "bytes": 2956
+    },
+    "source/baseline/page-070.md": {
+      "sha256": "0daa58e98ae458e83e161bf22859b3b7b95c54c8aa5a2d0228e2d94cfffff4a4",
+      "bytes": 3052
+    },
+    "source/baseline/page-071.md": {
+      "sha256": "065deecf582c5f27dc69b234e749557ddeaf9ca7960141c9a52b1f7d5331011c",
+      "bytes": 1406
+    },
+    "source/baseline/page-072.md": {
+      "sha256": "82815f753f8b6e41487066132df7b8d8d9fe9735c1262c2aa300041c47c9566e",
+      "bytes": 2125
+    },
+    "source/baseline/page-073.md": {
+      "sha256": "2787cb0bb2c8eb5a33a24f408be635ceec9bf8db59bf5f2f5ece8e77dec172d5",
+      "bytes": 3174
+    },
+    "source/baseline/page-074.md": {
+      "sha256": "c3c4e36a65680b6acff21d0ff7fa5e23eb8e2afa3479fb3cb8d999b5b80da7e3",
+      "bytes": 2152
+    },
+    "source/baseline/page-075.md": {
+      "sha256": "d723a42e17d66f24a16db2f7f1656b90cefaa2e73b874148bcafa35d9feb1f3d",
+      "bytes": 2315
+    },
+    "source/baseline/page-076.md": {
+      "sha256": "e957c2c62ce51fd2c8bc3ef22a3f933f6f52295ece87444f7d319681578c9472",
+      "bytes": 1450
+    },
+    "source/baseline/page-077.md": {
+      "sha256": "eb13ff3ec7564ef5b989b26045c734071a59a4a6b9ef67aa750d2c03d3979a9a",
+      "bytes": 1059
+    },
+    "source/baseline/page-078.md": {
+      "sha256": "2595269974c80b35152cedaebc8ea94f59479ceee09b86edb14b6d9cfb2346c0",
+      "bytes": 2563
+    },
+    "source/baseline/page-079.md": {
+      "sha256": "5c220af6005805a38d80806ded66077784c915bbfce1072b0e65037547efabe4",
+      "bytes": 2190
+    },
+    "source/baseline/page-080.md": {
+      "sha256": "6582891acbe91a3dfab371d3bc95d063fabd56689356dcbb217b8f956361fbc0",
+      "bytes": 2741
+    },
+    "source/baseline/page-081.md": {
+      "sha256": "a7fbb916f007018f3a75024fc3eae7abdf7f13579a80af9c874d8b935a52b61f",
+      "bytes": 2795
+    },
+    "source/baseline/page-082.md": {
+      "sha256": "87c098c14e215234ecc3210a0052e79098bab9a900d988cd95ee5296b7b61f50",
+      "bytes": 1952
+    },
+    "source/baseline/page-083.md": {
+      "sha256": "d684cbec34ad8874a31f11915ec798b81298121b0686f89241f7e4824c84bf7d",
+      "bytes": 2324
+    },
+    "source/baseline/page-084.md": {
+      "sha256": "315c0b25dc014f683d938506ab939d210b85ff26a30da2fa2d53e46d22c704f2",
+      "bytes": 2357
+    },
+    "source/baseline/page-085.md": {
+      "sha256": "8609814cf7caac04d9a0e4cce06bc38c7b8216ae3ffa63d38cbd93ed4ad446bc",
+      "bytes": 1732
+    },
+    "source/baseline/page-086.md": {
+      "sha256": "83dbe12cdf7ed1d6e2c5d5bef8498db63e9f3f6e5630c839e6dc2be5b945d17e",
+      "bytes": 2255
+    },
+    "source/baseline/page-087.md": {
+      "sha256": "859ae92162948c8cae522f49ca714faae0a83d6877ad05529ea60bd4eb34a977",
+      "bytes": 1984
+    },
+    "source/baseline/page-088.md": {
+      "sha256": "167277e0ffaaacc20a8c9675ae843ee57db58cc9f1aeb75a112c4409b77614cd",
+      "bytes": 2012
+    },
+    "source/baseline/page-089.md": {
+      "sha256": "7d27b5fb5d0c2beb491278f0372adf630202f99b720168b1a72444ef500ed523",
+      "bytes": 2317
+    },
+    "source/baseline/page-090.md": {
+      "sha256": "8233e95daef076bb1b2a99def82bffef519dd2bcc6859961b6e8c3f1d7541e57",
+      "bytes": 2212
+    },
+    "source/baseline/page-091.md": {
+      "sha256": "b6ae82037c86a9e04ae7498686ce728fbe278cb0b7f667d48f62cd0d1cd89088",
+      "bytes": 1889
+    },
+    "source/baseline/page-092.md": {
+      "sha256": "7896f34a5812b6542068db4db836cda2abdf003bf7df1e5e165e0ecce3c8a1f6",
+      "bytes": 1529
+    },
+    "source/baseline/page-093.md": {
+      "sha256": "21e8b3222129ead31b8431ae97c9558e5c6294e6bbdbd4a8432dca3d8b0e25e3",
+      "bytes": 1689
+    },
+    "source/baseline/page-094.md": {
+      "sha256": "29a20c4ed08c5b170d86af5e0a2fbbc2c3e97e87b9ab42123de9d282da20e21f",
+      "bytes": 1991
+    },
+    "source/baseline/page-095.md": {
+      "sha256": "1c999cb89b7601ca96e31f1e33b77dd44fb19b3933d6fcbe17e8720702fd8f79",
+      "bytes": 1930
+    },
+    "source/baseline/page-096.md": {
+      "sha256": "a685dc8bcbc174d73beccb322921ed49a28a216cc0db1ff8082a36987fd6205f",
+      "bytes": 1589
+    },
+    "source/baseline/page-097.md": {
+      "sha256": "3f06e27cb471c51838ac0be6075c93cd9117a152f1c439f3c0c3a4f7e852a53d",
+      "bytes": 2548
+    },
+    "source/baseline/page-098.md": {
+      "sha256": "284a8ac60bd9e0e3ad3b4526a86c13ef81a56699dd7c7d0444485f7f8aa2aabf",
+      "bytes": 2118
+    },
+    "source/baseline/page-099.md": {
+      "sha256": "aa97fd53704900aaad48629c508217c734ec8eca30985b90a5f57c8bcc88fd65",
+      "bytes": 2422
+    },
+    "source/baseline/page-100.md": {
+      "sha256": "658d8412d3d6d934afed96b37b444019841ffc16b03a8fa2c0e97cc2c9a925d4",
+      "bytes": 1921
+    },
+    "source/baseline/page-101.md": {
+      "sha256": "f4fae868f1c381712f5c14eb98de85c9cc73865ed1aee8551868a9803dff785c",
+      "bytes": 2590
+    },
+    "source/baseline/page-102.md": {
+      "sha256": "b7e5cf5fe1339c7e08dc622e073c0110d6631cc62fefb8ff0455c7cb9e918b3a",
+      "bytes": 1836
+    },
+    "source/baseline/page-103.md": {
+      "sha256": "f5118a3dd02d9a897bda5d6332977f7f36f8168bcefcbcc19ca568f29f18a3a3",
+      "bytes": 1387
+    },
+    "source/baseline/page-104.md": {
+      "sha256": "d005996eab06b8da4a461d8d5ca0c41017927f514b36dd4aaf7e553d2405df11",
+      "bytes": 1409
+    },
+    "source/baseline/page-105.md": {
+      "sha256": "90c313e05c4b7a98099729f323881f24d0a6ae54fd96361a19af59715e48d940",
+      "bytes": 764
+    },
+    "source/baseline/page-106.md": {
+      "sha256": "a1df4bc469eee500d2a124cc396fffd2bd2c2b56fb119f4f212e2bff6eb15ebf",
+      "bytes": 2294
+    },
+    "source/current_profiles_and_rf.md": {
+      "sha256": "de9c50a2371027b11906f8fbc6267d43326f76ec571ac457152193c8105972d9",
+      "bytes": 12693
     },
     "source_inventory.json": {
       "sha256": "c3ab3d74f0565db6031d48c42bf65e56ba99940dd69e45ea1952399b942ffe6d",
       "bytes": 29744
     },
     "transcribe_pdf.py": {
-      "sha256": "28a30a1c15692087b91c393ec43e7223ac9281f78a3abd2a30a01b71fe4bf8eb",
-      "bytes": 11277
+      "sha256": "6cd5bc0a60f6fbf715c4f7002a6890486da81fb1a7acd13fd9a5d7ddda4318b9",
+      "bytes": 11966
     }
   }
 }

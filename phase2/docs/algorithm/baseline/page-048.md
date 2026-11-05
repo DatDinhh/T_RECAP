@@ -4,21 +4,19 @@ Historical Part II, DDR and UDP telemetry. Printed page 35. [Original PDF page](
 
 [Previous](page-047.md) | [Index](../README.md) | [Next](page-049.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-048.md). Equations are rendered locally as SVG.
+
 `OVERFLOW_FLAGS.packet_fifo_overflow` is the sticky indicator that at least one packet-FIFO drop occurred. `PACKET_FIFO_DROP_COUNT` is the corresponding quantitative counter. Drops counted by `PACKET_FIFO_DROP_COUNT` are not required to increment `DMA_DROP_COUNT`, because the DDR writer has not yet accepted those packets.
 
 ### 16.11 Threshold Commit Rule
 
 The HPS shall update the 56-bit THR2 value using `THR2_LO`, `THR2_HI`, and `THR2_COMMIT`. The upper unused bits of `THR2_HI` shall be zero. Valid values satisfy
 
-$$
-0\le\mathrm{THR2}<2^{56}.\tag{16.1}
-$$
+![Equation 16.1: 0&#92;le&#92;mathrm{THR2}<2^{56}.&#92;tag{16.1}](../math/baseline-page-048-001.svg)
 
 The FPGA shall copy the shadow value into the active threshold only at a frame boundary. This avoids tearing a 56-bit threshold while a frame is being analyzed.
 
-$$
-\mathrm{THR2}_{\mathrm{active}}[m+1]=\begin{cases}\mathrm{THR2}_{\mathrm{shadow}},&\text{if commit pending at frame boundary}\\\mathrm{THR2}_{\mathrm{active}}[m],&\text{otherwise.}\end{cases}\tag{16.2}
-$$
+![Equation 16.2: &#92;mathrm{THR2}_{&#92;mathrm{active}}&#91;m+1&#93;=&#92;begin{cases}&#92;mathrm{THR2}_{&#92;mathrm{shadow}},&&#92;text{if commit pending at frame boundary}&#92;&#92;&#92;mathrm{THR2}_{&#92;mathrm{active}}&#91;m&#93;,&&#92;text{otherwise.}&#92;end{cases}&#92;tag{16.2}](../math/baseline-page-048-002.svg)
 
 ### 16.12 Source-Mode Change Rule
 

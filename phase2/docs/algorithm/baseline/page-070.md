@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 57. [Original PDF page](
 
 [Previous](page-069.md) | [Index](../README.md) | [Next](page-071.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-070.md). Equations are rendered locally as SVG.
+
 `WRAP.payload_bytes`=0. The PC parser shall reject STATUS records with any other payload size unless a later compatible revision explicitly defines a different layout.
 
 AC13. Spectrum packet generation uses `PACKET_ENABLE.SPEC_EN` plus authoritative `SPEC_MODE`. `PACKET_ENABLE` shall not contain separate `SPEC64_EN` and `SPEC129_EN` controls in Revision G.
@@ -22,17 +24,17 @@ AC19. Sticky flags are cleared only through `CLEAR_STICKY_FLAGS` write-one-to-cl
 
 AC20. PC command packets are accepted only from the configured trusted PC or validated direct-link peer.
 
-AC21. Commands with out-of-range arguments are rejected and counted, including $\mathrm{THR2}\ge2^{56}$ , `WAVE_DECIM`=0, illegal `SOURCE_MODE`, reserved or reserved-disabled packet-enable bits including `PEAKS_EN/DEBUG_EN`, or illegal `SPEC_SHIFT`.
+AC21. Commands with out-of-range arguments are rejected and counted, including ![&#92;mathrm{THR2}&#92;ge2^{56}](../math/baseline-page-070-001.svg) , `WAVE_DECIM`=0, illegal `SOURCE_MODE`, reserved or reserved-disabled packet-enable bits including `PEAKS_EN/DEBUG_EN`, or illegal `SPEC_SHIFT`.
 
 AC22. `SET_THR2` changes the active threshold only through the shadow/commit frame-boundary rule.
 
 AC23. `SET_SOURCE_MODE` obeys the source-mode change rule and does not silently mix metrics from different sources.
 
-AC24. PC dashboard detects telemetry sequence gaps using modulo-$2^{32}$ arithmetic and reports packet loss without crashing. Diagnostic STATUS packets marked with `status_diagnostic`=1 are excluded from this check.
+AC24. PC dashboard detects telemetry sequence gaps using modulo-![2^{32}](../math/baseline-page-070-002.svg) arithmetic and reports packet loss without crashing. Diagnostic STATUS packets marked with `status_diagnostic`=1 are excluded from this check.
 
 AC25. PING returns a STATUS packet only. No undefined ACK packet is used in Revision G.
 
-AC26. Aggregate METRICS low-32-bit eligible-bin counters are interpreted modulo-$2^{32}$ , low-64-bit counters are interpreted modulo-$2^{64}$ , and `payload_truncated` is set when known omitted high bits are nonzero.
+AC26. Aggregate METRICS low-32-bit eligible-bin counters are interpreted modulo-![2^{32}](../math/baseline-page-070-003.svg) , low-64-bit counters are interpreted modulo-![2^{64}](../math/baseline-page-070-004.svg) , and `payload_truncated` is set when known omitted high bits are nonzero.
 
 AC27. Real WAVE, SPEC64 or SPEC129, METRICS, and STATUS packets can be plotted live.
 

@@ -4,6 +4,8 @@ Historical Part I, core algorithm. Printed page 10. [Original PDF page](../../sp
 
 [Previous](page-022.md) | [Index](../README.md) | [Next](page-024.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-023.md). Equations are rendered locally as SVG.
+
 ```text
 11:     Xcan[k] <- R + jI
 12:     Xcan[L - k] <- R - jI

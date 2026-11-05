@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 72. [Original PDF pag
 
 [Previous](page-084.md) | [Index](../README.md) | [Next](page-086.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-085.md). Equations are rendered locally as SVG.
+
 - HPS software shall not contain signal-processing algorithms.
 
 - Python packet parsers shall import generated constants from `sw/pc_dashboard/generated/`. Dashboard parsers shall not duplicate packet offsets manually.

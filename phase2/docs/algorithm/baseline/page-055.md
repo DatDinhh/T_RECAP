@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 42. [Original PDF page](
 
 [Previous](page-054.md) | [Index](../README.md) | [Next](page-056.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-055.md). Equations are rendered locally as SVG.
+
 ### 18.7 Commit Protocol
 
 The producer pointer is the only commit signal. A record is visible to HPS only after the FPGA has completed all writes for that record and then updated the producer pointer. The HPS shall not infer committed data from partially written headers.

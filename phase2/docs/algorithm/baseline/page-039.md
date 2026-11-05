@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 26. [Original PDF page](
 
 [Previous](page-038.md) | [Index](../README.md) | [Next](page-040.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-039.md). Equations are rendered locally as SVG.
+
 evictable. The Revision G baseline shall implement either resident-record eviction of the lowestpriority packet or scheduler/reservation logic that guarantees high-priority admission before enqueue. A pre-writer shed or evicted telemetry record shall increment `PACKET_FIFO_DROP_COUNT` and may set `OVERFLOW_FLAGS.packet_fifo_overflow`. An implementation that uses only simple full-FIFO drop of the incoming record shall not claim the Revision G “STATUS dropped last” behavior.
 
 ### 13.4 Signoff Rule
@@ -30,13 +32,9 @@ For Ethernet operation, the recommended physical setup is:
 
 For a controlled final demo, a direct static-IP Ethernet link is recommended:
 
-$$
-\text{PC Ethernet IP}=192.168.10.1/24.\tag{14.1}
-$$
+![Equation 14.1: &#92;text{PC Ethernet IP}=192.168.10.1/24.&#92;tag{14.1}](../math/baseline-page-039-001.svg)
 
-$$
-\text{DE1-SoC HPS IP}=192.168.10.2/24.\tag{14.2}
-$$
+![Equation 14.2: &#92;text{DE1-SoC HPS IP}=192.168.10.2/24.&#92;tag{14.2}](../math/baseline-page-039-002.svg)
 
 The HPS sends telemetry UDP packets to the PC and listens for command UDP packets from the PC.
 

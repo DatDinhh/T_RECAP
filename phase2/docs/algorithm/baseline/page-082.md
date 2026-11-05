@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 69. [Original PDF pag
 
 [Previous](page-081.md) | [Index](../README.md) | [Next](page-083.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-082.md). Equations are rendered locally as SVG.
+
 All CSR consumers - SystemVerilog CSR bank, HPS C code, and Python command tooling - shall use generated definitions from `csr_map.json`. Hand-coded duplicated CSR offsets are not allowed outside generated headers.
 
 ## 36 SystemVerilog Interface and Typedef Baseline

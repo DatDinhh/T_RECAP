@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 87. [Original PDF pag
 
 [Previous](page-099.md) | [Index](../README.md) | [Next](page-101.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-100.md). Equations are rendered locally as SVG.
+
 ### 51.2 First full-demo scope after C0/T0
 
 The first full-demo implementation begins after C0 is stable and after the transport cut T0 is explicitly opened. These items are required for the first complete board demonstration, but they are not the first code to write.

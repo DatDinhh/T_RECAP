@@ -4,6 +4,8 @@ Historical Part I, core algorithm. Printed page 12. [Original PDF page](../../sp
 
 [Previous](page-024.md) | [Index](../README.md) | [Next](page-026.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-025.md). Equations are rendered locally as SVG.
+
 ```text
  5:   span ← 2^s, half ← 2^(s-1)
  6:   for base = 0 to L - 1 step span do
@@ -50,6 +52,4 @@ All additions and subtractions in Algorithms 4 and 5 shall be sign-extended befo
 
 The unique-bin weight is
 
-$$
-\omega[k]=\begin{cases}1,&k=0\\1,&k=L/2\\2,&1\le k\le L/2-1.\end{cases}\tag{7.1}
-$$
+![Equation 7.1: &#92;omega&#91;k&#93;=&#92;begin{cases}1,&k=0&#92;&#92;1,&k=L/2&#92;&#92;2,&1&#92;le k&#92;le L/2-1.&#92;end{cases}&#92;tag{7.1}](../math/baseline-page-025-001.svg)

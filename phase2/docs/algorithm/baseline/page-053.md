@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 40. [Original PDF page](
 
 [Previous](page-052.md) | [Index](../README.md) | [Next](page-054.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-053.md). Equations are rendered locally as SVG.
+
 ### 18.3 Timestamp Semantics
 
 The header timestamp field shall be interpreted by packet type:

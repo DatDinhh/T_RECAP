@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 28. [Original PDF page](
 
 [Previous](page-040.md) | [Index](../README.md) | [Next](page-042.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-041.md). Equations are rendered locally as SVG.
+
 ## 16 CSR Register Contract
 
 ### 16.1 Register Access Rules

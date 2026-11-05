@@ -120,6 +120,17 @@ def para_blocks(lines):
     flush()
     return '\n\n'.join(out)
 
+def repair_prose(n, body):
+    """Restore reviewed inline notation without modifying fenced source examples."""
+    chunks = re.split(r'(?ms)(^```[^\n]*\n.*?^```[^\n]*(?:\n|$))', body)
+    for repair in OVERRIDES.get('prose_repairs', {}).get(str(n), []):
+        old, new = repair['old'], repair['new']
+        count = sum(chunk.count(old) for chunk in chunks[::2])
+        assert count == 1, f'Inline notation repair mismatch on page {n}: {old!r}'
+        chunks[::2] = [chunk.replace(old, new) for chunk in chunks[::2]]
+    return ''.join(chunks)
+
+
 def convert(n,p):
     ls=p.splitlines()
     replacements=[]
@@ -151,7 +162,7 @@ def convert(n,p):
         chunks.append(md)
         start=b
     chunks.append(para_blocks(ls[start:end]))
-    body='\n\n'.join(c for c in chunks if c.strip())
+    body=repair_prose(n, '\n\n'.join(c for c in chunks if c.strip()))
     label='cover' if n==1 else ('front matter '+str(n-1) if n<=13 else 'printed page '+str(n-13))
     part='Historical baseline'
     if n>=14 and n<=36:part='Historical Part I, core algorithm'
@@ -199,7 +210,9 @@ def main():
     changed = []
     for n, p in enumerate(PAGES, 1):
         text = convert(n, p)
-        target = ROOT / 'baseline' / f'page-{n:03}.md'
+        target = ROOT / 'source/baseline' / f'page-{n:03}.md'
+        from render_math import rebase
+        text = rebase(text, ROOT / 'baseline', target.parent)
         if args.write:
             target.write_text(text, encoding='utf-8')
         elif not target.exists() or target.read_text(encoding='utf-8') != text:

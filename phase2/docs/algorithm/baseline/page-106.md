@@ -4,6 +4,8 @@ Historical appendices and references. Printed page 93. [Original PDF page](../..
 
 [Previous](page-105.md) | [Index](../README.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-106.md). Equations are rendered locally as SVG.
+
 ## References
 
 1. A. V. Oppenheim and R. W. Schafer, *Discrete-Time Signal Processing*, 3rd ed. Upper Saddle River, NJ, USA: Prentice Hall, 2010.

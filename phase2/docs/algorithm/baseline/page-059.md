@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 46. [Original PDF page](
 
 [Previous](page-058.md) | [Index](../README.md) | [Next](page-060.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-059.md). Equations are rendered locally as SVG.
+
 **Table 21. Baseline METRICS payload layout.**
 
 | Offset | Field | Type | Meaning |
@@ -19,7 +21,7 @@ Historical Part II, DDR and UDP telemetry. Printed page 46. [Original PDF page](
 | 52 | `overflow_flags` | `uint32_t` | Sticky overflow/status flags. |
 
 
-For aggregate METRICS, `eligible_unique_bins` and `eligible_suppressed_bins` are low-32-bit modulo-$2^{32}$ display counters, and the low-64-bit fields are modulo-$2^{64}$ display counters. Exact signoff counters remain in the core artifact files, not live Ethernet telemetry. If the implementation can determine that any omitted high bits are nonzero, it shall set the common `payload_truncated` flag. Revision G keeps `payload_scaled`=0 for METRICS. Scaled display metrics require a later revision with explicit scale metadata.
+For aggregate METRICS, `eligible_unique_bins` and `eligible_suppressed_bins` are low-32-bit modulo-![2^{32}](../math/baseline-page-059-001.svg) display counters, and the low-64-bit fields are modulo-![2^{64}](../math/baseline-page-059-002.svg) display counters. Exact signoff counters remain in the core artifact files, not live Ethernet telemetry. If the implementation can determine that any omitted high bits are nonzero, it shall set the common `payload_truncated` flag. Revision G keeps `payload_scaled`=0 for METRICS. Scaled display metrics require a later revision with explicit scale metadata.
 
 ### 19.6 STATUS Ownership and HPS Patch Rule
 

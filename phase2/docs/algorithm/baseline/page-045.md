@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 32. [Original PDF page](
 
 [Previous](page-044.md) | [Index](../README.md) | [Next](page-046.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-045.md). Equations are rendered locally as SVG.
+
 **Table 11. STATUS bit definitions.**
 
 | Bit | Name | Meaning |

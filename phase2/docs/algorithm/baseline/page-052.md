@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 39. [Original PDF page](
 
 [Previous](page-051.md) | [Index](../README.md) | [Next](page-053.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-052.md). Equations are rendered locally as SVG.
+
 may be forwarded directly in the UDP datagram when the total datagram payload is below the configured maximum.
 
 **Table 14. DDR telemetry packet header.**

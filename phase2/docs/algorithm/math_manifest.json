@@ -1,0 +1,3854 @@
+{
+  "schema": "trecap-latex-svg-v1",
+  "renderer": "LaTeX amsmath/amssymb and dvisvgm with outlined glyphs",
+  "formulas": [
+    {
+      "id": "baseline-page-014-001",
+      "source": "source/baseline/page-014.md",
+      "kind": "inline",
+      "tex": "(x[2k],x[2k+1])",
+      "tex_sha256": "8d9dd24ff40d5d204726c87489a86219f28185a8d06730b8f549eb20bf49df89",
+      "svg": "math/baseline-page-014-001.svg",
+      "dimensions": {
+        "width_px": 119.616,
+        "height_px": 20.74
+      },
+      "svg_sha256": "b507ccca8b570bff3d23dd77d107130b9803f4b39e3af5413594028f67be9cb5"
+    },
+    {
+      "id": "baseline-page-014-002",
+      "source": "source/baseline/page-014.md",
+      "kind": "inline",
+      "tex": "x_m[0:L-1]",
+      "tex_sha256": "c146b6781e3c0dc145f182c5bf720ede1dc7881969e6a8cc698465ec8c36a67d",
+      "svg": "math/baseline-page-014-002.svg",
+      "dimensions": {
+        "width_px": 92.535,
+        "height_px": 20.74
+      },
+      "svg_sha256": "d73032f785f909d08a3894bfe341478bb2693cb78c780a6de299dc8fac0d6667"
+    },
+    {
+      "id": "baseline-page-014-003",
+      "source": "source/baseline/page-014.md",
+      "kind": "inline",
+      "tex": "a[k],d[k]",
+      "tex_sha256": "289786ca9af5d2158cf7e852b478be183fc3e5657f41fa13e300711891b4f1d6",
+      "svg": "math/baseline-page-014-003.svg",
+      "dimensions": {
+        "width_px": 62.026,
+        "height_px": 20.74
+      },
+      "svg_sha256": "a8822a6854867c678de9b486963a80f146ba47ae6d8092509dd59f51142553b6"
+    },
+    {
+      "id": "baseline-page-014-004",
+      "source": "source/baseline/page-014.md",
+      "kind": "inline",
+      "tex": "X_m[k]",
+      "tex_sha256": "cea628ce6bdae9daf53aa55cc28ae5bef46332e2919a840e70dd7dea2b610d2c",
+      "svg": "math/baseline-page-014-004.svg",
+      "dimensions": {
+        "width_px": 45.877,
+        "height_px": 20.74
+      },
+      "svg_sha256": "ae94337f404682ca991d2984cbdc7c82dc1a930c68073ecc5275f79ec3e026c8"
+    },
+    {
+      "id": "baseline-page-014-005",
+      "source": "source/baseline/page-014.md",
+      "kind": "inline",
+      "tex": "\\lvert d[k]\\rvert<T",
+      "tex_sha256": "dc87e1f6ed213dd224656f1236eb3310f3f78313a1a9d3202bf571fa408526c4",
+      "svg": "math/baseline-page-014-005.svg",
+      "dimensions": {
+        "width_px": 72.084,
+        "height_px": 20.74
+      },
+      "svg_sha256": "706a1339e100c4a4282208275727d163c3927af81eea1ecb085c092bddbb2358"
+    },
+    {
+      "id": "baseline-page-014-006",
+      "source": "source/baseline/page-014.md",
+      "kind": "inline",
+      "tex": "\\operatorname{mag2}[k]<\\mathrm{THR2}",
+      "tex_sha256": "b456e21b1cf064cab1dc8e55cc276bfd83f2584ca68a6d0af1d1f71131707faf",
+      "svg": "math/baseline-page-014-006.svg",
+      "dimensions": {
+        "width_px": 123.262,
+        "height_px": 20.74
+      },
+      "svg_sha256": "1548cfd9396d3ba1fafd6a8d1b7a9906f10fd4a769b061ce73168654dd4b0f47"
+    },
+    {
+      "id": "baseline-page-014-007",
+      "source": "source/baseline/page-014.md",
+      "kind": "inline",
+      "tex": "d^{\\prime}[k]=(1-s_k)d[k]",
+      "tex_sha256": "9a6c3864381e22f3043988e545df5c310de51b9d6540281aea1e7cab7e1c387e",
+      "svg": "math/baseline-page-014-007.svg",
+      "dimensions": {
+        "width_px": 135.703,
+        "height_px": 20.807
+      },
+      "svg_sha256": "fdf423d7260b96930ac6bfaa2e966765d023c62faee2f42c4bd0c258f6c61e6c"
+    },
+    {
+      "id": "baseline-page-014-008",
+      "source": "source/baseline/page-014.md",
+      "kind": "inline",
+      "tex": "\\mathrm{Xb}[k]=(1-\\operatorname{mask}[k])X^{\\mathrm{can}}[k]",
+      "tex_sha256": "ffb937caf6d1cc84baaf1c8f79abee410cb9f9cf70c6803da825ef0c2e06d104",
+      "svg": "math/baseline-page-014-008.svg",
+      "dimensions": {
+        "width_px": 208.06,
+        "height_px": 20.74
+      },
+      "svg_sha256": "de02b0d6e4ec6c7bb2901fed962aa8341722f9515fca27736a2a971048f4d6f0"
+    },
+    {
+      "id": "baseline-page-014-009",
+      "source": "source/baseline/page-014.md",
+      "kind": "inline",
+      "tex": "T=0",
+      "tex_sha256": "e30c674dbe7d876429dd66857b0d44136e79a82229d83d61985bc653fb3a0ee0",
+      "svg": "math/baseline-page-014-009.svg",
+      "dimensions": {
+        "width_px": 44.915,
+        "height_px": 15.942
+      },
+      "svg_sha256": "9e23cc60922a159d982783ca91321710f3fb3ac839196ec689085432a45ca222"
+    },
+    {
+      "id": "baseline-page-014-010",
+      "source": "source/baseline/page-014.md",
+      "kind": "inline",
+      "tex": "\\mathrm{THR2}=0",
+      "tex_sha256": "b4988ba826930396b3995279e7e075899cfa87c85076a92db6a123f020e7a8f2",
+      "svg": "math/baseline-page-014-010.svg",
+      "dimensions": {
+        "width_px": 76.557,
+        "height_px": 16.038
+      },
+      "svg_sha256": "d63f03756572fa19255486cc71a8f86df20b125b47d327cfe221156cfb069f08"
+    },
+    {
+      "id": "baseline-page-015-001",
+      "source": "source/baseline/page-015.md",
+      "kind": "inline",
+      "tex": "2^{P}",
+      "tex_sha256": "f0491ad5a58977e1779e1c42c23b748f94bb75a931fb632f7ff446d16cd78f0c",
+      "svg": "math/baseline-page-015-001.svg",
+      "dimensions": {
+        "width_px": 22.076,
+        "height_px": 18.206
+      },
+      "svg_sha256": "693d25107d4ff6923c4dcfbc7630732d10063aef9bf71f1743eff42b9b31c1e8"
+    },
+    {
+      "id": "baseline-page-015-002",
+      "source": "source/baseline/page-015.md",
+      "kind": "display",
+      "tex": "D=L+G.\\tag{2.1}",
+      "tex_sha256": "c03c8d3bd46b7a61b1d94fac0edc0f2b3688e2973a85d21322814e3292cbe9c9",
+      "svg": "math/baseline-page-015-002.svg",
+      "dimensions": {
+        "width_px": 164.439,
+        "height_px": 35.14
+      },
+      "svg_sha256": "2a7fb080431b6342eb87739da1382c3f2c8f5b4243dae8af03cbeb27b1e0ed7d"
+    },
+    {
+      "id": "baseline-page-015-003",
+      "source": "source/baseline/page-015.md",
+      "kind": "inline",
+      "tex": "N",
+      "tex_sha256": "8ce86a6ae65d3692e7305e2c58ac62eebd97d3d943e093f577da25c36988246b",
+      "svg": "math/baseline-page-015-003.svg",
+      "dimensions": {
+        "width_px": 18.843,
+        "height_px": 15.687
+      },
+      "svg_sha256": "573726acffc6a5712cfebfceac70bb9b31d53b796d56be626b21917cf3b8c5f7"
+    },
+    {
+      "id": "baseline-page-015-004",
+      "source": "source/baseline/page-015.md",
+      "kind": "inline",
+      "tex": "L",
+      "tex_sha256": "72dfcfb0c470ac255cde83fb8fe38de8a128188e03ea5ba5b2a93adbea1062fa",
+      "svg": "math/baseline-page-015-004.svg",
+      "dimensions": {
+        "width_px": 15.05,
+        "height_px": 15.687
+      },
+      "svg_sha256": "5e01a31944c294faff55770e9ca29ea51ef67c6f909a8f35feca0ab0818dec77"
+    },
+    {
+      "id": "baseline-page-015-005",
+      "source": "source/baseline/page-015.md",
+      "kind": "inline",
+      "tex": "P",
+      "tex_sha256": "5c62e091b8c0565f1bafad0dad5934276143ae2ccef7a5381e8ada5b1a8d26d2",
+      "svg": "math/baseline-page-015-005.svg",
+      "dimensions": {
+        "width_px": 16.819,
+        "height_px": 15.687
+      },
+      "svg_sha256": "417b85ba7db23b0f8320fc0f6de9d88cbf97b7d45ff54ce6aaef7143c7cc14e3"
+    },
+    {
+      "id": "baseline-page-015-006",
+      "source": "source/baseline/page-015.md",
+      "kind": "inline",
+      "tex": "P=\\log_2L",
+      "tex_sha256": "931f457ab99955d8271dee4d2d0ae1b201bae5602170d4ecc45726eb66a2e779",
+      "svg": "math/baseline-page-015-006.svg",
+      "dimensions": {
+        "width_px": 79.148,
+        "height_px": 19.759
+      },
+      "svg_sha256": "923f37a88905e6244ae4c5d30067cbd6a4174fd202aeb6302d04c2632fbdb511"
+    },
+    {
+      "id": "baseline-page-015-007",
+      "source": "source/baseline/page-015.md",
+      "kind": "inline",
+      "tex": "H",
+      "tex_sha256": "44bd7ae60f478fae1061e11a7739f4b94d1daf917982d33b6fc8a01a63f89c21",
+      "svg": "math/baseline-page-015-007.svg",
+      "dimensions": {
+        "width_px": 18.843,
+        "height_px": 15.687
+      },
+      "svg_sha256": "e65b871787f08a366e9f8de90b79c8590fdf7b3e61f673e687dd3b26ae99c545"
+    },
+    {
+      "id": "baseline-page-015-008",
+      "source": "source/baseline/page-015.md",
+      "kind": "inline",
+      "tex": "L/2=128",
+      "tex_sha256": "2b8733981ef9a723951b8705a317f6a236dcf50e771726d30f4a5628a579084c",
+      "svg": "math/baseline-page-015-008.svg",
+      "dimensions": {
+        "width_px": 76.067,
+        "height_px": 20.74
+      },
+      "svg_sha256": "04c6d3b50b00bb3958bbf267cfbd4b9370c27784d658660b24418153fa3673f5"
+    },
+    {
+      "id": "baseline-page-015-009",
+      "source": "source/baseline/page-015.md",
+      "kind": "inline",
+      "tex": "F",
+      "tex_sha256": "f67ab10ad4e4c53121b6a5fe4da9c10ddee905b978d3788d2723d7bfacbe28a9",
+      "svg": "math/baseline-page-015-009.svg",
+      "dimensions": {
+        "width_px": 16.771,
+        "height_px": 15.639
+      },
+      "svg_sha256": "276a97784feebf45a5a93a10bc5ff1ccc77b291e954b94b791994a712a50d4c7"
+    },
+    {
+      "id": "baseline-page-015-010",
+      "source": "source/baseline/page-015.md",
+      "kind": "inline",
+      "tex": "G",
+      "tex_sha256": "333e0a1e27815d0ceee55c473fe3dc93d56c63e3bee2b3b4aee8eed6d70191a3",
+      "svg": "math/baseline-page-015-010.svg",
+      "dimensions": {
+        "width_px": 16.915,
+        "height_px": 16.389
+      },
+      "svg_sha256": "7c3c740398b14b44fe551fefb125953b3b2b20f912cb4662d63e8a9c6661cc36"
+    },
+    {
+      "id": "baseline-page-015-011",
+      "source": "source/baseline/page-015.md",
+      "kind": "inline",
+      "tex": "H=128",
+      "tex_sha256": "cd603c59a96d48d143d199d0fe03a56a3f981b6eb041e13230a15d6d3f36beef",
+      "svg": "math/baseline-page-015-011.svg",
+      "dimensions": {
+        "width_px": 63.824,
+        "height_px": 16.038
+      },
+      "svg_sha256": "8d1dec196f55e643f1f719a78e2fafc4053863e37c81dcc19b025d8fb4929380"
+    },
+    {
+      "id": "baseline-page-015-012",
+      "source": "source/baseline/page-015.md",
+      "kind": "inline",
+      "tex": "D",
+      "tex_sha256": "3f39d5c348e5b79d06e842c114e6cc571583bbf44e4b0ebfda1a01ec05745d43",
+      "svg": "math/baseline-page-015-012.svg",
+      "dimensions": {
+        "width_px": 17.616,
+        "height_px": 15.687
+      },
+      "svg_sha256": "0f2124df0752b4eadd8b6502e08ec8eeaf82ba8daf79a0cdea801d98854fe293"
+    },
+    {
+      "id": "baseline-page-015-013",
+      "source": "source/baseline/page-015.md",
+      "kind": "inline",
+      "tex": "L+G=384",
+      "tex_sha256": "2032ed2cffca1a3d755214d4df593b013160db640f06d67d01aca4f7c6f69f49",
+      "svg": "math/baseline-page-015-013.svg",
+      "dimensions": {
+        "width_px": 92.365,
+        "height_px": 17.361
+      },
+      "svg_sha256": "469adf9b803e700acb4898fb6631743b22f7694c592d1ddecc9132a038497b46"
+    },
+    {
+      "id": "baseline-page-015-014",
+      "source": "source/baseline/page-015.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{mag2}}",
+      "tex_sha256": "3d9a61ba0c88031ac8178f727ae91a1b087876a7eeb0bbee792803bfde2ede82",
+      "svg": "math/baseline-page-015-014.svg",
+      "dimensions": {
+        "width_px": 48.669,
+        "height_px": 20.366
+      },
+      "svg_sha256": "5341321ebab502b760a2baf17bb4f24c7b7b44b107f8101e151060689fd4fbd8"
+    },
+    {
+      "id": "baseline-page-015-015",
+      "source": "source/baseline/page-015.md",
+      "kind": "display",
+      "tex": "\\tau_m=(m+1)H,\\qquad m\\in\\mathbb{N}_0.\\tag{2.2}",
+      "tex_sha256": "238893aabf10355327062a7f2be1726b85b37747bcc5ed0942b3fb0ae1d3eab7",
+      "svg": "math/baseline-page-015-015.svg",
+      "dimensions": {
+        "width_px": 285.625,
+        "height_px": 35.14
+      },
+      "svg_sha256": "5eb50b953243f334c45cfb68bd53bbf09e7437a4c0e1c555e18feda88a1bc9f2"
+    },
+    {
+      "id": "baseline-page-016-001",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "\\tau_m",
+      "tex_sha256": "0a37e389a69b4972c16a2fa789a3e7fff814ea8359dc7469035239655dc654db",
+      "svg": "math/baseline-page-016-001.svg",
+      "dimensions": {
+        "width_px": 22.536,
+        "height_px": 14.173
+      },
+      "svg_sha256": "15e738636dac645f87dc4f4199ac46ff79d40044dffa913fff3b0bd5a71043c0"
+    },
+    {
+      "id": "baseline-page-016-002",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "L",
+      "tex_sha256": "72dfcfb0c470ac255cde83fb8fe38de8a128188e03ea5ba5b2a93adbea1062fa",
+      "svg": "math/baseline-page-016-002.svg",
+      "dimensions": {
+        "width_px": 15.05,
+        "height_px": 15.687
+      },
+      "svg_sha256": "cf5ef5f5b289424ced38e91229c2a681e76dd36e8bb4df82b9e7573cc54e9129"
+    },
+    {
+      "id": "baseline-page-016-003",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "\\tau_m-1",
+      "tex_sha256": "2811110681516ab0eab889861109809c11defc34948e200deb8866edfa9f583f",
+      "svg": "math/baseline-page-016-003.svg",
+      "dimensions": {
+        "width_px": 50.038,
+        "height_px": 17.919
+      },
+      "svg_sha256": "8ed268d5899ad70b81c904500cfbe52594ab2c2585fc8ffee26813bbd2910d60"
+    },
+    {
+      "id": "baseline-page-016-004",
+      "source": "source/baseline/page-016.md",
+      "kind": "display",
+      "tex": "x_m[i]=x[\\tau_m-L+i],\\qquad 0\\le i<L.\\tag{2.3}",
+      "tex_sha256": "eb34801927ca4521632975de5be08a8ed94b2d0cb9973cf8a2b50cfb5fb9de79",
+      "svg": "math/baseline-page-016-004.svg",
+      "dimensions": {
+        "width_px": 341.631,
+        "height_px": 35.14
+      },
+      "svg_sha256": "f08541684f4c5ec63bc39fe6465e43fde3dce201a3fda6b7cb3061117a4ac890"
+    },
+    {
+      "id": "baseline-page-016-005",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "\\tau_m+G+i",
+      "tex_sha256": "7f6debbf3c6e257dce1ca36c626f5106a0a15632a846d7e6bb36930a44fb2388",
+      "svg": "math/baseline-page-016-005.svg",
+      "dimensions": {
+        "width_px": 80.045,
+        "height_px": 18.54
+      },
+      "svg_sha256": "c05abb393cfb7aa4569009dad2f65aea13585d3bd47200c64904226d8e6bec19"
+    },
+    {
+      "id": "baseline-page-016-006",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "x[\\tau_m-L+i]",
+      "tex_sha256": "b862edd3d2a7943b38568dad5ee0e711394d6e340a0561716f6d561a1debf315",
+      "svg": "math/baseline-page-016-006.svg",
+      "dimensions": {
+        "width_px": 95.254,
+        "height_px": 20.74
+      },
+      "svg_sha256": "ad844572147b5539eaf3557dc466d19a81f4d4e7ecb0f7be8b8c1739febec09e"
+    },
+    {
+      "id": "baseline-page-016-007",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "y[\\tau_m+G+i]",
+      "tex_sha256": "dd7fa57ebc8274baa753c37707bd49f52b0929eacaf5f86982e090bb77c61d0b",
+      "svg": "math/baseline-page-016-007.svg",
+      "dimensions": {
+        "width_px": 96.216,
+        "height_px": 20.74
+      },
+      "svg_sha256": "4c071360cfa40a5100fb4f2025fbdeef2af3299355bc3f6be4676f0ff2bda1d0"
+    },
+    {
+      "id": "baseline-page-016-008",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "D=L+G",
+      "tex_sha256": "875fa95bf9b0379c955c3bad29fd9729fb42ae5d063d339937160b0813e550ce",
+      "svg": "math/baseline-page-016-008.svg",
+      "dimensions": {
+        "width_px": 82.139,
+        "height_px": 17.361
+      },
+      "svg_sha256": "698036501fea2179819b29287121930ce65d709614a28e827d1c584948fa5613"
+    },
+    {
+      "id": "baseline-page-016-009",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "x[0],\\ldots,x[N_s-1]",
+      "tex_sha256": "8b0e50251f99ba1cc818b5cde284766933f7e22dd12d787e1ccfe67a5e756f1d",
+      "svg": "math/baseline-page-016-009.svg",
+      "dimensions": {
+        "width_px": 129.305,
+        "height_px": 20.74
+      },
+      "svg_sha256": "82d7699472f03de114bc56077afa45819f9832edc4a69026dd48daf10b731b17"
+    },
+    {
+      "id": "baseline-page-016-010",
+      "source": "source/baseline/page-016.md",
+      "kind": "display",
+      "tex": "x_z[n]=\\begin{cases}x[n],&0\\le n<N_s\\\\0,&\\text{otherwise.}\\end{cases}\\tag{2.4}",
+      "tex_sha256": "c4534ec00f1d4f82eb99ce398a547d723e768d3f3d6c51706e7409bbf55ed910",
+      "svg": "math/baseline-page-016-010.svg",
+      "dimensions": {
+        "width_px": 283.364,
+        "height_px": 67.005
+      },
+      "svg_sha256": "54bde19991f341c29d4a483acf316603e0ac11805df6405ef2ada12e59194f3c"
+    },
+    {
+      "id": "baseline-page-016-011",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "N_s>0",
+      "tex_sha256": "5f0ef2c9c04082362f393c3850bba7944bd55f54cc5024decd9be4c8aa2df9fd",
+      "svg": "math/baseline-page-016-011.svg",
+      "dimensions": {
+        "width_px": 53.007,
+        "height_px": 18.19
+      },
+      "svg_sha256": "a7fc992b4b51211055126746b1c430fafba4cebc62b6e2000be8406f5e730510"
+    },
+    {
+      "id": "baseline-page-016-012",
+      "source": "source/baseline/page-016.md",
+      "kind": "display",
+      "tex": "\\mathcal{M}_{\\mathrm{active}}=\\{m\\in\\mathbb{N}_0:\\exists i\\in\\{0,\\ldots,L-1\\}\\text{ such that }Q_w[i]\\ne0\\text{ and }0\\le\\tau_m-L+i<N_s\\}.\\tag{2.5}",
+      "tex_sha256": "b8eb021a768209584a741f4008690d410e62fd189d00d37a308b50387abcdd56",
+      "svg": "math/baseline-page-016-012.svg",
+      "dimensions": {
+        "width_px": 696.421,
+        "height_px": 35.14
+      },
+      "svg_sha256": "0c9fee53fba226c5a7c2efa31518b22054cca90a6e64647e6d2f3b5883b3c33e"
+    },
+    {
+      "id": "baseline-page-016-013",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "Q_w[0]=0",
+      "tex_sha256": "4c4f54c85a05e1a4836d13224eecfc04e91f8d0a316d5c3290cbba41692b8143",
+      "svg": "math/baseline-page-016-013.svg",
+      "dimensions": {
+        "width_px": 73.132,
+        "height_px": 20.74
+      },
+      "svg_sha256": "fdc6fd0aad1520d880bad15e6541d68a51fc47850fd88b29c2f85da02ebdccf6"
+    },
+    {
+      "id": "baseline-page-016-014",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "Q_w[i]>0",
+      "tex_sha256": "7e44436d140f58dac4c9f7c1dc549c831191e4fb876807a997439529cbcca176",
+      "svg": "math/baseline-page-016-014.svg",
+      "dimensions": {
+        "width_px": 70.654,
+        "height_px": 20.74
+      },
+      "svg_sha256": "d2779e5cdb67ed42e09835a4e2e0738306de308c39cd72122b3e8d8cd7378c5f"
+    },
+    {
+      "id": "baseline-page-016-015",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "1\\le i<L",
+      "tex_sha256": "09174255d060b1a22f60c3147b106e40ff47dced43f929cf2cbfb2388be3ec6e",
+      "svg": "math/baseline-page-016-015.svg",
+      "dimensions": {
+        "width_px": 71.018,
+        "height_px": 17.871
+      },
+      "svg_sha256": "b1a4fa27deb10a39aa3b2f374e4b7b06d55eefc602c1dd97f1b47c2427017e91"
+    },
+    {
+      "id": "baseline-page-016-016",
+      "source": "source/baseline/page-016.md",
+      "kind": "display",
+      "tex": "\\mathcal{M}_{\\mathrm{active}}=\\{m\\in\\mathbb{N}_0:\\tau_m=(m+1)H\\le N_s+L-2\\}.\\tag{2.6}",
+      "tex_sha256": "90b46ac971c7e3a94fec9c8cee8a7f66fb2b864dfab99621d2afc98e5d27cb85",
+      "svg": "math/baseline-page-016-016.svg",
+      "dimensions": {
+        "width_px": 449.253,
+        "height_px": 35.14
+      },
+      "svg_sha256": "13848daceb6d3a901f321f9185bbe186a04a513e3918eb05305fc4ce6960f2b8"
+    },
+    {
+      "id": "baseline-page-016-017",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "N_s>0",
+      "tex_sha256": "5f0ef2c9c04082362f393c3850bba7944bd55f54cc5024decd9be4c8aa2df9fd",
+      "svg": "math/baseline-page-016-017.svg",
+      "dimensions": {
+        "width_px": 53.007,
+        "height_px": 18.19
+      },
+      "svg_sha256": "64c57fa7797f6f9844d9390c6d9764e8392195e8aa74377e3f57e3869e09309b"
+    },
+    {
+      "id": "baseline-page-016-018",
+      "source": "source/baseline/page-016.md",
+      "kind": "display",
+      "tex": "N_{\\mathrm{frames}}=\\left\\lfloor\\frac{N_s+L-2}{H}\\right\\rfloor.\\tag{2.7}",
+      "tex_sha256": "a2d9ae3c3bfc24550000b5ec5ceb63fb58a7491272d1d9acaf9f82ea48632469",
+      "svg": "math/baseline-page-016-018.svg",
+      "dimensions": {
+        "width_px": 260.5,
+        "height_px": 57.441
+      },
+      "svg_sha256": "6f070d8c4444b53b12223f5152d7f8536a9c708ac5a3a092dec740c6317fb0d0"
+    },
+    {
+      "id": "baseline-page-016-019",
+      "source": "source/baseline/page-016.md",
+      "kind": "display",
+      "tex": "\\tau_{\\mathrm{last}}=N_{\\mathrm{frames}}H.\\tag{2.8}",
+      "tex_sha256": "5782c1d8c5ac245dc7da9b02935dafea674ff76b4e865141b74473afd5c6751b",
+      "svg": "math/baseline-page-016-019.svg",
+      "dimensions": {
+        "width_px": 199.436,
+        "height_px": 35.14
+      },
+      "svg_sha256": "7728c0663b305a12c42fbff310e4ca4d99684cb7babd6479eec5d33e58b03b61"
+    },
+    {
+      "id": "baseline-page-016-020",
+      "source": "source/baseline/page-016.md",
+      "kind": "display",
+      "tex": "N_y=\\tau_{\\mathrm{last}}+G+L.\\tag{2.9}",
+      "tex_sha256": "c6e68f446ba5ab7efd20f3f5c1e12470102833f323d07d8bec537642c79dd989",
+      "svg": "math/baseline-page-016-020.svg",
+      "dimensions": {
+        "width_px": 218.511,
+        "height_px": 35.822
+      },
+      "svg_sha256": "c4d38918381609bb3cffe2db1922fab76ed469d9ec6c0803f6c4d5b01f08c89c"
+    },
+    {
+      "id": "baseline-page-016-021",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "\\mathcal{M}_{\\mathrm{active}}",
+      "tex_sha256": "c5f0435d8abab0c64fa08791f33488d74aa446aa0922ad49059de940b5b01286",
+      "svg": "math/baseline-page-016-021.svg",
+      "dimensions": {
+        "width_px": 56.13,
+        "height_px": 18.54
+      },
+      "svg_sha256": "b33954c3b5a664df3032f3b0c0c2c5413a5317fbe4762d321e6dc404c6e978cd"
+    },
+    {
+      "id": "baseline-page-016-022",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "N_s",
+      "tex_sha256": "2f56096dd29a0f85656117671baab70cf330f708e74a9a7fb6ffcb049f6a12aa",
+      "svg": "math/baseline-page-016-022.svg",
+      "dimensions": {
+        "width_px": 22.852,
+        "height_px": 18.19
+      },
+      "svg_sha256": "e8b45e0b6e7438ef0a9014d6b3bc4abb58a07f72ce6781778bd5fab2d23ef6ef"
+    },
+    {
+      "id": "baseline-page-016-023",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "x_{\\mathrm{in}}=0",
+      "tex_sha256": "13847d1c003349a48098e846cb40a8c7a699592d0e74b91f6311d94671b2a3da",
+      "svg": "math/baseline-page-016-023.svg",
+      "dimensions": {
+        "width_px": 53.942,
+        "height_px": 17.807
+      },
+      "svg_sha256": "a3b708429d45edd82bf84d82739e865407b6b02e75dbba644b92aef0b5a37101"
+    },
+    {
+      "id": "baseline-page-016-024",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "N_y",
+      "tex_sha256": "ece11019b2a5a2699dadfd2d9ccdd96ee065748a9bd53815469c029ffa862703",
+      "svg": "math/baseline-page-016-024.svg",
+      "dimensions": {
+        "width_px": 23.856,
+        "height_px": 20.354
+      },
+      "svg_sha256": "7a53779a1e77d88cd560813d2854772d43ad261e57b3d2b29029376ebb3c5bca"
+    },
+    {
+      "id": "baseline-page-016-025",
+      "source": "source/baseline/page-016.md",
+      "kind": "inline",
+      "tex": "N_s",
+      "tex_sha256": "2f56096dd29a0f85656117671baab70cf330f708e74a9a7fb6ffcb049f6a12aa",
+      "svg": "math/baseline-page-016-025.svg",
+      "dimensions": {
+        "width_px": 22.852,
+        "height_px": 18.19
+      },
+      "svg_sha256": "02cbd62b705458c02ddf95990272014312e43fd52e47f5034cdd3a091b97bc3f"
+    },
+    {
+      "id": "baseline-page-016-026",
+      "source": "source/baseline/page-016.md",
+      "kind": "display",
+      "tex": "N_y=N_s+D.\\tag{2.10}",
+      "tex_sha256": "5d43d80c1269e8ac7e3f95089bc95949b90f59ed8371d4663a6fc785fd1815f5",
+      "svg": "math/baseline-page-016-026.svg",
+      "dimensions": {
+        "width_px": 189.119,
+        "height_px": 35.822
+      },
+      "svg_sha256": "2d70d84708667ce161377eb04c645fe624b8cd021453282aba918a924a835a61"
+    },
+    {
+      "id": "baseline-page-017-001",
+      "source": "source/baseline/page-017.md",
+      "kind": "inline",
+      "tex": "N",
+      "tex_sha256": "8ce86a6ae65d3692e7305e2c58ac62eebd97d3d943e093f577da25c36988246b",
+      "svg": "math/baseline-page-017-001.svg",
+      "dimensions": {
+        "width_px": 18.843,
+        "height_px": 15.687
+      },
+      "svg_sha256": "6793eaeb71a435af2b002e238debe18fc60b58f7ad58f9fbfe729fc79735757e"
+    },
+    {
+      "id": "baseline-page-017-002",
+      "source": "source/baseline/page-017.md",
+      "kind": "display",
+      "tex": "\\mathcal{S}_N=[-2^{N-1},2^{N-1}-1]\\cap\\mathbb{Z}.\\tag{3.1}",
+      "tex_sha256": "db76c098fb6c868eeee929bff32a76a9db64ab04b22499896fc5f27ff6b52303",
+      "svg": "math/baseline-page-017-002.svg",
+      "dimensions": {
+        "width_px": 286.561,
+        "height_px": 37.388
+      },
+      "svg_sha256": "e32d638ee54acae18cb1c2585a213ed22a1e5df79c8bf39699f0ed215cd0e3e3"
+    },
+    {
+      "id": "baseline-page-017-003",
+      "source": "source/baseline/page-017.md",
+      "kind": "display",
+      "tex": "\\operatorname{sat}_N(z)=\\begin{cases}-2^{N-1},&z<-2^{N-1}\\\\z,&-2^{N-1}\\le z\\le2^{N-1}-1\\\\2^{N-1}-1,&z>2^{N-1}-1.\\end{cases}\\tag{3.2}",
+      "tex_sha256": "41edac5d203af14f701329e0f11ce558a7427caec373bc6c33a7cfe6f251a63e",
+      "svg": "math/baseline-page-017-003.svg",
+      "dimensions": {
+        "width_px": 422.728,
+        "height_px": 86.134
+      },
+      "svg_sha256": "30d048b26d6fec00044a2ca6b1225180b230a2c35343a49aec529c2ed3e3d732"
+    },
+    {
+      "id": "baseline-page-017-004",
+      "source": "source/baseline/page-017.md",
+      "kind": "inline",
+      "tex": "N",
+      "tex_sha256": "8ce86a6ae65d3692e7305e2c58ac62eebd97d3d943e093f577da25c36988246b",
+      "svg": "math/baseline-page-017-004.svg",
+      "dimensions": {
+        "width_px": 18.843,
+        "height_px": 15.687
+      },
+      "svg_sha256": "0db3d60cdf2647d4cd4e650192efaaca696cc21eaa47e57a838f8b33fbb2411c"
+    },
+    {
+      "id": "baseline-page-017-005",
+      "source": "source/baseline/page-017.md",
+      "kind": "display",
+      "tex": "\\operatorname{asr}(z,k)=\\left\\lfloor\\frac{z}{2^k}\\right\\rfloor.\\tag{3.3}",
+      "tex_sha256": "d3ed8681ec9e0324a13c14a0d58fb0bd91ebe364f14d307919000e69d382479d",
+      "svg": "math/baseline-page-017-005.svg",
+      "dimensions": {
+        "width_px": 203.955,
+        "height_px": 48.466
+      },
+      "svg_sha256": "a4f5854285502fcf92cc0be6854c266fe1298b92569d6cdc64ed026ba204d6c9"
+    },
+    {
+      "id": "baseline-page-017-006",
+      "source": "source/baseline/page-017.md",
+      "kind": "display",
+      "tex": "\\operatorname{rnd\\_shr}(v,s)=\\operatorname{sgn}(v)\\left\\lfloor\\frac{|v|+2^{s-1}}{2^s}\\right\\rfloor.\\tag{3.4}",
+      "tex_sha256": "062fe5a9bb9bae25c38a363e3316ec5fd425da3a90faf2454ab7607c161d354a",
+      "svg": "math/baseline-page-017-006.svg",
+      "dimensions": {
+        "width_px": 333.551,
+        "height_px": 58.304
+      },
+      "svg_sha256": "1e1193cd05bef478099eff462e9d5a3ce83fe83ecf0039d00625cd421f72f951"
+    },
+    {
+      "id": "baseline-page-017-007",
+      "source": "source/baseline/page-017.md",
+      "kind": "display",
+      "tex": "\\operatorname{sgn}(z)=\\begin{cases}-1,&z<0\\\\0,&z=0\\\\+1,&z>0.\\end{cases}\\tag{3.5}",
+      "tex_sha256": "864e28d1d7365f15a0eea127d0a2fa726dcdd099e0215aaaeacfc6d04d7ede3d",
+      "svg": "math/baseline-page-017-007.svg",
+      "dimensions": {
+        "width_px": 248.374,
+        "height_px": 86.134
+      },
+      "svg_sha256": "cb857092ab01c3bd05d9f9ade9ee1e29de4251bb4e06030276481809d2e09175"
+    },
+    {
+      "id": "baseline-page-017-008",
+      "source": "source/baseline/page-017.md",
+      "kind": "display",
+      "tex": "\\operatorname{rnd\\_shr}(v,0)=v.\\tag{3.6}",
+      "tex_sha256": "3b47d64f4b9811fa890c94225512ad32f1d562e32bf368d0287baa85473336a6",
+      "svg": "math/baseline-page-017-008.svg",
+      "dimensions": {
+        "width_px": 203.065,
+        "height_px": 35.14
+      },
+      "svg_sha256": "199027bc4db9060adb9137503f35316881f6c80665d8613e6c7f2534952c6b91"
+    },
+    {
+      "id": "baseline-page-017-009",
+      "source": "source/baseline/page-017.md",
+      "kind": "display",
+      "tex": "\\operatorname{qcoef}(c,F)=\\operatorname{sgn}(c)\\left\\lfloor |c|2^F+\\frac12\\right\\rfloor.\\tag{3.7}",
+      "tex_sha256": "cf6442a3fac9c46f9945c80ba084e729374ed2d2d1e2f80e8520efc8e734417c",
+      "svg": "math/baseline-page-017-009.svg",
+      "dimensions": {
+        "width_px": 315.805,
+        "height_px": 57.441
+      },
+      "svg_sha256": "6994fe3f83b44906f066ef35635ddc8cea843b30711098e196cd198dcd07fcb9"
+    },
+    {
+      "id": "baseline-page-018-001",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "Q_w[i]",
+      "tex_sha256": "e0421b5b2f3c8bd9ebec46a69eb8a39aa59ecb679f07cbd8d863fcdd386c284f",
+      "svg": "math/baseline-page-018-001.svg",
+      "dimensions": {
+        "width_px": 40.174,
+        "height_px": 20.74
+      },
+      "svg_sha256": "c750eb509062f601f317ec1f0377e1363707baffb48a50608aef305e9688bbbf"
+    },
+    {
+      "id": "baseline-page-018-002",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "W_{Q_w}=F+1",
+      "tex_sha256": "95a5cb22f1c51a8878db7c8c6b5abb3c2e7211f64ce1dddb34bd4ef23cfe859f",
+      "svg": "math/baseline-page-018-002.svg",
+      "dimensions": {
+        "width_px": 99.623,
+        "height_px": 20.243
+      },
+      "svg_sha256": "f78d9a59623f37561f6e405233404ed8e184d592404da015e77e4e02c46548cd"
+    },
+    {
+      "id": "baseline-page-018-003",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{tw}}=F+2",
+      "tex_sha256": "bdab63b0901dad410afa7b3c84d1b693a6163239731c10670b830e1cb3724099",
+      "svg": "math/baseline-page-018-003.svg",
+      "dimensions": {
+        "width_px": 94.918,
+        "height_px": 18.19
+      },
+      "svg_sha256": "082429a2f88e233448dce23967c2567c1a073ffd0f03f8a79f5e8d7996cc7c5f"
+    },
+    {
+      "id": "baseline-page-018-004",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "F_a",
+      "tex_sha256": "ff53476e6fc124f9d17cac38038272aa206448d614bd5bd6cc652019f659fbe5",
+      "svg": "math/baseline-page-018-004.svg",
+      "dimensions": {
+        "width_px": 21.422,
+        "height_px": 18.142
+      },
+      "svg_sha256": "61da7ed60aabd355ea1dd10171c2543e8c60fc30569e0bc52b55643a7550f3d5"
+    },
+    {
+      "id": "baseline-page-018-005",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "F_b",
+      "tex_sha256": "54b44dec26d2ba5404c73710cffabba1ebddf51cdd66497284d15a44c063194d",
+      "svg": "math/baseline-page-018-005.svg",
+      "dimensions": {
+        "width_px": 20.306,
+        "height_px": 18.142
+      },
+      "svg_sha256": "13e3ca5089108267e160011496979194fdb67aeb13e61fdbcb5e12a8a932502c"
+    },
+    {
+      "id": "baseline-page-018-006",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "F_a+F_b",
+      "tex_sha256": "2652e78fd1a0661ee4d98eb96f73ca63dfceeb84657b79967f366b23cfc893c7",
+      "svg": "math/baseline-page-018-006.svg",
+      "dimensions": {
+        "width_px": 57.75,
+        "height_px": 18.142
+      },
+      "svg_sha256": "30b9bf4dc1a13c7a487f6184f3cea0b536bf755290246735c706703671a284bb"
+    },
+    {
+      "id": "baseline-page-018-007",
+      "source": "source/baseline/page-018.md",
+      "kind": "display",
+      "tex": "\\operatorname{mul}_F(a,b,F_a,F_b)=\\operatorname{rnd\\_shr}(ab,F_a+F_b-F).\\tag{3.8}",
+      "tex_sha256": "c5604d9f674e0e86138bdbd5d63b223f29c3de7b4d50b45688a5745a21d23bf6",
+      "svg": "math/baseline-page-018-007.svg",
+      "dimensions": {
+        "width_px": 400.063,
+        "height_px": 35.14
+      },
+      "svg_sha256": "197631266031ced67304ba0c94c16fc44ac94bf99713002d88be00a30773d1b4"
+    },
+    {
+      "id": "baseline-page-018-008",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "F_a+F_b\\ge F",
+      "tex_sha256": "77ce6b36b142ca92f4a97222644f647444f11a9571c4c52a253e5b07fbf85f2c",
+      "svg": "math/baseline-page-018-008.svg",
+      "dimensions": {
+        "width_px": 92.122,
+        "height_px": 18.142
+      },
+      "svg_sha256": "1dcc5deafb6aa9619c36306fe4d7f38fc3bd0e7b2ade3b83159afc08b9f2598f"
+    },
+    {
+      "id": "baseline-page-018-009",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "b=b_r+jb_i",
+      "tex_sha256": "5cc204ff953ab7d7609f915bd224d669ebf82c6547bbc3314cba18afd6ae01f3",
+      "svg": "math/baseline-page-018-009.svg",
+      "dimensions": {
+        "width_px": 84.5,
+        "height_px": 19.13
+      },
+      "svg_sha256": "f71029f8976b844fc0f8d98a677d05e99d96d714e7b5a02aca7df7f882633f3e"
+    },
+    {
+      "id": "baseline-page-018-010",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "w=w_r+jw_i",
+      "tex_sha256": "118cb8186307e3d341142b4cfa4c1914b30d03a9c45c476e3ef5c3be6741f93b",
+      "svg": "math/baseline-page-018-010.svg",
+      "dimensions": {
+        "width_px": 98.641,
+        "height_px": 18.604
+      },
+      "svg_sha256": "4fc04b1e2a62258d43b5c0dd1a7d5f5fbdf541dfb2913ec8085fe7c5c95c816a"
+    },
+    {
+      "id": "baseline-page-018-011",
+      "source": "source/baseline/page-018.md",
+      "kind": "display",
+      "tex": "\\operatorname{cmul}_r(b,w)=\\operatorname{rnd\\_shr}(b_rw_r-b_iw_i,F).\\tag{3.9}",
+      "tex_sha256": "e9e19c6a8b69100194ee13566233f9444cec4f2fa61068bde34a42c83b8c8392",
+      "svg": "math/baseline-page-018-011.svg",
+      "dimensions": {
+        "width_px": 350.114,
+        "height_px": 35.14
+      },
+      "svg_sha256": "ddbbd151ef346046b09e60d064820cb3e54142092edc0b307ef90e3cfe717f7a"
+    },
+    {
+      "id": "baseline-page-018-012",
+      "source": "source/baseline/page-018.md",
+      "kind": "display",
+      "tex": "\\operatorname{cmul}_i(b,w)=\\operatorname{rnd\\_shr}(b_rw_i+b_iw_r,F).\\tag{3.10}",
+      "tex_sha256": "8ba3ff8fe8117129e3882abd52f712001f256d150604bd7726db13e0a2669d78",
+      "svg": "math/baseline-page-018-012.svg",
+      "dimensions": {
+        "width_px": 356.332,
+        "height_px": 35.14
+      },
+      "svg_sha256": "edd2996c638b28a713b41b88fdd729fd30cc9f819b19944d2e48044f5ef4bac6"
+    },
+    {
+      "id": "baseline-page-018-013",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "W_d",
+      "tex_sha256": "c881f6c7443f9e3c4e7eaeaf7e83b319b6e5d75dd75178372f797c08d28bf8e5",
+      "svg": "math/baseline-page-018-013.svg",
+      "dimensions": {
+        "width_px": 26.271,
+        "height_px": 18.19
+      },
+      "svg_sha256": "ea14513f24ba5499454f785e48a51e90599699bb430228ddf27c0555a4da939d"
+    },
+    {
+      "id": "baseline-page-018-014",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{tw}}",
+      "tex_sha256": "b657e1b611b5331c8e2987e6c4c1fb3c3466801282326e6d588d218a2a453762",
+      "svg": "math/baseline-page-018-014.svg",
+      "dimensions": {
+        "width_px": 33.241,
+        "height_px": 18.19
+      },
+      "svg_sha256": "f95171ecec5ec169d938daa7a3a61f2b805866715017a20aa178908371a939bd"
+    },
+    {
+      "id": "baseline-page-018-015",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "W_d+W_{\\mathrm{tw}}",
+      "tex_sha256": "59eac6e988b248a8864213fe4d95d3460e2f1475900f72405074ccc5f7e27e2e",
+      "svg": "math/baseline-page-018-015.svg",
+      "dimensions": {
+        "width_px": 75.211,
+        "height_px": 18.19
+      },
+      "svg_sha256": "44dbabca09846452f1210b6f429f0801dae5bbdd9916691c8beb98379052f1c2"
+    },
+    {
+      "id": "baseline-page-018-016",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "W_d+W_{\\mathrm{tw}}+1",
+      "tex_sha256": "d1ba6c344755b9645b12d5280a2b57198929b96393cc03876583ef2976ab576a",
+      "svg": "math/baseline-page-018-016.svg",
+      "dimensions": {
+        "width_px": 102.692,
+        "height_px": 18.19
+      },
+      "svg_sha256": "c1755e4f1a50e785e8ddcd29b133a4336acc0cedeeb52176ce5c82d6e873d5c6"
+    },
+    {
+      "id": "baseline-page-018-017",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "x[i]Q_w[i]",
+      "tex_sha256": "3a37f924044dc9b42535dec3970d903c192cc623801ff9c773de420d4a2e0302",
+      "svg": "math/baseline-page-018-017.svg",
+      "dimensions": {
+        "width_px": 63.632,
+        "height_px": 20.74
+      },
+      "svg_sha256": "5c10cea502390dc08d53c685461d0ee5136ba98d47a36d4c4313d5c86dcf8de2"
+    },
+    {
+      "id": "baseline-page-018-018",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "W_x+W_{Q_w}",
+      "tex_sha256": "7cc25422a962d4114faa3b3d00e782ca7d4a93b130948a2a83ed254296ba1308",
+      "svg": "math/baseline-page-018-018.svg",
+      "dimensions": {
+        "width_px": 79.773,
+        "height_px": 20.243
+      },
+      "svg_sha256": "868b74c615fa6c503c0a6f5409df9a02c05c67ad151e33856810a6c25d295ddc"
+    },
+    {
+      "id": "baseline-page-018-019",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "\\operatorname{Re}\\{v[i]\\}Q_w[i]",
+      "tex_sha256": "73ba7d57682b04b0fadee9d6642d623953ad681499c90c22f8940932dfaad3f4",
+      "svg": "math/baseline-page-018-019.svg",
+      "dimensions": {
+        "width_px": 97.579,
+        "height_px": 20.74
+      },
+      "svg_sha256": "a4b18aa3eab5994175cced7c642d3324e69cf11cd54c437c397b4bf9090da044"
+    },
+    {
+      "id": "baseline-page-018-020",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{ifft}}+W_{Q_w}",
+      "tex_sha256": "a8a3aae3da0aefa13448e71a2c5f723e622565c0da91e8e8d9fa60de3b43d50d",
+      "svg": "math/baseline-page-018-020.svg",
+      "dimensions": {
+        "width_px": 88.695,
+        "height_px": 20.243
+      },
+      "svg_sha256": "392fddeacb8f9cfefefb2b91c56916b3d90a7d4e7fe163dab254ffe609b6d58b"
+    },
+    {
+      "id": "baseline-page-018-021",
+      "source": "source/baseline/page-018.md",
+      "kind": "inline",
+      "tex": "2W_{\\mathrm{can}}",
+      "tex_sha256": "75627be6c0147a61a4483db248ad9bf023e331d6dfd8c7d8c696cfec2096df9a",
+      "svg": "math/baseline-page-018-021.svg",
+      "dimensions": {
+        "width_px": 46.43,
+        "height_px": 18.19
+      },
+      "svg_sha256": "b0a180901a545b7af0867ac8d78d148f5e9e754ba089383a76a6acc4cb4b59b8"
+    },
+    {
+      "id": "baseline-page-019-001",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_x",
+      "tex_sha256": "36d884ad81c0ef6af83cd0a957a6cdfb3b411e1524b75094716f7da4ebf40d3b",
+      "svg": "math/baseline-page-019-001.svg",
+      "dimensions": {
+        "width_px": 26.36,
+        "height_px": 18.19
+      },
+      "svg_sha256": "302b6f1a3caaf91e086d43ac36ce931f5d78c01b68cb4664523f23f475b7a339"
+    },
+    {
+      "id": "baseline-page-019-002",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "N",
+      "tex_sha256": "8ce86a6ae65d3692e7305e2c58ac62eebd97d3d943e093f577da25c36988246b",
+      "svg": "math/baseline-page-019-002.svg",
+      "dimensions": {
+        "width_px": 18.843,
+        "height_px": 15.687
+      },
+      "svg_sha256": "eec1d3e68e9283964b6324d8ad7bc5bd76170efe4503fb5fa9f279e4874c9bfe"
+    },
+    {
+      "id": "baseline-page-019-003",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{Q_w}",
+      "tex_sha256": "b185e3956df9f69e4909cfaae1cde00ed741997a0adb504347dddfa14f69ee19",
+      "svg": "math/baseline-page-019-003.svg",
+      "dimensions": {
+        "width_px": 37.21,
+        "height_px": 20.243
+      },
+      "svg_sha256": "c4d3fa8075f5c3760dfd63aa259d0266ae1bb682bb7861b61a8f666fe03d02de"
+    },
+    {
+      "id": "baseline-page-019-004",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "F+1",
+      "tex_sha256": "44628ebe12cebd1ab1516fc6a95853576d7d9ffc04816597a670a2a37f0b2249",
+      "svg": "math/baseline-page-019-004.svg",
+      "dimensions": {
+        "width_px": 43.426,
+        "height_px": 16.962
+      },
+      "svg_sha256": "95eccd7c8d389ad9ab43a55ef4392e579037ffc7a069714716cbe9ba0fd561e0"
+    },
+    {
+      "id": "baseline-page-019-005",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{tw}}",
+      "tex_sha256": "b657e1b611b5331c8e2987e6c4c1fb3c3466801282326e6d588d218a2a453762",
+      "svg": "math/baseline-page-019-005.svg",
+      "dimensions": {
+        "width_px": 33.241,
+        "height_px": 18.19
+      },
+      "svg_sha256": "20375464f5a0c30f33c18b9f68d4aa4f12d36d2001f1d99cf8f77b5bf67b8bfe"
+    },
+    {
+      "id": "baseline-page-019-006",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "F+2",
+      "tex_sha256": "42a5e3438d506629781dda171de4b9fdf5e567fc07cbc599db79f391d756f7cb",
+      "svg": "math/baseline-page-019-006.svg",
+      "dimensions": {
+        "width_px": 43.904,
+        "height_px": 16.962
+      },
+      "svg_sha256": "1124b836095eabc39e1914a46c56b0c780901ced71ea2e3f8c6413825fb33870"
+    },
+    {
+      "id": "baseline-page-019-007",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_u",
+      "tex_sha256": "28b939ffc4f05e7154c38796cc30763eae2015e7fc68b127e6fe6ede1eb2b3bd",
+      "svg": "math/baseline-page-019-007.svg",
+      "dimensions": {
+        "width_px": 26.862,
+        "height_px": 18.19
+      },
+      "svg_sha256": "db92fb914c2afb076753ffe56c1a3c6a2f1eea2bd8cc338af26fe79cf71c1722"
+    },
+    {
+      "id": "baseline-page-019-008",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "N+F",
+      "tex_sha256": "653d7e516015d3e0da0d6e1564f5a5dff2fbbcfb64725f53f1babca80d55d363",
+      "svg": "math/baseline-page-019-008.svg",
+      "dimensions": {
+        "width_px": 50.799,
+        "height_px": 17.01
+      },
+      "svg_sha256": "ea4fa1424a528fd6fae04ec60a223cb6845d6383750866aa2c7779eb7a7062da"
+    },
+    {
+      "id": "baseline-page-019-009",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{fft}}",
+      "tex_sha256": "bbebfa25e0a768e121e7949e64c5defac543ca4aa0824ac29346b781c29610da",
+      "svg": "math/baseline-page-019-009.svg",
+      "dimensions": {
+        "width_px": 31.6,
+        "height_px": 18.19
+      },
+      "svg_sha256": "7186f75f109fc79ac340d07e63731db80e33d7318c1aaec356ee4a4ec6475f81"
+    },
+    {
+      "id": "baseline-page-019-010",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_u+1",
+      "tex_sha256": "a60e1f82ab1767b739faedb0049a171634626fbc890ab077e1dc6721790ff04b",
+      "svg": "math/baseline-page-019-010.svg",
+      "dimensions": {
+        "width_px": 54.35,
+        "height_px": 18.19
+      },
+      "svg_sha256": "37b6b20f664a351e8b8bc5db98f82ee58f17b2f0476541a6497b22d6d07f9067"
+    },
+    {
+      "id": "baseline-page-019-011",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{fft,pre}}",
+      "tex_sha256": "dcde80a17eae8b8aa9b2db5b59d49af00c1cf49d676fb824aa96993d3e5521d8",
+      "svg": "math/baseline-page-019-011.svg",
+      "dimensions": {
+        "width_px": 53.426,
+        "height_px": 20.243
+      },
+      "svg_sha256": "3a38479cd776d1f977f04e691dc6249527a355820af6e46e6b7abf8e3440615e"
+    },
+    {
+      "id": "baseline-page-019-012",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{fft}}+1",
+      "tex_sha256": "fa25770a8848295564edd185240b49ca85cc3a3afe5baf84d8970a2a15d3ba47",
+      "svg": "math/baseline-page-019-012.svg",
+      "dimensions": {
+        "width_px": 59.355,
+        "height_px": 18.19
+      },
+      "svg_sha256": "55c9bcfbb817fbe4cd7d0c3b6842fb3b7eb5083c864d13e11c309d19a298776d"
+    },
+    {
+      "id": "baseline-page-019-013",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{can,pre}}",
+      "tex_sha256": "028a75d84e5131a7f3016ecda84fa2079dbb83727447c3385ea98ccd154366e9",
+      "svg": "math/baseline-page-019-013.svg",
+      "dimensions": {
+        "width_px": 59.946,
+        "height_px": 20.243
+      },
+      "svg_sha256": "8694c057a2e00d4f4e317a29871377c5e2f23d2e1d1b496fb2410714ecf2a183"
+    },
+    {
+      "id": "baseline-page-019-014",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{fft}}+1",
+      "tex_sha256": "fa25770a8848295564edd185240b49ca85cc3a3afe5baf84d8970a2a15d3ba47",
+      "svg": "math/baseline-page-019-014.svg",
+      "dimensions": {
+        "width_px": 59.355,
+        "height_px": 18.19
+      },
+      "svg_sha256": "dd26ef444dcec3d26449ad90a18d7512d947b7f23079fad44ece4ca3f2c3d9af"
+    },
+    {
+      "id": "baseline-page-019-015",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{can}}",
+      "tex_sha256": "77cc0fe73755bddfd17aa1dab78380d358ba9553e0a6feecb62deaab05f85ed0",
+      "svg": "math/baseline-page-019-015.svg",
+      "dimensions": {
+        "width_px": 38.46,
+        "height_px": 18.19
+      },
+      "svg_sha256": "e6a4c1dc157982e460a552e989211a064335735b1f69c3a846b7c4fe3400be8c"
+    },
+    {
+      "id": "baseline-page-019-016",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{fft}}",
+      "tex_sha256": "bbebfa25e0a768e121e7949e64c5defac543ca4aa0824ac29346b781c29610da",
+      "svg": "math/baseline-page-019-016.svg",
+      "dimensions": {
+        "width_px": 31.6,
+        "height_px": 18.19
+      },
+      "svg_sha256": "192a0189c43841b5ecd59238bbbf481b1200e6cf009eea8ea22a35b4f7a05586"
+    },
+    {
+      "id": "baseline-page-019-017",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{mag2}}",
+      "tex_sha256": "3d9a61ba0c88031ac8178f727ae91a1b087876a7eeb0bbee792803bfde2ede82",
+      "svg": "math/baseline-page-019-017.svg",
+      "dimensions": {
+        "width_px": 48.669,
+        "height_px": 20.366
+      },
+      "svg_sha256": "00ccba844597a2d77ddbb4258970f86b455c71c727974adba099aee77def45a6"
+    },
+    {
+      "id": "baseline-page-019-018",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "2W_{\\mathrm{can}}",
+      "tex_sha256": "75627be6c0147a61a4483db248ad9bf023e331d6dfd8c7d8c696cfec2096df9a",
+      "svg": "math/baseline-page-019-018.svg",
+      "dimensions": {
+        "width_px": 46.43,
+        "height_px": 18.19
+      },
+      "svg_sha256": "e99f2e0337054c42701b4c065789867a7a14f05bb92fcb801e9f7aa6298d3376"
+    },
+    {
+      "id": "baseline-page-019-019",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{ifft}}",
+      "tex_sha256": "92c79f72dd7d92225c3c2d8243fbb94b9f177a6c46fcacdc698dcfdd48f64bd0",
+      "svg": "math/baseline-page-019-019.svg",
+      "dimensions": {
+        "width_px": 35.208,
+        "height_px": 18.19
+      },
+      "svg_sha256": "29db65d59c628b58f86724cb2d2174e5436b4ec34a291fcfa714a38aec93ce25"
+    },
+    {
+      "id": "baseline-page-019-020",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{can}}+P",
+      "tex_sha256": "3422e240790c9a5be29a47f451958d344f1859db9cf539832e1e3e7d910ee8ba",
+      "svg": "math/baseline-page-019-020.svg",
+      "dimensions": {
+        "width_px": 71.215,
+        "height_px": 18.19
+      },
+      "svg_sha256": "db7baac8152c299c6b0c00d860994e57e70f9ba8b5cba32e54bc38ff48518d1f"
+    },
+    {
+      "id": "baseline-page-019-021",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_z",
+      "tex_sha256": "03b16fd91fc8c6992602316fe0992e1532b1f42eb194f50bec91976a0d355ec2",
+      "svg": "math/baseline-page-019-021.svg",
+      "dimensions": {
+        "width_px": 25.668,
+        "height_px": 18.19
+      },
+      "svg_sha256": "461f73b2262201cbd2dca1fef1ec6d904dda5218b65ed903f03e783d2f348a17"
+    },
+    {
+      "id": "baseline-page-019-022",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{ifft}}",
+      "tex_sha256": "92c79f72dd7d92225c3c2d8243fbb94b9f177a6c46fcacdc698dcfdd48f64bd0",
+      "svg": "math/baseline-page-019-022.svg",
+      "dimensions": {
+        "width_px": 35.208,
+        "height_px": 18.19
+      },
+      "svg_sha256": "344c9ae347d064d3547067d064918ff060fd64f3d232597d7c660694138b8ac4"
+    },
+    {
+      "id": "baseline-page-019-023",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{ola}}",
+      "tex_sha256": "40f13de266ba1d6fbc01d74a3a3c1d5fc95be4e32f3d767f216e781f761cd836",
+      "svg": "math/baseline-page-019-023.svg",
+      "dimensions": {
+        "width_px": 35.999,
+        "height_px": 18.19
+      },
+      "svg_sha256": "475d8c1a7221553a1f9fcdfba06e87ffe118b672277ca1f558acae7051899106"
+    },
+    {
+      "id": "baseline-page-019-024",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_z+1",
+      "tex_sha256": "174110785eb3fcec90d20d6757a1d6cc912a6ab92af22d960acf3707a68bfba4",
+      "svg": "math/baseline-page-019-024.svg",
+      "dimensions": {
+        "width_px": 53.361,
+        "height_px": 18.19
+      },
+      "svg_sha256": "0055c94621caf7540c0ff47bf1a276d39bdbe87d23040c068b4b42b3ef9706bb"
+    },
+    {
+      "id": "baseline-page-019-025",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{E\\mathrm{sum}}",
+      "tex_sha256": "496da10731d5e872c84b0772acb8d606e65ad287f61fb222916c45b5c8cd9a96",
+      "svg": "math/baseline-page-019-025.svg",
+      "dimensions": {
+        "width_px": 51.925,
+        "height_px": 18.19
+      },
+      "svg_sha256": "530affa889ee0634bb9051eb66039a021e63fb86da21ee63d99b9bf59b66b02a"
+    },
+    {
+      "id": "baseline-page-019-026",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{mag2}}+\\lceil\\log_2(2N_{\\mathrm{frames}}L)\\rceil",
+      "tex_sha256": "e19a990261ac984104fccab0c164d373321b1c3ffefd3602d7358a63051b2e33",
+      "svg": "math/baseline-page-019-026.svg",
+      "dimensions": {
+        "width_px": 190.078,
+        "height_px": 21.434
+      },
+      "svg_sha256": "361f942c6f100e482ee48a7b615620b37e70935c558c1d4c6863861aa500a3e3"
+    },
+    {
+      "id": "baseline-page-019-027",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{err}}",
+      "tex_sha256": "bd70d71fac29250d6db538c19fa0c6aaaeaeb92724ac66d0d4d040584e516e3a",
+      "svg": "math/baseline-page-019-027.svg",
+      "dimensions": {
+        "width_px": 35.045,
+        "height_px": 18.19
+      },
+      "svg_sha256": "94ef5565a002672d4f0a3cd3c2bcbb3bf95add16d8c96dae2aa76f7078f9915f"
+    },
+    {
+      "id": "baseline-page-019-028",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "x_m[i]Q_w[i]",
+      "tex_sha256": "a3163fa429631555569af1d22c21e3612a9a22e31c7cc1cd66759702f203bfc4",
+      "svg": "math/baseline-page-019-028.svg",
+      "dimensions": {
+        "width_px": 75.74,
+        "height_px": 20.74
+      },
+      "svg_sha256": "08752312f8130fc1a3b316c133b3bb686709c18374ef42b01d7c64e9c2765eaa"
+    },
+    {
+      "id": "baseline-page-019-029",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_x+W_{Q_w}",
+      "tex_sha256": "7cc25422a962d4114faa3b3d00e782ca7d4a93b130948a2a83ed254296ba1308",
+      "svg": "math/baseline-page-019-029.svg",
+      "dimensions": {
+        "width_px": 79.773,
+        "height_px": 20.243
+      },
+      "svg_sha256": "66b86ffc0c053a68b7cff720e92a78552fc72677f4947dd373c007db3e65e3b3"
+    },
+    {
+      "id": "baseline-page-019-030",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "0\\le Q_w[i]\\le2^F",
+      "tex_sha256": "287fef60fc744a144a669a982304f1ef061c7cc1eb87fc92ace9ae4c876d7706",
+      "svg": "math/baseline-page-019-030.svg",
+      "dimensions": {
+        "width_px": 109.754,
+        "height_px": 22.146
+      },
+      "svg_sha256": "93038c3cfca4b849d19006fcc6985e7b3b82566fd18bc5dc6be5cf7327934273"
+    },
+    {
+      "id": "baseline-page-019-031",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_u=N+F",
+      "tex_sha256": "bcea6e61eb1c10e007d153743a8485bad5638e3a882fd8d5e1acfcfd4ba6e00f",
+      "svg": "math/baseline-page-019-031.svg",
+      "dimensions": {
+        "width_px": 95.441,
+        "height_px": 18.19
+      },
+      "svg_sha256": "31e6a83d8226306398e0b6fefd70eced1736e2acea9e7d7af5251b7b97c0ec93"
+    },
+    {
+      "id": "baseline-page-019-032",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_u",
+      "tex_sha256": "28b939ffc4f05e7154c38796cc30763eae2015e7fc68b127e6fe6ede1eb2b3bd",
+      "svg": "math/baseline-page-019-032.svg",
+      "dimensions": {
+        "width_px": 26.862,
+        "height_px": 18.19
+      },
+      "svg_sha256": "51e289e90e964a28b0e433b15ec588841aa68bfca173c3ec56a2e939503a5610"
+    },
+    {
+      "id": "baseline-page-019-033",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "2^{F}",
+      "tex_sha256": "b0ddf8bf019ab28a1ca92fa365ca3acb972cdf704cb36ce3d6cd44bd75372318",
+      "svg": "math/baseline-page-019-033.svg",
+      "dimensions": {
+        "width_px": 22.009,
+        "height_px": 18.161
+      },
+      "svg_sha256": "bfe4ca2c8c04fbb0f0a3a2029a8985015734232576c5889e11df44ffd3208e78"
+    },
+    {
+      "id": "baseline-page-019-034",
+      "source": "source/baseline/page-019.md",
+      "kind": "inline",
+      "tex": "W_u",
+      "tex_sha256": "28b939ffc4f05e7154c38796cc30763eae2015e7fc68b127e6fe6ede1eb2b3bd",
+      "svg": "math/baseline-page-019-034.svg",
+      "dimensions": {
+        "width_px": 26.862,
+        "height_px": 18.19
+      },
+      "svg_sha256": "1a5224550aad8d463ce9c2cacaad1d8915acfbbbd6993c8e49741a79b10b22da"
+    },
+    {
+      "id": "baseline-page-019-035",
+      "source": "source/baseline/page-019.md",
+      "kind": "display",
+      "tex": "h_p[i]=\\frac12-\\frac12\\cos\\left(\\frac{2\\pi i}{L}\\right),\\qquad0\\le i<L.\\tag{4.1}",
+      "tex_sha256": "9facb69e5fc8805f1a598800b85046185168c6c162bc9d266233d42b3590cbc7",
+      "svg": "math/baseline-page-019-035.svg",
+      "dimensions": {
+        "width_px": 367.416,
+        "height_px": 57.441
+      },
+      "svg_sha256": "cd1daafb607e3c176450bd34eb1c68ef5f6b0bb8b7e242b0498510e8eaf626d8"
+    },
+    {
+      "id": "baseline-page-019-036",
+      "source": "source/baseline/page-019.md",
+      "kind": "display",
+      "tex": "w_a[i]=w_s[i]=w[i]=\\sqrt{h_p[i]}.\\tag{4.2}",
+      "tex_sha256": "547e638a8263d0202a29fa83cebdc4f3da76c2a5567170e9a403bbc6aaf20604",
+      "svg": "math/baseline-page-019-036.svg",
+      "dimensions": {
+        "width_px": 289.514,
+        "height_px": 47.892
+      },
+      "svg_sha256": "ed6439a79145b6250db4de55a4f2db929bd5ad4bb6ab467ed7c77e3b8885837f"
+    },
+    {
+      "id": "baseline-page-019-037",
+      "source": "source/baseline/page-019.md",
+      "kind": "display",
+      "tex": "w_a[i]w_s[i]+w_a[i+H]w_s[i+H]=1,\\qquad0\\le i<H.\\tag{4.3}",
+      "tex_sha256": "01f76f775d6170f83c203d2f8593e7e179e6c77489904ed4f56c0223949c5972",
+      "svg": "math/baseline-page-019-037.svg",
+      "dimensions": {
+        "width_px": 444.123,
+        "height_px": 35.14
+      },
+      "svg_sha256": "03c0aba77f13a5e544aaf2b75f4ce1e26f6837cf8d563ee1920b02a9ac3181e7"
+    },
+    {
+      "id": "baseline-page-020-001",
+      "source": "source/baseline/page-020.md",
+      "kind": "inline",
+      "tex": "Q_w[i]=\\operatorname{qcoef}(w[i],F)",
+      "tex_sha256": "b7c7dcd274a27f1bdf47189911ca8b5d21bdd5940b12923c2ee863ad4412c684",
+      "svg": "math/baseline-page-020-001.svg",
+      "dimensions": {
+        "width_px": 156.969,
+        "height_px": 20.74
+      },
+      "svg_sha256": "569d5c619b9c4ee769f4c548ed629106841f5f98c4c7413b355c5eb26b7b512e"
+    },
+    {
+      "id": "baseline-page-020-002",
+      "source": "source/baseline/page-020.md",
+      "kind": "display",
+      "tex": "u_m[i]=x_z[\\tau_m-L+i]Q_w[i],\\qquad0\\le i<L.\\tag{4.4}",
+      "tex_sha256": "066a36731c8ddd42678d863e94a36fbd9778e5fa01270dfe740a7e538c4321ae",
+      "svg": "math/baseline-page-020-002.svg",
+      "dimensions": {
+        "width_px": 386.258,
+        "height_px": 35.14
+      },
+      "svg_sha256": "71c6e2b87f43afbc22378ea9f8eda61aec6fb98248a1320eceb3f3c5a31bd3d4"
+    },
+    {
+      "id": "baseline-page-020-003",
+      "source": "source/baseline/page-020.md",
+      "kind": "display",
+      "tex": "X_m[k]=\\frac1L\\sum_{i=0}^{L-1}u_m[i]e^{-j2\\pi ki/L},\\qquad0\\le k<L.\\tag{4.5}",
+      "tex_sha256": "0e660102a68b73bb3b62568c727e5f2e733f8a6762585aa3727141e26fe83136",
+      "svg": "math/baseline-page-020-003.svg",
+      "dimensions": {
+        "width_px": 405.768,
+        "height_px": 65.777
+      },
+      "svg_sha256": "479860072734d29a45662e1f29b6a0e19f22e6fcdc65e2e2a8be9e702697a486"
+    },
+    {
+      "id": "baseline-page-020-004",
+      "source": "source/baseline/page-020.md",
+      "kind": "display",
+      "tex": "X_m^{\\mathrm{can}}[0]=\\operatorname{Re}\\{X_m[0]\\}+j0.\\tag{4.6}",
+      "tex_sha256": "96cdfe17c4558ba00d89c7575e43045c3a70ad9cc6dcc55e59532c0327d23657",
+      "svg": "math/baseline-page-020-004.svg",
+      "dimensions": {
+        "width_px": 270.906,
+        "height_px": 35.207
+      },
+      "svg_sha256": "d07611213ac20dd9061a4c18589428085eea7ca31cc93026f822e2b14f0d0f2f"
+    },
+    {
+      "id": "baseline-page-020-005",
+      "source": "source/baseline/page-020.md",
+      "kind": "display",
+      "tex": "X_m^{\\mathrm{can}}[L/2]=\\operatorname{Re}\\{X_m[L/2]\\}+j0.\\tag{4.7}",
+      "tex_sha256": "67ee72e9b8e18e73d2effdafc9b7afde34bdbb5a64618edb5c4970258ab72459",
+      "svg": "math/baseline-page-020-005.svg",
+      "dimensions": {
+        "width_px": 308.542,
+        "height_px": 35.207
+      },
+      "svg_sha256": "5a7797ae119e8988ba85f95ca24c5e51da770eccf0d7240edc0b0d12a907cb44"
+    },
+    {
+      "id": "baseline-page-020-006",
+      "source": "source/baseline/page-020.md",
+      "kind": "display",
+      "tex": "R_m[k]=\\operatorname{rnd2}(\\operatorname{Re}\\{X_m[k]\\}+\\operatorname{Re}\\{X_m[L-k]\\}).\\tag{4.8}",
+      "tex_sha256": "ba8c63a129ef612798ebc7e657e2d237cec9d9d0fa45bba84f5596e8011a5d47",
+      "svg": "math/baseline-page-020-006.svg",
+      "dimensions": {
+        "width_px": 399.397,
+        "height_px": 35.14
+      },
+      "svg_sha256": "715caec9995e565b4e9502aa1a2668ec97055724963f4d715df67e1c228fe25f"
+    },
+    {
+      "id": "baseline-page-020-007",
+      "source": "source/baseline/page-020.md",
+      "kind": "display",
+      "tex": "I_m[k]=\\operatorname{rnd2}(\\operatorname{Im}\\{X_m[k]\\}-\\operatorname{Im}\\{X_m[L-k]\\}).\\tag{4.9}",
+      "tex_sha256": "068b16ff171ff854e80722fa2323a93a3bd98a7b1bf28247b941a6ef88b9b18b",
+      "svg": "math/baseline-page-020-007.svg",
+      "dimensions": {
+        "width_px": 394.744,
+        "height_px": 35.14
+      },
+      "svg_sha256": "b9750a2143b3729d95d7cf02a465c38ee12817d6360b390c437a324cbd786652"
+    },
+    {
+      "id": "baseline-page-020-008",
+      "source": "source/baseline/page-020.md",
+      "kind": "display",
+      "tex": "X_m^{\\mathrm{can}}[k]=R_m[k]+jI_m[k].\\tag{4.10}",
+      "tex_sha256": "5049476097928e6ceb7b9b3387ec36efd8c8b71f6e7421a8357e3bd35e526263",
+      "svg": "math/baseline-page-020-008.svg",
+      "dimensions": {
+        "width_px": 273.476,
+        "height_px": 35.207
+      },
+      "svg_sha256": "eb4e1fbd4faca048c8d44c481e0c1f6a16d3f1d5d645e9f273bd3a70f61348f4"
+    },
+    {
+      "id": "baseline-page-020-009",
+      "source": "source/baseline/page-020.md",
+      "kind": "display",
+      "tex": "X_m^{\\mathrm{can}}[L-k]=R_m[k]-jI_m[k].\\tag{4.11}",
+      "tex_sha256": "47642061591a33ebd4d06122b1ce8b7afd626588c9f1db2c6dfd56f035f2112e",
+      "svg": "math/baseline-page-020-009.svg",
+      "dimensions": {
+        "width_px": 303.807,
+        "height_px": 35.207
+      },
+      "svg_sha256": "266a233087c9a844a86c391bc0227cd2c090f09a77bce972e410dae3caf98184"
+    },
+    {
+      "id": "baseline-page-020-010",
+      "source": "source/baseline/page-020.md",
+      "kind": "inline",
+      "tex": "X^{\\mathrm{can}}",
+      "tex_sha256": "67ac45f0a6900178f6c4d04755db3cd2df6109d6b7e7abd85c02a73790b1c960",
+      "svg": "math/baseline-page-020-010.svg",
+      "dimensions": {
+        "width_px": 37.862,
+        "height_px": 15.687
+      },
+      "svg_sha256": "88d2e37d762b6c6c98ffc8cce1d585aae54dda2fa4c9b15de72ad5f5f4aa7b1c"
+    },
+    {
+      "id": "baseline-page-020-011",
+      "source": "source/baseline/page-020.md",
+      "kind": "display",
+      "tex": "\\operatorname{mag2}_m[k]=\\operatorname{Re}\\{X_m^{\\mathrm{can}}[k]\\}^2+\\operatorname{Im}\\{X_m^{\\mathrm{can}}[k]\\}^2.\\tag{4.12}",
+      "tex_sha256": "a7b08dc67f4e3e42ef966cc402b141afc0a9af673e397b0f7f47970ace687274",
+      "svg": "math/baseline-page-020-011.svg",
+      "dimensions": {
+        "width_px": 390.331,
+        "height_px": 37.243
+      },
+      "svg_sha256": "9a71d81c5da98e7129c6fde865d368401fa77aba9738e69a73c3e545d1851b38"
+    },
+    {
+      "id": "baseline-page-020-012",
+      "source": "source/baseline/page-020.md",
+      "kind": "display",
+      "tex": "\\operatorname{pre\\_mask}_m[k]=\\begin{cases}1,&\\operatorname{mag2}_m[k]<\\mathrm{THR2}\\\\0,&\\operatorname{mag2}_m[k]\\ge\\mathrm{THR2}.\\end{cases}\\tag{4.13}",
+      "tex_sha256": "833fe6205d154f23e8fe299ab6a650a1918af19e97aa1909c33d8faca67105fe",
+      "svg": "math/baseline-page-020-012.svg",
+      "dimensions": {
+        "width_px": 386.678,
+        "height_px": 67.005
+      },
+      "svg_sha256": "b3ff1f800fd3da9b8b5a205dac07a65bc3a8182b4aa6763fca987f6afc6d8bc3"
+    },
+    {
+      "id": "baseline-page-020-013",
+      "source": "source/baseline/page-020.md",
+      "kind": "inline",
+      "tex": "\\operatorname{mask}_m[k]=\\operatorname{pre\\_mask}_m[k]",
+      "tex_sha256": "f27262c194578e9877cf715d292c31cb607065e821312964cdf9c57052b9d278",
+      "svg": "math/baseline-page-020-013.svg",
+      "dimensions": {
+        "width_px": 183.519,
+        "height_px": 20.763
+      },
+      "svg_sha256": "08cafea1dbc809698ba4ca77044e665d8a00382caed3a025368724ecf210809d"
+    },
+    {
+      "id": "baseline-page-020-014",
+      "source": "source/baseline/page-020.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{mag2}}",
+      "tex_sha256": "3d9a61ba0c88031ac8178f727ae91a1b087876a7eeb0bbee792803bfde2ede82",
+      "svg": "math/baseline-page-020-014.svg",
+      "dimensions": {
+        "width_px": 48.669,
+        "height_px": 20.366
+      },
+      "svg_sha256": "71a89ccb9f7790af0fb3ba11c08f1183d010d011cbfcef33035d5569804d8de7"
+    },
+    {
+      "id": "baseline-page-020-015",
+      "source": "source/baseline/page-020.md",
+      "kind": "display",
+      "tex": "0\\le\\mathrm{THR2}<2^{W_{\\mathrm{mag2}}}.\\tag{4.14}",
+      "tex_sha256": "46a2c0e43f2b177d3fd8fdd12320f02862f39db6164dffbfb681751f31f43a24",
+      "svg": "math/baseline-page-020-015.svg",
+      "dimensions": {
+        "width_px": 234.871,
+        "height_px": 37.388
+      },
+      "svg_sha256": "d18be930c98a0d963bc9a069c2d08fdeacb2507a3b580a11bce6f402ac01cd2a"
+    },
+    {
+      "id": "baseline-page-021-001",
+      "source": "source/baseline/page-021.md",
+      "kind": "display",
+      "tex": "\\epsilon[k]=\\begin{cases}0,&k=0\\text{ and }\\mathrm{PROTECT\\_DC}=1\\\\0,&k=L/2\\text{ and }\\mathrm{PROTECT\\_NYQ}=1\\\\1,&\\text{otherwise.}\\end{cases}\\tag{4.15}",
+      "tex_sha256": "1d426d4f7945f9011d25399c74d290571b2d8ae8f9e1ee9f9617710e9a9c7737",
+      "svg": "math/baseline-page-021-001.svg",
+      "dimensions": {
+        "width_px": 427.025,
+        "height_px": 86.134
+      },
+      "svg_sha256": "d09d2677f58ce22ad7a91c54d1c417fc378c96a9104b299679d3ea14d66973e6"
+    },
+    {
+      "id": "baseline-page-021-002",
+      "source": "source/baseline/page-021.md",
+      "kind": "inline",
+      "tex": "\\operatorname{mask}_m[0]=0",
+      "tex_sha256": "261a1c6d7e872b235e3d2fc0f7e12b0893a6dd2a1d541841f60be5ba5e0b9314",
+      "svg": "math/baseline-page-021-002.svg",
+      "dimensions": {
+        "width_px": 98.274,
+        "height_px": 20.74
+      },
+      "svg_sha256": "a9d67907296d6b9f8b7254f5eec3cd118c467dbac4f0703dc5bfdc59b4310d90"
+    },
+    {
+      "id": "baseline-page-021-003",
+      "source": "source/baseline/page-021.md",
+      "kind": "inline",
+      "tex": "\\operatorname{mask}_m[L/2]=0",
+      "tex_sha256": "9a5518d5e5305200178949d1d157a0d618619c0985d29c0204630c2b3f87699a",
+      "svg": "math/baseline-page-021-003.svg",
+      "dimensions": {
+        "width_px": 117.093,
+        "height_px": 20.74
+      },
+      "svg_sha256": "e2d88781490b01c2c281c711580da893ff52583260d86b9759d6d83bee70f68a"
+    },
+    {
+      "id": "baseline-page-021-004",
+      "source": "source/baseline/page-021.md",
+      "kind": "inline",
+      "tex": "\\mathrm{Xb}",
+      "tex_sha256": "dbc397349abd7f914030cb79e73b78977111697438ac167dc95324e6704ccf0d",
+      "svg": "math/baseline-page-021-004.svg",
+      "dimensions": {
+        "width_px": 25.06,
+        "height_px": 16.038
+      },
+      "svg_sha256": "79a531f9408e0d2238936e776645feb643f4965c8ce7bdf266ee35c91b6a2e11"
+    },
+    {
+      "id": "baseline-page-021-005",
+      "source": "source/baseline/page-021.md",
+      "kind": "inline",
+      "tex": "1\\le k\\le L/2-1",
+      "tex_sha256": "e48cc4ea053bae1abc24aa192563766599d47e5159139de5a3021dc7593cf517",
+      "svg": "math/baseline-page-021-005.svg",
+      "dimensions": {
+        "width_px": 117.027,
+        "height_px": 20.74
+      },
+      "svg_sha256": "882f4291a6b85dd1cfffaad6600ad4e428f29e38c1f839e9f14d57161a363d07"
+    },
+    {
+      "id": "baseline-page-021-006",
+      "source": "source/baseline/page-021.md",
+      "kind": "display",
+      "tex": "\\mathrm{Xb}_m[k]=\\begin{cases}0,&\\operatorname{mask}_m[k]=1\\\\X_m^{\\mathrm{can}}[k],&\\operatorname{mask}_m[k]=0.\\end{cases}\\tag{4.16}",
+      "tex_sha256": "27556ddb805ebd1e06c45fede273f60997995590ceb42e13532551181477c70f",
+      "svg": "math/baseline-page-021-006.svg",
+      "dimensions": {
+        "width_px": 351.174,
+        "height_px": 67.005
+      },
+      "svg_sha256": "e37a85f5930ea741e76da0da858b3e8f6a3cd932f1b396ac434bcfb2b0f75e05"
+    },
+    {
+      "id": "baseline-page-021-007",
+      "source": "source/baseline/page-021.md",
+      "kind": "display",
+      "tex": "\\mathrm{Xb}_m[L-k]=\\begin{cases}0,&\\operatorname{mask}_m[k]=1\\\\X_m^{\\mathrm{can}}[L-k],&\\operatorname{mask}_m[k]=0.\\end{cases}\\tag{4.17}",
+      "tex_sha256": "3cd8622750d6cfadaaff19db2dd939e5eb16e76302f07512374fae395b63baa2",
+      "svg": "math/baseline-page-021-007.svg",
+      "dimensions": {
+        "width_px": 411.835,
+        "height_px": 67.005
+      },
+      "svg_sha256": "73d1b49d34adbb6b967d2ed155d58ac4e96fd0d730b5b91985ead83863d3790c"
+    },
+    {
+      "id": "baseline-page-021-008",
+      "source": "source/baseline/page-021.md",
+      "kind": "display",
+      "tex": "\\mathrm{Xb}_m[0]=(1-\\operatorname{mask}_m[0])X_m^{\\mathrm{can}}[0].\\tag{4.18}",
+      "tex_sha256": "5a535de0e7a3ec0820a16937172244beb999a2a914bb3ad18f44b97f0a19f19f",
+      "svg": "math/baseline-page-021-008.svg",
+      "dimensions": {
+        "width_px": 321.532,
+        "height_px": 35.207
+      },
+      "svg_sha256": "13a5e21373b443b3bd5f60c7432179fe2e76b5a9fb1297a9f4aaec6d4a917e38"
+    },
+    {
+      "id": "baseline-page-021-009",
+      "source": "source/baseline/page-021.md",
+      "kind": "display",
+      "tex": "\\mathrm{Xb}_m[L/2]=(1-\\operatorname{mask}_m[L/2])X_m^{\\mathrm{can}}[L/2].\\tag{4.19}",
+      "tex_sha256": "7c62c172427ac6aa637c7eb6ec5d1b2dd66d641447a699c2fbcef3d9d97317c6",
+      "svg": "math/baseline-page-021-009.svg",
+      "dimensions": {
+        "width_px": 377.987,
+        "height_px": 35.207
+      },
+      "svg_sha256": "6cf165a17ec6ef7bfa589582a648a1ce01af948b6e167ed03d62e520d5c894fc"
+    },
+    {
+      "id": "baseline-page-021-010",
+      "source": "source/baseline/page-021.md",
+      "kind": "display",
+      "tex": "v_m[i]=\\sum_{k=0}^{L-1}\\mathrm{Xb}_m[k]e^{j2\\pi ki/L},\\qquad0\\le i<L.\\tag{4.20}",
+      "tex_sha256": "841a4f890e133612f69b138d7cc91929b7a6024f7aac802feb7674cc81d67e0e",
+      "svg": "math/baseline-page-021-010.svg",
+      "dimensions": {
+        "width_px": 389.343,
+        "height_px": 66.142
+      },
+      "svg_sha256": "a9157fd34feb186e6f508456a90cf81157fe1d44220a0992bf0f9d6d4b0ef12c"
+    },
+    {
+      "id": "baseline-page-021-011",
+      "source": "source/baseline/page-021.md",
+      "kind": "display",
+      "tex": "z_m[i]=\\operatorname{rnd\\_shr}(\\operatorname{Re}\\{v_m[i]\\}Q_w[i],F).\\tag{4.21}",
+      "tex_sha256": "ceee055981335eb0f7d1b4aa4ed41e8405ee240bebad751c5e73608b0c24d289",
+      "svg": "math/baseline-page-021-011.svg",
+      "dimensions": {
+        "width_px": 339.01,
+        "height_px": 35.14
+      },
+      "svg_sha256": "feaae3175ceed86ba7e470c408b0360e066bb8bdb3594f13df141d247493ff17"
+    },
+    {
+      "id": "baseline-page-021-012",
+      "source": "source/baseline/page-021.md",
+      "kind": "display",
+      "tex": "A[\\tau_m+G+i]\\leftarrow A[\\tau_m+G+i]+z_m[i].\\tag{4.22}",
+      "tex_sha256": "57110dd831abaeb0914cd87326269fb2b74f9ae8a95a7549bbad784fe1d87693",
+      "svg": "math/baseline-page-021-012.svg",
+      "dimensions": {
+        "width_px": 366.553,
+        "height_px": 35.14
+      },
+      "svg_sha256": "61459cbabaf46e92f1ce6a914994992a59d68f926c988e284682efceaf0db8a1"
+    },
+    {
+      "id": "baseline-page-021-013",
+      "source": "source/baseline/page-021.md",
+      "kind": "display",
+      "tex": "y[n]=\\operatorname{sat}_N(\\operatorname{rnd\\_shr}(A[n],F)).\\tag{4.23}",
+      "tex_sha256": "9c696c0fb6df213c82283c87ea8b8552140ef707a58011277aa612d301d70930",
+      "svg": "math/baseline-page-021-013.svg",
+      "dimensions": {
+        "width_px": 301.067,
+        "height_px": 35.14
+      },
+      "svg_sha256": "bbe92f4b687517cd477278643e0e453e361e75181094d2a8b8b21219be6b1a92"
+    },
+    {
+      "id": "baseline-page-021-014",
+      "source": "source/baseline/page-021.md",
+      "kind": "display",
+      "tex": "e[n]=x_z[n-D]-y[n].\\tag{4.24}",
+      "tex_sha256": "3d1af67502d88cd76924afd7e8f028202fa8ebe015cf2522a47684667cb8d14d",
+      "svg": "math/baseline-page-021-014.svg",
+      "dimensions": {
+        "width_px": 256.046,
+        "height_px": 35.14
+      },
+      "svg_sha256": "aa120c3e7c048334e3a9281555d8f48c12422573f3b00b2e1795ad300fe25b87"
+    },
+    {
+      "id": "baseline-page-024-001",
+      "source": "source/baseline/page-024.md",
+      "kind": "inline",
+      "tex": "1\\le k\\le L/2-1",
+      "tex_sha256": "e48cc4ea053bae1abc24aa192563766599d47e5159139de5a3021dc7593cf517",
+      "svg": "math/baseline-page-024-001.svg",
+      "dimensions": {
+        "width_px": 117.027,
+        "height_px": 20.74
+      },
+      "svg_sha256": "7657765a91a383fa28b87a6890637421adb3725c2e9c80d0a310e766cf680292"
+    },
+    {
+      "id": "baseline-page-024-002",
+      "source": "source/baseline/page-024.md",
+      "kind": "inline",
+      "tex": "\\mathrm{Xb}[L-k]=\\mathrm{Xb}[k]^*",
+      "tex_sha256": "2f265691638c19e002ad064d1d6d5cc29d3cc0964caaa5a4aa8e3faa0fece7b6",
+      "svg": "math/baseline-page-024-002.svg",
+      "dimensions": {
+        "width_px": 138.841,
+        "height_px": 20.74
+      },
+      "svg_sha256": "52b5b09a7437cbab52b66b3840186f7cb81fb21d9b1462ad49729c8f84f9d48a"
+    },
+    {
+      "id": "baseline-page-024-003",
+      "source": "source/baseline/page-024.md",
+      "kind": "inline",
+      "tex": "\\lfloor(N_s+L-2)/H\\rfloor",
+      "tex_sha256": "827d7065c0301b21cec45cba956872993dbb02a51d73f5828ccf22f0de8cb121",
+      "svg": "math/baseline-page-024-003.svg",
+      "dimensions": {
+        "width_px": 128.49,
+        "height_px": 20.74
+      },
+      "svg_sha256": "593e243b346d7e8beb35e97af64aadaaa3858eec010d45010dbbbf983257fc09"
+    },
+    {
+      "id": "baseline-page-024-004",
+      "source": "source/baseline/page-024.md",
+      "kind": "inline",
+      "tex": "\\operatorname{bitrev}_P(k)",
+      "tex_sha256": "c98b3f2a670ff5b121f73756d38c6e39eb989449ae84a835813b2fa9ab493307",
+      "svg": "math/baseline-page-024-004.svg",
+      "dimensions": {
+        "width_px": 76.479,
+        "height_px": 20.74
+      },
+      "svg_sha256": "62ae078f31e642fe25ff55bb5a6a4c7716d8f776e54217758d933d8a57f6299f"
+    },
+    {
+      "id": "baseline-page-024-005",
+      "source": "source/baseline/page-024.md",
+      "kind": "inline",
+      "tex": "P",
+      "tex_sha256": "5c62e091b8c0565f1bafad0dad5934276143ae2ccef7a5381e8ada5b1a8d26d2",
+      "svg": "math/baseline-page-024-005.svg",
+      "dimensions": {
+        "width_px": 16.819,
+        "height_px": 15.687
+      },
+      "svg_sha256": "e5dfc0d6195d0f701b51023decc5ccb2ef7fa093c42cf75277f616c1d3680bf2"
+    },
+    {
+      "id": "baseline-page-024-006",
+      "source": "source/baseline/page-024.md",
+      "kind": "display",
+      "tex": "W_r[e]=\\operatorname{qcoef}\\left(\\cos\\frac{2\\pi e}{L},F\\right).\\tag{6.1}",
+      "tex_sha256": "14f70b2079f4378dfba4682848454753cc947ef301b87c2daf42e4b81a2361db",
+      "svg": "math/baseline-page-024-006.svg",
+      "dimensions": {
+        "width_px": 284.637,
+        "height_px": 57.441
+      },
+      "svg_sha256": "17805b5921b1ce0f95aebd6193b462d5e391e81c59bbf9decbfa57ac822a4cba"
+    },
+    {
+      "id": "baseline-page-024-007",
+      "source": "source/baseline/page-024.md",
+      "kind": "display",
+      "tex": "W_i[e]=\\operatorname{qcoef}\\left(-\\sin\\frac{2\\pi e}{L},F\\right).\\tag{6.2}",
+      "tex_sha256": "79dbb9001fcb208ddf93e4b9bc71af9c3a0c5351ff90f0324164c323e211815f",
+      "svg": "math/baseline-page-024-007.svg",
+      "dimensions": {
+        "width_px": 296.169,
+        "height_px": 57.441
+      },
+      "svg_sha256": "1ff3c90772a4ff81af98b7af71b9c7ca580bc4ec405773fc31f75a73628ace99"
+    },
+    {
+      "id": "baseline-page-024-008",
+      "source": "source/baseline/page-024.md",
+      "kind": "display",
+      "tex": "\\widetilde W_r[e]=\\operatorname{qcoef}\\left(\\cos\\frac{2\\pi e}{L},F\\right).\\tag{6.3}",
+      "tex_sha256": "9f03d18805662fb55d73978fd76d5209c4c658e7abb45e65f47388d3e30d8b46",
+      "svg": "math/baseline-page-024-008.svg",
+      "dimensions": {
+        "width_px": 284.637,
+        "height_px": 57.441
+      },
+      "svg_sha256": "3a573f1bf291ecdf0b3aa7cc80f73574950a6f1dfd0a10e1bb0297e66ce458bb"
+    },
+    {
+      "id": "baseline-page-024-009",
+      "source": "source/baseline/page-024.md",
+      "kind": "display",
+      "tex": "\\widetilde W_i[e]=\\operatorname{qcoef}\\left(+\\sin\\frac{2\\pi e}{L},F\\right).\\tag{6.4}",
+      "tex_sha256": "aa7f0c4498eb00a073b7e2fbec6ce78e6d784aeb8a93f9fa7bb40ce5a21d0568",
+      "svg": "math/baseline-page-024-009.svg",
+      "dimensions": {
+        "width_px": 296.169,
+        "height_px": 57.441
+      },
+      "svg_sha256": "a690622c664d6cca7bfe93c7e85d1386607b6007a305f8259a2004ca0022f4c9"
+    },
+    {
+      "id": "baseline-page-024-010",
+      "source": "source/baseline/page-024.md",
+      "kind": "display",
+      "tex": "W_{\\mathrm{fwd}}[e]=W_r[e]+jW_i[e].\\tag{6.5}",
+      "tex_sha256": "1244e8ee974fdcd697771d384b0946c20b80a950e9363224938891fe25a3ff45",
+      "svg": "math/baseline-page-024-010.svg",
+      "dimensions": {
+        "width_px": 262.147,
+        "height_px": 35.14
+      },
+      "svg_sha256": "f9919caeac2a0f6c56c15df90f720fbdc6e3b1473564c1b48809b697ef3f158d"
+    },
+    {
+      "id": "baseline-page-024-011",
+      "source": "source/baseline/page-024.md",
+      "kind": "display",
+      "tex": "W_{\\mathrm{inv}}[e]=\\widetilde W_r[e]+j\\widetilde W_i[e].\\tag{6.6}",
+      "tex_sha256": "53d36c7937fbfd1cf2350c8409479380b31775b0005e3364205466015fca8f3e",
+      "svg": "math/baseline-page-024-011.svg",
+      "dimensions": {
+        "width_px": 259.23,
+        "height_px": 39.17
+      },
+      "svg_sha256": "b813410b62323570649398f3265474eae9b3735f1b4a193b07c7d1fb18d1552f"
+    },
+    {
+      "id": "baseline-page-025-001",
+      "source": "source/baseline/page-025.md",
+      "kind": "display",
+      "tex": "\\omega[k]=\\begin{cases}1,&k=0\\\\1,&k=L/2\\\\2,&1\\le k\\le L/2-1.\\end{cases}\\tag{7.1}",
+      "tex_sha256": "bef3510e5e5b85092ded617eaa1bbc4a47e5959cbcea3cdff90c65a4047bab8f",
+      "svg": "math/baseline-page-025-001.svg",
+      "dimensions": {
+        "width_px": 296.681,
+        "height_px": 86.134
+      },
+      "svg_sha256": "140bced9033d5b0fdb8c12ccf7f6956ca9e5c90d9bb9772f1758ca0b4156fe26"
+    },
+    {
+      "id": "baseline-page-026-001",
+      "source": "source/baseline/page-026.md",
+      "kind": "inline",
+      "tex": "\\mathcal{E}=\\{k\\in\\{0,\\ldots,L/2\\}:\\epsilon[k]=1\\}",
+      "tex_sha256": "aedfa8f168246132ee8faf58cb446abb7b5ebfca9880d7c7e74796fc3ed8e33d",
+      "svg": "math/baseline-page-026-001.svg",
+      "dimensions": {
+        "width_px": 231.706,
+        "height_px": 20.74
+      },
+      "svg_sha256": "f5fd1724e6aa86b0a391c13a9ead2d8da2d75576f5974f56433922eaf8b96b3b"
+    },
+    {
+      "id": "baseline-page-026-002",
+      "source": "source/baseline/page-026.md",
+      "kind": "display",
+      "tex": "U_{\\mathrm{uniq}}=L/2+1,\\qquad S_{\\mathrm{uniq}}=\\sum_{k=0}^{L/2}\\operatorname{mask}[k].\\tag{7.2}",
+      "tex_sha256": "c72e0181e5cdc710321b911bb5de532bd697357353158ebb984d5827eb522995",
+      "svg": "math/baseline-page-026-002.svg",
+      "dimensions": {
+        "width_px": 372.872,
+        "height_px": 68.262
+      },
+      "svg_sha256": "f0ac12c5fb5f9d16415b02a6ff482c6878b63df784e7346c08ec4befa3285432"
+    },
+    {
+      "id": "baseline-page-026-003",
+      "source": "source/baseline/page-026.md",
+      "kind": "display",
+      "tex": "U_{\\mathrm{elig}}=|\\mathcal E|,\\qquad S_{\\mathrm{elig}}=\\sum_{k\\in\\mathcal E}\\operatorname{mask}[k].\\tag{7.3}",
+      "tex_sha256": "789d9d48a8df34e498acd243dd12ff1224d54635835162b33d858a0ddb6efa9b",
+      "svg": "math/baseline-page-026-003.svg",
+      "dimensions": {
+        "width_px": 327.64,
+        "height_px": 54.364
+      },
+      "svg_sha256": "2f19d2aa21a1ca5b31d7ea1531cae7f72a921fb8d18bc4b8724b3cd01f900147"
+    },
+    {
+      "id": "baseline-page-026-004",
+      "source": "source/baseline/page-026.md",
+      "kind": "display",
+      "tex": "E_{\\mathrm{elig,total}}=\\sum_{k\\in\\mathcal E}\\omega[k]\\operatorname{mag2}[k],\\qquad E_{\\mathrm{elig,kept}}=\\sum_{k\\in\\mathcal E}(1-\\operatorname{mask}[k])\\omega[k]\\operatorname{mag2}[k].\\tag{7.4}",
+      "tex_sha256": "151dce3a410a6527541cd5fe60a58e1996f984a46e0554e5c377abcef2f58802",
+      "svg": "math/baseline-page-026-004.svg",
+      "dimensions": {
+        "width_px": 604.332,
+        "height_px": 54.364
+      },
+      "svg_sha256": "51316135f3dcdef1401a49aba3a9b96e21de1d8a27aef36d4463e791c6151358"
+    },
+    {
+      "id": "baseline-page-026-005",
+      "source": "source/baseline/page-026.md",
+      "kind": "inline",
+      "tex": "0\\le n<N_y",
+      "tex_sha256": "911b7cad6ddfe32f204262350f20746b4d4d480ee2b48763a33dcd34fdd68839",
+      "svg": "math/baseline-page-026-005.svg",
+      "dimensions": {
+        "width_px": 83.901,
+        "height_px": 20.354
+      },
+      "svg_sha256": "89beba13f1d20852e4f88b451405aeec7b725ce4b6fe9a3afcb779a5aeeb9dbf"
+    },
+    {
+      "id": "baseline-page-026-006",
+      "source": "source/baseline/page-026.md",
+      "kind": "display",
+      "tex": "e[n]=x_z[n-D]-y[n].\\tag{7.5}",
+      "tex_sha256": "9a733edb5119ec4f9b97a5f90f8304ee8e88fcfe8524c5e161f32cd122e654d5",
+      "svg": "math/baseline-page-026-006.svg",
+      "dimensions": {
+        "width_px": 248.075,
+        "height_px": 35.14
+      },
+      "svg_sha256": "b7a99dae58c0e93ae6ca572b2fcd51075fca3bd5e955a1834eaff8545bfd75a3"
+    },
+    {
+      "id": "baseline-page-026-007",
+      "source": "source/baseline/page-026.md",
+      "kind": "display",
+      "tex": "\\mathrm{sum\\_abs\\_err}=\\sum_{n=0}^{N_y-1}|e[n]|.\\tag{7.6}",
+      "tex_sha256": "13d97cc15b9e3c41b8c097dbb6af803726eedf9040478196a42d9dc3ab1e0216",
+      "svg": "math/baseline-page-026-007.svg",
+      "dimensions": {
+        "width_px": 261.201,
+        "height_px": 67.311
+      },
+      "svg_sha256": "566c44ef88fa9d07ca4fad22b845baf8bbd022f2f45253f6795f8745c73954e9"
+    },
+    {
+      "id": "baseline-page-026-008",
+      "source": "source/baseline/page-026.md",
+      "kind": "display",
+      "tex": "\\mathrm{sum\\_sq\\_err}=\\sum_{n=0}^{N_y-1}e[n]^2.\\tag{7.7}",
+      "tex_sha256": "0748baabbc7733f477d833c71eb5242b4fc51c2e0a9267d295b8b969f571e576",
+      "svg": "math/baseline-page-026-008.svg",
+      "dimensions": {
+        "width_px": 251.083,
+        "height_px": 67.311
+      },
+      "svg_sha256": "9b8876d411ea002e4fca74bd1b217cde4b733d7f8ec36b4ff9a81d9a4245a766"
+    },
+    {
+      "id": "baseline-page-026-009",
+      "source": "source/baseline/page-026.md",
+      "kind": "display",
+      "tex": "\\mathrm{max\\_abs\\_err}=\\max_{0\\le n<N_y}|e[n]|.\\tag{7.8}",
+      "tex_sha256": "27e8962aade040b01879344980c06c596c4a5e84fc983c6dca43b005abcd9ebb",
+      "svg": "math/baseline-page-026-009.svg",
+      "dimensions": {
+        "width_px": 280.283,
+        "height_px": 44.688
+      },
+      "svg_sha256": "d3899b9b43d7f83f1032faf6b8538e265fd9788750c83b7c34b9c9eca98112c9"
+    },
+    {
+      "id": "baseline-page-026-010",
+      "source": "source/baseline/page-026.md",
+      "kind": "display",
+      "tex": "\\mathrm{error\\_sample\\_count}=N_y.\\tag{7.9}",
+      "tex_sha256": "d877b39493af51413cc2c79d8402c8932d2306994237b79a6adc866614cb1bab",
+      "svg": "math/baseline-page-026-010.svg",
+      "dimensions": {
+        "width_px": 260.098,
+        "height_px": 35.822
+      },
+      "svg_sha256": "c2f141c52352581a15b89a1e6cdb4b2738ae3f9ae58c7d8b298bbf5c0a78294f"
+    },
+    {
+      "id": "baseline-page-026-011",
+      "source": "source/baseline/page-026.md",
+      "kind": "inline",
+      "tex": "W",
+      "tex_sha256": "fcb5f40df9be6bae66c1d77a6c15968866a9e6cbd7314ca432b019d17392f6f4",
+      "svg": "math/baseline-page-026-011.svg",
+      "dimensions": {
+        "width_px": 21.505,
+        "height_px": 16.038
+      },
+      "svg_sha256": "5a611c71f949a6afb0e67a137061f275b0166d0a0776e4d88fa593ec69967c81"
+    },
+    {
+      "id": "baseline-page-026-012",
+      "source": "source/baseline/page-026.md",
+      "kind": "inline",
+      "tex": "\\lceil W/4\\rceil",
+      "tex_sha256": "6c5b219632484a6a5bdcb7075aed924c1d7e94d97637e7c43f114c8035edbdc0",
+      "svg": "math/baseline-page-026-012.svg",
+      "dimensions": {
+        "width_px": 47.61,
+        "height_px": 20.74
+      },
+      "svg_sha256": "ca09f4ca24fc10f9a7d474925815d20c9294e8037b198f0f2c1525fe2e853348"
+    },
+    {
+      "id": "baseline-page-026-013",
+      "source": "source/baseline/page-026.md",
+      "kind": "inline",
+      "tex": "0\\le\\mathrm{value}<2^W",
+      "tex_sha256": "299ea26761dc7d18cab20df1cb6f572d35d5bca28ee1ed4f1651bde58f9c1580",
+      "svg": "math/baseline-page-026-013.svg",
+      "dimensions": {
+        "width_px": 112.179,
+        "height_px": 20.389
+      },
+      "svg_sha256": "9d984595b13c4c2be472b6d5a649645788f76734534cfc1349be377770ce16d6"
+    },
+    {
+      "id": "baseline-page-027-001",
+      "source": "source/baseline/page-027.md",
+      "kind": "inline",
+      "tex": "W",
+      "tex_sha256": "fcb5f40df9be6bae66c1d77a6c15968866a9e6cbd7314ca432b019d17392f6f4",
+      "svg": "math/baseline-page-027-001.svg",
+      "dimensions": {
+        "width_px": 21.505,
+        "height_px": 16.038
+      },
+      "svg_sha256": "1629f67a627fa875f7a26e9efc927ffab2e5eeb08af2f0733b55d9aed5a8f272"
+    },
+    {
+      "id": "baseline-page-027-002",
+      "source": "source/baseline/page-027.md",
+      "kind": "inline",
+      "tex": "\\lceil W/4\\rceil",
+      "tex_sha256": "6c5b219632484a6a5bdcb7075aed924c1d7e94d97637e7c43f114c8035edbdc0",
+      "svg": "math/baseline-page-027-002.svg",
+      "dimensions": {
+        "width_px": 47.61,
+        "height_px": 20.74
+      },
+      "svg_sha256": "3f7717b7ce66200a1a36d538a6a3b389f3c64881ce578bf3a4b75027c8416e6a"
+    },
+    {
+      "id": "baseline-page-027-003",
+      "source": "source/baseline/page-027.md",
+      "kind": "inline",
+      "tex": "N",
+      "tex_sha256": "8ce86a6ae65d3692e7305e2c58ac62eebd97d3d943e093f577da25c36988246b",
+      "svg": "math/baseline-page-027-003.svg",
+      "dimensions": {
+        "width_px": 18.843,
+        "height_px": 15.687
+      },
+      "svg_sha256": "7c32352e08b22bfc09a523456772a426ebe019109bdb1d81360e379a608745be"
+    },
+    {
+      "id": "baseline-page-027-004",
+      "source": "source/baseline/page-027.md",
+      "kind": "inline",
+      "tex": "W_{Q_w}",
+      "tex_sha256": "b185e3956df9f69e4909cfaae1cde00ed741997a0adb504347dddfa14f69ee19",
+      "svg": "math/baseline-page-027-004.svg",
+      "dimensions": {
+        "width_px": 37.21,
+        "height_px": 20.243
+      },
+      "svg_sha256": "0b2403581c8fff613f09bf69b8468d021327b3667a65232f724b88aa94709dfa"
+    },
+    {
+      "id": "baseline-page-027-005",
+      "source": "source/baseline/page-027.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{tw}}",
+      "tex_sha256": "b657e1b611b5331c8e2987e6c4c1fb3c3466801282326e6d588d218a2a453762",
+      "svg": "math/baseline-page-027-005.svg",
+      "dimensions": {
+        "width_px": 33.241,
+        "height_px": 18.19
+      },
+      "svg_sha256": "af1b06338e8fd265eca9c299a45d4936659ae6ce775502801c9c0057f7f83efb"
+    },
+    {
+      "id": "baseline-page-027-006",
+      "source": "source/baseline/page-027.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{tw}}=17",
+      "tex_sha256": "5eab91f55f9340252767874d21953bf66135bab8179ddade6b7d85038ab9c640",
+      "svg": "math/baseline-page-027-006.svg",
+      "dimensions": {
+        "width_px": 71.515,
+        "height_px": 18.19
+      },
+      "svg_sha256": "7df7cbe27f0d24b891f06f5b8ed547ffe35a83eebfb2b8b46f37c663f5b4307d"
+    },
+    {
+      "id": "baseline-page-028-001",
+      "source": "source/baseline/page-028.md",
+      "kind": "inline",
+      "tex": "Q_w[i]",
+      "tex_sha256": "e0421b5b2f3c8bd9ebec46a69eb8a39aa59ecb679f07cbd8d863fcdd386c284f",
+      "svg": "math/baseline-page-028-001.svg",
+      "dimensions": {
+        "width_px": 40.174,
+        "height_px": 20.74
+      },
+      "svg_sha256": "34eaefbf61db75130ae41674f47b00678fe9bb8e807f04f6d1bd019b4769199c"
+    },
+    {
+      "id": "baseline-page-028-002",
+      "source": "source/baseline/page-028.md",
+      "kind": "inline",
+      "tex": "N_s",
+      "tex_sha256": "2f56096dd29a0f85656117671baab70cf330f708e74a9a7fb6ffcb049f6a12aa",
+      "svg": "math/baseline-page-028-002.svg",
+      "dimensions": {
+        "width_px": 22.852,
+        "height_px": 18.19
+      },
+      "svg_sha256": "04a39b2b0afc753ae0684542e035819d30fa0acc367471e3a84f710e11f820a6"
+    },
+    {
+      "id": "baseline-page-028-003",
+      "source": "source/baseline/page-028.md",
+      "kind": "inline",
+      "tex": "N_y",
+      "tex_sha256": "ece11019b2a5a2699dadfd2d9ccdd96ee065748a9bd53815469c029ffa862703",
+      "svg": "math/baseline-page-028-003.svg",
+      "dimensions": {
+        "width_px": 23.856,
+        "height_px": 20.354
+      },
+      "svg_sha256": "2892e9d0ec5fece387451eb4fb8b550aeaa67801b5982b090ee4249e8d359e57"
+    },
+    {
+      "id": "baseline-page-028-004",
+      "source": "source/baseline/page-028.md",
+      "kind": "inline",
+      "tex": "N_{\\mathrm{frames}}",
+      "tex_sha256": "7f74c9795caf758999c343f0ba26e0b290072111330dfe9aa3616c89801c4487",
+      "svg": "math/baseline-page-028-004.svg",
+      "dimensions": {
+        "width_px": 53.576,
+        "height_px": 18.19
+      },
+      "svg_sha256": "0d2607c903482da8e277d96b6bf591e74f9dabb19a312bf10aca441af3f15271"
+    },
+    {
+      "id": "baseline-page-028-005",
+      "source": "source/baseline/page-028.md",
+      "kind": "inline",
+      "tex": "N_{\\mathrm{frames}}(L/2+1)",
+      "tex_sha256": "e632013ede649ef54b07bd7d543ff5e8c3c213377fd06fdee76cbb0ecff4b4b9",
+      "svg": "math/baseline-page-028-005.svg",
+      "dimensions": {
+        "width_px": 119.928,
+        "height_px": 20.74
+      },
+      "svg_sha256": "07ed6517837ce855b3564d16af14d3b66c97db5faec381ffce508435126783c3"
+    },
+    {
+      "id": "baseline-page-028-006",
+      "source": "source/baseline/page-028.md",
+      "kind": "inline",
+      "tex": "N",
+      "tex_sha256": "8ce86a6ae65d3692e7305e2c58ac62eebd97d3d943e093f577da25c36988246b",
+      "svg": "math/baseline-page-028-006.svg",
+      "dimensions": {
+        "width_px": 18.843,
+        "height_px": 15.687
+      },
+      "svg_sha256": "e38633e009b41123f24414594f4e0ff272bc79f7752a5faac53661992dcad354"
+    },
+    {
+      "id": "baseline-page-028-007",
+      "source": "source/baseline/page-028.md",
+      "kind": "inline",
+      "tex": "\\lceil N/4\\rceil",
+      "tex_sha256": "fc5bd46ded2108270b0b8a3c1abcba8049eb96991266e199c525322ec192de25",
+      "svg": "math/baseline-page-028-007.svg",
+      "dimensions": {
+        "width_px": 45.33,
+        "height_px": 20.74
+      },
+      "svg_sha256": "de2d195ec4a01231db3b9c0518a516aaf73a3bc66495e7fc7fc526ce29363181"
+    },
+    {
+      "id": "baseline-page-028-008",
+      "source": "source/baseline/page-028.md",
+      "kind": "inline",
+      "tex": "y[0],\\ldots,y[N_y-1]",
+      "tex_sha256": "63eff15ddad6af9e0d7e6f59135b5821d7a2d8db3a4710dc3cac3b36b4428b3b",
+      "svg": "math/baseline-page-028-008.svg",
+      "dimensions": {
+        "width_px": 128.707,
+        "height_px": 21.422
+      },
+      "svg_sha256": "a16df63d52936a1905e338e36f9fb409b926d80ae69f4628696283c0d2843338"
+    },
+    {
+      "id": "baseline-page-028-009",
+      "source": "source/baseline/page-028.md",
+      "kind": "inline",
+      "tex": "N",
+      "tex_sha256": "8ce86a6ae65d3692e7305e2c58ac62eebd97d3d943e093f577da25c36988246b",
+      "svg": "math/baseline-page-028-009.svg",
+      "dimensions": {
+        "width_px": 18.843,
+        "height_px": 15.687
+      },
+      "svg_sha256": "5df88b8c20de0d911cf4308b46e1d86723dd0b35138bdff4761231b780483f3f"
+    },
+    {
+      "id": "baseline-page-028-010",
+      "source": "source/baseline/page-028.md",
+      "kind": "inline",
+      "tex": "Q_w[i]",
+      "tex_sha256": "e0421b5b2f3c8bd9ebec46a69eb8a39aa59ecb679f07cbd8d863fcdd386c284f",
+      "svg": "math/baseline-page-028-010.svg",
+      "dimensions": {
+        "width_px": 40.174,
+        "height_px": 20.74
+      },
+      "svg_sha256": "2a88da712dca322bffb8050693d88eaa71a84c5fc6e99bd62f39040e2504a51d"
+    },
+    {
+      "id": "baseline-page-028-011",
+      "source": "source/baseline/page-028.md",
+      "kind": "inline",
+      "tex": "W_{Q_w}=F+1",
+      "tex_sha256": "95a5cb22f1c51a8878db7c8c6b5abb3c2e7211f64ce1dddb34bd4ef23cfe859f",
+      "svg": "math/baseline-page-028-011.svg",
+      "dimensions": {
+        "width_px": 99.623,
+        "height_px": 20.243
+      },
+      "svg_sha256": "412ab2d3b6563f699b20fda7cacf721f45d9ee1c9e462dff2b627c4363563c26"
+    },
+    {
+      "id": "baseline-page-028-012",
+      "source": "source/baseline/page-028.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{tw}}",
+      "tex_sha256": "b657e1b611b5331c8e2987e6c4c1fb3c3466801282326e6d588d218a2a453762",
+      "svg": "math/baseline-page-028-012.svg",
+      "dimensions": {
+        "width_px": 33.241,
+        "height_px": 18.19
+      },
+      "svg_sha256": "c629e0b931ba97081adfd39fc76657b6977a879b24d89e3a998018497a533612"
+    },
+    {
+      "id": "baseline-page-028-013",
+      "source": "source/baseline/page-028.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{tw}}",
+      "tex_sha256": "b657e1b611b5331c8e2987e6c4c1fb3c3466801282326e6d588d218a2a453762",
+      "svg": "math/baseline-page-028-013.svg",
+      "dimensions": {
+        "width_px": 33.241,
+        "height_px": 18.19
+      },
+      "svg_sha256": "77afaf8b84a3f393309786916d64320bfeeb9858ccc35b08d785a2dcd5a8298b"
+    },
+    {
+      "id": "baseline-page-028-014",
+      "source": "source/baseline/page-028.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{tw}}",
+      "tex_sha256": "b657e1b611b5331c8e2987e6c4c1fb3c3466801282326e6d588d218a2a453762",
+      "svg": "math/baseline-page-028-014.svg",
+      "dimensions": {
+        "width_px": 33.241,
+        "height_px": 18.19
+      },
+      "svg_sha256": "e360c3b121c4372f8597b0692f40aa598417240412e6f4edbc258e2ed7b6de93"
+    },
+    {
+      "id": "baseline-page-028-015",
+      "source": "source/baseline/page-028.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{tw}}",
+      "tex_sha256": "b657e1b611b5331c8e2987e6c4c1fb3c3466801282326e6d588d218a2a453762",
+      "svg": "math/baseline-page-028-015.svg",
+      "dimensions": {
+        "width_px": 33.241,
+        "height_px": 18.19
+      },
+      "svg_sha256": "465de60d5de11f991f3cb5e71da45ea87045f81eb49c8bb13f6fb6f6016e5d06"
+    },
+    {
+      "id": "baseline-page-029-001",
+      "source": "source/baseline/page-029.md",
+      "kind": "inline",
+      "tex": "\\tau_m=(m+1)H",
+      "tex_sha256": "23670b2d1b29fe7a7f71a670b657fab95879c4d2937004bc238f66f2f8eb8120",
+      "svg": "math/baseline-page-029-001.svg",
+      "dimensions": {
+        "width_px": 113.02,
+        "height_px": 20.74
+      },
+      "svg_sha256": "2373b696f00a575c1c513d6f56bf4eadb242f7875a6c1825196629a7bfd027a7"
+    },
+    {
+      "id": "baseline-page-029-002",
+      "source": "source/baseline/page-029.md",
+      "kind": "inline",
+      "tex": "N_{\\mathrm{frames}}-1",
+      "tex_sha256": "7c0d73754c72d1111324e3a6267c23d48af68d8b5c884294b3a8e1c0a20578a0",
+      "svg": "math/baseline-page-029-002.svg",
+      "dimensions": {
+        "width_px": 81.043,
+        "height_px": 18.19
+      },
+      "svg_sha256": "d5e700549fcf6d6ce6c963467fe54a5fae9e50f391e9d095fb2451236573c87b"
+    },
+    {
+      "id": "baseline-page-033-001",
+      "source": "source/baseline/page-033.md",
+      "kind": "display",
+      "tex": "x[n]=\\operatorname{sat}_N(c).\\tag{8.1}",
+      "tex_sha256": "e489c9148b654d94487d8f560d092783feb2ee8eda8296003c2892aed3dcaa53",
+      "svg": "math/baseline-page-033-001.svg",
+      "dimensions": {
+        "width_px": 187.313,
+        "height_px": 35.14
+      },
+      "svg_sha256": "5e41b91b40322b10fe8b82d5ef958fb86e5961ae80fd40fec68cf566b905bc59"
+    },
+    {
+      "id": "baseline-page-033-002",
+      "source": "source/baseline/page-033.md",
+      "kind": "display",
+      "tex": "x[n]=\\begin{cases}\\operatorname{sat}_N(A),&n=n_0\\\\0,&n\\ne n_0.\\end{cases}\\tag{8.2}",
+      "tex_sha256": "8a133cba03902ef2259d90029836db203a896168fa02cf2f507ddb66f7e23aac",
+      "svg": "math/baseline-page-033-002.svg",
+      "dimensions": {
+        "width_px": 277.688,
+        "height_px": 67.005
+      },
+      "svg_sha256": "3d2cf568238e2ca8400943c808a587ea0571ca2fc9307130322743bdcd14de11"
+    },
+    {
+      "id": "baseline-page-033-003",
+      "source": "source/baseline/page-033.md",
+      "kind": "display",
+      "tex": "x[n]=\\begin{cases}0,&n<n_0\\\\\\operatorname{sat}_N(A),&n\\ge n_0.\\end{cases}\\tag{8.3}",
+      "tex_sha256": "d29e962032c53f834810b9313d36591b589eeb44243422e2663158524083bf6c",
+      "svg": "math/baseline-page-033-003.svg",
+      "dimensions": {
+        "width_px": 277.688,
+        "height_px": 67.005
+      },
+      "svg_sha256": "faaf9434406e8605e3e4e5466bea9559f5812aed44a69960d223220023badf4f"
+    },
+    {
+      "id": "baseline-page-034-001",
+      "source": "source/baseline/page-034.md",
+      "kind": "display",
+      "tex": "x[n]=\\operatorname{sat}_N\\left(\\operatorname{qcoef}(A\\sin(2\\pi fn+\\phi),0)\\right).\\tag{8.4}",
+      "tex_sha256": "d57ed950e144966acfc6536e5454ede04297322a40c3697953fa7bed55d72ce9",
+      "svg": "math/baseline-page-034-001.svg",
+      "dimensions": {
+        "width_px": 362.563,
+        "height_px": 35.14
+      },
+      "svg_sha256": "71ec3711fe33bf7cccbb531da27018f6219ec839a946d89db5b3e3720c6f4414"
+    },
+    {
+      "id": "baseline-page-034-002",
+      "source": "source/baseline/page-034.md",
+      "kind": "display",
+      "tex": "x[n]=\\operatorname{sat}_N\\left(\\operatorname{qcoef}(A\\cos(2\\pi fn+\\phi),0)\\right).\\tag{8.5}",
+      "tex_sha256": "0bf94fbbb10f3020125a2dab194448520e1175f9510678df0ca8a8bc0db2132c",
+      "svg": "math/baseline-page-034-002.svg",
+      "dimensions": {
+        "width_px": 364.334,
+        "height_px": 35.14
+      },
+      "svg_sha256": "452751b6cc2e125bfebceac02a0609034036487718ad7739da8f110a32ca19d5"
+    },
+    {
+      "id": "baseline-page-034-003",
+      "source": "source/baseline/page-034.md",
+      "kind": "display",
+      "tex": "s[n]=\\sum_{q=0}^{Q-1}A_q\\sin(2\\pi f_qn+\\phi_q).\\tag{8.6}",
+      "tex_sha256": "1b353bea6dbb5ce0a96d2a4ca6a837a36ba09fe8d8eee2c0695e440d9d613af6",
+      "svg": "math/baseline-page-034-003.svg",
+      "dimensions": {
+        "width_px": 294.524,
+        "height_px": 68.502
+      },
+      "svg_sha256": "6f851320b1630149d990d196c6c4ff5de80994470cec3ee59e372d8073fa4a29"
+    },
+    {
+      "id": "baseline-page-034-004",
+      "source": "source/baseline/page-034.md",
+      "kind": "display",
+      "tex": "x[n]=\\operatorname{sat}_N(\\operatorname{qcoef}(s[n],0)).\\tag{8.7}",
+      "tex_sha256": "6dc0cc96c2dd73a32136f0836cbe57d63a48873fe22812fa03bf75d656956da4",
+      "svg": "math/baseline-page-034-004.svg",
+      "dimensions": {
+        "width_px": 270.868,
+        "height_px": 35.14
+      },
+      "svg_sha256": "0eb464a46f436abfa961ee46e6ca334ee19973e92c5fce331e1c4cf1dae02d66"
+    },
+    {
+      "id": "baseline-page-034-005",
+      "source": "source/baseline/page-034.md",
+      "kind": "display",
+      "tex": "r\\leftarrow r\\oplus((r\\ll13)\\bmod2^{32}).\\tag{8.8}",
+      "tex_sha256": "bc61704112e5e782220c18679d6f61c27854ecd6692e173d47a3c2689d6132dd",
+      "svg": "math/baseline-page-034-005.svg",
+      "dimensions": {
+        "width_px": 280.278,
+        "height_px": 37.176
+      },
+      "svg_sha256": "fe9ec9628941ceea70d3e7472797c5165371932300e5258c7d5bbac6ef21bcc2"
+    },
+    {
+      "id": "baseline-page-034-006",
+      "source": "source/baseline/page-034.md",
+      "kind": "display",
+      "tex": "r\\leftarrow r\\oplus(r\\gg17).\\tag{8.9}",
+      "tex_sha256": "c9fc35a53fca42cde5466341787f1c8c0e29dc85964400d7393c12353c5abeab",
+      "svg": "math/baseline-page-034-006.svg",
+      "dimensions": {
+        "width_px": 206.997,
+        "height_px": 35.14
+      },
+      "svg_sha256": "8a5268a659b387f0a63d7b8c2e261c961994908ce4c50ea1ddba919a18bb8684"
+    },
+    {
+      "id": "baseline-page-034-007",
+      "source": "source/baseline/page-034.md",
+      "kind": "display",
+      "tex": "r\\leftarrow r\\oplus((r\\ll5)\\bmod2^{32}).\\tag{8.10}",
+      "tex_sha256": "cbe8292f17b110d3f26c21e82f0f4541cb8d667c12324a2485d9efe848e83f6a",
+      "svg": "math/baseline-page-034-007.svg",
+      "dimensions": {
+        "width_px": 280.278,
+        "height_px": 37.176
+      },
+      "svg_sha256": "eb002638125623800558a62910ccc07d86d649bebbf1965cf8bec9ec8a2d05e6"
+    },
+    {
+      "id": "baseline-page-034-008",
+      "source": "source/baseline/page-034.md",
+      "kind": "display",
+      "tex": "u[n]=r\\bmod2^B,\\qquad x[n]=\\operatorname{sat}_N(u[n]-2^{B-1}).\\tag{8.11}",
+      "tex_sha256": "23914330bd52236b5f5e4e2aa9ea5d399ad6dcc795f63850211a661b8b9f5296",
+      "svg": "math/baseline-page-034-008.svg",
+      "dimensions": {
+        "width_px": 424.425,
+        "height_px": 37.388
+      },
+      "svg_sha256": "791f14a201c9ece476662c97d4813b965785cfb34c6e0785f5d4d5e546f14ef8"
+    },
+    {
+      "id": "baseline-page-035-001",
+      "source": "source/baseline/page-035.md",
+      "kind": "inline",
+      "tex": "W_{\\mathrm{mag2}}",
+      "tex_sha256": "3d9a61ba0c88031ac8178f727ae91a1b087876a7eeb0bbee792803bfde2ede82",
+      "svg": "math/baseline-page-035-001.svg",
+      "dimensions": {
+        "width_px": 48.669,
+        "height_px": 20.366
+      },
+      "svg_sha256": "2d7248047750185bf2e31dda1fe36f3dabef79f0048fbdf4405914b06e796f5f"
+    },
+    {
+      "id": "baseline-page-035-002",
+      "source": "source/baseline/page-035.md",
+      "kind": "inline",
+      "tex": "0\\le\\mathrm{THR2}<2^{W_{\\mathrm{mag2}}}",
+      "tex_sha256": "13ae49c5e18c608896b17468a0e774ebb494a4a9f91c92c67ca2d91147bebb73",
+      "svg": "math/baseline-page-035-002.svg",
+      "dimensions": {
+        "width_px": 142.695,
+        "height_px": 20.389
+      },
+      "svg_sha256": "3d59bfd94a52ccd52a56a7bd66688064650dc5fe2cefda674ed5f58204b0598a"
+    },
+    {
+      "id": "baseline-page-035-003",
+      "source": "source/baseline/page-035.md",
+      "kind": "inline",
+      "tex": "N_y",
+      "tex_sha256": "ece11019b2a5a2699dadfd2d9ccdd96ee065748a9bd53815469c029ffa862703",
+      "svg": "math/baseline-page-035-003.svg",
+      "dimensions": {
+        "width_px": 23.856,
+        "height_px": 20.354
+      },
+      "svg_sha256": "f7197c4e016482985b334a0f7e71a80a6439713971d2f0f28a8061d9d5a09ce5"
+    },
+    {
+      "id": "baseline-page-035-004",
+      "source": "source/baseline/page-035.md",
+      "kind": "inline",
+      "tex": "x[n]\\in\\mathcal{S}_N",
+      "tex_sha256": "d6c3d3c7cd69d083ca8b06c7337b617a5e38c245393027e953e48bf1c84955ba",
+      "svg": "math/baseline-page-035-004.svg",
+      "dimensions": {
+        "width_px": 72.181,
+        "height_px": 20.74
+      },
+      "svg_sha256": "1ff6cfd7d60b65192fc2d68ddbef478d9fe6d3a48eb313490a42a601816613b5"
+    },
+    {
+      "id": "baseline-page-035-005",
+      "source": "source/baseline/page-035.md",
+      "kind": "display",
+      "tex": "u[n]=a_{\\mathrm{raw}}[n]-2^{B-1}.\\tag{9.1}",
+      "tex_sha256": "8687a454684608607c92c5c662d792bcdc447eca44a6a80936618ec5514b041e",
+      "svg": "math/baseline-page-035-005.svg",
+      "dimensions": {
+        "width_px": 238.135,
+        "height_px": 37.388
+      },
+      "svg_sha256": "c68204dfc82b7460b45f1d6314fbd9da81e2212c308bbea0341f98506fbb0da2"
+    },
+    {
+      "id": "baseline-page-035-006",
+      "source": "source/baseline/page-035.md",
+      "kind": "display",
+      "tex": "d_c[-1]=0.\\tag{9.2}",
+      "tex_sha256": "1e42f4d5ab3db84a1ee32939c072ca62a2a1b1c41dda698ba6f12339152ecc7a",
+      "svg": "math/baseline-page-035-006.svg",
+      "dimensions": {
+        "width_px": 159.92,
+        "height_px": 35.14
+      },
+      "svg_sha256": "a6b520cfda019a8bdb819779dc97e5800482744bd96fa4a4c2af31e9ff93e658"
+    },
+    {
+      "id": "baseline-page-035-007",
+      "source": "source/baseline/page-035.md",
+      "kind": "display",
+      "tex": "d_c[n]=d_c[n-1]+\\operatorname{asr}(u[n]-d_c[n-1],S_{\\mathrm{DC}}).\\tag{9.3}",
+      "tex_sha256": "dc8da7595ed3c1f75417b24bb0aab73c7c091e1e34b9699a2ec99357597d48b6",
+      "svg": "math/baseline-page-035-007.svg",
+      "dimensions": {
+        "width_px": 398.247,
+        "height_px": 35.14
+      },
+      "svg_sha256": "bf96642a44d5321838b552575daae8cab589e2820d02293a1179a7fa4b3df3d0"
+    },
+    {
+      "id": "baseline-page-035-008",
+      "source": "source/baseline/page-035.md",
+      "kind": "display",
+      "tex": "x[n]=\\operatorname{sat}_N(u[n]-d_c[n]).\\tag{9.4}",
+      "tex_sha256": "849f1bf818df83c3c7bf12a2213a52bc43e76a3bfcb6ad4dcef92f224412857e",
+      "svg": "math/baseline-page-035-008.svg",
+      "dimensions": {
+        "width_px": 260.659,
+        "height_px": 35.14
+      },
+      "svg_sha256": "1f34f0de629b755707aab1e45b6ca23361b8673ff54cb1b50c3c0788c776f342"
+    },
+    {
+      "id": "baseline-page-035-009",
+      "source": "source/baseline/page-035.md",
+      "kind": "inline",
+      "tex": "B_{\\mathrm{audio}}\\ge N",
+      "tex_sha256": "f793d773c3cfd82b54697992060f84a03a12b8a4dac530cb7fa1afa559f28cee",
+      "svg": "math/baseline-page-035-009.svg",
+      "dimensions": {
+        "width_px": 83.382,
+        "height_px": 18.19
+      },
+      "svg_sha256": "f3325e4148857f07db46b32d7733995ec61582ac2000846ead4e5b99730b2f4f"
+    },
+    {
+      "id": "baseline-page-035-010",
+      "source": "source/baseline/page-035.md",
+      "kind": "display",
+      "tex": "x[n]=\\operatorname{sat}_N(\\operatorname{rnd\\_shr}(a_{\\mathrm{audio}}[n],B_{\\mathrm{audio}}-N)).\\tag{9.5}",
+      "tex_sha256": "c564ddce54306151ffb539bce07f86bb95055bfb65dbe2ab755062e79a4d5904",
+      "svg": "math/baseline-page-035-010.svg",
+      "dimensions": {
+        "width_px": 386.333,
+        "height_px": 35.14
+      },
+      "svg_sha256": "eef87b04b4c5de5e3b87f7bf711605f68278fa680dafc1061a4093d216f7c3b2"
+    },
+    {
+      "id": "baseline-page-035-011",
+      "source": "source/baseline/page-035.md",
+      "kind": "inline",
+      "tex": "B_{\\mathrm{audio}}<N",
+      "tex_sha256": "006c16fa86517486aee566f983c0525ec50033dee21e9e80d873c3757b3d2f59",
+      "svg": "math/baseline-page-035-011.svg",
+      "dimensions": {
+        "width_px": 83.382,
+        "height_px": 18.19
+      },
+      "svg_sha256": "751734f0de8a7a4e8ccf1ab661dd1116d1af34859469bf78dcd2bdbcd80901c6"
+    },
+    {
+      "id": "baseline-page-036-001",
+      "source": "source/baseline/page-036.md",
+      "kind": "display",
+      "tex": "\\mathrm{THR2}=T_{\\mathrm{amp},QF}^{\\,2}.\\tag{9.6}",
+      "tex_sha256": "fb859f03a8d84b0be37cd04a5474be6ce1f36c818351127f9f597529a816faed",
+      "svg": "math/baseline-page-036-001.svg",
+      "dimensions": {
+        "width_px": 208.71,
+        "height_px": 39.296
+      },
+      "svg_sha256": "d14cf25ca79972200c30b76efdb4dfbdd3f2796d234a410c3dcd3a2ef2effefc"
+    },
+    {
+      "id": "baseline-page-036-002",
+      "source": "source/baseline/page-036.md",
+      "kind": "display",
+      "tex": "T_{\\mathrm{amp},QF}=\\mathrm{SW}[7:0]\\ll K_{\\mathrm{thr}},\\qquad\\mathrm{THR2}=T_{\\mathrm{amp},QF}^{\\,2}.\\tag{9.7}",
+      "tex_sha256": "52f18950e78f84ee0f1d43618261669da709aff5d250f51b1cb9449a7cf657c8",
+      "svg": "math/baseline-page-036-002.svg",
+      "dimensions": {
+        "width_px": 446.205,
+        "height_px": 39.296
+      },
+      "svg_sha256": "3fd9e6c9208d3f98b7c16bc6b8847dbef3db9bd02fbb9612a23e9801e3f76bd7"
+    },
+    {
+      "id": "baseline-page-036-003",
+      "source": "source/baseline/page-036.md",
+      "kind": "inline",
+      "tex": "\\mathrm{THR2}=T_{\\mathrm{amp},QF}^{\\,2}",
+      "tex_sha256": "2ca6b9fbecde9457c451596f33d5ac0aa3a47abac5ff18538fee75a30bbbbb42",
+      "svg": "math/baseline-page-036-003.svg",
+      "dimensions": {
+        "width_px": 125.47,
+        "height_px": 24.549
+      },
+      "svg_sha256": "19329df05f1861c0f19c9bf3ad0d2d2169f498ae822a9c8bcd72b302b55eb6d2"
+    },
+    {
+      "id": "baseline-page-036-004",
+      "source": "source/baseline/page-036.md",
+      "kind": "inline",
+      "tex": "0\\le\\mathrm{THR2}<2^{W_{\\mathrm{mag2}}}",
+      "tex_sha256": "13ae49c5e18c608896b17468a0e774ebb494a4a9f91c92c67ca2d91147bebb73",
+      "svg": "math/baseline-page-036-004.svg",
+      "dimensions": {
+        "width_px": 142.695,
+        "height_px": 20.389
+      },
+      "svg_sha256": "f95f9125a0fa68065142d27f09b11ccf752ff9baafe20925a78a20846bbc7cf6"
+    },
+    {
+      "id": "baseline-page-036-005",
+      "source": "source/baseline/page-036.md",
+      "kind": "display",
+      "tex": "C_{\\mathrm{hop}}=f_{\\mathrm{clk}}\\frac{H}{F_s}.\\tag{10.1}",
+      "tex_sha256": "ec0e2fabe6c4657fa448fdaee3eb712082ff6a3a1ab9fc0acd668309c144a2bd",
+      "svg": "math/baseline-page-036-005.svg",
+      "dimensions": {
+        "width_px": 193.994,
+        "height_px": 54.308
+      },
+      "svg_sha256": "4df90366583bba2d67ec497b34d9efaae0093b32905ffe1363d9c53e5993e96e"
+    },
+    {
+      "id": "baseline-page-036-006",
+      "source": "source/baseline/page-036.md",
+      "kind": "display",
+      "tex": "T_{\\mathrm{frame}}<\\frac{G}{F_s}.\\tag{10.2}",
+      "tex_sha256": "2f6e6fa22491df14f0e9bbef59991a6132ac024c8a3d73941af2fcecf68718df",
+      "svg": "math/baseline-page-036-006.svg",
+      "dimensions": {
+        "width_px": 178.334,
+        "height_px": 54.658
+      },
+      "svg_sha256": "e56a905650bbf0cf3f6ef9ee6587e8589f140ff7567b42f537d5205ff01ea6b6"
+    },
+    {
+      "id": "baseline-page-038-001",
+      "source": "source/baseline/page-038.md",
+      "kind": "display",
+      "tex": "\\mathrm{transport\\_blocked}\\Rightarrow\\begin{cases}\\text{drop telemetry record}\\\\\\text{increment the relevant drop/error counter}\\\\\\text{continue core processing.}\\end{cases}\\tag{13.1}",
+      "tex_sha256": "b5f57f9e0aac67cfd7328aa5b38caf7762e1661a90a85cdfee284b8fc0449878",
+      "svg": "math/baseline-page-038-001.svg",
+      "dimensions": {
+        "width_px": 565.501,
+        "height_px": 86.134
+      },
+      "svg_sha256": "734aae3c31f03239b93c4ac2b0839afd36a222a4471de12b403a7b1333b5d4f1"
+    },
+    {
+      "id": "baseline-page-039-001",
+      "source": "source/baseline/page-039.md",
+      "kind": "display",
+      "tex": "\\text{PC Ethernet IP}=192.168.10.1/24.\\tag{14.1}",
+      "tex_sha256": "a306c791afce81e072e74e27171a38e0e8024f3719b8dd76013f8e014ac62350",
+      "svg": "math/baseline-page-039-001.svg",
+      "dimensions": {
+        "width_px": 335.793,
+        "height_px": 35.14
+      },
+      "svg_sha256": "959ed726e4d2e0f4b0064637a0cef3a0ed9993d93823221e4d2ca917c0d4bb36"
+    },
+    {
+      "id": "baseline-page-039-002",
+      "source": "source/baseline/page-039.md",
+      "kind": "display",
+      "tex": "\\text{DE1-SoC HPS IP}=192.168.10.2/24.\\tag{14.2}",
+      "tex_sha256": "02622fdf3efe77b0785f66fcaef84a50bf7f944c3a81028ed450b0cdb960bd88",
+      "svg": "math/baseline-page-039-002.svg",
+      "dimensions": {
+        "width_px": 348.368,
+        "height_px": 35.14
+      },
+      "svg_sha256": "5be7bb976f55691170fbf1798356b1c928a06f8ab73d2f57e80b28285cf3addb"
+    },
+    {
+      "id": "baseline-page-048-001",
+      "source": "source/baseline/page-048.md",
+      "kind": "display",
+      "tex": "0\\le\\mathrm{THR2}<2^{56}.\\tag{16.1}",
+      "tex_sha256": "91da2250babb417718b85e76d972bdc85c55cc5d65f47c483268f2fb50267181",
+      "svg": "math/baseline-page-048-001.svg",
+      "dimensions": {
+        "width_px": 209.776,
+        "height_px": 37.176
+      },
+      "svg_sha256": "297a4556c54895056c283b5e766b846a072674dc5f57af6401b2fdd5a830ecca"
+    },
+    {
+      "id": "baseline-page-048-002",
+      "source": "source/baseline/page-048.md",
+      "kind": "display",
+      "tex": "\\mathrm{THR2}_{\\mathrm{active}}[m+1]=\\begin{cases}\\mathrm{THR2}_{\\mathrm{shadow}},&\\text{if commit pending at frame boundary}\\\\\\mathrm{THR2}_{\\mathrm{active}}[m],&\\text{otherwise.}\\end{cases}\\tag{16.2}",
+      "tex_sha256": "811093304197784790ce1701591fca437292b49a43f1d10f96c8d1a790dce68d",
+      "svg": "math/baseline-page-048-002.svg",
+      "dimensions": {
+        "width_px": 639.161,
+        "height_px": 67.005
+      },
+      "svg_sha256": "ef421a14917488fa18a146aa6d364c3771967f6cd5899200b088c00699393599"
+    },
+    {
+      "id": "baseline-page-049-001",
+      "source": "source/baseline/page-049.md",
+      "kind": "display",
+      "tex": "B=\\text{FPGA-visible ring base address}.\\tag{17.1}",
+      "tex_sha256": "985588b16b2726c647d411f076594a0c52abfdac308ad64193466f9778886bc9",
+      "svg": "math/baseline-page-049-001.svg",
+      "dimensions": {
+        "width_px": 348.971,
+        "height_px": 35.14
+      },
+      "svg_sha256": "87b32c592651da163a094f0ec82e5463a097ded3cab8ed0e320d54593fbb8d10"
+    },
+    {
+      "id": "baseline-page-049-002",
+      "source": "source/baseline/page-049.md",
+      "kind": "display",
+      "tex": "R=\\text{ring size in bytes}.\\tag{17.2}",
+      "tex_sha256": "f0d8cc34d32990ba2f3f6d9e9c1ec0ca0304d3ccf3d7610c64b6e0585d7f9797",
+      "svg": "math/baseline-page-049-002.svg",
+      "dimensions": {
+        "width_px": 246.134,
+        "height_px": 35.14
+      },
+      "svg_sha256": "e9757e2463b47d0e1019f709458a058d441f99a7f715a0c3a09e741213b28ba6"
+    },
+    {
+      "id": "baseline-page-049-003",
+      "source": "source/baseline/page-049.md",
+      "kind": "display",
+      "tex": "R=2^q,\\quad q\\ge20,\\quad R\\equiv0\\pmod{64}.\\tag{17.3}",
+      "tex_sha256": "b3f45c2029fa7f5403b9633eeb51aa3d8664101a0b90d76369dea3c73fe609f4",
+      "svg": "math/baseline-page-049-003.svg",
+      "dimensions": {
+        "width_px": 346.811,
+        "height_px": 35.14
+      },
+      "svg_sha256": "9d768095b163b2761e5cdaa1866934e29d2ab12917ee625a732cbd120b272be0"
+    },
+    {
+      "id": "baseline-page-049-004",
+      "source": "source/baseline/page-049.md",
+      "kind": "display",
+      "tex": "B\\equiv0\\pmod{64}.\\tag{17.4}",
+      "tex_sha256": "208d202ad3f1a7d0243f86ec17bf4f7a30e3d42df1e67b570d79538d400873be",
+      "svg": "math/baseline-page-049-004.svg",
+      "dimensions": {
+        "width_px": 208.055,
+        "height_px": 35.14
+      },
+      "svg_sha256": "f709a58d326ddd5e210dde2d760bc4d514f22368cb3ad45193a2b9ebfee4c814"
+    },
+    {
+      "id": "baseline-page-049-005",
+      "source": "source/baseline/page-049.md",
+      "kind": "display",
+      "tex": "\\operatorname{off}(p)=p\\mathbin{\\&}(R-1).\\tag{17.5}",
+      "tex_sha256": "0f88c28ee31f57edfbf8890249cc4d764d88c2934e5a5bc9115a2b96dd67f5ea",
+      "svg": "math/baseline-page-049-005.svg",
+      "dimensions": {
+        "width_px": 234.411,
+        "height_px": 35.14
+      },
+      "svg_sha256": "235e637956cf5cbe82da6e07b1db3bed3e86ba585a56d165287705f646e08bb5"
+    },
+    {
+      "id": "baseline-page-049-006",
+      "source": "source/baseline/page-049.md",
+      "kind": "display",
+      "tex": "U=W-R_d.\\tag{17.6}",
+      "tex_sha256": "1d95cbeb4ee2c85f1b9706ed739f4179cdc5287ebc9ae7aefe3ed52171d177e1",
+      "svg": "math/baseline-page-049-006.svg",
+      "dimensions": {
+        "width_px": 184.814,
+        "height_px": 35.14
+      },
+      "svg_sha256": "037b56f96fdf97f42220bfde121ba0dc40949495ee0d7522c6dc66d00800b511"
+    },
+    {
+      "id": "baseline-page-049-007",
+      "source": "source/baseline/page-049.md",
+      "kind": "display",
+      "tex": "0\\le U\\le R.\\tag{17.7}",
+      "tex_sha256": "fd369eab0f51bd80aafc40b59dc7c1722264f86dc74b0672dd360c531d25b969",
+      "svg": "math/baseline-page-049-007.svg",
+      "dimensions": {
+        "width_px": 169.977,
+        "height_px": 35.14
+      },
+      "svg_sha256": "69826cb41e0f1e4513d8b08371663721d2239b67c37246ead3210f66f6aaf4ff"
+    },
+    {
+      "id": "baseline-page-050-001",
+      "source": "source/baseline/page-050.md",
+      "kind": "display",
+      "tex": "o=\\operatorname{off}(W).\\tag{17.8}",
+      "tex_sha256": "73737c0d0556a7dbc474b3176fe24db3d260427ca8465b72fefec0676830a249",
+      "svg": "math/baseline-page-050-001.svg",
+      "dimensions": {
+        "width_px": 171.807,
+        "height_px": 35.14
+      },
+      "svg_sha256": "5c2a3620a407e5c8686fff7ba17616bc413b91e52bf510eabd0c558e5da7aa06"
+    },
+    {
+      "id": "baseline-page-050-002",
+      "source": "source/baseline/page-050.md",
+      "kind": "display",
+      "tex": "T_{\\mathrm{tail}}=R-o.\\tag{17.9}",
+      "tex_sha256": "5709e86720b6bb1ea737289c72f9dea5ae7cd1a043137abe231c7e969a20a58b",
+      "svg": "math/baseline-page-050-002.svg",
+      "dimensions": {
+        "width_px": 184.006,
+        "height_px": 35.14
+      },
+      "svg_sha256": "363e3dbd44c5e38cc156237216f9a52a278f533e3292a0e15646677e88637d27"
+    },
+    {
+      "id": "baseline-page-050-003",
+      "source": "source/baseline/page-050.md",
+      "kind": "display",
+      "tex": "L_{\\mathrm{req}}=\\begin{cases}T_{\\mathrm{tail}}+L_{\\mathrm{rec}},&o+L_{\\mathrm{rec}}>R\\\\L_{\\mathrm{rec}},&o+L_{\\mathrm{rec}}\\le R.\\end{cases}\\tag{17.10}",
+      "tex_sha256": "d9af645b0cade42b8c615632ce60ce7e066c624b2e2cc5195b125e96a6f4bb5e",
+      "svg": "math/baseline-page-050-003.svg",
+      "dimensions": {
+        "width_px": 355.405,
+        "height_px": 67.005
+      },
+      "svg_sha256": "3899132b34816d1f4ccd2bfaf621678214e53d6a526d241ee6142dae1726d8e0"
+    },
+    {
+      "id": "baseline-page-050-004",
+      "source": "source/baseline/page-050.md",
+      "kind": "display",
+      "tex": "F_{\\mathrm{free}}=R-(W-R_d)-G_{\\mathrm{guard}}.\\tag{17.11}",
+      "tex_sha256": "ea4a746558520afe4630ee05737f05e0d7021f199944060fe46ff8c6aad70a4a",
+      "svg": "math/baseline-page-050-004.svg",
+      "dimensions": {
+        "width_px": 320.168,
+        "height_px": 35.834
+      },
+      "svg_sha256": "e97fd4ebab5af7ed506fc489045327d0667a06673ef183d5fc0ab5903d63b3ca"
+    },
+    {
+      "id": "baseline-page-050-005",
+      "source": "source/baseline/page-050.md",
+      "kind": "display",
+      "tex": "F_{\\mathrm{free}}\\ge L_{\\mathrm{req}}.\\tag{17.12}",
+      "tex_sha256": "02eb3b2062a8d632f1e2754d2e62273f3e7dc2e43c14f14dda89afff3e79895b",
+      "svg": "math/baseline-page-050-005.svg",
+      "dimensions": {
+        "width_px": 184.183,
+        "height_px": 35.711
+      },
+      "svg_sha256": "596b62cc47ad875d9508a69a97aef0b17649a0ff0e505fc439b1beda3de361e7"
+    },
+    {
+      "id": "baseline-page-050-006",
+      "source": "source/baseline/page-050.md",
+      "kind": "display",
+      "tex": "L_{\\mathrm{rec}}=\\operatorname{align}_{64}(H_{\\mathrm{bytes}}+P_{\\mathrm{bytes}}).\\tag{17.13}",
+      "tex_sha256": "0147344318ecacbcbc607fa0b47e18a1b00c1c829f6e78390b786c1d472fc287",
+      "svg": "math/baseline-page-050-006.svg",
+      "dimensions": {
+        "width_px": 314.14,
+        "height_px": 35.822
+      },
+      "svg_sha256": "d2c35ed26fae72ae766337bbdc075a870562bd6d89b65bd82c7893f891ac3f6e"
+    },
+    {
+      "id": "baseline-page-051-001",
+      "source": "source/baseline/page-051.md",
+      "kind": "inline",
+      "tex": "2^{32}",
+      "tex_sha256": "7f7d49c241ad4488991a0327130a2b0cd23ae6309f9f1ff35501a3d32bbffdca",
+      "svg": "math/baseline-page-051-001.svg",
+      "dimensions": {
+        "width_px": 24.759,
+        "height_px": 17.994
+      },
+      "svg_sha256": "5f5bdf2c33a0545b6a2f2ad951fbcf9505a232fe9401f134a9168f5796c8bfaf"
+    },
+    {
+      "id": "baseline-page-054-001",
+      "source": "source/baseline/page-054.md",
+      "kind": "display",
+      "tex": "32+\\mathrm{payload\\_bytes}\\le P_{\\mathrm{udp,max}}=1200.\\tag{18.1}",
+      "tex_sha256": "a311050154b416cd51a0242113ffd116a10cf317dd305d0051644eee4910a306",
+      "svg": "math/baseline-page-054-001.svg",
+      "dimensions": {
+        "width_px": 360.078,
+        "height_px": 35.711
+      },
+      "svg_sha256": "f32d4a484faecedcbff857bf0dafde7d794f51d41803029074dec52f6b2d9f8e"
+    },
+    {
+      "id": "baseline-page-056-001",
+      "source": "source/baseline/page-056.md",
+      "kind": "display",
+      "tex": "\\operatorname{clip}_{16}(z)=\\min(z,65535).\\tag{19.1}",
+      "tex_sha256": "1358c440031f08fe16168a6a0b4768328549c43c01fb83dfbd70a47062689763",
+      "svg": "math/baseline-page-056-001.svg",
+      "dimensions": {
+        "width_px": 268.733,
+        "height_px": 35.275
+      },
+      "svg_sha256": "b931e5773f8b2178e7916b6133e927095b121094f0eadcc6f72a0abcd2650e9c"
+    },
+    {
+      "id": "baseline-page-057-001",
+      "source": "source/baseline/page-057.md",
+      "kind": "display",
+      "tex": "k_{\\min}(b)=\\left\\lfloor\\frac{129b}{64}\\right\\rfloor.\\tag{19.2}",
+      "tex_sha256": "d5349297a4d3bddac7bfd8a178c71901c0cd634e5e9e081277a812205dd8a36d",
+      "svg": "math/baseline-page-057-001.svg",
+      "dimensions": {
+        "width_px": 221.192,
+        "height_px": 57.441
+      },
+      "svg_sha256": "1d803c1c47045c63a53e2f0a630baa1a46d0fb3857472386d301d148c8f47e61"
+    },
+    {
+      "id": "baseline-page-057-002",
+      "source": "source/baseline/page-057.md",
+      "kind": "display",
+      "tex": "k_{\\max}(b)=\\left\\lfloor\\frac{129(b+1)}{64}\\right\\rfloor-1.\\tag{19.3}",
+      "tex_sha256": "a554ce3fec4c898b926a3b43d96b99357dea7ef749f3e914f729ca6162b90a71",
+      "svg": "math/baseline-page-057-002.svg",
+      "dimensions": {
+        "width_px": 288.24,
+        "height_px": 57.441
+      },
+      "svg_sha256": "18549f92d4b98d0454b96a8936b613a5d2fb56d4e3a76cda1070e6fe177b341e"
+    },
+    {
+      "id": "baseline-page-057-003",
+      "source": "source/baseline/page-057.md",
+      "kind": "display",
+      "tex": "\\mathrm{spec64}[b]=\\operatorname{clip}_{16}\\left(\\max_{k_{\\min}(b)\\le k\\le k_{\\max}(b)}(\\operatorname{mag2}[k]\\gg\\mathrm{spec\\_shift})\\right).\\tag{19.4}",
+      "tex_sha256": "e9f4b04f1bf0aa92d1eb957363aeb80dc91a534f5310bc004c3a7f052c4a22e2",
+      "svg": "math/baseline-page-057-003.svg",
+      "dimensions": {
+        "width_px": 513.616,
+        "height_px": 57.441
+      },
+      "svg_sha256": "f4ef3218d6fba797f40eb99353229e794557ab9041bbaf0d5c918a640541e355"
+    },
+    {
+      "id": "baseline-page-058-001",
+      "source": "source/baseline/page-058.md",
+      "kind": "display",
+      "tex": "\\frac{\\mathrm{suppressed\\_count}[b]}{\\mathrm{eligible\\_count}[b]}",
+      "tex_sha256": "efd637fb6aec19bcbcd878273a85923c3118e6d69ad06921c59b75089ebea3ca",
+      "svg": "math/baseline-page-058-001.svg",
+      "dimensions": {
+        "width_px": 153.855,
+        "height_px": 56.858
+      },
+      "svg_sha256": "fc625557b1983d6dbd6a00a66d18a401e651d053b22229467939070e6bc3ec6e"
+    },
+    {
+      "id": "baseline-page-059-001",
+      "source": "source/baseline/page-059.md",
+      "kind": "inline",
+      "tex": "2^{32}",
+      "tex_sha256": "7f7d49c241ad4488991a0327130a2b0cd23ae6309f9f1ff35501a3d32bbffdca",
+      "svg": "math/baseline-page-059-001.svg",
+      "dimensions": {
+        "width_px": 24.759,
+        "height_px": 17.994
+      },
+      "svg_sha256": "8e7b1b40f647537524068b7d7e4b4e32e27f18f65b1aa91f6a520634e139a85d"
+    },
+    {
+      "id": "baseline-page-059-002",
+      "source": "source/baseline/page-059.md",
+      "kind": "inline",
+      "tex": "2^{64}",
+      "tex_sha256": "90703e5d68fd8ec1caecccfaa22c0e0db7367e9b25da22ac3584d17cee44d167",
+      "svg": "math/baseline-page-059-002.svg",
+      "dimensions": {
+        "width_px": 25.027,
+        "height_px": 18.105
+      },
+      "svg_sha256": "953e164fe906904abdde2003382d38090810a6ce8373121df90594cbb1765a80"
+    },
+    {
+      "id": "baseline-page-061-001",
+      "source": "source/baseline/page-061.md",
+      "kind": "display",
+      "tex": "P_{\\mathrm{udp,max}}=1200\\text{ bytes}.\\tag{20.1}",
+      "tex_sha256": "527f0191b1f1f2c3f14fbb752914e1fb65cc1b4c442b4a24125a978f70563221",
+      "svg": "math/baseline-page-061-001.svg",
+      "dimensions": {
+        "width_px": 248.957,
+        "height_px": 35.711
+      },
+      "svg_sha256": "23a3ed25b140a8408f51636b999ba1eab5e958b385606c76d50c092e5cb57e58"
+    },
+    {
+      "id": "baseline-page-063-001",
+      "source": "source/baseline/page-063.md",
+      "kind": "display",
+      "tex": "\\text{telemetry UDP port}=5005.\\tag{20.2}",
+      "tex_sha256": "50d86e7deb13d745754280a98fcaae6ef673e5380a3e8901077000232600a083",
+      "svg": "math/baseline-page-063-001.svg",
+      "dimensions": {
+        "width_px": 289.123,
+        "height_px": 35.14
+      },
+      "svg_sha256": "a4064a1d779dbf1d1fa4c86e94697109a0edd83f5777ab61d1feb101dde203f0"
+    },
+    {
+      "id": "baseline-page-063-002",
+      "source": "source/baseline/page-063.md",
+      "kind": "display",
+      "tex": "\\text{command UDP port}=5006.\\tag{20.3}",
+      "tex_sha256": "6fb3e202c0e2f0c182daae688bea088b84e11e83e0807e9147ccb8dc28184260",
+      "svg": "math/baseline-page-063-002.svg",
+      "dimensions": {
+        "width_px": 290.407,
+        "height_px": 35.14
+      },
+      "svg_sha256": "b2924ba65021897ba9457214e1da34af54c283ecb2289a104df8cf11e1272bc6"
+    },
+    {
+      "id": "baseline-page-063-003",
+      "source": "source/baseline/page-063.md",
+      "kind": "display",
+      "tex": "\\text{PC}:192.168.10.1.\\tag{20.4}",
+      "tex_sha256": "d45136226c824c68fb00ca58e31de3476b5ef590c517df4f73986cc5c7aab2b5",
+      "svg": "math/baseline-page-063-003.svg",
+      "dimensions": {
+        "width_px": 215.311,
+        "height_px": 35.14
+      },
+      "svg_sha256": "9e5cf4701f9ead3ac15a6e43f19f5f8413b138545b4a33d83163be533cd5820a"
+    },
+    {
+      "id": "baseline-page-063-004",
+      "source": "source/baseline/page-063.md",
+      "kind": "display",
+      "tex": "\\text{DE1-SoC HPS}:192.168.10.2.\\tag{20.5}",
+      "tex_sha256": "88014125567620dae51a26ae93fb280a07d2a99ee5cbf72c54f77f76acd2beb5",
+      "svg": "math/baseline-page-063-004.svg",
+      "dimensions": {
+        "width_px": 294.57,
+        "height_px": 35.14
+      },
+      "svg_sha256": "87fed7f1213a23c00d0527655e2f5cb45d2aa68cc89752fcae6e9fba5057587a"
+    },
+    {
+      "id": "baseline-page-064-001",
+      "source": "source/baseline/page-064.md",
+      "kind": "inline",
+      "tex": "0 \\le\\mathrm{THR2}<2^{56}",
+      "tex_sha256": "4ebe4cf1e6f0e4ef9755f196198ab36f39a7f628a7e9f6334a7c89b44f09e5b8",
+      "svg": "math/baseline-page-064-001.svg",
+      "dimensions": {
+        "width_px": 118.508,
+        "height_px": 20.177
+      },
+      "svg_sha256": "d49e18d02d0391a83a440fb12397a3433e7f3236bad391775de27ca525e39d46"
+    },
+    {
+      "id": "baseline-page-065-001",
+      "source": "source/baseline/page-065.md",
+      "kind": "display",
+      "tex": "F_{\\mathrm{frame}}=\\frac{F_s}{128}.\\tag{22.1}",
+      "tex_sha256": "f4019bb75e13c5fc38131747fad18b4def1405f5fcd2cb738607ad97c6a36f31",
+      "svg": "math/baseline-page-065-001.svg",
+      "dimensions": {
+        "width_px": 186.116,
+        "height_px": 52.108
+      },
+      "svg_sha256": "6a8a8072365a0399a83bd6acbcc3082bfcc3c9a76ad881c78498f4cdc04dd42f"
+    },
+    {
+      "id": "baseline-page-066-001",
+      "source": "source/baseline/page-066.md",
+      "kind": "display",
+      "tex": "B_{\\mathrm{wave}}=F_s\\cdot3\\cdot2\\text{ bytes/s}.\\tag{22.2}",
+      "tex_sha256": "69cbfe7a331c43c5f1fdc1614dfff0875fb210d12285b78b37a6dd3ff35780f9",
+      "svg": "math/baseline-page-066-001.svg",
+      "dimensions": {
+        "width_px": 267.579,
+        "height_px": 35.14
+      },
+      "svg_sha256": "c17a57aa3e9668eaeb053a8b446b1a6a03351b9def73f2845c3f467599f31cdf"
+    },
+    {
+      "id": "baseline-page-066-002",
+      "source": "source/baseline/page-066.md",
+      "kind": "display",
+      "tex": "F_s=48\\text{ kS/s}\\Rightarrow B_{\\mathrm{wave}}\\approx288\\text{ kB/s}.\\tag{22.3}",
+      "tex_sha256": "6f76c05db1b3509f184b40412f749b68b0607d68066f88a1495a0815b2f9b5e4",
+      "svg": "math/baseline-page-066-002.svg",
+      "dimensions": {
+        "width_px": 334.661,
+        "height_px": 35.14
+      },
+      "svg_sha256": "2d09164142449541c7ccd1061bbd3e8de78c529577b7dd152d82635b0ca9a19a"
+    },
+    {
+      "id": "baseline-page-066-003",
+      "source": "source/baseline/page-066.md",
+      "kind": "display",
+      "tex": "F_s=100\\text{ kS/s}\\Rightarrow B_{\\mathrm{wave}}\\approx600\\text{ kB/s}.\\tag{22.4}",
+      "tex_sha256": "c4825af1f77aa8d88995879ef5024ae04c652e4bfe388f208615924a055cd028",
+      "svg": "math/baseline-page-066-003.svg",
+      "dimensions": {
+        "width_px": 342.631,
+        "height_px": 35.14
+      },
+      "svg_sha256": "c41f4dda972aacda12a0492c815ab56de6a744f076de75022dd090f7462f2de8"
+    },
+    {
+      "id": "baseline-page-067-001",
+      "source": "source/baseline/page-067.md",
+      "kind": "inline",
+      "tex": "2^{32}",
+      "tex_sha256": "7f7d49c241ad4488991a0327130a2b0cd23ae6309f9f1ff35501a3d32bbffdca",
+      "svg": "math/baseline-page-067-001.svg",
+      "dimensions": {
+        "width_px": 24.759,
+        "height_px": 17.994
+      },
+      "svg_sha256": "0ca2a02f33d2a23dcf2eaf003bc12245c4c1f90ae4390279c440d7ed3d2d15d8"
+    },
+    {
+      "id": "baseline-page-067-002",
+      "source": "source/baseline/page-067.md",
+      "kind": "display",
+      "tex": "\\mathrm{expected\\_next}=(\\mathrm{previous\\_seq}+1)\\bmod2^{32}.\\tag{24.1}",
+      "tex_sha256": "6eb458eebf9429b211aff5c0fc3176da975b950d4f3d7c0ff4d96b5556be1f89",
+      "svg": "math/baseline-page-067-002.svg",
+      "dimensions": {
+        "width_px": 399.695,
+        "height_px": 37.176
+      },
+      "svg_sha256": "a2d1047b6aa00352cb9a0940979c1e42a8f3a59f395ad9d59c94cba857c8b945"
+    },
+    {
+      "id": "baseline-page-070-001",
+      "source": "source/baseline/page-070.md",
+      "kind": "inline",
+      "tex": "\\mathrm{THR2}\\ge2^{56}",
+      "tex_sha256": "e4d030e24ce139e9ce4b9925bf5e2fafd1610135f15ce3288087c6bdb52dc002",
+      "svg": "math/baseline-page-070-001.svg",
+      "dimensions": {
+        "width_px": 89.284,
+        "height_px": 20.177
+      },
+      "svg_sha256": "7b6511cf7b0349dbe7d79a953ad0dfb6e875a6ec49b98de2045b149a2249679f"
+    },
+    {
+      "id": "baseline-page-070-002",
+      "source": "source/baseline/page-070.md",
+      "kind": "inline",
+      "tex": "2^{32}",
+      "tex_sha256": "7f7d49c241ad4488991a0327130a2b0cd23ae6309f9f1ff35501a3d32bbffdca",
+      "svg": "math/baseline-page-070-002.svg",
+      "dimensions": {
+        "width_px": 24.759,
+        "height_px": 17.994
+      },
+      "svg_sha256": "6f132b46a460c69183f6d28d25f65f3f4beb90ef0571e76b3e7643d1c557817d"
+    },
+    {
+      "id": "baseline-page-070-003",
+      "source": "source/baseline/page-070.md",
+      "kind": "inline",
+      "tex": "2^{32}",
+      "tex_sha256": "7f7d49c241ad4488991a0327130a2b0cd23ae6309f9f1ff35501a3d32bbffdca",
+      "svg": "math/baseline-page-070-003.svg",
+      "dimensions": {
+        "width_px": 24.759,
+        "height_px": 17.994
+      },
+      "svg_sha256": "604fc662a96f90651577e5ec2bd47713dda3cc5116653d121d4fde7825505139"
+    },
+    {
+      "id": "baseline-page-070-004",
+      "source": "source/baseline/page-070.md",
+      "kind": "inline",
+      "tex": "2^{64}",
+      "tex_sha256": "90703e5d68fd8ec1caecccfaa22c0e0db7367e9b25da22ac3584d17cee44d167",
+      "svg": "math/baseline-page-070-004.svg",
+      "dimensions": {
+        "width_px": 25.027,
+        "height_px": 18.105
+      },
+      "svg_sha256": "155788da0c6a4134e3662e23962f04df6301605e0c5084655135f09f5a5833e3"
+    },
+    {
+      "id": "baseline-page-102-001",
+      "source": "source/baseline/page-102.md",
+      "kind": "display",
+      "tex": "a[k]=x_0[k]+x_1[k],\\qquad d[k]=x_0[k]-x_1[k].\\tag{B.1}",
+      "tex_sha256": "7cf2e343b6189ce6205bc13924557f195807690973af30f7428e412d3e975826",
+      "svg": "math/baseline-page-102-001.svg",
+      "dimensions": {
+        "width_px": 398.144,
+        "height_px": 35.14
+      },
+      "svg_sha256": "ed78fbad35845533f58e80f4b3b5791f57675d04153fafb690e57305415d9df1"
+    },
+    {
+      "id": "baseline-page-102-002",
+      "source": "source/baseline/page-102.md",
+      "kind": "display",
+      "tex": "s_k=\\begin{cases}1,&|d[k]|<T\\\\0,&|d[k]|\\ge T.\\end{cases}\\tag{B.2}",
+      "tex_sha256": "9ee156901631e6c5bfbcea9735fc8b00be25295ec380b02204dbcfb4c4e8a5d9",
+      "svg": "math/baseline-page-102-002.svg",
+      "dimensions": {
+        "width_px": 239.025,
+        "height_px": 67.005
+      },
+      "svg_sha256": "38650279727b9cdcca0dfd348dbe335391d87d5580957d4979867c426180a53a"
+    },
+    {
+      "id": "baseline-page-102-003",
+      "source": "source/baseline/page-102.md",
+      "kind": "display",
+      "tex": "y_0[k]=\\operatorname{sat}_N(\\operatorname{rnd2}(a[k]+d^{\\prime}[k])).\\tag{B.3}",
+      "tex_sha256": "c0bbe24cbc23fcca04de444e115ad4d8850ec3ecea2c0efae344b9b231c09273",
+      "svg": "math/baseline-page-102-003.svg",
+      "dimensions": {
+        "width_px": 309.136,
+        "height_px": 36.004
+      },
+      "svg_sha256": "fa6fb6397d9e9815be65c076067aa3a58ea6e312ac2bd3f23203100ec4ecc881"
+    },
+    {
+      "id": "baseline-page-102-004",
+      "source": "source/baseline/page-102.md",
+      "kind": "display",
+      "tex": "y_1[k]=\\operatorname{sat}_N(\\operatorname{rnd2}(a[k]-d^{\\prime}[k])).\\tag{B.4}",
+      "tex_sha256": "25e7b76059545dcf0953b09a6f60953a6c65b5aa6a98c0e24dab103a197f3bab",
+      "svg": "math/baseline-page-102-004.svg",
+      "dimensions": {
+        "width_px": 309.136,
+        "height_px": 36.004
+      },
+      "svg_sha256": "7761bd3f83e737dea5c87713ed6db0fd81be665c9c80295611be5c2ed9758173"
+    },
+    {
+      "id": "current_profiles_and_rf-001",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "X[k]=R[k]+jI[k]",
+      "tex_sha256": "c38339f972423b360711025785d17e6761192505a2bf58fa84aed5a3288680d3",
+      "svg": "math/current_profiles_and_rf-001.svg",
+      "dimensions": {
+        "width_px": 139.029,
+        "height_px": 20.74
+      },
+      "svg_sha256": "0481b36eac945e409f3b162ae64865329ab540364de679c5cc9d224b93679461"
+    },
+    {
+      "id": "current_profiles_and_rf-002",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "display",
+      "tex": "P[k]=R[k]^2+I[k]^2.",
+      "tex_sha256": "9c7065b6231a1ccf3b273d7e251e55449f6bc111016dba95972897846fbafed2",
+      "svg": "math/current_profiles_and_rf-002.svg",
+      "dimensions": {
+        "width_px": 163.199,
+        "height_px": 37.176
+      },
+      "svg_sha256": "fbb6169a4ccac0a8d08ca7ca79e7aa3350f4d6169dcd9620671fa50a59365e30"
+    },
+    {
+      "id": "current_profiles_and_rf-003",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "K",
+      "tex_sha256": "86be9a55762d316a3026c2836d044f5fc76e34da10e1b45feee5f18be7edb177",
+      "svg": "math/current_profiles_and_rf-003.svg",
+      "dimensions": {
+        "width_px": 18.971,
+        "height_px": 15.687
+      },
+      "svg_sha256": "5f3f76a24db3b026e1653c1ad01e272ea01ec6aa931d91c3acd513229ff02fc7"
+    },
+    {
+      "id": "current_profiles_and_rf-004",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "48+8K",
+      "tex_sha256": "31f4c40825357db6c7660163de43d84d15e3173c2f5b8d6f91fa27678aaf4f71",
+      "svg": "math/current_profiles_and_rf-004.svg",
+      "dimensions": {
+        "width_px": 62.364,
+        "height_px": 17.01
+      },
+      "svg_sha256": "b4140c0df400024e139650e30d7cb58a5de31fb3a70837c347a55fc30a046956"
+    },
+    {
+      "id": "current_profiles_and_rf-005",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "1\\le N\\le 96{,}000",
+      "tex_sha256": "d3103051999f8355c9be16aef52b7fe1254cb7b7ccadf90301d5548959c01820",
+      "svg": "math/current_profiles_and_rf-005.svg",
+      "dimensions": {
+        "width_px": 113.463,
+        "height_px": 18.764
+      },
+      "svg_sha256": "33b6cbdf8e5042945d7cce1c306106625bded456a3928ba3122ae6afa8e26909"
+    },
+    {
+      "id": "current_profiles_and_rf-006",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "b",
+      "tex_sha256": "3e23e8160039594a33894f6564e1b1348bbd7a0088d42c4acb73eeaed59c009d",
+      "svg": "math/current_profiles_and_rf-006.svg",
+      "dimensions": {
+        "width_px": 11.415,
+        "height_px": 16.038
+      },
+      "svg_sha256": "2b90cd5ea1e1bc0a05d6abd74c6f42c2a2676c61fc097fecb3021755222e0afd"
+    },
+    {
+      "id": "current_profiles_and_rf-007",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "display",
+      "tex": "d=2b-255,\\qquad x=d/256.",
+      "tex_sha256": "3be26070db9ca80156468e91f88dda19033113062a5bc5fcd810b009710fa8bc",
+      "svg": "math/current_profiles_and_rf-007.svg",
+      "dimensions": {
+        "width_px": 219.521,
+        "height_px": 35.14
+      },
+      "svg_sha256": "9c2c827b4f4ac4a4fd65f4f61fd2b367eb7aca216bd644fbd22a7e190566d99c"
+    },
+    {
+      "id": "current_profiles_and_rf-008",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "h[\\ell]",
+      "tex_sha256": "c732b66894b9d745827d4a9fb6ebb0db93ec3e3590881fe15d52e940e91b28cf",
+      "svg": "math/current_profiles_and_rf-008.svg",
+      "dimensions": {
+        "width_px": 27.588,
+        "height_px": 20.74
+      },
+      "svg_sha256": "fa0bd4e18add87a9624071a65907008e2aede8e457b210e1bb54715ef60640f3"
+    },
+    {
+      "id": "current_profiles_and_rf-009",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "u_I[m]",
+      "tex_sha256": "c67dfa180bb317319b205862f75b5ca17ab30846e15a40549b89ba1030d2c4bc",
+      "svg": "math/current_profiles_and_rf-009.svg",
+      "dimensions": {
+        "width_px": 42.197,
+        "height_px": 20.74
+      },
+      "svg_sha256": "a946a1f7ed72c7ef0851864cca731120c2466d3f0855c6ca04473249631deb3a"
+    },
+    {
+      "id": "current_profiles_and_rf-010",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "u_Q[m]",
+      "tex_sha256": "42044a09fa161cf284227b96aeb7df5380b4d9399bcdac5b619b58f1ac7b14dd",
+      "svg": "math/current_profiles_and_rf-010.svg",
+      "dimensions": {
+        "width_px": 45.719,
+        "height_px": 21.311
+      },
+      "svg_sha256": "5552c76fac39658b5037d17e543726b06514b1d9ad4200b3383a671e74ae1b4a"
+    },
+    {
+      "id": "current_profiles_and_rf-011",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "display",
+      "tex": "A_I[m]=\\sum_{\\ell=0}^{80}h[\\ell]u_I[m-\\ell],\\qquad\nA_Q[m]=\\sum_{\\ell=0}^{80}h[\\ell]u_Q[m-\\ell].",
+      "tex_sha256": "5d3f56f73455dda3ca1236dcd4f0e8d7bcd0137ae7de48647c6c8df5218ae704",
+      "svg": "math/current_profiles_and_rf-011.svg",
+      "dimensions": {
+        "width_px": 426.572,
+        "height_px": 65.93
+      },
+      "svg_sha256": "03500c5d914fae92901d7372f0174614b5cfe0f25a0cf353e76f46ebf54738c6"
+    },
+    {
+      "id": "current_profiles_and_rf-012",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "h[4k+p]",
+      "tex_sha256": "9031bcdee8204b2528707a42ef92b2a111f8accf540638f04b84c99e7a51cc26",
+      "svg": "math/current_profiles_and_rf-012.svg",
+      "dimensions": {
+        "width_px": 65.219,
+        "height_px": 20.74
+      },
+      "svg_sha256": "4f48261e8757208dd6c1d4f05c6c74411d3f8b6a73ef311883a2cda2e464660a"
+    },
+    {
+      "id": "current_profiles_and_rf-013",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "display",
+      "tex": "r[m]=\\operatorname{Re}\\left((I_u[m]+jQ_u[m])e^{j\\pi m/2}\\right).",
+      "tex_sha256": "493dd4c8f3868472af379bf67859ce167aca0af026e69cd2dc6ffb837ca29bc1",
+      "svg": "math/current_profiles_and_rf-013.svg",
+      "dimensions": {
+        "width_px": 284.697,
+        "height_px": 47.876
+      },
+      "svg_sha256": "cd45a83ed84203fd008621f453bceee365771639d6ef03750d53f57065a7c5c7"
+    },
+    {
+      "id": "current_profiles_and_rf-014",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "F_s",
+      "tex_sha256": "30ade5d863641faa2be837f6064acaf6acc2b0fd84acc487be4840fdeced7d28",
+      "svg": "math/current_profiles_and_rf-014.svg",
+      "dimensions": {
+        "width_px": 20.295,
+        "height_px": 18.142
+      },
+      "svg_sha256": "bbd60e0243f477838bb17e0762910cef7f69c194c795150a055a4773cefd23f3"
+    },
+    {
+      "id": "current_profiles_and_rf-015",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "4F_s",
+      "tex_sha256": "fe2e7738389965552fd0a5ac9208a9864d5de4f7ca80e08819b678f222833c9a",
+      "svg": "math/current_profiles_and_rf-015.svg",
+      "dimensions": {
+        "width_px": 28.265,
+        "height_px": 18.142
+      },
+      "svg_sha256": "e791750d6363ef91bac06fbb735a69d38ce29ea1d8e55c5d87c0516ff5f096b7"
+    },
+    {
+      "id": "current_profiles_and_rf-016",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "F_s",
+      "tex_sha256": "30ade5d863641faa2be837f6064acaf6acc2b0fd84acc487be4840fdeced7d28",
+      "svg": "math/current_profiles_and_rf-016.svg",
+      "dimensions": {
+        "width_px": 20.295,
+        "height_px": 18.142
+      },
+      "svg_sha256": "c2707d8eb416468ac8c43d43cb55c94aa2abade66b85d5ac8a9d1887412c70fe"
+    },
+    {
+      "id": "current_profiles_and_rf-017",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "g",
+      "tex_sha256": "cd0aa9856147b6c5b4ff2b7dfee5da20aa38253099ef1b4a64aced233c9afe29",
+      "svg": "math/current_profiles_and_rf-017.svg",
+      "dimensions": {
+        "width_px": 12.356,
+        "height_px": 15.113
+      },
+      "svg_sha256": "76910c44e97c35fa9a448edf3c65953417d0ff9168dd4754e69c17ebce4b375d"
+    },
+    {
+      "id": "current_profiles_and_rf-018",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "\\{0,1,2,3\\}",
+      "tex_sha256": "37e5bb2d7c96c182ded15fe3a745f26d90bdb0308e3dccd4ff5cde7ee6ce009d",
+      "svg": "math/current_profiles_and_rf-018.svg",
+      "dimensions": {
+        "width_px": 72.711,
+        "height_px": 20.74
+      },
+      "svg_sha256": "0d48e0542a76f0c05a56d08ebfe2de067ebc75a770a4f210d07bd51cbb1a377c"
+    },
+    {
+      "id": "current_profiles_and_rf-019",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "a",
+      "tex_sha256": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb",
+      "svg": "math/current_profiles_and_rf-019.svg",
+      "dimensions": {
+        "width_px": 12.738,
+        "height_px": 12.021
+      },
+      "svg_sha256": "06850a8e4c24efe7f5b2bb12f3d9c5e855a9cb285096dd6305c0db49a348c43e"
+    },
+    {
+      "id": "current_profiles_and_rf-020",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "2^{16-g}",
+      "tex_sha256": "fd3849da7bf6289a5f5932ea8ae4043e3967e81da76e54e3c866591d5f04e8d4",
+      "svg": "math/current_profiles_and_rf-020.svg",
+      "dimensions": {
+        "width_px": 41.422,
+        "height_px": 17.994
+      },
+      "svg_sha256": "962dc97c5497299cca5c48dc35e0544f6279b8209b7283c144cae5d22e6d635d"
+    },
+    {
+      "id": "current_profiles_and_rf-021",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "display",
+      "tex": "q=\\operatorname{sgn}(a)\\left\\lfloor\\frac{|a|+2^{15-g}}{2^{16-g}}\\right\\rfloor.",
+      "tex_sha256": "307beda385ec00b3a5f657980ccc7acf5b09a28202e2fc7ebe72558fdf7fb9f0",
+      "svg": "math/current_profiles_and_rf-021.svg",
+      "dimensions": {
+        "width_px": 197.696,
+        "height_px": 58.304
+      },
+      "svg_sha256": "fd6642039160eb36b30330014efc17ca8a85ba6c195a0b5786de3c4bac4b6819"
+    },
+    {
+      "id": "current_profiles_and_rf-022",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "display",
+      "tex": "y=\\min(2047,\\max(-2048,q)).",
+      "tex_sha256": "03037bca69fa91b6db2cc1f4ea9345916af075838dd7637a84bc39e95473d25e",
+      "svg": "math/current_profiles_and_rf-022.svg",
+      "dimensions": {
+        "width_px": 230.947,
+        "height_px": 35.14
+      },
+      "svg_sha256": "3cbf0e20360d8bcd3ea2eb0572170d76e376d4b1ab4befd7eab57e1e5d62f49b"
+    },
+    {
+      "id": "current_profiles_and_rf-023",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "q",
+      "tex_sha256": "8e35c2cd3bf6641bdb0e2050b76932cbb2e6034a0ddacc1d9bea82a6ba57f7cf",
+      "svg": "math/current_profiles_and_rf-023.svg",
+      "dimensions": {
+        "width_px": 12.005,
+        "height_px": 14.938
+      },
+      "svg_sha256": "ae583711a4f143c52ef96d6572ea8bef498aa4c628507d12aca6c7c142f9c972"
+    },
+    {
+      "id": "current_profiles_and_rf-024",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "N",
+      "tex_sha256": "8ce86a6ae65d3692e7305e2c58ac62eebd97d3d943e093f577da25c36988246b",
+      "svg": "math/current_profiles_and_rf-024.svg",
+      "dimensions": {
+        "width_px": 18.843,
+        "height_px": 15.687
+      },
+      "svg_sha256": "d5f6f8976c15445f5804f20d4b4c46c78156e450b928b1e81e9d241cdc181964"
+    },
+    {
+      "id": "current_profiles_and_rf-025",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "4N",
+      "tex_sha256": "e8c169d57d68d78c0b402c6941498bce3f7beba1e7e0b876c656cec93198ae40",
+      "svg": "math/current_profiles_and_rf-025.svg",
+      "dimensions": {
+        "width_px": 26.813,
+        "height_px": 15.687
+      },
+      "svg_sha256": "019fce9afc205676253ac3ba5299db3673a3770485227c03771fc1da2b92b29c"
+    },
+    {
+      "id": "current_profiles_and_rf-026",
+      "source": "source/current_profiles_and_rf.md",
+      "kind": "inline",
+      "tex": "4N",
+      "tex_sha256": "e8c169d57d68d78c0b402c6941498bce3f7beba1e7e0b876c656cec93198ae40",
+      "svg": "math/current_profiles_and_rf-026.svg",
+      "dimensions": {
+        "width_px": 26.813,
+        "height_px": 15.687
+      },
+      "svg_sha256": "b125c24436b07830abdaed4e9fcc7e8dc714dca2a8b99e739f121c382eff8828"
+    }
+  ]
+}

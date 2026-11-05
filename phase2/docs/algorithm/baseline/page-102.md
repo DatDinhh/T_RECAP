@@ -4,6 +4,8 @@ Historical appendices and references. Printed page 89. [Original PDF page](../..
 
 [Previous](page-101.md) | [Index](../README.md) | [Next](page-103.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-102.md). Equations are rendered locally as SVG.
+
 ## Appendices
 
 ## A Vendor FFT IP Contract Checklist
@@ -36,24 +38,16 @@ If a vendor FFT IP core replaces Algorithms 4 and 5, the following fields become
 
 For each Phase 1 pair,
 
-$$
-a[k]=x_0[k]+x_1[k],\qquad d[k]=x_0[k]-x_1[k].\tag{B.1}
-$$
+![Equation B.1: a&#91;k&#93;=x_0&#91;k&#93;+x_1&#91;k&#93;,&#92;qquad d&#91;k&#93;=x_0&#91;k&#93;-x_1&#91;k&#93;.&#92;tag{B.1}](../math/baseline-page-102-001.svg)
 
 The suppression flag is 1,
 
-$$
-s_k=\begin{cases}1,&|d[k]|<T\\0,&|d[k]|\ge T.\end{cases}\tag{B.2}
-$$
+![Equation B.2: s_k=&#92;begin{cases}1,&&#124;d&#91;k&#93;&#124;<T&#92;&#92;0,&&#124;d&#91;k&#93;&#124;&#92;ge T.&#92;end{cases}&#92;tag{B.2}](../math/baseline-page-102-002.svg)
 
 The modified detail is d′ [k] = (1 - sk )d[k], and reconstruction is
 
-$$
-y_0[k]=\operatorname{sat}_N(\operatorname{rnd2}(a[k]+d^{\prime}[k])).\tag{B.3}
-$$
+![Equation B.3: y_0&#91;k&#93;=&#92;operatorname{sat}_N(&#92;operatorname{rnd2}(a&#91;k&#93;+d^{&#92;prime}&#91;k&#93;)).&#92;tag{B.3}](../math/baseline-page-102-003.svg)
 
-$$
-y_1[k]=\operatorname{sat}_N(\operatorname{rnd2}(a[k]-d^{\prime}[k])).\tag{B.4}
-$$
+![Equation B.4: y_1&#91;k&#93;=&#92;operatorname{sat}_N(&#92;operatorname{rnd2}(a&#91;k&#93;-d^{&#92;prime}&#91;k&#93;)).&#92;tag{B.4}](../math/baseline-page-102-004.svg)
 
 If T = 0, the condition |d[k]| < 0 is never true, so d′ [k] = d[k] and Phase 1 reconstructs exactly. Phase 2 inherits the verification principle rather than the exact identity: every approximation must be explicit and reproducible.

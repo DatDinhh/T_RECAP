@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 81. [Original PDF pag
 
 [Previous](page-093.md) | [Index](../README.md) | [Next](page-095.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-094.md). Equations are rendered locally as SVG.
+
 ```text
 dashboard_direct_link.json
 ```

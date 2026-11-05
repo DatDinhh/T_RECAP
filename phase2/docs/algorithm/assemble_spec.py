@@ -6,6 +6,19 @@ import re
 ROOT = Path(__file__).resolve().parent
 
 
+def nest_headings(text):
+    """Keep source-page sections below their page heading in the read-all view."""
+    fenced = False
+    out = []
+    for line in text.splitlines():
+        if line.startswith('```'):
+            fenced = not fenced
+        if not fenced and re.match(r'^#{1,5} ', line):
+            line = '#' + line
+        out.append(line)
+    return '\n'.join(out)
+
+
 def rebase_links(text, origin):
     """Rebase relative Markdown links while leaving external links untouched."""
     def replace(match):
@@ -36,10 +49,10 @@ def combined_text():
     for n in range(1, 107):
         text = (ROOT / 'baseline' / f'page-{n:03}.md').read_text(encoding='utf-8')
         text = rebase_links(text, 'baseline')
-        text = text.replace(f'# Baseline PDF page {n:03}', f'## Baseline PDF page {n:03}', 1)
+        text = nest_headings(text)
         out.append(f'<a id="pdf-page-{n:03}"></a>\n\n' + text.strip())
     appendix = (ROOT / 'current_profiles_and_rf.md').read_text(encoding='utf-8')
-    out.append('<a id="current-profiles-and-rf"></a>\n\n' + appendix.strip())
+    out.append('<a id="current-profiles-and-rf"></a>\n\n' + nest_headings(appendix).strip())
     return '\n\n'.join(out) + '\n'
 
 

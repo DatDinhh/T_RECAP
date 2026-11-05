@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 84. [Original PDF pag
 
 [Previous](page-096.md) | [Index](../README.md) | [Next](page-098.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-097.md). Equations are rendered locally as SVG.
+
 Older Phase 2 Algorithm Report drafts are historical only. Do not use D = L for the current DE1-SoC baseline. Use the Integrated Phase 2 Specification Final: Core Revision J + Telemetry Revision G. Current baseline delay: D = L + G = 384 samples.
 
 ## 48 Build System Architecture

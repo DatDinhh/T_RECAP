@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 64. [Original PDF pag
 
 [Previous](page-076.md) | [Index](../README.md) | [Next](page-078.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-077.md). Equations are rendered locally as SVG.
+
 ```text
      telemetry_status_only.json
      telemetry_full_demo.json

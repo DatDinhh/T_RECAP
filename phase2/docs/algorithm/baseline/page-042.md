@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 29. [Original PDF page](
 
 [Previous](page-041.md) | [Index](../README.md) | [Next](page-043.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-042.md). Equations are rendered locally as SVG.
+
 **Table 8. Normative CSR map, continued.**
 
 | Offset | Name | Access | Meaning |

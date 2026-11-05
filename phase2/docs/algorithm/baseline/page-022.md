@@ -4,6 +4,8 @@ Historical Part I, core algorithm. Printed page 9. [Original PDF page](../../spe
 
 [Previous](page-021.md) | [Index](../README.md) | [Next](page-023.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-022.md). Equations are rendered locally as SVG.
+
 ## 5 Normative Core Algorithm Tables
 
 The algorithms in this section are normative mathematical procedures, not SystemVerilog module descriptions. To avoid notation ambiguity, the implementation-facing algorithm tables use ASCII identifiers: Xb for the masked spectrum, mag2 for the magnitude-squared array, `pre_mask` for the preliminary threshold result, and mask for the final post-protection unique-bin mask.

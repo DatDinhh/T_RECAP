@@ -4,6 +4,8 @@ Historical Part I, core algorithm. Printed page 20. [Original PDF page](../../sp
 
 [Previous](page-032.md) | [Index](../README.md) | [Next](page-034.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-033.md). Equations are rendered locally as SVG.
+
 **Table 6. Required mathematical signoff vector classes.**
 
 | Test class | Purpose | Required |
@@ -26,18 +28,12 @@ Generator names in `test_vectors.json` refer to the exact integer generators bel
 
 constant. For integer value c,
 
-$$
-x[n]=\operatorname{sat}_N(c).\tag{8.1}
-$$
+![Equation 8.1: x&#91;n&#93;=&#92;operatorname{sat}_N(c).&#92;tag{8.1}](../math/baseline-page-033-001.svg)
 
 impulse. For index n0 and amplitude A,
 
-$$
-x[n]=\begin{cases}\operatorname{sat}_N(A),&n=n_0\\0,&n\ne n_0.\end{cases}\tag{8.2}
-$$
+![Equation 8.2: x&#91;n&#93;=&#92;begin{cases}&#92;operatorname{sat}_N(A),&n=n_0&#92;&#92;0,&n&#92;ne n_0.&#92;end{cases}&#92;tag{8.2}](../math/baseline-page-033-002.svg)
 
 step. For index n0 and amplitude A,
 
-$$
-x[n]=\begin{cases}0,&n<n_0\\\operatorname{sat}_N(A),&n\ge n_0.\end{cases}\tag{8.3}
-$$
+![Equation 8.3: x&#91;n&#93;=&#92;begin{cases}0,&n<n_0&#92;&#92;&#92;operatorname{sat}_N(A),&n&#92;ge n_0.&#92;end{cases}&#92;tag{8.3}](../math/baseline-page-033-003.svg)

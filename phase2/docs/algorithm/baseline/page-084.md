@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 71. [Original PDF pag
 
 [Previous](page-083.md) | [Index](../README.md) | [Next](page-085.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-084.md). Equations are rendered locally as SVG.
+
 ## 37 Module API, Parameter, and Naming Rules
 
 ### 37.1 Parameter ownership

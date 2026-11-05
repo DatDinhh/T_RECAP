@@ -4,6 +4,8 @@ Historical baseline. Front matter 4. [Original PDF page](../../specs/t_recap_pha
 
 [Previous](page-004.md) | [Index](../README.md) | [Next](page-006.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-005.md). Equations are rendered locally as SVG.
+
 ## Contents
 
 | Entry | Printed page |

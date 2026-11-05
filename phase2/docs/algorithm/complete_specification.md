@@ -24,9 +24,11 @@ Historical baseline. Cover. [Original PDF page](../specs/t_recap_phase2_integrat
 
 [Index](README.md) | [Next](baseline/page-002.md)
 
-## T-RECAP: Transform-domain Representation and Energy-aware Computation Accelerator with Controlled Precision
+[Edit Markdown and LaTeX source](source/baseline/page-001.md). Equations are rendered locally as SVG.
 
-### Phase 2 Algorithm, Ethernet/HPS Telemetry, and Repository Architecture Specification
+### T-RECAP: Transform-domain Representation and Energy-aware Computation Accelerator with Controlled Precision
+
+#### Phase 2 Algorithm, Ethernet/HPS Telemetry, and Repository Architecture Specification
 
 Real-Time Fixed-Point STFT/WOLA Selective Suppression with DE1-SoC Telemetry and Core Repository Architecture.
 
@@ -50,7 +52,9 @@ Historical baseline. Front matter 1. [Original PDF page](../specs/t_recap_phase2
 
 [Previous](baseline/page-001.md) | [Index](README.md) | [Next](baseline/page-003.md)
 
-## Executive Summary
+[Edit Markdown and LaTeX source](source/baseline/page-002.md). Equations are rendered locally as SVG.
+
+### Executive Summary
 
 This document merges the T-RECAP Phase 2 Core Algorithm Specification, the Ethernet/HPS DDR Telemetry Specification, Revision G, and the Core Implementation Repository Architecture Specification, Revision D, into one formal implementation contract. The first part freezes the deterministic fixed-point STFT/WOLA selective-suppression core. The second part freezes the DE1-SoC telemetry path used to stream waveform, spectrum, metrics, status, and control information between FPGA fabric, HPS DDR, HPS Ethernet, and the PC dashboard. The third part freezes the implementation repository structure, generated contracts, module ownership, build hygiene, and core-first implementation cuts. The core algorithm remains the source of truth for bit-accurate correctness. It defines signed 12-bit sample scale, FFT length L = 256, hop size H = 128, fractional precision F = 15, scheduling cushion G = 128, exact delay D = L + G = 384, active-after-windowing finite-stream scoring, coefficient artifacts, exact custom radix-2 FFT/IFFT integer algorithms, Hermitian canonicalization, magnitude-squared thresholding, WOLA reconstruction, metrics, artifacts, and acceptance criteria. The telemetry architecture is explicitly separate from the correctness path. FPGA fabric owns the live source, STFT/WOLA core, telemetry taps, packet formatting, and DDR ring writer. HPS owns Ethernet transport, UDP forwarding, command reception, control/status register access, and optional patching of diagnostic status fields. The PC owns visualization and user control. If the PC dashboard, HPS streamer, Ethernet link, or DDR ring falls behind, telemetry may be dropped and counted, but the STFT/WOLA core shall continue processing samples without backpressure. The integrated system direction is therefore:
 
@@ -77,7 +81,9 @@ Historical baseline. Front matter 2. [Original PDF page](../specs/t_recap_phase2
 
 [Previous](baseline/page-002.md) | [Index](README.md) | [Next](baseline/page-004.md)
 
-## Contents
+[Edit Markdown and LaTeX source](source/baseline/page-003.md). Equations are rendered locally as SVG.
+
+### Contents
 
 | Entry | Printed page |
 | --- | --- |
@@ -118,7 +124,9 @@ Historical baseline. Front matter 3. [Original PDF page](../specs/t_recap_phase2
 
 [Previous](baseline/page-003.md) | [Index](README.md) | [Next](baseline/page-005.md)
 
-## Contents
+[Edit Markdown and LaTeX source](source/baseline/page-004.md). Equations are rendered locally as SVG.
+
+### Contents
 
 | Entry | Printed page |
 | --- | --- |
@@ -160,7 +168,9 @@ Historical baseline. Front matter 4. [Original PDF page](../specs/t_recap_phase2
 
 [Previous](baseline/page-004.md) | [Index](README.md) | [Next](baseline/page-006.md)
 
-## Contents
+[Edit Markdown and LaTeX source](source/baseline/page-005.md). Equations are rendered locally as SVG.
+
+### Contents
 
 | Entry | Printed page |
 | --- | --- |
@@ -204,7 +214,9 @@ Historical baseline. Front matter 5. [Original PDF page](../specs/t_recap_phase2
 
 [Previous](baseline/page-005.md) | [Index](README.md) | [Next](baseline/page-007.md)
 
-## Contents
+[Edit Markdown and LaTeX source](source/baseline/page-006.md). Equations are rendered locally as SVG.
+
+### Contents
 
 | Entry | Printed page |
 | --- | --- |
@@ -247,7 +259,9 @@ Historical baseline. Front matter 6. [Original PDF page](../specs/t_recap_phase2
 
 [Previous](baseline/page-006.md) | [Index](README.md) | [Next](baseline/page-008.md)
 
-## Contents
+[Edit Markdown and LaTeX source](source/baseline/page-007.md). Equations are rendered locally as SVG.
+
+### Contents
 
 | Entry | Printed page |
 | --- | --- |
@@ -286,7 +300,9 @@ Historical baseline. Front matter 7. [Original PDF page](../specs/t_recap_phase2
 
 [Previous](baseline/page-007.md) | [Index](README.md) | [Next](baseline/page-009.md)
 
-## Contents
+[Edit Markdown and LaTeX source](source/baseline/page-008.md). Equations are rendered locally as SVG.
+
+### Contents
 
 | Entry | Printed page |
 | --- | --- |
@@ -328,7 +344,9 @@ Historical baseline. Front matter 8. [Original PDF page](../specs/t_recap_phase2
 
 [Previous](baseline/page-008.md) | [Index](README.md) | [Next](baseline/page-010.md)
 
-## Contents
+[Edit Markdown and LaTeX source](source/baseline/page-009.md). Equations are rendered locally as SVG.
+
+### Contents
 
 | Entry | Printed page |
 | --- | --- |
@@ -369,7 +387,9 @@ Historical baseline. Front matter 9. [Original PDF page](../specs/t_recap_phase2
 
 [Previous](baseline/page-009.md) | [Index](README.md) | [Next](baseline/page-011.md)
 
-## Contents
+[Edit Markdown and LaTeX source](source/baseline/page-010.md). Equations are rendered locally as SVG.
+
+### Contents
 
 | Entry | Printed page |
 | --- | --- |
@@ -396,7 +416,9 @@ Historical baseline. Front matter 10. [Original PDF page](../specs/t_recap_phase
 
 [Previous](baseline/page-010.md) | [Index](README.md) | [Next](baseline/page-012.md)
 
-## List of Algorithms
+[Edit Markdown and LaTeX source](source/baseline/page-011.md). Equations are rendered locally as SVG.
+
+### List of Algorithms
 
 | Entry | Printed page |
 | --- | --- |
@@ -416,7 +438,9 @@ Historical baseline. Front matter 11. [Original PDF page](../specs/t_recap_phase
 
 [Previous](baseline/page-011.md) | [Index](README.md) | [Next](baseline/page-013.md)
 
-## List of Tables
+[Edit Markdown and LaTeX source](source/baseline/page-012.md). Equations are rendered locally as SVG.
+
+### List of Tables
 
 | Entry | Printed page |
 | --- | --- |
@@ -461,7 +485,9 @@ Historical baseline. Front matter 12. [Original PDF page](../specs/t_recap_phase
 
 [Previous](baseline/page-012.md) | [Index](README.md) | [Next](baseline/page-014.md)
 
-## List of Tables
+[Edit Markdown and LaTeX source](source/baseline/page-013.md). Equations are rendered locally as SVG.
+
+### List of Tables
 
 | Entry | Printed page |
 | --- | --- |
@@ -487,21 +513,23 @@ Historical Part I, core algorithm. Printed page 1. [Original PDF page](../specs/
 
 [Previous](baseline/page-013.md) | [Index](README.md) | [Next](baseline/page-015.md)
 
-## Part I - Core Algorithm and Signoff Contract
+[Edit Markdown and LaTeX source](source/baseline/page-014.md). Equations are rendered locally as SVG.
 
-## 1 Overview and Scope
+### Part I - Core Algorithm and Signoff Contract
 
-### 1.1 Purpose
+### 1 Overview and Scope
+
+#### 1.1 Purpose
 
 Part I of this integrated specification is the source-of-truth contract for the Phase 2 T-RECAP mathematical core. It is written for the software golden model, RTL-equivalent model, simulation scoreboards, BRAM replay signoff, and deterministic reconstruction/metric evaluation. It is not a SystemVerilog architecture document. It does not specify module names, pin assignments, packet formats, HPS software, or a PC dashboard. Those layers shall preserve the core behavior defined here.
 
-### 1.2 Problem statement
+#### 1.2 Problem statement
 
 The Phase 2 core problem is:
 
 Define a causal fixed-point STFT/WOLA operator for a real-valued stream. The operator suppresses low-energy spectral bins under a frozen arithmetic contract and reconstructs a delayed time-domain output for bit-accurate verification.
 
-### 1.3 Continuity from Phase 1
+#### 1.3 Continuity from Phase 1
 
 Phase 1 grouped the stream into non-overlapping pairs, applied a two-sample Haar transform, suppressed the detail term when |d[k]| < T , and reconstructed the pair. When T = 0, the condition |d[k]| < 0 is never true, so Phase 1 has exact lossless reconstruction. Phase 2 preserves the same selective-suppression idea but moves the transform domain from two-sample Haar pairs to overlapped STFT frames. The T = 0 identity property does not transfer exactly because Phase 2 contains quantized windows, twiddles, FFT/IFFT rounding, WOLA accumulation, and final output rounding. The Phase 2 no-suppression condition is therefore deterministic near-lossless, not exact lossless.
 
@@ -509,12 +537,12 @@ Phase 1 grouped the stream into non-overlapping pairs, applied a two-sample Haar
 
 | Concept | Phase 1: Haar | Phase 2: STFT/WOLA |
 | --- | --- | --- |
-| Streaming unit | Pair $(x[2k],x[2k+1])$ | Overlapped frame $x_m[0:L-1]$ |
-| Transform output | $a[k],d[k]$ | $X_m[k]$ |
-| Suppression variable | $\lvert d[k]\rvert<T$ | $\operatorname{mag2}[k]<\mathrm{THR2}$ |
-| Mask action | $d^{\prime}[k]=(1-s_k)d[k]$ | $\mathrm{Xb}[k]=(1-\operatorname{mask}[k])X^{\mathrm{can}}[k]$ |
+| Streaming unit | Pair ![(x&#91;2k&#93;,x&#91;2k+1&#93;)](math/baseline-page-014-001.svg) | Overlapped frame ![x_m&#91;0:L-1&#93;](math/baseline-page-014-002.svg) |
+| Transform output | ![a&#91;k&#93;,d&#91;k&#93;](math/baseline-page-014-003.svg) | ![X_m&#91;k&#93;](math/baseline-page-014-004.svg) |
+| Suppression variable | ![&#92;lvert d&#91;k&#93;&#92;rvert<T](math/baseline-page-014-005.svg) | ![&#92;operatorname{mag2}&#91;k&#93;<&#92;mathrm{THR2}](math/baseline-page-014-006.svg) |
+| Mask action | ![d^{&#92;prime}&#91;k&#93;=(1-s_k)d&#91;k&#93;](math/baseline-page-014-007.svg) | ![&#92;mathrm{Xb}&#91;k&#93;=(1-&#92;operatorname{mask}&#91;k&#93;)X^{&#92;mathrm{can}}&#91;k&#93;](math/baseline-page-014-008.svg) |
 | Reconstruction | Inverse Haar | IFFT + synthesis window + WOLA |
-| Correctness anchor | Exact lossless at $T=0$ | Deterministic near-lossless at $\mathrm{THR2}=0$ |
+| Correctness anchor | Exact lossless at ![T=0](math/baseline-page-014-009.svg) | Deterministic near-lossless at ![&#92;mathrm{THR2}=0](math/baseline-page-014-010.svg) |
 | Metrics | Suppressed pairs and time error | Suppressed eligible bins, kept spectral total, and time error |
 
 <a id="pdf-page-015"></a>
@@ -525,7 +553,9 @@ Historical Part I, core algorithm. Printed page 2. [Original PDF page](../specs/
 
 [Previous](baseline/page-014.md) | [Index](README.md) | [Next](baseline/page-016.md)
 
-### 1.4 Core boundary
+[Edit Markdown and LaTeX source](source/baseline/page-015.md). Equations are rendered locally as SVG.
+
+#### 1.4 Core boundary
 
 The core consumes a signed sample stream x[n] ∈ SN and produces a signed reconstructed stream y[n] ∈ SN . The following items are wrappers outside the mathematical core:
 
@@ -541,39 +571,35 @@ The core consumes a signed sample stream x[n] ∈ SN and produces a signed recon
 
 - SystemVerilog module decomposition.
 
-## 2 Parameters, Timing, and Finite-Stream Policy
+### 2 Parameters, Timing, and Finite-Stream Policy
 
-### 2.1 Baseline parameters
+#### 2.1 Baseline parameters
 
-Let L = $2^{P}$ be the FFT length and H = L/2 be the hop. Let G ≥ 0 be a scheduling cushion measured in sample periods. The exact causal delay is
+Let L = ![2^{P}](math/baseline-page-015-001.svg) be the FFT length and H = L/2 be the hop. Let G ≥ 0 be a scheduling cushion measured in sample periods. The exact causal delay is
 
-$$
-D=L+G.\tag{2.1}
-$$
+![Equation 2.1: D=L+G.&#92;tag{2.1}](math/baseline-page-015-002.svg)
 
 **Table 2. Revision J baseline parameters.**
 
 | Symbol | Meaning | Baseline |
 | --- | --- | --- |
-| $N$ | External signed input/output sample width | 12 |
-| $L$ | FFT length | 256 |
-| $P$ | Number of radix-2 stages, $P=\log_2L$ | 8 |
-| $H$ | Hop size | $L/2=128$ |
-| $F$ | Fractional width for windows, twiddles, FFT data, and WOLA domain | 15 |
-| $G$ | Scheduling cushion from frame trigger to first allowed WOLA contribution | $H=128$ |
-| $D$ | Exact causal delay | $L+G=384$ samples |
-| THR2 | Internal threshold register in the magnitude-squared domain | Programmable unsigned $W_{\mathrm{mag2}}$-bit integer |
+| ![N](math/baseline-page-015-003.svg) | External signed input/output sample width | 12 |
+| ![L](math/baseline-page-015-004.svg) | FFT length | 256 |
+| ![P](math/baseline-page-015-005.svg) | Number of radix-2 stages, ![P=&#92;log_2L](math/baseline-page-015-006.svg) | 8 |
+| ![H](math/baseline-page-015-007.svg) | Hop size | ![L/2=128](math/baseline-page-015-008.svg) |
+| ![F](math/baseline-page-015-009.svg) | Fractional width for windows, twiddles, FFT data, and WOLA domain | 15 |
+| ![G](math/baseline-page-015-010.svg) | Scheduling cushion from frame trigger to first allowed WOLA contribution | ![H=128](math/baseline-page-015-011.svg) |
+| ![D](math/baseline-page-015-012.svg) | Exact causal delay | ![L+G=384](math/baseline-page-015-013.svg) samples |
+| THR2 | Internal threshold register in the magnitude-squared domain | Programmable unsigned ![W_{&#92;mathrm{mag2}}](math/baseline-page-015-014.svg)-bit integer |
 | `PROTECT_DC` | Force DC bin to be kept | 1 |
 | `PROTECT_NYQ` | Force Nyquist bin to be kept | 0 |
 
 
-### 2.2 Frame timing
+#### 2.2 Frame timing
 
 A frame trigger occurs whenever the accepted sample count reaches a positive multiple of H:
 
-$$
-\tau_m=(m+1)H,\qquad m\in\mathbb{N}_0.\tag{2.2}
-$$
+![Equation 2.2: &#92;tau_m=(m+1)H,&#92;qquad m&#92;in&#92;mathbb{N}_0.&#92;tag{2.2}](math/baseline-page-015-015.svg)
 
 <a id="pdf-page-016"></a>
 
@@ -583,57 +609,43 @@ Historical Part I, core algorithm. Printed page 3. [Original PDF page](../specs/
 
 [Previous](baseline/page-015.md) | [Index](README.md) | [Next](baseline/page-017.md)
 
-At trigger time τm , the frame contains the most recent L samples ending at τm - 1:
+[Edit Markdown and LaTeX source](source/baseline/page-016.md). Equations are rendered locally as SVG.
 
-$$
-x_m[i]=x[\tau_m-L+i],\qquad 0\le i<L.\tag{2.3}
-$$
+At trigger time ![&#92;tau_m](math/baseline-page-016-001.svg), the frame contains the most recent ![L](math/baseline-page-016-002.svg) samples ending at ![&#92;tau_m-1](math/baseline-page-016-003.svg):
 
-That frame contributes to output slots τm + G + i. Therefore sample x[τm - L + i] contributes to y[τm + G + i], which establishes the delay D = L + G.
+![Equation 2.3: x_m&#91;i&#93;=x&#91;&#92;tau_m-L+i&#93;,&#92;qquad 0&#92;le i<L.&#92;tag{2.3}](math/baseline-page-016-004.svg)
 
-### 2.3 Finite-stream signoff policy
+That frame contributes to output slots ![&#92;tau_m+G+i](math/baseline-page-016-005.svg). Therefore sample ![x&#91;&#92;tau_m-L+i&#93;](math/baseline-page-016-006.svg) contributes to ![y&#91;&#92;tau_m+G+i&#93;](math/baseline-page-016-007.svg), which establishes the delay ![D=L+G](math/baseline-page-016-008.svg).
 
-For a finite input vector x[0], . . . , x[Ns - 1], define zero extension:
+#### 2.3 Finite-stream signoff policy
 
-$$
-x_z[n]=\begin{cases}x[n],&0\le n<N_s\\0,&\text{otherwise.}\end{cases}\tag{2.4}
-$$
+For a finite input vector ![x&#91;0&#93;,&#92;ldots,x&#91;N_s-1&#93;](math/baseline-page-016-009.svg), define zero extension:
 
-Revision J signoff vectors require Ns > 0. Empty input is not a signoff case. The default finite-stream policy is `full_tail`. Revision J defines the signoff frame set by active overlap after analysis-windowing, not only by raw finite-input overlap:
+![Equation 2.4: x_z&#91;n&#93;=&#92;begin{cases}x&#91;n&#93;,&0&#92;le n<N_s&#92;&#92;0,&&#92;text{otherwise.}&#92;end{cases}&#92;tag{2.4}](math/baseline-page-016-010.svg)
 
-$$
-\mathcal{M}_{\mathrm{active}}=\{m\in\mathbb{N}_0:\exists i\in\{0,\ldots,L-1\}\text{ such that }Q_w[i]\ne0\text{ and }0\le\tau_m-L+i<N_s\}.\tag{2.5}
-$$
+Revision J signoff vectors require ![N_s>0](math/baseline-page-016-011.svg). Empty input is not a signoff case. The default finite-stream policy is `full_tail`. Revision J defines the signoff frame set by active overlap after analysis-windowing, not only by raw finite-input overlap:
 
-This prevents a zero-window edge frame from contributing artificial all-zero frame statistics when the only remaining real input sample lies at an analysis-window index whose quantized coefficient is zero. For the periodic square-root Hann baseline, $Q_w[0]=0$ and $Q_w[i]>0$ for $1\le i<L$, so the active-frame set reduces to
+![Equation 2.5: &#92;mathcal{M}_{&#92;mathrm{active}}=&#92;{m&#92;in&#92;mathbb{N}_0:&#92;exists i&#92;in&#92;{0,&#92;ldots,L-1&#92;}&#92;text{ such that }Q_w&#91;i&#93;&#92;ne0&#92;text{ and }0&#92;le&#92;tau_m-L+i<N_s&#92;}.&#92;tag{2.5}](math/baseline-page-016-012.svg)
 
-$$
-\mathcal{M}_{\mathrm{active}}=\{m\in\mathbb{N}_0:\tau_m=(m+1)H\le N_s+L-2\}.\tag{2.6}
-$$
+This prevents a zero-window edge frame from contributing artificial all-zero frame statistics when the only remaining real input sample lies at an analysis-window index whose quantized coefficient is zero. For the periodic square-root Hann baseline, ![Q_w&#91;0&#93;=0](math/baseline-page-016-013.svg) and ![Q_w&#91;i&#93;>0](math/baseline-page-016-014.svg) for ![1&#92;le i<L](math/baseline-page-016-015.svg), so the active-frame set reduces to
 
-For Ns > 0, the required closed-form frame-count invariant is therefore
+![Equation 2.6: &#92;mathcal{M}_{&#92;mathrm{active}}=&#92;{m&#92;in&#92;mathbb{N}_0:&#92;tau_m=(m+1)H&#92;le N_s+L-2&#92;}.&#92;tag{2.6}](math/baseline-page-016-016.svg)
 
-$$
-N_{\mathrm{frames}}=\left\lfloor\frac{N_s+L-2}{H}\right\rfloor.\tag{2.7}
-$$
+For ![N_s>0](math/baseline-page-016-017.svg), the required closed-form frame-count invariant is therefore
+
+![Equation 2.7: N_{&#92;mathrm{frames}}=&#92;left&#92;lfloor&#92;frac{N_s+L-2}{H}&#92;right&#92;rfloor.&#92;tag{2.7}](math/baseline-page-016-018.svg)
 
 Let
 
-$$
-\tau_{\mathrm{last}}=N_{\mathrm{frames}}H.\tag{2.8}
-$$
+![Equation 2.8: &#92;tau_{&#92;mathrm{last}}=N_{&#92;mathrm{frames}}H.&#92;tag{2.8}](math/baseline-page-016-019.svg)
 
 The full-tail emitted length is
 
-$$
-N_y=\tau_{\mathrm{last}}+G+L.\tag{2.9}
-$$
+![Equation 2.9: N_y=&#92;tau_{&#92;mathrm{last}}+G+L.&#92;tag{2.9}](math/baseline-page-016-020.svg)
 
-For a future window table with a different zero pattern, the general definition of Mactive is normative and the closed-form shortcut above must be re-derived. Under `full_tail`, the driver shall continue asserting sample ticks after the Ns real input samples. Every post-input tick uses xin = 0 from the zero-extended stream, and ticks continue until exactly Ny output samples have been emitted. These post-input values are flush samples. They are not counted as original input samples. A board replay or RTL testbench that stops sample-enable immediately after Ns real samples is not executing the Revision J finite-stream contract. An optional diagnostic policy `fixed_delay_truncate` may set
+For a future window table with a different zero pattern, the general definition of ![&#92;mathcal{M}_{&#92;mathrm{active}}](math/baseline-page-016-021.svg) is normative and the closed-form shortcut above must be re-derived. Under `full_tail`, the driver shall continue asserting sample ticks after the ![N_s](math/baseline-page-016-022.svg) real input samples. Every post-input tick uses ![x_{&#92;mathrm{in}}=0](math/baseline-page-016-023.svg) from the zero-extended stream, and ticks continue until exactly ![N_y](math/baseline-page-016-024.svg) output samples have been emitted. These post-input values are flush samples. They are not counted as original input samples. A board replay or RTL testbench that stops sample-enable immediately after ![N_s](math/baseline-page-016-025.svg) real samples is not executing the Revision J finite-stream contract. An optional diagnostic policy `fixed_delay_truncate` may set
 
-$$
-N_y=N_s+D.\tag{2.10}
-$$
+![Equation 2.10: N_y=N_s+D.&#92;tag{2.10}](math/baseline-page-016-026.svg)
 
 That policy intentionally truncates post-interval tail energy and is not the Revision J signoff default.
 
@@ -645,59 +657,47 @@ Historical Part I, core algorithm. Printed page 4. [Original PDF page](../specs/
 
 [Previous](baseline/page-016.md) | [Index](README.md) | [Next](baseline/page-018.md)
 
-## 3 Bit-Accurate Fixed-Point Contract
+[Edit Markdown and LaTeX source](source/baseline/page-017.md). Equations are rendered locally as SVG.
 
-### 3.1 Sample range and saturation
+### 3 Bit-Accurate Fixed-Point Contract
 
-An N -bit signed two’s-complement sample belongs to
+#### 3.1 Sample range and saturation
 
-$$
-\mathcal{S}_N=[-2^{N-1},2^{N-1}-1]\cap\mathbb{Z}.\tag{3.1}
-$$
+An ![N](math/baseline-page-017-001.svg)-bit signed two’s-complement sample belongs to
+
+![Equation 3.1: &#92;mathcal{S}_N=&#91;-2^{N-1},2^{N-1}-1&#93;&#92;cap&#92;mathbb{Z}.&#92;tag{3.1}](math/baseline-page-017-002.svg)
 
 The output saturation operator is
 
-$$
-\operatorname{sat}_N(z)=\begin{cases}-2^{N-1},&z<-2^{N-1}\\z,&-2^{N-1}\le z\le2^{N-1}-1\\2^{N-1}-1,&z>2^{N-1}-1.\end{cases}\tag{3.2}
-$$
+![Equation 3.2: &#92;operatorname{sat}_N(z)=&#92;begin{cases}-2^{N-1},&z<-2^{N-1}&#92;&#92;z,&-2^{N-1}&#92;le z&#92;le2^{N-1}-1&#92;&#92;2^{N-1}-1,&z>2^{N-1}-1.&#92;end{cases}&#92;tag{3.2}](math/baseline-page-017-003.svg)
 
-Internal wraparound is not allowed in the visible core contract. Revision J guarantees bit-accurate behavior on the frozen signoff vector set. For arbitrary legal N -bit input streams outside that set, an implementation shall either provision widths according to a separate worst-case proof or expose overflow flags that are checked by the verification environment. Such arbitrary streams are not part of Revision J signoff unless that additional proof or flag policy is supplied.
+Internal wraparound is not allowed in the visible core contract. Revision J guarantees bit-accurate behavior on the frozen signoff vector set. For arbitrary legal ![N](math/baseline-page-017-004.svg)-bit input streams outside that set, an implementation shall either provision widths according to a separate worst-case proof or expose overflow flags that are checked by the verification environment. Such arbitrary streams are not part of Revision J signoff unless that additional proof or flag policy is supplied.
 
-### 3.2 Arithmetic shift and rounded right shift
+#### 3.2 Arithmetic shift and rounded right shift
 
 Let asr(z, k) denote sign-preserving arithmetic right shift by k bits. For k ≥ 0, it is equivalent to
 
-$$
-\operatorname{asr}(z,k)=\left\lfloor\frac{z}{2^k}\right\rfloor.\tag{3.3}
-$$
+![Equation 3.3: &#92;operatorname{asr}(z,k)=&#92;left&#92;lfloor&#92;frac{z}{2^k}&#92;right&#92;rfloor.&#92;tag{3.3}](math/baseline-page-017-005.svg)
 
 For example, asr(-3, 1) = -2. All quantizing right shifts use round-to-nearest with ties away from zero. For s ≥ 1,
 
-$$
-\operatorname{rnd\_shr}(v,s)=\operatorname{sgn}(v)\left\lfloor\frac{|v|+2^{s-1}}{2^s}\right\rfloor.\tag{3.4}
-$$
+![Equation 3.4: &#92;operatorname{rnd&#92;_shr}(v,s)=&#92;operatorname{sgn}(v)&#92;left&#92;lfloor&#92;frac{&#124;v&#124;+2^{s-1}}{2^s}&#92;right&#92;rfloor.&#92;tag{3.4}](math/baseline-page-017-006.svg)
 
 The sign function is frozen as
 
-$$
-\operatorname{sgn}(z)=\begin{cases}-1,&z<0\\0,&z=0\\+1,&z>0.\end{cases}\tag{3.5}
-$$
+![Equation 3.5: &#92;operatorname{sgn}(z)=&#92;begin{cases}-1,&z<0&#92;&#92;0,&z=0&#92;&#92;+1,&z>0.&#92;end{cases}&#92;tag{3.5}](math/baseline-page-017-007.svg)
 
 The zero-shift case is defined as
 
-$$
-\operatorname{rnd\_shr}(v,0)=v.\tag{3.6}
-$$
+![Equation 3.6: &#92;operatorname{rnd&#92;_shr}(v,0)=v.&#92;tag{3.6}](math/baseline-page-017-008.svg)
 
 For complex values, `rnd_shr` applies component-wise. Define rnd2(q) = `rnd_shr`(q, 1).
 
-### 3.3 Coefficient quantization and storage widths
+#### 3.3 Coefficient quantization and storage widths
 
 All shared coefficient tables use
 
-$$
-\operatorname{qcoef}(c,F)=\operatorname{sgn}(c)\left\lfloor |c|2^F+\frac12\right\rfloor.\tag{3.7}
-$$
+![Equation 3.7: &#92;operatorname{qcoef}(c,F)=&#92;operatorname{sgn}(c)&#92;left&#92;lfloor &#124;c&#124;2^F+&#92;frac12&#92;right&#92;rfloor.&#92;tag{3.7}](math/baseline-page-017-009.svg)
 
 This is round-to-nearest with ties away from zero. Independent use of a language-default round() is not allowed unless it is proven bit-for-bit equivalent. The storage contract is mandatory:
 
@@ -709,29 +709,25 @@ Historical Part I, core algorithm. Printed page 5. [Original PDF page](../specs/
 
 [Previous](baseline/page-017.md) | [Index](README.md) | [Next](baseline/page-019.md)
 
-- Window coefficients Qw [i] are nonnegative and stored in unsigned WQw = F + 1 bits. For F = 15, the range is 0 to 32768.
+[Edit Markdown and LaTeX source](source/baseline/page-018.md). Equations are rendered locally as SVG.
 
-- Custom FFT and IFFT twiddle coefficients are stored in signed Wtw = F + 2 bits. For F = 15, both -32768 and +32768 are representable. A signed 16-bit Q1.15 ROM is not the Revision J baseline because it cannot represent +1.0 exactly.
+- Window coefficients ![Q_w&#91;i&#93;](math/baseline-page-018-001.svg) are nonnegative and stored in unsigned ![W_{Q_w}=F+1](math/baseline-page-018-002.svg) bits. For F = 15, the range is 0 to 32768.
 
-### 3.4 Fixed-point products and complex multiplication
+- Custom FFT and IFFT twiddle coefficients are stored in signed ![W_{&#92;mathrm{tw}}=F+2](math/baseline-page-018-003.svg) bits. For F = 15, both -32768 and +32768 are representable. A signed 16-bit Q1.15 ROM is not the Revision J baseline because it cannot represent +1.0 exactly.
 
-If integer a has Fa fractional bits and integer b has Fb fractional bits, then ab has Fa + Fb fractional bits. To return to F fractional bits,
+#### 3.4 Fixed-point products and complex multiplication
 
-$$
-\operatorname{mul}_F(a,b,F_a,F_b)=\operatorname{rnd\_shr}(ab,F_a+F_b-F).\tag{3.8}
-$$
+If integer a has ![F_a](math/baseline-page-018-004.svg) fractional bits and integer b has ![F_b](math/baseline-page-018-005.svg) fractional bits, then ab has ![F_a+F_b](math/baseline-page-018-006.svg) fractional bits. To return to F fractional bits,
 
-provided Fa + Fb ≥ F . For complex multiplication with b = br + jbi and w = wr + jwi , each component with F fractional bits,
+![Equation 3.8: &#92;operatorname{mul}_F(a,b,F_a,F_b)=&#92;operatorname{rnd&#92;_shr}(ab,F_a+F_b-F).&#92;tag{3.8}](math/baseline-page-018-007.svg)
 
-$$
-\operatorname{cmul}_r(b,w)=\operatorname{rnd\_shr}(b_rw_r-b_iw_i,F).\tag{3.9}
-$$
+provided ![F_a+F_b&#92;ge F](math/baseline-page-018-008.svg). For complex multiplication with ![b=b_r+jb_i](math/baseline-page-018-009.svg) and ![w=w_r+jw_i](math/baseline-page-018-010.svg), each component with F fractional bits,
 
-$$
-\operatorname{cmul}_i(b,w)=\operatorname{rnd\_shr}(b_rw_i+b_iw_r,F).\tag{3.10}
-$$
+![Equation 3.9: &#92;operatorname{cmul}_r(b,w)=&#92;operatorname{rnd&#92;_shr}(b_rw_r-b_iw_i,F).&#92;tag{3.9}](math/baseline-page-018-011.svg)
 
-No truncation may occur before the full-precision product sums are formed. For a complex multiply whose data operands have signed width Wd and twiddle operands have signed width Wtw , product terms shall use at least Wd + Wtw signed bits. Product sums and differences shall use at least Wd + Wtw + 1 signed bits before `rnd_shr`(·, F ). For analysis windowing, x[i]Qw [i] shall be formed exactly with at least Wx +WQw signed product bits before storage. For synthesis windowing, Re{v[i]}Qw [i] shall be formed with at least Wifft + WQw signed product bits before `rnd_shr`(·, F ). For magnitude-squared, each square shall be formed exactly and the sum shall have at least 2Wcan unsigned bits. Internal storage overflow is an error condition. Internal values shall not silently wrap or saturate unless a later revision explicitly defines that behavior.
+![Equation 3.10: &#92;operatorname{cmul}_i(b,w)=&#92;operatorname{rnd&#92;_shr}(b_rw_i+b_iw_r,F).&#92;tag{3.10}](math/baseline-page-018-012.svg)
+
+No truncation may occur before the full-precision product sums are formed. For a complex multiply whose data operands have signed width ![W_d](math/baseline-page-018-013.svg) and twiddle operands have signed width ![W_{&#92;mathrm{tw}}](math/baseline-page-018-014.svg), product terms shall use at least ![W_d+W_{&#92;mathrm{tw}}](math/baseline-page-018-015.svg) signed bits. Product sums and differences shall use at least ![W_d+W_{&#92;mathrm{tw}}+1](math/baseline-page-018-016.svg) signed bits before `rnd_shr`(·, F ). For analysis windowing, ![x&#91;i&#93;Q_w&#91;i&#93;](math/baseline-page-018-017.svg) shall be formed exactly with at least ![W_x+W_{Q_w}](math/baseline-page-018-018.svg) signed product bits before storage. For synthesis windowing, ![&#92;operatorname{Re}&#92;{v&#91;i&#93;&#92;}Q_w&#91;i&#93;](math/baseline-page-018-019.svg) shall be formed with at least ![W_{&#92;mathrm{ifft}}+W_{Q_w}](math/baseline-page-018-020.svg) signed product bits before `rnd_shr`(·, F ). For magnitude-squared, each square shall be formed exactly and the sum shall have at least ![2W_{&#92;mathrm{can}}](math/baseline-page-018-021.svg) unsigned bits. Internal storage overflow is an error condition. Internal values shall not silently wrap or saturate unless a later revision explicitly defines that behavior.
 
 <a id="pdf-page-019"></a>
 
@@ -741,51 +737,47 @@ Historical Part I, core algorithm. Printed page 6. [Original PDF page](../specs/
 
 [Previous](baseline/page-018.md) | [Index](README.md) | [Next](baseline/page-020.md)
 
-### 3.5 Internal width schedule
+[Edit Markdown and LaTeX source](source/baseline/page-019.md). Equations are rendered locally as SVG.
+
+#### 3.5 Internal width schedule
 
 **Table 3. Revision J minimum internal widths for the custom radix-2 baseline.**
 
 | Quantity | Symbol | Width rule | Baseline |
 | --- | --- | --- | --- |
-| External sample | $W_x$ | signed $N$ | 12 |
-| Window coefficient | $W_{Q_w}$ | unsigned $F+1$ | 16 |
-| Twiddle coefficient | $W_{\mathrm{tw}}$ | signed $F+2$ | 17 |
-| Analysis-windowed input | $W_u$ | signed $N+F$ | 27 |
-| Forward FFT stored real/imag | $W_{\mathrm{fft}}$ | signed $W_u+1$ | 28 |
-| Forward pre-round add/sub | $W_{\mathrm{fft,pre}}$ | signed $W_{\mathrm{fft}}+1$ | 29 |
-| Canonical pre-round add/sub | $W_{\mathrm{can,pre}}$ | signed $W_{\mathrm{fft}}+1$ | 29 |
-| Canonical real/imag | $W_{\mathrm{can}}$ | signed $W_{\mathrm{fft}}$ | 28 |
-| Magnitude-squared and THR2 | $W_{\mathrm{mag2}}$ | unsigned $2W_{\mathrm{can}}$ | 56 |
-| Unscaled IFFT stored real/imag | $W_{\mathrm{ifft}}$ | signed $W_{\mathrm{can}}+P$ | 36 |
-| Synthesis-windowed sample | $W_z$ | signed $W_{\mathrm{ifft}}$ | 36 |
-| OLA accumulator entry | $W_{\mathrm{ola}}$ | signed $W_z+1$ | 37 |
-| Aggregate spectral sums | $W_{E\mathrm{sum}}$ | At least $W_{\mathrm{mag2}}+\lceil\log_2(2N_{\mathrm{frames}}L)\rceil$ or arbitrary precision | run dependent |
-| Time-error sums | $W_{\mathrm{err}}$ | Large enough for all emitted samples or arbitrary precision | run dependent |
+| External sample | ![W_x](math/baseline-page-019-001.svg) | signed ![N](math/baseline-page-019-002.svg) | 12 |
+| Window coefficient | ![W_{Q_w}](math/baseline-page-019-003.svg) | unsigned ![F+1](math/baseline-page-019-004.svg) | 16 |
+| Twiddle coefficient | ![W_{&#92;mathrm{tw}}](math/baseline-page-019-005.svg) | signed ![F+2](math/baseline-page-019-006.svg) | 17 |
+| Analysis-windowed input | ![W_u](math/baseline-page-019-007.svg) | signed ![N+F](math/baseline-page-019-008.svg) | 27 |
+| Forward FFT stored real/imag | ![W_{&#92;mathrm{fft}}](math/baseline-page-019-009.svg) | signed ![W_u+1](math/baseline-page-019-010.svg) | 28 |
+| Forward pre-round add/sub | ![W_{&#92;mathrm{fft,pre}}](math/baseline-page-019-011.svg) | signed ![W_{&#92;mathrm{fft}}+1](math/baseline-page-019-012.svg) | 29 |
+| Canonical pre-round add/sub | ![W_{&#92;mathrm{can,pre}}](math/baseline-page-019-013.svg) | signed ![W_{&#92;mathrm{fft}}+1](math/baseline-page-019-014.svg) | 29 |
+| Canonical real/imag | ![W_{&#92;mathrm{can}}](math/baseline-page-019-015.svg) | signed ![W_{&#92;mathrm{fft}}](math/baseline-page-019-016.svg) | 28 |
+| Magnitude-squared and THR2 | ![W_{&#92;mathrm{mag2}}](math/baseline-page-019-017.svg) | unsigned ![2W_{&#92;mathrm{can}}](math/baseline-page-019-018.svg) | 56 |
+| Unscaled IFFT stored real/imag | ![W_{&#92;mathrm{ifft}}](math/baseline-page-019-019.svg) | signed ![W_{&#92;mathrm{can}}+P](math/baseline-page-019-020.svg) | 36 |
+| Synthesis-windowed sample | ![W_z](math/baseline-page-019-021.svg) | signed ![W_{&#92;mathrm{ifft}}](math/baseline-page-019-022.svg) | 36 |
+| OLA accumulator entry | ![W_{&#92;mathrm{ola}}](math/baseline-page-019-023.svg) | signed ![W_z+1](math/baseline-page-019-024.svg) | 37 |
+| Aggregate spectral sums | ![W_{E&#92;mathrm{sum}}](math/baseline-page-019-025.svg) | At least ![W_{&#92;mathrm{mag2}}+&#92;lceil&#92;log_2(2N_{&#92;mathrm{frames}}L)&#92;rceil](math/baseline-page-019-026.svg) or arbitrary precision | run dependent |
+| Time-error sums | ![W_{&#92;mathrm{err}}](math/baseline-page-019-027.svg) | Large enough for all emitted samples or arbitrary precision | run dependent |
 
 
-The golden model should use arbitrary-precision integers for metric accumulators. RTL shall either provision enough accumulator width for the selected run length or expose and check overflow flags. Although the analysis product xm [i]Qw [i] may be formed internally in at least Wx + WQw bits, the frozen baseline coefficient range 0 ≤ Qw [i] ≤ $2^{F}$ guarantees that the exact product fits in signed Wu = N + F bits. Storage into Wu is therefore a range-checked exact assignment. It is not truncation. If a future coefficient table permits values above $2^{F}$ , the Wu rule must be re-derived.
+The golden model should use arbitrary-precision integers for metric accumulators. RTL shall either provision enough accumulator width for the selected run length or expose and check overflow flags. Although the analysis product ![x_m&#91;i&#93;Q_w&#91;i&#93;](math/baseline-page-019-028.svg) may be formed internally in at least ![W_x+W_{Q_w}](math/baseline-page-019-029.svg) bits, the frozen baseline coefficient range ![0&#92;le Q_w&#91;i&#93;&#92;le2^F](math/baseline-page-019-030.svg) guarantees that the exact product fits in signed ![W_u=N+F](math/baseline-page-019-031.svg) bits. Storage into ![W_u](math/baseline-page-019-032.svg) is therefore a range-checked exact assignment. It is not truncation. If a future coefficient table permits values above ![2^{F}](math/baseline-page-019-033.svg), the ![W_u](math/baseline-page-019-034.svg) rule must be re-derived.
 
-## 4 STFT/WOLA Core Mathematics
+### 4 STFT/WOLA Core Mathematics
 
-### 4.1 Periodic square-root Hann window
+#### 4.1 Periodic square-root Hann window
 
 Define the periodic Hann sequence
 
-$$
-h_p[i]=\frac12-\frac12\cos\left(\frac{2\pi i}{L}\right),\qquad0\le i<L.\tag{4.1}
-$$
+![Equation 4.1: h_p&#91;i&#93;=&#92;frac12-&#92;frac12&#92;cos&#92;left(&#92;frac{2&#92;pi i}{L}&#92;right),&#92;qquad0&#92;le i<L.&#92;tag{4.1}](math/baseline-page-019-035.svg)
 
 The analysis and synthesis windows are identical:
 
-$$
-w_a[i]=w_s[i]=w[i]=\sqrt{h_p[i]}.\tag{4.2}
-$$
+![Equation 4.2: w_a&#91;i&#93;=w_s&#91;i&#93;=w&#91;i&#93;=&#92;sqrt{h_p&#91;i&#93;}.&#92;tag{4.2}](math/baseline-page-019-036.svg)
 
 For H = L/2, ideal complementarity is
 
-$$
-w_a[i]w_s[i]+w_a[i+H]w_s[i+H]=1,\qquad0\le i<H.\tag{4.3}
-$$
+![Equation 4.3: w_a&#91;i&#93;w_s&#91;i&#93;+w_a&#91;i+H&#93;w_s&#91;i+H&#93;=1,&#92;qquad0&#92;le i<H.&#92;tag{4.3}](math/baseline-page-019-037.svg)
 
 <a id="pdf-page-020"></a>
 
@@ -795,75 +787,55 @@ Historical Part I, core algorithm. Printed page 7. [Original PDF page](../specs/
 
 [Previous](baseline/page-019.md) | [Index](README.md) | [Next](baseline/page-021.md)
 
-The quantized table is Qw [i] = qcoef(w[i], F ).
+[Edit Markdown and LaTeX source](source/baseline/page-020.md). Equations are rendered locally as SVG.
 
-### 4.2 Analysis windowing and normalized FFT
+The quantized table is ![Q_w&#91;i&#93;=&#92;operatorname{qcoef}(w&#91;i&#93;,F)](math/baseline-page-020-001.svg).
+
+#### 4.2 Analysis windowing and normalized FFT
 
 For frame m,
 
-$$
-u_m[i]=x_z[\tau_m-L+i]Q_w[i],\qquad0\le i<L.\tag{4.4}
-$$
+![Equation 4.4: u_m&#91;i&#93;=x_z&#91;&#92;tau_m-L+i&#93;Q_w&#91;i&#93;,&#92;qquad0&#92;le i<L.&#92;tag{4.4}](math/baseline-page-020-002.svg)
 
 The intended normalized forward transform is
 
-$$
-X_m[k]=\frac1L\sum_{i=0}^{L-1}u_m[i]e^{-j2\pi ki/L},\qquad0\le k<L.\tag{4.5}
-$$
+![Equation 4.5: X_m&#91;k&#93;=&#92;frac1L&#92;sum_{i=0}^{L-1}u_m&#91;i&#93;e^{-j2&#92;pi ki/L},&#92;qquad0&#92;le k<L.&#92;tag{4.5}](math/baseline-page-020-003.svg)
 
 For the custom baseline, Algorithm 4 is normative.
 
-### 4.3 Hermitian canonicalization
+#### 4.3 Hermitian canonicalization
 
 For self-conjugate bins,
 
-$$
-X_m^{\mathrm{can}}[0]=\operatorname{Re}\{X_m[0]\}+j0.\tag{4.6}
-$$
+![Equation 4.6: X_m^{&#92;mathrm{can}}&#91;0&#93;=&#92;operatorname{Re}&#92;{X_m&#91;0&#93;&#92;}+j0.&#92;tag{4.6}](math/baseline-page-020-004.svg)
 
-$$
-X_m^{\mathrm{can}}[L/2]=\operatorname{Re}\{X_m[L/2]\}+j0.\tag{4.7}
-$$
+![Equation 4.7: X_m^{&#92;mathrm{can}}&#91;L/2&#93;=&#92;operatorname{Re}&#92;{X_m&#91;L/2&#93;&#92;}+j0.&#92;tag{4.7}](math/baseline-page-020-005.svg)
 
 For 1 ≤ k ≤ L/2 - 1,
 
-$$
-R_m[k]=\operatorname{rnd2}(\operatorname{Re}\{X_m[k]\}+\operatorname{Re}\{X_m[L-k]\}).\tag{4.8}
-$$
+![Equation 4.8: R_m&#91;k&#93;=&#92;operatorname{rnd2}(&#92;operatorname{Re}&#92;{X_m&#91;k&#93;&#92;}+&#92;operatorname{Re}&#92;{X_m&#91;L-k&#93;&#92;}).&#92;tag{4.8}](math/baseline-page-020-006.svg)
 
-$$
-I_m[k]=\operatorname{rnd2}(\operatorname{Im}\{X_m[k]\}-\operatorname{Im}\{X_m[L-k]\}).\tag{4.9}
-$$
+![Equation 4.9: I_m&#91;k&#93;=&#92;operatorname{rnd2}(&#92;operatorname{Im}&#92;{X_m&#91;k&#93;&#92;}-&#92;operatorname{Im}&#92;{X_m&#91;L-k&#93;&#92;}).&#92;tag{4.9}](math/baseline-page-020-007.svg)
 
-$$
-X_m^{\mathrm{can}}[k]=R_m[k]+jI_m[k].\tag{4.10}
-$$
+![Equation 4.10: X_m^{&#92;mathrm{can}}&#91;k&#93;=R_m&#91;k&#93;+jI_m&#91;k&#93;.&#92;tag{4.10}](math/baseline-page-020-008.svg)
 
-$$
-X_m^{\mathrm{can}}[L-k]=R_m[k]-jI_m[k].\tag{4.11}
-$$
+![Equation 4.11: X_m^{&#92;mathrm{can}}&#91;L-k&#93;=R_m&#91;k&#93;-jI_m&#91;k&#93;.&#92;tag{4.11}](math/baseline-page-020-009.svg)
 
-All threshold decisions use X can , not the raw FFT output.
+All threshold decisions use ![X^{&#92;mathrm{can}}](math/baseline-page-020-010.svg), not the raw FFT output.
 
-### 4.4 Magnitude-squared mask
+#### 4.4 Magnitude-squared mask
 
 For unique bins 0 ≤ k ≤ L/2,
 
-$$
-\operatorname{mag2}_m[k]=\operatorname{Re}\{X_m^{\mathrm{can}}[k]\}^2+\operatorname{Im}\{X_m^{\mathrm{can}}[k]\}^2.\tag{4.12}
-$$
+![Equation 4.12: &#92;operatorname{mag2}_m&#91;k&#93;=&#92;operatorname{Re}&#92;{X_m^{&#92;mathrm{can}}&#91;k&#93;&#92;}^2+&#92;operatorname{Im}&#92;{X_m^{&#92;mathrm{can}}&#91;k&#93;&#92;}^2.&#92;tag{4.12}](math/baseline-page-020-011.svg)
 
 The preliminary mask bit before protection is
 
-$$
-\operatorname{pre\_mask}_m[k]=\begin{cases}1,&\operatorname{mag2}_m[k]<\mathrm{THR2}\\0,&\operatorname{mag2}_m[k]\ge\mathrm{THR2}.\end{cases}\tag{4.13}
-$$
+![Equation 4.13: &#92;operatorname{pre&#92;_mask}_m&#91;k&#93;=&#92;begin{cases}1,&&#92;operatorname{mag2}_m&#91;k&#93;<&#92;mathrm{THR2}&#92;&#92;0,&&#92;operatorname{mag2}_m&#91;k&#93;&#92;ge&#92;mathrm{THR2}.&#92;end{cases}&#92;tag{4.13}](math/baseline-page-020-012.svg)
 
-The final mask is initialized as maskm [k] = `pre_maskm` [k] and may then be modified only by the protection rules in Section 4.5. The comparison is unsigned, full precision, and performed in the magnitude-squared domain. The threshold register width is Wmag2 :
+The final mask is initialized as ![&#92;operatorname{mask}_m&#91;k&#93;=&#92;operatorname{pre&#92;_mask}_m&#91;k&#93;](math/baseline-page-020-013.svg) and may then be modified only by the protection rules in Section 4.5. The comparison is unsigned, full precision, and performed in the magnitude-squared domain. The threshold register width is ![W_{&#92;mathrm{mag2}}](math/baseline-page-020-014.svg):
 
-$$
-0\le\mathrm{THR2}<2^{W_{\mathrm{mag2}}}.\tag{4.14}
-$$
+![Equation 4.14: 0&#92;le&#92;mathrm{THR2}<2^{W_{&#92;mathrm{mag2}}}.&#92;tag{4.14}](math/baseline-page-020-015.svg)
 
 Out-of-range values are illegal for core signoff.
 
@@ -875,65 +847,47 @@ Historical Part I, core algorithm. Printed page 8. [Original PDF page](../specs/
 
 [Previous](baseline/page-020.md) | [Index](README.md) | [Next](baseline/page-022.md)
 
-### 4.5 Protection rules and masked spectrum
+[Edit Markdown and LaTeX source](source/baseline/page-021.md). Equations are rendered locally as SVG.
+
+#### 4.5 Protection rules and masked spectrum
 
 Define
 
-$$
-\epsilon[k]=\begin{cases}0,&k=0\text{ and }\mathrm{PROTECT\_DC}=1\\0,&k=L/2\text{ and }\mathrm{PROTECT\_NYQ}=1\\1,&\text{otherwise.}\end{cases}\tag{4.15}
-$$
+![Equation 4.15: &#92;epsilon&#91;k&#93;=&#92;begin{cases}0,&k=0&#92;text{ and }&#92;mathrm{PROTECT&#92;_DC}=1&#92;&#92;0,&k=L/2&#92;text{ and }&#92;mathrm{PROTECT&#92;_NYQ}=1&#92;&#92;1,&&#92;text{otherwise.}&#92;end{cases}&#92;tag{4.15}](math/baseline-page-021-001.svg)
 
-After threshold comparison, if `PROTECT_DC`= 1, force maskm [0] = 0. If `PROTECT_NYQ`= 1, force maskm [L/2] = 0. The preliminary value `pre_mask` is retained only for debug reporting and never controls synthesis. The masked spectrum is denoted Xb. For 1 ≤ k ≤ L/2 - 1,
+After threshold comparison, if `PROTECT_DC`= 1, force ![&#92;operatorname{mask}_m&#91;0&#93;=0](math/baseline-page-021-002.svg). If `PROTECT_NYQ`= 1, force ![&#92;operatorname{mask}_m&#91;L/2&#93;=0](math/baseline-page-021-003.svg). The preliminary value `pre_mask` is retained only for debug reporting and never controls synthesis. The masked spectrum is denoted ![&#92;mathrm{Xb}](math/baseline-page-021-004.svg). For ![1&#92;le k&#92;le L/2-1](math/baseline-page-021-005.svg),
 
-$$
-\mathrm{Xb}_m[k]=\begin{cases}0,&\operatorname{mask}_m[k]=1\\X_m^{\mathrm{can}}[k],&\operatorname{mask}_m[k]=0.\end{cases}\tag{4.16}
-$$
+![Equation 4.16: &#92;mathrm{Xb}_m&#91;k&#93;=&#92;begin{cases}0,&&#92;operatorname{mask}_m&#91;k&#93;=1&#92;&#92;X_m^{&#92;mathrm{can}}&#91;k&#93;,&&#92;operatorname{mask}_m&#91;k&#93;=0.&#92;end{cases}&#92;tag{4.16}](math/baseline-page-021-006.svg)
 
-$$
-\mathrm{Xb}_m[L-k]=\begin{cases}0,&\operatorname{mask}_m[k]=1\\X_m^{\mathrm{can}}[L-k],&\operatorname{mask}_m[k]=0.\end{cases}\tag{4.17}
-$$
+![Equation 4.17: &#92;mathrm{Xb}_m&#91;L-k&#93;=&#92;begin{cases}0,&&#92;operatorname{mask}_m&#91;k&#93;=1&#92;&#92;X_m^{&#92;mathrm{can}}&#91;L-k&#93;,&&#92;operatorname{mask}_m&#91;k&#93;=0.&#92;end{cases}&#92;tag{4.17}](math/baseline-page-021-007.svg)
 
 For self-conjugate bins,
 
-$$
-\mathrm{Xb}_m[0]=(1-\operatorname{mask}_m[0])X_m^{\mathrm{can}}[0].\tag{4.18}
-$$
+![Equation 4.18: &#92;mathrm{Xb}_m&#91;0&#93;=(1-&#92;operatorname{mask}_m&#91;0&#93;)X_m^{&#92;mathrm{can}}&#91;0&#93;.&#92;tag{4.18}](math/baseline-page-021-008.svg)
 
-$$
-\mathrm{Xb}_m[L/2]=(1-\operatorname{mask}_m[L/2])X_m^{\mathrm{can}}[L/2].\tag{4.19}
-$$
+![Equation 4.19: &#92;mathrm{Xb}_m&#91;L/2&#93;=(1-&#92;operatorname{mask}_m&#91;L/2&#93;)X_m^{&#92;mathrm{can}}&#91;L/2&#93;.&#92;tag{4.19}](math/baseline-page-021-009.svg)
 
 The result is conjugate symmetric by construction.
 
-### 4.6 Unscaled IFFT, synthesis window, and WOLA
+#### 4.6 Unscaled IFFT, synthesis window, and WOLA
 
 The intended inverse is unscaled:
 
-$$
-v_m[i]=\sum_{k=0}^{L-1}\mathrm{Xb}_m[k]e^{j2\pi ki/L},\qquad0\le i<L.\tag{4.20}
-$$
+![Equation 4.20: v_m&#91;i&#93;=&#92;sum_{k=0}^{L-1}&#92;mathrm{Xb}_m&#91;k&#93;e^{j2&#92;pi ki/L},&#92;qquad0&#92;le i<L.&#92;tag{4.20}](math/baseline-page-021-010.svg)
 
 For the custom baseline, Algorithm 5 is normative. The synthesized frame contribution is
 
-$$
-z_m[i]=\operatorname{rnd\_shr}(\operatorname{Re}\{v_m[i]\}Q_w[i],F).\tag{4.21}
-$$
+![Equation 4.21: z_m&#91;i&#93;=&#92;operatorname{rnd&#92;_shr}(&#92;operatorname{Re}&#92;{v_m&#91;i&#93;&#92;}Q_w&#91;i&#93;,F).&#92;tag{4.21}](math/baseline-page-021-011.svg)
 
 Each frame adds into the output accumulator:
 
-$$
-A[\tau_m+G+i]\leftarrow A[\tau_m+G+i]+z_m[i].\tag{4.22}
-$$
+![Equation 4.22: A&#91;&#92;tau_m+G+i&#93;&#92;leftarrow A&#91;&#92;tau_m+G+i&#93;+z_m&#91;i&#93;.&#92;tag{4.22}](math/baseline-page-021-012.svg)
 
 The emitted sample and delayed error are
 
-$$
-y[n]=\operatorname{sat}_N(\operatorname{rnd\_shr}(A[n],F)).\tag{4.23}
-$$
+![Equation 4.23: y&#91;n&#93;=&#92;operatorname{sat}_N(&#92;operatorname{rnd&#92;_shr}(A&#91;n&#93;,F)).&#92;tag{4.23}](math/baseline-page-021-013.svg)
 
-$$
-e[n]=x_z[n-D]-y[n].\tag{4.24}
-$$
+![Equation 4.24: e&#91;n&#93;=x_z&#91;n-D&#93;-y&#91;n&#93;.&#92;tag{4.24}](math/baseline-page-021-014.svg)
 
 <a id="pdf-page-022"></a>
 
@@ -943,11 +897,13 @@ Historical Part I, core algorithm. Printed page 9. [Original PDF page](../specs/
 
 [Previous](baseline/page-021.md) | [Index](README.md) | [Next](baseline/page-023.md)
 
-## 5 Normative Core Algorithm Tables
+[Edit Markdown and LaTeX source](source/baseline/page-022.md). Equations are rendered locally as SVG.
+
+### 5 Normative Core Algorithm Tables
 
 The algorithms in this section are normative mathematical procedures, not SystemVerilog module descriptions. To avoid notation ambiguity, the implementation-facing algorithm tables use ASCII identifiers: Xb for the masked spectrum, mag2 for the magnitude-squared array, `pre_mask` for the preliminary threshold result, and mask for the final post-protection unique-bin mask.
 
-### Algorithm 1 Finite-stream Phase 2 core operator with full-tail scoring
+#### Algorithm 1 Finite-stream Phase 2 core operator with full-tail scoring
 
 ```text
 Require: finite input vector x[0:Ns - 1] with Ns > 0; frozen parameters (N, L, H, F, G, D); frozen coefficient tables; threshold
@@ -980,7 +936,7 @@ Ensure: output vector y[0:Ny - 1], delayed-error metrics, aggregate frame metric
 25: return (y, Ny , frame_count, frame_stats, metrics)
 ```
 
-### Algorithm 2 ProcessFrameAnalysisMask: frame construction, FFT, canonicalization, masking,
+#### Algorithm 2 ProcessFrameAnalysisMask: frame construction, FFT, canonicalization, masking,
 
 and frame statistics
 
@@ -1007,6 +963,8 @@ Ensure: masked spectrum Xb[0:L - 1], unique-bin mag2[0:L/2], pre-protection mask
 Historical Part I, core algorithm. Printed page 10. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=23).
 
 [Previous](baseline/page-022.md) | [Index](README.md) | [Next](baseline/page-024.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-023.md). Equations are rendered locally as SVG.
 
 ```text
 11:     Xcan[k] <- R + jI
@@ -1045,7 +1003,7 @@ Historical Part I, core algorithm. Printed page 10. [Original PDF page](../specs
 44: return (Xb, mag2, pre_mask, mask, frame_stats)
 ```
 
-### Algorithm 3 ProcessFrameSynthesisWOLA: IFFT, synthesis window, and WOLA accumulation
+#### Algorithm 3 ProcessFrameSynthesisWOLA: IFFT, synthesis window, and WOLA accumulation
 
 ```text
 Require: masked spectrum Xb[0:L - 1], frame statistics, OLA ring buffer ola[0:D - 1], read pointer rd, scheduling cushion G
@@ -1061,7 +1019,7 @@ Ensure: updated OLA ring buffer and aggregate spectral statistics
 9: update eligible_kept_mag2 and eligible_total_mag2 aggregate sums using frame_stats
 ```
 
-### 5.1 Required invariants
+#### 5.1 Required invariants
 
 INV1. Every emitted sample y[n] is compared against xz [n - D].
 
@@ -1075,9 +1033,11 @@ Historical Part I, core algorithm. Printed page 11. [Original PDF page](../specs
 
 [Previous](baseline/page-023.md) | [Index](README.md) | [Next](baseline/page-025.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-024.md). Equations are rendered locally as SVG.
+
 INV3. If THR2= 0, then every eligible mask decision is zero.
 
-INV4. For 1 ≤ k ≤ L/2 - 1, Xb[L - k] =Xb[k]∗ by construction.
+INV4. For ![1&#92;le k&#92;le L/2-1](math/baseline-page-024-001.svg), ![&#92;mathrm{Xb}&#91;L-k&#93;=&#92;mathrm{Xb}&#91;k&#93;^*](math/baseline-page-024-002.svg) by construction.
 
 INV5. Bins 0 and L/2 are real-valued after canonicalization.
 
@@ -1085,47 +1045,35 @@ INV6. All precision-reducing shifts use `rnd_shr`(·) or rnd2(·).
 
 INV7. The OLA accumulator shall not wrap internally on signoff vectors.
 
-INV8. The signoff frame count equals ⌊(Ns +L-2)/H⌋ under the Revision J active-window finite-stream policy.
+INV8. The signoff frame count equals ![&#92;lfloor(N_s+L-2)/H&#92;rfloor](math/baseline-page-024-003.svg) under the Revision J active-window finite-stream policy.
 
-## 6 Exact Custom FFT/IFFT Integer Algorithms
+### 6 Exact Custom FFT/IFFT Integer Algorithms
 
 This section freezes the custom radix-2 baseline. If a vendor FFT IP is used, Appendix A replaces this section for bit-accurate purposes.
 
-### 6.1 Bit reversal and twiddle tables
+#### 6.1 Bit reversal and twiddle tables
 
-Let bitrevP (k) denote P -bit bit reversal. Forward twiddles are
+Let ![&#92;operatorname{bitrev}_P(k)](math/baseline-page-024-004.svg) denote ![P](math/baseline-page-024-005.svg)-bit bit reversal. Forward twiddles are
 
-$$
-W_r[e]=\operatorname{qcoef}\left(\cos\frac{2\pi e}{L},F\right).\tag{6.1}
-$$
+![Equation 6.1: W_r&#91;e&#93;=&#92;operatorname{qcoef}&#92;left(&#92;cos&#92;frac{2&#92;pi e}{L},F&#92;right).&#92;tag{6.1}](math/baseline-page-024-006.svg)
 
-$$
-W_i[e]=\operatorname{qcoef}\left(-\sin\frac{2\pi e}{L},F\right).\tag{6.2}
-$$
+![Equation 6.2: W_i&#91;e&#93;=&#92;operatorname{qcoef}&#92;left(-&#92;sin&#92;frac{2&#92;pi e}{L},F&#92;right).&#92;tag{6.2}](math/baseline-page-024-007.svg)
 
 Inverse twiddles are
 
-$$
-\widetilde W_r[e]=\operatorname{qcoef}\left(\cos\frac{2\pi e}{L},F\right).\tag{6.3}
-$$
+![Equation 6.3: &#92;widetilde W_r&#91;e&#93;=&#92;operatorname{qcoef}&#92;left(&#92;cos&#92;frac{2&#92;pi e}{L},F&#92;right).&#92;tag{6.3}](math/baseline-page-024-008.svg)
 
-$$
-\widetilde W_i[e]=\operatorname{qcoef}\left(+\sin\frac{2\pi e}{L},F\right).\tag{6.4}
-$$
+![Equation 6.4: &#92;widetilde W_i&#91;e&#93;=&#92;operatorname{qcoef}&#92;left(+&#92;sin&#92;frac{2&#92;pi e}{L},F&#92;right).&#92;tag{6.4}](math/baseline-page-024-009.svg)
 
 Define the complex twiddle table aliases
 
-$$
-W_{\mathrm{fwd}}[e]=W_r[e]+jW_i[e].\tag{6.5}
-$$
+![Equation 6.5: W_{&#92;mathrm{fwd}}&#91;e&#93;=W_r&#91;e&#93;+jW_i&#91;e&#93;.&#92;tag{6.5}](math/baseline-page-024-010.svg)
 
-$$
-W_{\mathrm{inv}}[e]=\widetilde W_r[e]+j\widetilde W_i[e].\tag{6.6}
-$$
+![Equation 6.6: W_{&#92;mathrm{inv}}&#91;e&#93;=&#92;widetilde W_r&#91;e&#93;+j&#92;widetilde W_i&#91;e&#93;.&#92;tag{6.6}](math/baseline-page-024-011.svg)
 
 Algorithms 4 and 5 shall use these aliases. The inverse twiddle table is a frozen artifact and shall not be regenerated implicitly inside RTL.
 
-### Algorithm 4 Exact custom FFTnorm integer algorithm
+#### Algorithm 4 Exact custom FFTnorm integer algorithm
 
 ```text
 Require: real input vector u[0:L - 1] with F fractional bits; L = 2^P ; frozen forward twiddle table Wfwd[e]
@@ -1144,6 +1092,8 @@ Historical Part I, core algorithm. Printed page 12. [Original PDF page](../specs
 
 [Previous](baseline/page-024.md) | [Index](README.md) | [Next](baseline/page-026.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-025.md). Equations are rendered locally as SVG.
+
 ```text
  5:   span ← 2^s, half ← 2^(s-1)
  6:   for base = 0 to L - 1 step span do
@@ -1159,7 +1109,7 @@ Historical Part I, core algorithm. Printed page 12. [Original PDF page](../specs
 16: return X ← A
 ```
 
-### Algorithm 5 Exact custom IFFTunscaled integer algorithm
+#### Algorithm 5 Exact custom IFFTunscaled integer algorithm
 
 ```text
 Require: conjugate-symmetric masked spectrum Xb[0:L - 1] with F fractional bits; frozen inverse twiddle table Winv[e]
@@ -1184,15 +1134,13 @@ Ensure: unscaled complex time-domain vector v[0:L - 1] in natural order
 
 All additions and subtractions in Algorithms 4 and 5 shall be sign-extended before the defined rounding or storage step. Silent truncation before rnd2, `rnd_shr`, or threshold comparison is not allowed.
 
-## 7 Metrics and Artifact Contract
+### 7 Metrics and Artifact Contract
 
-### 7.1 Spectral metrics
+#### 7.1 Spectral metrics
 
 The unique-bin weight is
 
-$$
-\omega[k]=\begin{cases}1,&k=0\\1,&k=L/2\\2,&1\le k\le L/2-1.\end{cases}\tag{7.1}
-$$
+![Equation 7.1: &#92;omega&#91;k&#93;=&#92;begin{cases}1,&k=0&#92;&#92;1,&k=L/2&#92;&#92;2,&1&#92;le k&#92;le L/2-1.&#92;end{cases}&#92;tag{7.1}](math/baseline-page-025-001.svg)
 
 <a id="pdf-page-026"></a>
 
@@ -1202,53 +1150,39 @@ Historical Part I, core algorithm. Printed page 13. [Original PDF page](../specs
 
 [Previous](baseline/page-025.md) | [Index](README.md) | [Next](baseline/page-027.md)
 
-Let E = {k ∈ {0, . . . , L/2} : ϵ[k] = 1}. For one frame,
+[Edit Markdown and LaTeX source](source/baseline/page-026.md). Equations are rendered locally as SVG.
 
-$$
-U_{\mathrm{uniq}}=L/2+1,\qquad S_{\mathrm{uniq}}=\sum_{k=0}^{L/2}\operatorname{mask}[k].\tag{7.2}
-$$
+Let ![&#92;mathcal{E}=&#92;{k&#92;in&#92;{0,&#92;ldots,L/2&#92;}:&#92;epsilon&#91;k&#93;=1&#92;}](math/baseline-page-026-001.svg). For one frame,
 
-$$
-U_{\mathrm{elig}}=|\mathcal E|,\qquad S_{\mathrm{elig}}=\sum_{k\in\mathcal E}\operatorname{mask}[k].\tag{7.3}
-$$
+![Equation 7.2: U_{&#92;mathrm{uniq}}=L/2+1,&#92;qquad S_{&#92;mathrm{uniq}}=&#92;sum_{k=0}^{L/2}&#92;operatorname{mask}&#91;k&#93;.&#92;tag{7.2}](math/baseline-page-026-002.svg)
 
-$$
-E_{\mathrm{elig,total}}=\sum_{k\in\mathcal E}\omega[k]\operatorname{mag2}[k],\qquad E_{\mathrm{elig,kept}}=\sum_{k\in\mathcal E}(1-\operatorname{mask}[k])\omega[k]\operatorname{mag2}[k].\tag{7.4}
-$$
+![Equation 7.3: U_{&#92;mathrm{elig}}=&#124;&#92;mathcal E&#124;,&#92;qquad S_{&#92;mathrm{elig}}=&#92;sum_{k&#92;in&#92;mathcal E}&#92;operatorname{mask}&#91;k&#93;.&#92;tag{7.3}](math/baseline-page-026-003.svg)
+
+![Equation 7.4: E_{&#92;mathrm{elig,total}}=&#92;sum_{k&#92;in&#92;mathcal E}&#92;omega&#91;k&#93;&#92;operatorname{mag2}&#91;k&#93;,&#92;qquad E_{&#92;mathrm{elig,kept}}=&#92;sum_{k&#92;in&#92;mathcal E}(1-&#92;operatorname{mask}&#91;k&#93;)&#92;omega&#91;k&#93;&#92;operatorname{mag2}&#91;k&#93;.&#92;tag{7.4}](math/baseline-page-026-004.svg)
 
 These are normalized spectral magnitude-squared totals for deterministic accounting. They are not direct physical energy measurements unless Parseval scaling is applied. The name `unique_suppressed_bins` means the final post-protection mask count over all unique bins. Under the current post-protection mask semantics, protected bins are forced to mask=0, so `unique_suppressed_bins` and `eligible_suppressed_bins` are equal whenever those protection rules are applied. The useful distinction is in the denominators: `unique_bins` includes protected bins, while `eligible_unique_bins` excludes them. The preferred workload proxy is therefore `eligible_suppressed_bins/eligible_unique_bins`. If a debug flow needs to know which protected bins would have been suppressed before protection, it shall use the optional bin-level `pre_mask` field rather than changing the frame-statistics counters.
 
-### 7.2 Time-domain quality metrics
+#### 7.2 Time-domain quality metrics
 
-For 0 ≤ n < Ny ,
+For ![0&#92;le n<N_y](math/baseline-page-026-005.svg),
 
-$$
-e[n]=x_z[n-D]-y[n].\tag{7.5}
-$$
+![Equation 7.5: e&#91;n&#93;=x_z&#91;n-D&#93;-y&#91;n&#93;.&#92;tag{7.5}](math/baseline-page-026-006.svg)
 
 Required integer metrics are
 
-$$
-\mathrm{sum\_abs\_err}=\sum_{n=0}^{N_y-1}|e[n]|.\tag{7.6}
-$$
+![Equation 7.6: &#92;mathrm{sum&#92;_abs&#92;_err}=&#92;sum_{n=0}^{N_y-1}&#124;e&#91;n&#93;&#124;.&#92;tag{7.6}](math/baseline-page-026-007.svg)
 
-$$
-\mathrm{sum\_sq\_err}=\sum_{n=0}^{N_y-1}e[n]^2.\tag{7.7}
-$$
+![Equation 7.7: &#92;mathrm{sum&#92;_sq&#92;_err}=&#92;sum_{n=0}^{N_y-1}e&#91;n&#93;^2.&#92;tag{7.7}](math/baseline-page-026-008.svg)
 
-$$
-\mathrm{max\_abs\_err}=\max_{0\le n<N_y}|e[n]|.\tag{7.8}
-$$
+![Equation 7.8: &#92;mathrm{max&#92;_abs&#92;_err}=&#92;max_{0&#92;le n<N_y}&#124;e&#91;n&#93;&#124;.&#92;tag{7.8}](math/baseline-page-026-009.svg)
 
-$$
-\mathrm{error\_sample\_count}=N_y.\tag{7.9}
-$$
+![Equation 7.9: &#92;mathrm{error&#92;_sample&#92;_count}=N_y.&#92;tag{7.9}](math/baseline-page-026-010.svg)
 
 RMSE may be reported as a derived floating field, but the integer numerator and denominator are the signoff quantities.
 
-### 7.3 Canonical memory-file encoding
+#### 7.3 Canonical memory-file encoding
 
-All memh files contain exactly one value per line, lowercase hexadecimal digits only, no 0x prefix, no leading or trailing spaces, no blank lines, and exactly one LF line ending after each value in the canonical form. For an unsigned W -bit memh file, each line shall contain exactly ⌈W/4⌉ hexadecimal digits. The value shall satisfy 0 ≤ value < $2^{W}$ . Readers shall mask to W bits and shall not sign-extend unsigned files.
+All memh files contain exactly one value per line, lowercase hexadecimal digits only, no 0x prefix, no leading or trailing spaces, no blank lines, and exactly one LF line ending after each value in the canonical form. For an unsigned ![W](math/baseline-page-026-011.svg)-bit memh file, each line shall contain exactly ![&#92;lceil W/4&#92;rceil](math/baseline-page-026-012.svg) hexadecimal digits. The value shall satisfy ![0&#92;le&#92;mathrm{value}<2^W](math/baseline-page-026-013.svg). Readers shall mask to W bits and shall not sign-extend unsigned files.
 
 <a id="pdf-page-027"></a>
 
@@ -1258,23 +1192,25 @@ Historical Part I, core algorithm. Printed page 14. [Original PDF page](../specs
 
 [Previous](baseline/page-026.md) | [Index](README.md) | [Next](baseline/page-028.md)
 
-For a signed W -bit memh file, each line shall contain exactly ⌈W/4⌉ hexadecimal digits. The encoded value is the low W bits of the two’s-complement representation, zero-padded on the left to the required digit count. Readers shall mask to W bits first and then sign-extend from bit W - 1. The stream files `x_in.memh` and `y_out.memh` are signed N -bit files. The window file `window_qw.memh` is an unsigned WQw -bit file. All forward and inverse twiddle files are signed Wtw -bit files. For Wtw = 17, every twiddle line has five hex digits:
+[Edit Markdown and LaTeX source](source/baseline/page-027.md). Equations are rendered locally as SVG.
+
+For a signed ![W](math/baseline-page-027-001.svg)-bit memh file, each line shall contain exactly ![&#92;lceil W/4&#92;rceil](math/baseline-page-027-002.svg) hexadecimal digits. The encoded value is the low W bits of the two’s-complement representation, zero-padded on the left to the required digit count. Readers shall mask to W bits first and then sign-extend from bit W - 1. The stream files `x_in.memh` and `y_out.memh` are signed ![N](math/baseline-page-027-003.svg)-bit files. The window file `window_qw.memh` is an unsigned ![W_{Q_w}](math/baseline-page-027-004.svg)-bit file. All forward and inverse twiddle files are signed ![W_{&#92;mathrm{tw}}](math/baseline-page-027-005.svg)-bit files. For ![W_{&#92;mathrm{tw}}=17](math/baseline-page-027-006.svg), every twiddle line has five hex digits:
 
 +32768 → 08000, -32768 → 18000, -1 → 1ffff.
 
-### 7.4 Canonical SHA-256 hashing
+#### 7.4 Canonical SHA-256 hashing
 
 All memh SHA-256 fields, including coefficient hashes and stream hashes such as `x_in_sha256` or `y_out_sha256` when present, are computed over the logical integer vector, not arbitrary raw host bytes. To hash a table or stream, serialize each value according to the canonical memh rule for its declared signedness and width, using lowercase fixed-width hexadecimal plus one LF byte after every value. CRLF, uppercase hexadecimal, extra spaces, and blank lines are not canonical. A checker may normalize an input file to this canonical serialization before hashing, but config.json and `test_vectors.json` record hashes of the canonical serialization only.
 
-### 7.5 Normative coefficient artifacts
+#### 7.5 Normative coefficient artifacts
 
 The coefficient equations in Sections 4 and 6 define how the initial tables are generated. After the first frozen release, the coefficient memh files and their canonical SHA-256 hashes are normative for signoff. RTL shall use those artifacts directly or prove that its generated ROM contents match their canonical hashes. A regenerated table that is mathematically equivalent but hash-different is not a Revision J signoff table.
 
-### 7.6 Frozen stream artifacts
+#### 7.6 Frozen stream artifacts
 
 The generator equations define how input vectors are constructed for the initial golden-model release. After a vector is frozen, `x_in.memh` and its canonical `x_in_sha256` are normative for signoff. Regenerating the same named vector with a different math library is not sufficient unless the canonical `x_in_sha256` matches. Signoff never depends on independently re-evaluating sin, cos, or π in a different math library after the vector has been frozen. The canonical stream hash is authoritative. After the golden model produces `y_out.memh`, the canonical `y_out_sha256` is also normative and shall be recorded in the stream-hash manifest. The mathematical generator name remains useful documentation, but frozen stream hashes are the authority used by RTL and board-replay checkers.
 
-### 7.7 Artifact line counts
+#### 7.7 Artifact line counts
 
 Every required artifact has a fixed row count for a given signoff vector:
 
@@ -1286,35 +1222,37 @@ Historical Part I, core algorithm. Printed page 15. [Original PDF page](../specs
 
 [Previous](baseline/page-027.md) | [Index](README.md) | [Next](baseline/page-029.md)
 
-- `window_qw.memh` shall contain exactly L lines. Line i stores Qw [i] for i = 0, . . . , L - 1.
+[Edit Markdown and LaTeX source](source/baseline/page-028.md). Equations are rendered locally as SVG.
+
+- `window_qw.memh` shall contain exactly L lines. Line i stores ![Q_w&#91;i&#93;](math/baseline-page-028-001.svg) for i = 0, . . . , L - 1.
 
 - `twiddle_re.memh`, `twiddle_im.memh`, `twiddle_inv_re.memh`, and `twiddle_inv_im.memh` shall each contain exactly L lines. Line e stores the coefficient for e = 0, . . . , L - 1.
 
-- `x_in.memh` shall contain exactly Ns lines.
+- `x_in.memh` shall contain exactly ![N_s](math/baseline-page-028-002.svg) lines.
 
-- `y_out.memh` shall contain exactly Ny lines.
+- `y_out.memh` shall contain exactly ![N_y](math/baseline-page-028-003.svg) lines.
 
-- `frame_stats.csv` shall contain one header row plus exactly Nframes data rows.
+- `frame_stats.csv` shall contain one header row plus exactly ![N_{&#92;mathrm{frames}}](math/baseline-page-028-004.svg) data rows.
 
-- Conditional `bin_stats.csv`: when required for a vector, one header row plus exactly Nframes (L/2 + 1) data rows. The baseline stores L twiddle entries for a simple artifact contract, even though a hardware implementation may store fewer entries internally after a separate ROM-addressing proof. Internal ROM compaction shall not change the external artifact contract. The `bin_stats.csv` artifact is conditional:
+- Conditional `bin_stats.csv`: when required for a vector, one header row plus exactly ![N_{&#92;mathrm{frames}}(L/2+1)](math/baseline-page-028-005.svg) data rows. The baseline stores L twiddle entries for a simple artifact contract, even though a hardware implementation may store fewer entries internally after a separate ROM-addressing proof. Internal ROM compaction shall not change the external artifact contract. The `bin_stats.csv` artifact is conditional:
 
 - If the file is not required for a vector, omit `bin_stats_data_rows` from `artifact_rows`.
 
 - If that row-count field is present, then `bin_stats.csv` shall be present and shall contain exactly that number of data rows.
 
-### 7.8 Required artifacts
+#### 7.8 Required artifacts
 
 **Table 4. Required stream and coefficient artifacts.**
 
 | Artifact | Contract |
 | --- | --- |
-| `x_in.memh` | Input stream in signed N -bit two’s-complement hex, exactly ⌈N/4⌉ digits per line. |
-| `y_out.memh` | Reconstructed stream y[0], . . . , y[Ny - 1] in the same signed N -bit format. |
-| `window_qw.memh` | Quantized window ROM Qw [i], unsigned width WQw = F + 1. |
-| `twiddle_re.memh` | Forward twiddle real table, signed width Wtw . |
-| `twiddle_im.memh` | Forward twiddle imaginary table, signed width Wtw . |
-| `twiddle_inv_re.memh` | Inverse twiddle real table, signed width Wtw . |
-| `twiddle_inv_im.memh` | Inverse twiddle imaginary table, signed width Wtw . |
+| `x_in.memh` | Input stream in signed ![N](math/baseline-page-028-006.svg)-bit two’s-complement hex, exactly ![&#92;lceil N/4&#92;rceil](math/baseline-page-028-007.svg) digits per line. |
+| `y_out.memh` | Reconstructed stream ![y&#91;0&#93;,&#92;ldots,y&#91;N_y-1&#93;](math/baseline-page-028-008.svg) in the same signed ![N](math/baseline-page-028-009.svg)-bit format. |
+| `window_qw.memh` | Quantized window ROM ![Q_w&#91;i&#93;](math/baseline-page-028-010.svg), unsigned width ![W_{Q_w}=F+1](math/baseline-page-028-011.svg). |
+| `twiddle_re.memh` | Forward twiddle real table, signed width ![W_{&#92;mathrm{tw}}](math/baseline-page-028-012.svg). |
+| `twiddle_im.memh` | Forward twiddle imaginary table, signed width ![W_{&#92;mathrm{tw}}](math/baseline-page-028-013.svg). |
+| `twiddle_inv_re.memh` | Inverse twiddle real table, signed width ![W_{&#92;mathrm{tw}}](math/baseline-page-028-014.svg). |
+| `twiddle_inv_im.memh` | Inverse twiddle imaginary table, signed width ![W_{&#92;mathrm{tw}}](math/baseline-page-028-015.svg). |
 
 
 **Table 5. Required metadata, statistics, and signoff artifacts.**
@@ -1336,7 +1274,9 @@ Historical Part I, core algorithm. Printed page 16. [Original PDF page](../specs
 
 [Previous](baseline/page-028.md) | [Index](README.md) | [Next](baseline/page-030.md)
 
-### 7.9 CSV field contracts
+[Edit Markdown and LaTeX source](source/baseline/page-029.md). Equations are rendered locally as SVG.
+
+#### 7.9 CSV field contracts
 
 The required `frame_stats.csv` header is exactly one logical CSV line, wrapped below only for page layout:
 
@@ -1346,7 +1286,7 @@ eligible_unique_bins,eligible_suppressed_bins,
 eligible_kept_mag2,eligible_total_mag2
 ```
 
-For `frame_stats.csv`, all values are decimal unsigned integers. The field `frame_idx` is zero-based and equals m for trigger τm = (m + 1)H. Rows shall be emitted in increasing `frame_idx` order from 0 to Nframes - 1. When present, the required `bin_stats.csv` header is exactly:
+For `frame_stats.csv`, all values are decimal unsigned integers. The field `frame_idx` is zero-based and equals m for trigger ![&#92;tau_m=(m+1)H](math/baseline-page-029-001.svg). Rows shall be emitted in increasing `frame_idx` order from 0 to ![N_{&#92;mathrm{frames}}-1](math/baseline-page-029-002.svg). When present, the required `bin_stats.csv` header is exactly:
 
 ```csv
 frame_idx,bin_idx,real,imag,mag2,eligible,pre_mask,mask
@@ -1354,7 +1294,7 @@ frame_idx,bin_idx,real,imag,mag2,eligible,pre_mask,mask
 
 For `bin_stats.csv`, `frame_idx` and `bin_idx` are unsigned decimal integers, real and imag are signed decimal integers, mag2 is an unsigned decimal integer, and eligible, `pre_mask`, and mask are unsigned 0/1 values. Rows shall be emitted in increasing `frame_idx` order and, within each frame, in increasing `bin_idx` order from 0 to L/2.
 
-### 7.10 JSON integer rule and schemas
+#### 7.10 JSON integer rule and schemas
 
 All aggregate counters, all fields derived from mag2, and every integer field wider than 53 bits shall be encoded as decimal strings. Small configuration integers may be JSON numbers. Checkers shall parse decimal-string signoff fields as arbitrary-precision integers. Generator parameters shall not rely on binary floating-point parsing for signoff. Normalized frequencies are represented by integer fields `f_num` and `f_den`, meaning f = `f_num/f_den` as an exact rational number. Phase fields are represented as `phase_rad` decimal strings and shall be parsed as exact decimal values before evaluation. Legacy frequency strings of the form "a/b" are not part of the Revision J schema. The JSON blocks below are illustrative schema examples, not ready-to-freeze artifact files. Placeholder strings such as `<sha256-hex>` and `<decimal-string>` shall be replaced before a file is accepted by a parser or committed as a frozen manifest. Literal ellipses are not legal values in Revision J artifact JSON.
 
@@ -1381,6 +1321,8 @@ config.json.
 Historical Part I, core algorithm. Printed page 17. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=30).
 
 [Previous](baseline/page-029.md) | [Index](README.md) | [Next](baseline/page-031.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-030.md). Equations are rendered locally as SVG.
 
 ```json
       "threshold_mapping": "raw_thr2"
@@ -1461,6 +1403,8 @@ Historical Part I, core algorithm. Printed page 18. [Original PDF page](../specs
 
 [Previous](baseline/page-030.md) | [Index](README.md) | [Next](baseline/page-032.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-031.md). Equations are rendered locally as SVG.
+
 ```json
       "y_out_sha256": "<sha256-hex>"
     },
@@ -1536,6 +1480,8 @@ Historical Part I, core algorithm. Printed page 19. [Original PDF page](../specs
 
 [Previous](baseline/page-031.md) | [Index](README.md) | [Next](baseline/page-033.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-032.md). Equations are rendered locally as SVG.
+
 ```json
 {
     "configuration": {
@@ -1566,9 +1512,9 @@ Historical Part I, core algorithm. Printed page 19. [Original PDF page](../specs
 
 The numbers shown above are schema examples. Placeholder strings are not legal frozen artifact values. Final quality-bound values shall be generated by the frozen golden model and then frozen with documented engineering margin.
 
-## 8 Signoff Test Suite, Generators, and Acceptance Criteria
+### 8 Signoff Test Suite, Generators, and Acceptance Criteria
 
-### 8.1 Required test-vector classes
+#### 8.1 Required test-vector classes
 
 The exact instances are frozen in `test_vectors.json`. A vector is not a signoff vector unless its length, generator parameters, threshold, seed or phase, rounding mode, protection flags, and tail policy appear in that manifest.
 
@@ -1579,6 +1525,8 @@ The exact instances are frozen in `test_vectors.json`. A vector is not a signoff
 Historical Part I, core algorithm. Printed page 20. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=33).
 
 [Previous](baseline/page-032.md) | [Index](README.md) | [Next](baseline/page-034.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-033.md). Equations are rendered locally as SVG.
 
 **Table 6. Required mathematical signoff vector classes.**
 
@@ -1596,27 +1544,21 @@ Historical Part I, core algorithm. Printed page 20. [Original PDF page](../specs
 | Rectangular-window diagnostic | Debug-only exact one-bin sinusoid test. Not part of the normal core. | Optional |
 
 
-### 8.2 Frozen generator algorithms
+#### 8.2 Frozen generator algorithms
 
 Generator names in `test_vectors.json` refer to the exact integer generators below. All generated samples are finally clipped by satN . Frequency parameters in JSON use `f_num` and `f_den`. The mathematical symbol f below denotes the exact rational value `f_num/f_den`. Phase parameters use `phase_rad` decimal strings. The equations define construction before freezing. After freezing, `x_in.memh` and `x_in_sha256` are the signoff source of truth. For sine, cosine, and multitone generators, the frozen generator implementation shall be identified by `generator_version` and `generator_source_sha256`. A regenerated vector is accepted only when its canonical `x_in_sha256` matches the frozen manifest. Differences caused by host math libraries, π constants, floating-point precision, or decimal parsing are not acceptable implementation variations after a vector has been frozen.
 
 constant. For integer value c,
 
-$$
-x[n]=\operatorname{sat}_N(c).\tag{8.1}
-$$
+![Equation 8.1: x&#91;n&#93;=&#92;operatorname{sat}_N(c).&#92;tag{8.1}](math/baseline-page-033-001.svg)
 
 impulse. For index n0 and amplitude A,
 
-$$
-x[n]=\begin{cases}\operatorname{sat}_N(A),&n=n_0\\0,&n\ne n_0.\end{cases}\tag{8.2}
-$$
+![Equation 8.2: x&#91;n&#93;=&#92;begin{cases}&#92;operatorname{sat}_N(A),&n=n_0&#92;&#92;0,&n&#92;ne n_0.&#92;end{cases}&#92;tag{8.2}](math/baseline-page-033-002.svg)
 
 step. For index n0 and amplitude A,
 
-$$
-x[n]=\begin{cases}0,&n<n_0\\\operatorname{sat}_N(A),&n\ge n_0.\end{cases}\tag{8.3}
-$$
+![Equation 8.3: x&#91;n&#93;=&#92;begin{cases}0,&n<n_0&#92;&#92;&#92;operatorname{sat}_N(A),&n&#92;ge n_0.&#92;end{cases}&#92;tag{8.3}](math/baseline-page-033-003.svg)
 
 <a id="pdf-page-034"></a>
 
@@ -1626,55 +1568,41 @@ Historical Part I, core algorithm. Printed page 21. [Original PDF page](../specs
 
 [Previous](baseline/page-033.md) | [Index](README.md) | [Next](baseline/page-035.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-034.md). Equations are rendered locally as SVG.
+
 sine and exact-bin sine. For amplitude A, normalized frequency f , and phase ϕ, where f is measured in cycles per sample and ϕ is measured in radians,
 
-$$
-x[n]=\operatorname{sat}_N\left(\operatorname{qcoef}(A\sin(2\pi fn+\phi),0)\right).\tag{8.4}
-$$
+![Equation 8.4: x&#91;n&#93;=&#92;operatorname{sat}_N&#92;left(&#92;operatorname{qcoef}(A&#92;sin(2&#92;pi fn+&#92;phi),0)&#92;right).&#92;tag{8.4}](math/baseline-page-034-001.svg)
 
 Exact-bin sine uses f = k/L for frozen integer bin k. For exact-bin sine, 0 ≤ k ≤ L/2. For k = 0 or k = L/2, cosine is preferred for nonzero deterministic content because sine at phase zero can generate an all-zero sequence.
 
 cosine. For amplitude A, normalized frequency f in cycles per sample, and phase ϕ in radians,
 
-$$
-x[n]=\operatorname{sat}_N\left(\operatorname{qcoef}(A\cos(2\pi fn+\phi),0)\right).\tag{8.5}
-$$
+![Equation 8.5: x&#91;n&#93;=&#92;operatorname{sat}_N&#92;left(&#92;operatorname{qcoef}(A&#92;cos(2&#92;pi fn+&#92;phi),0)&#92;right).&#92;tag{8.5}](math/baseline-page-034-002.svg)
 
 `multitone_sine_sum`. For Q tones with amplitudes Aq , normalized frequencies fq in cycles per sample, and phases ϕq in radians,
 
-$$
-s[n]=\sum_{q=0}^{Q-1}A_q\sin(2\pi f_qn+\phi_q).\tag{8.6}
-$$
+![Equation 8.6: s&#91;n&#93;=&#92;sum_{q=0}^{Q-1}A_q&#92;sin(2&#92;pi f_qn+&#92;phi_q).&#92;tag{8.6}](math/baseline-page-034-003.svg)
 
-$$
-x[n]=\operatorname{sat}_N(\operatorname{qcoef}(s[n],0)).\tag{8.7}
-$$
+![Equation 8.7: x&#91;n&#93;=&#92;operatorname{sat}_N(&#92;operatorname{qcoef}(s&#91;n&#93;,0)).&#92;tag{8.7}](math/baseline-page-034-004.svg)
 
 The sum is formed in real arithmetic first. The operator qcoef(·, 0) is applied once to the final sum. Per-tone integer rounding before summation is not allowed unless a separate generator name freezes that behavior.
 
 `uniform_noise_xorshift32`. Let r be a nonzero 32-bit unsigned seed. For every sample, update with unsigned 32-bit wraparound:
 
-$$
-r\leftarrow r\oplus((r\ll13)\bmod2^{32}).\tag{8.8}
-$$
+![Equation 8.8: r&#92;leftarrow r&#92;oplus((r&#92;ll13)&#92;bmod2^{32}).&#92;tag{8.8}](math/baseline-page-034-005.svg)
 
-$$
-r\leftarrow r\oplus(r\gg17).\tag{8.9}
-$$
+![Equation 8.9: r&#92;leftarrow r&#92;oplus(r&#92;gg17).&#92;tag{8.9}](math/baseline-page-034-006.svg)
 
-$$
-r\leftarrow r\oplus((r\ll5)\bmod2^{32}).\tag{8.10}
-$$
+![Equation 8.10: r&#92;leftarrow r&#92;oplus((r&#92;ll5)&#92;bmod2^{32}).&#92;tag{8.10}](math/baseline-page-034-007.svg)
 
 For frozen noise bit width B,
 
-$$
-u[n]=r\bmod2^B,\qquad x[n]=\operatorname{sat}_N(u[n]-2^{B-1}).\tag{8.11}
-$$
+![Equation 8.11: u&#91;n&#93;=r&#92;bmod2^B,&#92;qquad x&#91;n&#93;=&#92;operatorname{sat}_N(u&#91;n&#93;-2^{B-1}).&#92;tag{8.11}](math/baseline-page-034-008.svg)
 
 The frozen noise bit width shall satisfy 1 ≤ B ≤ 32. The value B = 0 is illegal, and B > 32 is illegal because the generator state is exactly 32 bits. If B > N , the vector intentionally exercises clipping through satN and shall declare that intent in `test_vectors.json`. A stochastic vector is not frozen unless it declares generator name, seed, B, Ns , threshold, protection flags, and tail policy.
 
-### 8.3 Golden-model quality bounds
+#### 8.3 Golden-model quality bounds
 
 Bit-for-bit agreement between RTL and the golden model proves implementation equivalence. It does not prove that the golden model has the intended reconstruction quality. Therefore, the global `quality_bounds.json` manifest shall freeze no-suppression quality limits per vector after the first complete golden-model release. It shall include at least `max_abs_err`, `sum_sq_err`, and `error_sample_count`. Do not invent these numbers in the specification. Run the golden model first, then freeze them.
 
@@ -1686,7 +1614,9 @@ Historical Part I, core algorithm. Printed page 22. [Original PDF page](../specs
 
 [Previous](baseline/page-034.md) | [Index](README.md) | [Next](baseline/page-036.md)
 
-### 8.4 Acceptance criteria
+[Edit Markdown and LaTeX source](source/baseline/page-035.md). Equations are rendered locally as SVG.
+
+#### 8.4 Acceptance criteria
 
 A Phase 2 core implementation passes Revision J signoff only if all of the following hold:
 
@@ -1698,11 +1628,11 @@ AC3. Stream artifacts `x_in.memh` and `y_out.memh` match the recorded canonical 
 
 AC4. All required artifacts have the exact row counts specified in Section 7.7 and in config.json `artifact_rows`.
 
-AC5. THR2 is an unsigned Wmag2 -bit integer and satisfies 0 ≤ THR2 < $2^{Wmag2}$ .
+AC5. THR2 is an unsigned ![W_{&#92;mathrm{mag2}}](math/baseline-page-035-001.svg)-bit integer and satisfies ![0&#92;le&#92;mathrm{THR2}<2^{W_{&#92;mathrm{mag2}}}](math/baseline-page-035-002.svg).
 
 AC6. For THR2= 0, every eligible mask decision is zero.
 
-AC7. The output length follows the declared `tail_policy`. Revision J signoff uses `full_tail` with zero flush ticks until all Ny outputs are emitted.
+AC7. The output length follows the declared `tail_policy`. Revision J signoff uses `full_tail` with zero flush ticks until all ![N_y](math/baseline-page-035-003.svg) outputs are emitted.
 
 AC8. No-suppression golden-model quality fields satisfy `quality_bounds.json`.
 
@@ -1718,33 +1648,23 @@ AC13. BRAM replay on the FPGA board matches the mandatory artifacts before live 
 
 AC14. Overflow or wrap flags, if present, remain deasserted on the frozen signoff vector set.
 
-## 9 Live Source Abstraction and Threshold Mapping
+### 9 Live Source Abstraction and Threshold Mapping
 
-The core begins after input adaptation. Every live source must map to x[n] ∈ SN . For a raw unsigned B-bit ADC source,
+The core begins after input adaptation. Every live source must map to ![x&#91;n&#93;&#92;in&#92;mathcal{S}_N](math/baseline-page-035-004.svg). For a raw unsigned B-bit ADC source,
 
-$$
-u[n]=a_{\mathrm{raw}}[n]-2^{B-1}.\tag{9.1}
-$$
+![Equation 9.1: u&#91;n&#93;=a_{&#92;mathrm{raw}}&#91;n&#93;-2^{B-1}.&#92;tag{9.1}](math/baseline-page-035-005.svg)
 
-$$
-d_c[-1]=0.\tag{9.2}
-$$
+![Equation 9.2: d_c&#91;-1&#93;=0.&#92;tag{9.2}](math/baseline-page-035-006.svg)
 
-$$
-d_c[n]=d_c[n-1]+\operatorname{asr}(u[n]-d_c[n-1],S_{\mathrm{DC}}).\tag{9.3}
-$$
+![Equation 9.3: d_c&#91;n&#93;=d_c&#91;n-1&#93;+&#92;operatorname{asr}(u&#91;n&#93;-d_c&#91;n-1&#93;,S_{&#92;mathrm{DC}}).&#92;tag{9.3}](math/baseline-page-035-007.svg)
 
-$$
-x[n]=\operatorname{sat}_N(u[n]-d_c[n]).\tag{9.4}
-$$
+![Equation 9.4: x&#91;n&#93;=&#92;operatorname{sat}_N(u&#91;n&#93;-d_c&#91;n&#93;).&#92;tag{9.4}](math/baseline-page-035-008.svg)
 
-For an audio-codec source with Baudio ≥ N ,
+For an audio-codec source with ![B_{&#92;mathrm{audio}}&#92;ge N](math/baseline-page-035-009.svg),
 
-$$
-x[n]=\operatorname{sat}_N(\operatorname{rnd\_shr}(a_{\mathrm{audio}}[n],B_{\mathrm{audio}}-N)).\tag{9.5}
-$$
+![Equation 9.5: x&#91;n&#93;=&#92;operatorname{sat}_N(&#92;operatorname{rnd&#92;_shr}(a_{&#92;mathrm{audio}}&#91;n&#93;,B_{&#92;mathrm{audio}}-N)).&#92;tag{9.5}](math/baseline-page-035-010.svg)
 
-If Baudio < N , a separate left-shift or sign-extension rule shall be frozen before use.
+If ![B_{&#92;mathrm{audio}}<N](math/baseline-page-035-011.svg), a separate left-shift or sign-extension rule shall be frozen before use.
 
 <a id="pdf-page-036"></a>
 
@@ -1754,39 +1674,33 @@ Historical Part I, core algorithm. Printed page 23. [Original PDF page](../specs
 
 [Previous](baseline/page-035.md) | [Index](README.md) | [Next](baseline/page-037.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-036.md). Equations are rendered locally as SVG.
+
 Human-facing threshold controls are wrappers. If an amplitude-domain threshold Tamp,QF is exposed, then
 
-$$
-\mathrm{THR2}=T_{\mathrm{amp},QF}^{\,2}.\tag{9.6}
-$$
+![Equation 9.6: &#92;mathrm{THR2}=T_{&#92;mathrm{amp},QF}^{&#92;,2}.&#92;tag{9.6}](math/baseline-page-036-001.svg)
 
 For an 8-bit switch preset, a valid wrapper may define
 
-$$
-T_{\mathrm{amp},QF}=\mathrm{SW}[7:0]\ll K_{\mathrm{thr}},\qquad\mathrm{THR2}=T_{\mathrm{amp},QF}^{\,2}.\tag{9.7}
-$$
+![Equation 9.7: T_{&#92;mathrm{amp},QF}=&#92;mathrm{SW}&#91;7:0&#93;&#92;ll K_{&#92;mathrm{thr}},&#92;qquad&#92;mathrm{THR2}=T_{&#92;mathrm{amp},QF}^{&#92;,2}.&#92;tag{9.7}](math/baseline-page-036-002.svg)
 
 but Kthr and the preset mapping shall be frozen in config.json. Directly interpreting the switch value as raw THR2 is allowed only if declared explicitly.
 
-Wrapper computation of $\mathrm{THR2}=T_{\mathrm{amp},QF}^{\,2}$ shall be performed in a width large enough to hold the full square. The resulting threshold shall then be checked against $0\le\mathrm{THR2}<2^{W_{\mathrm{mag2}}}$. Out-of-range wrapper thresholds are illegal for the core signoff contract unless the wrapper explicitly defines saturation or clipping outside the core contract and records that policy in `config.json`.
+Wrapper computation of ![&#92;mathrm{THR2}=T_{&#92;mathrm{amp},QF}^{&#92;,2}](math/baseline-page-036-003.svg) shall be performed in a width large enough to hold the full square. The resulting threshold shall then be checked against ![0&#92;le&#92;mathrm{THR2}<2^{W_{&#92;mathrm{mag2}}}](math/baseline-page-036-004.svg). Out-of-range wrapper thresholds are illegal for the core signoff contract unless the wrapper explicitly defines saturation or clipping outside the core contract and records that policy in `config.json`.
 
-## 10 Throughput and Power Interpretation
+### 10 Throughput and Power Interpretation
 
 Let Fs be the input sample rate and fclk be the FPGA fabric clock. The number of fabric cycles per hop is
 
-$$
-C_{\mathrm{hop}}=f_{\mathrm{clk}}\frac{H}{F_s}.\tag{10.1}
-$$
+![Equation 10.1: C_{&#92;mathrm{hop}}=f_{&#92;mathrm{clk}}&#92;frac{H}{F_s}.&#92;tag{10.1}](math/baseline-page-036-005.svg)
 
 A burst-style implementation that begins frame processing at τm must make its frame contribution available before slot τm + G, so
 
-$$
-T_{\mathrm{frame}}<\frac{G}{F_s}.\tag{10.2}
-$$
+![Equation 10.2: T_{&#92;mathrm{frame}}<&#92;frac{G}{F_s}.&#92;tag{10.2}](math/baseline-page-036-006.svg)
 
 With G = H, this becomes Tframe < H/Fs . The baseline core computes the STFT every frame. Suppressed-bin count is therefore a workload proxy, not direct proof of power reduction. A real power-reduction claim requires a later downstream stage that uses the mask to skip feature extraction, detector operations, coefficient transport, memory writes, or other work.
 
-## 11 Conclusion
+### 11 Conclusion
 
 This specification defines the Phase 2 T-RECAP core as a deterministic fixed-point STFT/WOLA selective-suppression operator. Revision J freezes the items that usually cause golden-model and RTL drift: coefficient representability, coefficient ROM widths, arithmetic shift behavior on negative integers, rounded shifts including zero-shift, active-window full-tail finite-stream scoring, exact custom radix-2 FFT/IFFT ordering, explicit forward/inverse twiddle aliases, inverse twiddle artifacts, full-precision unsigned threshold comparison, internal product widths, eligible spectral accounting, canonical signed and unsigned memh encodings and hashes, exact artifact line counts, conditional binstats row-count semantics, CSV row order, exact JSON schemas, stream hashes, wrapper threshold overflow policy, and frozen test-vector generator algorithms including `multitone_sine_sum`.
 
@@ -1798,13 +1712,15 @@ Historical Part II, DDR and UDP telemetry. Printed page 24. [Original PDF page](
 
 [Previous](baseline/page-036.md) | [Index](README.md) | [Next](baseline/page-038.md)
 
-## Part II - Ethernet/HPS DDR Telemetry and Control Architecture
+[Edit Markdown and LaTeX source](source/baseline/page-037.md). Equations are rendered locally as SVG.
+
+### Part II - Ethernet/HPS DDR Telemetry and Control Architecture
 
 Part II defines the real-time observability and command layer. It does not redefine the STFT/WOLA arithmetic core. It moves already-computed core observability signals from FPGA fabric through HPS DDR and HPS Ethernet to the PC.
 
-## 12 Purpose and Scope
+### 12 Purpose and Scope
 
-### 12.1 Purpose
+#### 12.1 Purpose
 
 The purpose of this document is to specify the real-time Ethernet telemetry and control path for the Phase 2 T-RECAP implementation on DE1-SoC. The design target is a high-observability demonstration in which the PC displays:
 
@@ -1818,7 +1734,7 @@ The purpose of this document is to specify the real-time Ethernet telemetry and 
 
 - live threshold and source-mode controls.
 
-### 12.2 Relationship to Part I
+#### 12.2 Relationship to Part I
 
 This addendum does not replace the Phase 2 core mathematical specification. The core specification remains normative for:
 
@@ -1830,7 +1746,7 @@ This addendum does not replace the Phase 2 core mathematical specification. The 
 
 - BRAM replay signoff artifacts and golden-model comparison. This addendum is a transport and observability specification. It defines how already-computed core signals are moved to a PC dashboard and how PC commands are returned to the FPGA through the HPS.
 
-### 12.3 Non-Goals
+#### 12.3 Non-Goals
 
 The following items are outside the scope of this document:
 
@@ -1848,13 +1764,15 @@ Historical Part II, DDR and UDP telemetry. Printed page 25. [Original PDF page](
 
 [Previous](baseline/page-037.md) | [Index](README.md) | [Next](baseline/page-039.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-038.md). Equations are rendered locally as SVG.
+
 - using the HPS to compute FFT, IFFT, WOLA, magnitude-squared, masks, or error metrics.
 
 - treating Ethernet dashboard output as a replacement for BRAM replay signoff.
 
-## 13 System Boundary and Ownership Rules
+### 13 System Boundary and Ownership Rules
 
-### 13.1 Core Ownership Rule
+#### 13.1 Core Ownership Rule
 
 The FPGA fabric owns the real-time signal-processing path:
 
@@ -1862,17 +1780,15 @@ source → STFT/WOLA suppression core → y[n].
 
 The HPS is not permitted to process sample-by-sample data for the purpose of reconstruction or mask decision. Its role is limited to transport, logging, command handling, and register access.
 
-### 13.2 Transport Ownership Rule
+#### 13.2 Transport Ownership Rule
 
 The HPS owns Ethernet because the DE1-SoC Ethernet path is HPS-facing. The board manual describes Gigabit Ethernet support through an external KSZ9021RN PHY and the HPS Ethernet MAC function [6]. Therefore, the practical Ethernet architecture is HPS-mediated transport, not direct FPGA Ethernet.
 
-### 13.3 Non-Stall Rule
+#### 13.3 Non-Stall Rule
 
 The telemetry system shall not backpressure the STFT/WOLA core. Telemetry taps are valid-only from the point of view of the core. The telemetry formatter may sample, buffer, or drop tap events, but it shall never assert backpressure into the sample path, frame-trigger path, FFT/IFFT path, WOLA path, or core metrics path. If a packet FIFO is full, the DDR writer is busy, a DDR waitrequest persists, the ring does not have enough free space, HPS is late, or Ethernet is unavailable, the implementation shall drop telemetry records according to the packet-priority order frozen below and increment a drop counter. It shall not stall the sample clock, frame trigger, FFT/IFFT schedule, WOLA output, or core metrics accumulation.
 
-$$
-\mathrm{transport\_blocked}\Rightarrow\begin{cases}\text{drop telemetry record}\\\text{increment the relevant drop/error counter}\\\text{continue core processing.}\end{cases}\tag{13.1}
-$$
+![Equation 13.1: &#92;mathrm{transport&#92;_blocked}&#92;Rightarrow&#92;begin{cases}&#92;text{drop telemetry record}&#92;&#92;&#92;text{increment the relevant drop/error counter}&#92;&#92;&#92;text{continue core processing.}&#92;end{cases}&#92;tag{13.1}](math/baseline-page-038-001.svg)
 
 Revision G freezes the packet-priority order for priority-based telemetry shedding: priority 0 is lowest and is dropped first for WAVE. Priority 1 is used for SPEC64/SPEC129. Priority 2 is used for METRICS. Priority 3 is highest and is dropped last for STATUS. WRAP is a ring-control record rather than a normal telemetry record and does not participate in PC-visible packet scheduling. Priority shedding is an admission guarantee, not merely a descriptive label. A priority-aware packet FIFO shall not drop an incoming higher-priority record while a lower-priority resident record is
 
@@ -1884,15 +1800,17 @@ Historical Part II, DDR and UDP telemetry. Printed page 26. [Original PDF page](
 
 [Previous](baseline/page-038.md) | [Index](README.md) | [Next](baseline/page-040.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-039.md). Equations are rendered locally as SVG.
+
 evictable. The Revision G baseline shall implement either resident-record eviction of the lowestpriority packet or scheduler/reservation logic that guarantees high-priority admission before enqueue. A pre-writer shed or evicted telemetry record shall increment `PACKET_FIFO_DROP_COUNT` and may set `OVERFLOW_FLAGS.packet_fifo_overflow`. An implementation that uses only simple full-FIFO drop of the incoming record shall not claim the Revision G “STATUS dropped last” behavior.
 
-### 13.4 Signoff Rule
+#### 13.4 Signoff Rule
 
 Ethernet telemetry is an observability and demonstration layer. It may be scaled, decimated, compressed, truncated, or dropped. Correctness signoff remains BRAM replay plus golden artifact comparison. The live Ethernet dashboard shall not be used as the primary bit-accurate correctness artifact.
 
-## 14 Physical Connection Profile
+### 14 Physical Connection Profile
 
-### 14.1 Required Connections
+#### 14.1 Required Connections
 
 For Ethernet operation, the recommended physical setup is:
 
@@ -1906,23 +1824,19 @@ For Ethernet operation, the recommended physical setup is:
 
 - optional audio line-in and line-out cables for live audio demonstration.
 
-### 14.2 Recommended Demo Topology
+#### 14.2 Recommended Demo Topology
 
 For a controlled final demo, a direct static-IP Ethernet link is recommended:
 
-$$
-\text{PC Ethernet IP}=192.168.10.1/24.\tag{14.1}
-$$
+![Equation 14.1: &#92;text{PC Ethernet IP}=192.168.10.1/24.&#92;tag{14.1}](math/baseline-page-039-001.svg)
 
-$$
-\text{DE1-SoC HPS IP}=192.168.10.2/24.\tag{14.2}
-$$
+![Equation 14.2: &#92;text{DE1-SoC HPS IP}=192.168.10.2/24.&#92;tag{14.2}](math/baseline-page-039-002.svg)
 
 The HPS sends telemetry UDP packets to the PC and listens for command UDP packets from the PC.
 
-## 15 Level-3 Architecture
+### 15 Level-3 Architecture
 
-### 15.1 Top-Level Dataflow
+#### 15.1 Top-Level Dataflow
 
 The forward telemetry path is:
 
@@ -1936,11 +1850,13 @@ Historical Part II, DDR and UDP telemetry. Printed page 27. [Original PDF page](
 
 [Previous](baseline/page-039.md) | [Index](README.md) | [Next](baseline/page-041.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-040.md). Equations are rendered locally as SVG.
+
 The reverse command path is:
 
 PC command → HPS command parser → CSR writes → FPGA control shadow/commit.
 
-### 15.2 Functional Blocks
+#### 15.2 Functional Blocks
 
 **Table 7. Level-3 functional block responsibilities.**
 
@@ -1954,7 +1870,7 @@ PC command → HPS command parser → CSR writes → FPGA control shadow/commit.
 | PC dashboard | Plots waveform, error, spectrogram, metrics, status, and provides live control input. |
 
 
-### 15.3 DE1-SoC Bridge and Address-Mapping Assumption
+#### 15.3 DE1-SoC Bridge and Address-Mapping Assumption
 
 The Level-3 writer is an FPGA-side bus master connected to HPS-visible DDR through the FPGAto-HPS SDRAM bridge, FPGA-to-HPS bridge, or an equivalent Platform Designer integration. The exact interconnect name may differ by project configuration, but the following address rule is normative:
 
@@ -1970,13 +1886,15 @@ Historical Part II, DDR and UDP telemetry. Printed page 28. [Original PDF page](
 
 [Previous](baseline/page-040.md) | [Index](README.md) | [Next](baseline/page-042.md)
 
-## 16 CSR Register Contract
+[Edit Markdown and LaTeX source](source/baseline/page-041.md). Equations are rendered locally as SVG.
 
-### 16.1 Register Access Rules
+### 16 CSR Register Contract
+
+#### 16.1 Register Access Rules
 
 Control and status registers are memory-mapped through an HPS-to-FPGA bridge. All CSR words are 32-bit aligned, 32-bit accessible, and little-endian. Multiword values are transferred through explicit snapshot or commit mechanisms. Independent low/high half updates are not a valid transfer for live pointers or thresholds. A register write from HPS shall not directly change active core behavior in the middle of a frame unless the register is explicitly defined as asynchronous. Threshold and source-mode updates shall use shadow/commit mechanisms and shall become active only at a safe boundary.
 
-### 16.2 CSR Map
+#### 16.2 CSR Map
 
 **Table 8. Normative CSR map for Level-3 Ethernet/HPS telemetry, Revision G.**
 
@@ -2001,6 +1919,8 @@ Control and status registers are memory-mapped through an HPS-to-FPGA bridge. Al
 Historical Part II, DDR and UDP telemetry. Printed page 29. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=42).
 
 [Previous](baseline/page-041.md) | [Index](README.md) | [Next](baseline/page-043.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-042.md). Equations are rendered locally as SVG.
 
 **Table 8. Normative CSR map, continued.**
 
@@ -2038,6 +1958,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 30. [Original PDF page](
 
 [Previous](baseline/page-042.md) | [Index](README.md) | [Next](baseline/page-044.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-043.md). Equations are rendered locally as SVG.
+
 **Table 8. Normative CSR map, continued.**
 
 | Offset | Name | Access | Meaning |
@@ -2045,11 +1967,11 @@ Historical Part II, DDR and UDP telemetry. Printed page 30. [Original PDF page](
 | 0x088 | `PACKET_FIFO_DROP_COUNT` | R | Number of telemetry tap events or formatted telemetry packets dropped before acceptance by the DDR ring writer because a telemetry packet FIFO was full or could not accept the event. This counter is distinct from `DMA_DROP_COUNT`. |
 
 
-### 16.3 Version Compatibility Rule
+#### 16.3 Version Compatibility Rule
 
 HPS software shall check VERSION before enabling telemetry. The register packing is VERSION[31:16] = major and VERSION[15:0] = minor. Revision G shall report VERSION = 0x0001_0007. If the major version does not match the expected major version, the HPS shall reject the transport configuration and leave telemetry disabled. Minor-version mismatches may be accepted only if the HPS software explicitly supports the advertised minor version.
 
-### 16.4 CSR Bit Definitions
+#### 16.4 CSR Bit Definitions
 
 Table 9 freezes whether each CONTROL bit is a persistent level or a write-one pulse. Writing zero to a W1P bit has no effect. Writing one to a W1P bit shall not modify persistent level bits.
 
@@ -2072,6 +1994,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 31. [Original PDF page](
 
 [Previous](baseline/page-043.md) | [Index](README.md) | [Next](baseline/page-045.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-044.md). Equations are rendered locally as SVG.
+
 **Table 10. PACKET_ENABLE bit definitions.**
 
 | Bit | Name | Meaning |
@@ -2087,7 +2011,7 @@ Historical Part II, DDR and UDP telemetry. Printed page 31. [Original PDF page](
 
 In the Revision G baseline, `PEAKS_EN` and `DEBUG_EN` are treated as reserved-disabled features. Commands setting either bit shall be rejected unless an implementation-specific extension explicitly defines exact PEAKS/DEBUG payload layouts, maximum sizes, and PC parser behavior.
 
-### 16.5 Spectrum Packet Selection Rule
+#### 16.5 Spectrum Packet Selection Rule
 
 `SPEC_MODE` is the authoritative spectrum-format selector. `PACKET_ENABLE.SPEC_EN` is only the packet gate. Spectrum telemetry shall be generated only under the following conditions:
 
@@ -2106,6 +2030,8 @@ In the Revision G baseline, `PEAKS_EN` and `DEBUG_EN` are treated as reserved-di
 Historical Part II, DDR and UDP telemetry. Printed page 32. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=45).
 
 [Previous](baseline/page-044.md) | [Index](README.md) | [Next](baseline/page-046.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-045.md). Equations are rendered locally as SVG.
 
 **Table 11. STATUS bit definitions.**
 
@@ -2146,6 +2072,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 33. [Original PDF page](
 
 [Previous](baseline/page-045.md) | [Index](README.md) | [Next](baseline/page-047.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-046.md). Equations are rendered locally as SVG.
+
 **Table 13. OVERFLOW_FLAGS and CLEAR_STICKY_FLAGS bit definitions.**
 
 | Bit | Name | Meaning / clear behavior |
@@ -2163,7 +2091,7 @@ Historical Part II, DDR and UDP telemetry. Printed page 33. [Original PDF page](
 | 31:10 | reserved | Shall read as zero. Writing ones to reserved bits in `CLEAR_STICKY_FLAGS` has no effect. |
 
 
-### 16.6 Atomic 64-bit Pointer Transfer
+#### 16.6 Atomic 64-bit Pointer Transfer
 
 All 64-bit ring pointers exposed through 32-bit CSR halves shall use an atomic snapshot/commit protocol. For the FPGA-owned producer pointer W , the HPS shall read it as follows:
 
@@ -2189,9 +2117,11 @@ Historical Part II, DDR and UDP telemetry. Printed page 34. [Original PDF page](
 
 [Previous](baseline/page-046.md) | [Index](README.md) | [Next](baseline/page-048.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-047.md). Equations are rendered locally as SVG.
+
 Independent low/high half updates are not a valid pointer transfer.
 
-### 16.7 Core Counter Snapshot Rule
+#### 16.7 Core Counter Snapshot Rule
 
 The HPS shall not read live multiword sample or frame counters by independently sampling low and high halves. To read coherent core counters, the HPS shall:
 
@@ -2201,11 +2131,11 @@ The HPS shall not read live multiword sample or frame counters by independently 
 
 3. read `SAMPLE_COUNT_SNAP_LO` and `SAMPLE_COUNT_SNAP_HI`. The frame-count and sample-count snapshot registers shall remain stable until the next `CORE_COUNT_SNAPSHOT` request. Reading the snapshot registers shall not modify the counters.
 
-### 16.8 Sticky-Flag Clear Rule
+#### 16.8 Sticky-Flag Clear Rule
 
 `CLEAR_STICKY_FLAGS` is a write-one-to-clear mask register. Writing a 1 to bit b clears sticky flag b. Writing a 0 to bit b leaves sticky flag b unchanged. CONTROL[3] is reserved in Revision G and shall not be used as a second clear mechanism. The bit positions for `CLEAR_STICKY_FLAGS` are identical to Table 13.
 
-### 16.9 Command-Reject Counter Ownership
+#### 16.9 Command-Reject Counter Ownership
 
 The CSR-visible `CSR_COMMAND_REJECT_COUNT` counts only rejects caused by FPGA/CSR safety logic after the HPS has accepted a command for CSR translation. HPS-owned rejects: wrong source IP, wrong UDP port, malformed command header, bad command magic, unsupported command type, or HPS-side range validation failure remain in HPS software counters. In patched STATUS packets, `command_reject_count` shall report the low 32 bits of:
 
@@ -2213,7 +2143,7 @@ The CSR-visible `CSR_COMMAND_REJECT_COUNT` counts only rejects caused by FPGA/CS
 
 The HPS shall not write HPS-only command reject counts back into the FPGA CSR bank unless a later revision defines an explicit HPS-owned counter register. HPS-owned command rejects shall not set `OVERFLOW_FLAGS.illegal_command` or any other FPGA sticky flag. FPGA/CSR-side rejected requests may increment `CSR_COMMAND_REJECT_COUNT` and may set `OVERFLOW_FLAGS.illegal_command`.
 
-### 16.10 Packet-FIFO Drop Accounting Rule
+#### 16.10 Packet-FIFO Drop Accounting Rule
 
 `PACKET_FIFO_DROP_COUNT` counts telemetry drops that occur before the DDR writer accepts a packet for ring-space scheduling. These drops can occur when a telemetry tap event or already formatted telemetry packet reaches a packet FIFO that is full, temporarily unable to accept the event, or evicts/sheds a lower-priority resident record under the priority-admission rule. `DMA_DROP_COUNT` counts telemetry records dropped by the FPGA DDR writer after the record has reached the writer scheduling/free-space stage, including drops caused by insufficient ring free space, oversized records, writer blocking, or the writer’s explicit priority/drop policy.
 
@@ -2225,23 +2155,21 @@ Historical Part II, DDR and UDP telemetry. Printed page 35. [Original PDF page](
 
 [Previous](baseline/page-047.md) | [Index](README.md) | [Next](baseline/page-049.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-048.md). Equations are rendered locally as SVG.
+
 `OVERFLOW_FLAGS.packet_fifo_overflow` is the sticky indicator that at least one packet-FIFO drop occurred. `PACKET_FIFO_DROP_COUNT` is the corresponding quantitative counter. Drops counted by `PACKET_FIFO_DROP_COUNT` are not required to increment `DMA_DROP_COUNT`, because the DDR writer has not yet accepted those packets.
 
-### 16.11 Threshold Commit Rule
+#### 16.11 Threshold Commit Rule
 
 The HPS shall update the 56-bit THR2 value using `THR2_LO`, `THR2_HI`, and `THR2_COMMIT`. The upper unused bits of `THR2_HI` shall be zero. Valid values satisfy
 
-$$
-0\le\mathrm{THR2}<2^{56}.\tag{16.1}
-$$
+![Equation 16.1: 0&#92;le&#92;mathrm{THR2}<2^{56}.&#92;tag{16.1}](math/baseline-page-048-001.svg)
 
 The FPGA shall copy the shadow value into the active threshold only at a frame boundary. This avoids tearing a 56-bit threshold while a frame is being analyzed.
 
-$$
-\mathrm{THR2}_{\mathrm{active}}[m+1]=\begin{cases}\mathrm{THR2}_{\mathrm{shadow}},&\text{if commit pending at frame boundary}\\\mathrm{THR2}_{\mathrm{active}}[m],&\text{otherwise.}\end{cases}\tag{16.2}
-$$
+![Equation 16.2: &#92;mathrm{THR2}_{&#92;mathrm{active}}&#91;m+1&#93;=&#92;begin{cases}&#92;mathrm{THR2}_{&#92;mathrm{shadow}},&&#92;text{if commit pending at frame boundary}&#92;&#92;&#92;mathrm{THR2}_{&#92;mathrm{active}}&#91;m&#93;,&&#92;text{otherwise.}&#92;end{cases}&#92;tag{16.2}](math/baseline-page-048-002.svg)
 
-### 16.12 Source-Mode Change Rule
+#### 16.12 Source-Mode Change Rule
 
 A source-mode change can disturb delay alignment, input-ring contents, OLA contents, metrics continuity, and source-adapter state. Therefore, a source-mode update shall be atomic and shall not mix samples from different sources inside one active stream interval. The Revision G baseline source-mode commit sequence is:
 
@@ -2261,7 +2189,7 @@ A source-mode change can disturb delay alignment, input-ring contents, OLA conte
 
 8. re-enable telemetry only after the active source and alignment state are coherent. An implementation-defined safe-frame-boundary commit is allowed only if it performs the same state-reset or discontinuity-marking obligations above. Commands that request an illegal source mode or unsafe source-mode transition shall be rejected and counted.
 
-### 16.13 Clock-Domain Crossing Requirements
+#### 16.13 Clock-Domain Crossing Requirements
 
 The implementation shall not rely on unsynchronized multi-bit sampling across clock domains. The following rules are normative:
 
@@ -2273,6 +2201,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 36. [Original PDF page](
 
 [Previous](baseline/page-048.md) | [Index](README.md) | [Next](baseline/page-050.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-049.md). Equations are rendered locally as SVG.
+
 1. HPS-written control values crossing into FPGA logic shall use synchronizers, handshakes, or commit mechanisms.
 
 2. Multi-bit counters exposed to HPS shall be latched into snapshot registers before HPS reads low/high halves.
@@ -2283,53 +2213,39 @@ Historical Part II, DDR and UDP telemetry. Printed page 36. [Original PDF page](
 
 5. Telemetry taps shall never backpressure the STFT/WOLA core. If a tap event cannot be accepted, the tap event shall be dropped and counted.
 
-## 17 DDR Ring Buffer Contract
+### 17 DDR Ring Buffer Contract
 
-### 17.1 Ring Size, Base Address, and Alignment
+#### 17.1 Ring Size, Base Address, and Alignment
 
 The DDR telemetry ring is a contiguous HPS-visible memory region. Let:
 
-$$
-B=\text{FPGA-visible ring base address}.\tag{17.1}
-$$
+![Equation 17.1: B=&#92;text{FPGA-visible ring base address}.&#92;tag{17.1}](math/baseline-page-049-001.svg)
 
-$$
-R=\text{ring size in bytes}.\tag{17.2}
-$$
+![Equation 17.2: R=&#92;text{ring size in bytes}.&#92;tag{17.2}](math/baseline-page-049-002.svg)
 
 The ring size shall satisfy:
 
-$$
-R=2^q,\quad q\ge20,\quad R\equiv0\pmod{64}.\tag{17.3}
-$$
+![Equation 17.3: R=2^q,&#92;quad q&#92;ge20,&#92;quad R&#92;equiv0&#92;pmod{64}.&#92;tag{17.3}](math/baseline-page-049-003.svg)
 
 The base address shall satisfy:
 
-$$
-B\equiv0\pmod{64}.\tag{17.4}
-$$
+![Equation 17.4: B&#92;equiv0&#92;pmod{64}.&#92;tag{17.4}](math/baseline-page-049-004.svg)
 
 If the FPGA bus address decoder requires naturally aligned power-of-two regions, then the stronger condition B ≡ 0 (mod R) shall also hold. A recommended first implementation is R = 32 MiB.
 
-### 17.2 Absolute Pointers
+#### 17.2 Absolute Pointers
 
 The ring uses 64-bit monotonic byte pointers rather than modulo-only pointers. Let W be the producer pointer and Rd be the consumer pointer. The physical byte offset is:
 
-$$
-\operatorname{off}(p)=p\mathbin{\&}(R-1).\tag{17.5}
-$$
+![Equation 17.5: &#92;operatorname{off}(p)=p&#92;mathbin{&#92;&}(R-1).&#92;tag{17.5}](math/baseline-page-049-005.svg)
 
 where R is a power of two. The number of used bytes is:
 
-$$
-U=W-R_d.\tag{17.6}
-$$
+![Equation 17.6: U=W-R_d.&#92;tag{17.6}](math/baseline-page-049-006.svg)
 
 The ring state is valid only when:
 
-$$
-0\le U\le R.\tag{17.7}
-$$
+![Equation 17.7: 0&#92;le U&#92;le R.&#92;tag{17.7}](math/baseline-page-049-007.svg)
 
 <a id="pdf-page-050"></a>
 
@@ -2339,7 +2255,9 @@ Historical Part II, DDR and UDP telemetry. Printed page 37. [Original PDF page](
 
 [Previous](baseline/page-049.md) | [Index](README.md) | [Next](baseline/page-051.md)
 
-### 17.3 Ring Initialization Rule
+[Edit Markdown and LaTeX source](source/baseline/page-050.md). Equations are rendered locally as SVG.
+
+#### 17.3 Ring Initialization Rule
 
 Ring initialization shall clear stale producer/consumer state before telemetry is enabled. The baseline sequence is:
 
@@ -2357,45 +2275,33 @@ Ring initialization shall clear stale producer/consumer state before telemetry i
 
 7. Only after the preceding steps may HPS set `CONTROL.ring_writer_enable`=1 and `CONTROL.telemetry_enable`=1. A telemetry soft reset or `RING_CONFIG_COMMIT` while telemetry is disabled shall reset the FPGA producer pointer W to zero. HPS shall commit Rd = 0 before enabling the ring writer. This prevents stale pointers after board reset, HPS restart, or ring reconfiguration.
 
-### 17.4 Free Space Rule Including Wrap
+#### 17.4 Free Space Rule Including Wrap
 
 Before writing a record of aligned length Lrec , the FPGA shall compute the current offset and the physical tail space:
 
-$$
-o=\operatorname{off}(W).\tag{17.8}
-$$
+![Equation 17.8: o=&#92;operatorname{off}(W).&#92;tag{17.8}](math/baseline-page-050-001.svg)
 
-$$
-T_{\mathrm{tail}}=R-o.\tag{17.9}
-$$
+![Equation 17.9: T_{&#92;mathrm{tail}}=R-o.&#92;tag{17.9}](math/baseline-page-050-002.svg)
 
 If the record would cross the physical end of the ring, the required free space is the tail consumed by the WRAP record plus the actual record:
 
-$$
-L_{\mathrm{req}}=\begin{cases}T_{\mathrm{tail}}+L_{\mathrm{rec}},&o+L_{\mathrm{rec}}>R\\L_{\mathrm{rec}},&o+L_{\mathrm{rec}}\le R.\end{cases}\tag{17.10}
-$$
+![Equation 17.10: L_{&#92;mathrm{req}}=&#92;begin{cases}T_{&#92;mathrm{tail}}+L_{&#92;mathrm{rec}},&o+L_{&#92;mathrm{rec}}>R&#92;&#92;L_{&#92;mathrm{rec}},&o+L_{&#92;mathrm{rec}}&#92;le R.&#92;end{cases}&#92;tag{17.10}](math/baseline-page-050-003.svg)
 
 The available free space is:
 
-$$
-F_{\mathrm{free}}=R-(W-R_d)-G_{\mathrm{guard}}.\tag{17.11}
-$$
+![Equation 17.11: F_{&#92;mathrm{free}}=R-(W-R_d)-G_{&#92;mathrm{guard}}.&#92;tag{17.11}](math/baseline-page-050-004.svg)
 
 where Gguard ≥ 64 bytes. A packet may be written only when:
 
-$$
-F_{\mathrm{free}}\ge L_{\mathrm{req}}.\tag{17.12}
-$$
+![Equation 17.12: F_{&#92;mathrm{free}}&#92;ge L_{&#92;mathrm{req}}.&#92;tag{17.12}](math/baseline-page-050-005.svg)
 
 If not, the packet shall be dropped and `DMA_DROP_COUNT` shall increment. Checking only Ffree ≥ Lrec is not sufficient when a WRAP record is required.
 
-### 17.5 Record Alignment and WRAP Record
+#### 17.5 Record Alignment and WRAP Record
 
 For normal telemetry records, the aligned record length is:
 
-$$
-L_{\mathrm{rec}}=\operatorname{align}_{64}(H_{\mathrm{bytes}}+P_{\mathrm{bytes}}).\tag{17.13}
-$$
+![Equation 17.13: L_{&#92;mathrm{rec}}=&#92;operatorname{align}_{64}(H_{&#92;mathrm{bytes}}+P_{&#92;mathrm{bytes}}).&#92;tag{17.13}](math/baseline-page-050-006.svg)
 
 <a id="pdf-page-051"></a>
 
@@ -2404,6 +2310,8 @@ $$
 Historical Part II, DDR and UDP telemetry. Printed page 38. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=51).
 
 [Previous](baseline/page-050.md) | [Index](README.md) | [Next](baseline/page-052.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-051.md). Equations are rendered locally as SVG.
 
 where Hbytes = 32 for the baseline packet header and Pbytes is the payload length. This equation applies to normal records only. A WRAP record uses the special effective length rule below. Records shall start on 64-byte-aligned offsets and shall not cross the physical end of the ring. If a normal record would cross the end of the ring and sufficient free space exists for the required wrap, the writer shall first commit a WRAP record. A WRAP record has:
 
@@ -2415,15 +2323,15 @@ where Hbytes = 32 for the baseline packet header and Pbytes is the payload lengt
 
 - valid only when o = ̸ 0, R - o ≥ 64, and the physical tail contains the 32-byte header plus zero padding.
 
-- all bytes after the 32-byte header through the physical end of the ring set to zero. After the WRAP record is committed, W ← W + (R - o), the next record starts at offset zero, and the normal packet may be written. The generic Lrec = align64 (32 + `payload_bytes`) rule shall not be used to advance across a WRAP record. WRAP records shall not consume a PC-visible telemetry sequence number. The seq field in a WRAP record is ignored and shall be zero or equal to the previous committed normal telemetry sequence. Revision G allocates and increments the global sequence counter only after a normal telemetry record is accepted and committed to DDR. Packet-FIFO drops and DDR-writer drops before commit do not consume sequence numbers. Those loss events are visible through `PACKET_FIFO_DROP_COUNT` and `DMA_DROP_COUNT`, not through PC sequence gaps. PC sequence-gap detection shall use modulo-$2^{32}$ arithmetic: the expected next sequence is (`previous_seq` + 1) mod 232 . Thus `sequence_gap_count` refers to gaps in the committed/forwarded telemetry sequence, not pre-commit FPGA drops.
+- all bytes after the 32-byte header through the physical end of the ring set to zero. After the WRAP record is committed, W ← W + (R - o), the next record starts at offset zero, and the normal packet may be written. The generic Lrec = align64 (32 + `payload_bytes`) rule shall not be used to advance across a WRAP record. WRAP records shall not consume a PC-visible telemetry sequence number. The seq field in a WRAP record is ignored and shall be zero or equal to the previous committed normal telemetry sequence. Revision G allocates and increments the global sequence counter only after a normal telemetry record is accepted and committed to DDR. Packet-FIFO drops and DDR-writer drops before commit do not consume sequence numbers. Those loss events are visible through `PACKET_FIFO_DROP_COUNT` and `DMA_DROP_COUNT`, not through PC sequence gaps. PC sequence-gap detection shall use modulo-![2^{32}](math/baseline-page-051-001.svg) arithmetic: the expected next sequence is (`previous_seq` + 1) mod 232 . Thus `sequence_gap_count` refers to gaps in the committed/forwarded telemetry sequence, not pre-commit FPGA drops.
 
-### 17.6 Memory Coherency Requirement
+#### 17.6 Memory Coherency Requirement
 
 The DDR ring memory shall be mapped as non-cacheable, strongly ordered, or DMA-coherent from the HPS reader’s point of view. If a cached mapping is used, the implementation shall explicitly invalidate cache lines before reading each committed record. Reading stale cached ring data is a contract violation. The FPGA shall complete all DDR writes for a record before updating the producer pointer. The HPS shall treat the atomically-read producer pointer as the commit boundary. The HPS shall not read beyond the committed producer pointer.
 
-## 18 DDR Packet Record Format
+### 18 DDR Packet Record Format
 
-### 18.1 Common Header
+#### 18.1 Common Header
 
 All DDR telemetry records use the 32-byte header in Table 14. All fields are little-endian and packed with no implicit C padding. Numeric multi-byte fields shall be parsed as little-endian integers. The telemetry magic is a numeric constant. Receivers shall compare the parsed `uint32_t` value to 0x54524350. The raw byte sequence in memory for that numeric value is 50 43 52 54, so implementations shall not compare the byte stream to the ASCII string TRCP. The same header
 
@@ -2434,6 +2342,8 @@ All DDR telemetry records use the 32-byte header in Table 14. All fields are lit
 Historical Part II, DDR and UDP telemetry. Printed page 39. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=52).
 
 [Previous](baseline/page-051.md) | [Index](README.md) | [Next](baseline/page-053.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-052.md). Equations are rendered locally as SVG.
 
 may be forwarded directly in the UDP datagram when the total datagram payload is below the configured maximum.
 
@@ -2452,7 +2362,7 @@ may be forwarded directly in the UDP datagram when the total datagram payload is
 | 28 | `header_crc` | `uint32_t` | Revision G disables header CRC. This field shall be transmitted as zero. Receivers shall not compute CRC and shall reject nonzero values. |
 
 
-### 18.2 Header Flags
+#### 18.2 Header Flags
 
 **Table 15. Common flags bit definitions.**
 
@@ -2477,7 +2387,9 @@ Historical Part II, DDR and UDP telemetry. Printed page 40. [Original PDF page](
 
 [Previous](baseline/page-052.md) | [Index](README.md) | [Next](baseline/page-054.md)
 
-### 18.3 Timestamp Semantics
+[Edit Markdown and LaTeX source](source/baseline/page-053.md). Equations are rendered locally as SVG.
+
+#### 18.3 Timestamp Semantics
 
 The header timestamp field shall be interpreted by packet type:
 
@@ -2491,7 +2403,7 @@ The header timestamp field shall be interpreted by packet type:
 
 - WRAP: ignored and shall be zero.
 
-### 18.4 Packet Types
+#### 18.4 Packet Types
 
 **Table 16. Telemetry packet types.**
 
@@ -2507,7 +2419,7 @@ The header timestamp field shall be interpreted by packet type:
 | 0x007F | WRAP | Ring wrap marker. Payload length is zero. |
 
 
-### 18.5 Packet Validation Rules
+#### 18.5 Packet Validation Rules
 
 Before forwarding or consuming a record, the HPS shall validate:
 
@@ -2529,6 +2441,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 41. [Original PDF page](
 
 [Previous](baseline/page-053.md) | [Index](README.md) | [Next](baseline/page-055.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-054.md). Equations are rendered locally as SVG.
+
 6. `payload_bytes` satisfies the packet-specific rule in Table 17.
 
 7. for normal records, Lrec = align64 (32 + `payload_bytes`) is valid and does not exceed the ring size minus the guard. For WRAP, the effective record length is R - off(Rd ), not align64 (32).
@@ -2537,13 +2451,11 @@ Historical Part II, DDR and UDP telemetry. Printed page 41. [Original PDF page](
 
 9. `header_crc` == 0 in Revision G. Revision G baseline malformed-record policy is disable-and-reset, not byte scanning. On a malformed DDR record, the HPS shall increment `malformed_record_count`, disable the telemetry writer, commit the current consumer pointer, and require telemetry soft reset plus ring reconfiguration before streaming resumes. Byte-scanning resynchronization through the ring is not part of the Revision G baseline. Malformed records shall not cause an out-of-bounds DDR read.
 
-### 18.6 Maximum Payload Rules
+#### 18.6 Maximum Payload Rules
 
 The HPS shall validate packet-specific payload sizes using Table 17. The Revision G UDP nofragmentation rule requires:
 
-$$
-32+\mathrm{payload\_bytes}\le P_{\mathrm{udp,max}}=1200.\tag{18.1}
-$$
+![Equation 18.1: 32+&#92;mathrm{payload&#92;_bytes}&#92;le P_{&#92;mathrm{udp,max}}=1200.&#92;tag{18.1}](math/baseline-page-054-001.svg)
 
 Records that violate the packet-specific rule or the global UDP limit are malformed or oversized as indicated in the table.
 
@@ -2567,11 +2479,13 @@ Historical Part II, DDR and UDP telemetry. Printed page 42. [Original PDF page](
 
 [Previous](baseline/page-054.md) | [Index](README.md) | [Next](baseline/page-056.md)
 
-### 18.7 Commit Protocol
+[Edit Markdown and LaTeX source](source/baseline/page-055.md). Equations are rendered locally as SVG.
+
+#### 18.7 Commit Protocol
 
 The producer pointer is the only commit signal. A record is visible to HPS only after the FPGA has completed all writes for that record and then updated the producer pointer. The HPS shall not infer committed data from partially written headers.
 
-### Algorithm 6 FPGA DDR record write and commit protocol with correct wrap-space accounting
+#### Algorithm 6 FPGA DDR record write and commit protocol with correct wrap-space accounting
 
 ```text
 Require: packet payload P , packet type T , current producer pointer W , committed consumer
@@ -2616,21 +2530,21 @@ Historical Part II, DDR and UDP telemetry. Printed page 43. [Original PDF page](
 
 [Previous](baseline/page-055.md) | [Index](README.md) | [Next](baseline/page-057.md)
 
-## 19 Telemetry Payload Formats
+[Edit Markdown and LaTeX source](source/baseline/page-056.md). Equations are rendered locally as SVG.
+
+### 19 Telemetry Payload Formats
 
 All telemetry payload fields are little-endian and packed with no implicit C padding. Each packet type defines exact byte offsets, array order, and unused-bit behavior. Live Ethernet telemetry is not a correctness artifact. Exact signoff remains BRAM replay plus the core artifact contract.
 
-### 19.1 Magnitude Compression Operator
+#### 19.1 Magnitude Compression Operator
 
 For unsigned integer input z ≥ 0, define the display clamp operator:
 
-$$
-\operatorname{clip}_{16}(z)=\min(z,65535).\tag{19.1}
-$$
+![Equation 19.1: &#92;operatorname{clip}_{16}(z)=&#92;min(z,65535).&#92;tag{19.1}](math/baseline-page-056-001.svg)
 
 The SPEC64 and SPEC129 payloads shall apply clip16 after the configured unsigned right shift. No signed saturation is used for spectrum display compression.
 
-### 19.2 WAVE Payload
+#### 19.2 WAVE Payload
 
 The WAVE payload is interleaved by sample. The three channels are:
 
@@ -2667,9 +2581,11 @@ Historical Part II, DDR and UDP telemetry. Printed page 44. [Original PDF page](
 
 [Previous](baseline/page-056.md) | [Index](README.md) | [Next](baseline/page-058.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-057.md). Equations are rendered locally as SVG.
+
 For full-rate waveform telemetry, stride=1. For decimated waveform telemetry, stride shall equal the active `WAVE_DECIM`. Therefore the PC dashboard shall use `sample_base` + i · stride, not `sample_base` + i, for time-axis reconstruction. Thus `payload_bytes`=16 + 6 · nsamp. The waveform scheduler shall choose nsamp so that the DDR record and UDP datagram remain below the configured maximum. The Revision G WAVE payload is valid for the baseline N = 12 sample width. If N is raised above 15, the WAVE.err field width shall be revised or the display-error field shall be explicitly saturated for display.
 
-### 19.3 SPEC129 Payload
+#### 19.3 SPEC129 Payload
 
 For baseline L = 256, unique bins are k = 0, . . . , 128. The SPEC129 payload carries compressed magnitude-squared values and final mask bits.
 
@@ -2688,23 +2604,17 @@ For baseline L = 256, unique bins are k = 0, . . . , 128. The SPEC129 payload ca
 
 Unused bits in the final mask byte shall be zero. For L = 256, `payload_bytes`=287.
 
-### 19.4 SPEC64 Payload
+#### 19.4 SPEC64 Payload
 
 SPEC64 is a lower-bandwidth heatmap format. Bucket b ∈ {0, . . . , 63} covers:
 
-$$
-k_{\min}(b)=\left\lfloor\frac{129b}{64}\right\rfloor.\tag{19.2}
-$$
+![Equation 19.2: k_{&#92;min}(b)=&#92;left&#92;lfloor&#92;frac{129b}{64}&#92;right&#92;rfloor.&#92;tag{19.2}](math/baseline-page-057-001.svg)
 
-$$
-k_{\max}(b)=\left\lfloor\frac{129(b+1)}{64}\right\rfloor-1.\tag{19.3}
-$$
+![Equation 19.3: k_{&#92;max}(b)=&#92;left&#92;lfloor&#92;frac{129(b+1)}{64}&#92;right&#92;rfloor-1.&#92;tag{19.3}](math/baseline-page-057-002.svg)
 
 The display magnitude is:
 
-$$
-\mathrm{spec64}[b]=\operatorname{clip}_{16}\left(\max_{k_{\min}(b)\le k\le k_{\max}(b)}(\operatorname{mag2}[k]\gg\mathrm{spec\_shift})\right).\tag{19.4}
-$$
+![Equation 19.4: &#92;mathrm{spec64}&#91;b&#93;=&#92;operatorname{clip}_{16}&#92;left(&#92;max_{k_{&#92;min}(b)&#92;le k&#92;le k_{&#92;max}(b)}(&#92;operatorname{mag2}&#91;k&#93;&#92;gg&#92;mathrm{spec&#92;_shift})&#92;right).&#92;tag{19.4}](math/baseline-page-057-003.svg)
 
 Revision G also carries per-bucket suppression counts so that the PC can draw a mask overlay even when SPEC129 is disabled.
 
@@ -2715,6 +2625,8 @@ Revision G also carries per-bucket suppression counts so that the PC can draw a 
 Historical Part II, DDR and UDP telemetry. Printed page 45. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=58).
 
 [Previous](baseline/page-057.md) | [Index](README.md) | [Next](baseline/page-059.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-058.md). Equations are rendered locally as SVG.
 
 **Table 20. Exact SPEC64 payload layout.**
 
@@ -2733,13 +2645,11 @@ Historical Part II, DDR and UDP telemetry. Printed page 45. [Original PDF page](
 
 For L = 256, `payload_bytes`=268. The PC may display bucket suppression as the ratio
 
-$$
-\frac{\mathrm{suppressed\_count}[b]}{\mathrm{eligible\_count}[b]}
-$$
+![&#92;frac{&#92;mathrm{suppressed&#92;_count}&#91;b&#93;}{&#92;mathrm{eligible&#92;_count}&#91;b&#93;}](math/baseline-page-058-001.svg)
 
 when `eligible_count`[b] is nonzero.
 
-### 19.5 METRICS Payload
+#### 19.5 METRICS Payload
 
 Revision G baseline METRICS packets shall carry exactly one metrics class per packet. Exactly one of `per_frame_metrics` and `aggregate_metrics` shall be set. Setting both bits or neither bit is illegal in Revision G unless a later revision defines a larger payload with separate per-frame and aggregate sections. For Revision G, `payload_scaled` shall be zero for METRICS packets. Scaled display metrics are reserved for a later revision unless explicit scale metadata is added to the payload. Therefore, the fields in Table 21 are low 64-bit integer words of the selected core counters unless stated otherwise.
 
@@ -2750,6 +2660,8 @@ Revision G baseline METRICS packets shall carry exactly one metrics class per pa
 Historical Part II, DDR and UDP telemetry. Printed page 46. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=59).
 
 [Previous](baseline/page-058.md) | [Index](README.md) | [Next](baseline/page-060.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-059.md). Equations are rendered locally as SVG.
 
 **Table 21. Baseline METRICS payload layout.**
 
@@ -2766,9 +2678,9 @@ Historical Part II, DDR and UDP telemetry. Printed page 46. [Original PDF page](
 | 52 | `overflow_flags` | `uint32_t` | Sticky overflow/status flags. |
 
 
-For aggregate METRICS, `eligible_unique_bins` and `eligible_suppressed_bins` are low-32-bit modulo-$2^{32}$ display counters, and the low-64-bit fields are modulo-$2^{64}$ display counters. Exact signoff counters remain in the core artifact files, not live Ethernet telemetry. If the implementation can determine that any omitted high bits are nonzero, it shall set the common `payload_truncated` flag. Revision G keeps `payload_scaled`=0 for METRICS. Scaled display metrics require a later revision with explicit scale metadata.
+For aggregate METRICS, `eligible_unique_bins` and `eligible_suppressed_bins` are low-32-bit modulo-![2^{32}](math/baseline-page-059-001.svg) display counters, and the low-64-bit fields are modulo-![2^{64}](math/baseline-page-059-002.svg) display counters. Exact signoff counters remain in the core artifact files, not live Ethernet telemetry. If the implementation can determine that any omitted high bits are nonzero, it shall set the common `payload_truncated` flag. Revision G keeps `payload_scaled`=0 for METRICS. Scaled display metrics require a later revision with explicit scale metadata.
 
-### 19.6 STATUS Ownership and HPS Patch Rule
+#### 19.6 STATUS Ownership and HPS Patch Rule
 
 The baseline FPGA telemetry formatter may generate a STATUS record containing FPGA-owned fields such as sample count, frame count, source mode, sample rate, packet-enable mask, DMA drop count, overflow flags, and active THR2. Some status fields are HPS-owned because only the HPS UDP streamer can observe UDP send failures, malformed DDR records, oversized records, command rejects, and PC-visible sequence gaps. Therefore, Revision G permits two status paths. First, the HPS may patch the local UDP transmit copy of an FPGA-originated STATUS record. This patched packet remains part of the normal telemetry sequence stream. Second, the HPS may synthesize a diagnostic STATUS packet when telemetry is disabled or in response to PING. Such a packet shall set the `status_diagnostic` header flag, shall set the header seq field to zero, shall not be written back into the DDR ring, and shall not participate in PC-visible sequence-gap detection. The HPS shall not modify WAVE, SPEC64, SPEC129, or METRICS payloads. A patched STATUS packet shall preserve FPGA-owned fields and insert HPS-owned counters in the locations defined by Table 22.
 
@@ -2780,7 +2692,9 @@ Historical Part II, DDR and UDP telemetry. Printed page 47. [Original PDF page](
 
 [Previous](baseline/page-059.md) | [Index](README.md) | [Next](baseline/page-061.md)
 
-### 19.7 STATUS Payload
+[Edit Markdown and LaTeX source](source/baseline/page-060.md). Equations are rendered locally as SVG.
+
+#### 19.7 STATUS Payload
 
 The STATUS packet is low-rate and shall be sent even when waveform or spectrum packets are disabled, unless `STATUS_EN`=0.
 
@@ -2816,11 +2730,13 @@ Historical Part II, DDR and UDP telemetry. Printed page 48. [Original PDF page](
 
 [Previous](baseline/page-060.md) | [Index](README.md) | [Next](baseline/page-062.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-061.md). Equations are rendered locally as SVG.
+
 the DDR writer accepts a record.
 
-## 20 HPS UDP Streamer Contract
+### 20 HPS UDP Streamer Contract
 
-### 20.1 HPS Responsibilities
+#### 20.1 HPS Responsibilities
 
 The HPS software shall:
 
@@ -2844,17 +2760,15 @@ The HPS software shall:
 
 10. receive PC commands and translate accepted commands into CSR writes.
 
-### 20.2 UDP Datagrams and Fragmentation Policy
+#### 20.2 UDP Datagrams and Fragmentation Policy
 
 Revision G does not support telemetry protocol fragmentation. The FPGA packet scheduler shall not generate records whose header plus payload exceeds:
 
-$$
-P_{\mathrm{udp,max}}=1200\text{ bytes}.\tag{20.1}
-$$
+![Equation 20.1: P_{&#92;mathrm{udp,max}}=1200&#92;text{ bytes}.&#92;tag{20.1}](math/baseline-page-061-001.svg)
 
 The HPS shall drop and count any oversized record instead of fragmenting it. This avoids IP fragmentation under a standard Ethernet MTU and keeps the PC parser deterministic. Each UDP datagram shall contain exactly one telemetry record header and its payload. Padding bytes used for DDR 64-byte alignment shall not be transmitted over UDP.
 
-### 20.3 Nonblocking Send Rule
+#### 20.3 Nonblocking Send Rule
 
 The HPS UDP socket shall be nonblocking or shall use a bounded send timeout. If sendto() fails, would block, or exceeds the bounded timeout, the HPS shall:
 
@@ -2874,11 +2788,13 @@ Historical Part II, DDR and UDP telemetry. Printed page 49. [Original PDF page](
 
 [Previous](baseline/page-061.md) | [Index](README.md) | [Next](baseline/page-063.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-062.md). Equations are rendered locally as SVG.
+
 5. continue streaming unless a diagnostic mode explicitly requests stop-on-error. The HPS shall not stop advancing Rd indefinitely because the PC dashboard is slow or disconnected.
 
-### 20.4 HPS Streamer Algorithm
+#### 20.4 HPS Streamer Algorithm
 
-### Algorithm 7 HPS DDR ring consumer and UDP streamer
+#### Algorithm 7 HPS DDR ring consumer and UDP streamer
 
 ```text
 Require: configured CSR base, DDR ring mapping, UDP destination
@@ -2928,6 +2844,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 50. [Original PDF page](
 
 [Previous](baseline/page-062.md) | [Index](README.md) | [Next](baseline/page-064.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-063.md). Equations are rendered locally as SVG.
+
 ```text
 37:       commit Rd through RING_RD_COMMIT
 38:    end while
@@ -2935,7 +2853,7 @@ Historical Part II, DDR and UDP telemetry. Printed page 50. [Original PDF page](
 40: end while
 ```
 
-### 20.5 Runtime Packet Validation Checklist
+#### 20.5 Runtime Packet Validation Checklist
 
 The HPS shall validate at least the following before forwarding a record:
 
@@ -2959,27 +2877,19 @@ The HPS shall validate at least the following before forwarding a record:
 
 - `header_crc`=0 in Revision G.
 
-### 20.6 Ethernet Port Assignments
+#### 20.6 Ethernet Port Assignments
 
 A recommended default is:
 
-$$
-\text{telemetry UDP port}=5005.\tag{20.2}
-$$
+![Equation 20.2: &#92;text{telemetry UDP port}=5005.&#92;tag{20.2}](math/baseline-page-063-001.svg)
 
-$$
-\text{command UDP port}=5006.\tag{20.3}
-$$
+![Equation 20.3: &#92;text{command UDP port}=5006.&#92;tag{20.3}](math/baseline-page-063-002.svg)
 
 The PC IP address should be configured statically for a direct board-to-PC link. For example:
 
-$$
-\text{PC}:192.168.10.1.\tag{20.4}
-$$
+![Equation 20.4: &#92;text{PC}:192.168.10.1.&#92;tag{20.4}](math/baseline-page-063-003.svg)
 
-$$
-\text{DE1-SoC HPS}:192.168.10.2.\tag{20.5}
-$$
+![Equation 20.5: &#92;text{DE1-SoC HPS}:192.168.10.2.&#92;tag{20.5}](math/baseline-page-063-004.svg)
 
 <a id="pdf-page-064"></a>
 
@@ -2989,9 +2899,11 @@ Historical Part II, DDR and UDP telemetry. Printed page 51. [Original PDF page](
 
 [Previous](baseline/page-063.md) | [Index](README.md) | [Next](baseline/page-065.md)
 
-## 21 PC Command Contract
+[Edit Markdown and LaTeX source](source/baseline/page-064.md). Equations are rendered locally as SVG.
 
-### 21.1 Command Header
+### 21 PC Command Contract
+
+#### 21.1 Command Header
 
 Commands sent from PC to HPS use a compact UDP command format. The HPS validates the command, checks the source, and translates accepted commands into CSR writes. All PC command fields are little-endian and packed with no implicit C padding. The Revision G command packet length is exactly 28 bytes. The command magic is parsed as a little-endian `uint32_t` numeric constant, not as four literal transmitted ASCII characters.
 
@@ -3009,13 +2921,13 @@ Commands sent from PC to HPS use a compact UDP command format. The HPS validates
 | 24 | crc32 | `uint32_t` | Revision G disables command CRC. This field shall be zero. HPS shall not compute CRC and shall reject nonzero values. |
 
 
-### 21.2 Command Types and Valid Ranges
+#### 21.2 Command Types and Valid Ranges
 
 **Table 24. PC command types and valid argument ranges.**
 
 | Code | Name | Action and range |
 | --- | --- | --- |
-| 0x0001 | `SET_THR2` | arg0=low 32 bits, arg1=high bits. Upper bits beyond bit 55 shall be zero. Valid $0 \le\mathrm{THR2}<2^{56}$ . |
+| 0x0001 | `SET_THR2` | arg0=low 32 bits, arg1=high bits. Upper bits beyond bit 55 shall be zero. Valid ![0 &#92;le&#92;mathrm{THR2}<2^{56}](math/baseline-page-064-001.svg) . |
 | 0x0002 | `CLEAR_METRICS` | HPS pulses metrics clear through `CONTROL.clear_metrics`. Arguments shall be zero. |
 | 0x0003 | `SET_SOURCE_MODE` | arg0∈ {0, 1, 2, 3}. Source-mode change rule applies. |
 | 0x0004 | `SET_PACKET_ENABLE` | arg0 uses bits from Table 10. Reserved bits shall be zero. `PEAKS_EN` and `DEBUG_EN` shall also be zero in Revision G unless a later exact extension is defined. |
@@ -3031,27 +2943,27 @@ Historical Part II, DDR and UDP telemetry. Printed page 52. [Original PDF page](
 
 [Previous](baseline/page-064.md) | [Index](README.md) | [Next](baseline/page-066.md)
 
-### 21.3 Command Source Rule and Security Scope
+[Edit Markdown and LaTeX source](source/baseline/page-065.md). Equations are rendered locally as SVG.
+
+#### 21.3 Command Source Rule and Security Scope
 
 The HPS command listener shall accept commands only from a configured trusted PC IP address, or from the direct-link peer established by the first valid PING handshake. Commands from other source IP addresses or unexpected source ports shall be rejected and counted. This Revision G command protocol is intended for isolated lab/demo networks. It is not authenticated or encrypted and shall not be exposed to an untrusted network.
 
-### 21.4 Command Safety Rules
+#### 21.4 Command Safety Rules
 
 The HPS shall reject commands with invalid magic, unsupported version, a packet length other than 28 bytes, nonzero CRC field, illegal command type, illegal source mode, out-of-range THR2, illegal packet-enable reserved bits, attempts to enable reserved-disabled `PEAKS_EN/DEBUG_EN`, zero decimation, or illegal spectrum shift. Rejected commands shall increment the appropriate HPSowned or CSR-owned command-reject counter. HPS-owned rejects shall not modify FPGA CSRs or FPGA sticky flags. CSR-owned rejects may set sticky status flags according to Table 13, but shall not otherwise modify active state. For `SET_THR2`, HPS shall write `THR2_LO`, write `THR2_HI`, and then pulse `THR2_COMMIT`. For `SET_SOURCE_MODE`, HPS shall obey the source-mode change rule instead of writing active source state asynchronously.
 
-## 22 Telemetry Scheduling and Bandwidth
+### 22 Telemetry Scheduling and Bandwidth
 
-### 22.1 Frame Rate
+#### 22.1 Frame Rate
 
 For the Phase 2 baseline with hop H = 128, the frame rate is:
 
-$$
-F_{\mathrm{frame}}=\frac{F_s}{128}.\tag{22.1}
-$$
+![Equation 22.1: F_{&#92;mathrm{frame}}=&#92;frac{F_s}{128}.&#92;tag{22.1}](math/baseline-page-065-001.svg)
 
 At Fs = 48 kS/s, this is 375 frames/s. At Fs = 100 kS/s, this is 781.25 frames/s.
 
-### 22.2 Recommended Packet Rates
+#### 22.2 Recommended Packet Rates
 
 **Table 25. Recommended packet scheduling.**
 
@@ -3071,29 +2983,25 @@ Historical Part II, DDR and UDP telemetry. Printed page 53. [Original PDF page](
 
 [Previous](baseline/page-065.md) | [Index](README.md) | [Next](baseline/page-067.md)
 
-### 22.3 Bandwidth Estimates
+[Edit Markdown and LaTeX source](source/baseline/page-066.md). Equations are rendered locally as SVG.
+
+#### 22.3 Bandwidth Estimates
 
 For waveform telemetry with three signed 16-bit channels:
 
-$$
-B_{\mathrm{wave}}=F_s\cdot3\cdot2\text{ bytes/s}.\tag{22.2}
-$$
+![Equation 22.2: B_{&#92;mathrm{wave}}=F_s&#92;cdot3&#92;cdot2&#92;text{ bytes/s}.&#92;tag{22.2}](math/baseline-page-066-001.svg)
 
 Thus:
 
-$$
-F_s=48\text{ kS/s}\Rightarrow B_{\mathrm{wave}}\approx288\text{ kB/s}.\tag{22.3}
-$$
+![Equation 22.3: F_s=48&#92;text{ kS/s}&#92;Rightarrow B_{&#92;mathrm{wave}}&#92;approx288&#92;text{ kB/s}.&#92;tag{22.3}](math/baseline-page-066-002.svg)
 
-$$
-F_s=100\text{ kS/s}\Rightarrow B_{\mathrm{wave}}\approx600\text{ kB/s}.\tag{22.4}
-$$
+![Equation 22.4: F_s=100&#92;text{ kS/s}&#92;Rightarrow B_{&#92;mathrm{wave}}&#92;approx600&#92;text{ kB/s}.&#92;tag{22.4}](math/baseline-page-066-003.svg)
 
 These rates are small for Ethernet. PC plotting and HPS software behavior are more likely bottlenecks than Ethernet bandwidth.
 
-## 23 Memory Allocation and Cache Policy
+### 23 Memory Allocation and Cache Policy
 
-### 23.1 Option A: Reserved DDR Region
+#### 23.1 Option A: Reserved DDR Region
 
 A first prototype may reserve a physical DDR region and map it from HPS userspace. This is faster to implement but less clean than a kernel driver. If used:
 
@@ -3103,13 +3011,13 @@ A first prototype may reserve a physical DDR region and map it from HPS userspac
 
 - the address written to `RING_BASE` shall be the FPGA-visible bus address, not a userspace virtual address.
 
-### 23.2 Option B: DMA-Coherent Kernel Driver
+#### 23.2 Option B: DMA-Coherent Kernel Driver
 
 A more formal implementation may use a kernel driver that allocates a DMA-coherent buffer, exposes the buffer to userspace, and writes the FPGA-visible physical/bus address into the CSR map. This is cleaner but is not required for first bring-up.
 
-## 24 PC Dashboard Contract
+### 24 PC Dashboard Contract
 
-### 24.1 Required Plots
+#### 24.1 Required Plots
 
 The dashboard shall support:
 
@@ -3131,25 +3039,25 @@ Historical Part II, DDR and UDP telemetry. Printed page 54. [Original PDF page](
 
 [Previous](baseline/page-066.md) | [Index](README.md) | [Next](baseline/page-068.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-067.md). Equations are rendered locally as SVG.
+
 - status panel with active THR2, source mode, drop counters, overflow flags, packet rate, and sequence gaps. The dashboard-derived kept-energy ratio is `eligible_kept_mag2/eligible_total_mag2`. If `eligible_total_mag2` is zero, the dashboard shall display the ratio as N/A and shall omit that sample from rolling averages, trend lines, and threshold summaries. It shall not coerce the value to 0 or 1. The dashboard shall display both `dma_drop_count` and `packet_fifo_drop_count`. The first counter identifies DDR-writer/ring-space drops after packet acceptance by the DDR writer. The second counter identifies pre-writer packet-FIFO drops. These counters shall not be merged in the Revision G baseline.
 
-### 24.2 Dashboard Update Rate
+#### 24.2 Dashboard Update Rate
 
 The PC GUI shall not redraw on every UDP datagram. The receiver shall parse UDP packets on a background thread or asynchronous receive loop and store data in ring buffers. The GUI thread shall consume the most recent buffered data at 20 to 30 Hz. Packet parsing shall not block UDP receive.
 
-### 24.3 Packet Loss Handling
+#### 24.3 Packet Loss Handling
 
-The PC dashboard shall track the seq field in each normal forwarded telemetry header. Missing sequence numbers shall be counted and displayed. Sequence-gap detection shall use modulo-$2^{32}$ arithmetic:
+The PC dashboard shall track the seq field in each normal forwarded telemetry header. Missing sequence numbers shall be counted and displayed. Sequence-gap detection shall use modulo-![2^{32}](math/baseline-page-067-001.svg) arithmetic:
 
-$$
-\mathrm{expected\_next}=(\mathrm{previous\_seq}+1)\bmod2^{32}.\tag{24.1}
-$$
+![Equation 24.1: &#92;mathrm{expected&#92;_next}=(&#92;mathrm{previous&#92;_seq}+1)&#92;bmod2^{32}.&#92;tag{24.1}](math/baseline-page-067-002.svg)
 
 WRAP records are not forwarded and do not consume PC-visible sequence numbers. HPS-synthesized diagnostic STATUS packets with `status_diagnostic`=1 shall also be ignored for sequence-gap detection. Packet loss is acceptable for live visualization but shall be visible to the user.
 
-## 25 Startup and Shutdown Sequence
+### 25 Startup and Shutdown Sequence
 
-### 25.1 Startup Sequence
+#### 25.1 Startup Sequence
 
 The baseline startup sequence is:
 
@@ -3175,6 +3083,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 55. [Original PDF page](
 
 [Previous](baseline/page-067.md) | [Index](README.md) | [Next](baseline/page-069.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-068.md). Equations are rendered locally as SVG.
+
 8. Verify that the FPGA producer pointer W is reset to zero using `RING_WR_SNAPSHOT`.
 
 9. Configure THR2 shadow registers and pulse `THR2_COMMIT` if a non-default threshold is required.
@@ -3193,11 +3103,11 @@ Historical Part II, DDR and UDP telemetry. Printed page 55. [Original PDF page](
 
 16. Verify sequence numbers, packet sizes, timestamp semantics, and drop/error counters on the PC dashboard. STATUS-only bring-up reduces debug complexity. Waveform, spectrum, and metrics packets should be enabled only after the ring, UDP streamer, and PC parser are proven alive.
 
-### 25.2 Shutdown Sequence
+#### 25.2 Shutdown Sequence
 
 The HPS shall disable telemetry writer enable before releasing the DDR ring mapping. The FPGA core may continue processing samples while telemetry is disabled.
 
-## 26 Failure Modes and Required Counters
+### 26 Failure Modes and Required Counters
 
 **Table 26. Failure modes and required observability.**
 
@@ -3216,6 +3126,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 56. [Original PDF page](
 
 [Previous](baseline/page-068.md) | [Index](README.md) | [Next](baseline/page-070.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-069.md). Equations are rendered locally as SVG.
+
 **Table 26. Failure modes and required observability, continued.**
 
 | Failure mode | Required behavior | Required counter/status |
@@ -3225,7 +3137,7 @@ Historical Part II, DDR and UDP telemetry. Printed page 56. [Original PDF page](
 | Oversized record | HPS drops record. FPGA scheduler should avoid generating it. | Oversized-record count. |
 
 
-## 27 Acceptance Criteria
+### 27 Acceptance Criteria
 
 A Level-3 implementation passes this transport supplement only if all of the following are true:
 
@@ -3261,6 +3173,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 57. [Original PDF page](
 
 [Previous](baseline/page-069.md) | [Index](README.md) | [Next](baseline/page-071.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-070.md). Equations are rendered locally as SVG.
+
 `WRAP.payload_bytes`=0. The PC parser shall reject STATUS records with any other payload size unless a later compatible revision explicitly defines a different layout.
 
 AC13. Spectrum packet generation uses `PACKET_ENABLE.SPEC_EN` plus authoritative `SPEC_MODE`. `PACKET_ENABLE` shall not contain separate `SPEC64_EN` and `SPEC129_EN` controls in Revision G.
@@ -3279,17 +3193,17 @@ AC19. Sticky flags are cleared only through `CLEAR_STICKY_FLAGS` write-one-to-cl
 
 AC20. PC command packets are accepted only from the configured trusted PC or validated direct-link peer.
 
-AC21. Commands with out-of-range arguments are rejected and counted, including $\mathrm{THR2}\ge2^{56}$ , `WAVE_DECIM`=0, illegal `SOURCE_MODE`, reserved or reserved-disabled packet-enable bits including `PEAKS_EN/DEBUG_EN`, or illegal `SPEC_SHIFT`.
+AC21. Commands with out-of-range arguments are rejected and counted, including ![&#92;mathrm{THR2}&#92;ge2^{56}](math/baseline-page-070-001.svg) , `WAVE_DECIM`=0, illegal `SOURCE_MODE`, reserved or reserved-disabled packet-enable bits including `PEAKS_EN/DEBUG_EN`, or illegal `SPEC_SHIFT`.
 
 AC22. `SET_THR2` changes the active threshold only through the shadow/commit frame-boundary rule.
 
 AC23. `SET_SOURCE_MODE` obeys the source-mode change rule and does not silently mix metrics from different sources.
 
-AC24. PC dashboard detects telemetry sequence gaps using modulo-$2^{32}$ arithmetic and reports packet loss without crashing. Diagnostic STATUS packets marked with `status_diagnostic`=1 are excluded from this check.
+AC24. PC dashboard detects telemetry sequence gaps using modulo-![2^{32}](math/baseline-page-070-002.svg) arithmetic and reports packet loss without crashing. Diagnostic STATUS packets marked with `status_diagnostic`=1 are excluded from this check.
 
 AC25. PING returns a STATUS packet only. No undefined ACK packet is used in Revision G.
 
-AC26. Aggregate METRICS low-32-bit eligible-bin counters are interpreted modulo-$2^{32}$ , low-64-bit counters are interpreted modulo-$2^{64}$ , and `payload_truncated` is set when known omitted high bits are nonzero.
+AC26. Aggregate METRICS low-32-bit eligible-bin counters are interpreted modulo-![2^{32}](math/baseline-page-070-003.svg) , low-64-bit counters are interpreted modulo-![2^{64}](math/baseline-page-070-004.svg) , and `payload_truncated` is set when known omitted high bits are nonzero.
 
 AC27. Real WAVE, SPEC64 or SPEC129, METRICS, and STATUS packets can be plotted live.
 
@@ -3303,11 +3217,13 @@ Historical Part II, DDR and UDP telemetry. Printed page 58. [Original PDF page](
 
 [Previous](baseline/page-070.md) | [Index](README.md) | [Next](baseline/page-072.md)
 
-## 28 First Implementation Scope
+[Edit Markdown and LaTeX source](source/baseline/page-071.md). Equations are rendered locally as SVG.
+
+### 28 First Implementation Scope
 
 Revision G intentionally keeps optional transport features in the specification for future growth, but the first successful Level-3 bring-up shall not attempt every optional packet or software path at once.
 
-### 28.1 Required First-Demo Scope
+#### 28.1 Required First-Demo Scope
 
 The first demo implementation shall include:
 
@@ -3325,7 +3241,7 @@ The first demo implementation shall include:
 
 - drop/error counters and PC-side sequence-gap display.
 
-### 28.2 Deferred Optional Scope
+#### 28.2 Deferred Optional Scope
 
 The following features are reserved for later integration and shall not block the first demo:
 
@@ -3347,7 +3263,9 @@ Historical Part II, DDR and UDP telemetry. Printed page 59. [Original PDF page](
 
 [Previous](baseline/page-071.md) | [Index](README.md) | [Next](baseline/page-073.md)
 
-## 29 Development Milestones
+[Edit Markdown and LaTeX source](source/baseline/page-072.md). Equations are rendered locally as SVG.
+
+### 29 Development Milestones
 
 **Table 27. Recommended Level-3 development milestones.**
 
@@ -3363,7 +3281,7 @@ Historical Part II, DDR and UDP telemetry. Printed page 59. [Original PDF page](
 | M7 | Full live demo | Live audio/ADC source, processed output, Ethernet dashboard, and stable counters. |
 
 
-## 30 Conclusion
+### 30 Conclusion
 
 This addendum defines the Level-3 transport architecture for a fully functional T-RECAP Phase 2 DE1-SoC demonstration. The FPGA fabric remains responsible for deterministic real-time signal processing. The HPS provides the Ethernet and DDR bridge needed for high-bandwidth live visualization. The PC receives UDP telemetry and sends control commands, but it is not part of the signal-processing correctness path. Revision G is intentionally strict about ownership, memory ordering, packet records, atomic pointer semantics, CDC rules, command safety, packet validation, separate pre-writer versus DDR-writer drop accounting, and non-stall drop behavior. These details matter because the final demo should be visually rich without weakening the core verification story. A correct implementation of this addendum will allow real-time waveform plots, error plots, spectrograms, live metrics, and threshold control while preserving the Phase 2 core contract and BRAM replay signoff.
 
@@ -3375,11 +3293,13 @@ Historical Part III, repository architecture. Printed page 60. [Original PDF pag
 
 [Previous](baseline/page-072.md) | [Index](README.md) | [Next](baseline/page-074.md)
 
-## Part III - Core Implementation Repository Architecture
+[Edit Markdown and LaTeX source](source/baseline/page-073.md). Equations are rendered locally as SVG.
+
+### Part III - Core Implementation Repository Architecture
 
 Part III translates the frozen core and telemetry contracts into an implementation repository. It defines the tree, generated shared contracts, filelists, RTL layer ownership, HPS and PC software layout, build profiles, coefficient ROM ownership, memory primitive rules, and staged implementation cuts. It deliberately excludes verification architecture, which will be specified separately after the implementation repository is frozen.
 
-## 31 Repository Architecture Executive Summary
+### 31 Repository Architecture Executive Summary
 
 Phase 2 is an implementation project, not a single demonstration file. The final system has a deterministic FPGA STFT/WOLA core, a frozen artifact flow, a non-stalling telemetry path, an HPS-mediated Ethernet path, and a PC dashboard. The repository must therefore separate implementation ownership before code begins. Revision D keeps the scope focused on the core implementation repository. It adds the implementation discipline needed before substantial RTL is written. Verification directories, scoreboards, regression hierarchy, assertion packages, and testbench inventory remain intentionally deferred. This revision adds source-of-truth filelists, generated-file commit rules, module API and naming rules, clock/reset ownership, compile-only smoke checks, Platform Designer artifact policy, runtime profile separation, coefficient ROM ownership, memory primitive policy, top-level build variants, and a core-first implementation cut. It also fixes three consistency issues before freeze: generated software header paths, minimum documentation inventory, and the distinction between the core-first implementation cut and the first full-demo scope. The design rule is unchanged:
 
@@ -3407,6 +3327,8 @@ Historical Part III, repository architecture. Printed page 61. [Original PDF pag
 
 [Previous](baseline/page-073.md) | [Index](README.md) | [Next](baseline/page-075.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-074.md). Equations are rendered locally as SVG.
+
 7. Legacy Phase 1 code shall be quarantined under legacy/phase1/ and must not compile into the Phase 2 root build.
 
 8. RTL compile order shall be generated by `scripts/gen_filelists.py`. Ad-hoc compile-order guessing is forbidden.
@@ -3415,9 +3337,9 @@ Historical Part III, repository architecture. Printed page 61. [Original PDF pag
 
 10. Core-first Cut C0 shall be completed before telemetry, HPS bridge, Ethernet dashboard, or live audio integration is treated as active implementation work.
 
-## 32 Scope and Inputs
+### 32 Scope and Inputs
 
-### 32.1 Normative inputs
+#### 32.1 Normative inputs
 
 The repository architecture is based on three higher-level documents:
 
@@ -3429,7 +3351,7 @@ The repository architecture is based on three higher-level documents:
 
 This document does not relax or override those contracts. If this repository document and the integrated contract disagree, the integrated contract wins.
 
-### 32.2 In scope
+#### 32.2 In scope
 
 This document defines:
 
@@ -3463,7 +3385,9 @@ Historical Part III, repository architecture. Printed page 62. [Original PDF pag
 
 [Previous](baseline/page-074.md) | [Index](README.md) | [Next](baseline/page-076.md)
 
-### 32.3 Out of scope
+[Edit Markdown and LaTeX source](source/baseline/page-075.md). Equations are rendered locally as SVG.
+
+#### 32.3 Out of scope
 
 This document does not define:
 
@@ -3479,9 +3403,9 @@ This document does not define:
 
 A later verification architecture document shall define testbench layout, scoreboards, monitors, assertions, coverage, and regression strategy.
 
-## 33 Architectural Principles
+### 33 Architectural Principles
 
-### 33.1 Non-negotiable implementation rules
+#### 33.1 Non-negotiable implementation rules
 
 1. Core independence. rtl/core/ shall build without HPS, Ethernet, DDR ring, UDP packets, dashboard code, or board-specific wrappers.
 
@@ -3497,7 +3421,7 @@ A later verification architecture document shall define testbench layout, scoreb
 
 7. Deprecated files are quarantined. Phase 1 files and older Phase 2 drafts shall be isolated so that the Phase 2 root build cannot accidentally compile or depend on them.
 
-### 33.2 Ownership diagram
+#### 33.2 Ownership diagram
 
 ```text
 PC dashboard
@@ -3517,6 +3441,8 @@ HPS software
 Historical Part III, repository architecture. Printed page 63. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=76).
 
 [Previous](baseline/page-075.md) | [Index](README.md) | [Next](baseline/page-077.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-076.md). Equations are rendered locally as SVG.
 
 ```text
         | HPS-FPGA bridge + HPS DDR
@@ -3539,9 +3465,9 @@ FPGA core layer
 BRAM replay / LINE-IN audio / ADC / diagnostics
 ```
 
-## 34 Repository Layout
+### 34 Repository Layout
 
-### 34.1 Normative top-level tree
+#### 34.1 Normative top-level tree
 
 The initial Phase 2 implementation repository shall use the directory tree below. Verification-specific directories are intentionally absent.
 
@@ -3580,6 +3506,8 @@ T_RECAP_Phase2/
 Historical Part III, repository architecture. Printed page 64. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=77).
 
 [Previous](baseline/page-076.md) | [Index](README.md) | [Next](baseline/page-078.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-077.md). Equations are rendered locally as SVG.
 
 ```text
      telemetry_status_only.json
@@ -3646,6 +3574,8 @@ Historical Part III, repository architecture. Printed page 65. [Original PDF pag
 
 [Previous](baseline/page-077.md) | [Index](README.md) | [Next](baseline/page-079.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-078.md). Equations are rendered locally as SVG.
+
 ```text
 legacy/
   phase1/
@@ -3654,7 +3584,7 @@ legacy/
 runs/
 ```
 
-### 34.2 Directory responsibilities
+#### 34.2 Directory responsibilities
 
 **Table 28. Repository directory responsibilities.**
 
@@ -3685,6 +3615,8 @@ Historical Part III, repository architecture. Printed page 66. [Original PDF pag
 
 [Previous](baseline/page-078.md) | [Index](README.md) | [Next](baseline/page-080.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-079.md). Equations are rendered locally as SVG.
+
 **Table 28. Repository directory responsibilities, continued.**
 
 | Directory | Responsibility |
@@ -3701,9 +3633,9 @@ Historical Part III, repository architecture. Printed page 66. [Original PDF pag
 | runs/ | Generated local build/run outputs. Not source-controlled by default. |
 
 
-## 35 Generated Shared Contract Flow
+### 35 Generated Shared Contract Flow
 
-### 35.1 Purpose
+#### 35.1 Purpose
 
 Manual duplication of constants across SystemVerilog, C, and Python is not acceptable for this project. The following items are too easy to mismatch:
 
@@ -3723,7 +3655,7 @@ Manual duplication of constants across SystemVerilog, C, and Python is not accep
 
 Therefore, the repository shall use one schema source under spec/generated/ and generate implementation headers from that source.
 
-### 35.2 Schema files
+#### 35.2 Schema files
 
 <a id="pdf-page-080"></a>
 
@@ -3732,6 +3664,8 @@ Therefore, the repository shall use one schema source under spec/generated/ and 
 Historical Part III, repository architecture. Printed page 67. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=80).
 
 [Previous](baseline/page-079.md) | [Index](README.md) | [Next](baseline/page-081.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-080.md). Equations are rendered locally as SVG.
 
 **Table 29. Generated-contract schema files.**
 
@@ -3744,7 +3678,7 @@ Historical Part III, repository architecture. Printed page 67. [Original PDF pag
 | `gen_manifest.json` | Generation metadata, generator version, expected output files, and hashes of generated headers. |
 
 
-### 35.3 Generated outputs
+#### 35.3 Generated outputs
 
 The script `scripts/gen_headers.py` shall generate the files listed in Table 30. Generated files shall contain a banner stating that they are generated and shall not be hand-edited.
 
@@ -3762,7 +3696,7 @@ The script `scripts/gen_headers.py` shall generate the files listed in Table 30.
 | `sw/golden/generated/trecap_config.py` | Golden-model constants derived from the same core schema. |
 
 
-### 35.4 Generated-file commit policy
+#### 35.4 Generated-file commit policy
 
 Revision D uses the senior-project practical policy. Generated headers are checked into the repository. The repository also keeps the schema files that produce them. This avoids Quartus, HPS, and dashboard builds failing because a generated file was absent, while still making regeneration deterministic.
 
@@ -3774,6 +3708,8 @@ Historical Part III, repository architecture. Printed page 68. [Original PDF pag
 
 [Previous](baseline/page-080.md) | [Index](README.md) | [Next](baseline/page-082.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-081.md). Equations are rendered locally as SVG.
+
 1. Generated SV/C/Python headers shall be committed under rtl/include/generated/, sw/hps/ include/generated/, `sw/pc_dashboard/generated/`, and sw/golden/generated/.
 
 2. `scripts/gen_headers.py` shall emit `spec/generated/gen_manifest.json` containing source schema hashes, generator version, generated output paths, and generated output hashes.
@@ -3784,7 +3720,7 @@ Historical Part III, repository architecture. Printed page 68. [Original PDF pag
 
 5. Manual edits to generated files are invalid. Required changes shall be made in the schema and regenerated.
 
-### 35.5 Generated filelists
+#### 35.5 Generated filelists
 
 SystemVerilog compile order is part of the implementation contract. Packages must compile before interfaces, interfaces before modules, and core modules before integration tops. Therefore, compile/build order shall be generated, not guessed manually.
 
@@ -3802,7 +3738,7 @@ SystemVerilog compile order is part of the implementation contract. Packages mus
 
 `scripts/gen_filelists.py` owns these outputs. No compile or synthesis flow shall rely on hand-written source ordering outside these filelists. If a module is not present in the proper filelist, it is not part of that build cut. Cut C0 shall use `filelists/rtl_core_plus_fft.f`. `Filelists/rtl_core.f` is only a partial skeleton smoke target when FFT/IFFT files are separated.
 
-### 35.6 Normative CSR map rule
+#### 35.6 Normative CSR map rule
 
 The CSR map is normative. It shall not be described as recommended in the implementation repository. If a CSR offset, bit, access semantic, or reset value differs from `csr_map.json`, the implementation is out of contract.
 
@@ -3814,11 +3750,13 @@ Historical Part III, repository architecture. Printed page 69. [Original PDF pag
 
 [Previous](baseline/page-081.md) | [Index](README.md) | [Next](baseline/page-083.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-082.md). Equations are rendered locally as SVG.
+
 All CSR consumers - SystemVerilog CSR bank, HPS C code, and Python command tooling - shall use generated definitions from `csr_map.json`. Hand-coded duplicated CSR offsets are not allowed outside generated headers.
 
-## 36 SystemVerilog Interface and Typedef Baseline
+### 36 SystemVerilog Interface and Typedef Baseline
 
-### 36.1 Package organization
+#### 36.1 Package organization
 
 The minimum package set is:
 
@@ -3834,7 +3772,7 @@ rtl/include/
     constants
 ```
 
-### 36.2 Core sample and frame typedefs
+#### 36.2 Core sample and frame typedefs
 
 The exact field names may be generated from `interface_types.json`, but the following shapes are the baseline contract.
 
@@ -3862,7 +3800,7 @@ typedef struct packed {
 } trecap_frame_stats_t;
 ```
 
-### 36.3 Telemetry record typedefs
+#### 36.3 Telemetry record typedefs
 
 <a id="pdf-page-083"></a>
 
@@ -3871,6 +3809,8 @@ typedef struct packed {
 Historical Part III, repository architecture. Printed page 70. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=83).
 
 [Previous](baseline/page-082.md) | [Index](README.md) | [Next](baseline/page-084.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-083.md). Equations are rendered locally as SVG.
 
 ```systemverilog
 typedef enum logic [15:0] {
@@ -3895,7 +3835,7 @@ typedef struct packed {
 
 The packet FIFO shall carry `trecap_record_meta_t` plus payload bytes. If an implementation stores payload bytes in a separate RAM, metadata and payload commit shall remain atomic at the record boundary. Internal Revision G metadata may store `payload_bytes` in 16 bits because every legal Revision G UDP datagram satisfies 32 + Pbytes ≤ 1200, so `payload_bytes` is at most 1168. The 32-bit DDR/UDP header field shall zero-extend this internal value. The `drop_priority` field is normative when priority-based telemetry shedding is implemented: priority 0 is lowest and is dropped first for WAVE. Priority 1 is used for SPEC64/SPEC129. Priority 2 is used for METRICS. Priority 3 is highest and is dropped last for STATUS. The packet FIFO admission logic shall use this field to evict or shed lower-priority records, or shall reserve enough high-priority capacity to satisfy the admission guarantee in Section 13.3.
 
-### 36.4 Core tap interface rule
+#### 36.4 Core tap interface rule
 
 Telemetry taps observe the core. They do not control the core.
 
@@ -3923,9 +3863,11 @@ Historical Part III, repository architecture. Printed page 71. [Original PDF pag
 
 [Previous](baseline/page-083.md) | [Index](README.md) | [Next](baseline/page-085.md)
 
-## 37 Module API, Parameter, and Naming Rules
+[Edit Markdown and LaTeX source](source/baseline/page-084.md). Equations are rendered locally as SVG.
 
-### 37.1 Parameter ownership
+### 37 Module API, Parameter, and Naming Rules
+
+#### 37.1 Parameter ownership
 
 1. All RTL modules shall import constants from `trecap_core_pkg.sv`, `trecap_csr_pkg.sv`, `trecap_packet_pkg.sv`, and `trecap_iface_pkg.sv` as appropriate.
 
@@ -3935,7 +3877,7 @@ Historical Part III, repository architecture. Printed page 71. [Original PDF pag
 
 4. A reusable primitive may be parameterized by width or depth, but it shall not internally redefine T-RECAP contract constants.
 
-### 37.2 Port naming rules
+#### 37.2 Port naming rules
 
 **Table 32. RTL API and naming rules.**
 
@@ -3951,7 +3893,7 @@ Historical Part III, repository architecture. Printed page 71. [Original PDF pag
 | Generated packages | Use trecap_*_pkg.sv. |
 
 
-### 37.3 Coding style baseline
+#### 37.3 Coding style baseline
 
 The implementation repository shall include `docs/architecture/coding_style.md`. The minimum style rules are:
 
@@ -3971,13 +3913,15 @@ Historical Part III, repository architecture. Printed page 72. [Original PDF pag
 
 [Previous](baseline/page-084.md) | [Index](README.md) | [Next](baseline/page-086.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-085.md). Equations are rendered locally as SVG.
+
 - HPS software shall not contain signal-processing algorithms.
 
 - Python packet parsers shall import generated constants from `sw/pc_dashboard/generated/`. Dashboard parsers shall not duplicate packet offsets manually.
 
-## 38 RTL Layer Ownership
+### 38 RTL Layer Ownership
 
-### 38.1 Layer partition
+#### 38.1 Layer partition
 
 **Table 33. RTL layer ownership.**
 
@@ -3990,7 +3934,7 @@ Historical Part III, repository architecture. Printed page 72. [Original PDF pag
 | E | rtl/platform/de1soc/ + rtl/top/ | Board-specific integration, Platform Designer wrapper, clocks/resets, audio/ADC wrappers, and top-level port binding. |
 
 
-### 38.2 Dataflow
+#### 38.2 Dataflow
 
 ```text
 source_mux
@@ -4022,9 +3966,11 @@ Historical Part III, repository architecture. Printed page 73. [Original PDF pag
 
 [Previous](baseline/page-085.md) | [Index](README.md) | [Next](baseline/page-087.md)
 
-## 39 RTL Module Inventory
+[Edit Markdown and LaTeX source](source/baseline/page-086.md). Equations are rendered locally as SVG.
 
-### 39.1 Source modules
+### 39 RTL Module Inventory
+
+#### 39.1 Source modules
 
 **Table 34. Input-source module inventory.**
 
@@ -4037,7 +3983,7 @@ Historical Part III, repository architecture. Printed page 73. [Original PDF pag
 | `trecap_source_mux.sv` | Selects source mode. Source-mode changes shall reset source/core stream state or mark metric discontinuity. |
 
 
-### 39.2 Core modules
+#### 39.2 Core modules
 
 **Table 35. Core RTL module inventory.**
 
@@ -4062,7 +4008,9 @@ Historical Part III, repository architecture. Printed page 74. [Original PDF pag
 
 [Previous](baseline/page-086.md) | [Index](README.md) | [Next](baseline/page-088.md)
 
-### 39.3 FFT modules
+[Edit Markdown and LaTeX source](source/baseline/page-087.md). Equations are rendered locally as SVG.
+
+#### 39.3 FFT modules
 
 **Table 36. FFT/IFFT module inventory.**
 
@@ -4075,7 +4023,7 @@ Historical Part III, repository architecture. Printed page 74. [Original PDF pag
 | `twiddle_rom.sv` | ROM wrapper for forward and inverse twiddle artifacts. |
 
 
-### 39.4 Telemetry modules
+#### 39.4 Telemetry modules
 
 Telemetry modules format records. They do not own DDR writes.
 
@@ -4092,7 +4040,7 @@ Telemetry modules format records. They do not own DDR writes.
 | `trecap_packet_fifo.sv` | Buffers formatted records before HPS-bridge acceptance. Full FIFO drops records and increments `PACKET_FIFO_DROP_COUNT`. |
 
 
-### 39.5 HPS bridge modules
+#### 39.5 HPS bridge modules
 
 <a id="pdf-page-088"></a>
 
@@ -4101,6 +4049,8 @@ Telemetry modules format records. They do not own DDR writes.
 Historical Part III, repository architecture. Printed page 75. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=88).
 
 [Previous](baseline/page-087.md) | [Index](README.md) | [Next](baseline/page-089.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-088.md). Equations are rendered locally as SVG.
 
 **Table 38. HPS bridge module inventory.**
 
@@ -4114,7 +4064,7 @@ Historical Part III, repository architecture. Printed page 75. [Original PDF pag
 | `trecap_hps_bridge_top.sv` | Integrates CSR bank, pointer control, record builder, DDR writer, CDC boundaries, and Platform Designer ports. |
 
 
-### 39.6 DE1-SoC platform modules
+#### 39.6 DE1-SoC platform modules
 
 **Table 39. DE1-SoC platform module inventory.**
 
@@ -4127,7 +4077,7 @@ Historical Part III, repository architecture. Printed page 75. [Original PDF pag
 | `platform_designer_wrapper.sv` | Generated Platform Designer system wrapper boundary. |
 
 
-### 39.7 Top-level build variants
+#### 39.7 Top-level build variants
 
 The repository shall provide explicit top-level build variants instead of one monolithic board top.
 
@@ -4139,6 +4089,8 @@ Historical Part III, repository architecture. Printed page 76. [Original PDF pag
 
 [Previous](baseline/page-088.md) | [Index](README.md) | [Next](baseline/page-090.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-089.md). Equations are rendered locally as SVG.
+
 **Table 40. Top-level build variants.**
 
 | Top module | Purpose |
@@ -4149,7 +4101,7 @@ Historical Part III, repository architecture. Printed page 76. [Original PDF pag
 | `trecap_de1soc_full_top.sv` | Full board top with Platform Designer/HPS, audio/ADC wrappers, telemetry bridge, and board pins. |
 
 
-## 40 Dependency Rules
+### 40 Dependency Rules
 
 The allowed dependency graph is:
 
@@ -4191,9 +4143,11 @@ Historical Part III, repository architecture. Printed page 77. [Original PDF pag
 
 [Previous](baseline/page-089.md) | [Index](README.md) | [Next](baseline/page-091.md)
 
-## 41 Clock and Reset Ownership
+[Edit Markdown and LaTeX source](source/baseline/page-090.md). Equations are rendered locally as SVG.
 
-### 41.1 Clock-domain baseline
+### 41 Clock and Reset Ownership
+
+#### 41.1 Clock-domain baseline
 
 `clock_reset_ctrl.sv` owns board-level reset conditioning and clock-domain reset synchronization. The first implementation may use one fabric clock for the core, telemetry, and HPS bridge. Even in that single-clock bring-up, module boundaries shall preserve CDC-safe structure so that a later clock split does not require rewriting the architecture.
 
@@ -4207,7 +4161,7 @@ Historical Part III, repository architecture. Printed page 77. [Original PDF pag
 | Board wrapper domain | Board clocks, reset conditioning, audio/ADC clocks if used, and platform-specific clock crossing wrappers. |
 
 
-### 41.2 CDC rules
+#### 41.2 CDC rules
 
 1. No multi-bit signal may cross clock domains by independent bit synchronization.
 
@@ -4219,9 +4173,9 @@ Historical Part III, repository architecture. Printed page 77. [Original PDF pag
 
 5. Telemetry taps shall never backpressure the STFT/WOLA core. If a packet FIFO or CDC FIFO cannot accept data, the telemetry event is dropped and the appropriate drop counter is incremented.
 
-## 42 Platform Designer and DE1-SoC Ownership
+### 42 Platform Designer and DE1-SoC Ownership
 
-### 42.1 Platform files
+#### 42.1 Platform files
 
 The DE1-SoC Platform Designer/Qsys integration shall be owned by platform/de1soc/ and rtl/ platform/de1soc/.
 
@@ -4235,11 +4189,13 @@ Historical Part III, repository architecture. Printed page 78. [Original PDF pag
 
 [Previous](baseline/page-090.md) | [Index](README.md) | [Next](baseline/page-092.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-091.md). Equations are rendered locally as SVG.
+
 `hps_config.tcl` `generate_system.sh` `address_map/` `address_map.md` `hps_bridge_regions.json` `sopcinfo_location.md` `generated_notes/` `generated_files_readme.md`
 
 constraints/de1soc/ de1soc.qsf de1soc.sdc `pin_assignments.tcl` clocks.sdc
 
-### 42.2 Platform Designer generated-artifact policy
+#### 42.2 Platform Designer generated-artifact policy
 
 Platform Designer generated output directories shall not be hand-edited. The repository shall either commit the generated wrapper files needed for the Quartus build or provide a deterministic `platform_designer.tcl` flow that regenerates them. Revision D selects the practical senior-project policy:
 
@@ -4253,7 +4209,7 @@ Platform Designer generated output directories shall not be hand-edited. The rep
 
 - never manually edit generated Platform Designer HDL.
 
-### 42.3 Bridge assumptions
+#### 42.3 Bridge assumptions
 
 The implementation assumes:
 
@@ -4275,7 +4231,9 @@ Historical Part III, repository architecture. Printed page 79. [Original PDF pag
 
 [Previous](baseline/page-091.md) | [Index](README.md) | [Next](baseline/page-093.md)
 
-### 42.4 Address map file
+[Edit Markdown and LaTeX source](source/baseline/page-092.md). Equations are rendered locally as SVG.
+
+#### 42.4 Address map file
 
 `platform/de1soc/address_map/address_map.md` shall document:
 
@@ -4293,9 +4251,9 @@ Historical Part III, repository architecture. Printed page 79. [Original PDF pag
 
 - SOPCINFO or generated Platform Designer artifact location.
 
-## 43 Software Implementation Layout
+### 43 Software Implementation Layout
 
-### 43.1 Golden software
+#### 43.1 Golden software
 
 Golden software remains part of the implementation repository because it generates coefficients and frozen artifacts. It is not the verification architecture.
 
@@ -4321,7 +4279,7 @@ sw/golden/
   phase2_golden_model.cpp
 ```
 
-### 43.2 HPS software
+#### 43.2 HPS software
 
 ```text
 sw/hps/
@@ -4338,6 +4296,8 @@ sw/hps/
 Historical Part III, repository architecture. Printed page 80. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=93).
 
 [Previous](baseline/page-092.md) | [Index](README.md) | [Next](baseline/page-094.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-093.md). Equations are rendered locally as SVG.
 
 ```text
   trecap_hps_config.h     // non-generated runtime-config API
@@ -4359,7 +4319,7 @@ scripts/
 
 The generated HPS headers shall exist only under sw/hps/include/generated/. Non-generated C files may include them, but shall not duplicate their CSR offsets, bit masks, packet IDs, or payload-size constants.
 
-### 43.3 HPS runtime configuration manifest
+#### 43.3 HPS runtime configuration manifest
 
 The HPS streamer shall read a configuration manifest instead of scattering physical addresses and UDP ports across source files.
 
@@ -4379,7 +4339,7 @@ The HPS streamer shall read a configuration manifest instead of scattering physi
 }
 ```
 
-### 43.4 PC dashboard software
+#### 43.4 PC dashboard software
 
 ```text
 sw/pc_dashboard/
@@ -4402,15 +4362,17 @@ Historical Part III, repository architecture. Printed page 81. [Original PDF pag
 
 [Previous](baseline/page-093.md) | [Index](README.md) | [Next](baseline/page-095.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-094.md). Equations are rendered locally as SVG.
+
 ```text
 dashboard_direct_link.json
 ```
 
 The generated Python packet constants shall exist under `sw/pc_dashboard/generated/`. If a short import wrapper is later added at `sw/pc_dashboard/trecap_packet.py`, that wrapper may only import from `sw/pc_dashboard/generated/trecap_packet.py`. It shall not contain a second hand-written copy of packet offsets or sizes. The dashboard shall display `dma_drop_count` and `packet_fifo_drop_count` separately. These counters identify different bottlenecks and shall not be merged in the implementation.
 
-## 44 Runtime and Build Profiles
+### 44 Runtime and Build Profiles
 
-### 44.1 Profile separation rule
+#### 44.1 Profile separation rule
 
 `spec/generated/core_config.json` contains normative contract constants. Runtime and demo choices shall not be mixed into that file. Runtime choices belong under config/profiles/.
 
@@ -4424,7 +4386,7 @@ config/profiles/
   telemetry_full_demo.json
 ```
 
-### 44.2 Example profile
+#### 44.2 Example profile
 
 ```json
 {
@@ -4441,9 +4403,9 @@ config/profiles/
 
 Profiles may select source mode, packet enable, sample rate, dashboard defaults, and board-demo settings. They shall not redefine core arithmetic constants such as L, H, F , G, D, or packet payload layouts.
 
-## 45 Coefficient ROM and Memory Primitive Policy
+### 45 Coefficient ROM and Memory Primitive Policy
 
-### 45.1 Coefficient ROM ownership
+#### 45.1 Coefficient ROM ownership
 
 The coefficient artifacts are owned by the golden/tooling layer and consumed by RTL ROM wrappers.
 
@@ -4454,6 +4416,8 @@ The coefficient artifacts are owned by the golden/tooling layer and consumed by 
 Historical Part III, repository architecture. Printed page 82. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=95).
 
 [Previous](baseline/page-094.md) | [Index](README.md) | [Next](baseline/page-096.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-095.md). Equations are rendered locally as SVG.
 
 1. `sw/golden/tools/gen_coeffs.py` owns coefficient generation.
 
@@ -4479,7 +4443,7 @@ artifacts/coefficients/
   coeff_manifest.json
 ```
 
-### 45.2 Memory primitive policy
+#### 45.2 Memory primitive policy
 
 All inferred RAMs shall be wrapped through rtl/common/ memory wrappers unless a module has a documented reason to instantiate vendor primitives directly.
 
@@ -4495,9 +4459,9 @@ All inferred RAMs shall be wrapped through rtl/common/ memory wrappers unless a 
 
 Core modules shall not directly instantiate board-specific memory IP. Board/platform-specific memory IP belongs under rtl/platform/de1soc/ or in documented vendor wrappers.
 
-## 46 Artifact and Data Layout
+### 46 Artifact and Data Layout
 
-### 46.1 Artifact directories
+#### 46.1 Artifact directories
 
 ```text
 artifacts/
@@ -4513,6 +4477,8 @@ artifacts/
 Historical Part III, repository architecture. Printed page 83. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=96).
 
 [Previous](baseline/page-095.md) | [Index](README.md) | [Next](baseline/page-097.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-096.md). Equations are rendered locally as SVG.
 
 ```text
   twiddle_im.memh
@@ -4539,13 +4505,13 @@ telemetry_captures/
     capture_manifest.json
 ```
 
-### 46.2 Artifact authority rule
+#### 46.2 Artifact authority rule
 
 After a vector or coefficient table is frozen, its canonical artifact and SHA-256 hash are the authority. Regenerating a vector from a generator equation is not sufficient unless the hash matches. This avoids math-library drift between Python, C++, MATLAB, and RTL ROM loaders.
 
-## 47 Legacy and Deprecated Document Quarantine
+### 47 Legacy and Deprecated Document Quarantine
 
-### 47.1 Phase 1 quarantine
+#### 47.1 Phase 1 quarantine
 
 The repository shall not leave Phase 1 files at the Phase 2 root. Phase 1 code shall be moved under:
 
@@ -4559,7 +4525,7 @@ legacy/phase1/
 
 Examples of files that shall not remain in the Phase 2 root include old Phase 1 run.py, `tb_top.sv`, viz.py, `golden_model.cpp`, and Haar-specific scoreboards or monitors.
 
-### 47.2 Deprecated Phase 2 warning
+#### 47.2 Deprecated Phase 2 warning
 
 The root README.md shall contain a warning block: Deprecated documents:
 
@@ -4571,11 +4537,13 @@ Historical Part III, repository architecture. Printed page 84. [Original PDF pag
 
 [Previous](baseline/page-096.md) | [Index](README.md) | [Next](baseline/page-098.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-097.md). Equations are rendered locally as SVG.
+
 Older Phase 2 Algorithm Report drafts are historical only. Do not use D = L for the current DE1-SoC baseline. Use the Integrated Phase 2 Specification Final: Core Revision J + Telemetry Revision G. Current baseline delay: D = L + G = 384 samples.
 
-## 48 Build System Architecture
+### 48 Build System Architecture
 
-### 48.1 Required build targets
+#### 48.1 Required build targets
 
 **Table 43. Core implementation build targets.**
 
@@ -4610,7 +4578,9 @@ Historical Part III, repository architecture. Printed page 85. [Original PDF pag
 
 [Previous](baseline/page-097.md) | [Index](README.md) | [Next](baseline/page-099.md)
 
-## 49 Implementation Milestones
+[Edit Markdown and LaTeX source](source/baseline/page-098.md). Equations are rendered locally as SVG.
+
+### 49 Implementation Milestones
 
 **Table 44. Implementation milestones for the core repository.**
 
@@ -4630,9 +4600,9 @@ Historical Part III, repository architecture. Printed page 85. [Original PDF pag
 | R11 | Add LINE-IN audio wrapper. | Audio adapter maps controlled LINE-IN samples into signed core scale. |
 
 
-## 50 Implementation Cuts
+### 50 Implementation Cuts
 
-### 50.1 Core Implementation Cut C0
+#### 50.1 Core Implementation Cut C0
 
 Cut C0 is the first required implementation boundary. It exists to prevent the team from starting telemetry, Ethernet, HPS, dashboard, and audio integration before the core skeleton compiles.
 
@@ -4644,6 +4614,8 @@ Historical Part III, repository architecture. Printed page 86. [Original PDF pag
 
 [Previous](baseline/page-098.md) | [Index](README.md) | [Next](baseline/page-100.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-099.md). Equations are rendered locally as SVG.
+
 **Table 45. Core-first implementation cut C0.**
 
 | Class | Content |
@@ -4653,13 +4625,13 @@ Historical Part III, repository architecture. Printed page 86. [Original PDF pag
 | Exit condition | make gen-headers, make rtl-filelist, make coeffs, make compile-core using `filelists/rtl_core_plus_fft.f`, and make golden complete without relying on telemetry/HPS/platform folders. |
 
 
-### 50.2 Transport Implementation Cut T0
+#### 50.2 Transport Implementation Cut T0
 
 Cut T0 begins only after C0 is stable. It adds telemetry packetizers, packet FIFO, HPS bridge, HPS software, PC dashboard, and DE1-SoC Platform Designer integration. T0 shall not alter the core arithmetic contract.
 
-## 51 First Implementation Scope
+### 51 First Implementation Scope
 
-### 51.1 Core-first required now: Cut C0
+#### 51.1 Core-first required now: Cut C0
 
 The first implementation target is Cut C0. C0 is the core-only path and shall not require telemetry, HPS bridge logic, HPS software, PC dashboard software, Platform Designer integration, live audio, ADC, or Ethernet. It exists to make the arithmetic core buildable and artifact-driven before transport/demo code is introduced.
 
@@ -4691,7 +4663,9 @@ Historical Part III, repository architecture. Printed page 87. [Original PDF pag
 
 [Previous](baseline/page-099.md) | [Index](README.md) | [Next](baseline/page-101.md)
 
-### 51.2 First full-demo scope after C0/T0
+[Edit Markdown and LaTeX source](source/baseline/page-100.md). Equations are rendered locally as SVG.
+
+#### 51.2 First full-demo scope after C0/T0
 
 The first full-demo implementation begins after C0 is stable and after the transport cut T0 is explicitly opened. These items are required for the first complete board demonstration, but they are not the first code to write.
 
@@ -4707,7 +4681,7 @@ The first full-demo implementation begins after C0 is stable and after the trans
 
 - LINE-IN wrapper for controlled audio demo.
 
-### 51.3 Deferred
+#### 51.3 Deferred
 
 - Verification repository architecture.
 
@@ -4727,7 +4701,7 @@ The first full-demo implementation begins after C0 is stable and after the trans
 
 - PC-driven artifact signoff.
 
-## 52 Repository Acceptance Criteria
+### 52 Repository Acceptance Criteria
 
 The implementation repository is accepted when:
 
@@ -4751,6 +4725,8 @@ Historical Part III, repository architecture. Printed page 88. [Original PDF pag
 
 [Previous](baseline/page-100.md) | [Index](README.md) | [Next](baseline/page-102.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-101.md). Equations are rendered locally as SVG.
+
 7. `sw/hps/config/trecap_hps_config.json` exists and documents CSR base, ring addresses, ring size, and UDP ports.
 
 8. legacy/phase1/ contains the old Haar proof-of-concept files, and those files are not part of the Phase 2 root build.
@@ -4773,7 +4749,7 @@ Historical Part III, repository architecture. Printed page 88. [Original PDF pag
 
 17. Cut C0 can compile without telemetry, HPS bridge, HPS software, PC dashboard, live audio, ADC, or Platform Designer dependencies.
 
-## 53 Conclusion
+### 53 Conclusion
 
 Revision D defines a cleaner implementation repository than the previous architecture draft. It keeps verification architecture out of scope, resolves DDR writer ownership, adds a generated sharedheader flow, makes the CSR map normative, freezes baseline interface typedefs, adds source-of-truth filelists, defines generated-file commit policy, adds clock/reset and module API rules, adds Platform Designer generated-artifact policy, adds HPS runtime profiles, defines coefficient ROM and memory wrapper ownership, adds top-level build variants, quarantines legacy Phase 1 code, and removes the remaining consistency issues in the generated software paths, minimum documentation list, and first-scope wording. This is the structure to use before writing real modules. The next step is not to build Ethernet or audio first. The next step is to restructure the repository, add generated constants, generate coefficients/vectors, and then implement the core-only RTL path.
 
@@ -4785,9 +4761,11 @@ Historical appendices and references. Printed page 89. [Original PDF page](../sp
 
 [Previous](baseline/page-101.md) | [Index](README.md) | [Next](baseline/page-103.md)
 
-## Appendices
+[Edit Markdown and LaTeX source](source/baseline/page-102.md). Equations are rendered locally as SVG.
 
-## A Vendor FFT IP Contract Checklist
+### Appendices
+
+### A Vendor FFT IP Contract Checklist
 
 If a vendor FFT IP core replaces Algorithms 4 and 5, the following fields become mandatory in config.json and design documentation:
 
@@ -4813,29 +4791,21 @@ If a vendor FFT IP core replaces Algorithms 4 and 5, the following fields become
 
 - exact reset and first-frame behavior relevant to artifacts. A mathematically equivalent FFT is not sufficient for bit-accurate signoff if it does not reproduce the same integer outputs.
 
-## B Phase 1 Mathematical Anchor
+### B Phase 1 Mathematical Anchor
 
 For each Phase 1 pair,
 
-$$
-a[k]=x_0[k]+x_1[k],\qquad d[k]=x_0[k]-x_1[k].\tag{B.1}
-$$
+![Equation B.1: a&#91;k&#93;=x_0&#91;k&#93;+x_1&#91;k&#93;,&#92;qquad d&#91;k&#93;=x_0&#91;k&#93;-x_1&#91;k&#93;.&#92;tag{B.1}](math/baseline-page-102-001.svg)
 
 The suppression flag is 1,
 
-$$
-s_k=\begin{cases}1,&|d[k]|<T\\0,&|d[k]|\ge T.\end{cases}\tag{B.2}
-$$
+![Equation B.2: s_k=&#92;begin{cases}1,&&#124;d&#91;k&#93;&#124;<T&#92;&#92;0,&&#124;d&#91;k&#93;&#124;&#92;ge T.&#92;end{cases}&#92;tag{B.2}](math/baseline-page-102-002.svg)
 
 The modified detail is d′ [k] = (1 - sk )d[k], and reconstruction is
 
-$$
-y_0[k]=\operatorname{sat}_N(\operatorname{rnd2}(a[k]+d^{\prime}[k])).\tag{B.3}
-$$
+![Equation B.3: y_0&#91;k&#93;=&#92;operatorname{sat}_N(&#92;operatorname{rnd2}(a&#91;k&#93;+d^{&#92;prime}&#91;k&#93;)).&#92;tag{B.3}](math/baseline-page-102-003.svg)
 
-$$
-y_1[k]=\operatorname{sat}_N(\operatorname{rnd2}(a[k]-d^{\prime}[k])).\tag{B.4}
-$$
+![Equation B.4: y_1&#91;k&#93;=&#92;operatorname{sat}_N(&#92;operatorname{rnd2}(a&#91;k&#93;-d^{&#92;prime}&#91;k&#93;)).&#92;tag{B.4}](math/baseline-page-102-004.svg)
 
 If T = 0, the condition |d[k]| < 0 is never true, so d′ [k] = d[k] and Phase 1 reconstructs exactly. Phase 2 inherits the verification principle rather than the exact identity: every approximation must be explicit and reproducible.
 
@@ -4847,7 +4817,9 @@ Historical appendices and references. Printed page 90. [Original PDF page](../sp
 
 [Previous](baseline/page-102.md) | [Index](README.md) | [Next](baseline/page-104.md)
 
-## C Repository Recommended File Inventory
+[Edit Markdown and LaTeX source](source/baseline/page-103.md). Equations are rendered locally as SVG.
+
+### C Repository Recommended File Inventory
 
 ```text
 rtl/include/
@@ -4911,6 +4883,8 @@ Historical appendices and references. Printed page 91. [Original PDF page](../sp
 
 [Previous](baseline/page-103.md) | [Index](README.md) | [Next](baseline/page-105.md)
 
+[Edit Markdown and LaTeX source](source/baseline/page-104.md). Equations are rendered locally as SVG.
+
 ```text
    trecap_metrics_packetizer.sv
    trecap_status_packetizer.sv
@@ -4954,7 +4928,7 @@ config/profiles/
   telemetry_full_demo.json
 ```
 
-## D Repository Minimum Documentation Files
+### D Repository Minimum Documentation Files
 
 ```text
 docs/architecture/
@@ -4974,6 +4948,8 @@ docs/architecture/
 Historical appendices and references. Printed page 92. [Original PDF page](../specs/t_recap_phase2_integrated_spec.pdf#page=105).
 
 [Previous](baseline/page-104.md) | [Index](README.md) | [Next](baseline/page-106.md)
+
+[Edit Markdown and LaTeX source](source/baseline/page-105.md). Equations are rendered locally as SVG.
 
 ```text
   clock_reset_plan.md
@@ -5000,7 +4976,9 @@ Historical appendices and references. Printed page 93. [Original PDF page](../sp
 
 [Previous](baseline/page-105.md) | [Index](README.md)
 
-## References
+[Edit Markdown and LaTeX source](source/baseline/page-106.md). Equations are rendered locally as SVG.
+
+### References
 
 1. A. V. Oppenheim and R. W. Schafer, *Discrete-Time Signal Processing*, 3rd ed. Upper Saddle River, NJ, USA: Prentice Hall, 2010.
 
@@ -5024,11 +5002,13 @@ Historical appendices and references. Printed page 93. [Original PDF page](../sp
 
 <a id="current-profiles-and-rf"></a>
 
-# Current finite-file profiles and the RF extension
+## Current finite-file profiles and the RF extension
+
+[Edit Markdown and LaTeX source](source/current_profiles_and_rf.md). Equations are rendered locally as SVG.
 
 [Algorithm specification index](README.md) | [Whole-system atlas](../architecture/system/README.md) | [Application results](../applications/README.md)
 
-## Status and relationship to the original specification
+### Status and relationship to the original specification
 
 This is an implementation supplement to the historical integrated specification transcribed in this folder. It describes the published TSH2 real-sample application and the later TRF1 recorded-RF application. It does not retrospectively change the original document's DDR ring, UDP telemetry or nonstalling assumptions. Those historical requirements and the finite-file application contracts are different configurations.
 
@@ -5036,7 +5016,7 @@ TSH2 and TRF1 use separate fitted FPGA images. There is no implemented runtime s
 
 ![Complete system after RF integration](../architecture/system/01-system-overview.png)
 
-## 1. Shared numerical core
+### 1. Shared numerical core
 
 | Property | Current finite-file implementation |
 | --- | --- |
@@ -5053,28 +5033,26 @@ TSH2 and TRF1 use separate fitted FPGA images. There is no implemented runtime s
 
 The common chain remains framing and windowing, FFT, squared-magnitude decision, masking, IFFT and weighted overlap-add. The RF source adapter changes the input representation before this chain. It does not replace its FFT, mask or IFFT.
 
-For complex FFT bin $X[k]=R[k]+jI[k]$, the threshold statistic is
+For complex FFT bin ![X&#91;k&#93;=R&#91;k&#93;+jI&#91;k&#93;](math/current_profiles_and_rf-001.svg), the threshold statistic is
 
-$$
-P[k]=R[k]^2+I[k]^2.
-$$
+![P&#91;k&#93;=R&#91;k&#93;^2+I&#91;k&#93;^2.](math/current_profiles_and_rf-002.svg)
 
 The decision preserves DC. For other eligible bins, equality is retained. Values below THR2 are suppressed. The corresponding real-spectrum symmetry is maintained by the common core. Nyquist is eligible for thresholding. The numeric threshold is in the implementation's fixed-point squared-magnitude units. It is not a decibel value, a percentage or a calibrated sound-pressure level.
 
 Because input amplitude scaling changes squared magnitude, a gain change also changes the effective threshold. Tests must record input scaling and gain alongside THR2. Applying a threshold used on audio to acceleration or RF does not establish an equivalent physical cutoff.
 
-## 2. Outputs and their information content
+### 2. Outputs and their information content
 
 The core has two distinct products.
 
 - **Y** is the reconstructed real sample stream from IFFT/WOLA. It retains the time-domain result needed for playback or subsequent signal analysis.
 - **TSP1** is the version-1 spectral power packet format. Sparse packets carry retained bin identities and powers. These records omit phase and cannot independently reconstruct audio or complex I/Q.
 
-For the existing full-format packet comparison, a dense record occupies 952 bytes. A sparse record containing $K$ retained entries occupies $48+8K$ bytes. A sparse record can therefore be larger than dense when too many entries survive. Header and entry costs must be included in byte comparisons.
+For the existing full-format packet comparison, a dense record occupies 952 bytes. A sparse record containing ![K](math/current_profiles_and_rf-003.svg) retained entries occupies ![48+8K](math/current_profiles_and_rf-004.svg) bytes. A sparse record can therefore be larger than dense when too many entries survive. Header and entry costs must be included in byte comparisons.
 
 Dense and sparse representations at the same threshold should produce identical downstream features when the consumer implements the same calculation. Comparing these isolates representation and parsing costs. Comparing thresholded output with original input instead measures discarded information. Both comparisons are needed.
 
-## 3. RF input contract
+### 3. RF input contract
 
 The file contains interleaved unsigned eight-bit components
 
@@ -5082,19 +5060,17 @@ The file contains interleaved unsigned eight-bit components
 I[0], Q[0], I[1], Q[1], ... , I[N-1], Q[N-1]
 ```
 
-The allowed pair count is $1\le N\le 96{,}000$. Sample rate and receiver center frequency are external metadata. The bytes do not contain those physical units. TRF1 is a recorded-file processor, not a radio-frequency analog front end.
+The allowed pair count is ![1&#92;le N&#92;le 96{,}000](math/current_profiles_and_rf-005.svg). Sample rate and receiver center frequency are external metadata. The bytes do not contain those physical units. TRF1 is a recorded-file processor, not a radio-frequency analog front end.
 
-Each byte $b$ is centered as
+Each byte ![b](math/current_profiles_and_rf-006.svg) is centered as
 
-$$
-d=2b-255,\qquad x=d/256.
-$$
+![d=2b-255,&#92;qquad x=d/256.](math/current_profiles_and_rf-007.svg)
 
 The signed centered integers range from -255 to +255 in steps of two. Neither byte 127 nor 128 maps to exact zero. Startup history and flush samples are exact signed zero inserted internally after centering.
 
 The source contract is defined in [the adapter specification](../../profiles/trf1/adapter/CONTRACT.md). The [independent reference](../../profiles/trf1/adapter/model/reference.py) uses full convolution rather than duplicating the RTL scheduler.
 
-## 4. Fourfold interpolation
+### 4. Fourfold interpolation
 
 The floating prototype is
 
@@ -5104,22 +5080,17 @@ The floating prototype is
 
 The stored coefficients are signed 18-bit integers with 16 fractional bits, obtained by nearest ties-to-even coefficient quantization. The published coefficient file, rather than a new library regeneration, defines the deployed integer filter.
 
-Let $h[\ell]$ denote those stored integers. Let $u_I[m]$ and $u_Q[m]$ be the centered integer sequences with three zeros inserted between input samples. The unrounded causal channel sums are
+Let ![h&#91;&#92;ell&#93;](math/current_profiles_and_rf-008.svg) denote those stored integers. Let ![u_I&#91;m&#93;](math/current_profiles_and_rf-009.svg) and ![u_Q&#91;m&#93;](math/current_profiles_and_rf-010.svg) be the centered integer sequences with three zeros inserted between input samples. The unrounded causal channel sums are
 
-$$
-A_I[m]=\sum_{\ell=0}^{80}h[\ell]u_I[m-\ell],\qquad
-A_Q[m]=\sum_{\ell=0}^{80}h[\ell]u_Q[m-\ell].
-$$
+![A_I&#91;m&#93;=&#92;sum_{&#92;ell=0}^{80}h&#91;&#92;ell&#93;u_I&#91;m-&#92;ell&#93;,&#92;qquad A_Q&#91;m&#93;=&#92;sum_{&#92;ell=0}^{80}h&#91;&#92;ell&#93;u_Q&#91;m-&#92;ell&#93;.](math/current_profiles_and_rf-011.svg)
 
-Outside the finite input interval, the sequences are zero. The RTL decomposes the filter into four phases with coefficients $h[4k+p]$. Each phase schedules 21 positions, with indices beyond 80 contributing zero. A shared multiplier accumulates in a signed 36-bit register without intermediate rounding. Even phases use I history and odd phases use Q history because the subsequent quarter-rate mixer only needs that channel at each phase.
+Outside the finite input interval, the sequences are zero. The RTL decomposes the filter into four phases with coefficients ![h&#91;4k+p&#93;](math/current_profiles_and_rf-012.svg). Each phase schedules 21 positions, with indices beyond 80 contributing zero. A shared multiplier accumulates in a signed 36-bit register without intermediate rounding. Even phases use I history and odd phases use Q history because the subsequent quarter-rate mixer only needs that channel at each phase.
 
-## 5. Real intermediate-frequency conversion
+### 5. Real intermediate-frequency conversion
 
 The conceptual operation on the interpolated complex stream is
 
-$$
-r[m]=\operatorname{Re}\left((I_u[m]+jQ_u[m])e^{j\pi m/2}\right).
-$$
+![r&#91;m&#93;=&#92;operatorname{Re}&#92;left((I_u&#91;m&#93;+jQ_u&#91;m&#93;)e^{j&#92;pi m/2}&#92;right).](math/current_profiles_and_rf-013.svg)
 
 This gives the successive channel and sign choices
 
@@ -5132,35 +5103,31 @@ phase 3: +Q
 
 These are successive interpolated sample times, not four copies of a raw pair. The phase includes discarded startup samples and freezes correctly under output backpressure. The chosen sign convention matters for later I/Q recovery.
 
-For complex input sample rate $F_s$, the equivalent real output has sample rate $4F_s$ and center frequency $F_s$. Thus a 250 ksample/s baseband file becomes a 1 Msample/s real-IF representation centered at 250 kHz. Its original radio carrier may have been 433.92 MHz, which the receiver had already downconverted. A 1 Msample/s representation is not a claim that this sequential hardware sustains that rate in real time.
+For complex input sample rate ![F_s](math/current_profiles_and_rf-014.svg), the equivalent real output has sample rate ![4F_s](math/current_profiles_and_rf-015.svg) and center frequency ![F_s](math/current_profiles_and_rf-016.svg). Thus a 250 ksample/s baseband file becomes a 1 Msample/s real-IF representation centered at 250 kHz. Its original radio carrier may have been 433.92 MHz, which the receiver had already downconverted. A 1 Msample/s representation is not a claim that this sequential hardware sustains that rate in real time.
 
-## 6. Gain, rounding and saturation
+### 6. Gain, rounding and saturation
 
-The admitted gain shift $g$ is in $\{0,1,2,3\}$. After channel/sign selection, an integer accumulator $a$ is divided by $2^{16-g}$ with nearest rounding and half ties away from zero.
+The admitted gain shift ![g](math/current_profiles_and_rf-017.svg) is in ![&#92;{0,1,2,3&#92;}](math/current_profiles_and_rf-018.svg). After channel/sign selection, an integer accumulator ![a](math/current_profiles_and_rf-019.svg) is divided by ![2^{16-g}](math/current_profiles_and_rf-020.svg) with nearest rounding and half ties away from zero.
 
-$$
-q=\operatorname{sgn}(a)\left\lfloor\frac{|a|+2^{15-g}}{2^{16-g}}\right\rfloor.
-$$
+![q=&#92;operatorname{sgn}(a)&#92;left&#92;lfloor&#92;frac{&#124;a&#124;+2^{15-g}}{2^{16-g}}&#92;right&#92;rfloor.](math/current_profiles_and_rf-021.svg)
 
 The emitted sample is
 
-$$
-y=\min(2047,\max(-2048,q)).
-$$
+![y=&#92;min(2047,&#92;max(-2048,q)).](math/current_profiles_and_rf-022.svg)
 
-Clipping is recorded whenever $q$ lies outside the signed 12-bit range. Counts advance on accepted output transfers, not stalled presentations. The normalized-input gains are 256, 512, 1024 and 2048 counts per unit. With the fixed coefficient set, gain shifts 0 and 1 have proven arithmetic headroom for every legal CU8 pattern. Higher gains can clip adversarial inputs.
+Clipping is recorded whenever ![q](math/current_profiles_and_rf-023.svg) lies outside the signed 12-bit range. Counts advance on accepted output transfers, not stalled presentations. The normalized-input gains are 256, 512, 1024 and 2048 counts per unit. With the fixed coefficient set, gain shifts 0 and 1 have proven arithmetic headroom for every legal CU8 pattern. Higher gains can clip adversarial inputs.
 
 The board register reset/CLEAR default is gain shift 1. The standalone reference helper has a different default argument, so experiment code must pass the intended gain explicitly. No per-file normalization is hidden inside the adapter.
 
-## 7. Finite-file alignment and padding
+### 7. Finite-file alignment and padding
 
-The 81-tap linear-phase FIR has 40 causal output samples of delay. The adapter initializes histories to zero, processes the $N$ admitted pairs followed by ten exact-zero pairs, discards the first 40 causal outputs and emits exactly $4N$ samples.
+The 81-tap linear-phase FIR has 40 causal output samples of delay. The adapter initializes histories to zero, processes the ![N](math/current_profiles_and_rf-024.svg) admitted pairs followed by ten exact-zero pairs, discards the first 40 causal outputs and emits exactly ![4N](math/current_profiles_and_rf-025.svg) samples.
 
-The separate finite-file wrapper then pads the shared core transaction to 384,000 real samples. This transaction padding is not additional recorded RF. The host records the valid real prefix $4N$ and uses that interval for physical time axes and RF packet-reduction denominators. Tail and boundary frames must be labeled when included.
+The separate finite-file wrapper then pads the shared core transaction to 384,000 real samples. This transaction padding is not additional recorded RF. The host records the valid real prefix ![4N](math/current_profiles_and_rf-026.svg) and uses that interval for physical time axes and RF packet-reduction denominators. Tail and boundary frames must be labeled when included.
 
 The common core's reconstructed-output alignment is separate from the adapter's FIR startup crop. Applying only one of these alignments would compare different intervals.
 
-## 8. Handshake and completion rules
+### 8. Handshake and completion rules
 
 An accepted start latches count and gain. An invalid count sets a configuration error until clear and accepts no samples. A busy transaction cannot accept another start.
 
@@ -5170,7 +5137,7 @@ Reset and synchronous clear cancel current ownership, clear histories and counte
 
 The integrated input queue has 256 pair entries plus a separately tracked registered-prefetch stage. The prefetch handles the FIFO's one-cycle read response. Each output FIFO holds 1,024 words. The HPS interleaves bounded input writes with draining Y and spectral output to prevent finite queues from blocking progress indefinitely.
 
-## 9. Board interface and data movement
+### 9. Board interface and data movement
 
 | Contract item | TRF1 requirement |
 | --- | --- |
@@ -5188,7 +5155,7 @@ The [register specification](../../profiles/trf1/board/CONTRACT.md) contains exa
 
 TSH2's real-sample service and TRF1's archive orchestration are distinct interfaces. An audio image must not accept raw I/Q as if it were PCM. Published source does not imply a completed RF drag-and-drop webpage or continuous USB receiver integration.
 
-## 10. Verification and interpretation
+### 10. Verification and interpretation
 
 The RF extension has independent numerical-reference comparisons, self-checking RTL tests, backpressure and reset recovery tests, wrapper/admission tests, host boundary tests and archived physical captures. See [the RF verification package](../../verification/rf_iq/README.md) and [its report](../verification/rf_iq/README.md).
 

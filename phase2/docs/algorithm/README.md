@@ -55,19 +55,25 @@ The [original PDF](../specs/t_recap_phase2_integrated_spec.pdf) is unchanged. It
 
 ## Edit and check
 
-Edit individual pages under `baseline/` or the separate current-profile appendix. Rebuild the read-all file after an edit:
+Edit the Markdown files under [source/baseline](source/baseline/page-001.md) or the [current-profile source](source/current_profiles_and_rf.md). These are the canonical editable files, including LaTeX formulas. The matching files under `baseline/` and the read-all document are generated reading views.
+
+Equations are rendered locally by LaTeX and dvisvgm into vector images with outlined glyphs. The reading views require no math plugin and do not depend on a viewer's macro allowlist. Both display and inline equations use this path, including equations inside table cells. Each page links to its editable source. The source can always be edited through GitHub's Code view or a text editor.
+
+After editing a source, rebuild the formula assets and reading views. Generation requires a LaTeX installation with `amsmath`, `amssymb` and `dvisvgm`:
 
 ```powershell
+python phase2/docs/algorithm/render_math.py
 python phase2/docs/algorithm/assemble_spec.py
-python phase2/docs/algorithm/check_spec.py
+python phase2/docs/algorithm/render_math.py --check
 ```
 
-The checker uses Python's standard library. It checks the unchanged source PDF, all page files, section/table/algorithm/equation coverage, Markdown structure, local links, punctuation, read-all consistency and recorded file hashes. It does not run hardware or certify mathematical equivalence.
+Use `--latex path/to/latex` and `--dvisvgm path/to/dvisvgm` when the tools are not on PATH. Checking committed output needs only Python's standard library. It verifies source-to-image coverage, vector image dimensions and aspect ratios, local glyph references, generated Markdown, original PDF identity, section/table/algorithm/equation coverage, links and hashes. It does not run hardware or certify mathematical equivalence. See [rendering verification](rendering_verification.md) for the reviewed failure cases.
 
 After a reviewed change, refresh the bundle with:
 
 ```powershell
 python phase2/docs/algorithm/check_spec.py --seal
+python phase2/docs/algorithm/check_spec.py
 ```
 
 The reviewed historical conversion is reproducible from a UTF-8 `pdftotext -layout` extraction. The default command compares generated content without overwriting edits:
@@ -78,4 +84,4 @@ python phase2/docs/algorithm/transcribe_pdf.py --layout path/to/algorithm_pdf_la
 
 Alternatively, supply `--pdftotext path/to/pdftotext` to extract the original PDF directly. Extraction page hashes must match the reviewed layout. Different PDF text engines can order mathematical glyphs differently, so an extraction mismatch requires review before regeneration.
 
-`conversion_rules.json` contains the reviewed equation, table and structured-block repairs. Update those rules when an intentional baseline transcription correction should remain reproducible. The explicit `--write` option regenerates the 106 baseline files. It does not alter the original PDF or current-profile appendix.
+`conversion_rules.json` contains the reviewed equation, table and structured-block repairs. Update those rules when an intentional baseline transcription correction should remain reproducible. The explicit `--write` option regenerates the 106 canonical source files. It does not alter the original PDF or current-profile appendix. Run the rendering and assembly commands afterward.

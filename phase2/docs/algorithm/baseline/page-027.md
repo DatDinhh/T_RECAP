@@ -4,7 +4,9 @@ Historical Part I, core algorithm. Printed page 14. [Original PDF page](../../sp
 
 [Previous](page-026.md) | [Index](../README.md) | [Next](page-028.md)
 
-For a signed W -bit memh file, each line shall contain exactly ⌈W/4⌉ hexadecimal digits. The encoded value is the low W bits of the two’s-complement representation, zero-padded on the left to the required digit count. Readers shall mask to W bits first and then sign-extend from bit W - 1. The stream files `x_in.memh` and `y_out.memh` are signed N -bit files. The window file `window_qw.memh` is an unsigned WQw -bit file. All forward and inverse twiddle files are signed Wtw -bit files. For Wtw = 17, every twiddle line has five hex digits:
+[Edit Markdown and LaTeX source](../source/baseline/page-027.md). Equations are rendered locally as SVG.
+
+For a signed ![W](../math/baseline-page-027-001.svg)-bit memh file, each line shall contain exactly ![&#92;lceil W/4&#92;rceil](../math/baseline-page-027-002.svg) hexadecimal digits. The encoded value is the low W bits of the two’s-complement representation, zero-padded on the left to the required digit count. Readers shall mask to W bits first and then sign-extend from bit W - 1. The stream files `x_in.memh` and `y_out.memh` are signed ![N](../math/baseline-page-027-003.svg)-bit files. The window file `window_qw.memh` is an unsigned ![W_{Q_w}](../math/baseline-page-027-004.svg)-bit file. All forward and inverse twiddle files are signed ![W_{&#92;mathrm{tw}}](../math/baseline-page-027-005.svg)-bit files. For ![W_{&#92;mathrm{tw}}=17](../math/baseline-page-027-006.svg), every twiddle line has five hex digits:
 
 +32768 → 08000, -32768 → 18000, -1 → 1ffff.
 

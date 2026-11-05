@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 75. [Original PDF pag
 
 [Previous](page-087.md) | [Index](../README.md) | [Next](page-089.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-088.md). Equations are rendered locally as SVG.
+
 **Table 38. HPS bridge module inventory.**
 
 | Module | Responsibility |

@@ -4,6 +4,8 @@ Historical Part I, core algorithm. Printed page 1. [Original PDF page](../../spe
 
 [Previous](page-013.md) | [Index](../README.md) | [Next](page-015.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-014.md). Equations are rendered locally as SVG.
+
 ## Part I - Core Algorithm and Signoff Contract
 
 ## 1 Overview and Scope
@@ -26,10 +28,10 @@ Phase 1 grouped the stream into non-overlapping pairs, applied a two-sample Haar
 
 | Concept | Phase 1: Haar | Phase 2: STFT/WOLA |
 | --- | --- | --- |
-| Streaming unit | Pair $(x[2k],x[2k+1])$ | Overlapped frame $x_m[0:L-1]$ |
-| Transform output | $a[k],d[k]$ | $X_m[k]$ |
-| Suppression variable | $\lvert d[k]\rvert<T$ | $\operatorname{mag2}[k]<\mathrm{THR2}$ |
-| Mask action | $d^{\prime}[k]=(1-s_k)d[k]$ | $\mathrm{Xb}[k]=(1-\operatorname{mask}[k])X^{\mathrm{can}}[k]$ |
+| Streaming unit | Pair ![(x&#91;2k&#93;,x&#91;2k+1&#93;)](../math/baseline-page-014-001.svg) | Overlapped frame ![x_m&#91;0:L-1&#93;](../math/baseline-page-014-002.svg) |
+| Transform output | ![a&#91;k&#93;,d&#91;k&#93;](../math/baseline-page-014-003.svg) | ![X_m&#91;k&#93;](../math/baseline-page-014-004.svg) |
+| Suppression variable | ![&#92;lvert d&#91;k&#93;&#92;rvert<T](../math/baseline-page-014-005.svg) | ![&#92;operatorname{mag2}&#91;k&#93;<&#92;mathrm{THR2}](../math/baseline-page-014-006.svg) |
+| Mask action | ![d^{&#92;prime}&#91;k&#93;=(1-s_k)d&#91;k&#93;](../math/baseline-page-014-007.svg) | ![&#92;mathrm{Xb}&#91;k&#93;=(1-&#92;operatorname{mask}&#91;k&#93;)X^{&#92;mathrm{can}}&#91;k&#93;](../math/baseline-page-014-008.svg) |
 | Reconstruction | Inverse Haar | IFFT + synthesis window + WOLA |
-| Correctness anchor | Exact lossless at $T=0$ | Deterministic near-lossless at $\mathrm{THR2}=0$ |
+| Correctness anchor | Exact lossless at ![T=0](../math/baseline-page-014-009.svg) | Deterministic near-lossless at ![&#92;mathrm{THR2}=0](../math/baseline-page-014-010.svg) |
 | Metrics | Suppressed pairs and time error | Suppressed eligible bins, kept spectral total, and time error |

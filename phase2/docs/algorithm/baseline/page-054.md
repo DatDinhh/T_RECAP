@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 41. [Original PDF page](
 
 [Previous](page-053.md) | [Index](../README.md) | [Next](page-055.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-054.md). Equations are rendered locally as SVG.
+
 6. `payload_bytes` satisfies the packet-specific rule in Table 17.
 
 7. for normal records, Lrec = align64 (32 + `payload_bytes`) is valid and does not exceed the ring size minus the guard. For WRAP, the effective record length is R - off(Rd ), not align64 (32).
@@ -16,9 +18,7 @@ Historical Part II, DDR and UDP telemetry. Printed page 41. [Original PDF page](
 
 The HPS shall validate packet-specific payload sizes using Table 17. The Revision G UDP nofragmentation rule requires:
 
-$$
-32+\mathrm{payload\_bytes}\le P_{\mathrm{udp,max}}=1200.\tag{18.1}
-$$
+![Equation 18.1: 32+&#92;mathrm{payload&#92;_bytes}&#92;le P_{&#92;mathrm{udp,max}}=1200.&#92;tag{18.1}](../math/baseline-page-054-001.svg)
 
 Records that violate the packet-specific rule or the global UDP limit are malformed or oversized as indicated in the table.
 

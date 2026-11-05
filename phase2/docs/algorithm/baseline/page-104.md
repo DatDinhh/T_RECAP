@@ -4,6 +4,8 @@ Historical appendices and references. Printed page 91. [Original PDF page](../..
 
 [Previous](page-103.md) | [Index](../README.md) | [Next](page-105.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-104.md). Equations are rendered locally as SVG.
+
 ```text
    trecap_metrics_packetizer.sv
    trecap_status_packetizer.sv

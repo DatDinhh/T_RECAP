@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 58. [Original PDF page](
 
 [Previous](page-070.md) | [Index](../README.md) | [Next](page-072.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-071.md). Equations are rendered locally as SVG.
+
 ## 28 First Implementation Scope
 
 Revision G intentionally keeps optional transport features in the specification for future growth, but the first successful Level-3 bring-up shall not attempt every optional packet or software path at once.

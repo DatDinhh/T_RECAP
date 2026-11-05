@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 74. [Original PDF pag
 
 [Previous](page-086.md) | [Index](../README.md) | [Next](page-088.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-087.md). Equations are rendered locally as SVG.
+
 ### 39.3 FFT modules
 
 **Table 36. FFT/IFFT module inventory.**

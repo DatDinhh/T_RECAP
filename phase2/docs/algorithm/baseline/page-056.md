@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 43. [Original PDF page](
 
 [Previous](page-055.md) | [Index](../README.md) | [Next](page-057.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-056.md). Equations are rendered locally as SVG.
+
 ## 19 Telemetry Payload Formats
 
 All telemetry payload fields are little-endian and packed with no implicit C padding. Each packet type defines exact byte offsets, array order, and unused-bit behavior. Live Ethernet telemetry is not a correctness artifact. Exact signoff remains BRAM replay plus the core artifact contract.
@@ -12,9 +14,7 @@ All telemetry payload fields are little-endian and packed with no implicit C pad
 
 For unsigned integer input z ≥ 0, define the display clamp operator:
 
-$$
-\operatorname{clip}_{16}(z)=\min(z,65535).\tag{19.1}
-$$
+![Equation 19.1: &#92;operatorname{clip}_{16}(z)=&#92;min(z,65535).&#92;tag{19.1}](../math/baseline-page-056-001.svg)
 
 The SPEC64 and SPEC129 payloads shall apply clip16 after the configured unsigned right shift. No signed saturation is used for spectrum display compression.
 

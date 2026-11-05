@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 82. [Original PDF pag
 
 [Previous](page-094.md) | [Index](../README.md) | [Next](page-096.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-095.md). Equations are rendered locally as SVG.
+
 1. `sw/golden/tools/gen_coeffs.py` owns coefficient generation.
 
 2. artifacts/coefficients/ owns frozen generated memh files and the coefficient manifest.

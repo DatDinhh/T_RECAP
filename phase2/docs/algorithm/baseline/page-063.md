@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 50. [Original PDF page](
 
 [Previous](page-062.md) | [Index](../README.md) | [Next](page-064.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-063.md). Equations are rendered locally as SVG.
+
 ```text
 37:       commit Rd through RING_RD_COMMIT
 38:    end while
@@ -39,20 +41,12 @@ The HPS shall validate at least the following before forwarding a record:
 
 A recommended default is:
 
-$$
-\text{telemetry UDP port}=5005.\tag{20.2}
-$$
+![Equation 20.2: &#92;text{telemetry UDP port}=5005.&#92;tag{20.2}](../math/baseline-page-063-001.svg)
 
-$$
-\text{command UDP port}=5006.\tag{20.3}
-$$
+![Equation 20.3: &#92;text{command UDP port}=5006.&#92;tag{20.3}](../math/baseline-page-063-002.svg)
 
 The PC IP address should be configured statically for a direct board-to-PC link. For example:
 
-$$
-\text{PC}:192.168.10.1.\tag{20.4}
-$$
+![Equation 20.4: &#92;text{PC}:192.168.10.1.&#92;tag{20.4}](../math/baseline-page-063-003.svg)
 
-$$
-\text{DE1-SoC HPS}:192.168.10.2.\tag{20.5}
-$$
+![Equation 20.5: &#92;text{DE1-SoC HPS}:192.168.10.2.&#92;tag{20.5}](../math/baseline-page-063-004.svg)

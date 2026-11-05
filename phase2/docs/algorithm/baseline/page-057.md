@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 44. [Original PDF page](
 
 [Previous](page-056.md) | [Index](../README.md) | [Next](page-058.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-057.md). Equations are rendered locally as SVG.
+
 For full-rate waveform telemetry, stride=1. For decimated waveform telemetry, stride shall equal the active `WAVE_DECIM`. Therefore the PC dashboard shall use `sample_base` + i · stride, not `sample_base` + i, for time-axis reconstruction. Thus `payload_bytes`=16 + 6 · nsamp. The waveform scheduler shall choose nsamp so that the DDR record and UDP datagram remain below the configured maximum. The Revision G WAVE payload is valid for the baseline N = 12 sample width. If N is raised above 15, the WAVE.err field width shall be revised or the display-error field shall be explicitly saturated for display.
 
 ### 19.3 SPEC129 Payload
@@ -29,18 +31,12 @@ Unused bits in the final mask byte shall be zero. For L = 256, `payload_bytes`=2
 
 SPEC64 is a lower-bandwidth heatmap format. Bucket b ∈ {0, . . . , 63} covers:
 
-$$
-k_{\min}(b)=\left\lfloor\frac{129b}{64}\right\rfloor.\tag{19.2}
-$$
+![Equation 19.2: k_{&#92;min}(b)=&#92;left&#92;lfloor&#92;frac{129b}{64}&#92;right&#92;rfloor.&#92;tag{19.2}](../math/baseline-page-057-001.svg)
 
-$$
-k_{\max}(b)=\left\lfloor\frac{129(b+1)}{64}\right\rfloor-1.\tag{19.3}
-$$
+![Equation 19.3: k_{&#92;max}(b)=&#92;left&#92;lfloor&#92;frac{129(b+1)}{64}&#92;right&#92;rfloor-1.&#92;tag{19.3}](../math/baseline-page-057-002.svg)
 
 The display magnitude is:
 
-$$
-\mathrm{spec64}[b]=\operatorname{clip}_{16}\left(\max_{k_{\min}(b)\le k\le k_{\max}(b)}(\operatorname{mag2}[k]\gg\mathrm{spec\_shift})\right).\tag{19.4}
-$$
+![Equation 19.4: &#92;mathrm{spec64}&#91;b&#93;=&#92;operatorname{clip}_{16}&#92;left(&#92;max_{k_{&#92;min}(b)&#92;le k&#92;le k_{&#92;max}(b)}(&#92;operatorname{mag2}&#91;k&#93;&#92;gg&#92;mathrm{spec&#92;_shift})&#92;right).&#92;tag{19.4}](../math/baseline-page-057-003.svg)
 
 Revision G also carries per-bucket suppression counts so that the PC can draw a mask overlay even when SPEC129 is disabled.

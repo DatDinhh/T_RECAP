@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 37. [Original PDF page](
 
 [Previous](page-049.md) | [Index](../README.md) | [Next](page-051.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-050.md). Equations are rendered locally as SVG.
+
 ### 17.3 Ring Initialization Rule
 
 Ring initialization shall clear stale producer/consumer state before telemetry is enabled. The baseline sequence is:
@@ -26,31 +28,21 @@ Ring initialization shall clear stale producer/consumer state before telemetry i
 
 Before writing a record of aligned length Lrec , the FPGA shall compute the current offset and the physical tail space:
 
-$$
-o=\operatorname{off}(W).\tag{17.8}
-$$
+![Equation 17.8: o=&#92;operatorname{off}(W).&#92;tag{17.8}](../math/baseline-page-050-001.svg)
 
-$$
-T_{\mathrm{tail}}=R-o.\tag{17.9}
-$$
+![Equation 17.9: T_{&#92;mathrm{tail}}=R-o.&#92;tag{17.9}](../math/baseline-page-050-002.svg)
 
 If the record would cross the physical end of the ring, the required free space is the tail consumed by the WRAP record plus the actual record:
 
-$$
-L_{\mathrm{req}}=\begin{cases}T_{\mathrm{tail}}+L_{\mathrm{rec}},&o+L_{\mathrm{rec}}>R\\L_{\mathrm{rec}},&o+L_{\mathrm{rec}}\le R.\end{cases}\tag{17.10}
-$$
+![Equation 17.10: L_{&#92;mathrm{req}}=&#92;begin{cases}T_{&#92;mathrm{tail}}+L_{&#92;mathrm{rec}},&o+L_{&#92;mathrm{rec}}>R&#92;&#92;L_{&#92;mathrm{rec}},&o+L_{&#92;mathrm{rec}}&#92;le R.&#92;end{cases}&#92;tag{17.10}](../math/baseline-page-050-003.svg)
 
 The available free space is:
 
-$$
-F_{\mathrm{free}}=R-(W-R_d)-G_{\mathrm{guard}}.\tag{17.11}
-$$
+![Equation 17.11: F_{&#92;mathrm{free}}=R-(W-R_d)-G_{&#92;mathrm{guard}}.&#92;tag{17.11}](../math/baseline-page-050-004.svg)
 
 where Gguard ≥ 64 bytes. A packet may be written only when:
 
-$$
-F_{\mathrm{free}}\ge L_{\mathrm{req}}.\tag{17.12}
-$$
+![Equation 17.12: F_{&#92;mathrm{free}}&#92;ge L_{&#92;mathrm{req}}.&#92;tag{17.12}](../math/baseline-page-050-005.svg)
 
 If not, the packet shall be dropped and `DMA_DROP_COUNT` shall increment. Checking only Ffree ≥ Lrec is not sufficient when a WRAP record is required.
 
@@ -58,6 +50,4 @@ If not, the packet shall be dropped and `DMA_DROP_COUNT` shall increment. Checki
 
 For normal telemetry records, the aligned record length is:
 
-$$
-L_{\mathrm{rec}}=\operatorname{align}_{64}(H_{\mathrm{bytes}}+P_{\mathrm{bytes}}).\tag{17.13}
-$$
+![Equation 17.13: L_{&#92;mathrm{rec}}=&#92;operatorname{align}_{64}(H_{&#92;mathrm{bytes}}+P_{&#92;mathrm{bytes}}).&#92;tag{17.13}](../math/baseline-page-050-006.svg)

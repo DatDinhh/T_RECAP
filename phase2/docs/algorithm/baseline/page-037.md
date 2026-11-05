@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 24. [Original PDF page](
 
 [Previous](page-036.md) | [Index](../README.md) | [Next](page-038.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-037.md). Equations are rendered locally as SVG.
+
 ## Part II - Ethernet/HPS DDR Telemetry and Control Architecture
 
 Part II defines the real-time observability and command layer. It does not redefine the STFT/WOLA arithmetic core. It moves already-computed core observability signals from FPGA fabric through HPS DDR and HPS Ethernet to the PC.

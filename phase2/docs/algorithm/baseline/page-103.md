@@ -4,6 +4,8 @@ Historical appendices and references. Printed page 90. [Original PDF page](../..
 
 [Previous](page-102.md) | [Index](../README.md) | [Next](page-104.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-103.md). Equations are rendered locally as SVG.
+
 ## C Repository Recommended File Inventory
 
 ```text

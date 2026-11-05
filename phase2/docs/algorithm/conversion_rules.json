@@ -2033,5 +2033,179 @@
       ],
       "header": "     Class                 Content"
     }
-  ]
+  ],
+  "prose_repairs": {
+    "16": [
+      {
+        "old": "At trigger time τm , the frame contains the most recent L samples ending at τm - 1:",
+        "new": "At trigger time $\\tau_m$, the frame contains the most recent $L$ samples ending at $\\tau_m-1$:"
+      },
+      {
+        "old": "That frame contributes to output slots τm + G + i. Therefore sample x[τm - L + i] contributes to y[τm + G + i], which establishes the delay D = L + G.",
+        "new": "That frame contributes to output slots $\\tau_m+G+i$. Therefore sample $x[\\tau_m-L+i]$ contributes to $y[\\tau_m+G+i]$, which establishes the delay $D=L+G$."
+      },
+      {
+        "old": "For a finite input vector x[0], . . . , x[Ns - 1], define zero extension:",
+        "new": "For a finite input vector $x[0],\\ldots,x[N_s-1]$, define zero extension:"
+      },
+      {
+        "old": "Revision J signoff vectors require Ns > 0. Empty input is not a signoff case. The default finite-stream policy is `full_tail`. Revision J defines the signoff frame set by active overlap after analysis-windowing, not only by raw finite-input overlap:",
+        "new": "Revision J signoff vectors require $N_s>0$. Empty input is not a signoff case. The default finite-stream policy is `full_tail`. Revision J defines the signoff frame set by active overlap after analysis-windowing, not only by raw finite-input overlap:"
+      },
+      {
+        "old": "For Ns > 0, the required closed-form frame-count invariant is therefore",
+        "new": "For $N_s>0$, the required closed-form frame-count invariant is therefore"
+      },
+      {
+        "old": "For a future window table with a different zero pattern, the general definition of Mactive is normative and the closed-form shortcut above must be re-derived. Under `full_tail`, the driver shall continue asserting sample ticks after the Ns real input samples. Every post-input tick uses xin = 0 from the zero-extended stream, and ticks continue until exactly Ny output samples have been emitted. These post-input values are flush samples. They are not counted as original input samples. A board replay or RTL testbench that stops sample-enable immediately after Ns real samples is not executing the Revision J finite-stream contract. An optional diagnostic policy `fixed_delay_truncate` may set",
+        "new": "For a future window table with a different zero pattern, the general definition of $\\mathcal{M}_{\\mathrm{active}}$ is normative and the closed-form shortcut above must be re-derived. Under `full_tail`, the driver shall continue asserting sample ticks after the $N_s$ real input samples. Every post-input tick uses $x_{\\mathrm{in}}=0$ from the zero-extended stream, and ticks continue until exactly $N_y$ output samples have been emitted. These post-input values are flush samples. They are not counted as original input samples. A board replay or RTL testbench that stops sample-enable immediately after $N_s$ real samples is not executing the Revision J finite-stream contract. An optional diagnostic policy `fixed_delay_truncate` may set"
+      }
+    ],
+    "17": [
+      {
+        "old": "An N -bit signed two’s-complement sample belongs to",
+        "new": "An $N$-bit signed two’s-complement sample belongs to"
+      },
+      {
+        "old": "Internal wraparound is not allowed in the visible core contract. Revision J guarantees bit-accurate behavior on the frozen signoff vector set. For arbitrary legal N -bit input streams outside that set, an implementation shall either provision widths according to a separate worst-case proof or expose overflow flags that are checked by the verification environment. Such arbitrary streams are not part of Revision J signoff unless that additional proof or flag policy is supplied.",
+        "new": "Internal wraparound is not allowed in the visible core contract. Revision J guarantees bit-accurate behavior on the frozen signoff vector set. For arbitrary legal $N$-bit input streams outside that set, an implementation shall either provision widths according to a separate worst-case proof or expose overflow flags that are checked by the verification environment. Such arbitrary streams are not part of Revision J signoff unless that additional proof or flag policy is supplied."
+      }
+    ],
+    "18": [
+      {
+        "old": "- Window coefficients Qw [i] are nonnegative and stored in unsigned WQw = F + 1 bits. For F = 15, the range is 0 to 32768.",
+        "new": "- Window coefficients $Q_w[i]$ are nonnegative and stored in unsigned $W_{Q_w}=F+1$ bits. For F = 15, the range is 0 to 32768."
+      },
+      {
+        "old": "- Custom FFT and IFFT twiddle coefficients are stored in signed Wtw = F + 2 bits. For F = 15, both -32768 and +32768 are representable. A signed 16-bit Q1.15 ROM is not the Revision J baseline because it cannot represent +1.0 exactly.",
+        "new": "- Custom FFT and IFFT twiddle coefficients are stored in signed $W_{\\mathrm{tw}}=F+2$ bits. For F = 15, both -32768 and +32768 are representable. A signed 16-bit Q1.15 ROM is not the Revision J baseline because it cannot represent +1.0 exactly."
+      },
+      {
+        "old": "If integer a has Fa fractional bits and integer b has Fb fractional bits, then ab has Fa + Fb fractional bits. To return to F fractional bits,",
+        "new": "If integer a has $F_a$ fractional bits and integer b has $F_b$ fractional bits, then ab has $F_a+F_b$ fractional bits. To return to F fractional bits,"
+      },
+      {
+        "old": "provided Fa + Fb ≥ F . For complex multiplication with b = br + jbi and w = wr + jwi , each component with F fractional bits,",
+        "new": "provided $F_a+F_b\\ge F$. For complex multiplication with $b=b_r+jb_i$ and $w=w_r+jw_i$, each component with F fractional bits,"
+      },
+      {
+        "old": "No truncation may occur before the full-precision product sums are formed. For a complex multiply whose data operands have signed width Wd and twiddle operands have signed width Wtw , product terms shall use at least Wd + Wtw signed bits. Product sums and differences shall use at least Wd + Wtw + 1 signed bits before `rnd_shr`(·, F ). For analysis windowing, x[i]Qw [i] shall be formed exactly with at least Wx +WQw signed product bits before storage. For synthesis windowing, Re{v[i]}Qw [i] shall be formed with at least Wifft + WQw signed product bits before `rnd_shr`(·, F ). For magnitude-squared, each square shall be formed exactly and the sum shall have at least 2Wcan unsigned bits. Internal storage overflow is an error condition. Internal values shall not silently wrap or saturate unless a later revision explicitly defines that behavior.",
+        "new": "No truncation may occur before the full-precision product sums are formed. For a complex multiply whose data operands have signed width $W_d$ and twiddle operands have signed width $W_{\\mathrm{tw}}$, product terms shall use at least $W_d+W_{\\mathrm{tw}}$ signed bits. Product sums and differences shall use at least $W_d+W_{\\mathrm{tw}}+1$ signed bits before `rnd_shr`(·, F ). For analysis windowing, $x[i]Q_w[i]$ shall be formed exactly with at least $W_x+W_{Q_w}$ signed product bits before storage. For synthesis windowing, $\\operatorname{Re}\\{v[i]\\}Q_w[i]$ shall be formed with at least $W_{\\mathrm{ifft}}+W_{Q_w}$ signed product bits before `rnd_shr`(·, F ). For magnitude-squared, each square shall be formed exactly and the sum shall have at least $2W_{\\mathrm{can}}$ unsigned bits. Internal storage overflow is an error condition. Internal values shall not silently wrap or saturate unless a later revision explicitly defines that behavior."
+      }
+    ],
+    "19": [
+      {
+        "old": "The golden model should use arbitrary-precision integers for metric accumulators. RTL shall either provision enough accumulator width for the selected run length or expose and check overflow flags. Although the analysis product xm [i]Qw [i] may be formed internally in at least Wx + WQw bits, the frozen baseline coefficient range 0 ≤ Qw [i] ≤ $2^{F}$ guarantees that the exact product fits in signed Wu = N + F bits. Storage into Wu is therefore a range-checked exact assignment. It is not truncation. If a future coefficient table permits values above $2^{F}$ , the Wu rule must be re-derived.",
+        "new": "The golden model should use arbitrary-precision integers for metric accumulators. RTL shall either provision enough accumulator width for the selected run length or expose and check overflow flags. Although the analysis product $x_m[i]Q_w[i]$ may be formed internally in at least $W_x+W_{Q_w}$ bits, the frozen baseline coefficient range $0\\le Q_w[i]\\le2^F$ guarantees that the exact product fits in signed $W_u=N+F$ bits. Storage into $W_u$ is therefore a range-checked exact assignment. It is not truncation. If a future coefficient table permits values above $2^{F}$, the $W_u$ rule must be re-derived."
+      }
+    ],
+    "20": [
+      {
+        "old": "The quantized table is Qw [i] = qcoef(w[i], F ).",
+        "new": "The quantized table is $Q_w[i]=\\operatorname{qcoef}(w[i],F)$."
+      },
+      {
+        "old": "All threshold decisions use X can , not the raw FFT output.",
+        "new": "All threshold decisions use $X^{\\mathrm{can}}$, not the raw FFT output."
+      },
+      {
+        "old": "The final mask is initialized as maskm [k] = `pre_maskm` [k] and may then be modified only by the protection rules in Section 4.5. The comparison is unsigned, full precision, and performed in the magnitude-squared domain. The threshold register width is Wmag2 :",
+        "new": "The final mask is initialized as $\\operatorname{mask}_m[k]=\\operatorname{pre\\_mask}_m[k]$ and may then be modified only by the protection rules in Section 4.5. The comparison is unsigned, full precision, and performed in the magnitude-squared domain. The threshold register width is $W_{\\mathrm{mag2}}$:"
+      }
+    ],
+    "21": [
+      {
+        "old": "After threshold comparison, if `PROTECT_DC`= 1, force maskm [0] = 0. If `PROTECT_NYQ`= 1, force maskm [L/2] = 0. The preliminary value `pre_mask` is retained only for debug reporting and never controls synthesis. The masked spectrum is denoted Xb. For 1 ≤ k ≤ L/2 - 1,",
+        "new": "After threshold comparison, if `PROTECT_DC`= 1, force $\\operatorname{mask}_m[0]=0$. If `PROTECT_NYQ`= 1, force $\\operatorname{mask}_m[L/2]=0$. The preliminary value `pre_mask` is retained only for debug reporting and never controls synthesis. The masked spectrum is denoted $\\mathrm{Xb}$. For $1\\le k\\le L/2-1$,"
+      }
+    ],
+    "24": [
+      {
+        "old": "INV4. For 1 ≤ k ≤ L/2 - 1, Xb[L - k] =Xb[k]∗ by construction.",
+        "new": "INV4. For $1\\le k\\le L/2-1$, $\\mathrm{Xb}[L-k]=\\mathrm{Xb}[k]^*$ by construction."
+      },
+      {
+        "old": "INV8. The signoff frame count equals ⌊(Ns +L-2)/H⌋ under the Revision J active-window finite-stream policy.",
+        "new": "INV8. The signoff frame count equals $\\lfloor(N_s+L-2)/H\\rfloor$ under the Revision J active-window finite-stream policy."
+      },
+      {
+        "old": "Let bitrevP (k) denote P -bit bit reversal. Forward twiddles are",
+        "new": "Let $\\operatorname{bitrev}_P(k)$ denote $P$-bit bit reversal. Forward twiddles are"
+      }
+    ],
+    "26": [
+      {
+        "old": "Let E = {k ∈ {0, . . . , L/2} : ϵ[k] = 1}. For one frame,",
+        "new": "Let $\\mathcal{E}=\\{k\\in\\{0,\\ldots,L/2\\}:\\epsilon[k]=1\\}$. For one frame,"
+      },
+      {
+        "old": "For 0 ≤ n < Ny ,",
+        "new": "For $0\\le n<N_y$,"
+      },
+      {
+        "old": "All memh files contain exactly one value per line, lowercase hexadecimal digits only, no 0x prefix, no leading or trailing spaces, no blank lines, and exactly one LF line ending after each value in the canonical form. For an unsigned W -bit memh file, each line shall contain exactly ⌈W/4⌉ hexadecimal digits. The value shall satisfy 0 ≤ value < $2^{W}$ . Readers shall mask to W bits and shall not sign-extend unsigned files.",
+        "new": "All memh files contain exactly one value per line, lowercase hexadecimal digits only, no 0x prefix, no leading or trailing spaces, no blank lines, and exactly one LF line ending after each value in the canonical form. For an unsigned $W$-bit memh file, each line shall contain exactly $\\lceil W/4\\rceil$ hexadecimal digits. The value shall satisfy $0\\le\\mathrm{value}<2^W$. Readers shall mask to W bits and shall not sign-extend unsigned files."
+      }
+    ],
+    "27": [
+      {
+        "old": "For a signed W -bit memh file, each line shall contain exactly ⌈W/4⌉ hexadecimal digits. The encoded value is the low W bits of the two’s-complement representation, zero-padded on the left to the required digit count. Readers shall mask to W bits first and then sign-extend from bit W - 1. The stream files `x_in.memh` and `y_out.memh` are signed N -bit files. The window file `window_qw.memh` is an unsigned WQw -bit file. All forward and inverse twiddle files are signed Wtw -bit files. For Wtw = 17, every twiddle line has five hex digits:",
+        "new": "For a signed $W$-bit memh file, each line shall contain exactly $\\lceil W/4\\rceil$ hexadecimal digits. The encoded value is the low W bits of the two’s-complement representation, zero-padded on the left to the required digit count. Readers shall mask to W bits first and then sign-extend from bit W - 1. The stream files `x_in.memh` and `y_out.memh` are signed $N$-bit files. The window file `window_qw.memh` is an unsigned $W_{Q_w}$-bit file. All forward and inverse twiddle files are signed $W_{\\mathrm{tw}}$-bit files. For $W_{\\mathrm{tw}}=17$, every twiddle line has five hex digits:"
+      }
+    ],
+    "28": [
+      {
+        "old": "- `window_qw.memh` shall contain exactly L lines. Line i stores Qw [i] for i = 0, . . . , L - 1.",
+        "new": "- `window_qw.memh` shall contain exactly L lines. Line i stores $Q_w[i]$ for i = 0, . . . , L - 1."
+      },
+      {
+        "old": "- `x_in.memh` shall contain exactly Ns lines.",
+        "new": "- `x_in.memh` shall contain exactly $N_s$ lines."
+      },
+      {
+        "old": "- `y_out.memh` shall contain exactly Ny lines.",
+        "new": "- `y_out.memh` shall contain exactly $N_y$ lines."
+      },
+      {
+        "old": "- `frame_stats.csv` shall contain one header row plus exactly Nframes data rows.",
+        "new": "- `frame_stats.csv` shall contain one header row plus exactly $N_{\\mathrm{frames}}$ data rows."
+      },
+      {
+        "old": "- Conditional `bin_stats.csv`: when required for a vector, one header row plus exactly Nframes (L/2 + 1) data rows. The baseline stores L twiddle entries for a simple artifact contract, even though a hardware implementation may store fewer entries internally after a separate ROM-addressing proof. Internal ROM compaction shall not change the external artifact contract. The `bin_stats.csv` artifact is conditional:",
+        "new": "- Conditional `bin_stats.csv`: when required for a vector, one header row plus exactly $N_{\\mathrm{frames}}(L/2+1)$ data rows. The baseline stores L twiddle entries for a simple artifact contract, even though a hardware implementation may store fewer entries internally after a separate ROM-addressing proof. Internal ROM compaction shall not change the external artifact contract. The `bin_stats.csv` artifact is conditional:"
+      },
+      {
+        "old": "| Artifact | Contract |\n| --- | --- |\n| `x_in.memh` | Input stream in signed N -bit two’s-complement hex, exactly ⌈N/4⌉ digits per line. |\n| `y_out.memh` | Reconstructed stream y[0], . . . , y[Ny - 1] in the same signed N -bit format. |\n| `window_qw.memh` | Quantized window ROM Qw [i], unsigned width WQw = F + 1. |\n| `twiddle_re.memh` | Forward twiddle real table, signed width Wtw . |\n| `twiddle_im.memh` | Forward twiddle imaginary table, signed width Wtw . |\n| `twiddle_inv_re.memh` | Inverse twiddle real table, signed width Wtw . |\n| `twiddle_inv_im.memh` | Inverse twiddle imaginary table, signed width Wtw . |",
+        "new": "| Artifact | Contract |\n| --- | --- |\n| `x_in.memh` | Input stream in signed $N$-bit two’s-complement hex, exactly $\\lceil N/4\\rceil$ digits per line. |\n| `y_out.memh` | Reconstructed stream $y[0],\\ldots,y[N_y-1]$ in the same signed $N$-bit format. |\n| `window_qw.memh` | Quantized window ROM $Q_w[i]$, unsigned width $W_{Q_w}=F+1$. |\n| `twiddle_re.memh` | Forward twiddle real table, signed width $W_{\\mathrm{tw}}$. |\n| `twiddle_im.memh` | Forward twiddle imaginary table, signed width $W_{\\mathrm{tw}}$. |\n| `twiddle_inv_re.memh` | Inverse twiddle real table, signed width $W_{\\mathrm{tw}}$. |\n| `twiddle_inv_im.memh` | Inverse twiddle imaginary table, signed width $W_{\\mathrm{tw}}$. |"
+      }
+    ],
+    "29": [
+      {
+        "old": "For `frame_stats.csv`, all values are decimal unsigned integers. The field `frame_idx` is zero-based and equals m for trigger τm = (m + 1)H. Rows shall be emitted in increasing `frame_idx` order from 0 to Nframes - 1. When present, the required `bin_stats.csv` header is exactly:",
+        "new": "For `frame_stats.csv`, all values are decimal unsigned integers. The field `frame_idx` is zero-based and equals m for trigger $\\tau_m=(m+1)H$. Rows shall be emitted in increasing `frame_idx` order from 0 to $N_{\\mathrm{frames}}-1$. When present, the required `bin_stats.csv` header is exactly:"
+      }
+    ],
+    "35": [
+      {
+        "old": "AC5. THR2 is an unsigned Wmag2 -bit integer and satisfies 0 ≤ THR2 < $2^{Wmag2}$ .",
+        "new": "AC5. THR2 is an unsigned $W_{\\mathrm{mag2}}$-bit integer and satisfies $0\\le\\mathrm{THR2}<2^{W_{\\mathrm{mag2}}}$."
+      },
+      {
+        "old": "AC7. The output length follows the declared `tail_policy`. Revision J signoff uses `full_tail` with zero flush ticks until all Ny outputs are emitted.",
+        "new": "AC7. The output length follows the declared `tail_policy`. Revision J signoff uses `full_tail` with zero flush ticks until all $N_y$ outputs are emitted."
+      },
+      {
+        "old": "The core begins after input adaptation. Every live source must map to x[n] ∈ SN . For a raw unsigned B-bit ADC source,",
+        "new": "The core begins after input adaptation. Every live source must map to $x[n]\\in\\mathcal{S}_N$. For a raw unsigned B-bit ADC source,"
+      },
+      {
+        "old": "For an audio-codec source with Baudio ≥ N ,",
+        "new": "For an audio-codec source with $B_{\\mathrm{audio}}\\ge N$,"
+      },
+      {
+        "old": "If Baudio < N , a separate left-shift or sign-extension rule shall be frozen before use.",
+        "new": "If $B_{\\mathrm{audio}}<N$, a separate left-shift or sign-extension rule shall be frozen before use."
+      }
+    ]
+  }
 }

@@ -4,6 +4,8 @@ Historical Part II, DDR and UDP telemetry. Printed page 27. [Original PDF page](
 
 [Previous](page-039.md) | [Index](../README.md) | [Next](page-041.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-040.md). Equations are rendered locally as SVG.
+
 The reverse command path is:
 
 PC command → HPS command parser → CSR writes → FPGA control shadow/commit.

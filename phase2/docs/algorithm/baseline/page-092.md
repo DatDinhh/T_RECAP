@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 79. [Original PDF pag
 
 [Previous](page-091.md) | [Index](../README.md) | [Next](page-093.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-092.md). Equations are rendered locally as SVG.
+
 ### 42.4 Address map file
 
 `platform/de1soc/address_map/address_map.md` shall document:

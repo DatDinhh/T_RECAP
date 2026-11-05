@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 60. [Original PDF pag
 
 [Previous](page-072.md) | [Index](../README.md) | [Next](page-074.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-073.md). Equations are rendered locally as SVG.
+
 ## Part III - Core Implementation Repository Architecture
 
 Part III translates the frozen core and telemetry contracts into an implementation repository. It defines the tree, generated shared contracts, filelists, RTL layer ownership, HPS and PC software layout, build profiles, coefficient ROM ownership, memory primitive rules, and staged implementation cuts. It deliberately excludes verification architecture, which will be specified separately after the implementation repository is frozen.

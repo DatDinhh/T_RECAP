@@ -4,6 +4,8 @@ Historical Part III, repository architecture. Printed page 73. [Original PDF pag
 
 [Previous](page-085.md) | [Index](../README.md) | [Next](page-087.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-086.md). Equations are rendered locally as SVG.
+
 ## 39 RTL Module Inventory
 
 ### 39.1 Source modules

@@ -4,6 +4,8 @@ Historical Part I, core algorithm. Printed page 19. [Original PDF page](../../sp
 
 [Previous](page-031.md) | [Index](../README.md) | [Next](page-033.md)
 
+[Edit Markdown and LaTeX source](../source/baseline/page-032.md). Equations are rendered locally as SVG.
+
 ```json
 {
     "configuration": {
