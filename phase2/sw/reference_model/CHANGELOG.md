@@ -90,7 +90,7 @@
 ### Added
 
 - Added artifact utility tools: `compare_artifacts.py`, `inspect_memh.py`, `inspect_frame_stats.py`, `hash_memh.py`, and `package_artifacts.py`.
-- Added Makefile targets `hash-memh`, `inspect-memh`, `inspect-frame-stats`, and `compare-artifacts`; `package-artifacts` now uses the deterministic package tool.
+- Added Makefile targets `hash-memh`, `inspect-memh`, `inspect-frame-stats`, and `compare-artifacts`. `package-artifacts` now uses the deterministic package tool.
 - Added Python CLI tests for canonical memh hashing, memh inspection, frame-stat/metrics cross-checking, artifact-tree comparison, and deterministic package creation.
 
 ### Changed

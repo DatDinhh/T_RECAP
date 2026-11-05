@@ -1,0 +1,527 @@
+{
+  "schema": "trecap-unified-system-atlas-v1",
+  "profile": "PROJECT",
+  "scope": "Source-derived architecture documentation. Rendering runs no hardware or simulation.",
+  "generator": {
+    "file": "build_atlas.py",
+    "sha256": "ca9281d920edbcc8f20181c5304e28df85aa446e5c69fec713c1574aa05680ad",
+    "matplotlib": "3.10.7"
+  },
+  "definitions": {
+    "file": "atlas_definitions.json",
+    "sha256": "fd6c89ad59250e6cb251bf2f19c5ace3e0d220d6cff0178da53ef5e673cc99f5"
+  },
+  "sources": [
+    {
+      "id": "C01",
+      "path": "rtl/core/trecap_core_top.sv",
+      "sha256": "44ab78f15ab83a13de90109e2772159dbac0efc1fccf66791d9c70657fe76f6b"
+    },
+    {
+      "id": "C02",
+      "path": "rtl/include/generated/trecap_core_pkg.sv",
+      "sha256": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784"
+    },
+    {
+      "id": "C03",
+      "path": "rtl/fft/trecap_fft256.sv",
+      "sha256": "a0c710046185fb54bd7281444c57539f9b689e4a6f52f634dba60a259619ef66"
+    },
+    {
+      "id": "C04",
+      "path": "rtl/fft/trecap_ifft256.sv",
+      "sha256": "92c175d4a30da253e9a93e118080261958daa181cf4e6f12560d9524d110bd3c"
+    },
+    {
+      "id": "C05",
+      "path": "rtl/core/trecap_mag2_mask.sv",
+      "sha256": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d"
+    },
+    {
+      "id": "C06",
+      "path": "rtl/core/trecap_synthesis_wola.sv",
+      "sha256": "7d30dee3679adb15bee54f2ad9762d102b08f54314c280a6f4918b95d277a7aa"
+    },
+    {
+      "id": "C07",
+      "path": "verification/tsh2/rtl/trecap_pcm_stream_top.sv",
+      "sha256": "2d8e7794a5629cf88e9d47ee0f2dd68ab28d1b73e3c071d701e2d5e3ab1780d2"
+    },
+    {
+      "id": "C08",
+      "path": "verification/tsh2/rtl/trecap_pcm_stream_source.sv",
+      "sha256": "79e402d7314b6540aea813bab2a42efa4d3107a34a63d61ff5ea3549bb4101f7"
+    },
+    {
+      "id": "A01",
+      "path": "profiles/tsh2/work/trecap_stream8_v01/rtl/trecap_stream_adapter.sv",
+      "sha256": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305"
+    },
+    {
+      "id": "A02",
+      "path": "profiles/tsh2/work/trecap_laptop_fpga_v01/service/service.c",
+      "sha256": "a65a1be11abe2e3f01c9d80f1bd3c167a1094881b301bfbc48870bf7496ba24c"
+    },
+    {
+      "id": "A03",
+      "path": "profiles/tsh2/work/trecap_visualizer_v01/server.py",
+      "sha256": "66dd07b73103f7b4ee797c456a7d257fa251294a98d284428f1d80a2742347ef"
+    },
+    {
+      "id": "A04",
+      "path": "profiles/tsh2/work/trecap_visualizer_v01/data.py",
+      "sha256": "be560c78b15129df5e7944b138f9ace0577c6390cba7cee207c77835263fa47e"
+    },
+    {
+      "id": "R01",
+      "path": "profiles/trf1/adapter/rtl/trecap_rf_iq_adapter.sv",
+      "sha256": "49f2410c2593aa6d0fcc6ef032b19f5bdf6d059f594c3bfdfa081a2da6f1faa8"
+    },
+    {
+      "id": "R02",
+      "path": "profiles/trf1/adapter/rtl/trecap_rf_file_source.sv",
+      "sha256": "28499650aca794ecc6341e27a195fb69f4ef444cd8f78a0f1b4377fd3e8f4935"
+    },
+    {
+      "id": "R03",
+      "path": "profiles/trf1/adapter/coefficients/rf_coefficients.svh",
+      "sha256": "4d0cb2bbe836fa9f975349fdb01c5c033fdcd028d4a991c841b4805e736635f8"
+    },
+    {
+      "id": "R04",
+      "path": "profiles/trf1/board/rtl/trecap_rf_board_adapter.sv",
+      "sha256": "a83dd1a68945f11b75fe045f5d7433e248bcfbecea4bf68f4275f3f13980f6d5"
+    },
+    {
+      "id": "R05",
+      "path": "profiles/trf1/board/host/trf1_client.c",
+      "sha256": "48e0d6bfa725aeea8c2ce7899a3c331e02a067e30fa3781366560ada8ab1cdf9"
+    },
+    {
+      "id": "R06",
+      "path": "profiles/trf1/board/platform/trecap_hps_top.sv",
+      "sha256": "81ab0084e276bc57c18cee4a5185cc49b18aaa81e09716e32946d34ac07c8502"
+    },
+    {
+      "id": "R07",
+      "path": "profiles/trf1/board/rtl/stream_fifo.sv",
+      "sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b"
+    },
+    {
+      "id": "R08",
+      "path": "profiles/trf1/board/orchestration/capture.py",
+      "sha256": "ae3b25868b626a1582a4b2af4da7b31cbbae89550b8fedcb5e479cc24188497f"
+    },
+    {
+      "id": "V01",
+      "path": "verification/rf_iq/evidence/summary.json",
+      "sha256": "49ab72b3756b8cef089953ef697ba132ce72e0aa3d64b9178e4c97e7620ed8d1"
+    },
+    {
+      "id": "V02",
+      "path": "verification/tsh2/admission.json",
+      "sha256": "ab03815268a28dd644ffd51ca908f2eae1c028bb4ff5410004b64b36e66536d4"
+    }
+  ],
+  "archived_source_bindings": [],
+  "plates": [
+    {
+      "number": 1,
+      "title": "One project, adapted inputs, one numerical core",
+      "slug": "01-system-overview",
+      "source_ids": [
+        "C01",
+        "A01",
+        "A02",
+        "A03",
+        "R01",
+        "R04",
+        "R05"
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Input contracts and application boundaries",
+      "slug": "02-input-profiles",
+      "source_ids": [
+        "A01",
+        "A02",
+        "R01",
+        "R02",
+        "R04"
+      ]
+    },
+    {
+      "number": 3,
+      "title": "The common spectral-processing datapath",
+      "slug": "03-shared-dsp",
+      "source_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "number": 4,
+      "title": "The new I/Q block inside the full architecture",
+      "slug": "04-rf-input-adapter",
+      "source_ids": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "C07"
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Two outputs and the work performed on the laptop",
+      "slug": "05-outputs-and-consumers",
+      "source_ids": [
+        "A03",
+        "A04",
+        "A01",
+        "R04",
+        "R05",
+        "C01"
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Host transport and finite-transaction ownership",
+      "slug": "06-host-and-transactions",
+      "source_ids": [
+        "A01",
+        "A02",
+        "R04",
+        "R05",
+        "R07",
+        "R08",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "number": 7,
+      "title": "Control, buffering and recovery across the system",
+      "slug": "07-control-and-backpressure",
+      "source_ids": [
+        "A01",
+        "R01",
+        "R02",
+        "R04",
+        "R07",
+        "C07",
+        "V01"
+      ]
+    },
+    {
+      "number": 8,
+      "title": "Platform and verification boundaries",
+      "slug": "08-platform-and-verification",
+      "source_ids": [
+        "R06",
+        "A01",
+        "R04",
+        "V01",
+        "V02"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "01-system-overview.png",
+      "repo_path": "docs/architecture/system/01-system-overview.png",
+      "sha256": "90bc52209063beabdd0164ce1d665a60aa3f478283de99e3550c61d407a9fa52",
+      "bytes": 401816,
+      "plate": 1
+    },
+    {
+      "file": "01-system-overview.svg",
+      "repo_path": "docs/architecture/system/01-system-overview.svg",
+      "sha256": "aea228fb39642c290436adb376d4e1a37d098d899971aa49266b200346f73175",
+      "bytes": 23559,
+      "plate": 1
+    },
+    {
+      "file": "01-system-overview.pdf",
+      "repo_path": "docs/architecture/system/01-system-overview.pdf",
+      "sha256": "123581c9fafe6b8419226276761ea983f20311275348a5b9ffc6b7e711b69478",
+      "bytes": 46556,
+      "plate": 1
+    },
+    {
+      "file": "02-input-profiles.png",
+      "repo_path": "docs/architecture/system/02-input-profiles.png",
+      "sha256": "20ac0640704175f49c6a5788e56ae25875f4a11987c885dcf5f1296a268427e1",
+      "bytes": 356875,
+      "plate": 2
+    },
+    {
+      "file": "02-input-profiles.svg",
+      "repo_path": "docs/architecture/system/02-input-profiles.svg",
+      "sha256": "620f6a7e93de1cb2c8ef58b6ff9ece3fd2fe4c651c1207f672faf4fb0ee1063e",
+      "bytes": 21330,
+      "plate": 2
+    },
+    {
+      "file": "02-input-profiles.pdf",
+      "repo_path": "docs/architecture/system/02-input-profiles.pdf",
+      "sha256": "9ab52e9e0e2149de29582ef34a050801bd2e28264bfd9399602650afb41e21ee",
+      "bytes": 46261,
+      "plate": 2
+    },
+    {
+      "file": "03-shared-dsp.png",
+      "repo_path": "docs/architecture/system/03-shared-dsp.png",
+      "sha256": "48d9f85fc17777a9986a58190d37c550ffd3efe53cc2df543fae6e8d7c1652d7",
+      "bytes": 383929,
+      "plate": 3
+    },
+    {
+      "file": "03-shared-dsp.svg",
+      "repo_path": "docs/architecture/system/03-shared-dsp.svg",
+      "sha256": "5955ca4dfb7680e395043d4d59850e9bb68fdcac698e9f96483a958722383112",
+      "bytes": 23705,
+      "plate": 3
+    },
+    {
+      "file": "03-shared-dsp.pdf",
+      "repo_path": "docs/architecture/system/03-shared-dsp.pdf",
+      "sha256": "c75950089e49b1dde2563a12b2fbc20bf21b4e420ddb044f2b5f0e496d9e8039",
+      "bytes": 48354,
+      "plate": 3
+    },
+    {
+      "file": "04-rf-input-adapter.png",
+      "repo_path": "docs/architecture/system/04-rf-input-adapter.png",
+      "sha256": "a5e4ff519d746e402bf838fccc0307802f0c60f621421ea547caa7f0384386aa",
+      "bytes": 393573,
+      "plate": 4
+    },
+    {
+      "file": "04-rf-input-adapter.svg",
+      "repo_path": "docs/architecture/system/04-rf-input-adapter.svg",
+      "sha256": "c766f40dff190e3a52d5807114a2876391cf397e78b78ac30461ed94adbc18a3",
+      "bytes": 24405,
+      "plate": 4
+    },
+    {
+      "file": "04-rf-input-adapter.pdf",
+      "repo_path": "docs/architecture/system/04-rf-input-adapter.pdf",
+      "sha256": "53b6875f7b0d178aeb7da5ee3ee02319f30bdf11773b36a36f86de78e0bcd648",
+      "bytes": 49984,
+      "plate": 4
+    },
+    {
+      "file": "05-outputs-and-consumers.png",
+      "repo_path": "docs/architecture/system/05-outputs-and-consumers.png",
+      "sha256": "f43e0d5175bd23a9d159068e09e4cbdc5f61fbf44398499fa5722418061676ae",
+      "bytes": 418530,
+      "plate": 5
+    },
+    {
+      "file": "05-outputs-and-consumers.svg",
+      "repo_path": "docs/architecture/system/05-outputs-and-consumers.svg",
+      "sha256": "ea9a19169287d4e563ba7ea11ae268d3d7df216e3c6082a03c9a3f49f7ca4b22",
+      "bytes": 23846,
+      "plate": 5
+    },
+    {
+      "file": "05-outputs-and-consumers.pdf",
+      "repo_path": "docs/architecture/system/05-outputs-and-consumers.pdf",
+      "sha256": "48dcf6a5b9cdd432f98f7e3595d38fe36e3457049cb05670bacf58cc39b0875b",
+      "bytes": 48066,
+      "plate": 5
+    },
+    {
+      "file": "06-host-and-transactions.png",
+      "repo_path": "docs/architecture/system/06-host-and-transactions.png",
+      "sha256": "acdd425a2514fc04e6180d380dc4d9a4f453a624de36fee9b02ef912fd2a057c",
+      "bytes": 409450,
+      "plate": 6
+    },
+    {
+      "file": "06-host-and-transactions.svg",
+      "repo_path": "docs/architecture/system/06-host-and-transactions.svg",
+      "sha256": "b63920f2707171feef376c78f72e86679a4a44922f4aaacf45673a5fb92e925d",
+      "bytes": 24347,
+      "plate": 6
+    },
+    {
+      "file": "06-host-and-transactions.pdf",
+      "repo_path": "docs/architecture/system/06-host-and-transactions.pdf",
+      "sha256": "486bfa6147d6e6b89ca260a26ee2504cd14090a52d40a3c3e043f9cef514711f",
+      "bytes": 48129,
+      "plate": 6
+    },
+    {
+      "file": "07-control-and-backpressure.png",
+      "repo_path": "docs/architecture/system/07-control-and-backpressure.png",
+      "sha256": "f133225b941c8f06150750abea27438e265aaf580b7d4738c014e6b33130cef4",
+      "bytes": 426162,
+      "plate": 7
+    },
+    {
+      "file": "07-control-and-backpressure.svg",
+      "repo_path": "docs/architecture/system/07-control-and-backpressure.svg",
+      "sha256": "7aa76042641875b5a28f88cefd517d2075cea499c9023622dc774aa8c378bbc3",
+      "bytes": 25789,
+      "plate": 7
+    },
+    {
+      "file": "07-control-and-backpressure.pdf",
+      "repo_path": "docs/architecture/system/07-control-and-backpressure.pdf",
+      "sha256": "fde98b19280d8ab9250b8f436ae2c73a7f83efba13b5e7d94a83853b92186861",
+      "bytes": 45761,
+      "plate": 7
+    },
+    {
+      "file": "08-platform-and-verification.png",
+      "repo_path": "docs/architecture/system/08-platform-and-verification.png",
+      "sha256": "e2eebaa49d304aea40a47dac8030057f49413dcf4cfefeb1b871a8fd84955fd7",
+      "bytes": 412919,
+      "plate": 8
+    },
+    {
+      "file": "08-platform-and-verification.svg",
+      "repo_path": "docs/architecture/system/08-platform-and-verification.svg",
+      "sha256": "2d196982a55fafac7298c50e20a554c87fb31ea0ceb7d73ab0295b4f2dd9e67d",
+      "bytes": 23149,
+      "plate": 8
+    },
+    {
+      "file": "08-platform-and-verification.pdf",
+      "repo_path": "docs/architecture/system/08-platform-and-verification.pdf",
+      "sha256": "752a089f9342ac9c251e9880140e92dbac6a419b1b139bda2ba5724121ff277c",
+      "bytes": 48850,
+      "plate": 8
+    }
+  ],
+  "layout_audit": [
+    {
+      "plate": 1,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 8,
+      "text_items": 32,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 2,
+      "status": "PASS",
+      "nodes": 8,
+      "edges": 6,
+      "text_items": 30,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 3,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 8,
+      "text_items": 32,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 4,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 9,
+      "text_items": 32,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 5,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 8,
+      "text_items": 32,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 6,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 9,
+      "text_items": 32,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 7,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 10,
+      "text_items": 32,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    },
+    {
+      "plate": 8,
+      "status": "PASS",
+      "nodes": 9,
+      "edges": 6,
+      "text_items": 32,
+      "text_containment": "PASS",
+      "orthogonal_route_node_intersections": 0,
+      "png_pixels": [
+        2700,
+        1800
+      ],
+      "visual_review": "See visual_review.json for separate inspection"
+    }
+  ],
+  "documents": {
+    "README.md": "1688dd2b6d9ef49d5ef58b1031862073560aded0c3a3c33b454ea5804920c86f",
+    "index.html": "13660f5820a944eb097ada9d83b65c9a59e237fe1fbb6914bc016a9f26f89a49",
+    "TRECAP_System_Architecture_Atlas.tex": "2187fbe1943a68a9db11aa8a2e9f7e1dbb256e1bfcf07d846de4a7cb8c2ef66c",
+    "TRECAP_System_Architecture_Atlas.pdf": "dedcad81c4b81f846f827e512c291603cc9f8f24b01872dd3aaebf550fbe152d",
+    "visual_review.json": "1ef85498af84e161f7194df6bb08963a32d16205ff1b7d6be224c645ea2910d6"
+  }
+}

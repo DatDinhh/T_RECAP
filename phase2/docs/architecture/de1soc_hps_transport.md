@@ -33,7 +33,7 @@ The ring reader opens `/dev/trecap-ring` with `O_RDONLY | O_CLOEXEC` and checks
 noncached flags, physical base `0x3e000000`, size `0x02000000`, and zero reserved
 field. It then maps the complete aperture with `PROT_READ | MAP_SHARED` at file
 offset zero. The driver rejects writable/executable, partial, private, or nonzero-
-offset mappings and sets `pgprot_noncached`; userspace does not infer cache
+offset mappings and sets `pgprot_noncached`. Userspace does not infer cache
 attributes from `O_SYNC`. Cached ring mapping remains forbidden.
 
 The device admits one open consumer. The reader retains its file descriptor until
@@ -52,7 +52,7 @@ before the HPS application accesses CSRs.
 
 `trecap_platform.service` loads the driver before `trecap_udp_streamer.service`.
 The driver owns HPS_GPIO48 through `portb` offset 19. After output-low readback,
-it asserts the FPGA-visible `PLATFORM_CONTROL` grant; teardown clears that CSR
+it asserts the FPGA-visible `PLATFORM_CONTROL` grant. Teardown clears that CSR
 before driving the GPIO high. It validates the exact CSR resource and platform
 capability before acquisition. See [platform grant](platform_grant.md) for ordering and reset
 semantics. No competing userspace GPIO owner is part of this design. Merely stopping the oneshot service does not unload the driver
@@ -91,20 +91,20 @@ Both `W` and `Rd` must be 64-byte aligned, `0 <= W-Rd <= R`, and at least one
 complete 32-byte header must lie below the producer commit boundary before the
 header is read. Record lengths are derived in 64-bit arithmetic before being
 narrowed, preventing hostile `payload_bytes` values from wrapping.
-An invalid atomic `W`/`Rd` snapshot is corruption or overrun, not an empty poll;
-it immediately takes the same fail-closed malformed latch path.
+An invalid atomic `W`/`Rd` snapshot is corruption or overrun, not an empty poll.
+It immediately takes the same fail-closed malformed latch path.
 
 Before forwarding, the reader checks:
 
 - magic, header version, `header_bytes=32`, known packet type, and
-  `header_crc=0`;
-- reserved and packet-illegal flags;
-- exact fixed payload lengths and bounded WAVE length;
+  `header_crc=0`.
+- reserved and packet-illegal flags.
+- exact fixed payload lengths and bounded WAVE length.
 - WAVE timestamp/sample-base agreement, `channels=3`, valid `nsamp`, positive
-  stride, and zero reserved field;
-- SPEC64 `nbin=64`, SPEC129 `nbin=129`, valid shift, and zero unused mask bits;
-- METRICS timestamp agreement and exactly one of aggregate/per-frame flags;
-- STATUS timestamp agreement and zero reserved field;
+  stride, and zero reserved field.
+- SPEC64 `nbin=64`, SPEC129 `nbin=129`, valid shift, and zero unused mask bits.
+- METRICS timestamp agreement and exactly one of aggregate/per-frame flags.
+- STATUS timestamp agreement and zero reserved field.
 - committed-body and physical-tail bounds before any payload field is read.
 
 The five normal types WAVE, SPEC64, SPEC129, METRICS, and STATUS are sent as one
@@ -130,7 +130,7 @@ of rejected packets therefore yields back to the DDR consumer.
 
 Local `Rd`, consumed-record counters, and sequence/forwarded accounting change
 only after the CSR shadow/commit operation succeeds. The UDP attempt itself is
-irreversible; a later consumer-commit failure stops the process without falsely
+irreversible. A later consumer-commit failure stops the process without falsely
 advancing local ring state.
 
 FPGA-originated STATUS is copied and only its HPS-owned counter fields are
@@ -146,13 +146,13 @@ The canonical JSON, direct binary, launcher, and systemd policy is
 2. Software enters `MALFORMED_LATCHED` before MMIO, then checks both the hardware
    disable and current-`Rd` recommit results.
 3. The same bad `Rd` is not parsed, counted, or recommitted again.
-4. The process remains available for diagnostic PING/STATUS; no byte-scanning
+4. The process remains available for diagnostic PING/STATUS. No byte-scanning
    recovery is allowed.
 5. Streaming resumes only after soft reset, ring reconfiguration, `Rd=0`
    commit, zero-`W` verification, and the normal arm sequence.
 
 `--stop-on-malformed` is an explicit debug override. It exits with code 3 after
-the latch is established; the systemd unit prevents automatic restart for that
+the latch is established. The systemd unit prevents automatic restart for that
 code so a restart cannot hide the incident.
 
 ## M0 dummy UDP counter
@@ -161,8 +161,8 @@ code so a restart cannot hide the incident.
 loads and validates the runtime JSON, opens only the UDP sender, and emits legal
 diagnostic STATUS datagrams with `status_diagnostic=1`, `seq=0`, and monotonically
 increasing timestamp/sample count. It does not inspect the active DT, map CSR or
-DDR, or require root. `--once` sends one packet; `--max-records N` sends exactly
-`N`; otherwise it runs until interrupted.
+DDR, or require root. `--once` sends one packet. `--max-records N` sends exactly
+`N`. Otherwise it runs until interrupted.
 
 Example:
 

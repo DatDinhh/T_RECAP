@@ -6,7 +6,7 @@ Designer preset. The HPS hard-pin conduit is not a general FPGA input. The board
 therefore receives a driver-owned CSR grant, after Linux establishes and reads
 back the physical GPIO state. No loan-I/O configuration or pinmux change is used.
 
-The source contract is `spec/generated/csr_map.json`; `scripts/gen_headers.py`
+The source contract is `spec/generated/csr_map.json`. `scripts/gen_headers.py`
 emits its RTL, C, and Python constants. Existing CSR offsets and packet formats
 are unchanged. Both new words fit inside the existing 4096-byte CSR aperture.
 
@@ -39,7 +39,7 @@ revoked independently of ring recovery. A grant read returns the current level.
 Managed cleanup and platform shutdown clear the CSR grant and complete a readback
 before driving GPIO48 high. The FPGA initializer releases its open-drain outputs
 when the grant falls. FPGA configuration, fabric clocks, and bridges must remain
-available until this callback finishes; bridge teardown follows platform shutdown.
+available until this callback finishes. Bridge teardown follows platform shutdown.
 The managed action runs before the GPIO descriptor and CSR mapping are released.
 Stopping the platform oneshot service alone does not unload the module.
 
@@ -68,8 +68,8 @@ kernel, DTB, and module together after reconfiguration/reset. It does not promis
 hot reconfiguration or automatic restoration by an already-probed driver.
 
 `PLATFORM_CONTROL` is kernel-owned by the software contract. Privileged userspace
-still has the existing CSR `/dev/mem` path under the selected Linux configuration;
-this CSR is not a hardware access-control boundary. The streamer, source-health
+still has the existing CSR `/dev/mem` path under the selected Linux configuration.
+This CSR is not a hardware access-control boundary. The streamer, source-health
 utility, and UDP command dispatcher do not write it. Other privileged tools must
 respect its owner. The driver reports its GPIO ownership/readback, not an independent
 FPGA observation of the dedicated HPS pin or an electrical measurement of the mux.

@@ -12,17 +12,17 @@ These are source-bound scientific graphics from retained verification and timing
 | `flute_error_agreement.png` | Byte-for-byte copy of the accepted plot separating difference from original input from difference from the threshold-specific reference. |
 | `flute_packet_sizes.png` | Byte-for-byte copy of the accepted captured TSP1 size plot. The denominator is the compact dense spectral representation, not WAV or PCM. |
 | `dv_topology.png` | Byte-for-byte copy of the accepted oracle/host/physical-capture boundary diagram. |
-| `dv_handshake.png` | Byte-for-byte copy of actual simulator ready/valid stall traces. Testbench clock is 10 ns; the nominal/constrained physical clock period is 20 ns. |
-| `dv_reset.png` | Byte-for-byte copy of actual clear/reset waveform excerpts. Separate numerical scoreboards establish recovery; the excerpts do not show an entire recovery epoch. |
+| `dv_handshake.png` | Byte-for-byte copy of actual simulator ready/valid stall traces. Testbench clock is 10 ns. The nominal/constrained physical clock period is 20 ns. |
+| `dv_reset.png` | Byte-for-byte copy of actual clear/reset waveform excerpts. Separate numerical scoreboards establish recovery. The excerpts do not show an entire recovery epoch. |
 | `dv_rounding.png` | Byte-for-byte copy of measured old/repaired executable responses for the retained rounding counterexamples. |
 
 ## Spectrogram definition
 
-The input rate is 48,000 samples/s. Each displayed signal has 384,000 samples. The physical output has 384,512 samples; the plot uses `Y[384:384384]` against `input[0:384000]`. The complete returned output, including its tail, matches its registered threshold-specific reference.
+The input rate is 48,000 samples/s. Each displayed signal has 384,000 samples. The physical output has 384,512 samples. The plot uses `Y[384:384384]` against `input[0:384000]`. The complete returned output, including its tail, matches its registered threshold-specific reference.
 
 The diagnostic transform uses a periodic Hann window of 1,024 samples, a 256-sample hop, and a 2,048-point real FFT. It has 1,497 valid windows, no centered framing and no edge padding. FFT zero padding extends each 1,024-sample window to 2,048 points. This diagnostic STFT is distinct from the hardware's 256-point transform and 128-sample hop.
 
-The amplitude is normalized by the coherent window gain and a full-scale reference of 2,048 signed12 units. Positive interior rFFT bins are doubled; DC and Nyquist are not. Color is `20*log10(amplitude/full_scale)`, clipped to a common -100 to -20 dBFS display range. Every panel uses the full 0 to 24 kHz frequency interval and the same eight-second time interval. There is no per-panel normalization. Zero, coherent sine, DC and Nyquist normalization controls passed; the threshold-zero input/output STFT arrays are exactly equal.
+The amplitude is normalized by the coherent window gain and a full-scale reference of 2,048 signed12 units. Positive interior rFFT bins are doubled. DC and Nyquist are not. Color is `20*log10(amplitude/full_scale)`, clipped to a common -100 to -20 dBFS display range. Every panel uses the full 0 to 24 kHz frequency interval and the same eight-second time interval. There is no per-panel normalization. Zero, coherent sine, DC and Nyquist normalization controls passed. The threshold-zero input/output STFT arrays are exactly equal.
 
 The nonzero-threshold images show changes to the signal, not a measured improvement in perceptual quality or inference accuracy. Scalar input/reference error checks are in `spectrogram_metrics.json`.
 
@@ -40,8 +40,8 @@ The optional monitor replay chart uses a separate recorded Windows session. Its 
 python build_figures.py --workspace <campaign-archive-root> --profile <phase2/profiles/tsh2> --evidence ../data --out <new-output-directory>
 ```
 
-The public checkout intentionally does not contain the raw licensed input/audio capture arrays or every original archive artifact. A full regeneration therefore requires the separately retained, authorized campaign archive with matching hashes. Host plotting tables are included under `../data`; they were independently reconciled against the recorded raw paired trials. The figure script accepts an optional `--python-packages` directory for an already provisioned scientific Python environment.
+The public checkout intentionally does not contain the raw licensed input/audio capture arrays or every original archive artifact. A full regeneration therefore requires the separately retained, authorized campaign archive with matching hashes. Host plotting tables are included under `../data`. They were independently reconciled against the recorded raw paired trials. The figure script accepts an optional `--python-packages` directory for an already provisioned scientific Python environment.
 
-Audio attribution and dataset terms are documented in the [public data provenance](../../results/verification_20261017/data_provenance/dataset_terms.json). The published images are derived visualizations; no raw audio is bundled here.
+Audio attribution and dataset terms are documented in the [public data provenance](../../results/verification_20261017/data_provenance/dataset_terms.json). The published images are derived visualizations. No raw audio is bundled here.
 
 `figure_provenance.json` identifies every original source by a public archive/repository alias and SHA256. The seven reused PNGs are copied byte-for-byte. `figure_audit.json` records image validity, source binding, rendering review and public-text hygiene checks. Original source hashes are not presented as hashes of transformed exports.

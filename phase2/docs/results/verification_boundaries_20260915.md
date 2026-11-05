@@ -7,7 +7,7 @@ frozen artifact was changed.
 
 The [public result JSON](verification_boundaries_20260915.json) records every
 selected case, configuration, exact count, capture hash and source identity.
-This extends the [first campaign](verification_baseline_20260915.md); it does not
+This extends the [first campaign](verification_baseline_20260915.md). It does not
 establish complete verification, board operation or energy savings.
 
 ## Executed matrix
@@ -29,7 +29,7 @@ were reused with their qualified executable and source identities checked.
 
 The finite-stream specification defines frames=floor((Ns+254)/128), active
 length=128*frames, and Ny=active length+384. The formula follows the nonzero
-window support; the first window coefficient is zero. Frame-count changes
+window support. The first window coefficient is zero. Frame-count changes
 therefore occur at Ns=2,130,258,386,514. Testing only H+1 or L+1 would miss the
 transition to the next frame.
 
@@ -47,9 +47,9 @@ part of the required tail.
 | Reference observation scope | 32768 outputs, 136 frames, 17544 bins, 34816 complex IFFT samples, six intermediate boundaries and ten aggregate metrics per vector |
 | Native boundary replay | 80/80 positive cases passed |
 | Native exact comparison totals | 65536 outputs, 272 frames, 35088 bins and 69632 complex IFFT samples |
-| Final-output backpressure | All 40 stalled cases held the final output for 37 cycles; completion waited for acceptance |
-| Completion | One accepted start and one done pulse per case; 1024 quiet cycles after completion |
-| Baseline regression | Four original positive cases passed; the original wrong-y witness was rejected |
+| Final-output backpressure | All 40 stalled cases held the final output for 37 cycles. Completion waited for acceptance |
+| Completion | One accepted start and one done pulse per case. 1024 quiet cycles after completion |
+| Baseline regression | Four original positive cases passed. The original wrong-y witness was rejected |
 | Native checker qualification | Four supplemental wrong-y witnesses were rejected by the intended sample-value checker |
 | Runner admission qualification | 31 tests passed |
 | Capture-checker qualification | 49 tests passed on each of three real corpora: original impulse, Ns=1 and Ns=130 |
@@ -71,7 +71,7 @@ The initial supplemental threshold 4096 suppressed no bins on this prefix. Its
 reference run is retained as geometry evidence. The final 2^43 threshold changes
 the output and suppression statistics at every selected length and exercises a
 threshold bit above bit 31. Eighteen high-threshold vectors contain both retained
-and suppressed eligible bins; Ns=1 and Ns=2 suppress all eligible bins while
+and suppressed eligible bins. Ns=1 and Ns=2 suppress all eligible bins while
 protecting DC. No final-output saturation occurs in the selected reference
 cases, and the native saturation checks remained clear.
 
@@ -89,7 +89,7 @@ otherwise real result and confirms rejection.
 The testbench now admits variable positive Ns within the fixed baseline
 arithmetic profile and independently checks the finite-tail cardinalities. The
 scoreboard allows a zero imaginary residual when the qualified oracle expects
-zero; exact complex comparison remains mandatory.
+zero. Exact complex comparison remains mandatory.
 
 The runner reads supplemental input identities from the qualified report,
 validates path containment, signed width, row count and finite geometry, and
@@ -101,7 +101,7 @@ phantom frames, missing tail data, phase mislabeling and delayed-input boundarie
 Only verification code and documentation changed in this increment. The four
 production files corrected in the first campaign are byte-identical to that
 campaign's final RTL. Earlier reference attempts and baseline regressions remain
-retained with their own source identities; they are not relabeled as final runs.
+retained with their own source identities. They are not relabeled as final runs.
 
 ## Scope still open
 
@@ -117,7 +117,7 @@ benchmark or electrical measurement was performed.
 
 The next increment should exercise long records across repeated history wraps
 and remaining arithmetic/transform boundaries. Dynamic threshold checks then
-need a qualified frame-aware adapter; affected reset/clear expectations still
+need a qualified frame-aware adapter. Affected reset/clear expectations still
 require the recorded contract decisions. The [execution plan](../verification/execution_plan.md)
 tracks those dependencies.
 
@@ -127,7 +127,7 @@ The [runner instructions](../../scripts/verification/README.md) give the command
 The final reference bundle is reference-boundaries-20260915-03. The 40 vectors
 were split into four isolated native batches, each running static and stalled
 variants and one wrong-y witness. A serial invocation over the report's default
-case list runs the same positive matrix; its default wrong-y witness count is
+case list runs the same positive matrix. Its default wrong-y witness count is
 one instead of four. The JSON records the actual batch membership and evidence
 hashes, including the final baseline regression.
 

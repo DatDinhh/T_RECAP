@@ -246,13 +246,13 @@ e[n] = xz[n - D] - y[n]
 
 The reference model may implement direct arrays or ring buffers. The externally visible sequence must be equivalent to:
 
-1. read one sample tick, real input until `Ns`, then zero flush;
-2. write sample into input ring;
-3. emit current WOLA output slot;
-4. compute delay-aligned error against `xz[n-D]`;
-5. clear consumed OLA slot;
-6. trigger a frame on every multiple of `H` until `tau_last`;
-7. process analysis, mask, synthesis, and WOLA addition;
+1. read one sample tick, real input until `Ns`, then zero flush.
+2. write sample into input ring.
+3. emit current WOLA output slot.
+4. compute delay-aligned error against `xz[n-D]`.
+5. clear consumed OLA slot.
+6. trigger a frame on every multiple of `H` until `tau_last`.
+7. process analysis, mask, synthesis, and WOLA addition.
 8. stop after `Ny` emitted samples.
 
 ## Required invariants
@@ -274,11 +274,11 @@ The checker should assert these invariants for every run:
 
 When output mismatch occurs:
 
-1. verify `config.json` and width schedule first;
-2. verify coefficient hashes;
-3. verify `x_in.memh` canonical hash;
-4. compare `frame_stats.csv` row by row;
-5. if available, compare `bin_stats.csv` for the first mismatching frame;
+1. verify `config.json` and width schedule first.
+2. verify coefficient hashes.
+3. verify `x_in.memh` canonical hash.
+4. compare `frame_stats.csv` row by row.
+5. if available, compare `bin_stats.csv` for the first mismatching frame.
 6. only then inspect `y_out.memh` sample mismatch.
 
 A time-domain mismatch is often a symptom. The root cause is usually a rounding, canonicalization, mask, twiddle, or finite-tail error earlier in the pipeline.

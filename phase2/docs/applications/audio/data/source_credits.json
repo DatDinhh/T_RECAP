@@ -1,0 +1,58 @@
+[
+  {
+    "id": "speech_test_a",
+    "credit": "The Age of Chivalry / Chapter 18: Perceval / Read by Anders Lankford\nFrom the LibriSpeech SLR12 collection: https://www.openslr.org/12/\nCC-BY 4.0 https://creativecommons.org/licenses/by/4.0/\n",
+    "sources": {
+      ".txt": {
+        "url": "https://raw.githubusercontent.com/librosa/data/38f4b06556fa0ff1acda5e677d8ba05d1bc0fff0/audio/3436-172162-0000.txt",
+        "sha256": "8cf4b20e148c4366205bc607f447c169256e945d62c64ead43d0a4dfa7d3ab98"
+      },
+      ".hq.ogg": {
+        "url": "https://raw.githubusercontent.com/librosa/data/38f4b06556fa0ff1acda5e677d8ba05d1bc0fff0/audio/3436-172162-0000.hq.ogg",
+        "sha256": "8e034529f2f171c7e5e772df6eccc2d169183c39605b45b351c2bfabddf14162"
+      }
+    }
+  },
+  {
+    "id": "speech_test_b",
+    "credit": "Sense and Sensibility / Chapter 18 / Jane Austen / Read by Heather Barnett\nFrom the LibriSpeech SLR12 collection: https://www.openslr.org/12/\nCC-BY 4.0 https://creativecommons.org/licenses/by/4.0/\n",
+    "sources": {
+      ".txt": {
+        "url": "https://raw.githubusercontent.com/librosa/data/38f4b06556fa0ff1acda5e677d8ba05d1bc0fff0/audio/198-209-0000.txt",
+        "sha256": "c5bf58b2a4aa0d6bf1e6051690312f3238960d455776a6d37e469d80db1da167"
+      },
+      ".hq.ogg": {
+        "url": "https://raw.githubusercontent.com/librosa/data/38f4b06556fa0ff1acda5e677d8ba05d1bc0fff0/audio/198-209-0000.hq.ogg",
+        "sha256": "6a8d2c16e56dcb27b7f5fe5aa99bfd26b4722a6dabca1968eff951b456936514"
+      }
+    }
+  },
+  {
+    "id": "music_test_a",
+    "credit": "Pistachio Ice Cream Ragtime by The Piano Lady (Lena Orsa)\nhttps://freesound.org/people/lena_orsa/sounds/442789/\nCC-BY NC 3.0: https://creativecommons.org/licenses/by-nc/3.0/\n",
+    "sources": {
+      ".txt": {
+        "url": "https://raw.githubusercontent.com/librosa/data/38f4b06556fa0ff1acda5e677d8ba05d1bc0fff0/audio/442789__lena-orsa__happy-music-pistachio-ice-cream-ragtime.txt",
+        "sha256": "99f9c44368918572ac154ae4a2fec4020d1d4bb418ae7bf241864916d68f9d04"
+      },
+      ".hq.ogg": {
+        "url": "https://raw.githubusercontent.com/librosa/data/38f4b06556fa0ff1acda5e677d8ba05d1bc0fff0/audio/442789__lena-orsa__happy-music-pistachio-ice-cream-ragtime.hq.ogg",
+        "sha256": "1cc83b775e640a8dd409da9e29f5b5e0124bc5ec9bb4fda975919d31d1d893b8"
+      }
+    }
+  },
+  {
+    "id": "music_test_b",
+    "credit": "Vibe Ace by Kevin MacLeod is licensed under a Creative Commons Attribution License.\nFrom the Free Music Archive: https://freemusicarchive.org/music/Kevin_MacLeod/Jazz_Sampler/Vibe_Ace\nCC-BY https://creativecommons.org/licenses/by/3.0/\n",
+    "sources": {
+      ".txt": {
+        "url": "https://raw.githubusercontent.com/librosa/data/38f4b06556fa0ff1acda5e677d8ba05d1bc0fff0/audio/Kevin_MacLeod_-_Vibe_Ace.txt",
+        "sha256": "6c71e0525cb0452ea74c6d6f5fde6fa1e221223db7b2aa35b9914b98367ee7b9"
+      },
+      ".hq.ogg": {
+        "url": "https://raw.githubusercontent.com/librosa/data/38f4b06556fa0ff1acda5e677d8ba05d1bc0fff0/audio/Kevin_MacLeod_-_Vibe_Ace.hq.ogg",
+        "sha256": "73d6443ef90a7c022f164e5aa90e56c2291585930b39b1656d0765abbc1f1779"
+      }
+    }
+  }
+]

@@ -1,0 +1,99 @@
+{
+  "schema": "trecap-rf-derived-samples-v1",
+  "original_clean_truth_sha256": "7c5447278145c2610a0070af0672f247f4abb936588f6a42b3f23b16d23e4625",
+  "iq_rate_hz": 250000,
+  "real_if_rate_hz": 1000000,
+  "alignment_samples": 384,
+  "valid_real_samples": 131072,
+  "active_real_interval": [
+    32768,
+    98304
+  ],
+  "quiet_real_intervals": [
+    [
+      8192,
+      24576
+    ],
+    [
+      106496,
+      122880
+    ]
+  ],
+  "clean_target": "Known generated clean waveform after the fixed-point RF adapter reference. No fitted amplitude or timing.",
+  "original_clean_reference_sha256": "551289b5b1c6469d228074bbce78a13eeb2fc6d6151e69f3a86dcaa38b2dec6e",
+  "cases": [
+    {
+      "id": "ook_snr20_seed202_t0",
+      "array": "snr20_t0",
+      "nominal_snr_db": 20,
+      "threshold": 0,
+      "epoch": 6,
+      "raw_input": "data/ook_snr20_seed202.cu8",
+      "raw_input_sha256": "eb4eb973e5ebde1a39c13b8e0db5deff457500a40b311088565efd83f119273d",
+      "original_full_y_sha256": "05d4de269a859a53ceaba4a6513c31efdc0a5b45ffe8bea948ec580a51512976",
+      "valid_y_i32le_sha256": "b34addbd73bfc667c4674631e2f5bcbb4df296b325791fe262d3d3d3677cfa94",
+      "original_tsp1_sha256": "d80864f2a8b6a3c41406eb78d75e8e116eb4a2882ecffc40fdfcecb6f83461b8"
+    },
+    {
+      "id": "ook_snr20_seed202_t1000000000",
+      "array": "snr20_t1000000000",
+      "nominal_snr_db": 20,
+      "threshold": 1000000000,
+      "epoch": 7,
+      "raw_input": "data/ook_snr20_seed202.cu8",
+      "raw_input_sha256": "eb4eb973e5ebde1a39c13b8e0db5deff457500a40b311088565efd83f119273d",
+      "original_full_y_sha256": "32bb479ecca7365e4d663f0e51ccfb0dffe515304e6071234fec387b200cb111",
+      "valid_y_i32le_sha256": "b3106e5ad1af58b21ffa4f17b256629d8a66feaddc94a38b8196ed54c60d9b26",
+      "original_tsp1_sha256": "f42acd367274c69f668abd8863332a4d995252b29d3c2ad4f1d3a0b434943e9f"
+    },
+    {
+      "id": "ook_snr10_seed202_t0",
+      "array": "snr10_t0",
+      "nominal_snr_db": 10,
+      "threshold": 0,
+      "epoch": 8,
+      "raw_input": "data/ook_snr10_seed202.cu8",
+      "raw_input_sha256": "c5cac8252235c75809f31c4b6ebdd5139114075ce57c8e10ae4b4bb68bf98839",
+      "original_full_y_sha256": "acd78ba226372e275c794529187cff6e9617d37cca734e9633e08d23816e120e",
+      "valid_y_i32le_sha256": "774327364348d59ce40539f464c7eed1a0e01290793c5e62b38ac1bad56ec691",
+      "original_tsp1_sha256": "e64a85dd44323077fcf7d67eedc5aeff322da56b0e1d998649a681fc266a9e75"
+    },
+    {
+      "id": "ook_snr10_seed202_t1000000000",
+      "array": "snr10_t1000000000",
+      "nominal_snr_db": 10,
+      "threshold": 1000000000,
+      "epoch": 9,
+      "raw_input": "data/ook_snr10_seed202.cu8",
+      "raw_input_sha256": "c5cac8252235c75809f31c4b6ebdd5139114075ce57c8e10ae4b4bb68bf98839",
+      "original_full_y_sha256": "08ec4a48d0dbf2620b3ac9a7206b8d1d7683f8c7e285b31ccc5e93e7be2ddd37",
+      "valid_y_i32le_sha256": "9b561eac84b11b1822bbf387343fb78f50650e8b4ff1bf511324b5a37279d649",
+      "original_tsp1_sha256": "120ab39ea6531650150778bebd9be2010c54f4b01f5cb19486b0718b9eff01dc"
+    },
+    {
+      "id": "ook_snr0_seed202_t0",
+      "array": "snr0_t0",
+      "nominal_snr_db": 0,
+      "threshold": 0,
+      "epoch": 10,
+      "raw_input": "data/ook_snr0_seed202.cu8",
+      "raw_input_sha256": "0da15c53881418af005adc282c3abd12c6ef13c166783c5af9f40045f6e04086",
+      "original_full_y_sha256": "6ee2149e114b21956e5020935af583ed914773c12fc33cda29e91905913110ad",
+      "valid_y_i32le_sha256": "c86ea20ac004bf6c645aa5149807aa549079bde547801e6d417e981206ebc295",
+      "original_tsp1_sha256": "50a184f17caccebf837c88edb7e52c5be32fb18979def25785121d9a18e4f49e"
+    },
+    {
+      "id": "ook_snr0_seed202_t1000000000",
+      "array": "snr0_t1000000000",
+      "nominal_snr_db": 0,
+      "threshold": 1000000000,
+      "epoch": 11,
+      "raw_input": "data/ook_snr0_seed202.cu8",
+      "raw_input_sha256": "0da15c53881418af005adc282c3abd12c6ef13c166783c5af9f40045f6e04086",
+      "original_full_y_sha256": "7f3580151c85f8231b1e13c054eec0eef8830a1596dc2e872e176e632fed2745",
+      "valid_y_i32le_sha256": "f17fdfd5f198809c8a206b9e3485652555e9ea2027bcf996456a6281b5f7e3a4",
+      "original_tsp1_sha256": "3a332b434ba9fc102c4d33ddd48edc81d46afa9700d1c6be9adbe4351cb51cad"
+    }
+  ],
+  "array_archive_sha256": "93134841c8174d403702123c54a3a333e5f2734ea0113fc70d78f9eb6d5ad238"
+}

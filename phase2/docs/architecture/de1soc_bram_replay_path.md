@@ -4,7 +4,7 @@
 
 Step 11 closes the checked-in source hierarchy from deterministic BRAM input through the
 mathematical core, real telemetry taps, the HPS bridge, and the DDR writer. The machine-readable
-authority is `config/boards/de1soc_bram_replay_path.json`; its schema is
+authority is `config/boards/de1soc_bram_replay_path.json`. Its schema is
 `spec/schemas/de1soc_bram_replay_path.schema.json`. The source-only gate is
 `scripts/check_bram_replay_path.py`.
 
@@ -38,7 +38,7 @@ ctrl.source_mode + source_mode_apply_pulse
 
 The Step-11 profile and reset default select BRAM replay. A replay start is accepted only while
 BRAM mode is actually active and the source/core path is safe. A later valid CSR source-mode
-commit remains legal; it is not silently ignored or locally rejected by an invented lock.
+commit remains legal. It is not silently ignored or locally rejected by an invented lock.
 
 ## Replay admission and STATUS correlation
 
@@ -54,10 +54,10 @@ packetizer/FIFO state and starts a fresh correlated E2E epoch. It must not asser
 `external_transport_clear_i`: committed producer, consumer, and sequence state must not rewind.
 In the pin-agnostic top, explicit clear or `enable_i=0` is the replay/core/E2E abort and rearm and
 may perform the coordinated transport clear. The frozen HPS `TELEMETRY_SOFT_RESET` command remains
-transport-only; it is not silently widened into a replay rearm. On the board, dedicated debounced
+transport-only. It is not silently widened into a replay rearm. On the board, dedicated debounced
 `KEY[3]` clears only source/core/E2E state. It must not pulse `external_telemetry_flush_i` while a
-writer record might be in flight; telemetry, FIFO, writer, and committed ring state are preserved.
-The next accepted replay—already gated by `transport_epoch_idle_o`—performs the safe telemetry-only
+writer record might be in flight. Telemetry, FIFO, writer, and committed ring state are preserved.
+The next accepted replay, already gated by `transport_epoch_idle_o`, performs the safe telemetry-only
 flush. `KEY[2]` retains its existing ADC manual-request role.
 
 Periodic `status_tick_i` requests are suppressed while replay is busy. The successful
@@ -106,8 +106,8 @@ The three completion signals are intentionally different:
 | Signal | Meaning | Allowed to declare full Step-11 PASS? |
 | --- | --- | --- |
 | `replay_done_o` / `replay_source_done_o` | The final BRAM/zero-flush source token was accepted. A final WOLA or public `y` beat may still be pending. | No. |
-| `replay_path_done_o` | The source is done, the source/core/`y` path is quiescent, all exact geometry counters match, accepted `y` indices were contiguous, and no replay/core fault exists. Its scope stops at the mathematical core output. | No; this proves only the BRAM-to-core subpath. |
-| `replay_e2e_done_o` | Core-path completion was followed by a new STATUS record normal-committed through telemetry and the DDR writer, with producer/DMA advance, writer idle, and no path/transport fault or drop. | Yes; this is the Step-11 end-to-end authority, after a functional gate observes it. |
+| `replay_path_done_o` | The source is done, the source/core/`y` path is quiescent, all exact geometry counters match, accepted `y` indices were contiguous, and no replay/core fault exists. Its scope stops at the mathematical core output. | No. This proves only the BRAM-to-core subpath. |
+| `replay_e2e_done_o` | Core-path completion was followed by a new STATUS record normal-committed through telemetry and the DDR writer, with producer/DMA advance, writer idle, and no path/transport fault or drop. | Yes. This is the Step-11 end-to-end authority, after a functional gate observes it. |
 
 `p_replay_exact_completion` in `trecap_source_core_integration` is the core-path completion monitor.
 It starts an epoch only on an accepted replay start and independently counts public output
@@ -144,7 +144,7 @@ replay_active/source_valid/core_busy/y_valid == 0
 replay/core/build fault set                 == 0
 ```
 
-`replay_path_done_o` is a retained level; `replay_path_done_pulse_o` marks the successful
+`replay_path_done_o` is a retained level. `replay_path_done_pulse_o` marks the successful
 transition. If the source becomes quiescent with a bad count or fault, the monitor sets a sticky
 completion error and deliberately keeps the epoch busy until clear or reset. That fail-closed
 behavior prevents an incomplete run from becoming PASS or silently restarting.
@@ -155,7 +155,7 @@ supervision. Its sequential block is `p_replay_e2e_completion`. On the cycle aft
 start flushes uncommitted telemetry state it records the drop-counter baselines. When `replay_path_done_o`
 establishes the exact core result, it snapshots the post-core producer pointer and DMA packet
 count. Fault and transport-clear inputs are latched both on the accepted-start edge and during that
-following baseline-capture cycle; there is no one-cycle baseline blind window. It then requires
+following baseline-capture cycle. There is no one-cycle baseline blind window. It then requires
 all of the following:
 
 ```text
@@ -171,7 +171,7 @@ no replay/core/build/telemetry/DDR fault
 
 A source-done event, core-path-done without a later STATUS commit, WRAP instead of normal commit,
 unchanged producer/DMA state, a busy writer, any drop, or any replay/core/transport fault cannot
-assert `replay_e2e_done_o`. `replay_e2e_done_pulse_o` marks the successful transition;
+assert `replay_e2e_done_o`. `replay_e2e_done_pulse_o` marks the successful transition.
 `replay_e2e_error_sticky_o` records a failed epoch. Like the core-path monitor, a failed E2E epoch
 stays busy until clear or reset so failure cannot decay into PASS.
 
@@ -186,7 +186,7 @@ but it is not proof of physical-DRAM completion or downstream DRAM health. Hardw
 remains a separate required evidence gate.
 
 `replay_e2e_done_o` is retained historical terminal evidence for the correlated replay and STATUS
-epoch; it is not a live global-transport-health signal. Because the write master serializes local
+epoch. It is not a live global-transport-health signal. Because the write master serializes local
 responses, terminal success has no response outstanding for any Avalon-MM beat belonging to that
 STATUS record. A later unrelated periodic transport fault is reported through the normal transport
 fault and status channels and does not retroactively revoke the completed replay epoch. A new
@@ -194,7 +194,7 @@ accepted replay epoch, or the defined source/core clear/rearm, clears and invali
 epoch result as specified above.
 
 A denied extra start remains visible through command-reject telemetry but does not corrupt an
-already accepted epoch; only data-integrity and transport faults block its E2E result.
+already accepted epoch. Only data-integrity and transport faults block its E2E result.
 
 ## Board profile: zero vector
 
@@ -210,9 +210,9 @@ already accepted epoch; only data-integrity and transport faults block its E2E r
 | `Ny` | 4608 |
 | `THR2` | 0 |
 | Telemetry | `telemetry_status_only` |
-| DDR/UDP | Enabled by profile; runtime ring configuration is still required |
+| DDR/UDP | Enabled by profile. Runtime ring configuration is still required |
 | Start | Debounced `KEY[1]` press |
-| Abort/rearm | Dedicated debounced `KEY[3]`; source/core/E2E only, all transport state preserved |
+| Abort/rearm | Dedicated debounced `KEY[3]`. Source/core/E2E only, all transport state preserved |
 
 Board-visible exact replay state is:
 
@@ -245,7 +245,7 @@ The Step-11 regression source is separate from the boring zero-vector board prof
 
 The testbench must compare every accepted `y` sample and index, prove that source-done is not
 treated as test completion, and observe exact core path-done. It must rely exclusively on
-`replay_path_done_pulse_o` auto-injection for the post-completion STATUS request; a redundant
+`replay_path_done_pulse_o` auto-injection for the post-completion STATUS request. A redundant
 manual `status_tick_i` pulse after path-done is forbidden. The test then waits for
 `replay_e2e_done_o` only after the normal DDR commit, producer/DMA advance, and writer-idle checks.
 Its DDR model injects delayed `OKAY` responses on the positive epoch and a delayed `SLVERR` in a
@@ -307,7 +307,7 @@ Until those records exist, `rtl_compile`, `functional_verification`,
 ## Step-14 CSR command extension
 
 Step 14 adds a remote request path without changing the Step-11 replay owner.
-`START_BRAM_REPLAY` writes W1P `REPLAY_CONTROL.start`; the raw request reaches the
+`START_BRAM_REPLAY` writes W1P `REPLAY_CONTROL.start`. The raw request reaches the
 owner even when `start_ready=0`, allowing an observable accept or reject. The CSR
 bank retains mutually exclusive `REPLAY_STATUS.last_accept`/`last_reject`, clears
 `pending` on feedback, and increments `result_epoch` for each completed

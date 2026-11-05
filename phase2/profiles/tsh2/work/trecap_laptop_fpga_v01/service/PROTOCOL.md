@@ -14,13 +14,13 @@ One request per connection. All fields and PCM values are little endian:
   request. Extra or missing bytes are rejected before accelerator writes.
 * Reply header40 bytes: `<IIIIQQQ>` = magic0x31535254, status0success/1failure,
   Y byte count, TSP1 byte count, epoch, board wall nanoseconds, board thread CPU
-  nanoseconds. Success payload is full Y int32le then sparse TSP1; no extra data.
+  nanoseconds. Success payload is full Y int32le then sparse TSP1. No extra data.
   Failure header has status1 and all remaining fields zero. Any failed request
   ends the service, without retrying or automatically issuing MMIO abort.
 
 The original host02 source is included through a renamed main. Its `run()` and
 `timed_run()` are unchanged. The board timer encloses only that existing timed
-call; input receipt and output prefault occur before it, reply transmission
+call. Input receipt and output prefault occur before it, reply transmission
 after it. Laptop transport timing encloses connect/upload/compute/download and
 must be measured on the laptop alone. Exact reference checks happen afterward.
 

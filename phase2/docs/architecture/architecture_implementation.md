@@ -15,15 +15,15 @@ The reference model defines a finite stream and full-tail output. The FPGA integ
 | Area | Implemented source | Next tool or board result |
 | --- | --- | --- |
 | Reference model | C++ arithmetic, frozen coefficients/vectors, strict configuration/export boundary | Numerical verification remains a separate phase |
-| Mathematical core | Registered transforms; synchronous frame/history/OLA RAM; connected 18000-clock allocation; native M10K inference and passing 50 MHz fitted timing | Functional verification remains a separate phase |
+| Mathematical core | Registered transforms. Synchronous frame/history/OLA RAM. Connected 18000-clock allocation. Native M10K inference and passing 50 MHz fitted timing | Functional verification remains a separate phase |
 | Sources | Synchronous replay ROM, audio/ADC adapters, source supervisor, explicit epoch stop/rearm | Physical live-source operation |
 | Telemetry | Valid-only taps, nine-slot payload RAM, priority eviction, streamed DDR record construction | DDR/HPS sustained operation and loss measurements |
 | HPS platform | Static Linux 6.12.109 DTS, noncached ring driver, GPIO48 owner, paired services | Matching kernel/DTB/module and target deployment |
 | HPS/dashboard | Transport/control, source-health utility, waveform/spectrum/status/control UI | Main-demo capture and operation on the board |
-| Board timing | Generated vendor IP; 66% ALM; 209 fitted pins checked; required timing, DDR and physical-route checks pass at all four corners | Board measurements and matched HPS/Linux operation |
+| Board timing | Generated vendor IP. 66% ALM. 209 fitted pins checked. Required timing, DDR and physical-route checks pass at all four corners | Board measurements and matched HPS/Linux operation |
 
 The baseline architecture implementation is present in source. Production RTL
-elaboration and host compilation check its language/integration boundary; they
+elaboration and host compilation check its language/integration boundary. They
 do not establish arithmetic correctness, synthesis fit, timing closure or board
 operation. Historical Step/R labels identify development history, not achieved
 hardware evidence. Detailed source schedules and physical allocations are in the
@@ -56,7 +56,7 @@ The standalone `trecap_core_telemetry_top` is a reusable composition for an alre
 | Telemetry may drop but never stall the core | Bound interference from DDR, Ethernet and display load |
 | Single 50 MHz fabric clock | Keep core/control/DDR interfaces in one defined domain |
 | Complete-frame audio FIFO crossings | Preserve coherent I2S words across the codec clock boundary |
-| FPGA owns producer; HPS owns consumer | Give each DDR pointer one writer and a defined reset epoch |
+| FPGA owns producer. HPS owns consumer | Give each DDR pointer one writer and a defined reset epoch |
 | Shadow/commit configuration | Apply controls at documented safe boundaries rather than tearing live state |
 | BRAM replay as default profile | Provide deterministic input independent of analog and codec setup |
 
@@ -73,11 +73,11 @@ The full interface and failure contracts remain in [interface_contracts.md](inte
 
 The current BRAM profile has completed Platform Designer generation, full-board placement/routing and the required timing gate with Quartus Prime Lite 20.1.1 Build 720. It uses 21,220 of 32,070 ALMs, 55 of 397 memory blocks and 36 of 87 DSP blocks. All 209 fitted pins pass. The four-corner gate passes with minimum CLOCK_50 setup slack +2.333 ns and hold slack +0.002 ns. The archived fresh image was successfully configured into the DE1-SoC FPGA via JTAG. The [Lite deployment report](../results/de1soc_lite_bram_20260915.md) records source, image and tool evidence.
 
-Volatile FPGA configuration is complete. HPS boot/runtime deployment and end-to-end board operation remain open; no replay or transport success is inferred from programmer success. Raw records remain in ignored `runs/quartus/` directories. The earlier [Standard Edition result](../results/fpga_implementation.md) is historical.
+Volatile FPGA configuration is complete. HPS boot/runtime deployment and end-to-end board operation remain open. No replay or transport success is inferred from programmer success. Raw records remain in ignored `runs/quartus/` directories. The earlier [Standard Edition result](../results/fpga_implementation.md) is historical.
 
 ## Transport and control behavior
 
-The FPGA never waits for dashboard refresh or Ethernet delivery. FIFO/ring capacity limits produce attributable drop counters. HPS advances the consumer after forwarding or dropping a validated datagram; it does not accumulate an unbounded backlog for a disconnected PC.
+The FPGA never waits for dashboard refresh or Ethernet delivery. FIFO/ring capacity limits produce attributable drop counters. HPS advances the consumer after forwarding or dropping a validated datagram. It does not accumulate an unbounded backlog for a disconnected PC.
 
 Malformed DDR data stops the transport path and requires its documented reset/reconfigure lifecycle. It does not trigger byte-scanning recovery. Threshold and source changes follow their owning safe-boundary rules. Source changes must not silently combine unrelated metric epochs.
 

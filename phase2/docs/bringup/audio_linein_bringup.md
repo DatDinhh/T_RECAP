@@ -40,7 +40,7 @@ best-effort processed monitor stream back to codec BCLK.
 LINE-IN operation on hardware remains unestablished. Native RTL source
 compilation, actual Platform Designer generation, and native11 placement/routing
 now exist. The implemented external timing policy is documented in
-[physical_timing.md](../architecture/physical_timing.md); each source revision
+[physical_timing.md](../architecture/physical_timing.md). Each source revision
 still needs its corresponding fitted reports. Current build results and gates
 are recorded in [architecture_implementation.md](../architecture/architecture_implementation.md)
 and [build_order.md](../architecture/build_order.md). Standard Edition evaluation
@@ -255,7 +255,7 @@ Frozen audio portion:
 }
 ```
 
-Select this profile explicitly for a LINE-IN build; its presence does not switch
+Select this profile explicitly for a LINE-IN build. Its presence does not switch
 the default BRAM-replay build automatically. Profiles may select source mode and
 demo defaults. They must not redefine core constants such as `N`, `L`, `H`,
 `F`, `G`, `D`, packet IDs, or payload layouts.
@@ -264,16 +264,16 @@ demo defaults. They must not redefine core constants such as `N`, `L`, `H`,
 
 | Layer | File | Responsibility |
 | --- | --- | --- |
-| Platform clock | `rtl/platform/de1soc/audio_pll_wrapper.sv` | peripheral-only 12.288 MHz `AUD_XCK` and qualified lock; never a fabric/core clock |
+| Platform clock | `rtl/platform/de1soc/audio_pll_wrapper.sv` | peripheral-only 12.288 MHz `AUD_XCK` and qualified lock. Never a fabric/core clock |
 | Platform control | `rtl/platform/de1soc/audio_codec_i2c_init.sv` | open-drain WM8731 `0x1a` register sequence, ACK/retry/error accounting, ACTIVE last |
 | Platform serial/CDC | `rtl/platform/de1soc/audio_codec_wrapper.sv` | 48 kS/s signed 16-bit codec-master I2S, bidirectional async FIFOs, epoch flush, optional line-out formatting, dedicated audio counters |
 | Source adapter | `rtl/sources/trecap_audio_adapter.sv` | exact `sat_N(rnd_shr(a_audio, B_audio-N))` scaling to N-bit core input and sample tick cleanup |
 | Source mux | `rtl/sources/trecap_source_mux.sv` | registered active/pending source selection and switch/discontinuity status |
 | Source/core integration | `rtl/top/trecap_source_core_integration.sv` | post-CSR transition guard, source epoch clear, core discontinuity, safe-boundary return, real valid-only taps |
-| Core | `rtl/core/trecap_core_top.sv` | STFT/WOLA processing; no codec-specific logic |
-| Telemetry | `rtl/telemetry/*` | observe xdel/y/error/spectrum/metrics; no codec control |
-| HPS | `sw/hps/*` | command source mode, THR2, packet enables; no audio DSP |
-| PC | `sw/pc_dashboard/*` | visualization and commands; no audio reconstruction logic |
+| Core | `rtl/core/trecap_core_top.sv` | STFT/WOLA processing. No codec-specific logic |
+| Telemetry | `rtl/telemetry/*` | observe xdel/y/error/spectrum/metrics. No codec control |
+| HPS | `sw/hps/*` | command source mode, THR2, packet enables. No audio DSP |
+| PC | `sw/pc_dashboard/*` | visualization and commands. No audio reconstruction logic |
 
 Board pin binding belongs in `rtl/platform/de1soc/` and `constraints/de1soc/`, not inside `rtl/core/`.
 
@@ -292,11 +292,11 @@ codec init done with no error = 1
 
 The FPGA never drives `HPS_I2C_CONTROL`. It only observes the synchronized grant
 and fails closed if HPS selects itself. `FPGA_I2C_SCLK` is on `PIN_J12` and
-`FPGA_I2C_SDAT` is on `PIN_K12`; both use 3.3-V LVTTL open-drain behavior and
+`FPGA_I2C_SDAT` is on `PIN_K12`. Both use 3.3-V LVTTL open-drain behavior and
 depend on the board pull-ups. Do not enable an internal weak pull-up or replace
 that electrical behavior with push-pull high drive.
 
-The frozen control rate is 100 kHz. Every transmitted byte requires an ACK; a
+The frozen control rate is 100 kHz. Every transmitted byte requires an ACK. A
 register write may retry at most three times after its initial attempt. The
 codec ACTIVE write is last, and configuration-done is legal only after all
 writes are acknowledged.
@@ -422,7 +422,7 @@ audio_adapter_overflow
 The implemented Step-16 counters are saturating 64-bit
 `audio_rx_overflow_count`, `audio_tx_overflow_count`, and
 `audio_tx_underflow_count`. Each saturates at all ones and clears with the
-wrapper `clear_sticky_i` event. Keep them dedicated; do not map them onto
+wrapper `clear_sticky_i` event. Keep them dedicated. Do not map them onto
 unrelated generated `OVERFLOW_FLAGS` meanings.
 
 ### A3: diagnostic source-to-audio source switch
@@ -600,7 +600,7 @@ Capture manifest minimum fields:
 | THR2 change tears mid-frame | missing shadow/commit | CSR commit logic |
 | drop counters rise immediately | dashboard/HPS bottleneck or packet schedule too aggressive | use STATUS-only then add WAVE |
 | core sample count stops if dashboard closes | transport backpressure bug | non-stall path and FIFO/drop logic |
-| line-out emits gaps after priming | monitor FIFO drained between codec frames | TX underflow counter; core remains non-stalling |
+| line-out emits gaps after priming | monitor FIFO drained between codec frames | TX underflow counter. Core remains non-stalling |
 
 ## Stop conditions
 

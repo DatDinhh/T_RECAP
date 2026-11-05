@@ -147,7 +147,7 @@ Expected interpretation:
 | `make check-layout` | Confirms Phase 1 root files are quarantined and required folders exist. |
 | `make gen-headers` | Produces SV/C/Python constants from shared schemas. |
 | `make check-generated` | Catches generated-header drift. |
-| `make rtl-filelist` | Produces compile order; no hand-ordering. |
+| `make rtl-filelist` | Produces compile order. No hand-ordering. |
 | `make coeffs` | Emits coefficient ROM artifacts. |
 | `make vectors` | Emits or validates frozen/provisional input vectors. |
 | `make golden` | Runs current reference flow for expected outputs. |

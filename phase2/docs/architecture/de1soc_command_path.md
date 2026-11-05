@@ -3,7 +3,7 @@
 File class: `[1]` hand-written architecture documentation.
 
 This document defines architecture implementation Step 14. The machine-readable
-authority is `config/boards/de1soc_command_path.json`; its schema is
+authority is `config/boards/de1soc_command_path.json`. Its schema is
 `spec/schemas/de1soc_command_path.schema.json`, and its source gate is
 `scripts/check_command_path.py`.
 
@@ -46,7 +46,7 @@ Both versions use the exact packed little-endian request:
 | 12 | `arg0` | `uint32` | Command-specific |
 | 16 | `arg1` | `uint32` | Command-specific |
 | 20 | `arg2` | `uint32` | Command-specific |
-| 24 | `crc32` | `uint32` | Must be zero; CRC remains disabled |
+| 24 | `crc32` | `uint32` | Must be zero. CRC remains disabled |
 
 The datagram length is exactly 28 bytes. C structure padding or a longer UDP
 payload is not accepted.
@@ -78,7 +78,7 @@ Version 2 accepts the seven version-1 types and adds:
 | `0x000B` | `RESET_TRANSPORT` | all zero | Disable, reset, and put the HPS/FPGA transport into the reset-complete lifecycle state. |
 | `0x000C` | `CLEAR_COUNTERS` | all zero | Clear the exact Step-14 FPGA and HPS transport-counter set without resetting unrelated state. |
 | `0x000D` | `START_BRAM_REPLAY` | all zero | Issue the generated replay request and report the FPGA owner's accept or reject result. |
-| `0x000E` | `READ_STATUS_VERSION` | all zero | Return raw `STATUS` and raw `VERSION` as `NOOP`, even when identity/version is incompatible; only read failure is `FAILED`. |
+| `0x000E` | `READ_STATUS_VERSION` | all zero | Return raw `STATUS` and raw `VERSION` as `NOOP`, even when identity/version is incompatible. Only read failure is `FAILED`. |
 
 Version-2 `PING` ignores all three arguments. Every valid PING emits one fresh
 diagnostic STATUS with telemetry `seq=0`. It emits no command result, performs
@@ -128,8 +128,8 @@ Reject reasons preserve the version-1 values and append Step-14 reasons:
 
 An applied result is not emitted until all command-specific CSR writes and
 required readbacks have succeeded. A UDP result-send failure does not authorize
-reapplying the command. An identical retry resends the cached snapshot bytes;
-it does not perform a fresh read.
+reapplying the command. An identical retry resends the cached snapshot bytes.
+It does not perform a fresh read.
 
 Every command except PING and `READ_STATUS_VERSION` must verify generated FPGA
 ID and CSR VERSION 1.8 before it can return `NOOP` or `APPLIED`. PING performs no
@@ -148,14 +148,14 @@ trusted PC command source  192.168.10.1:5007
 ```
 
 The production HPS listener binds the runtime `hps_static_ip`,
-`192.168.10.2:5006`; it does not bind a wildcard interface. Responses use that
+`192.168.10.2:5006`. It does not bind a wildcard interface. Responses use that
 same bound command socket. Production matching uses both IPv4 address and
 nonzero UDP source port. A
 configured IP match with an arbitrary source port is insufficient.
 
 A deliberately unbound direct-link lab mode may learn a peer only from the
 first fully valid PING. It then pins both the observed IPv4 address and its
-nonzero UDP port. This learning mode must be explicit; it is not a production
+nonzero UDP port. This learning mode must be explicit. It is not a production
 fallback. The protocol is neither authenticated nor encrypted and must not be
 exposed to an untrusted network.
 
@@ -217,12 +217,12 @@ network never selects a physical address.
 
 Enable requires all of the following:
 
-- generated FPGA ID and CSR VERSION 1.8 verified;
-- transport reset completed;
-- pinned ring configuration committed and reported configured;
-- consumer pointer `Rd=0` committed;
-- producer pointer snapshot `W=0` verified;
-- no malformed latch or reset-required state;
+- generated FPGA ID and CSR VERSION 1.8 verified.
+- transport reset completed.
+- pinned ring configuration committed and reported configured.
+- consumer pointer `Rd=0` committed.
+- producer pointer snapshot `W=0` verified.
+- no malformed latch or reset-required state.
 - writer and telemetry control readback match the requested levels.
 
 If any write, commit, poll, or readback fails, the bridge attempts
@@ -244,7 +244,7 @@ RESET is not a replay abort. After the ring reset, the bridge rejects RESET if
 `writer_busy=0`, both commit-pending indicators clear,
 `source_transition_busy=0`, and `transport_epoch_idle=1`. A healthy replay
 state (`rearm_required=0`) causes no `REPLAY_CONTROL` write. Only a quiescent
-failed epoch may receive one `REPLAY_CONTROL.rearm` pulse; readback must preserve
+failed epoch may receive one `REPLAY_CONTROL.rearm` pulse. Readback must preserve
 `result_epoch` and clear pending/active/busy, retained accept/reject, error, and
 `rearm_required`. Any timeout, MMIO error, reserved-bit violation, epoch change,
 or stuck bit returns `FAILED` and retains the software `RESET_REQUIRED` lock.
@@ -262,32 +262,32 @@ commit.
 For source mode, the bridge writes `SOURCE_MODE_SHADOW`, pulses
 `SOURCE_MODE_COMMIT`, waits for pending to clear, and verifies
 `STATUS.actual_source_mode`. For every listed control it verifies the requested
-readback before restoring the prior enable state; restore itself also requires
+readback before restoring the prior enable state. Restore itself also requires
 verified readback. Any failed write, timeout, readback mismatch, or unsafe replay
 state triggers the same `CONTROL=0` attempt and verification. If disable cannot
 be read back, software locks `RESET_REQUIRED` and reports hardware disable as
-unverified; HPS-local state does not commit. Direct live CSR writes for these mutations are rejected, including when
+unverified. HPS-local state does not commit. Direct live CSR writes for these mutations are rejected, including when
 the request uses the otherwise unchanged version-1 wire contract.
 
 ## Counter-clear ownership
 
 `CLEAR_COUNTERS` clears:
 
-- FPGA `DMA_DROP_COUNT` and `DMA_PACKET_COUNT`;
-- FPGA `PACKET_FIFO_DROP_COUNT`;
-- FPGA `CSR_COMMAND_REJECT_COUNT`;
+- FPGA `DMA_DROP_COUNT` and `DMA_PACKET_COUNT`.
+- FPGA `PACKET_FIFO_DROP_COUNT`.
+- FPGA `CSR_COMMAND_REJECT_COUNT`.
 - the defined HPS UDP/ring/command transport counters.
 
 It preserves:
 
-- sticky `OVERFLOW_FLAGS`;
-- producer `W` and consumer `Rd`;
-- telemetry sequence;
-- core sample/frame counters;
-- trusted-peer binding;
+- sticky `OVERFLOW_FLAGS`.
+- producer `W` and consumer `Rd`.
+- telemetry sequence.
+- core sample/frame counters.
+- trusted-peer binding.
 - version-2 sequence ledger and cached results.
 
-Sticky flags remain owned by `CLEAR_STICKY_FLAGS`; core metrics remain owned by
+Sticky flags remain owned by `CLEAR_STICKY_FLAGS`. Core metrics remain owned by
 the existing `CLEAR_METRICS` command. Counter clear is not a transport reset.
 
 ## CSR minor-1.8 extension
@@ -295,7 +295,7 @@ the existing `CLEAR_METRICS` command. Counter clear is not a transport reset.
 | Offset | Register | Access | Meaning |
 | ---: | --- | --- | --- |
 | `0x08C` | `COUNTER_CLEAR` | W1P | Bit 0 `transport_counters` clears the exact FPGA transport-counter set. |
-| `0x090` | `REPLAY_CONTROL` | W1P | Bit 0 `start`; bit 1 `rearm`. |
+| `0x090` | `REPLAY_CONTROL` | W1P | Bit 0 `start`. Bit 1 `rearm`. |
 | `0x094` | `REPLAY_STATUS` | R | Replay request/result and path state. |
 
 `REPLAY_STATUS` is:
@@ -339,7 +339,7 @@ The CSR bank holds mutually exclusive `last_accept` and `last_reject`, clears
 `pending` on owner feedback, and increments `result_epoch` for each completed
 CSR-originated start result. Board-key starts must not complete or overwrite a
 pending CSR command result. `REPLAY_CONTROL.rearm` uses the same replay-clear
-owner as the documented local rearm input; it does not clear transport
+owner as the documented local rearm input. It does not clear transport
 counters.
 
 The HPS bridge snapshots the initial `result_epoch`, issues one start pulse,
@@ -373,13 +373,13 @@ or live evidence.
 
 This snapshot does not claim:
 
-- a real PC-to-HPS UDP exchange;
-- HPS Linux `/dev/mem` CSR or DDR mapping;
-- traversal of the generated lightweight bridge;
-- command application or replay on FPGA hardware;
-- accepted native RTL simulation;
-- Platform Designer generation;
-- Quartus compile, TimeQuest closure, or a generated `.sof`;
+- a real PC-to-HPS UDP exchange.
+- HPS Linux `/dev/mem` CSR or DDR mapping.
+- traversal of the generated lightweight bridge.
+- command application or replay on FPGA hardware.
+- accepted native RTL simulation.
+- Platform Designer generation.
+- Quartus compile, TimeQuest closure, or a generated `.sof`.
 - physical DE1-SoC behavior.
 
 Those claims remain pending until their dedicated tool-produced and hardware

@@ -45,7 +45,7 @@ records check only the final timed epoch fully and report that distinction.
 
 The recursive oracle uses a different transform decomposition and absolute WOLA
 indices. It shares the frozen coefficient bytes with the kernel. Qualification
-of these cases is bounded; it does not prove the entire input domain, physical
+of these cases is bounded. It does not prove the entire input domain, physical
 execution, or timing. No unrelated logs, emulated/native smoke results, or
 executables are included here.
 
@@ -64,10 +64,10 @@ For a Linux ARMv7 hard-float toolchain with static C++ runtime libraries:
 ARM_CXX=arm-linux-gnueabihf-g++ sh scripts/build_arm.sh build/arm
 ```
 
-`ARM_CXX` names one compiler executable, optionally by absolute path; it does not
+`ARM_CXX` names one compiler executable, optionally by absolute path. It does not
 contain extra flags. The helper uses `-O3 -static -mcpu=cortex-a9 -mfpu=neon
 -mfloat-abi=hard -fno-lto`, C++17, and ordinary warning flags. Compiler
-auto-vectorization is allowed; no handwritten NEON kernel is present. It records
+auto-vectorization is allowed. No handwritten NEON kernel is present. It records
 the compiler version, argument list, build log, and available ELF/hash evidence
 in a fresh output directory. It never runs the executable or accesses hardware.
 Use `ARM_READELF` when the corresponding inspection tool has a different name.
@@ -85,7 +85,7 @@ cmake --build build/arm-cmake --parallel
 ```
 
 The observed physical-run executable identity is recorded in
-`package_manifest.json`; recompilation with another compiler/runtime can produce
+`package_manifest.json`. Recompilation with another compiler/runtime can produce
 different bytes and must receive its own qualification and identity record.
 
 ## Qualification
@@ -124,7 +124,7 @@ python3 scripts/verify_board_export.py --vectors vectors \
   --result-dir board-export --output runs/board-qualification-01.json
 ```
 
-That validator inspects files only; physical board identity and the uploaded
+That validator inspects files only. Physical board identity and the uploaded
 executable hash belong in the surrounding acquisition record.
 
 ## On-board timing
@@ -146,7 +146,7 @@ mkdir -p results
   --output results/masked-01.json
 ```
 
-`--cpu 0` sets and verifies Linux thread affinity before admission and warmup;
+`--cpu 0` sets and verifies Linux thread affinity before admission and warmup.
 BusyBox `taskset` is unnecessary. An additional checked epoch before each timing
 record also warms the working set. JSON records wall and thread CPU clocks,
 affinity, exact geometry, compiler metadata, and scope exclusions.
@@ -154,7 +154,7 @@ affinity, exact geometry, compiler metadata, and scope exclusions.
 ## HPS boot and transfer environment
 
 The physical comparison used the Cortex-A9 HPS under Linux
-`6.12.33-fma-h1-console`. The kernel boot log reported a 925 MHz CPU clock; this is
+`6.12.33-fma-h1-console`. The kernel boot log reported a 925 MHz CPU clock. This is
 a kernel-reported operating rate, not an independently measured oscillator or a
 guarantee for another boot. Record the actual clock, kernel, affinity, thermal
 context, executable hash, and FPGA idle state for each new campaign.
@@ -162,7 +162,7 @@ context, executable hash, and FPGA idle state for each new campaign.
 The HPS boot reused its established DDR initialization and bootloader, loading
 kernel, device tree, and initramfs into RAM. The CPU-only device tree disabled the
 FPGA manager, FPGA region, all FPGA bridges, and the unrelated accelerator node.
-No FMA FPGA image or accelerator driver is required by this benchmark; do not use
+No FMA FPGA image or accelerator driver is required by this benchmark. Do not use
 another project's FPGA configuration or bridge-activation sequence to run it.
 No persistent boot-environment or SD write is part of the benchmark procedure.
 

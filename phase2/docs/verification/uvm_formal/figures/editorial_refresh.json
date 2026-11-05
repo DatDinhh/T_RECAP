@@ -1,0 +1,70 @@
+{
+  "schema": "trecap-vector-editorial-refresh-v1",
+  "kind": "Presentation change only",
+  "baseline_commit": "07bc8224aa080c8eaa1b77b4603c118d853465d0",
+  "palette": {
+    "sage_fill": "DCEBDD",
+    "blue_fill": "DBE9F4",
+    "lilac_fill": "E7DFF0",
+    "peach_fill": "F5E2D3",
+    "sage_stroke": "63917A",
+    "blue_stroke": "718FAE",
+    "lilac_stroke": "9C85B4",
+    "peach_stroke": "C48F70",
+    "ink": "273445",
+    "grid": "E3E7EB",
+    "neutral": "ACB6C5"
+  },
+  "generator_sha256": "ec896a9be1a80d9c08fd8e7327fd3fe0a8312a8368bb15428e501da366ec5acd",
+  "files": [
+    {
+      "file": "formal_architecture.pdf",
+      "original_sha256": "30f041c79b451eead762a3eb98e0bcad5c17f87b53f573e7b4042b46df4736fe",
+      "published_sha256": "5f2391af53ba38bd017b42e6c208de6b73287768bd4368b69af2dc06be8e8df8",
+      "geometry_operator_sha256": [
+        "f2143b01574b33daffcbe48ff1c070a56df3fe3b14c3aa5e4268e1c310bab1e0"
+      ],
+      "geometry_unchanged": true,
+      "numeric_text_unchanged": true,
+      "semicolon_to_comma_edits": 0,
+      "text_advance_compensated": true
+    },
+    {
+      "file": "formal_counterexample.pdf",
+      "original_sha256": "7580bc570cb8c5728b695309a55041226d5a7dfbd98f79d50fda61200e911685",
+      "published_sha256": "fc1fecabea760641df15b6b8384e237833a823d4fdc6453481d619c2708b9b33",
+      "geometry_operator_sha256": [
+        "e0d4cef363e41c577ca771ed75b03adf5de2670c678b7a16b0887c077522dfca"
+      ],
+      "geometry_unchanged": true,
+      "numeric_text_unchanged": true,
+      "semicolon_to_comma_edits": 0,
+      "text_advance_compensated": true
+    },
+    {
+      "file": "uvm_architecture.pdf",
+      "original_sha256": "19b12940482ff0247db28ec4b853f0636d0a65b2fcfb31f8d579f4cd203d1ed1",
+      "published_sha256": "89f4333fcd627e09e04ddfee5127257381860d89568cf56d3c928609975aeb38",
+      "geometry_operator_sha256": [
+        "41f24b3d4c2814ac6959958bc8f6eb71d6afd65b131510275f105b4472352096"
+      ],
+      "geometry_unchanged": true,
+      "numeric_text_unchanged": true,
+      "semicolon_to_comma_edits": 0,
+      "text_advance_compensated": true
+    },
+    {
+      "file": "uvm_final_y.pdf",
+      "original_sha256": "940c7118248783da66fa364ac381281e71f1049a06e5a9adafb63ffb56f71faa",
+      "published_sha256": "c5ece7a7386feeba39221b66b14c2763dc62d90c9ea9db5d331366e6aabb5cc2",
+      "geometry_operator_sha256": [
+        "8fbb1f7e92786f1cbb46243cebdc52fe43b2143de044095dd183159c739791dc"
+      ],
+      "geometry_unchanged": true,
+      "numeric_text_unchanged": true,
+      "semicolon_to_comma_edits": 0,
+      "text_advance_compensated": true
+    }
+  ],
+  "scope": "Original vector paths, axes, event times and data labels retained. No new simulation, proof or board execution."
+}

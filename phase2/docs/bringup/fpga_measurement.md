@@ -21,7 +21,7 @@ Its historical directory name does not select the threshold for this experiment.
 
 Both configurations run in the same placed-and-routed image. The FFT and IFFT
 retain their complete schedules. This comparison measures the electrical and
-reconstruction consequences of two threshold operating points; it does not
+reconstruction consequences of two threshold operating points. It does not
 demonstrate a zero-skipping accelerator optimization. No ARM speedup is measured.
 
 Replay is unpaced and accepts backpressure from the existing core. It is a
@@ -42,11 +42,11 @@ batch controller, Quartus project-generation script, constraints, timing gate,
 and JTAG controller. The implementation imports `filelists/rtl_core_plus_fft.f`
 and does not modify the production FFT, mask, IFFT or WOLA arithmetic.
 
-The image uses CLOCK_50 at a nominal 50 MHz. KEY0 resets the image; release is
+The image uses CLOCK_50 at a nominal 50 MHz. KEY0 resets the image. Release is
 synchronized and a power-up delay also supplies reset. LEDR is held low across
 all operating points so display changes do not create a load difference. The
-fitted image reserves unused FPGA pins as tri-stated inputs with weak pull-ups;
-the fitted report, rather than the shorthand project setting, defines this
+fitted image reserves unused FPGA pins as tri-stated inputs with weak pull-ups.
+The fitted report, rather than the shorthand project setting, defines this
 electrical state. HPS transport, codec
 capture and Ethernet are outside this target.
 
@@ -60,7 +60,7 @@ used as proof of output equality.
 Mode and epoch count are staged first, allowed to settle, then accepted through
 a separate start-toggle change. This avoids relying on atomic synchronization
 of an asynchronous multibit bus. Parameters remain owned by that batch. A
-snapshot toggle captures all 480 status bits together; the host waits for its
+snapshot toggle captures all 480 status bits together. The host waits for its
 acknowledgement before interpreting the counters. The host rejects incomplete
 batches, mismatches, faults, or unexpected counts.
 
@@ -74,7 +74,7 @@ Feather is outside that boundary. Adapter AC conversion losses are not measured.
 
 The logger uses continuous bus/shunt conversion, 280 microseconds per channel,
 16-sample averaging, and 10 Hz serial reporting. Energy comes from the INA228
-hardware accumulator; it is not inferred by summing sparse power snapshots.
+hardware accumulator. It is not inferred by summing sparse power snapshots.
 Diagnostic errors invalidate the session. A successful communication check or
 consistent voltage/current reading is not independent accuracy calibration.
 
@@ -89,7 +89,7 @@ consistent voltage/current reading is not independent accuracy calibration.
    Quartus installation explicitly. Check fitted pins, all fabric timing
    corners and the retained unconstrained/JTAG reports before programming.
 4. Program the resulting `.sof` through JTAG at the FPGA chain position. This
-   is volatile configuration; power cycling removes it.
+   is volatile configuration. Power cycling removes it.
 5. Run the campaign with the synchronized logger and JTAG controller. Admit
    one epoch at each threshold, collect an initial idle interval, warm both
    modes, and execute repeated AB/BA pairs. Keep the same hardware connections.
@@ -102,8 +102,8 @@ bounds. Host UTC-to-monotonic anchors align the Quartus Tcl events with those
 messages. The analysis records clock-rate and sensor-timing assumptions, reports
 energy bounds from accumulator samples bracketing each finite batch, and also
 reports power in a guaranteed interior interval. Interpolated joules are labeled
-as estimates. Statistical intervals across repeated pairs describe repeatability;
-they do not include unknown instrument calibration error or establish a universal
+as estimates. Statistical intervals across repeated pairs describe repeatability.
+They do not include unknown instrument calibration error or establish a universal
 energy-saving claim.
 
 The authoritative result for a physical run is its retained source/image hashes,
@@ -114,7 +114,7 @@ records and analysis. Build success by itself is not a measurement result.
 
 The [25 September 2026 report](../results/board_power_20260925/README.md) contains the first completed campaign: twelve trials, six paired comparisons, 301,989,888 checked outputs, zero mismatches and zero fault flags. It includes portable meter, synchronization and trial data for offline reanalysis. The full build, simulation and programming logs remain in `runs/measurement/20260925_fpga/`.
 
-Run commands from the repository root. Set `python`, the Quartus installation, ModelSim directory, cable/device identifiers and serial port for the actual computer. Python 3.12 and matplotlib 3.11.2 were used for the recorded analysis; plotting dependencies are listed in `scripts/measurement/requirements.txt`. No instrument or JTAG access is needed for offline reanalysis.
+Run commands from the repository root. Set `python`, the Quartus installation, ModelSim directory, cable/device identifiers and serial port for the actual computer. Python 3.12 and matplotlib 3.11.2 were used for the recorded analysis. Plotting dependencies are listed in `scripts/measurement/requirements.txt`. No instrument or JTAG access is needed for offline reanalysis.
 
 The build and simulation runners require new output directories. A fresh build follows:
 
@@ -125,16 +125,16 @@ python scripts/measurement/run_measurement_sim.py --repo . --simulator-dir $simu
 ./platform/de1soc/measurement/build.ps1 -RepoRoot . -MeasurementDirectory ./platform/de1soc/measurement -BuildDirectory ./runs/measurement/repeat/build -QuartusRoot $quartusRoot
 ```
 
-Review fitted pin assignments and all timing/crossing reports before programming a new image. Preserve its SOF hash, programming command and exit status in a run receipt. The recorded experiment's image and device selection are in its retained programming manifest. FPGA programming is a separate operation from the campaign runner; the runner does not reload the SOF.
+Review fitted pin assignments and all timing/crossing reports before programming a new image. Preserve its SOF hash, programming command and exit status in a run receipt. The recorded experiment's image and device selection are in its retained programming manifest. FPGA programming is a separate operation from the campaign runner. The runner does not reload the SOF.
 
-Once the checked image is programmed and the synchronized logger is installed, the following invokes the complete finite campaign. Example identifiers match the recorded setup; discover them again if hardware or USB ports change.
+Once the checked image is programmed and the synchronized logger is installed, the following invokes the complete finite campaign. Example identifiers match the recorded setup. Discover them again if hardware or USB ports change.
 
 ```powershell
 python scripts/measurement/run_campaign.py --repo . --run-dir runs/measurement/repeat/campaign --quartus-root $quartusRoot --hardware 'DE-SoC [USB-1]' --device '@2: 5CSE(BA5|MA5)/5CSTFD5D5/.. (0x02D120DD)' --port COM7 --program-manifest runs/measurement/repeat/program_manifest.json
 ```
 
-The runner first checks one epoch at each threshold, records 20 seconds of idle, warms both conditions, executes three ABBA blocks with two-second gaps, then records 20 seconds of final idle. Every measured trial contains 16,384 epochs. It obtains a final coherent fault-free idle snapshot before stopping capture. The host owns the Feather serial port and JTAG for the run; close other clients before starting.
+The runner first checks one epoch at each threshold, records 20 seconds of idle, warms both conditions, executes three ABBA blocks with two-second gaps, then records 20 seconds of final idle. Every measured trial contains 16,384 epochs. It obtains a final coherent fault-free idle snapshot before stopping capture. The host owns the Feather serial port and JTAG for the run. Close other clients before starting.
 
-`campaign_manifest.json` must finish with `PASS_CAPTURE_AND_TRIAL_ADMISSION`. Its `analysis_argv` records the exact offline analyzer command, including the selected CSV, synchronization file, admitted trial file, and condition names. A capture pass establishes usable data and correct selected-workload execution; it does not establish an energy-saving conclusion. The analyzer writes a new directory and retains timing assumptions explicitly. `publication_report.py` packages the recorded campaign's checked evidence for publication; it deliberately checks the twelve-trial protocol and does not silently accept a different experiment design.
+`campaign_manifest.json` must finish with `PASS_CAPTURE_AND_TRIAL_ADMISSION`. Its `analysis_argv` records the exact offline analyzer command, including the selected CSV, synchronization file, admitted trial file, and condition names. A capture pass establishes usable data and correct selected-workload execution. It does not establish an energy-saving conclusion. The analyzer writes a new directory and retains timing assumptions explicitly. `publication_report.py` packages the recorded campaign's checked evidence for publication. It deliberately checks the twelve-trial protocol and does not silently accept a different experiment design.
 
 Programming is volatile. At the end of a successful campaign the core is idle, the cleanly closed capture files are retained, and the Feather remains ready to log again. Turning off DE1-SoC removes this FPGA configuration.

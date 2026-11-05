@@ -1,6 +1,6 @@
 # C0 active-frame / WOLA-tail split v66
 
-> Historical design note. Revision-specific results and open items below belong to that development stage; they are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
+> Historical design note. Revision-specific results and open items below belong to that development stage. They are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
 
 File class: **[1] hand-written bring-up and verification note**.
 
@@ -52,8 +52,8 @@ The scheduler also receives the exact `Nframes` limit as a fail-safe.
 The first drain token is allowed to remain pending while the last active frame
 travels through FFT/IFFT. `trecap_synthesis_wola.sv` begins drain only after:
 
-1. all `H` outputs preceding the last active frame contribution were issued;
-2. all `L` final synthesis samples completed OLA `ADD`; and
+1. all `H` outputs preceding the last active frame contribution were issued.
+2. all `L` final synthesis samples completed OLA `ADD`, and
 3. the pending drain token index equals the WOLA output issue index
    (`tau_last`).
 
@@ -159,7 +159,7 @@ This revision does not silently claim the next work item:
   and falls back to `Nframes-1` after the final stats pulse.
 - analysis/FFT/IFFT internal `busy_o` signals are still not included in the
   global busy/done contract.
-- `core_sample_count_o` counts analysis ticks (`tau_last`); replay logical-tick
+- `core_sample_count_o` counts analysis ticks (`tau_last`). Replay logical-tick
   count remains available separately and reaches `Ny`.
 - the resettable `ola_mem`/`z_mem` implementation may infer registers rather
   than M10K RAM and needs Quartus resource/timing review.

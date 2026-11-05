@@ -11,7 +11,7 @@ and core runner commands.
 
 The [execution plan](../../docs/verification/execution_plan.md) defines the
 milestones. These commands implement bounded campaigns. Each run records its selected
-cases; they do not cover every case in the full test catalog.
+cases. They do not cover every case in the full test catalog.
 
 ## Environment, inputs and reference
 
@@ -27,7 +27,7 @@ python scripts/verification/rounding_qualification.py
 
 Use a new evidence name for a new attempt. The environment and rounding runners
 create unique directories automatically. The reference runner rejects an
-existing evidence directory; CMake may reuse its isolated build directory.
+existing evidence directory. CMake may reuse its isolated build directory.
 Always inspect both exit status and the recorded result scope before continuing.
 
 The reference runner's bounded PASS can coexist with an explicitly reported
@@ -48,7 +48,7 @@ Replace environment-RUN_ID with that existing run directory. By default this
 executes static and stalled variants for the two selected nonzero vectors, then
 checks a deliberately corrupted expected y value in the first vector. The
 stalled variants use a deterministic LFSR and hold the last output for at least
-37 cycles; ordinary readiness can extend that interval.
+37 cycles. Ordinary readiness can extend that interval.
 
 Every vector has an isolated simulator library, configuration and working
 directory. Exact admitted coefficient bytes are staged at the relative ROM
@@ -64,7 +64,7 @@ alone is insufficient.
 
 Raw logs, CSV/MEMH traces, waveform files and summaries remain under ignored
 runs/verification/. The public result document contains sanitized identities
-and scope; it does not require committing local simulator libraries or logs.
+and scope. It does not require committing local simulator libraries or logs.
 
 ## Short-length and finite-tail boundaries
 
@@ -78,12 +78,12 @@ python scripts/verification/reference_boundaries.py --baseline-reference-run run
 python scripts/verification/core_replay.py --environment-run runs/verification/environment-RUN_ID --reference-run runs/verification/my-boundary-reference
 ```
 
-The adapter path above matches a Visual Studio Release build; use the actual
+The adapter path above matches a Visual Studio Release build. Use the actual
 qualified executable location for another generator. Its hash must match the
 baseline report.
 
 The boundary report declares the default selected cases. The native runner uses
-that list and the report-pinned supplemental inputs; repeat `--vector CASE_NAME`
+that list and the report-pinned supplemental inputs. Repeat `--vector CASE_NAME`
 to run a subset. Each selected case still executes static and stalled variants
 unless `--variant` selects one. The input path, signed width, row count, finite
 geometry and oracle file identities must agree before compilation.
@@ -112,7 +112,7 @@ python tests/verification/test_core_capture_check.py --help
 
 It changes copies of the evidence to demonstrate rejection of missing,
 duplicated, truncated, reordered or numerically incorrect data. Passing these
-witnesses establishes checker sensitivity for the selected cases; it does not
+witnesses establishes checker sensitivity for the selected cases. It does not
 add another RTL or board execution.
 
 ## Tool policy
@@ -127,4 +127,4 @@ DPI and vendor models are outside this qualification.
 
 Do not use historical vector/coefficient regeneration targets to resolve a
 mismatch. Correctness investigations retain the failed run and compare against
-independent requirements; a changed source or checker produces new evidence.
+independent requirements. A changed source or checker produces new evidence.

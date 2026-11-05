@@ -14,7 +14,7 @@ result/cache contract, safe lifecycle/mutations, and replay-result path. Step 15
 closes the dashboard API, Step 16 closes the LINE-IN clock/control/I2S/CDC API,
 and Step 17 closes the pinned Rev-H LTC2308 100-kS/s serial, normalization,
 source-rate, and profile API. The
-checked-in host and structural/model gates are source artifacts; these APIs do
+checked-in host and structural/model gates are source artifacts. These APIs do
 not claim their execution, accepted native RTL simulation, active-DTB or
 native HPS runtime, physical Ethernet, systemd, Quartus/TimeQuest, or hardware
 operation.
@@ -197,7 +197,7 @@ There are three legal parameter classes.
 | --- | --- | --- | --- |
 | Contract constants | `spec/generated/*.json` -> generated packages | All modules | Never redefined in leaf RTL. |
 | Public integration parameters | Top-level wrappers | `rtl/top/`, `rtl/platform/de1soc/` | May select profile/top behavior, not arithmetic contract. |
-| Generic primitive parameters | Reusable utilities | `rtl/common/` | May define width/depth only; shall not redefine T-RECAP constants. |
+| Generic primitive parameters | Reusable utilities | `rtl/common/` | May define width/depth only. Shall not redefine T-RECAP constants. |
 
 Bad:
 
@@ -246,7 +246,7 @@ localparam int unsigned STATUS_BYTES = 72;  // bad outside generated packet pack
 | --- | --- |
 | Clock | `clk`, or `clk_core`, `clk_csr`, `clk_avmm` for multiple clocks |
 | Reset | `rst_n`, or `rst_core_n`, `rst_csr_n`, `rst_avmm_n` |
-| Valid-only tap | `tap_*_valid` plus associated payload; no `tap_*_ready` into the core |
+| Valid-only tap | `tap_*_valid` plus associated payload. No `tap_*_ready` into the core |
 | Ready/valid stream | `in_valid`, `in_ready`, `in_payload`, `out_valid`, `out_ready`, `out_payload` |
 | Sample index | `logic [63:0] sample_idx` or field in generated struct |
 | Frame index | `logic [63:0] frame_idx` or field in generated struct |
@@ -355,7 +355,7 @@ This is the hard boundary between correctness logic and demo/observability logic
 `trecap_core_telemetry_top.sv` accepts the same normalized ready/valid sample,
 finite-stream, tail, core-output, and active-control inputs required by the real
 mathematical core. It owns exactly one `trecap_core_top` and one
-`trecap_telemetry_top`; direct valid-only tap wires are the only data connection
+`trecap_telemetry_top`. Direct valid-only tap wires are the only data connection
 between them.
 
 The API exposes authoritative `core_sample_count`, `core_frame_count`, error
@@ -412,11 +412,11 @@ Every drop or reject counter must have one owner.
 | `CSR_COMMAND_REJECT_COUNT` | `rtl/hps_bridge/trecap_csr_bank.sv` | CSR and combined HPS STATUS patch |
 | HPS command reject count | `sw/hps/src/command_server.c` | Patched STATUS only |
 | UDP send error count | `sw/hps/src/udp_sender.c` | Patched STATUS only |
-| Malformed record count | `sw/hps/src/ring_reader.c` | Patched STATUS only; exactly one increment per malformed latch |
+| Malformed record count | `sw/hps/src/ring_reader.c` | Patched STATUS only. Exactly one increment per malformed latch |
 | HPS sequence gap count | `sw/hps/src/ring_reader.c` | Patched STATUS only |
 | PC sequence gap count | PC parser | Dashboard only |
 
-Do not merge `PACKET_FIFO_DROP_COUNT` and `DMA_DROP_COUNT`; they identify different bottlenecks.
+Do not merge `PACKET_FIFO_DROP_COUNT` and `DMA_DROP_COUNT`. They identify different bottlenecks.
 
 ## Source module APIs
 
@@ -499,7 +499,7 @@ Never accepts telemetry, DDR, packet-FIFO, or network backpressure.
 This is a pin-agnostic integration module under `rtl/top/`. Physical codec, ADC,
 HPS, DDR, and board pins remain outside it. At the physical board top, the
 dedicated non-CSR fault levels join the writer/source/build-contract aggregate on
-`LEDR[9]`; this LED aggregation does not make those levels CSR-visible.
+`LEDR[9]`. This LED aggregation does not make those levels CSR-visible.
 
 ## Core module APIs
 
@@ -571,7 +571,7 @@ HPS bridge modules own CSR, ring pointers, record headers, and DDR writes.
 
 | Module | API rule |
 | --- | --- |
-| `trecap_avmm_csr_adapter.sv` | Terminates the strict 32-bit, single-beat Avalon-MM CSR agent; performs full 21-bit-to-12-bit byte-address decode and serializes one response at a time. |
+| `trecap_avmm_csr_adapter.sv` | Terminates the strict 32-bit, single-beat Avalon-MM CSR agent. Performs full 21-bit-to-12-bit byte-address decode and serializes one response at a time. |
 | `trecap_csr_bank.sv` | Implements normative CSR map and generated reset/access semantics, including minor-1.8 counter clear and retained CSR-originated replay request/result state. |
 | `trecap_csr_shadow_commit.sv` | Handles multiword controls such as 56-bit THR2 and 64-bit pointers. |
 | `trecap_ring_pointer_ctrl.sv` | Owns snapshot/commit transfer of producer and consumer pointers. |
@@ -600,13 +600,13 @@ Board-facing logic shall not be hidden in `rtl/core/`.
 
 `rtl/platform/de1soc/de1_soc_trecap_top.sv` is the physical Quartus top and
 owns board pins. `rtl/top/trecap_de1soc_full_top.sv` is a pin-agnostic logical
-transport top; its name does not make it the Quartus board entity.
+transport top. Its name does not make it the Quartus board entity.
 
 The Step-9 board API is composition-only. It binds one generated-system
 boundary, one audio wrapper, one LTC2308 wrapper, the sole source/core owner,
 and the telemetry/HPS owner. CSR and F2SDRAM request/response channels use real
 end-to-end nets, not safe-idle constants. Audio and ADC samples enter through
-their wrappers; real core taps/counters pass downstream without board-generated
+their wrappers. Real core taps/counters pass downstream without board-generated
 replacement taps.
 
 The Step-10 `clock_reset_ctrl` API exports one direct `clk_fabric = CLOCK_50`, one
@@ -619,18 +619,18 @@ source-safe boundary, or expose a hardwired PLL-lock assertion.
 
 Step 16 adds exactly one `audio_pll_wrapper` and one
 `audio_codec_i2c_init` beside the existing `audio_codec_wrapper`. Their status
-qualifies audio readiness only; it must not become an additional hard-reset
+qualifies audio readiness only. It must not become an additional hard-reset
 source for the 50 MHz fabric.
 
 All fabric APIs consume the same clock/reset pair and release simultaneously.
 The clock-enable pulses shall never be used as clocks. Alternate board clocks
-are reserved; split-clock fabric operation is unsupported until interfaces and
+are reserved. Split-clock fabric operation is unsupported until interfaces and
 CDC paths are redesigned. Audio BCLK receive-edge and transmit-edge state use
 their own local reset-release synchronizers.
 
 Core y remains always accepted. Its valid/data fan out to audio as a
 best-effort monitor. A fabric-to-BCLK async FIFO absorbs reconstructed-output
-bursts; FIFO full drops/counts a monitor sample rather than backpressuring the
+bursts. FIFO full drops/counts a monitor sample rather than backpressuring the
 core. A separate BCLK-to-fabric async FIFO carries complete signed stereo input
 frames atomically. The wrapper exports dedicated saturating 64-bit receive-
 overflow, transmit-overflow, and transmit-underflow counters. Those diagnostics
@@ -641,7 +641,7 @@ profile and exports a qualified lock plus an explicit supported-configuration
 status. `audio_codec_i2c_init` owns open-drain `FPGA_I2C_SCLK`/`FPGA_I2C_SDAT`,
 addresses the WM8731 at `0x1a`, and programs 48 kS/s, signed 16-bit I2S with the
 codec as BCLK/LRCK master. Initialization is admitted only when PLL lock and the
-FPGA codec-bus grant are present. The HPS must keep `HPS_I2C_CONTROL` low; FPGA
+FPGA codec-bus grant are present. The HPS must keep `HPS_I2C_CONTROL` low. FPGA
 logic may observe that signal but must never drive it. Codec-ready gates capture
 and line-out admission. The portable PLL model and source checkers are not
 Quartus, TimeQuest, I2C ACK, measured-clock, or live-audio evidence.
@@ -670,9 +670,9 @@ idle pins and no sample requests.
 | --- | --- |
 | `trecap_core_only_top.sv` | Pure core wrapper. No telemetry/HPS/platform. |
 | `trecap_core_bram_replay_top.sv` | BRAM replay source plus core for C0/board replay. |
-| `trecap_core_telemetry_top.sv` | Standalone normalized source -> one real core -> one non-stalling telemetry formatter/FIFO; no source mux, DDR writer, or platform pins. |
+| `trecap_core_telemetry_top.sv` | Standalone normalized source -> one real core -> one non-stalling telemetry formatter/FIFO. No source mux, DDR writer, or platform pins. |
 | `trecap_source_core_integration.sv` | Pin-agnostic normalized sources, guarded source mux, exact replay tail routing, core, and valid-only taps. |
-| `trecap_de1soc_full_top.sv` | Pin-agnostic telemetry, HPS bridge, and DDR logical integration; no physical board pins. |
+| `trecap_de1soc_full_top.sv` | Pin-agnostic telemetry, HPS bridge, and DDR logical integration. No physical board pins. |
 | `de1_soc_trecap_top.sv` | Physical DE1-SoC Quartus top that binds real source/platform wrappers, logical owners, Platform Designer CSR/F2SDRAM, non-stalling best-effort core-y monitoring, board status, and pins. |
 
 Do not create a single monolithic demo top that bypasses these build variants.
@@ -693,7 +693,7 @@ C modules should follow these responsibilities:
 | `config.c` | Strictly parses the flat runtime profile, pins frozen windows and safety booleans, and validates the live reservation before normal mapping. |
 | `csr_map.c` | Owns CSR mmap/read/write helpers. Uses generated CSR offsets. |
 | `ring_reader.c` | Owns reset/reconfigure/`Rd=0`/active state, producer snapshot, complete record validation, exact-tail WRAP, atomic consumer commit, and malformed latch. |
-| `udp_sender.c` | Sends one exact record per UDP datagram with no DDR padding or fragmentation; classifies nonblocking or bounded-timeout failures. |
+| `udp_sender.c` | Sends one exact record per UDP datagram with no DDR padding or fragmentation. Classifies nonblocking or bounded-timeout failures. |
 | `command_server.c` | Preserves exact v1 parsing, validates v2 28-byte commands and the exact source IP/port, emits PING STATUS-only diagnostics, and encodes exact 32-byte v2 non-PING results. |
 | `command_bridge.c` | Owns the RFC1982 ledger/cache, RESET-to-CONFIGURE-to-ENABLE lifecycle, safe disabled/idle control mutations, counter clear, replay admission/result wait, readback, timeout, CONTROL=0 recovery attempt, and RESET_REQUIRED software lock when hardware disable cannot be proven. |
 | `status_patch.c` | Patches only local UDP STATUS copies with HPS-owned counters. |
@@ -701,7 +701,7 @@ C modules should follow these responsibilities:
 
 Normal mode shall fail closed before `/dev/mem` access unless the exact live
 reserved-memory contract is active. Dummy mode shall open UDP only. A malformed
-record shall never be byte-scanned or repeatedly parsed; streaming resumes only
+record shall never be byte-scanned or repeatedly parsed. Streaming resumes only
 after soft reset, ring reconfiguration, `Rd=0` commit, zero-`W` verification, and
 normal re-arm.
 
@@ -713,7 +713,7 @@ learning is an explicit lab/test mode only. Ring physical addresses are never
 arguments on the wire. `SET_SOURCE_MODE`, `SET_PACKET_ENABLE`, `SET_WAVE_DECIM`,
 `SET_SPEC_MODE`, and `SET_SPEC_SHIFT` in either command version must pass through
 the bridge's disabled-controls, `transport_epoch_idle`, replay-idle, verified
-readback, and safe-restore sequence; direct live CSR mutation is forbidden.
+readback, and safe-restore sequence. Direct live CSR mutation is forbidden.
 
 ## PC Python API rules
 

@@ -2,7 +2,7 @@
 
 `trecap_pcm_stream_top.sv` is derived by `prepare_top.py` from the frozen
 `outputs/trecap_hps_transport_v01/core_overlay02/trecap_pcm_replay_top.sv`.
-The inherited file header describes that historical wrapper; this overlay uses
+The inherited file header describes that historical wrapper. This overlay uses
 the host stream FIFO in `trecap_pcm_stream_source.sv`, not a replay ROM.
 The FFT, threshold, IFFT, WOLA, delay metrics, coefficient files, and observed
 canonical-bin tap are unchanged from `outputs/trecap_hps_transport_v01/build01`.
@@ -24,8 +24,8 @@ The exporter tap has no ready signal. `export_emitted_frames_i` must connect to
 the exporter's epoch-local emitted-record counter, incremented only after the
 last output-byte handshake. A new analysis hop starts only after the previous
 hop's record has been completely emitted. This reserves at most one exporter
-slot regardless of downstream stalls. Admission gates source valid/ready only;
-the numerical core's enable must remain high during an active run. Gating its
+slot regardless of downstream stalls. Admission gates source valid/ready only.
+The numerical core's enable must remain high during an active run. Gating its
 enable can discard pending scheduler work and is not a backpressure mechanism.
 Tail ticks produce no new frames and do not need exporter credit.
 
@@ -38,5 +38,5 @@ frozen excerpt/threshold/format cases. It checks every source token, full-tail Y
 canonical tap field, and TSP1 byte while independently pausing input, Y, and the
 export stream. It also checks one-frame credit, one discontinuity per epoch,
 FIFO-full coverage, and stable stalled outputs. Results bind source hashes.
-The regression covers 1024-sample epochs; it does not establish full 384000-sample
+The regression covers 1024-sample epochs. It does not establish full 384000-sample
 simulation, FPGA fit/timing, HPS transport, or physical eight-second execution.

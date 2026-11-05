@@ -7,7 +7,7 @@ missing-sample gap by assigning consecutive DSP indices to later physical sample
 The normalization arithmetic, four source enums, and telemetry packet layouts are
 unchanged.
 
-The implementation is `rtl/top/trecap_source_core_integration.sv`; physical status
+The implementation is `rtl/top/trecap_source_core_integration.sv`. Physical status
 comes from the DE1-SoC audio and ADC wrappers. The machine-readable register
 contract is `spec/generated/csr_map.json`, with constants emitted by
 `scripts/gen_headers.py` for RTL, HPS C, and dashboard Python.
@@ -17,7 +17,7 @@ contract is `spec/generated/csr_map.json`, with constants emitted by
 A selected periodic live source passes through these states:
 
 1. **Wait for stop:** capture is disabled. Audio acknowledges the returned,
-   synchronized receive-BCLK capture-enable level; ADC acknowledges `busy=0`.
+   synchronized receive-BCLK capture-enable level. ADC acknowledges `busy=0`.
 2. **Settle:** hold capture disabled for 4096 fabric clocks after stop acknowledgement.
    This drains prior audio FIFO/CDC traffic and gives the ADC a quiet recovery
    interval. The fabric runs at 50 MHz, so this interval is 81.92 microseconds.
@@ -28,7 +28,7 @@ A selected periodic live source passes through these states:
 4. **Run:** every next raw sample sequence must equal the preceding sequence plus
    one, modulo 2^64. At 48 kS/s audio and 100 kS/s ADC, the maximum permitted raw
    event silence is 4096 fabric clocks. This 81.92-microsecond watchdog detects a
-   stopped physical clock/stream; it is not a rate measurement or a clock-jitter
+   stopped physical clock/stream. It is not a rate measurement or a clock-jitter
    specification.
 5. **Fault:** latch the first fault event's complete cause mask, increment the epoch,
    pulse the existing source discontinuity path, clear in-flight source/core state,
@@ -40,17 +40,17 @@ FIFO/request drop, readiness loss after the first sample, sample timeout, and
 wrapper protocol/configuration failure. Audio readiness includes PLL configuration,
 PLL lock, FPGA codec-bus grant, and successful codec initialization. The grant
 comes from the kernel-owned `PLATFORM_CONTROL` level after GPIO48 output-low
-readback; it is not a fabric sample of the dedicated HPS pin. See
+readback. It is not a fabric sample of the dedicated HPS pin. See
 [platform_grant.md](platform_grant.md) for its ABI and lifetime. ADC readiness
-requires a supported periodic conversion command. Manual ADC is diagnostic mode;
-it does not enter STFT/WOLA and advertises no periodic DSP rate.
+requires a supported periodic conversion command. Manual ADC is diagnostic mode.
+It does not enter STFT/WOLA and advertises no periodic DSP rate.
 
 On a detected sequence gap, the offending event is blocked combinationally before
 adapter/core admission. An adapter drop or CDC overflow event can arrive after an
-older valid prefix has already produced output; the discontinuity then invalidates
+older valid prefix has already produced output. The discontinuity then invalidates
 in-flight history and partial telemetry aggregates. Records already committed to
-DDR remain committed. A consumer must treat the faulted epoch as interrupted;
-this design does not retract earlier records or add an epoch field to Revision-G
+DDR remain committed. A consumer must treat the faulted epoch as interrupted.
+This design does not retract earlier records or add an epoch field to Revision-G
 UDP packets. Source-health epochs and legacy telemetry packet sequence numbers
 have different ownership and are not interchangeable.
 
@@ -80,26 +80,26 @@ Writing both operations together or any reserved bit is rejected through existin
 CSR reject accounting. Rearm is rejected when a source transition is pending or
 the actual source is BRAM/diagnostic. It changes no ring pointers, transport enable,
 packet sequence state, threshold, or selected source. Snapshot words at
-0x108–0x180 remain stable until the next snapshot or board reset. Software must
-serialize each snapshot-plus-read transaction; unrelated legacy core-counter
+0x108 to 0x180 remain stable until the next snapshot or board reset. Software must
+serialize each snapshot-plus-read transaction. Unrelated legacy core-counter
 snapshots use a separate bank.
 
 The status word reports `present`, `live`, `periodic`, `ready`, `running`, `fault`,
 `waiting_stop`, `settling`, and the actual source enum. `running` means admission
 is enabled and at least one raw sample established the new sequence baseline.
 `RATE` is the configured nominal rate when live admission is enabled, otherwise
-zero. It is not a measured rate; use raw-counter deltas over host time for a rough
+zero. It is not a measured rate. Use raw-counter deltas over host time for a rough
 observed delivery rate. The legacy HPS-synthesized STATUS packet still reports zero
 when that packet cannot know the physical cadence.
 
 All counters are saturating unsigned 64-bit values. They survive source changes,
-rearm, telemetry clear, metric clear, and sticky-error W1C; only fabric hard reset
+rearm, telemetry clear, metric clear, and sticky-error W1C. Only fabric hard reset
 zeros them. Both halves are latched in the same snapshot.
 
 | Counter | Meaning |
 | --- | --- |
 | `EPOCH` | Increments for fault, rearm, actual source-mode change, or entry to datapath clear/disable. Reset establishes epoch zero. |
-| `AUDIO_RAW`, `ADC_RAW` | Wrapper-delivered fabric sample-valid events. ADC includes manual diagnostic samples; ADC pipeline priming results are excluded by its wrapper. Audio excludes FIFO words deliberately drained while capture is disabled. These are delivery counters, not analog conversion totals. |
+| `AUDIO_RAW`, `ADC_RAW` | Wrapper-delivered fabric sample-valid events. ADC includes manual diagnostic samples. ADC pipeline priming results are excluded by its wrapper. Audio excludes FIFO words deliberately drained while capture is disabled. These are delivery counters, not analog conversion totals. |
 | `AUDIO_ADMITTED`, `ADC_ADMITTED` | Raw events accepted into the selected normalized adapter. |
 | `AUDIO_ACCEPTED`, `ADC_ACCEPTED` | Normalized samples accepted at the core input. |
 | `AUDIO_ADAPTER_DROP`, `ADC_ADAPTER_DROP` | Selected raw events rejected by the adapter. |
@@ -129,9 +129,9 @@ sudo python3 sw/hps/scripts/source_health.py --rearm
 
 Use `--config path/to/trecap_hps_config.json` for another paired runtime file.
 The utility emits JSON, including decoded faults, nominal rate, and all coherent
-counters. Exit code 3 means the sampled source is faulted; 2 means configuration,
+counters. Exit code 3 means the sampled source is faulted. 2 means configuration,
 access, ABI, or rearm acknowledgement failed. The utility serializes its snapshot
-transactions with `/run/lock/trecap-source-health.lock`; other health-page readers
+transactions with `/run/lock/trecap-source-health.lock`. Other health-page readers
 must use that same lock. The existing HPS streamer does not touch this snapshot
 bank and can continue running.
 
@@ -145,7 +145,7 @@ board reset for a distinct next identifier.
 
 The board also re-arms codec initialization and clears physical wrapper diagnostic
 sticky state when source rearm is accepted. Fix the missing clock/grant/configuration
-first; rearming without fixing the cause leads to another explicit fault. Manual
+first. Rearming without fixing the cause leads to another explicit fault. Manual
 ADC rearm leaves diagnostics selected and does not fabricate a periodic stream.
 
 This is an implemented design contract. No simulation, functional test run,

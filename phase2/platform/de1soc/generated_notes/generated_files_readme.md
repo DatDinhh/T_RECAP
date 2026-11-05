@@ -57,7 +57,7 @@ These files are source files. They are reviewed and committed as hand-managed re
 | `platform/de1soc/qsys/platform_designer.tcl` | `[1]` | Deterministic Platform Designer/Qsys construction script. |
 | `platform/de1soc/qsys/generate_system.sh` | `[1]` | Canonical lifecycle entry point. It validates contracts, preserves reviewed config, explicitly constructs Qsys source, or invokes `qsys-generate` from an existing normalized Qsys graph. |
 | `platform/de1soc/qsys/system_blueprint.xml` | `[1]` | Canonical reviewed bootstrap graph contract used to validate both the checked-in seed and a later tool-normalized Qsys source. |
-| `platform/de1soc/qsys/system.qsys` | `[1]` | Bootstrap source now; commit a tool-normalized replacement only after reviewing it against the blueprint. |
+| `platform/de1soc/qsys/system.qsys` | `[1]` | Bootstrap source now. Commit a tool-normalized replacement only after reviewing it against the blueprint. |
 | `platform/de1soc/qsys/presets/terasic_de1soc_revh_qp20_1_hps.tsv` | `[2]` | Deterministic 520-parameter HPS snapshot derived from the official Terasic Rev-H Quartus 20.1 GHRD and consumed by `platform_designer.tcl`. Regenerate only with `scripts/import_de1soc_hps_preset.py`. |
 | `platform/de1soc/qsys/presets/terasic_de1soc_revh_qp20_1_hps_manifest.json` | `[2]` | Source URL, upstream hashes, board/tool assumptions, overlay, exact interface directions, and effective snapshot hash. |
 | `platform/de1soc/address_map/address_map.md` | `[1]` | Human-readable rendering of the Step 4 source-frozen CSR/ring assignments and bridge rules. |
@@ -85,16 +85,16 @@ version, but keep them out of the current source ZIP:
 
 | Generated artifact | Class | Current policy |
 |---|---:|---|
-| `platform/de1soc/qsys/system.sopcinfo` | `[2]` | Required real-run output; retain in the run/build environment, not the source ZIP. |
-| `platform/de1soc/qsys/system/synthesis/system.qip` | `[2]` | Required real-run output consumed as one generated IP boundary; regenerate locally. |
-| `platform/de1soc/qsys/system/synthesis/*.v` / `*.sv` | `[2]` | Required top HDL plus generated implementation files; regenerate locally. |
-| `platform/de1soc/qsys/system/synthesis/submodules/**` | `[2]` | Local vendor output; never copy or commit a partial subset. |
+| `platform/de1soc/qsys/system.sopcinfo` | `[2]` | Required real-run output. Retain in the run/build environment, not the source ZIP. |
+| `platform/de1soc/qsys/system/synthesis/system.qip` | `[2]` | Required real-run output consumed as one generated IP boundary. Regenerate locally. |
+| `platform/de1soc/qsys/system/synthesis/*.v` / `*.sv` | `[2]` | Required top HDL plus generated implementation files. Regenerate locally. |
+| `platform/de1soc/qsys/system/synthesis/submodules/**` | `[2]` | Local vendor output. Never copy or commit a partial subset. |
 
 Required changes must be made in `hps_config.tcl`, `platform_designer.tcl`, the
 Platform Designer source system, or a documented generator, then regenerated.
 Manual edits to generated HDL or QIP are not valid fixes. Changing this local-
 only policy requires an explicit source-package decision and a coherent-set
-whitelist; never add one generated submodule in isolation.
+whitelist. Never add one generated submodule in isolation.
 
 ### 3.2 Generated files that should not be committed
 
@@ -120,7 +120,7 @@ runs/platform/de1soc/qsys/<UTC>-<PID>/generate_system_manifest.json
 
 If a Quartus version creates another local cache directory, classify it as local output unless the real Quartus project cannot build without it and the team explicitly decides to commit it.
 The per-run readback TSV and generation manifest are execution evidence, not
-source inputs or preset updates; do not publish either under `qsys/presets/`.
+source inputs or preset updates. Do not publish either under `qsys/presets/`.
 
 ## 4. Current repository state
 
@@ -171,7 +171,7 @@ signoff remain pending.
 
 The pinned Terasic board-revision-H GHRD is compatible with the active Quartus
 20.1 toolchain. The physical board revision is a separate fact and has not been
-inspected; its explicit status is
+inspected. Its explicit status is
 `unverified_requires_board_label_confirmation`. Do not use this snapshot on a
 Rev-F/G board without importing and reviewing the matching vendor preset.
 
@@ -236,7 +236,7 @@ platform/de1soc/qsys/generate_system.sh \
   --mode emit-configs
 ```
 
-This validates and preserves the reviewed config files below; it does
+This validates and preserves the reviewed config files below. It does
 not silently regenerate or overwrite them:
 
 ```text
@@ -270,10 +270,10 @@ platform/de1soc/qsys/generate_system.sh \
 ```
 
 `construct` requires `qsys-script` plus a Quartus 20.1 version check through
-`quartus_sh`; it does not require `qsys-generate`. It creates the graph from the
+`quartus_sh`. It does not require `qsys-generate`. It creates the graph from the
 frozen Tcl and HPS preset, validates it, saves to a staging file, atomically
 replaces `system.qsys`, and captures all 44 readback-only HPS values. This mode
-is explicitly destructive to the previous Qsys source; review the normalized
+is explicitly destructive to the previous Qsys source. Review the normalized
 diff before committing it. Do not use `construct` as the normal incremental
 build path.
 
@@ -301,7 +301,7 @@ runs/platform/de1soc/qsys/<UTC>-<PID>/hps_readback.tsv
 runs/platform/de1soc/qsys/<UTC>-<PID>/generate_system_manifest.json
 ```
 
-The per-run readback TSV records exactly the 44 sorted tool-derived values; it
+The per-run readback TSV records exactly the 44 sorted tool-derived values. It
 does not rewrite the frozen preset. The run manifest embeds that ordered
 44-value section and records the mode, resolved tool identities and version,
 Qsys state, and hashes for Qsys, SOPCINFO, QIP, and top-level generated HDL.
@@ -334,7 +334,7 @@ Before accepting a real run or retaining any `[2]` output locally:
 
 1. Run `make check-generated` and `make rtl-filelist`.
 2. Run `platform/de1soc/qsys/generate_system.sh --mode validate --print-summary`.
-3. Run `python3 scripts/check_address_map.py --require-sopcinfo` to confirm the expected generated artifact and interface identities; do not treat that identity check as proof of hardware CSR reachability or Linux reservation.
+3. Run `python3 scripts/check_address_map.py --require-sopcinfo` to confirm the expected generated artifact and interface identities. Do not treat that identity check as proof of hardware CSR reachability or Linux reservation.
 4. Confirm `RING_BASE` is still the FPGA-visible address, not an HPS userspace `mmap()` pointer.
 5. Confirm no generated HDL file contains an absolute path to a local machine directory.
 6. Confirm no generated file changed CSR offsets, packet IDs, or payload sizes. Those belong to `spec/generated/` and generated headers, not Platform Designer output.

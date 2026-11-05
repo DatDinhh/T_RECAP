@@ -30,7 +30,7 @@ Python package's `python/trecap_golden/generated/trecap_config.py`.
 
 This separation keeps arithmetic ownership in the reference package and CSR,
 packet, interface and board ownership in the integrated implementation. The
-promotion map and source manifests record their relationship; two files with
+promotion map and source manifests record their relationship. Two files with
 similar names must not become independently edited definitions.
 
 ## Authority
@@ -535,7 +535,7 @@ Do not commit generated changes without the source change that explains them.
 ## Required generation inputs
 
 The generation scripts and source contracts are part of the repository. A missing
-script, contract, or required generated output is an implementation error; tooling
+script, contract, or required generated output is an implementation error. Tooling
 must report it instead of silently skipping the work.
 
 ## `make gen-headers` contract

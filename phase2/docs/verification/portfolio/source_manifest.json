@@ -5,81 +5,93 @@
   "document_source": {
     "original_artifact_id": "archive:workspace/work/dv_portfolio_20261017/latex/main.tex",
     "original_sha256": "3fbec634903a392397991206357f2593f67d722ec8b9204f872288a89be8488f",
-    "published_sha256": "dffd2f12ca5ec633f8b4305b7c71f18f8cc8a8344e99a589cc92b92b880bee04",
-    "transformation": "Repository-relative evidence links and public-export scope notes added; academic Latin Modern serif typography, conventional title, numbered subsection/table captions and restrained monochrome document styling. Scientific claims and eight vector figure files are unchanged.",
-    "previous_publication_sha256": "4e06153ca2902f5050e3f08382fc8c982b88c217e151646a59dec5e93d07c1d1"
+    "published_sha256": "611ae2c067faed7c6062ca1bdfdcefbbdcd897608d57dd782527efdbe7eed76e",
+    "transformation": "Reader-facing prose punctuation revised. Semicolons became sentences or commas, and en and em dashes were removed. Numerical tokens, literal code listings, scientific claims are unchanged. Vector figures use an academic pastel palette with preserved data geometry.",
+    "previous_publication_sha256": "dffd2f12ca5ec633f8b4305b7c71f18f8cc8a8344e99a589cc92b92b880bee04",
+    "prior_publication_history_sha256": [
+      "4e06153ca2902f5050e3f08382fc8c982b88c217e151646a59dec5e93d07c1d1",
+      "dffd2f12ca5ec633f8b4305b7c71f18f8cc8a8344e99a589cc92b92b880bee04"
+    ]
   },
   "figures": [
     {
       "local": "figures/topology.pdf",
       "source_artifact_id": "archive:workspace/work/verification_20261017_release/figures/static04/verification_topology.pdf",
       "original_sha256": "c080201e3f6afda1cfa3eacd5e599dc3a7c15f82d5e6be5902677ba494f1a139",
-      "published_sha256": "c080201e3f6afda1cfa3eacd5e599dc3a7c15f82d5e6be5902677ba494f1a139",
-      "transformation": "none; vector PDF copied byte-for-byte",
-      "caption": "Conceptual verification and physical-capture boundaries. All fresh board captures use frozen registered expected outputs. The repaired reference was independently qualified on primitives and short vectors, and full-length threshold-zero output was checked against unchanged frozen gold. This does not imply fresh regeneration of all 58 board expectations or internal FPGA-stage timing instrumentation. The nominal/constrained active board fabric clock is CLOCK_50 at 50 MHz (20 ns)."
+      "published_sha256": "4fa1ad52742ae773e56120f810e45dd3e047a9faef713a01d7defee2978aaba9",
+      "transformation": "Pastel vector restyling and prose punctuation only. All plot paths, numerical labels and event coordinates are unchanged. See figures/editorial_refresh.json.",
+      "caption": "Conceptual verification and physical-capture boundaries. All fresh board captures use frozen registered expected outputs. The repaired reference was independently qualified on primitives and short vectors, and full-length threshold-zero output was checked against unchanged frozen gold. This does not imply fresh regeneration of all 58 board expectations or internal FPGA-stage timing instrumentation. The nominal/constrained active board fabric clock is CLOCK_50 at 50 MHz (20 ns).",
+      "previous_publication_sha256": "c080201e3f6afda1cfa3eacd5e599dc3a7c15f82d5e6be5902677ba494f1a139"
     },
     {
       "local": "figures/rounding.pdf",
       "source_artifact_id": "archive:workspace/work/verification_20261017_release/figures/static04/rounding_boundary.pdf",
       "original_sha256": "89d49856e33aaec70be74d34e8122b51a4c9c5885245fb13ec066e3a81c1f3c1",
-      "published_sha256": "89d49856e33aaec70be74d34e8122b51a4c9c5885245fb13ec066e3a81c1f3c1",
-      "transformation": "none; vector PDF copied byte-for-byte",
-      "caption": "Four retained binary-response witnesses. The repaired API agrees with exact integer expectations at shifts63 and64, including both half ties and INT64_MIN. Old executable responses are retained as negative controls."
+      "published_sha256": "120a50498ae2a1f747c2dcc2b43893d5e25abe86c7e494b4e1c4dad41153092b",
+      "transformation": "Pastel vector restyling and prose punctuation only. All plot paths, numerical labels and event coordinates are unchanged. See figures/editorial_refresh.json.",
+      "caption": "Four retained binary-response witnesses. The repaired API agrees with exact integer expectations at shifts63 and64, including both half ties and INT64_MIN. Old executable responses are retained as negative controls.",
+      "previous_publication_sha256": "89d49856e33aaec70be74d34e8122b51a4c9c5885245fb13ec066e3a81c1f3c1"
     },
     {
       "local": "figures/handshake.pdf",
       "source_artifact_id": "archive:workspace/work/verification_20261017_release/figures/traces02/rtl_handshake_backpressure.pdf",
       "original_sha256": "12504f60afa2cfc28618ee1c38249fce16f29e67f4a893f629b5478a496a7a33",
-      "published_sha256": "12504f60afa2cfc28618ee1c38249fce16f29e67f4a893f629b5478a496a7a33",
-      "transformation": "none; vector PDF copied byte-for-byte",
-      "caption": "State changes parsed from the first recorded window of the full-length dense threshold-zero simulation. Orange shading marks observed valid=1, ready=0. The conjunction lane is a derived logic level, not a transaction count."
+      "published_sha256": "472b6583652016fae318209e232bf22fe15cd42175e00ed6d87f5191e7d306e5",
+      "transformation": "Pastel vector restyling and prose punctuation only. All plot paths, numerical labels and event coordinates are unchanged. See figures/editorial_refresh.json.",
+      "caption": "State changes parsed from the first recorded window of the full-length dense threshold-zero simulation. Peach shading marks observed valid=1, ready=0. The conjunction lane is a derived logic level, not a transaction count.",
+      "previous_publication_sha256": "12504f60afa2cfc28618ee1c38249fce16f29e67f4a893f629b5478a496a7a33"
     },
     {
       "local": "figures/reset.pdf",
       "source_artifact_id": "archive:workspace/work/verification_20261017_release/figures/traces02/rtl_reset_response.pdf",
       "original_sha256": "fc320d96631dcac4b2d7035088b14d421336078c9ba49f8439a6f445166b3593",
-      "published_sha256": "fc320d96631dcac4b2d7035088b14d421336078c9ba49f8439a6f445166b3593",
-      "transformation": "none; vector PDF copied byte-for-byte",
-      "caption": "Four recorded cancellation excerpts: clear and hard reset during FFT compute wait and WOLA add-write. The separate simulation scoreboard verified quiet cancellation and exact fresh-epoch recovery. Only short cancellation excerpts are plotted; full recovery epochs were outside the recorded VCD windows."
+      "published_sha256": "0de0660c34a5df90695933be0c116034d47d4d314e0f951803c5bb70e419641e",
+      "transformation": "Pastel vector restyling and prose punctuation only. All plot paths, numerical labels and event coordinates are unchanged. See figures/editorial_refresh.json.",
+      "caption": "Four recorded cancellation excerpts: clear and hard reset during FFT compute wait and WOLA add-write. The separate simulation scoreboard verified quiet cancellation and exact fresh-epoch recovery. Only short cancellation excerpts are plotted. Full recovery epochs were outside the recorded VCD windows.",
+      "previous_publication_sha256": "fc320d96631dcac4b2d7035088b14d421336078c9ba49f8439a6f445166b3593"
     },
     {
       "local": "figures/fullrun.pdf",
       "source_artifact_id": "archive:workspace/work/verification_20261017_release/figures/startup03/rtl_fullrun_startup.pdf",
       "original_sha256": "944a5156eae78b004df626d81996d4b35da18044d0ba38dee5493ef095058be9",
-      "published_sha256": "944a5156eae78b004df626d81996d4b35da18044d0ba38dee5493ef095058be9",
-      "transformation": "none; vector PDF copied byte-for-byte",
-      "caption": "Observed source/output indices, core/exported frame counts and input FIFO occupancy from the startup window of the full-length dense threshold-zero simulation. The retained window ends at absolute simulation time 203.880 us, after the first 20,000 epoch cycles plus setup. This plot is a startup excerpt only; it does not show the duration or completion of the full 384,000-input run. Bus values come directly from the retained VCD prefix. Presented indices are not cumulative handshake counts. The simulation uses a 10 ns clock; the active physical CLOCK_50 period is 20 ns."
+      "published_sha256": "b632d1e5395d244146e0aaf4f2428025bded3a80174ea002c5542f17e46f625e",
+      "transformation": "Pastel vector restyling and prose punctuation only. All plot paths, numerical labels and event coordinates are unchanged. See figures/editorial_refresh.json.",
+      "caption": "Observed source/output indices, core/exported frame counts and input FIFO occupancy from the startup window of the full-length dense threshold-zero simulation. The retained window ends at absolute simulation time 203.880 us, after the first 20,000 epoch cycles plus setup. This plot is a startup excerpt only. It does not show the duration or completion of the full 384,000-input run. Bus values come directly from the retained VCD prefix. Presented indices are not cumulative handshake counts. The simulation uses a 10 ns clock. The active physical CLOCK_50 period is 20 ns.",
+      "previous_publication_sha256": "944a5156eae78b004df626d81996d4b35da18044d0ba38dee5493ef095058be9"
     },
     {
       "local": "figures/audio.pdf",
       "source_artifact_id": "archive:workspace/work/verification_20261017_release/figures/hardware03/flute_waveform_comparison.pdf",
       "original_sha256": "f266bbffda660930e14d3caf6849c0466410f52cf055881395eac37c70b2bed7",
-      "published_sha256": "f266bbffda660930e14d3caf6849c0466410f52cf055881395eac37c70b2bed7",
-      "transformation": "none; vector PDF copied byte-for-byte",
-      "caption": "Fresh DE1-SoC flute reconstruction for thresholds 0, 10^8, 10^9, 10^10, and 10^11. The left panels retain the minimum and maximum of every 96-sample (2 ms) block across the complete 8 s clip. Right panels show every sample in the same 20 ms window (1.180 to 1.200 s), chosen as the loudest nonoverlapping input-only window. Plotted outputs are epochs 49, 51, 53, 55, and 57; the second repeat at each threshold is byte-identical. All panels use the same signed12 LSB scale and remove exactly 384 leading returned samples."
+      "published_sha256": "7fcd218a7516f367cbaddd48039240f3db1a1a7bc3f2c1d3e273440f5354e715",
+      "transformation": "Pastel vector restyling and prose punctuation only. All plot paths, numerical labels and event coordinates are unchanged. See figures/editorial_refresh.json.",
+      "caption": "Fresh DE1-SoC flute reconstruction for thresholds 0, 10^8, 10^9, 10^10, and 10^11. The left panels retain the minimum and maximum of every 96-sample (2 ms) block across the complete 8 s clip. Right panels show every sample in the same 20 ms window (1.180 to 1.200 s), chosen as the loudest nonoverlapping input-only window. Plotted outputs are epochs 49, 51, 53, 55, and 57. The second repeat at each threshold is byte-identical. All panels use the same signed12 LSB scale and remove exactly 384 leading returned samples.",
+      "previous_publication_sha256": "f266bbffda660930e14d3caf6849c0466410f52cf055881395eac37c70b2bed7"
     },
     {
       "local": "figures/quality.pdf",
       "source_artifact_id": "archive:workspace/work/verification_20261017_release/figures/hardware03/flute_error_agreement.pdf",
       "original_sha256": "a0c252a2132954004420bb7b1a709fb01f4c8129badc3be9809063fd4259fb6f",
-      "published_sha256": "a0c252a2132954004420bb7b1a709fb01f4c8129badc3be9809063fd4259fb6f",
-      "transformation": "none; vector PDF copied byte-for-byte",
-      "caption": "Left: normalized RMS difference from the original input over 384,000 aligned samples, computed as 100*sqrt(sum((Y[n+384]-x[n])^2)/sum(x[n]^2)). Right: maximum absolute difference from the registered threshold-specific reference over every one of the 384,512 returned samples. All reference differences are exactly zero in both fresh repeats. Exact reference agreement does not imply zero signal distortion at nonzero thresholds."
+      "published_sha256": "c1a89d822d093cba9584f3132548de28a1b91dd811470f2458c549a7bcc2a81d",
+      "transformation": "Pastel vector restyling and prose punctuation only. All plot paths, numerical labels and event coordinates are unchanged. See figures/editorial_refresh.json.",
+      "caption": "Left: normalized RMS difference from the original input over 384,000 aligned samples, computed as 100*sqrt(sum((Y[n+384]-x[n])^2)/sum(x[n]^2)). Right: maximum absolute difference from the registered threshold-specific reference over every one of the 384,512 returned samples. All reference differences are exactly zero in both fresh repeats. Exact reference agreement does not imply zero signal distortion at nonzero thresholds.",
+      "previous_publication_sha256": "a0c252a2132954004420bb7b1a709fb01f4c8129badc3be9809063fd4259fb6f"
     },
     {
       "local": "figures/packet_sizes.pdf",
       "source_artifact_id": "archive:workspace/work/verification_20261017_release/figures/hardware03/flute_packet_sizes.pdf",
       "original_sha256": "dcb66bf0dbb6d4b74034181209ecf9631a9a7d1f91cf988fd1dff68ad8982374",
-      "published_sha256": "dcb66bf0dbb6d4b74034181209ecf9631a9a7d1f91cf988fd1dff68ad8982374",
-      "transformation": "none; vector PDF copied byte-for-byte",
-      "caption": "Captured sparse TSP1 byte counts, including frame headers, across 3,001 frames. Reduction is measured against the registered compact dense TSP1 file, 2,856,952 bytes (952 bytes/frame), and not against WAV or PCM input size. At threshold zero the sparse representation is larger than the compact dense representation. Both fresh repeats produced identical bytes."
+      "published_sha256": "6916a9e0669bab493875cd27e8f9097ba595466c1aea9765ca429fb90f679315",
+      "transformation": "Pastel vector restyling and prose punctuation only. All plot paths, numerical labels and event coordinates are unchanged. See figures/editorial_refresh.json.",
+      "caption": "Captured sparse TSP1 byte counts, including frame headers, across 3,001 frames. Reduction is measured against the registered compact dense TSP1 file, 2,856,952 bytes (952 bytes/frame), and not against WAV or PCM input size. At threshold zero the sparse representation is larger than the compact dense representation. Both fresh repeats produced identical bytes.",
+      "previous_publication_sha256": "dcb66bf0dbb6d4b74034181209ecf9631a9a7d1f91cf988fd1dff68ad8982374"
     }
   ],
   "public_evidence_export": {
     "repository_path": "phase2/docs/results/verification_20261017",
     "relative_manifest": "../../results/verification_20261017/manifest.json",
-    "manifest_sha256": "8c18ca08daa1faee7499b5d386c59efa40d9b83286558ad73757386f55a0d7e3",
-    "semantics": "Original source SHA256 values and derived export SHA256 values are distinct; exported JSON data is wrapped.",
+    "manifest_sha256": "002da9bd88cc1a80e6d771669e29b6fc4ab3ebf5465e0432990c21b6b816bd5c",
+    "semantics": "Original source SHA256 values and current derived export SHA256 values are distinct. Exported JSON data is wrapped. Editorial README changes do not alter historical execution receipts.",
     "exports": [
       {
         "path": "acceptance/final_disposition.json",
@@ -596,7 +608,7 @@
         "path": "README.md",
         "kind": "publication_scope_document",
         "bytes": 3023,
-        "export_sha256": "2797554bec9b43dc36e708258b7574b38f36d99fcf392539cb7d9ae202c3ad53",
+        "export_sha256": "74a55f4339aa30008e681f656a713ab249bd01ca15012ea1dca8688302f5ba64",
         "original_sources": [],
         "derived_export": true
       },
@@ -613,7 +625,8 @@
         ],
         "derived_export": true
       }
-    ]
+    ],
+    "previous_publication_manifest_sha256": "8c18ca08daa1faee7499b5d386c59efa40d9b83286558ad73757386f55a0d7e3"
   },
   "portable_regression": {
     "repository_path": "phase2/verification/tsh2",
@@ -646,7 +659,13 @@
     "document_class": "article",
     "font_size_pt": 11,
     "page_size": "letter",
-    "figure_files_unchanged": true,
-    "table_captions_added": 11
+    "figure_files_unchanged": false,
+    "table_captions_added": 11,
+    "numerical_plot_content_unchanged": true,
+    "figure_palette": "Academic pastel sage, blue, lilac and peach with dark text"
+  },
+  "editorial_revision": {
+    "baseline_commit": "07bc8224aa080c8eaa1b77b4603c118d853465d0",
+    "scope": "Prose and document publication only. No numerical or physical verification was rerun."
   }
 }

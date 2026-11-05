@@ -47,3 +47,9 @@ python check_bundle.py
 Figure generation may change PDF metadata or renderer-dependent bytes. The integrity check intentionally detects any mismatch against the committed bundle. A new report release must be reviewed and its manifest deliberately regenerated. Plotted time is simulation/solver time, not measured hardware latency.
 
 These results demonstrate scoped design-verification work. They do not establish whole-chip sign-off, full DSP equivalence, constrained-random or covergroup closure, production FIFO order, PCM FIFO proof, CDC/RDC safety or live microphone qualification.
+
+## Publication refresh
+
+The current LaTeX PDF and figure previews use an academic pastel palette. The original waveform samples, proof results and simulation receipts are unchanged. [The vector audit](figures/editorial_refresh.json) records the original and current figure hashes and verifies unchanged geometric PDF operators.
+
+The plot generators above reproduce the original measured content. To reproduce the published palette from the baseline figures, install `pypdf` and `fonttools`, then run `python ../portfolio/restyle_figures.py --source BASELINE_FIGURES --output figures --family uvm_formal`. Use the figure directory from commit `07bc8224aa080c8eaa1b77b4603c118d853465d0` as `BASELINE_FIGURES`. This publication refresh does not rerun verification.

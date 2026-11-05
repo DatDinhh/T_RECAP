@@ -6,7 +6,7 @@ The root build files orchestrate the reference library, HPS application, generat
 
 | Work | Environment |
 | --- | --- |
-| Repository maintenance and CI | Python 3.12 baseline; root hygiene uses the standard-library TOML parser |
+| Repository maintenance and CI | Python 3.12 baseline. Root hygiene uses the standard-library TOML parser |
 | Reference-model/dashboard Python packages | Python 3.10+ according to their package metadata |
 | Reference library | C++20 compiler and CMake 3.24+ |
 | Root Makefile | GNU Make with Bash |
@@ -48,12 +48,12 @@ With the root `host` preset, the reference runner's typical location is:
 
 For the direct component build above, remove `host/` from those paths. Other
 generators or configurations may use a different layout. The executable keeps
-its historical name; the reference tools accept an explicit `--reference-exe`
+its historical name. The reference tools accept an explicit `--reference-exe`
 path when automatic discovery does not match the selected build directory.
 
 The Linux `hps` preset uses the selected native compiler. Building on an x86 Linux
 host does not produce an ARM HPS deployment binary. Build on the HPS itself or
-select a suitable cross-toolchain for target deployment; the preset does not
+select a suitable cross-toolchain for target deployment. The preset does not
 supply an ARM toolchain or configure the board's Linux runtime.
 
 For the normal on-board build, `make hps-build` writes
@@ -70,7 +70,7 @@ The launcher also needs the board's Linux memory reservation, platform driver, C
 network configuration, and matching FPGA bitstream. The command above is not a
 host-only substitute for that platform setup.
 
-Refer to [sw/reference_model/README.md](../../sw/reference_model/README.md) for its artifact and analysis commands. `make help` lists the wider root command surface, including existing diagnostic targets; no diagnostic result is implied by this guide.
+Refer to [sw/reference_model/README.md](../../sw/reference_model/README.md) for its artifact and analysis commands. `make help` lists the wider root command surface, including existing diagnostic targets. No diagnostic result is implied by this guide.
 
 ## Shared files before RTL builds
 
@@ -79,7 +79,7 @@ make gen-headers
 make rtl-filelist
 ```
 
-Header generation consumes the root machine-readable contracts. Source-list generation owns RTL dependency order. Change the input contracts or generator when necessary; do not maintain local edits to generated SV/C/Python headers or filelists.
+Header generation consumes the root machine-readable contracts. Source-list generation owns RTL dependency order. Change the input contracts or generator when necessary. Do not maintain local edits to generated SV/C/Python headers or filelists.
 
 The reference model and root implementation have a deliberate boundary: reference code owns the arithmetic source snapshot, while the root also owns CSR, telemetry, and board contracts. A runtime profile selects a composition and source but does not change synthesized arithmetic constants by itself.
 
@@ -96,11 +96,11 @@ This elaborates `de1_soc_trecap_top` with SYNTHESIS defined and writes diagnosti
 under `build/`. Only the vendor modules `system` and `altera_pll` may remain
 external. Other unknown modules are errors. It does not use testbench stubs, run
 a simulator, or execute the reference model. Non-error diagnostics are retained
-in the report; a successful source compile is not a timing or functional result.
+in the report. A successful source compile is not a timing or functional result.
 
 The Quartus build wrapper runs contract-generation and platform-address checks
 by default. Historical source/model checks are available explicitly through
-`--with-legacy-checks`; they are maintained separately from this source build.
+`--with-legacy-checks`. They are maintained separately from this source build.
 The [Linux source recipe](../../platform/de1soc/linux/README.md) defines the
 kernel/DTB/module and offline runtime installation commands.
 
@@ -134,7 +134,7 @@ The compile targets require their configured external tools. Full-board generati
 
 ## Native Windows Quartus build
 
-The [2026-09-15 Lite result](../results/de1soc_lite_bram_20260915.md) records a completed BRAM build, all 209 fitted pins passing, the four-corner timing gate passing, and successful volatile JTAG configuration. These results establish build and configuration evidence; post-program LED behavior and end-to-end board operation remain unobserved. The Standard native-12 results below are historical.
+The [2026-09-15 Lite result](../results/de1soc_lite_bram_20260915.md) records a completed BRAM build, all 209 fitted pins passing, the four-corner timing gate passing, and successful volatile JTAG configuration. These results establish build and configuration evidence. Post-program LED behavior and end-to-end board operation remain unobserved. The Standard native-12 results below are historical.
 
 Use Windows PowerShell 5.1 or PowerShell 7 with Quartus Prime 20.1.x Lite or
 licensed Standard (including the 20.1.1 update), matching Cyclone V device support,
@@ -144,7 +144,7 @@ and record the reported release and edition in the build provenance. Set
 replace that argument below with its actual path.
 The script also accepts an installation directory containing `quartus` or
 `quartusfpga/quartus`.
-It resolves native tools under that installation and does not require Bash or WSL. Use the same selected installation for generation, compilation and programming; changing editions requires a fresh build and its own pin, timing and image records.
+It resolves native tools under that installation and does not require Bash or WSL. Use the same selected installation for generation, compilation and programming. Changing editions requires a fresh build and its own pin, timing and image records.
 
 ```powershell
 .\scripts\quartus\build_de1soc.ps1 `
@@ -154,7 +154,7 @@ It resolves native tools under that installation and does not require Bash or WS
 ```
 
 `-Python` accepts a Python executable path when `python` on PATH is not the desired
-interpreter. `-RunDirectory` selects an empty log directory; relative paths are
+interpreter. `-RunDirectory` selects an empty log directory. Relative paths are
 resolved from the repository root. Without it, the script creates a timestamped
 directory under `runs/quartus/windows/`.
 
@@ -178,17 +178,17 @@ Use `-GenerateOnly` to stop after Platform Designer generation and its source
 interface checks. Use `-SkipPlatformGenerate` for an already generated normalized
 system: the script recaptures HPS parameter readbacks and checks existing products
 before compiling. These switches cannot be combined. Existing generated files are
-kept; the wrapper does not recursively clean build directories or patch vendor HDL.
+kept. The wrapper does not recursively clean build directories or patch vendor HDL.
 
 Every external stage has its own `.log` and a recorded exit code in
-`build_manifest.json`; the first failure stops the flow. The run also records
+`build_manifest.json`. The first failure stops the flow. The run also records
 Platform Designer provenance and the selected profile. A completed FPGA compile
 records `platform/de1soc/quartus/output_files/trecap_de1soc.sof` and its hash.
 An assembler exit code of zero is not proof that an image was produced. The
 wrappers record SOF presence immediately after assembly, continue timing reports
 if it is missing, and fail the overall build before completion. Evaluation or
 license restrictions must be resolved before a programmable image can be claimed.
-The script creates build products only; board programming is a separate operation.
+The script creates build products only. Board programming is a separate operation.
 It does not invoke models, simulation, negative tests, or the historical verification
 checklist. Tool compilation results must still be distinguished from functional
 or hardware signoff.
@@ -198,7 +198,7 @@ or hardware signoff.
 The recorded Standard 20.1.1 native-12 synthesis completed with 1,741 warnings and no errors. Its complete
 map report contains no divider or remainder megafunctions. WAVE uses 4,965
 combinational ALUTs instead of 9,659, with the same 7,219 dedicated registers and
-four additional DSP blocks. Total DSP use is 36; these synthesis ALUT counts are
+four additional DSP blocks. Total DSP use is 36. These synthesis ALUT counts are
 not fitted ALM counts. The [storage schedule](storage_schedule.md) proves the
 bounded reciprocal and radix-4 arithmetic and documents source-health and ring
 admission factoring. The [magnitude timing note](magnitude_mask_timing.md) and
@@ -206,19 +206,19 @@ admission factoring. The [magnitude timing note](magnitude_mask_timing.md) and
 overflow and capture behavior behind the other shortened paths.
 
 Relative to native-11, three warnings were added: a generated HPS dangling-pin
-summary; a ring-query signal used only by the non-synthesis diagnostic; and a
+summary, a ring-query signal used only by the non-synthesis diagnostic, and a
 narrow stored record offset. The offset is written only after a full-width
 terminal comparison establishes that the next offset is below the admitted
 record length. No new latch, multiple-driver or RAM-inference warning appeared.
-The initial fitter process stopped with an internal access violation; its failure
+The initial fitter process stopped with an internal access violation. Its failure
 record is preserved. After completing placement, the first native-12 timing gate
 passed fabric timing but exposed three ADC output routes outside their 5 ns
 allocation. The final I/O placement requests the existing three output registers
 in I/O buffers. It uses 20,280 ALMs (63%), 29,115 registers, 55 M10K blocks and
 36 DSP blocks. The fitted RAM summary identifies FFT/IFFT work memories as M10K
 true-dual-port storage. All 209 pin comparisons and the required timing gate pass
-at all four available operating corners. Worst fabric setup slack is +1.999 ns;
-maximum ADC output data-path delay is 2.968 ns. Evaluation Mode suppressed
+at all four available operating corners. Worst fabric setup slack is +1.999 ns.
+Maximum ADC output data-path delay is 2.968 ns. Evaluation Mode suppressed
 the SOF, so that historical continuation remained incomplete for programming. The
 [implementation results](../results/fpga_implementation.md) retain each checkpoint
 and the sanitized evidence record.
@@ -227,24 +227,24 @@ The preceding native-11 synthesis completed with 1,738 warnings and no errors.
 The mapped report contains no SPEC divider. All eight WAVE divide/modulo
 instances and all five payload-validation modulo instances use 11-bit unsigned
 numerators and 3-bit denominators. The only removed diagnostic is a generated
-HPS dangling-pin summary; no new warning message appeared after source-line
-renumbering. These mapped widths establish the intended hardware reduction;
-post-fit reports must still establish timing.
+HPS dangling-pin summary. No new warning message appeared after source-line
+renumbering. These mapped widths establish the intended hardware reduction.
+Post-fit reports must still establish timing.
 
 
-The native09 and native10 Analysis & Synthesis logs each contain 1,739 warnings;
-comparison of the complete warning messages found no additions or removals.
+The native09 and native10 Analysis & Synthesis logs each contain 1,739 warnings.
+Comparison of the complete warning messages found no additions or removals.
 The records are `runs/quartus/windows/20260913-bram-{09,10}/quartus-map.log`.
 These are diagnostic-message counts, including summary and child messages, rather
 than counts of distinct design defects.
 
 | Warning class | Messages | Source explanation |
 | --- | ---: | --- |
-| Twiddle initialization narrowing | 1,536 | Five hexadecimal digits occupy 20 bits; the coefficient ROM stores signed 17-bit words. The load retains the defined 17-bit coefficient representation. |
+| Twiddle initialization narrowing | 1,536 | Five hexadecimal digits occupy 20 bits. The coefficient ROM stores signed 17-bit words. The load retains the defined 17-bit coefficient representation. |
 | Other assignment narrowing | 39 | Derived-width constants, bounded indexes and rate-accumulator remainders in project RTL, plus generated HPS controller/PHY widths. |
-| Undriven nets or outputs | 28 | Twenty-one name synthesized write inputs (`data_a`, `waddr_a`, `we_a`) of initialized read-only ROMs; seven belong to generated HPS PLL/PHY code. |
+| Undriven nets or outputs | 28 | Twenty-one name synthesized write inputs (`data_a`, `waddr_a`, `we_a`) of initialized read-only ROMs. Seven belong to generated HPS PLL/PHY code. |
 | Unrecognized `async_reg` attribute | 21 | Quartus does not recognize this portable annotation. Source preservation and Intel-specific synchronizer attributes must be considered separately. |
-| Assigned objects never read | 28 | Includes unused status expressions and array accesses made through packetizer functions; this diagnostic alone does not establish that payload storage was removed. |
+| Assigned objects never read | 28 | Includes unused status expressions and array accesses made through packetizer functions. This diagnostic alone does not establish that payload storage was removed. |
 | Permanently enabled I/O child nodes | 69 | All identify generated HPS `~synth` pin nodes, not the fabric codec I2C open-drain outputs. |
 | Case completeness not checked | 5 | The CSR decoder's wide case expressions exceed the compiler's completeness-check limit. |
 | Inputs without dependent outputs | 4 | Three spare board clocks and `SW[3]`, whose LINE-OUT monitor is disabled in this profile. |
@@ -259,7 +259,7 @@ No latch or multiple-driver diagnostic appeared, and this bounded review found n
 additional source-owned board defect requiring a change. It does not suppress
 these messages or establish numerical correctness, functional behavior,
 metastability performance, or fitted timing closure. New or changed diagnostics
-require a fresh review; the generated HPS clock-model boundary is documented below.
+require a fresh review. The generated HPS clock-model boundary is documented below.
 
 ### HPS DDR assignments between synthesis and fitting
 
@@ -274,10 +274,10 @@ stops the build before fitting.
 
 `TRECAP_HPS_DDR_QSF` selects this generated include for subsequent stages. The
 adapter closes the Quartus project with `-dont_export_assignments` on success
-and failure; the vendor script otherwise allows automatic export to rewrite the
+and failure. The vendor script otherwise allows automatic export to rewrite the
 maintained project QSF. The include is published atomically and retained with its
 hash, stage logs, and the vendor `hps_sdram_p0_all_pins.txt` discovery dump.
-Native runs record each exit in `build_manifest.json`; Bash
+Native runs record each exit in `build_manifest.json`. Bash
 runs retain `quartus_stages.json` even when a stage fails and embed it in the
 completed build manifest.
 
@@ -293,16 +293,16 @@ Both build wrappers finish with `scripts/quartus/check_fitted_timing.tcl` throug
 then checks every operating condition returned by
 `get_available_operating_conditions -all`. Setup, hold, recovery and removal
 slack must be nonnegative wherever those paths exist. Absent path types are
-reported explicitly; `CLOCK_50` and its setup/hold paths are required. Clock
+reported explicitly. `CLOCK_50` and its setup/hold paths are required. Clock
 coverage checks retain the explicit `no_clock` and `generated_clock` problem
 counts and every detail row from `check_timing`. Only the reviewed hard-IP model
-boundary below is excluded; a successful report command is not itself a pass.
+boundary below is excluded. A successful report command is not itself a pass.
 The external `codec_bclk` and the observed audio PLL output clock are required.
 
 The gate also measures the longest data paths using `get_path`, which excludes
 clock-path credit. It applies the physical allocations from the board design:
 20 ns for audio Gray pointers and payload crossings, 5 ns for ADC output routes,
-10 ns for the ADC return input, and 20 ns for codec I2C input/output routes. RX endpoints are required;
+10 ns for the ADC return input, and 20 ns for codec I2C input/output routes. RX endpoints are required.
 TX checks are optional only when the included profile sets
 `AUDIO_LINEOUT_ALLOWED=0` and the complete TX FIFO is absent. Every corner also
 requires nonnegative `report_max_skew` slack and explicit Gray-pointer coverage
@@ -310,13 +310,13 @@ in its detailed report. Net-delay reports are retained separately.
 A retained interface with missing endpoints or no connecting path fails the gate.
 The five ADC/I2C output ports additionally require nonnegative shortest data
 paths and retain both minimum and maximum detailed route reports. Their
-full-path gate expresses a physical propagation budget;
-there is no external CLOCK_50 capture edge assigned to these slow-control
+full-path gate expresses a physical propagation budget.
+There is no external CLOCK_50 capture edge assigned to these slow-control
 outputs. See [the output data-path contract](physical_timing.md#slow-control-output-data-paths)
 for the exact five-port disposition and Quartus 20.1 clock-latency rationale.
 
-The ADC return's first synchronizer register samples continuously at 50 MHz;
-the FSM consumes its final stage after the serial half-period. We therefore
+The ADC return's first synchronizer register samples continuously at 50 MHz.
+The FSM consumes its final stage after the serial half-period. We therefore
 exclude only the `ADC_DOUT` to `adc_dout_sync_q[0]` hold check: that input has no
 deterministic phase relative to each fabric-clock edge. The setup placement
 constraint, synchronizer interstage timing and consumer timing remain enabled.
@@ -328,11 +328,11 @@ The physical gate independently requires `get_path -min_path` delay at least
 `report_path` reports for every corner. These queries include no clock-path
 credit and remain active despite the hold-only exception. The serial return
 budget is `5 + 2 + 100 + 10 + 60 = 177 ns` within the 200 ns half-period,
-leaving 23 ns for the stated 20 ns guard and 3 ns residual margin; see
+leaving 23 ns for the stated 20 ns guard and 3 ns residual margin. See
 [physical timing](physical_timing.md).
 
 The nominal 12.288 MHz MCLK has a 100 ppm acceptance allocation for PLL synthesis
-quantization in `config/boards/physical_timing.json`; board oscillator tolerance
+quantization in `config/boards/physical_timing.json`. Board oscillator tolerance
 is separate. The native 20.1 clock ratio is `50 MHz × 519 / 64 / 33`, approximately
 12.2869 MHz, with an 81.387 ns reported period. At the codec's 256:1 divider this
 is approximately 47995.83 samples/s. The gate allows 1 ps separately for STA
@@ -342,7 +342,7 @@ bounds.
 Results are retained in `fitted-timing/fitted_timing.tsv` with full worst-slack
 reports for each corner. The stage exits unsuccessfully on a violated bound or a
 missing required path. A produced SOF alone does not establish that this gate
-passed; consult the run's stage result and report. These tool results do not
+passed. Consult the run's stage result and report. These tool results do not
 establish functional correctness or measured board behavior.
 
 ### Hard-IP clock-model boundary
@@ -350,29 +350,29 @@ establish functional correctness or measured board behavior.
 The native Quartus 20.1 fitted report contains 6995 `no_clock` entries. We retain
 that raw count and classify each full node name. The count itself is not proof
 of clock coverage. The gate requires the following separate, exact hierarchy
-and count groups; any unrecognized node, duplicate row, missing detail, or count
+and count groups. Any unrecognized node, duplicate row, missing detail, or count
 change fails for review. Source-owned fabric registers have no exclusion.
 
 | Reviewed model group | Native 20.1 count | Scope evidence |
 | --- | ---: | --- |
-| HPS FPGA interfaces | 1858 | `system_hps_0_fpga_interfaces.sv`:174,363,596 instantiate dedicated clocks/resets, lightweight bridge and FPGA-to-SDRAM primitives; each primitive has its own required count. |
-| HPS peripheral border | 5128 | `system_hps_0_hps_io_border.sv` instantiates the dedicated HPS peripheral primitives; eight pseudo-register groups and sixteen exact Ethernet border nodes are bounded separately. |
-| Dedicated HPS clock/input ports | 3 | Exact names `HPS_USB_CLKOUT`, `HPS_I2C1_SCLK`, `HPS_I2C2_SCLK`; the source-owned peripheral alias SDC covers their hard-I/O boundary. |
-| DDR hard-PLL output aliases | 2 | `hps_sdram_pll.sv`:151–178 wires `afi_clk` and `pll_write_clk` from the hard PLL outputs; these are not RTL data registers. |
-| DDR DQS postamble model nodes | 4 | One exact `POS_POSTAMBLE_DFF` node per DQS group; accepted only after the current fitted corner's vendor DDR analysis passes. |
+| HPS FPGA interfaces | 1858 | `system_hps_0_fpga_interfaces.sv`:174,363,596 instantiate dedicated clocks/resets, lightweight bridge and FPGA-to-SDRAM primitives. Each primitive has its own required count. |
+| HPS peripheral border | 5128 | `system_hps_0_hps_io_border.sv` instantiates the dedicated HPS peripheral primitives. Eight pseudo-register groups and sixteen exact Ethernet border nodes are bounded separately. |
+| Dedicated HPS clock/input ports | 3 | Exact names `HPS_USB_CLKOUT`, `HPS_I2C1_SCLK`, `HPS_I2C2_SCLK`. The source-owned peripheral alias SDC covers their hard-I/O boundary. |
+| DDR hard-PLL output aliases | 2 | `hps_sdram_pll.sv`:151 to 178 wires `afi_clk` and `pll_write_clk` from the hard PLL outputs. These are not RTL data registers. |
+| DDR DQS postamble model nodes | 4 | One exact `POS_POSTAMBLE_DFF` node per DQS group. Accepted only after the current fitted corner's vendor DDR analysis passes. |
 
 The two PLL aliases additionally require the actual vendor clocks
 `afi_clk_write_clk` and `pll_write_clk_dq_write_clk` at 2.5 ns. The generated
-`hps_sdram_p0.sdc`:271–282 establishes these clocks from discovered memory pins.
+`hps_sdram_p0.sdc`:271 to 282 establishes these clocks from discovered memory pins.
 We do not create replacement clocks on the generic report's model nodes.
 
 The postamble nodes belong to the calibrated `cyclonev_dqs_delay_chain`
-primitive in `altdq_dqs2_acv_connect_to_hard_phy_cyclonev.sv`:1043–1060.
+primitive in `altdq_dqs2_acv_connect_to_hard_phy_cyclonev.sv`:1043 to 1060.
 They need dedicated DDR analysis: the generic SDC's `POSTAMBLE_DFF` comment is
 not sufficient evidence to discard a `POS_POSTAMBLE_DFF` warning.
-`hps_sdram_p0_report_timing_core.tcl`:1733–1937 computes postamble margins,
+`hps_sdram_p0_report_timing_core.tcl`:1733 to 1937 computes postamble margins,
 including actual DQS-to-postamble paths, calibration, jitter and device/memory
-variation; `hps_sdram_p0_report_timing.tcl`:365 invokes that calculation.
+variation. `hps_sdram_p0_report_timing.tcl`:365 invokes that calculation.
 The gate sources the unedited report at each fitted corner, requires one
 interface with four DQS groups and valid model assumptions, and requires every
 applicable DDR margin to be nonnegative. It preserves explicitly absent
@@ -381,9 +381,9 @@ the corresponding corner's gate report.
 
 The native09 audit completed all four available 1100 mV slow/fast, 0/85 °C
 corners with positive applicable DDR margins. The minimum postamble setup and
-hold margins were both 0.475479375 ns; read-capture hold was 0.185625347143 ns.
+hold margins were both 0.475479375 ns. Read-capture hold was 0.185625347143 ns.
 The project-entry QSF SHA-256 was unchanged. These results apply to that fitted
-database; each new build reruns the analysis. They do not resolve the separately
+database. Each new build reruns the analysis. They do not resolve the separately
 reported fabric timing failures or establish functional board behavior.
 
 The reviewed generated report SHA-256 values are
@@ -414,7 +414,7 @@ The script logs a fresh `jtagconfig` inventory and requires exactly one matching
 cable with the two-device chain: HPS ID `4BA00477`, followed by FPGA ID `02D120DD`
 at index 2. It hashes the explicit SOF, checks that the file remains unchanged
 during inventory, then invokes `quartus_pgm -m JTAG -c <selected-cable>` with the
-single operation `p;<explicit-sof>@2`. The SOF parameter is required; no image is
+single operation `p;<explicit-sof>@2`. The SOF parameter is required. No image is
 selected by modification time. Only volatile FPGA programming is exposed.
 
 Logs, observed device identities, SOF hash, command arguments, and exit codes are
@@ -455,7 +455,7 @@ accepts three reviewed optional-clock warning forms: configuration/user0 request
 100 MHz versus 97.368421 MHz, QSPI requested 400 MHz versus 370 MHz, and their
 summary warning. These warnings do not bypass parameter readback checks or change
 the 50 MHz fabric-clock contract. The generated IRQ mappers have zero receivers
-and drive a constant `32'b0`; their unused clock/reset warnings are benign for
+and drive a constant `32'b0`. Their unused clock/reset warnings are benign for
 this zero-input configuration only. Adding an interrupt receiver requires revisiting
 those connections. These exceptions do not permit arbitrary warnings or errors.
 
@@ -464,20 +464,20 @@ omits our bootstrap metadata. The source checker accepts this vendor representat
 for that file while retaining the source-owned platform and address contracts.
 The bundled Java Tcl interpreter also requires an existing file for append mode,
 so validation logging creates the file before appending. Its `file rename -force`
-cannot reliably replace an existing Windows target; saving the normalized system
+cannot reliably replace an existing Windows target. Saving the normalized system
 uses a Python `os.replace` fallback on the same filesystem.
 
 We tie the required HPS cold/debug/warm reset requests inactive, hold STM hardware
 events at zero, and tie the DDR bridge's debug-access input low. The source-owned
 CSR bridge preserves delayed write-error responses through `writeresponsevalid`.
-Its IP catalog path is `<component-dir>/*,$`; reloading the catalog inside Tcl
+Its IP catalog path is `<component-dir>/*,$`. Reloading the catalog inside Tcl
 would discard that command-line search path.
 
 The native integration run generated 33 modules and 90 files. The generated
 SOPCINFO address check and the 99-port wrapper interface check passed. The staged
 build uses the default `config/profiles/de1soc_bram_replay.json` profile and
 `artifacts/test_vectors/zero_Ns4096_thr0/x_in.memh`: 4096 zero-valued input samples
-at 48 ksample/s. These are Platform Designer generation and integration results;
+at 48 ksample/s. These are Platform Designer generation and integration results.
 Quartus compilation and FPGA programming outcomes are recorded separately in
 their run manifests.
 
@@ -490,12 +490,12 @@ through [hps_peripheral_timing.sdc](../../constraints/de1soc/hps_peripheral_timi
 40 from-pin and 44 to-pin exceptions across 55 scalar hard-peripheral pins.
 Every endpoint must resolve exactly once. These explicit aliases exclude HPS
 DDR, FPGA audio/ADC/I2C ports, and the CSR/DDR fabric interfaces. The unchanged
-vendor entries can still report unmatched exported names; this does not permit
+vendor entries can still report unmatched exported names. This does not permit
 unrelated unmatched constraints.
 
-The alias source is generated SDC lines 1–84, mapped by
+The alias source is generated SDC lines 1 to 84, mapped by
 [platform_designer_wrapper.sv](../../rtl/platform/de1soc/platform_designer_wrapper.sv)
-lines 195–249. The inspected source identities are:
+lines 195 to 249. The inspected source identities are:
 
 | Input | SHA-256 |
 | --- | --- |
@@ -504,12 +504,12 @@ lines 195–249. The inspected source identities are:
 | Generated `hps_sdram_p0.sdc` | `f9f415061c150ed6959b73a06e0434c136e27f9f29d156dc408991ed61961767` |
 
 The generated `hps_sdram_p0.sdc` deliberately sets DQS input/output clock
-uncertainty to zero at lines 345–346, 360–361 and 369–370: its adjacent comments
-state that the path-jitter terms already account for uncertainty. Lines 79–86
-query jitter, lines 103–120 include jitter, board skew, signal-integrity and
-switching-noise terms in data input/output budgets, and lines 123–126 include PLL
-jitter and phase error in address/command budgets. We preserve that vendor model;
-adding the generic recommended uncertainty would count parts of the budget twice.
+uncertainty to zero at lines 345 to 346, 360 to 361 and 369 to 370: its adjacent comments
+state that the path-jitter terms already account for uncertainty. Lines 79 to 86
+query jitter, lines 103 to 120 include jitter, board skew, signal-integrity and
+switching-noise terms in data input/output budgets, and lines 123 to 126 include PLL
+jitter and phase error in address/command budgets. We preserve that vendor model.
+Adding the generic recommended uncertainty would count parts of the budget twice.
 This explanation applies to those documented DDR transfers and does not justify
 zeroing our fabric or peripheral uncertainty constraints.
 
@@ -527,9 +527,9 @@ Unary negation around cast expressions is explicitly parenthesized. FFT/IFFT
 RAMs use a local `no_rw_check` attribute for the reason recorded in the
 [transform microarchitecture](transform_microarchitecture.md). Native-12's
 Fitter RAM Summary confirms M10K true-dual-port inference for both FFT and IFFT
-work memories; the complete fitted design uses 55 M10K blocks. This establishes
+work memories. The complete fitted design uses 55 M10K blocks. This establishes
 the implemented storage mapping for that build. The final native-12 fitted timing
-gate also passes; neither result establishes functional correctness.
+gate also passes. Neither result establishes functional correctness.
 
 ## Runtime sequence
 

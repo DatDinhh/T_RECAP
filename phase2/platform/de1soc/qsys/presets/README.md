@@ -1,7 +1,7 @@
 # Frozen DE1-SoC HPS Preset
 
 This directory owns the Step 2 Platform Designer/HPS configuration snapshot.
-It freezes source inputs; it is not a substitute for a successful Quartus run.
+It freezes source inputs. It is not a substitute for a successful Quartus run.
 
 ## Selected profile
 
@@ -12,7 +12,7 @@ It freezes source inputs; it is not a substitute for a successful Quartus run.
 - Platform Designer Qsys Tcl API package: 16.0.
 - HPS component: `altera_hps` 20.1 for `5CSEMA5F31C6`.
 - Snapshot size: 520 parameters.
-- Application partition: 476 vendor-exported writable parameters are applied;
+- Application partition: 476 vendor-exported writable parameters are applied.
   44 device/system-info/clock/INI values are retained as readback-only
   provenance because the Qsys API does not permit setting derived or
   `SYSTEM_INFO` parameters.
@@ -21,18 +21,18 @@ It freezes source inputs; it is not a substitute for a successful Quartus run.
 - TSV values are canonical Qsys-XML semantics. At the Tcl API boundary,
   `platform_designer.tcl` marshals the eight list-valued parameters to the
   exact Quartus 20.1 list representation (including the one-element
-  `Avalon-MM\ Bidirectional` setter value); this does not alter snapshot hashes.
+  `Avalon-MM\ Bidirectional` setter value). This does not alter snapshot hashes.
 - Effective canonical parameter hash:
   `bf0dc533f1a141c2a3d91058501b19b0a6ef5b479619bb4829fe94bea60e0888`.
 
 The physical board revision has not been inspected. Its status remains
 `unverified_requires_board_label_confirmation`. Do not silently use this Rev-H
-preset for a Rev-F/G board; import and review a separate profile.
+preset for a Rev-F/G board. Import and review a separate profile.
 
 ## Files
 
 - `terasic_de1soc_revh_qp20_1_hps.tsv` is a generated, sorted, complete
-  parameter snapshot consumed by `platform_designer.tcl`; its third column
+  parameter snapshot consumed by `platform_designer.tcl`. Its third column
   declares `set` versus `readback_only`.
 - `terasic_de1soc_revh_qp20_1_hps_manifest.json` records provenance, hashes,
   overlay rationale, exact exports, clock connections, and pending signoff.
@@ -103,7 +103,7 @@ remain in the adjacent per-stage log files.
 ## Still outside Step 3
 
 The source package may retain the bootstrap until a real Intel-tool run is
-available; generated output must never be fabricated. HPS pin assignments, a
+available. Generated output must never be fabricated. HPS pin assignments, a
 real typed hand-written class `[1]` RTL wrapper and top-level CSR/DDR wiring,
 the Quartus QPF/QSF project, Linux reserved memory, physical-board revision
 confirmation, and functional verification remain later work. Step 4 freezes

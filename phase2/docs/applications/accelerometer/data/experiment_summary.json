@@ -1,0 +1,31 @@
+{
+  "status": "PASS_PHYSICAL_EXECUTION_APPLICATION_RETENTION_GATE_FAILED",
+  "calibration_selected_threshold": 0,
+  "calibration_gate_pass": false,
+  "diagnostic_threshold": 10000000000,
+  "diagnostic_heldout_goal_pass": false,
+  "heldout_subjects": 4,
+  "recordings_per_condition": 12,
+  "scored_minutes_per_condition": 24,
+  "video_events_per_condition": 1665,
+  "ordinary_steps": 1614,
+  "shifts": 51,
+  "source_sample_rate_hz": 15,
+  "counts_per_g": 256,
+  "rounding": "nearest ties to even",
+  "clipped_values": 0,
+  "frozen_detector": {
+    "prominence_g": 0.12,
+    "height_g": 0,
+    "min_spacing_s": 0.4
+  },
+  "detector_source_sha256": "1eb77d57f25e7d896516846ed70cce397b2de9cdb54542840e8af8529714f6cb",
+  "noise_seed_rule": "SeedSequence([20261103, subject_number, activity_index])",
+  "activities": [
+    "Regular",
+    "SemiRegular",
+    "Irregular"
+  ],
+  "threshold_1e8_1e9_status": "Exploratory physical follow-up on already examined evaluation records",
+  "new_board_run_for_publication": false
+}

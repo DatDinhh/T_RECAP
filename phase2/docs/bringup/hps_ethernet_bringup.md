@@ -152,7 +152,7 @@ Expected shape:
 ```
 
 This is the canonical Step-13 profile shape, including its required safety
-booleans. The DE1-SoC addresses are frozen contract values; changing them
+booleans. The DE1-SoC addresses are frozen contract values. Changing them
 requires revising the authoritative address map and regenerating/checking every
 consumer. Source-frozen values are not compiled-SOPCINFO, active-DTB, Linux
 runtime, or hardware evidence.
@@ -175,13 +175,13 @@ Follow these milestones in order.
 
 | Milestone | Name | Pass condition |
 | --- | --- | --- |
-| M0 | HPS Ethernet bring-up | PC can ping HPS; HPS can send dummy UDP counter to PC. |
-| M1 | CSR bridge | HPS reads FPGA `ID` and `VERSION`; HPS writes a harmless control register. |
-| M2 | DDR ring dummy writer | FPGA writes dummy STATUS records into DDR; HPS forwards them over UDP. |
+| M0 | HPS Ethernet bring-up | PC can ping HPS. HPS can send dummy UDP counter to PC. |
+| M1 | CSR bridge | HPS reads FPGA `ID` and `VERSION`. HPS writes a harmless control register. |
+| M2 | DDR ring dummy writer | FPGA writes dummy STATUS records into DDR. HPS forwards them over UDP. |
 | M3 | Waveform telemetry | PC plots delayed input `x[n-D]`, output `y[n]`, and error `e[n]`. |
 | M4 | Metrics telemetry | PC plots eligible suppression ratio and kept-energy ratio. |
 | M5 | Spectrum telemetry | PC plots either SPEC64 or SPEC129. Do not require both for first demo. |
-| M6 | PC-to-FPGA commands | PC changes `THR2`; FPGA applies it at a frame boundary. |
+| M6 | PC-to-FPGA commands | PC changes `THR2`. FPGA applies it at a frame boundary. |
 | M7 | Full live demo | Live source, processed output, Ethernet dashboard, stable counters. |
 
 Do not enable WAVE, SPEC, and METRICS before STATUS-only forwarding is proven.
@@ -286,7 +286,7 @@ before the HPS application accesses CSRs.
 
 `trecap_platform.service` loads the driver before `trecap_udp_streamer.service`.
 The driver owns HPS_GPIO48 through `portb` offset 19. After output-low readback,
-it asserts the FPGA-visible `PLATFORM_CONTROL` grant; teardown clears that CSR
+it asserts the FPGA-visible `PLATFORM_CONTROL` grant. Teardown clears that CSR
 before driving the GPIO high. It validates the exact CSR resource and platform
 capability before acquisition. See [platform grant](../architecture/platform_grant.md) for ordering and reset
 semantics. No competing userspace GPIO owner is part of this design. Merely stopping the oneshot service does not unload the driver
@@ -300,7 +300,7 @@ The ring reader opens `/dev/trecap-ring` with `O_RDONLY | O_CLOEXEC` and checks
 noncached flags, physical base `0x3e000000`, size `0x02000000`, and zero reserved
 field. It then maps the complete aperture with `PROT_READ | MAP_SHARED` at file
 offset zero. The driver rejects writable/executable, partial, private, or nonzero-
-offset mappings and sets `pgprot_noncached`; userspace does not infer cache
+offset mappings and sets `pgprot_noncached`. Userspace does not infer cache
 attributes from `O_SYNC`. Cached ring mapping remains forbidden.
 
 The device admits one open consumer. The reader retains its file descriptor until
@@ -529,14 +529,14 @@ Do not write active core threshold asynchronously.
 Source mode, packet enable, wave decimation, spectrum mode, and spectrum shift
 commands can disturb an active epoch. In both wire versions the HPS bridge must
 disable telemetry and the writer, verify disabled readback,
-`STATUS.transport_epoch_idle=1`, and no replay busy/pending; apply and verify the
-generated CSR mutation; then safely restore and verify the prior enable state.
+`STATUS.transport_epoch_idle=1`, and no replay busy/pending. Apply and verify the
+generated CSR mutation. Then safely restore and verify the prior enable state.
 Direct live CSR writes for these controls are rejected.
 
 `RESET_TRANSPORT` is not a replay abort. If replay is pending, active,
 path-busy, or E2E-busy, RESET fails without writing `REPLAY_CONTROL`. A healthy,
 quiescent RESET also performs no replay-control write. Only a quiescent failed
-epoch with `rearm_required=1` receives one rearm pulse; successful readback must
+epoch with `rearm_required=1` receives one rearm pulse. Successful readback must
 preserve `result_epoch` and clear the retained replay result/error state.
 
 ## Drop behavior
@@ -672,7 +672,7 @@ If the PC dashboard crashes or misses packets, keep the HPS logs. The important 
 | HPS cannot read ID/VERSION | CSR bridge/address map issue | Fix M1 before DDR ring. |
 | ID works but W never advances | Ring not configured, writer disabled, no dummy/status packet source | Check ring init and writer enable. |
 | W advances but HPS reads garbage | Wrong ring base address or cache policy | Recheck FPGA-visible vs HPS physical address. |
-| HPS disables telemetry | Malformed latch triggered | Save the bad header and counters; confirm no reread of `Rd`, fix the producer, then perform the complete reset/reconfigure/`Rd=0` re-arm sequence. |
+| HPS disables telemetry | Malformed latch triggered | Save the bad header and counters. Confirm no reread of `Rd`, fix the producer, then perform the complete reset/reconfigure/`Rd=0` re-arm sequence. |
 | UDP send fails | PC not listening/firewall/socket buffer | Confirm nonblocking send still advances Rd. |
 | STATUS works but WAVE malformed | WAVE payload size/stride/channel fields wrong | Keep STATUS-only, debug WAVE packetizer. |
 | SPEC works but dashboard plot wrong | SPEC64/SPEC129 parser or shift/mask packing issue | Validate generated packet constants and payload bytes. |

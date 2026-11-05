@@ -10,14 +10,14 @@ The hash is computed over the logical integer vector serialized in canonical `me
 
 Every canonical `memh` file uses:
 
-- exactly one value per line;
-- lowercase hexadecimal digits only;
-- no `0x` prefix;
-- no leading spaces;
-- no trailing spaces;
-- no comments;
-- no blank lines;
-- exactly one LF byte after every value;
+- exactly one value per line.
+- lowercase hexadecimal digits only.
+- no `0x` prefix.
+- no leading spaces.
+- no trailing spaces.
+- no comments.
+- no blank lines.
+- exactly one LF byte after every value.
 - fixed digit count based on declared width.
 
 CRLF is not canonical. Uppercase hex is not canonical. Variable-width lines are not canonical.
@@ -72,8 +72,8 @@ For a signed `W`-bit file, the encoded value is the low `W` bits of the two's-co
 
 Reader rule:
 
-1. parse hex as unsigned;
-2. mask to `W` bits;
+1. parse hex as unsigned.
+2. mask to `W` bits.
 3. sign-extend from bit `W-1`.
 
 Example for signed 12-bit stream files:
@@ -110,10 +110,10 @@ Example for signed 17-bit twiddles:
 
 To compute a canonical SHA-256 hash:
 
-1. load the logical integer vector using the declared signedness and width;
-2. range-check every logical value;
-3. re-serialize every value into canonical fixed-width lowercase hex;
-4. append exactly one LF byte after every value;
+1. load the logical integer vector using the declared signedness and width.
+2. range-check every logical value.
+3. re-serialize every value into canonical fixed-width lowercase hex.
+4. append exactly one LF byte after every value.
 5. compute SHA-256 over those bytes.
 
 Pseudocode:

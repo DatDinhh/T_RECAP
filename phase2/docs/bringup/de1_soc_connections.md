@@ -2,7 +2,7 @@
 
 File class: **[1] hand-written bring-up document**.
 
-This document defines the physical connection plan for the T-RECAP Phase 2 DE1-SoC bring-up bench. The Step-7 board source now contains the real source-to-core wiring; this document keeps the hardware bench, Quartus programming path, HPS console, HPS Ethernet path, and optional live audio path from being mixed together informally.
+This document defines the physical connection plan for the T-RECAP Phase 2 DE1-SoC bring-up bench. The Step-7 board source now contains the real source-to-core wiring. This document keeps the hardware bench, Quartus programming path, HPS console, HPS Ethernet path, and optional live audio path from being mixed together informally.
 
 This file does not define the signal-processing algorithm. It also does not prove correctness. Correctness is still established through BRAM replay and artifact comparison.
 
@@ -35,7 +35,7 @@ The HPS owns Ethernet. The FPGA fabric owns the signal-processing core. The PC o
 
 The physical Quartus top is `rtl/platform/de1soc/de1_soc_trecap_top.sv`. It
 instantiates `rtl/top/trecap_source_core_integration.sv` and the pin-agnostic
-`rtl/top/trecap_de1soc_full_top.sv`; the latter is not the board-pin entity.
+`rtl/top/trecap_de1soc_full_top.sv`. The latter is not the board-pin entity.
 These are checked-in source connections only. They do not establish Quartus
 compilation or TimeQuest closure, functional verification, BRAM-replay
 equivalence, or working codec/ADC hardware.
@@ -44,7 +44,7 @@ Step 10 freezes one active `CLOCK_50`-derived 50 MHz fabric domain and one
 canonical full-board reset. `clock_reset_ctrl` qualifies released `KEY[0]` high
 for 20 ms, combines it with the active-low HPS-to-FPGA reset, and synchronizes
 release once for all fabric owners. The HPS reset is global to the full-board
-fabric; C0 remains HPS-independent through its separate core-only top.
+fabric. C0 remains HPS-independent through its separate core-only top.
 
 ## Provenance tags
 
@@ -98,8 +98,8 @@ path. It remains optional and cannot block BRAM replay or LINE-IN.
 | HPS UART / J4 | HPS Linux console | no for pure C0 | yes | Required for HPS IP setup, logs, and streamer debug. |
 | RJ45 Ethernet | HPS-mediated UDP telemetry | no | yes | Ethernet is HPS-facing, not direct FPGA Ethernet. |
 | PC Ethernet port or switch/router | UDP receive and command send | no | yes | Direct static-IP link is preferred for demo. |
-| Optional audio LINE-IN/LINE-OUT | Live source/demo audio bring-up | no | no for first T0 | Step-16 source is present; Step-18 timing and Step-20 board evidence remain. |
-| Optional LTC2308 analog input | Live ADC demo source on verified Rev-H board | no | no for first T0 | Step-17 source is present; Step-18 ADC I/O timing and Step-20 analog/board evidence remain. |
+| Optional audio LINE-IN/LINE-OUT | Live source/demo audio bring-up | no | no for first T0 | Step-16 source is present. Step-18 timing and Step-20 board evidence remain. |
+| Optional LTC2308 analog input | Live ADC demo source on verified Rev-H board | no | no for first T0 | Step-17 source is present. Step-18 ADC I/O timing and Step-20 analog/board evidence remain. |
 | Logic analyzer / ILA | Optional debug only | optional | optional | Do not make correctness depend on manual waveform inspection. |
 
 ## Baseline physical connection profile
@@ -125,7 +125,7 @@ Telemetry UDP port   = 5005
 Command UDP port     = 5006
 ```
 
-Do not put the command port on an untrusted network. The Revision G command protocol is a lab/demo protocol; it is not authenticated or encrypted.
+Do not put the command port on an untrusted network. The Revision G command protocol is a lab/demo protocol. It is not authenticated or encrypted.
 
 ## Step-7 board controls and display
 
@@ -149,7 +149,7 @@ LEDR[9]         BRAM-replay exact core completion followed by later DDR STATUS c
 The switches do not bypass CSR source-mode or THR2 shadow/commit control. These
 assignments are observability and local replay controls, not functional evidence.
 In particular, `LEDR[7]` includes dedicated fault levels that have no matching
-generated CSR field; aggregating them on the LED does not make them CSR-visible.
+generated CSR field. Aggregating them on the LED does not make them CSR-visible.
 
 The 48 kHz sample, 10 Hz STATUS, 30 Hz METRICS, and 2 Hz heartbeat-toggle
 signals are fractional clock enables, not clock pins. `CLOCK2_50`, `CLOCK3_50`,
@@ -159,14 +159,14 @@ The peripheral-only PLL drives `AUD_XCK` at 12.288 MHz and FPGA I2C configures
 WM8731 address `0x1a` for 48 kS/s, signed 16-bit codec-master I2S. The
 [physical timing contract](../architecture/physical_timing.md) defines audio I/O
 and CDC constraints exercised by the BRAM-profile native12 fit. Its required
-audio timing checks passed; see the [implementation results](../results/fpga_implementation.md)
+audio timing checks passed. See the [implementation results](../results/fpga_implementation.md)
 for the complete gate outcome. Physical clocks, codec operation and analog
 performance still require board qualification.
 
 The LTC2308 continuous-request scheduler uses a separate exact-average 100 kHz
 fractional accumulator. At the frozen 50 MHz profile it divides exactly.
-`ADC_SCLK` is a 2.5 MHz registered serial protocol output, not a timing domain;
-only the off-chip `ADC_DOUT` bit crosses a preserved two-flop synchronizer before
+`ADC_SCLK` is a 2.5 MHz registered serial protocol output, not a timing domain.
+Only the off-chip `ADC_DOUT` bit crosses a preserved two-flop synchronizer before
 the 12-bit word is assembled in fabric.
 
 ## Power and handling checklist
@@ -340,14 +340,14 @@ rtl/platform/de1soc/audio_codec_wrapper.sv -> signed 16-bit I2S async FIFO
 
 Audio must not bypass the source mux or inject board-specific signals directly
 into `rtl/core/`. Before programming, configure the HPS side so
-`HPS_I2C_CONTROL` remains low; FPGA logic uses that as the codec-bus grant and
+`HPS_I2C_CONTROL` remains low. FPGA logic uses that as the codec-bus grant and
 never drives the HPS mux signal. Select
 `config/profiles/de1soc_linein_demo.json` explicitly for this build.
 
 ## Optional LTC2308 ADC source
 
 ADC is also outside C0 and first T0. Before selecting it, verify that the PCB is
-the pinned DE1-SoC Rev-H design and that the converter is marked LTC2308; older
+the pinned DE1-SoC Rev-H design and that the converter is marked LTC2308. Older
 revisions may use a different ADC and are not compatible with this profile.
 
 The source path is:
@@ -363,13 +363,13 @@ LTC2308 ADC_DOUT -> two-flop synchronizer -> adc_wrapper 12-bit word/valid
 Select `config/profiles/de1soc_adc_demo.json` explicitly. It freezes 100
 ksample/s, 2.5 MHz SCLK, single-ended/unipolar/awake operation, straight-binary
 unsigned 12-bit data, DC blocking disabled, and full telemetry. Channel 0 is the
-default command `6'b100010`; `SW[6:4]` is latched only on source entry. Leave and
+default command `6'b100010`. `SW[6:4]` is latched only on source entry. Leave and
 re-enter ADC mode to change channel so the previous-command result is discarded
 again.
 
 `ADC_CS_N` is electrically the active-high, idle-low CONVST signal despite its
 legacy name. Do not invert it as an active-low chip select. The profile keeps
-the converter awake (`SLP=0`); do not add the sleep-wake delay to ordinary
+the converter awake (`SLP=0`). Do not add the sleep-wake delay to ordinary
 transactions. Pin assignment and source checks are not measured waveform,
 TimeQuest, analog accuracy, or hardware evidence.
 

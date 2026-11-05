@@ -7,3 +7,9 @@ phase2/profiles/trf1/** -text
 phase2/verification/rf_iq/** -text
 phase2/docs/architecture/rf_iq/** -text
 phase2/docs/verification/rf_iq/** -text
+phase2/docs/architecture/system/** -text
+
+# Preserve reviewed documentation and publication-manifest byte identities.
+phase2/docs/applications/** -text
+phase2/docs/algorithm/** -text
+phase2/docs/editorial/** -text

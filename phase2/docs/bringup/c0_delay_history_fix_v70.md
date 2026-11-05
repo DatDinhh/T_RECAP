@@ -1,6 +1,6 @@
 # C0 delayed-x history and metric alignment v70
 
-> Historical design note. Revision-specific results and open items below belong to that development stage; they are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
+> Historical design note. Revision-specific results and open items below belong to that development stage. They are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
 
 File class: **[1] hand-written bring-up and verification note**.
 
@@ -82,7 +82,7 @@ at all.
 ## RAM and full policy
 
 The history instantiates `trecap_simple_dual_port_ram` with `WRITE_FIRST=0`.
-Memory contents are not reset; pointer and occupancy reset invalidate stale
+Memory contents are not reset. Pointer and occupancy reset invalidate stale
 data.
 
 When occupancy is exactly 1,024, x does not borrow credit from a same-cycle
@@ -107,7 +107,7 @@ sum_sq_err_lo  = low64(sum(e[n]^2))
 max_abs_err    = max(abs(e[n]))
 ```
 
-Low words wrap normally and latch `metric_overflow_sticky`; they do not freeze.
+Low words wrap normally and latch `metric_overflow_sticky`. They do not freeze.
 Metric truncation survives generic sticky clear and clears only with the metric
 epoch. `clear_metrics_i` blocks y admission for its pulse so no sample is
 counted while omitted from sums.
@@ -154,16 +154,16 @@ scripts/windows/run_c0_golden_v70.ps1
 
 Coverage includes:
 
-- startup `y[0..383]` zero extension;
-- `y[384]` waiting cleanly for `x[0]`;
-- exact extreme error `-2048 - 2047 = -4095`;
-- 1,024-entry full backpressure;
-- a 41-clock public output stall;
-- retention of a one-cycle synchronous RAM response across that stall;
-- 2,304 x samples, crossing more than two address wraps;
-- malformed index fail-stop and sticky-clear resistance;
-- clear with retained history and stalled output;
-- restart from index zero;
+- startup `y[0..383]` zero extension.
+- `y[384]` waiting cleanly for `x[0]`.
+- exact extreme error `-2048 - 2047 = -4095`.
+- 1,024-entry full backpressure.
+- a 41-clock public output stall.
+- retention of a one-cycle synchronous RAM response across that stall.
+- 2,304 x samples, crossing more than two address wraps.
+- malformed index fail-stop and sticky-clear resistance.
+- clear with retained history and stalled output.
+- restart from index zero.
 - finite geometry `x=1,152`, `y=1,536` through the native full-core suite.
 
 Run:
@@ -202,5 +202,5 @@ Slang/Yosys also elaborates the complete BRAM-replay core and reports zero
 structural problems.
 
 Native Intel RTL evidence still requires ModelSim/Questa. Quartus block-RAM
-inference, Fitter use, and STA remain later gates; this source does not claim
+inference, Fitter use, and STA remain later gates. This source does not claim
 them.

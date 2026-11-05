@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1296pt" height="864pt" viewBox="0 0 1296 864" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <title>One project, adapted inputs, one numerical core</title>
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title>One project, adapted inputs, one numerical core</dc:title>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>T-RECAP unified system architecture atlas</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 864
+L 1296 864
+L 1296 0
+L 0 0
+z
+" style="fill: #fffefb"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 0 0
+L 1296 0
+L 1296 864
+L 0 864
+z
+" clip-path="url(#p9364143bce)" style="fill: #fffefb; stroke: #fffefb; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 46.8 38.16
+L 51.84 38.16
+L 51.84 113.76
+L 46.8 113.76
+z
+" clip-path="url(#p9364143bce)" style="fill: #8066a9; stroke: #8066a9; stroke-linejoin: miter"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 345.6 244.8
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 345.6 244.8
+Q 409.401343 244.8 470.966618 244.8
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 464.966618 241.8
+L 470.966618 244.8
+L 464.966618 247.8
+z
+" clip-path="url(#p9364143bce)" style="fill: #708299; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 820.8 244.8
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 820.8 244.8
+Q 877.399805 244.8 931.763541 244.8
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 925.763541 241.8
+L 931.763541 244.8
+L 925.763541 247.8
+z
+" clip-path="url(#p9364143bce)" style="fill: #708299; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 345.6 424.8
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 345.6 424.8
+Q 409.401343 424.8 470.966618 424.8
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 464.966618 421.8
+L 470.966618 424.8
+L 464.966618 427.8
+z
+" clip-path="url(#p9364143bce)" style="fill: #708299; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 820.8 424.8
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 820.8 424.8
+Q 877.399805 424.8 931.763541 424.8
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 925.763541 421.8
+L 931.763541 424.8
+L 925.763541 427.8
+z
+" clip-path="url(#p9364143bce)" style="fill: #708299; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 1087.2 489.6
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 1087.2 489.6
+Q 1087.2 513.798706 1087.2 535.761344
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 1090.2 529.761344
+L 1087.2 535.761344
+L 1084.2 529.761344
+z
+" clip-path="url(#p9364143bce)" style="fill: #708299; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 1238.4 244.8
+L 1267.2 244.8
+L 1267.2 604.8
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 1267.2 604.8
+Q 1253.800195 604.8 1242.636459 604.8
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 1248.636459 607.8
+L 1242.636459 604.8
+L 1248.636459 601.8
+z
+" clip-path="url(#p9364143bce)" style="fill: #708299; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_7">
+    <path d="M 936 604.8
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 936 604.8
+Q 879.400195 604.8 825.036459 604.8
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 831.036459 607.8
+L 825.036459 604.8
+L 831.036459 601.8
+z
+" clip-path="url(#p9364143bce)" style="fill: #708299; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_8">
+    <path d="M 475.2 604.8
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 475.2 604.8
+Q 411.398657 604.8 349.833382 604.8
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 355.833382 607.8
+L 349.833382 604.8
+L 355.833382 601.8
+z
+" clip-path="url(#p9364143bce)" style="fill: #708299; stroke: #708299; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_9">
+    <path d="M 46.8 144
+L 1249.2 144
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #d8e0ea; stroke-linecap: square"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 69.12 182.88
+L 336.96 182.88
+Q 347.04 182.88 347.04 192.96
+L 347.04 302.4
+Q 347.04 312.48 336.96 312.48
+L 69.12 312.48
+Q 59.04 312.48 59.04 302.4
+L 59.04 192.96
+Q 59.04 182.88 69.12 182.88
+z
+" clip-path="url(#p9364143bce)" style="fill: #eff1f6"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 486.72 182.88
+L 812.16 182.88
+Q 822.24 182.88 822.24 192.96
+L 822.24 302.4
+Q 822.24 312.48 812.16 312.48
+L 486.72 312.48
+Q 476.64 312.48 476.64 302.4
+L 476.64 192.96
+Q 476.64 182.88 486.72 182.88
+z
+" clip-path="url(#p9364143bce)" style="fill: #eff1f6"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 947.52 182.88
+L 1229.76 182.88
+Q 1239.84 182.88 1239.84 192.96
+L 1239.84 302.4
+Q 1239.84 312.48 1229.76 312.48
+L 947.52 312.48
+Q 937.44 312.48 937.44 302.4
+L 937.44 192.96
+Q 937.44 182.88 947.52 182.88
+z
+" clip-path="url(#p9364143bce)" style="fill: #eff1f6"/>
+   </g>
+   <g id="patch_15">
+    <path d="M 69.12 362.88
+L 336.96 362.88
+Q 347.04 362.88 347.04 372.96
+L 347.04 482.4
+Q 347.04 492.48 336.96 492.48
+L 69.12 492.48
+Q 59.04 492.48 59.04 482.4
+L 59.04 372.96
+Q 59.04 362.88 69.12 362.88
+z
+" clip-path="url(#p9364143bce)" style="fill: #eff1f6"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 486.72 362.88
+L 812.16 362.88
+Q 822.24 362.88 822.24 372.96
+L 822.24 482.4
+Q 822.24 492.48 812.16 492.48
+L 486.72 492.48
+Q 476.64 492.48 476.64 482.4
+L 476.64 372.96
+Q 476.64 362.88 486.72 362.88
+z
+" clip-path="url(#p9364143bce)" style="fill: #eff1f6"/>
+   </g>
+   <g id="patch_17">
+    <path d="M 947.52 362.88
+L 1229.76 362.88
+Q 1239.84 362.88 1239.84 372.96
+L 1239.84 482.4
+Q 1239.84 492.48 1229.76 492.48
+L 947.52 492.48
+Q 937.44 492.48 937.44 482.4
+L 937.44 372.96
+Q 937.44 362.88 947.52 362.88
+z
+" clip-path="url(#p9364143bce)" style="fill: #eff1f6"/>
+   </g>
+   <g id="patch_18">
+    <path d="M 69.12 542.88
+L 336.96 542.88
+Q 347.04 542.88 347.04 552.96
+L 347.04 662.4
+Q 347.04 672.48 336.96 672.48
+L 69.12 672.48
+Q 59.04 672.48 59.04 662.4
+L 59.04 552.96
+Q 59.04 542.88 69.12 542.88
+z
+" clip-path="url(#p9364143bce)" style="fill: #eff1f6"/>
+   </g>
+   <g id="patch_19">
+    <path d="M 486.72 542.88
+L 812.16 542.88
+Q 822.24 542.88 822.24 552.96
+L 822.24 662.4
+Q 822.24 672.48 812.16 672.48
+L 486.72 672.48
+Q 476.64 672.48 476.64 662.4
+L 476.64 552.96
+Q 476.64 542.88 486.72 542.88
+z
+" clip-path="url(#p9364143bce)" style="fill: #eff1f6"/>
+   </g>
+   <g id="patch_20">
+    <path d="M 947.52 542.88
+L 1229.76 542.88
+Q 1239.84 542.88 1239.84 552.96
+L 1239.84 662.4
+Q 1239.84 672.48 1229.76 672.48
+L 947.52 672.48
+Q 937.44 672.48 937.44 662.4
+L 937.44 552.96
+Q 937.44 542.88 947.52 542.88
+z
+" clip-path="url(#p9364143bce)" style="fill: #eff1f6"/>
+   </g>
+   <g id="patch_21">
+    <path d="M 66.24 698.4
+L 1229.76 698.4
+Q 1238.4 698.4 1238.4 707.04
+L 1238.4 779.76
+Q 1238.4 788.4 1229.76 788.4
+L 66.24 788.4
+Q 57.6 788.4 57.6 779.76
+L 57.6 707.04
+Q 57.6 698.4 66.24 698.4
+z
+" clip-path="url(#p9364143bce)" style="fill: #ebeff4"/>
+   </g>
+   <g id="line2d_10">
+    <path d="M 46.8 799.2
+L 1249.2 799.2
+" clip-path="url(#p9364143bce)" style="fill: none; stroke: #d8e0ea; stroke-linecap: square"/>
+   </g>
+   <g id="patch_22">
+    <path d="M 53.28 811.44
+L 59.76 811.44
+Q 62.64 811.44 62.64 814.32
+L 62.64 820.8
+Q 62.64 823.68 59.76 823.68
+L 53.28 823.68
+Q 50.4 823.68 50.4 820.8
+L 50.4 814.32
+Q 50.4 811.44 53.28 811.44
+z
+" clip-path="url(#p9364143bce)" style="fill: #e8f1e5; stroke: #407d6c; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_23">
+    <path d="M 247.68 811.44
+L 254.16 811.44
+Q 257.04 811.44 257.04 814.32
+L 257.04 820.8
+Q 257.04 823.68 254.16 823.68
+L 247.68 823.68
+Q 244.8 823.68 244.8 820.8
+L 244.8 814.32
+Q 244.8 811.44 247.68 811.44
+z
+" clip-path="url(#p9364143bce)" style="fill: #eee8f3; stroke: #8066a9; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_24">
+    <path d="M 445.68 811.44
+L 452.16 811.44
+Q 455.04 811.44 455.04 814.32
+L 455.04 820.8
+Q 455.04 823.68 452.16 823.68
+L 445.68 823.68
+Q 442.8 823.68 442.8 820.8
+L 442.8 814.32
+Q 442.8 811.44 445.68 811.44
+z
+" clip-path="url(#p9364143bce)" style="fill: #f7e4de; stroke: #a66882; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_25">
+    <path d="M 661.68 811.44
+L 668.16 811.44
+Q 671.04 811.44 671.04 814.32
+L 671.04 820.8
+Q 671.04 823.68 668.16 823.68
+L 661.68 823.68
+Q 658.8 823.68 658.8 820.8
+L 658.8 814.32
+Q 658.8 811.44 661.68 811.44
+z
+" clip-path="url(#p9364143bce)" style="fill: #f6edd9; stroke: #9c7d3f; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_26">
+    <path d="M 866.88 811.44
+L 873.36 811.44
+Q 876.24 811.44 876.24 814.32
+L 876.24 820.8
+Q 876.24 823.68 873.36 823.68
+L 866.88 823.68
+Q 864 823.68 864 820.8
+L 864 814.32
+Q 864 811.44 866.88 811.44
+z
+" clip-path="url(#p9364143bce)" style="fill: #e4eef7; stroke: #4d78a8; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_27">
+    <path d="M 67.68 180
+L 335.52 180
+Q 345.6 180 345.6 190.08
+L 345.6 299.52
+Q 345.6 309.6 335.52 309.6
+L 67.68 309.6
+Q 57.6 309.6 57.6 299.52
+L 57.6 190.08
+Q 57.6 180 67.68 180
+z
+" clip-path="url(#p9364143bce)" style="fill: #e8f1e5; stroke: #407d6c; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_28">
+    <path d="M 485.28 180
+L 810.72 180
+Q 820.8 180 820.8 190.08
+L 820.8 299.52
+Q 820.8 309.6 810.72 309.6
+L 485.28 309.6
+Q 475.2 309.6 475.2 299.52
+L 475.2 190.08
+Q 475.2 180 485.28 180
+z
+" clip-path="url(#p9364143bce)" style="fill: #f6edd9; stroke: #9c7d3f; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_29">
+    <path d="M 946.08 180
+L 1228.32 180
+Q 1238.4 180 1238.4 190.08
+L 1238.4 299.52
+Q 1238.4 309.6 1228.32 309.6
+L 946.08 309.6
+Q 936 309.6 936 299.52
+L 936 190.08
+Q 936 180 946.08 180
+z
+" clip-path="url(#p9364143bce)" style="fill: #e4eef7; stroke: #4d78a8; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_30">
+    <path d="M 67.68 360
+L 335.52 360
+Q 345.6 360 345.6 370.08
+L 345.6 479.52
+Q 345.6 489.6 335.52 489.6
+L 67.68 489.6
+Q 57.6 489.6 57.6 479.52
+L 57.6 370.08
+Q 57.6 360 67.68 360
+z
+" clip-path="url(#p9364143bce)" style="fill: #e8f1e5; stroke: #407d6c; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_31">
+    <path d="M 485.28 360
+L 810.72 360
+Q 820.8 360 820.8 370.08
+L 820.8 479.52
+Q 820.8 489.6 810.72 489.6
+L 485.28 489.6
+Q 475.2 489.6 475.2 479.52
+L 475.2 370.08
+Q 475.2 360 485.28 360
+z
+" clip-path="url(#p9364143bce)" style="fill: #f6edd9; stroke: #9c7d3f; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_32">
+    <path d="M 946.08 360
+L 1228.32 360
+Q 1238.4 360 1238.4 370.08
+L 1238.4 479.52
+Q 1238.4 489.6 1228.32 489.6
+L 946.08 489.6
+Q 936 489.6 936 479.52
+L 936 370.08
+Q 936 360 946.08 360
+z
+" clip-path="url(#p9364143bce)" style="fill: #eee8f3; stroke: #8066a9; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_33">
+    <path d="M 67.68 540
+L 335.52 540
+Q 345.6 540 345.6 550.08
+L 345.6 659.52
+Q 345.6 669.6 335.52 669.6
+L 67.68 669.6
+Q 57.6 669.6 57.6 659.52
+L 57.6 550.08
+Q 57.6 540 67.68 540
+z
+" clip-path="url(#p9364143bce)" style="fill: #f6edd9; stroke: #9c7d3f; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_34">
+    <path d="M 485.28 540
+L 810.72 540
+Q 820.8 540 820.8 550.08
+L 820.8 659.52
+Q 820.8 669.6 810.72 669.6
+L 485.28 669.6
+Q 475.2 669.6 475.2 659.52
+L 475.2 550.08
+Q 475.2 540 485.28 540
+z
+" clip-path="url(#p9364143bce)" style="fill: #f7e4de; stroke: #a66882; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_35">
+    <path d="M 946.08 540
+L 1228.32 540
+Q 1238.4 540 1238.4 550.08
+L 1238.4 659.52
+Q 1238.4 669.6 1228.32 669.6
+L 946.08 669.6
+Q 936 669.6 936 659.52
+L 936 550.08
+Q 936 540 946.08 540
+z
+" clip-path="url(#p9364143bce)" style="fill: #eee8f3; stroke: #8066a9; stroke-width: 1.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'STIXGeneral'; text-anchor: start; fill: #586a80" x="68.4" y="47.623125" transform="rotate(-0 68.4 47.623125)">T-RECAP  /  SYSTEM ARCHITECTURE AFTER RF INTEGRATION</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 29px; font-family: 'STIXGeneral'; text-anchor: start; fill: #263540" x="68.4" y="84.837187" transform="rotate(-0 68.4 84.837187)">One project, adapted inputs, one numerical core</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 16.5px; font-family: 'STIXGeneral'; text-anchor: start; fill: #586a80" x="68.4" y="112.068984" transform="rotate(-0 68.4 112.068984)">The diagram combines application routes while preserving the boundary between the TSH2 and TRF1 fitted images.</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 32px; font-family: 'STIXGeneral'; text-anchor: end; fill: #8066a9" x="1245.6" y="69.15" transform="rotate(-0 1245.6 69.15)">01</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 17.2px; font-family: 'STIXGeneral'; text-anchor: start; fill: #263540" x="71.28" y="203.866125" transform="rotate(-0 71.28 203.866125)">Audio and motion records</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(71.28 230.292579)">Audio files or a captured sensor axis</text>
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(71.28 246.064134)">Real-valued samples with a known rate</text>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 17.2px; font-family: 'STIXGeneral'; text-anchor: start; fill: #263540" x="488.88" y="204.124125" transform="rotate(-0 488.88 204.124125)">Laptop preparation</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(488.88 230.292579)">Decode or map the input to signed 12-bit</text>
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(488.88 246.077353)">Keep sample-rate and scaling metadata</text>
+   </g>
+   <g id="text_9">
+    <text style="font-weight: 700; font-size: 17.2px; font-family: 'STIXGeneral'; text-anchor: start; fill: #263540" x="949.68" y="204.142938" transform="rotate(-0 949.68 204.142938)">HPS + TSH2 entry</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(949.68 230.292579)">Upload the finite PCM record</text>
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(949.68 246.064134)">MMIO FIFO feeds the existing source</text>
+   </g>
+   <g id="text_11">
+    <text style="font-weight: 700; font-size: 17.2px; font-family: 'STIXGeneral'; text-anchor: start; fill: #263540" x="71.28" y="383.866125" transform="rotate(-0 71.28 383.866125)">Recorded RF I/Q</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(71.28 410.292579)">Receiver has already downconverted RF</text>
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(71.28 426.077353)">File stores alternating unsigned I and Q</text>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 17.2px; font-family: 'STIXGeneral'; text-anchor: start; fill: #263540" x="488.88" y="384.142938" transform="rotate(-0 488.88 384.142938)">Laptop + HPS file transport</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(488.88 410.292579)">Upload unchanged CU8 bytes</text>
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(488.88 426.077353)">TRF1 client feeds the raw-pair FIFO</text>
+   </g>
+   <g id="text_15">
+    <text style="font-weight: 700; font-size: 17.2px; font-family: 'STIXGeneral'; text-anchor: start; fill: #263540" x="949.68" y="384.124125" transform="rotate(-0 949.68 384.124125)">New FPGA RF adapter</text>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(949.68 410.292579)">Center, FIR interpolate, mix to real IF</text>
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(949.68 426.064134)">Round and saturate to signed 12-bit</text>
+   </g>
+   <g id="text_17">
+    <text style="font-weight: 700; font-size: 17.2px; font-family: 'STIXGeneral'; text-anchor: start; fill: #263540" x="71.28" y="564.124125" transform="rotate(-0 71.28 564.124125)">Laptop applications</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(71.28 590.292579)">Listen and compare reconstructed audio</text>
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(71.28 606.064134)">Inspect spectra and run sparse consumers</text>
+   </g>
+   <g id="text_19">
+    <text style="font-weight: 700; font-size: 17.2px; font-family: 'STIXGeneral'; text-anchor: start; fill: #263540" x="488.88" y="564.124125" transform="rotate(-0 488.88 564.124125)">Two returned representations</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(488.88 590.292579)">Y contains reconstructed time samples</text>
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(488.88 606.064134)">TSP1 contains spectral power records</text>
+   </g>
+   <g id="text_21">
+    <text style="font-weight: 700; font-size: 17.2px; font-family: 'STIXGeneral'; text-anchor: start; fill: #263540" x="949.68" y="563.866125" transform="rotate(-0 949.68 563.866125)">Shared FPGA DSP core</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(949.68 590.292579)">FFT, tunable threshold, IFFT and WOLA</text>
+    <text style="font-size: 14.1px; font-family: 'STIXGeneral'; fill: #263540" transform="translate(949.68 606.064134)">Same numerical core in each profile</text>
+   </g>
+   <g id="text_23">
+    <text style="font-weight: 700; font-size: 15.7px; font-family: 'STIXGeneral'; text-anchor: start; fill: #65778a" x="71.28" y="719.092219" transform="rotate(-0 71.28 719.092219)">How to read the shared core</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 14.2px; font-family: 'STIXGeneral'; text-anchor: start; fill: #263540" x="71.28" y="737.618156" transform="rotate(-0 71.28 737.618156)">The two routes describe alternative fitted applications. They do not run simultaneously on the board and there is no runtime audio/RF selector. Accelerometer replay uses the real-sample route.</text>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 12.5px; font-family: 'STIXGeneral'; text-anchor: start; fill: #586a80" x="68.4" y="819.257109" transform="rotate(-0 68.4 819.257109)">Signal input</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 12.5px; font-family: 'STIXGeneral'; text-anchor: start; fill: #586a80" x="262.8" y="819.257109" transform="rotate(-0 262.8 819.257109)">DSP / control</text>
+   </g>
+   <g id="text_27">
+    <text style="font-size: 12.5px; font-family: 'STIXGeneral'; text-anchor: start; fill: #586a80" x="460.8" y="819.257109" transform="rotate(-0 460.8 819.257109)">Signal outputs</text>
+   </g>
+   <g id="text_28">
+    <text style="font-size: 12.5px; font-family: 'STIXGeneral'; text-anchor: start; fill: #586a80" x="676.8" y="819.257109" transform="rotate(-0 676.8 819.257109)">Host / HPS</text>
+   </g>
+   <g id="text_29">
+    <text style="font-size: 12.5px; font-family: 'STIXGeneral'; text-anchor: start; fill: #586a80" x="882" y="819.257109" transform="rotate(-0 882 819.257109)">Storage / platform</text>
+   </g>
+   <g id="text_30">
+    <text style="font-size: 12px; font-family: 'STIXGeneral'; text-anchor: end; fill: #586a80" x="1245.6" y="819.635625" transform="rotate(-0 1245.6 819.635625)">solid: data   dashed: control</text>
+   </g>
+   <g id="text_31">
+    <text style="font-size: 11.8px; font-family: 'STIXGeneral'; text-anchor: start; fill: #586a80" x="50.4" y="843.318031" transform="rotate(-0 50.4 843.318031)">SOURCE BINDINGS: C01, A01, A02, A03, R01, R04, R05  |  Reviewed source structure, not new execution or timing measurements.</text>
+   </g>
+   <g id="text_32">
+    <text style="font-size: 11.8px; font-family: 'STIXGeneral'; text-anchor: end; fill: #586a80" x="1245.6" y="843.259031" transform="rotate(-0 1245.6 843.259031)">SYSTEM / 01</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p9364143bce">
+   <rect x="0" y="0" width="1296" height="864"/>
+  </clipPath>
+ </defs>
+</svg>

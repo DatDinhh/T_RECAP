@@ -156,16 +156,16 @@ All threshold decisions use `Xcan`, not raw `X`.
 
 The custom algorithm above is the baseline. If a vendor FFT IP is introduced later, it is not automatically equivalent. The following must be frozen before it can replace the custom algorithm:
 
-- IP vendor, name, and version;
-- input and output order;
-- scaling schedule;
-- rounding mode;
-- overflow behavior;
-- twiddle precision and convention;
-- complex packing;
-- latency;
-- reset and first-frame behavior;
-- DC/Nyquist behavior;
+- IP vendor, name, and version.
+- input and output order.
+- scaling schedule.
+- rounding mode.
+- overflow behavior.
+- twiddle precision and convention.
+- complex packing.
+- latency.
+- reset and first-frame behavior.
+- DC/Nyquist behavior.
 - bit-exact comparison against the custom artifacts or an explicitly new artifact contract.
 
 A mathematically equivalent FFT is insufficient for bit-accurate signoff.

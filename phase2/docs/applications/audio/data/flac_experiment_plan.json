@@ -1,0 +1,47 @@
+{
+  "schema": "trecap-flac-physical-comparison-v1",
+  "created_utc": "2026-11-04T05:40:50.702300+00:00",
+  "question": "Does unchanged FPGA threshold preprocessing reduce actual FLAC size or encoder work while retaining useful audio detail?",
+  "sample_rate_hz": 48000,
+  "channels": 1,
+  "pcm_bits": 16,
+  "samples": 384000,
+  "duration_s": 8,
+  "source_ids": [
+    "speech_test_a",
+    "speech_test_b",
+    "music_test_a",
+    "music_test_b"
+  ],
+  "source_selection": "All four prior audio pilot held-out source recordings, two speech and two music. Reused material, not a newly unseen population.",
+  "source_index_path": "work/trecap_denoise_v01/pilot01/inputs.json",
+  "source_index_sha256": "c671a412e8fcfc14fd3c701ce020a27b65e50ef11b7d7360f08988dabf881b90",
+  "source_commit": "38f4b06556fa0ff1acda5e677d8ba05d1bc0fff0",
+  "source_preparation": "Decode pinned Ogg into float64. First8s, channelmean, scipy resample_poly to48k. One fixed gain0.5 for everyclip, with no perclip peak/RMS normalization. Canonical prepared original A=round(float*32768*0.5)PCM16 ties-even. Reject overflow. No added noise.",
+  "routes": [
+    "original_pcm16",
+    "fpga_t0",
+    "fpga_t100000000",
+    "fpga_t10000000000"
+  ],
+  "quantization": "Input q12=round(A/16) signed12 ties-even. Expanded quantized control B=q12*16 in PCM16. Threshold0 must exactly return q12. Other FPGA outputs are expanded by16 into PCM16 with no output normalization, saturation or clipping.",
+  "fpga_thresholds": [
+    0,
+    100000000,
+    10000000000
+  ],
+  "fpga_alignment_samples": 384,
+  "fpga_scope": "Existing TSH2 image and architecture. Fresh finite captures return384512Y and3001TSP1frames. Use Y[384:384+384000] for audio, never use phase-free TSP1 to reconstruct waveform.",
+  "flac": "SoundFile0.13.1 with libsndfile1.2.2, explicit compression_level0.625 mapping to FLAC preset5, PCM16 mono48k allroutes. Identical metadata policy. No file size result compared against original Ogg compressedbytes.",
+  "timing": "32paired rounds,3warmup rounds,8completeencodes per timedbatch, randomized Latin-balanced routeorder, cachedPCM and BytesIO. Time includes encoderconstruction/write/finalization and in-memory outputmaterialization. Excludes preparation, FPGA, transport, disk, decoding andverification. Decode everycanonicalvariant, hashcheckrepeatbytes outside timedregion.",
+  "comparisons": "Report total originalPCM16 vs processed and incremental same-quantization fpga_t0 vs nonzero. Do not attribute quantization savings to threshold. Do not label smaller size as higher quality or whole-system energy/runtime advantage.",
+  "quality": "Decode FLAC and require exact equality to each encoderinput. Score decoded originalPCM16 vs decoded variants at fixedgain with relativeL2, referenceSNR, maxerror, RMS ratio, quietsegment error and speechSTOI if available. No fitted lag/scale or output normalization. Preserve common-gain listening files. Metrics are not human listening approval.",
+  "decision": "Fixed threshold sweep, no selecting perclip thresholds or removing unfavorable cases. Report rate-distortion tradeoff without claiming an unmeasured perceptual acceptance threshold.",
+  "limitations": [
+    "Four short reused sources, not a broad benchmark.",
+    "Sources are Ogg-derived, not lossless studio masters.",
+    "16k speech is upsampled to48k without restoring bandwidth.",
+    "No claim of a lossless end-to-end chain after quantization or thresholding.",
+    "No RTL change, web integration or GitHub publication requested."
+  ]
+}

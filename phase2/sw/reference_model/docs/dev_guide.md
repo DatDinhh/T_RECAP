@@ -8,7 +8,7 @@ The source contract is spec/generated/core_config.json inside this package. Gene
 
     python sw/reference_model/scripts/gen_config.py
 
-Generated bindings are checked in. The command writes source code only; it does not regenerate coefficient tables, input vectors, result artifacts, or release metadata.
+Generated bindings are checked in. The command writes source code only. It does not regenerate coefficient tables, input vectors, result artifacts, or release metadata.
 
 The model's compatibility Python API imports these bindings. The separate repository-wide header generation flow owns root RTL/host definitions and the integration module at sw/reference_model/generated/trecap_config.py.
 
@@ -19,7 +19,7 @@ The root CMake host preset builds the reference model with tests disabled. A sta
     cmake -S . -B build -DTRECAP_BUILD_TESTS=OFF -DBUILD_TESTING=OFF
     cmake --build build --config Release
 
-C++20 is required. The default package build does not enable test targets. The static library retains the trecap_golden target name; the command-line target retains phase2_golden_model.
+C++20 is required. The default package build does not enable test targets. The static library retains the trecap_golden target name. The command-line target retains phase2_golden_model.
 
 ## Runtime inputs and outputs
 
@@ -33,9 +33,9 @@ The Makefile reference target invokes the ordinary output-only runtime. The old 
 
 ## Public C++ API
 
-The frame functions, SampleRing, and OlaRing are reusable building blocks. The batch run function is finite and uses one THR2 for its whole input. Supply matching CoreConfig values for the run, window, twiddles, and OLA ring. Default-generated coefficient tables carry baseline configuration; callers selecting another library configuration must supply matching tables explicitly.
+The frame functions, SampleRing, and OlaRing are reusable building blocks. The batch run function is finite and uses one THR2 for its whole input. Supply matching CoreConfig values for the run, window, twiddles, and OLA ring. Default-generated coefficient tables carry baseline configuration. Callers selecting another library configuration must supply matching tables explicitly.
 
-The CLI uses write_reference_outputs. The legacy write_vector_artifacts API is an explicit artifact-authoring operation that can write an input bundle; it is not the runtime API.
+The CLI uses write_reference_outputs. The legacy write_vector_artifacts API is an explicit artifact-authoring operation that can write an input bundle. It is not the runtime API.
 
 Rounding, FFT ordering/scaling, mask comparison, protection flags, Hermitian symmetry, and full-tail geometry are arithmetic contracts. Preserve them when changing implementation structure.
 

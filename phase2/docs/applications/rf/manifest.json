@@ -1,0 +1,344 @@
+{
+  "schema": "trecap-rf-application-publication-v1",
+  "publication_date": "2026-11-04",
+  "status": "PASS_RETAINED_DATA_PUBLICATION_CHECKS",
+  "new_hardware_execution": false,
+  "scope": "Derived presentation of twelve archived physical RF runs and a separate software screen. No DUT change, board execution or new simulation.",
+  "source_id": "1f567ac68e2f8d3affd51e73c7dad1c144795df2045eeb290d33a806f8a9d700",
+  "sof_sha256": "3dd3cf18449ad6ad134b6782001406f67051e0401430fc96e19e07bf79728429",
+  "original_report_sha256": "820ebf1bdd2195e8ba68636fcba177aba264d45d2db78b120287680a3e1bca21",
+  "review": {
+    "physical_cases": 12,
+    "all_published_case_values_equal_original": true,
+    "spectral_byte_reductions_recomputed": 12,
+    "awgn_snr_recomputed_from_actual_samples": 6,
+    "wav_headers_and_hashes_verified": 6,
+    "image_layouts_visually_reviewed": [
+      "figures/awgn_hardware.png",
+      "figures/awgn_envelopes.png",
+      "figures/recorded_rf_hardware.png"
+    ],
+    "html_relative_links_valid": true,
+    "html_media_local_only": true,
+    "html_scripts": 0,
+    "html_browser_visual_review": "Not completed because the browser provider was unavailable. Static structure, media and relative links were checked.",
+    "audio_perceptual_review": "Not claimed. PCM data was read back and file metadata was checked.",
+    "prose_punctuation_findings": 0,
+    "source_paths_sanitized": true,
+    "npz_archives": [
+      {
+        "file": "data/awgn_samples.npz",
+        "numeric_arrays_only": true,
+        "arrays": [
+          {
+            "array": "clean_y",
+            "dtype": "int32",
+            "shape": [
+              131072
+            ]
+          },
+          {
+            "array": "bits",
+            "dtype": "uint8",
+            "shape": [
+              128
+            ]
+          },
+          {
+            "array": "snr20_t0",
+            "dtype": "int32",
+            "shape": [
+              131072
+            ]
+          },
+          {
+            "array": "snr20_t1000000000",
+            "dtype": "int32",
+            "shape": [
+              131072
+            ]
+          },
+          {
+            "array": "snr10_t0",
+            "dtype": "int32",
+            "shape": [
+              131072
+            ]
+          },
+          {
+            "array": "snr10_t1000000000",
+            "dtype": "int32",
+            "shape": [
+              131072
+            ]
+          },
+          {
+            "array": "snr0_t0",
+            "dtype": "int32",
+            "shape": [
+              131072
+            ]
+          },
+          {
+            "array": "snr0_t1000000000",
+            "dtype": "int32",
+            "shape": [
+              131072
+            ]
+          }
+        ]
+      },
+      {
+        "file": "data/recorded_plot_values.npz",
+        "numeric_arrays_only": true,
+        "arrays": [
+          {
+            "array": "power_0",
+            "dtype": "float64",
+            "shape": [
+              262
+            ]
+          },
+          {
+            "array": "spectrum_0",
+            "dtype": "float64",
+            "shape": [
+              2049,
+              129
+            ]
+          },
+          {
+            "array": "power_1",
+            "dtype": "float64",
+            "shape": [
+              262
+            ]
+          },
+          {
+            "array": "spectrum_1",
+            "dtype": "float64",
+            "shape": [
+              2049,
+              129
+            ]
+          },
+          {
+            "array": "power_2",
+            "dtype": "float64",
+            "shape": [
+              262
+            ]
+          },
+          {
+            "array": "spectrum_2",
+            "dtype": "float64",
+            "shape": [
+              2049,
+              129
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "rights": "External recorded sources are linked upstream with attribution. Bundled raw CU8 files and listening examples use project-generated AWGN fixtures. Numeric observations of recorded sources are retained for the plots.",
+  "reviewed_binary_files": [
+    {
+      "path": "audio/snr0_t0.wav",
+      "sha256": "75c75d5b287bf0ded92452420daa06cb15fe7f577787b9c08b8a8e86d3aa9f96",
+      "bytes": 158308
+    },
+    {
+      "path": "audio/snr0_t1000000000.wav",
+      "sha256": "f263ae1712d49ef845746f6cef07bf6644449328391c0263b7c8f5f21a9ba505",
+      "bytes": 158308
+    },
+    {
+      "path": "audio/snr10_t0.wav",
+      "sha256": "a680ca1aab6b9eba0c52af50ec27d6f06418751d91a05a9f9badd90029286ed5",
+      "bytes": 158308
+    },
+    {
+      "path": "audio/snr10_t1000000000.wav",
+      "sha256": "397418cf7eaf0731409b8f02c74c0e8160400dbf53831a6983852423f9f7855c",
+      "bytes": 158308
+    },
+    {
+      "path": "audio/snr20_t0.wav",
+      "sha256": "e73c8ef2f3b95071372363c7a5b0de8b05e9ec0b5587e854cd43827d68adb400",
+      "bytes": 158308
+    },
+    {
+      "path": "audio/snr20_t1000000000.wav",
+      "sha256": "eb7f4fa4f37a48b8943221ccac49bc053815d6c860ffc745ba9d7592841cda33",
+      "bytes": 158308
+    },
+    {
+      "path": "data/awgn_samples.npz",
+      "sha256": "93134841c8174d403702123c54a3a333e5f2734ea0113fc70d78f9eb6d5ad238",
+      "bytes": 753806
+    },
+    {
+      "path": "data/ook_snr0_seed202.cu8",
+      "sha256": "0da15c53881418af005adc282c3abd12c6ef13c166783c5af9f40045f6e04086",
+      "bytes": 65536
+    },
+    {
+      "path": "data/ook_snr10_seed202.cu8",
+      "sha256": "c5cac8252235c75809f31c4b6ebdd5139114075ce57c8e10ae4b4bb68bf98839",
+      "bytes": 65536
+    },
+    {
+      "path": "data/ook_snr20_seed202.cu8",
+      "sha256": "eb4eb973e5ebde1a39c13b8e0db5deff457500a40b311088565efd83f119273d",
+      "bytes": 65536
+    },
+    {
+      "path": "data/recorded_plot_values.npz",
+      "sha256": "1bff01f12c987c553b74c85f4e466309bb9dc4eb2c46225a18e2ab77afb06f2d",
+      "bytes": 1600020
+    }
+  ],
+  "files": [
+    {
+      "path": "audio/manifest.json",
+      "sha256": "8f69f29e2c1b20428a3b72a5fd8023b5e732680060c586554fbb2ba2008309f2",
+      "bytes": 2527
+    },
+    {
+      "path": "audio/snr0_t0.wav",
+      "sha256": "75c75d5b287bf0ded92452420daa06cb15fe7f577787b9c08b8a8e86d3aa9f96",
+      "bytes": 158308
+    },
+    {
+      "path": "audio/snr0_t1000000000.wav",
+      "sha256": "f263ae1712d49ef845746f6cef07bf6644449328391c0263b7c8f5f21a9ba505",
+      "bytes": 158308
+    },
+    {
+      "path": "audio/snr10_t0.wav",
+      "sha256": "a680ca1aab6b9eba0c52af50ec27d6f06418751d91a05a9f9badd90029286ed5",
+      "bytes": 158308
+    },
+    {
+      "path": "audio/snr10_t1000000000.wav",
+      "sha256": "397418cf7eaf0731409b8f02c74c0e8160400dbf53831a6983852423f9f7855c",
+      "bytes": 158308
+    },
+    {
+      "path": "audio/snr20_t0.wav",
+      "sha256": "e73c8ef2f3b95071372363c7a5b0de8b05e9ec0b5587e854cd43827d68adb400",
+      "bytes": 158308
+    },
+    {
+      "path": "audio/snr20_t1000000000.wav",
+      "sha256": "eb7f4fa4f37a48b8943221ccac49bc053815d6c860ffc745ba9d7592841cda33",
+      "bytes": 158308
+    },
+    {
+      "path": "data/awgn_samples.npz",
+      "sha256": "93134841c8174d403702123c54a3a333e5f2734ea0113fc70d78f9eb6d5ad238",
+      "bytes": 753806
+    },
+    {
+      "path": "data/measurements.json",
+      "sha256": "7ac181a4721123f677d47b6151a3fa85f35dbbe3519e193ce327d59181852978",
+      "bytes": 26765
+    },
+    {
+      "path": "data/ook_snr0_seed202.cu8",
+      "sha256": "0da15c53881418af005adc282c3abd12c6ef13c166783c5af9f40045f6e04086",
+      "bytes": 65536
+    },
+    {
+      "path": "data/ook_snr10_seed202.cu8",
+      "sha256": "c5cac8252235c75809f31c4b6ebdd5139114075ce57c8e10ae4b4bb68bf98839",
+      "bytes": 65536
+    },
+    {
+      "path": "data/ook_snr20_seed202.cu8",
+      "sha256": "eb4eb973e5ebde1a39c13b8e0db5deff457500a40b311088565efd83f119273d",
+      "bytes": 65536
+    },
+    {
+      "path": "data/physical_cases.csv",
+      "sha256": "c8957cef560cb35a321b43e8f8ab6d1fa54849d8bd58705be39e43fb7dde4e9e",
+      "bytes": 2092
+    },
+    {
+      "path": "data/plot_bindings.json",
+      "sha256": "a3ac06f7fa86caee6d24781ccd5cdcda97e9a5133241134d302a6a8cdddffce7",
+      "bytes": 1675
+    },
+    {
+      "path": "data/recorded_plot_values.npz",
+      "sha256": "1bff01f12c987c553b74c85f4e466309bb9dc4eb2c46225a18e2ab77afb06f2d",
+      "bytes": 1600020
+    },
+    {
+      "path": "data/sample_bindings.json",
+      "sha256": "88f7a9e0682db6a7da46cc1e8db28a589e2dee51780131ab4f376478ec2cce05",
+      "bytes": 4434
+    },
+    {
+      "path": "data/software_screen.json",
+      "sha256": "29e882aacdccdf007642f7194522d90ca2b57f803a47fa9cbba855811ea5b0b7",
+      "bytes": 122052
+    },
+    {
+      "path": "data/sources.json",
+      "sha256": "25c7ec6f4adbdd8f9870a43a31cd8fc8d663565b9378193126257302afa237c8",
+      "bytes": 3603
+    },
+    {
+      "path": "figures/awgn_envelopes.png",
+      "sha256": "e58e292b9ec3a74a7e4779ab03f904748ff4fe0d54ed54cbe10a1e0b2d7d09a3",
+      "bytes": 271142
+    },
+    {
+      "path": "figures/awgn_envelopes.svg",
+      "sha256": "0395d4805f43ccf7f916bec41eaf4c400f8a84c12e9ebfd236d619bf84c7a1b3",
+      "bytes": 54080
+    },
+    {
+      "path": "figures/awgn_hardware.png",
+      "sha256": "9b6f7e07ba4a8fbbe920bfaab119602f782daf94939737bdfac3f38a1e9e3208",
+      "bytes": 136100
+    },
+    {
+      "path": "figures/awgn_hardware.svg",
+      "sha256": "84841ca1039d492a5eb64b9aad7e8a611bb0acebb6a0be5917f56cecc0de52e8",
+      "bytes": 20376
+    },
+    {
+      "path": "figures/recorded_rf_hardware.png",
+      "sha256": "df16d54b59bc58946ee9c313774334c21918ee75b6a6a28a6f7bad66a2644ec7",
+      "bytes": 984769
+    },
+    {
+      "path": "figures/recorded_rf_hardware.svg",
+      "sha256": "5a97f1fcfde9ed47962f61fb5c711df978cfee33fc127e53864d9ca787ee4f5b",
+      "bytes": 1093352
+    },
+    {
+      "path": "index.html",
+      "sha256": "f5db58fb1af934ae8c8781a83042079c3c54e6089581836fdb3e75cc381c9116",
+      "bytes": 13135
+    },
+    {
+      "path": "README.md",
+      "sha256": "efe7e9f255168372de9c57c757b36d70f012fb6d6502407704bab44ca8b3d619",
+      "bytes": 11865
+    },
+    {
+      "path": "render.py",
+      "sha256": "d8763b148d30ab3f16c8a4638b282881c741ef375ef3da47341edcc78821d29f",
+      "bytes": 11647
+    },
+    {
+      "path": "render_audit.json",
+      "sha256": "deb5c5d9bf48f67e8f9f9f7d3e5db7cba9885f5c53e3c86fb1a26a01bac11f24",
+      "bytes": 1371
+    }
+  ]
+}

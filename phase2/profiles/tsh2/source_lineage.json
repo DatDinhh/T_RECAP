@@ -4,7 +4,7 @@
   "scope": "Archived active TSH2 workbench source; not a complete hardware build/deployment package",
   "file_count": 90,
   "source_bytes": 730927,
-  "copied_source_identity": "All RTL/C/C++ unchanged; one Markdown command and two shell toolchain paths parameterized",
+  "copied_source_identity": "RTL, C, C++ and executable script regions retain their published bytes. Reader-facing Markdown and HTML prose is revised with original and published identities recorded separately.",
   "excluded": [
     "All outputs/, build products, compiler/simulator caches and raw captures",
     "Runtime plans, boot/session inventories, board/UART/JTAG programming and standalone deployment launchers",
@@ -12,15 +12,16 @@
     "Raw audio/datasets, trained models, abandoned AI campaigns and remote-access components",
     "Old visualizer README/launch/stop/record scripts whose operational paths are superseded by this README"
   ],
-  "readme_sha256": "2dbd78a0d9e5313cfe8348e2b5988130970530a28e83be4d6ddb07e2b7711cba",
+  "readme_sha256": "84d784c6a3475b21f103f6244ad883b44a85003c55e67569add2804a426d86c6",
   "files": [
     {
       "path": "work/trecap_ai_scheduler_v01/native/README.md",
       "original_artifact_id": "archive:workspace/work/trecap_ai_scheduler_v01/native/README.md",
       "original_sha256": "b621c4ea5b1aa68c65f82d456cdc2081a7a58eb24b21b58d61ee939f1fa464e1",
-      "published_sha256": "18df7a78054bbd7bc40dfe713eda79edf8fe1ec702d808971c2851d4624aba31",
+      "published_sha256": "2969c1503d741f1288bf15021f6f1b872ddbcba0548031eb94ebf8bae3ab3e85",
       "bytes": 3986,
-      "transformation": "Markdown command only: replace personal Python interpreter path with python"
+      "transformation": "Markdown command only: replace personal Python interpreter path with python. Reader-facing punctuation revised without changing code, link targets or numeric tokens.",
+      "previous_publication_sha256": "18df7a78054bbd7bc40dfe713eda79edf8fe1ec702d808971c2851d4624aba31"
     },
     {
       "path": "work/trecap_ai_scheduler_v01/native/build.ps1",
@@ -58,9 +59,10 @@
       "path": "work/trecap_cpu_fpga_bench_v01/cpu02/NUMERICS.md",
       "original_artifact_id": "archive:workspace/work/trecap_cpu_fpga_bench_v01/cpu02/NUMERICS.md",
       "original_sha256": "212819e31ad007d524b7a2e68ab41c60e53ca03868ca8cb0edfdfa085f864d82",
-      "published_sha256": "212819e31ad007d524b7a2e68ab41c60e53ca03868ca8cb0edfdfa085f864d82",
+      "published_sha256": "3a27ca4156e70b98a2eea9d943f14c440e3cf99cbe5a1d9204f6d10360890a8c",
       "bytes": 2693,
-      "transformation": "none; byte-identical source copy"
+      "transformation": "none. byte-identical source copy. Reader-facing punctuation revised without changing code, link targets or numeric tokens.",
+      "previous_publication_sha256": "212819e31ad007d524b7a2e68ab41c60e53ca03868ca8cb0edfdfa085f864d82"
     },
     {
       "path": "work/trecap_cpu_fpga_bench_v01/cpu02/kernel.hpp",
@@ -210,9 +212,10 @@
       "path": "work/trecap_laptop_fpga_v01/service/PROTOCOL.md",
       "original_artifact_id": "archive:workspace/work/trecap_laptop_fpga_v01/service/PROTOCOL.md",
       "original_sha256": "e6ae0f1abf6f65b1ac75d3fe5fc64f8c987665de3ad9eb20ef59286a406bb65e",
-      "published_sha256": "e6ae0f1abf6f65b1ac75d3fe5fc64f8c987665de3ad9eb20ef59286a406bb65e",
+      "published_sha256": "465bd74a5575987a9d9277f0b6c5feff2c9f4a6b560611772f0138b2a5ea2066",
       "bytes": 2234,
-      "transformation": "none; byte-identical source copy"
+      "transformation": "none. byte-identical source copy. Reader-facing punctuation revised without changing code, link targets or numeric tokens.",
+      "previous_publication_sha256": "e6ae0f1abf6f65b1ac75d3fe5fc64f8c987665de3ad9eb20ef59286a406bb65e"
     },
     {
       "path": "work/trecap_laptop_fpga_v01/service/build.sh",
@@ -242,9 +245,10 @@
       "path": "work/trecap_monitor_board_v01/PROTOCOL.md",
       "original_artifact_id": "archive:workspace/work/trecap_monitor_board_v01/PROTOCOL.md",
       "original_sha256": "086a6d3e23f90567691dd5755bd9982cfdaadbf43001f3214d9eb1911bf5ba4d",
-      "published_sha256": "086a6d3e23f90567691dd5755bd9982cfdaadbf43001f3214d9eb1911bf5ba4d",
+      "published_sha256": "7d5d56a56a15f491e6a837ac81d592485aba475111bf910bbd6b80848bb3dcbc",
       "bytes": 5740,
-      "transformation": "none; byte-identical source copy"
+      "transformation": "none. byte-identical source copy. Reader-facing punctuation revised without changing code, link targets or numeric tokens.",
+      "previous_publication_sha256": "086a6d3e23f90567691dd5755bd9982cfdaadbf43001f3214d9eb1911bf5ba4d"
     },
     {
       "path": "work/trecap_monitor_board_v01/analyze.py",
@@ -282,9 +286,10 @@
       "path": "work/trecap_sparse_consumer_v01/native/README.md",
       "original_artifact_id": "archive:workspace/work/trecap_sparse_consumer_v01/native/README.md",
       "original_sha256": "0f936039e61f82d1503753b9435a9e9c650e7ef9c82329530168a2ab0de62e41",
-      "published_sha256": "0f936039e61f82d1503753b9435a9e9c650e7ef9c82329530168a2ab0de62e41",
+      "published_sha256": "55cdc258bebd1f83febe037a9ae4e8d900fa2f12a55b3cf43a0face5fc9171fd",
       "bytes": 4737,
-      "transformation": "none; byte-identical source copy"
+      "transformation": "none. byte-identical source copy. Reader-facing punctuation revised without changing code, link targets or numeric tokens.",
+      "previous_publication_sha256": "0f936039e61f82d1503753b9435a9e9c650e7ef9c82329530168a2ab0de62e41"
     },
     {
       "path": "work/trecap_sparse_consumer_v01/native/codec.cpp",
@@ -330,9 +335,10 @@
       "path": "work/trecap_spectral_monitor_v01/native/README.md",
       "original_artifact_id": "archive:workspace/work/trecap_spectral_monitor_v01/native/README.md",
       "original_sha256": "02cf0aed7b08526a24dda3dd339bb81fd9421b2d4ed9c65c2d9b19736c6c68a8",
-      "published_sha256": "02cf0aed7b08526a24dda3dd339bb81fd9421b2d4ed9c65c2d9b19736c6c68a8",
+      "published_sha256": "2751f0b8b7b45cb2862ab4ee8f40fad93700428fb414acffdb247f7ec26886f5",
       "bytes": 4275,
-      "transformation": "none; byte-identical source copy"
+      "transformation": "none. byte-identical source copy. Reader-facing punctuation revised without changing code, link targets or numeric tokens.",
+      "previous_publication_sha256": "02cf0aed7b08526a24dda3dd339bb81fd9421b2d4ed9c65c2d9b19736c6c68a8"
     },
     {
       "path": "work/trecap_spectral_monitor_v01/native/build.ps1",
@@ -370,9 +376,10 @@
       "path": "work/trecap_spectral_monitor_v02/PROTOCOL.md",
       "original_artifact_id": "archive:workspace/work/trecap_spectral_monitor_v02/PROTOCOL.md",
       "original_sha256": "eac20aaaffad605ad772958f09b3d4ad12bb9c959796411eb79124f9b5c74705",
-      "published_sha256": "eac20aaaffad605ad772958f09b3d4ad12bb9c959796411eb79124f9b5c74705",
+      "published_sha256": "2ac7f1cf458b2f1025c29b44602c47ee23b386ee9c91963c765f60b900edfb54",
       "bytes": 9932,
-      "transformation": "none; byte-identical source copy"
+      "transformation": "none. byte-identical source copy. Reader-facing punctuation revised without changing code, link targets or numeric tokens.",
+      "previous_publication_sha256": "eac20aaaffad605ad772958f09b3d4ad12bb9c959796411eb79124f9b5c74705"
     },
     {
       "path": "work/trecap_spectral_monitor_v02/benchmark.py",
@@ -434,17 +441,19 @@
       "path": "work/trecap_stream8_v01/CONTRACT.md",
       "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/CONTRACT.md",
       "original_sha256": "73af404e631860483433b1df3e0fb53f7ea66bdc1f87319b5e519aec89181f13",
-      "published_sha256": "73af404e631860483433b1df3e0fb53f7ea66bdc1f87319b5e519aec89181f13",
+      "published_sha256": "5a178d659add3fc96380455b4e58eb07bb9adc5e389d97926741be0b115fbd52",
       "bytes": 3499,
-      "transformation": "none; byte-identical source copy"
+      "transformation": "none. byte-identical source copy. Reader-facing punctuation revised without changing code, link targets or numeric tokens.",
+      "previous_publication_sha256": "73af404e631860483433b1df3e0fb53f7ea66bdc1f87319b5e519aec89181f13"
     },
     {
       "path": "work/trecap_stream8_v01/build/README.md",
       "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/build/README.md",
       "original_sha256": "3b428fafa51fb191370f4d00a9170d6c9926f2c594e61647c9347049e762da56",
-      "published_sha256": "3b428fafa51fb191370f4d00a9170d6c9926f2c594e61647c9347049e762da56",
+      "published_sha256": "9bf8a1f2a901a5c5c3a4300e84aaca4890ecb876bd767fe27e30d5170fe67b30",
       "bytes": 2521,
-      "transformation": "none; byte-identical source copy"
+      "transformation": "none. byte-identical source copy. Reader-facing punctuation revised without changing code, link targets or numeric tokens.",
+      "previous_publication_sha256": "3b428fafa51fb191370f4d00a9170d6c9926f2c594e61647c9347049e762da56"
     },
     {
       "path": "work/trecap_stream8_v01/build/analyze_timing.py",
@@ -506,9 +515,10 @@
       "path": "work/trecap_stream8_v01/core/README.md",
       "original_artifact_id": "archive:workspace/work/trecap_stream8_v01/core/README.md",
       "original_sha256": "830659273811ceeb7c36207fd5761e782e4c0ebe9a542c9ee1ee0e23a9350390",
-      "published_sha256": "830659273811ceeb7c36207fd5761e782e4c0ebe9a542c9ee1ee0e23a9350390",
+      "published_sha256": "b113647f6d021ff19e519bbf85aab3fd511d6ae587a4527e1379c338419d8bcd",
       "bytes": 2778,
-      "transformation": "none; byte-identical source copy"
+      "transformation": "none. byte-identical source copy. Reader-facing punctuation revised without changing code, link targets or numeric tokens.",
+      "previous_publication_sha256": "830659273811ceeb7c36207fd5761e782e4c0ebe9a542c9ee1ee0e23a9350390"
     },
     {
       "path": "work/trecap_stream8_v01/core/prepare_top.py",
@@ -626,9 +636,10 @@
       "path": "work/trecap_visualizer_v01/probe/README.md",
       "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/probe/README.md",
       "original_sha256": "68caaeda99fc03118b21aef1e4adc7dc5de66bf6fd9b65107ccdd47b527f6ca2",
-      "published_sha256": "68caaeda99fc03118b21aef1e4adc7dc5de66bf6fd9b65107ccdd47b527f6ca2",
+      "published_sha256": "f3993f443185faefcaeb0f9542e3a144cb86c24c266a647b54f1afa72510676d",
       "bytes": 1648,
-      "transformation": "none; byte-identical source copy"
+      "transformation": "none. byte-identical source copy. Reader-facing punctuation revised without changing code, link targets or numeric tokens.",
+      "previous_publication_sha256": "68caaeda99fc03118b21aef1e4adc7dc5de66bf6fd9b65107ccdd47b527f6ca2"
     },
     {
       "path": "work/trecap_visualizer_v01/probe/build.sh",
@@ -714,9 +725,10 @@
       "path": "work/trecap_visualizer_v01/web/index.html",
       "original_artifact_id": "archive:workspace/work/trecap_visualizer_v01/web/index.html",
       "original_sha256": "5f91a9bf53668afab7133babdc2d7536bc79b890a63bfe13d5f37eda5aa1befa",
-      "published_sha256": "5f91a9bf53668afab7133babdc2d7536bc79b890a63bfe13d5f37eda5aa1befa",
+      "published_sha256": "641d6566fe2e911c7eb0ed65b9d5c4ee118a117c15bf6792ab4affea2008f445",
       "bytes": 21702,
-      "transformation": "none; byte-identical source copy"
+      "transformation": "none. byte-identical source copy. Reader-facing punctuation revised without changing code, link targets or numeric tokens.",
+      "previous_publication_sha256": "5f91a9bf53668afab7133babdc2d7536bc79b890a63bfe13d5f37eda5aa1befa"
     },
     {
       "path": "work/trecap_visualizer_v01/web/pipeline.js",
@@ -734,5 +746,6 @@
       "bytes": 50122,
       "transformation": "none; byte-identical source copy"
     }
-  ]
+  ],
+  "previous_readme_sha256": "2dbd78a0d9e5313cfe8348e2b5988130970530a28e83be4d6ddb07e2b7711cba"
 }

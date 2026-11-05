@@ -29,10 +29,10 @@ The expected policy is:
 
 Do not place these here:
 
-- `window_qw.memh` or twiddle ROM data;
-- `x_in.memh` or `y_out.memh`;
-- `metrics.json`, `frame_stats.csv`, or `bin_stats.csv`;
-- `artifact_index.json` or `frozen_release_manifest.json`;
+- `window_qw.memh` or twiddle ROM data.
+- `x_in.memh` or `y_out.memh`.
+- `metrics.json`, `frame_stats.csv`, or `bin_stats.csv`.
+- `artifact_index.json` or `frozen_release_manifest.json`.
 - telemetry captures.
 
 Those are generated or captured outputs and belong in the artifact tree defined by the spec.

@@ -1,0 +1,2243 @@
+{
+  "schema": "trecap-unified-system-atlas-v1",
+  "scope": "Source-derived architecture of the project after recorded RF integration",
+  "sources": [
+    {
+      "id": "C01",
+      "path": "rtl/core/trecap_core_top.sv",
+      "sha256": "44ab78f15ab83a13de90109e2772159dbac0efc1fccf66791d9c70657fe76f6b"
+    },
+    {
+      "id": "C02",
+      "path": "rtl/include/generated/trecap_core_pkg.sv",
+      "sha256": "278628abdf585806cfcb29c1cd2392cf2655b659587ace4c0e4032f2a28dd784"
+    },
+    {
+      "id": "C03",
+      "path": "rtl/fft/trecap_fft256.sv",
+      "sha256": "a0c710046185fb54bd7281444c57539f9b689e4a6f52f634dba60a259619ef66"
+    },
+    {
+      "id": "C04",
+      "path": "rtl/fft/trecap_ifft256.sv",
+      "sha256": "92c175d4a30da253e9a93e118080261958daa181cf4e6f12560d9524d110bd3c"
+    },
+    {
+      "id": "C05",
+      "path": "rtl/core/trecap_mag2_mask.sv",
+      "sha256": "6a83ae00a8dc42d15ce1cca1fbca8340bd526016da7630460a691879fa6c115d"
+    },
+    {
+      "id": "C06",
+      "path": "rtl/core/trecap_synthesis_wola.sv",
+      "sha256": "7d30dee3679adb15bee54f2ad9762d102b08f54314c280a6f4918b95d277a7aa"
+    },
+    {
+      "id": "C07",
+      "path": "verification/tsh2/rtl/trecap_pcm_stream_top.sv",
+      "sha256": "2d8e7794a5629cf88e9d47ee0f2dd68ab28d1b73e3c071d701e2d5e3ab1780d2"
+    },
+    {
+      "id": "C08",
+      "path": "verification/tsh2/rtl/trecap_pcm_stream_source.sv",
+      "sha256": "79e402d7314b6540aea813bab2a42efa4d3107a34a63d61ff5ea3549bb4101f7"
+    },
+    {
+      "id": "A01",
+      "path": "profiles/tsh2/work/trecap_stream8_v01/rtl/trecap_stream_adapter.sv",
+      "sha256": "f52407c4a5bcb231ff15113a42559452f451cd3e2f149ee191f5e01941bed305"
+    },
+    {
+      "id": "A02",
+      "path": "profiles/tsh2/work/trecap_laptop_fpga_v01/service/service.c",
+      "sha256": "a65a1be11abe2e3f01c9d80f1bd3c167a1094881b301bfbc48870bf7496ba24c"
+    },
+    {
+      "id": "A03",
+      "path": "profiles/tsh2/work/trecap_visualizer_v01/server.py",
+      "sha256": "66dd07b73103f7b4ee797c456a7d257fa251294a98d284428f1d80a2742347ef"
+    },
+    {
+      "id": "A04",
+      "path": "profiles/tsh2/work/trecap_visualizer_v01/data.py",
+      "sha256": "be560c78b15129df5e7944b138f9ace0577c6390cba7cee207c77835263fa47e"
+    },
+    {
+      "id": "R01",
+      "path": "profiles/trf1/adapter/rtl/trecap_rf_iq_adapter.sv",
+      "sha256": "49f2410c2593aa6d0fcc6ef032b19f5bdf6d059f594c3bfdfa081a2da6f1faa8"
+    },
+    {
+      "id": "R02",
+      "path": "profiles/trf1/adapter/rtl/trecap_rf_file_source.sv",
+      "sha256": "28499650aca794ecc6341e27a195fb69f4ef444cd8f78a0f1b4377fd3e8f4935"
+    },
+    {
+      "id": "R03",
+      "path": "profiles/trf1/adapter/coefficients/rf_coefficients.svh",
+      "sha256": "4d0cb2bbe836fa9f975349fdb01c5c033fdcd028d4a991c841b4805e736635f8"
+    },
+    {
+      "id": "R04",
+      "path": "profiles/trf1/board/rtl/trecap_rf_board_adapter.sv",
+      "sha256": "a83dd1a68945f11b75fe045f5d7433e248bcfbecea4bf68f4275f3f13980f6d5"
+    },
+    {
+      "id": "R05",
+      "path": "profiles/trf1/board/host/trf1_client.c",
+      "sha256": "48e0d6bfa725aeea8c2ce7899a3c331e02a067e30fa3781366560ada8ab1cdf9"
+    },
+    {
+      "id": "R06",
+      "path": "profiles/trf1/board/platform/trecap_hps_top.sv",
+      "sha256": "81ab0084e276bc57c18cee4a5185cc49b18aaa81e09716e32946d34ac07c8502"
+    },
+    {
+      "id": "R07",
+      "path": "profiles/trf1/board/rtl/stream_fifo.sv",
+      "sha256": "50d716bed05befaa80a75ca0a8a9be03178b1f3c3248669a58b0627026a69c2b"
+    },
+    {
+      "id": "R08",
+      "path": "profiles/trf1/board/orchestration/capture.py",
+      "sha256": "ae3b25868b626a1582a4b2af4da7b31cbbae89550b8fedcb5e479cc24188497f"
+    },
+    {
+      "id": "V01",
+      "path": "verification/rf_iq/evidence/summary.json",
+      "sha256": "49ab72b3756b8cef089953ef697ba132ce72e0aa3d64b9178e4c97e7620ed8d1"
+    },
+    {
+      "id": "V02",
+      "path": "verification/tsh2/admission.json",
+      "sha256": "ab03815268a28dd644ffd51ca908f2eae1c028bb4ff5410004b64b36e66536d4"
+    }
+  ],
+  "local_workflow_review": {
+    "scope": "Local accelerometer workflow inspected separately. Original files are not distributed in this atlas.",
+    "files": [
+      {
+        "workspace_relative_id": "work/trecap_accelerometer_v02/README.md",
+        "sha256": "ed0b9539e2d5141a46430b03491aaa426cbd2b076e69d94284c803e76c9ba0eb"
+      },
+      {
+        "workspace_relative_id": "work/trecap_accelerometer_v02/axis_adapter.py",
+        "sha256": "644253534aed236fe6b0f27ae8500294f038fbc5647cec756570f3d007a396a4"
+      },
+      {
+        "workspace_relative_id": "work/trecap_accelerometer_v02/analyze.py",
+        "sha256": "60b66947a2fcb1756c88278fb04bc7b431f54acedd5d25670f7a78863245d9a8"
+      },
+      {
+        "workspace_relative_id": "work/trecap_accelerometer_v02/acquire/adxl345_acquire.c",
+        "sha256": "d8703a50d5940a9c2c332c10616e73c39b89907d5fe2c0691b0ce3285b56162d"
+      }
+    ]
+  },
+  "plates": [
+    {
+      "number": 1,
+      "slug": "01-system-overview",
+      "title": "One project, adapted inputs, one numerical core",
+      "subtitle": "The diagram combines application routes while preserving the boundary between the TSH2 and TRF1 fitted images.",
+      "nodes": [
+        {
+          "id": "real",
+          "title": "Audio and motion records",
+          "body": [
+            "Audio files or a captured sensor axis",
+            "Real-valued samples with a known rate"
+          ],
+          "rect": [
+            80,
+            250,
+            400,
+            180
+          ],
+          "tone": "mint",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "hostreal",
+          "title": "Laptop preparation",
+          "body": [
+            "Decode or map the input to signed 12-bit",
+            "Keep sample-rate and scaling metadata"
+          ],
+          "rect": [
+            660,
+            250,
+            480,
+            180
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "tsh",
+          "title": "HPS + TSH2 entry",
+          "body": [
+            "Upload the finite PCM record",
+            "MMIO FIFO feeds the existing source"
+          ],
+          "rect": [
+            1300,
+            250,
+            420,
+            180
+          ],
+          "tone": "blue",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "iq",
+          "title": "Recorded RF I/Q",
+          "body": [
+            "Receiver has already downconverted RF",
+            "File stores alternating unsigned I and Q"
+          ],
+          "rect": [
+            80,
+            500,
+            400,
+            180
+          ],
+          "tone": "mint",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "hostrf",
+          "title": "Laptop + HPS file transport",
+          "body": [
+            "Upload unchanged CU8 bytes",
+            "TRF1 client feeds the raw-pair FIFO"
+          ],
+          "rect": [
+            660,
+            500,
+            480,
+            180
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "rf",
+          "title": "New FPGA RF adapter",
+          "body": [
+            "Center, FIR interpolate, mix to real IF",
+            "Round and saturate to signed 12-bit"
+          ],
+          "rect": [
+            1300,
+            500,
+            420,
+            180
+          ],
+          "tone": "lav",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "consumer",
+          "title": "Laptop applications",
+          "body": [
+            "Listen and compare reconstructed audio",
+            "Inspect spectra and run sparse consumers"
+          ],
+          "rect": [
+            80,
+            750,
+            400,
+            180
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "outputs",
+          "title": "Two returned representations",
+          "body": [
+            "Y contains reconstructed time samples",
+            "TSP1 contains spectral power records"
+          ],
+          "rect": [
+            660,
+            750,
+            480,
+            180
+          ],
+          "tone": "rose",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "core",
+          "title": "Shared FPGA DSP core",
+          "body": [
+            "FFT, tunable threshold, IFFT and WOLA",
+            "Same numerical core in each profile"
+          ],
+          "rect": [
+            1300,
+            750,
+            420,
+            180
+          ],
+          "tone": "lav",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        }
+      ],
+      "edges": [
+        {
+          "from": "real",
+          "to": "hostreal",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "hostreal",
+          "to": "tsh",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "iq",
+          "to": "hostrf",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "hostrf",
+          "to": "rf",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "rf",
+          "to": "core",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "tsh",
+          "to": "core",
+          "fromPort": "right",
+          "toPort": "right",
+          "kind": "data",
+          "via": [
+            [
+              1760,
+              340
+            ],
+            [
+              1760,
+              840
+            ]
+          ]
+        },
+        {
+          "from": "core",
+          "to": "outputs",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data"
+        },
+        {
+          "from": "outputs",
+          "to": "consumer",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data"
+        }
+      ],
+      "notes": [
+        {
+          "title": "How to read the shared core",
+          "body": "The two routes describe alternative fitted applications. They do not run simultaneously on the board and there is no runtime audio/RF selector. Accelerometer replay uses the real-sample route.",
+          "tone": "gray",
+          "rect": [
+            80,
+            970,
+            1640,
+            125
+          ],
+          "titleSize": 15.7,
+          "bodySize": 14.2
+        }
+      ],
+      "description": [
+        "T-RECAP moves a finite signal record into the FPGA, applies a common fixed-point spectral-processing chain, and returns two representations to the laptop. The RF extension changes the input conversion and application interface. It does not replace the FFT, threshold, IFFT or reconstruction arithmetic.",
+        "Audio and accelerometer records are real-valued signals. Host software prepares their sample representation before replay through TSH2. Recorded RF is complex baseband I/Q. TRF1 transports its raw CU8 pairs to a new hardware adapter that produces the real signed 12-bit stream expected by the same numerical core.",
+        "TSH2 and TRF1 are separate fitted FPGA images. The lines converge to show shared implementation and numerical behavior, not an implemented runtime multiplexer. A host must identify and admit the loaded profile before using its registers."
+      ],
+      "source_ids": [
+        "C01",
+        "A01",
+        "A02",
+        "A03",
+        "R01",
+        "R04",
+        "R05"
+      ]
+    },
+    {
+      "number": 2,
+      "slug": "02-input-profiles",
+      "title": "Input contracts and application boundaries",
+      "subtitle": "Physical units and signal sample rates remain metadata even though all core input samples use the same signed 12-bit representation.",
+      "nodes": [
+        {
+          "id": "audio",
+          "title": "Audio record",
+          "body": [
+            "PCM waveform from a file or prior recording",
+            "Host conversion produces admitted samples"
+          ],
+          "rect": [
+            80,
+            250,
+            480,
+            185
+          ],
+          "tone": "mint",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "accel",
+          "title": "Accelerometer record",
+          "body": [
+            "Local workflow captures ADXL345 through HPS",
+            "One selected X, Y or Z axis is replayed"
+          ],
+          "rect": [
+            660,
+            250,
+            480,
+            185
+          ],
+          "tone": "mint",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "rf",
+          "title": "RF receiver recording",
+          "body": [
+            "Complex CU8 baseband pairs",
+            "Sample rate and RF center frequency supplied"
+          ],
+          "rect": [
+            1240,
+            250,
+            480,
+            185
+          ],
+          "tone": "mint",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "areal",
+          "title": "Audio preparation",
+          "body": [
+            "Decode and scale into the signed 12-bit range",
+            "Finite record is prepared on the laptop"
+          ],
+          "rect": [
+            80,
+            500,
+            480,
+            185
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "axis",
+          "title": "Axis preparation on laptop",
+          "body": [
+            "Preserve native-rate signed sensor counts",
+            "Pad one axis to the finite core transaction"
+          ],
+          "rect": [
+            660,
+            500,
+            480,
+            185
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "radio",
+          "title": "TRF1 hardware preparation",
+          "body": [
+            "4x interpolating FIR and real-IF mixer",
+            "Gain, rounding, saturation and padding"
+          ],
+          "rect": [
+            1240,
+            500,
+            480,
+            185
+          ],
+          "tone": "lav",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "tsh",
+          "title": "TSH2 real-sample application",
+          "body": [
+            "Input word carries one signed sample",
+            "Audio and axis records share this interface"
+          ],
+          "rect": [
+            80,
+            750,
+            1060,
+            180
+          ],
+          "tone": "blue",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "trf",
+          "title": "TRF1 raw-I/Q application",
+          "body": [
+            "Input word carries two unsigned bytes",
+            "RF conversion occurs in FPGA fabric"
+          ],
+          "rect": [
+            1240,
+            750,
+            480,
+            180
+          ],
+          "tone": "blue",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        }
+      ],
+      "edges": [
+        {
+          "from": "audio",
+          "to": "areal",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "accel",
+          "to": "axis",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "rf",
+          "to": "radio",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "areal",
+          "to": "tsh",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data",
+          "via": [
+            [
+              320,
+              720
+            ],
+            [
+              610,
+              720
+            ]
+          ]
+        },
+        {
+          "from": "axis",
+          "to": "tsh",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data",
+          "via": [
+            [
+              900,
+              720
+            ],
+            [
+              610,
+              720
+            ]
+          ]
+        },
+        {
+          "from": "radio",
+          "to": "trf",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        }
+      ],
+      "notes": [
+        {
+          "title": "What has and has not changed",
+          "body": "The accelerometer application is a capture-and-replay workflow without a new FPGA sensor frontend. The RF profile adds an actual I/Q hardware adapter. Neither route establishes continuous live acquisition.",
+          "tone": "gray",
+          "rect": [
+            80,
+            970,
+            1640,
+            125
+          ],
+          "titleSize": 15.7,
+          "bodySize": 14.2
+        }
+      ],
+      "description": [
+        "A common integer interface does not make audio, acceleration and radio signals interchangeable. The sample rate, scaling and original units are needed to label time, frequency and physical amplitude correctly. An eight-second audio label must not be reused for a shorter RF record simply because the buffer length is the same.",
+        "The local accelerometer workflow reads the onboard ADXL345 through HPS I2C, records a bounded sample set, selects one axis on the laptop and pads it for TSH2 replay. Its native-rate axis adapter does not resample or remove DC. These acquisition scripts remain a local extension and are identified in the review record rather than presented as a published live FPGA interface.",
+        "TRF1 instead accepts one to 96,000 raw I/Q pairs. It generates exactly four valid real samples per pair, then supplies zeros to the 384,000-sample core transaction. The raw RF center frequency is already downconverted by the receiver that produced the file."
+      ],
+      "source_ids": [
+        "A01",
+        "A02",
+        "R01",
+        "R02",
+        "R04"
+      ]
+    },
+    {
+      "number": 3,
+      "slug": "03-shared-dsp",
+      "title": "The common spectral-processing datapath",
+      "subtitle": "RF is adapted before this chain. FFT size, hop, threshold rule and reconstruction arithmetic are preserved.",
+      "nodes": [
+        {
+          "id": "source",
+          "title": "Finite real-sample source",
+          "body": [
+            "Indexed signed 12-bit sample tokens",
+            "Real input followed by analysis zeros"
+          ],
+          "rect": [
+            80,
+            250,
+            480,
+            185
+          ],
+          "tone": "blue",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "window",
+          "title": "Input ring and analysis window",
+          "body": [
+            "256-sample frames with a 128-sample hop",
+            "Multiply by fixed window coefficients"
+          ],
+          "rect": [
+            660,
+            250,
+            480,
+            185
+          ],
+          "tone": "lav",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "fft",
+          "title": "256-point FFT",
+          "body": [
+            "28-bit complex components",
+            "Eight radix-2 stages with per-stage scaling"
+          ],
+          "rect": [
+            1240,
+            250,
+            480,
+            185
+          ],
+          "tone": "lav",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "ifft",
+          "title": "256-point IFFT",
+          "body": [
+            "36-bit complex components",
+            "Inverse twiddles reconstruct each frame"
+          ],
+          "rect": [
+            80,
+            500,
+            480,
+            185
+          ],
+          "tone": "lav",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "mask",
+          "title": "Paired spectral mask",
+          "body": [
+            "Power = Re squared + Im squared",
+            "Suppress eligible bins below THR2"
+          ],
+          "rect": [
+            660,
+            500,
+            480,
+            185
+          ],
+          "tone": "rose",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "canonical",
+          "title": "Hermitian canonicalization",
+          "body": [
+            "One consistent decision for each pair",
+            "Real DC and Nyquist components"
+          ],
+          "rect": [
+            1240,
+            500,
+            480,
+            185
+          ],
+          "tone": "lav",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "wola",
+          "title": "Synthesis and overlap-add",
+          "body": [
+            "Window and accumulate overlapping frames",
+            "Emit 128 mature samples per hop"
+          ],
+          "rect": [
+            80,
+            750,
+            480,
+            180
+          ],
+          "tone": "lav",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "y",
+          "title": "Reconstructed samples Y",
+          "body": [
+            "Signed 12-bit output with sample index",
+            "Full finite tail retained for comparison"
+          ],
+          "rect": [
+            660,
+            750,
+            480,
+            180
+          ],
+          "tone": "rose",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "spectrum",
+          "title": "Spectral exporter branch",
+          "body": [
+            "129 canonical-bin rows per frame",
+            "Powers and retained-bin identities"
+          ],
+          "rect": [
+            1240,
+            750,
+            480,
+            180
+          ],
+          "tone": "rose",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        }
+      ],
+      "edges": [
+        {
+          "from": "source",
+          "to": "window",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "window",
+          "to": "fft",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "fft",
+          "to": "canonical",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "canonical",
+          "to": "mask",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data"
+        },
+        {
+          "from": "mask",
+          "to": "ifft",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data"
+        },
+        {
+          "from": "ifft",
+          "to": "wola",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "wola",
+          "to": "y",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "mask",
+          "to": "spectrum",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "tap",
+          "via": [
+            [
+              900,
+              720
+            ],
+            [
+              1480,
+              720
+            ]
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "title": "Threshold and quality",
+          "body": "THR2 is an unsigned 56-bit threshold in fixed-point squared-magnitude units. Equality is retained and DC is protected. Removing bins trades signal information for a smaller sparse spectral representation.",
+          "tone": "gray",
+          "rect": [
+            80,
+            970,
+            1640,
+            125
+          ],
+          "titleSize": 15.7,
+          "bodySize": 14.2
+        }
+      ],
+      "description": [
+        "The core groups accepted samples into overlapping 256-point frames at a hop of 128. A fixed analysis window precedes the forward FFT. The frame scheduler, ring buffer and output flow control preserve overlap state when transport stalls.",
+        "After Hermitian canonicalization, the power comparison produces a conjugate-pair mask. Eligible powers below THR2 are suppressed, equality is retained, and DC is protected. The same thresholded spectrum supplies both reconstruction and spectral export. Threshold values are implementation power units rather than percentages or decibels.",
+        "The IFFT and synthesis weighted overlap-add stage return Y. A separate exporter captures 129 canonical power bins per frame for TSP1. The RF profile uses byte-identical shared FFT, IFFT, magnitude-mask, synthesis and top-level numerical core sources."
+      ],
+      "source_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "number": 4,
+      "slug": "04-rf-input-adapter",
+      "title": "The new I/Q block inside the full architecture",
+      "subtitle": "One shared multiply-accumulate datapath schedules the four interpolation phases before the existing real-sample core.",
+      "nodes": [
+        {
+          "id": "raw",
+          "title": "Raw pair FIFO",
+          "body": [
+            "Low byte I, next byte Q",
+            "Upper 16 input-word bits must be zero"
+          ],
+          "rect": [
+            80,
+            250,
+            480,
+            185
+          ],
+          "tone": "blue",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "center",
+          "title": "Center and retain I/Q history",
+          "body": [
+            "Each byte becomes 2*b - 255",
+            "21 signed 9-bit samples in each history"
+          ],
+          "rect": [
+            660,
+            250,
+            480,
+            185
+          ],
+          "tone": "mint",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "mac",
+          "title": "Polyphase FIR hardware",
+          "body": [
+            "81 signed 18-bit coefficients",
+            "One multiplier and 36-bit accumulator"
+          ],
+          "rect": [
+            1240,
+            250,
+            480,
+            185
+          ],
+          "tone": "lav",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "round",
+          "title": "Gain and output quantization",
+          "body": [
+            "Round half ties away from zero",
+            "Saturate to signed 12-bit and count clips"
+          ],
+          "rect": [
+            80,
+            500,
+            480,
+            185
+          ],
+          "tone": "lav",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "mix",
+          "title": "Quarter-rate real-IF mixer",
+          "body": [
+            "Successive phases select +I, -Q, -I, +Q",
+            "Sign selection avoids a general oscillator"
+          ],
+          "rect": [
+            660,
+            500,
+            480,
+            185
+          ],
+          "tone": "lav",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "schedule",
+          "title": "Phase and tap schedule",
+          "body": [
+            "Four phases, 21 MAC clocks per phase",
+            "Unused coefficient positions contribute zero"
+          ],
+          "rect": [
+            1240,
+            500,
+            480,
+            185
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "align",
+          "title": "Finite-record alignment",
+          "body": [
+            "Discard 40 startup outputs",
+            "Flush ten exact zero pairs internally"
+          ],
+          "rect": [
+            80,
+            750,
+            480,
+            180
+          ],
+          "tone": "blue",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "pad",
+          "title": "Valid prefix and core padding",
+          "body": [
+            "Emit exactly 4*N valid real samples",
+            "Pad the transaction to 384,000 samples"
+          ],
+          "rect": [
+            660,
+            750,
+            480,
+            180
+          ],
+          "tone": "blue",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "common",
+          "title": "Existing DSP core",
+          "body": [
+            "FFT to threshold to IFFT/WOLA",
+            "Y and TSP1 output paths are unchanged"
+          ],
+          "rect": [
+            1240,
+            750,
+            480,
+            180
+          ],
+          "tone": "rose",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        }
+      ],
+      "edges": [
+        {
+          "from": "raw",
+          "to": "center",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "center",
+          "to": "mac",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "mac",
+          "to": "mix",
+          "fromPort": "bottom",
+          "toPort": "right",
+          "kind": "data",
+          "via": [
+            [
+              1480,
+              465
+            ],
+            [
+              1190,
+              465
+            ],
+            [
+              1190,
+              592.5
+            ]
+          ]
+        },
+        {
+          "from": "schedule",
+          "to": "mac",
+          "fromPort": "right",
+          "toPort": "right",
+          "kind": "control",
+          "via": [
+            [
+              1760,
+              592.5
+            ],
+            [
+              1760,
+              342.5
+            ]
+          ]
+        },
+        {
+          "from": "schedule",
+          "to": "mix",
+          "fromPort": "bottom",
+          "toPort": "bottom",
+          "kind": "control",
+          "via": [
+            [
+              1480,
+              720
+            ],
+            [
+              900,
+              720
+            ]
+          ]
+        },
+        {
+          "from": "mix",
+          "to": "round",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data"
+        },
+        {
+          "from": "round",
+          "to": "align",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "align",
+          "to": "pad",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "pad",
+          "to": "common",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        }
+      ],
+      "notes": [
+        {
+          "title": "Representation rate is not processing throughput",
+          "body": "At a 250 ksample/s complex input rate, the equivalent real stream is 1 Msample/s and centered at 250 kHz. The sequential converter takes multiple fabric clocks for each sample and can stall.",
+          "tone": "gray",
+          "rect": [
+            80,
+            970,
+            1640,
+            125
+          ],
+          "titleSize": 15.7,
+          "bodySize": 14.2
+        }
+      ],
+      "description": [
+        "CU8 contains unsigned I and Q bytes, not amplitude and phase values stored independently. Centering maps each byte to an odd signed integer with the expression 2*b - 255. Exact zero flush samples are inserted after centering because neither unsigned byte 127 nor byte 128 represents exact zero under this convention.",
+        "The 81-tap FIR is decomposed into four phases. The schedule uses one multiplier with 21 tap positions per phase and a signed 36-bit accumulator. Even phases read I history and odd phases read Q history. The quarter-rate real-IF sign sequence is applied at successive interpolated times, not as four copies of a raw input pair.",
+        "After gain, rounding and saturation, the finite-record wrapper discards startup delay, flushes the FIR and emits exactly 4*N real samples. It then pads the common transaction. The clip count and valid-prefix count remain available to the host so that interpolation, clipping and padding are not mistaken for threshold effects."
+      ],
+      "source_ids": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "C07"
+      ]
+    },
+    {
+      "number": 5,
+      "slug": "05-outputs-and-consumers",
+      "title": "Two outputs and the work performed on the laptop",
+      "subtitle": "The waveform path preserves a time-domain result. The spectral path supports consumers that understand sparse power records.",
+      "nodes": [
+        {
+          "id": "y",
+          "title": "Y from IFFT/WOLA",
+          "body": [
+            "Reconstructed signed 12-bit samples",
+            "Index, finite tail and comparison context"
+          ],
+          "rect": [
+            80,
+            250,
+            480,
+            185
+          ],
+          "tone": "rose",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "yfifo",
+          "title": "Waveform FIFO + HPS return",
+          "body": [
+            "1,024 words with sign-extended values",
+            "Host drains the complete sample stream"
+          ],
+          "rect": [
+            660,
+            250,
+            480,
+            185
+          ],
+          "tone": "blue",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "wave",
+          "title": "Waveform applications",
+          "body": [
+            "Audio playback and distortion measures",
+            "Acceleration traces or real-IF analysis"
+          ],
+          "rect": [
+            1240,
+            250,
+            480,
+            185
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "tap",
+          "title": "Canonical spectral powers",
+          "body": [
+            "129 bins and frame identities",
+            "Power has no retained complex phase"
+          ],
+          "rect": [
+            80,
+            500,
+            480,
+            185
+          ],
+          "tone": "rose",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "packet",
+          "title": "TSP1 records + HPS return",
+          "body": [
+            "Dense powers or sparse bin/power entries",
+            "Header, checksum and word-aligned transport"
+          ],
+          "rect": [
+            660,
+            500,
+            480,
+            185
+          ],
+          "tone": "blue",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "spectral",
+          "title": "Spectral consumers",
+          "body": [
+            "Band energies, monitoring and plots",
+            "Sparse-aware loops visit retained entries"
+          ],
+          "rect": [
+            1240,
+            500,
+            480,
+            185
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "quality",
+          "title": "Signal-quality comparison",
+          "body": [
+            "Original versus thresholded reconstruction",
+            "Quantization and threshold error separated"
+          ],
+          "rect": [
+            80,
+            750,
+            480,
+            180
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "fair",
+          "title": "Representation comparison",
+          "body": [
+            "Dense and sparse at the same threshold",
+            "Equal features isolate encoding workload"
+          ],
+          "rect": [
+            660,
+            750,
+            480,
+            180
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "scope",
+          "title": "Application-dependent benefit",
+          "body": [
+            "Smaller TSP1 can reduce compatible host work",
+            "A dense AI input may retain the same workload"
+          ],
+          "rect": [
+            1240,
+            750,
+            480,
+            180
+          ],
+          "tone": "gray",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        }
+      ],
+      "edges": [
+        {
+          "from": "y",
+          "to": "yfifo",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "yfifo",
+          "to": "wave",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "tap",
+          "to": "packet",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "packet",
+          "to": "spectral",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "wave",
+          "to": "scope",
+          "fromPort": "right",
+          "toPort": "right",
+          "kind": "data",
+          "via": [
+            [
+              1760,
+              342
+            ],
+            [
+              1760,
+              840
+            ]
+          ]
+        },
+        {
+          "from": "spectral",
+          "to": "scope",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "packet",
+          "to": "fair",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "y",
+          "to": "quality",
+          "fromPort": "left",
+          "toPort": "left",
+          "kind": "tap",
+          "via": [
+            [
+              40,
+              342.5
+            ],
+            [
+              40,
+              840
+            ]
+          ]
+        }
+      ],
+      "notes": [
+        {
+          "title": "Do not merge the denominators",
+          "body": "TSP1 byte reduction is measured against dense TSP1, not WAV or raw I/Q file size. A faster sparse consumer is not a faster FPGA FFT. TSP1 alone cannot reconstruct the waveform because it omits phase.",
+          "tone": "gray",
+          "rect": [
+            80,
+            970,
+            1640,
+            125
+          ],
+          "titleSize": 15.7,
+          "bodySize": 14.2
+        }
+      ],
+      "description": [
+        "Y and TSP1 serve different purposes. Y is a reconstructed sample stream that can be turned into a playable waveform for audio or analyzed as a real-valued signal for other applications. TSP1 is a versioned spectral-power representation with bin identities in sparse mode. It does not contain the complex phase required for waveform reconstruction.",
+        "For a fair consumer benchmark, dense and sparse records must represent the same thresholded powers. Their feature outputs are compared for equality. A separate comparison against the original signal measures the information lost to thresholding. This separates representation efficiency from signal distortion.",
+        "The laptop also performs plotting, playback, packet validation and optional application logic. Archived visualizer code separates a new physical capture from a saved-result load. RF protocol decoding after real-IF recovery remains a host operation. Dense AI consumers do not automatically execute fewer operations when more input bins are zero."
+      ],
+      "source_ids": [
+        "A03",
+        "A04",
+        "A01",
+        "R04",
+        "R05",
+        "C01"
+      ]
+    },
+    {
+      "number": 6,
+      "slug": "06-host-and-transactions",
+      "title": "Host transport and finite-transaction ownership",
+      "subtitle": "Both applications use HPS MMIO feed and drain, while the outer file-transfer protocols remain distinct.",
+      "nodes": [
+        {
+          "id": "pc",
+          "title": "Laptop prepares a request",
+          "body": [
+            "Audio uses the TSH2 TCP service",
+            "RF uses bounded file-archive transfer"
+          ],
+          "rect": [
+            80,
+            250,
+            480,
+            185
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "admit",
+          "title": "HPS admission and buffers",
+          "body": [
+            "Verify profile, ABI and source identity",
+            "Validate file length and sample contract"
+          ],
+          "rect": [
+            660,
+            250,
+            480,
+            185
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "cfg",
+          "title": "Idle configuration + START",
+          "body": [
+            "Set THR2 and packet mode",
+            "TRF1 also sets pair count and gain"
+          ],
+          "rect": [
+            1240,
+            250,
+            480,
+            185
+          ],
+          "tone": "blue",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "input",
+          "title": "Input FIFO and source",
+          "body": [
+            "TSH2 accepts signed PCM words",
+            "TRF1 accepts raw CU8 pairs then converts"
+          ],
+          "rect": [
+            80,
+            500,
+            480,
+            185
+          ],
+          "tone": "blue",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "loop",
+          "title": "HPS feed and drain loop",
+          "body": [
+            "Write only available input capacity",
+            "Interleave reads of Y and spectral words"
+          ],
+          "rect": [
+            660,
+            500,
+            480,
+            185
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "epoch",
+          "title": "FPGA finite processing epoch",
+          "body": [
+            "384,000 core input samples",
+            "3,001 frames and 384,512 full-tail Y samples"
+          ],
+          "rect": [
+            1240,
+            500,
+            480,
+            185
+          ],
+          "tone": "lav",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "validate",
+          "title": "Laptop validation and analysis",
+          "body": [
+            "Check returned counts and packet integrity",
+            "Compare signal quality and consumer work"
+          ],
+          "rect": [
+            80,
+            750,
+            480,
+            180
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "return",
+          "title": "Drain and return complete results",
+          "body": [
+            "Finish retrieving queued Y and TSP1",
+            "TCP reply or result archive returns to laptop"
+          ],
+          "rect": [
+            660,
+            750,
+            480,
+            180
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "done",
+          "title": "DONE and exact production counts",
+          "body": [
+            "Core and exporter finish the epoch",
+            "Queued output may still need host reads"
+          ],
+          "rect": [
+            1240,
+            750,
+            480,
+            180
+          ],
+          "tone": "rose",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        }
+      ],
+      "edges": [
+        {
+          "from": "pc",
+          "to": "admit",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "admit",
+          "to": "cfg",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "cfg",
+          "to": "epoch",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "control"
+        },
+        {
+          "from": "loop",
+          "to": "input",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data"
+        },
+        {
+          "from": "loop",
+          "to": "epoch",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "input",
+          "to": "epoch",
+          "fromPort": "bottom",
+          "toPort": "left",
+          "kind": "data",
+          "via": [
+            [
+              320,
+              715
+            ],
+            [
+              1200,
+              715
+            ],
+            [
+              1200,
+              592
+            ]
+          ]
+        },
+        {
+          "from": "epoch",
+          "to": "done",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "done",
+          "to": "return",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data"
+        },
+        {
+          "from": "return",
+          "to": "validate",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data"
+        }
+      ],
+      "notes": [
+        {
+          "title": "A finite buffer length does not define signal duration",
+          "body": "The application keeps one configured geometry for admission and completion checks. Only the valid input interval should determine the physical time axis and headline RF data-reduction denominator.",
+          "tone": "gray",
+          "rect": [
+            80,
+            970,
+            1640,
+            125
+          ],
+          "titleSize": 15.7,
+          "bodySize": 14.2
+        }
+      ],
+      "description": [
+        "The outer transports are not identical. TSH2 exposes a finite TCP request and reply around resident HPS buffers. The RF workflow uploads a bounded archive into HPS RAM, executes a local TRF1 client and downloads a bounded result archive. Neither should be described as a continuous packet-stream radio receiver.",
+        "Both clients must identify the loaded application and respect its register contract before issuing input. The HPS interleaves bounded input writes with output reads so that limited FPGA queues do not deadlock the transaction. TRF1 uses a 256-pair raw-input FIFO and registered prefetch rather than treating the FIFO pop as an immediate data response.",
+        "The standard core transaction consumes 384,000 real samples. The source additionally owns the analysis-zero tokens and WOLA tail needed for 3,001 frames and 384,512 returned samples. FPGA completion records produced totals. Host retrieval is complete only after any remaining queued output has been drained and checked."
+      ],
+      "source_ids": [
+        "A01",
+        "A02",
+        "R04",
+        "R05",
+        "R07",
+        "R08",
+        "C07",
+        "C08"
+      ]
+    },
+    {
+      "number": 7,
+      "slug": "07-control-and-backpressure",
+      "title": "Control, buffering and recovery across the system",
+      "subtitle": "Transport can pause progress. Accepted samples, reconstruction history and frame identity must remain consistent.",
+      "nodes": [
+        {
+          "id": "config",
+          "title": "Configuration is admitted while idle",
+          "body": [
+            "THR2 and packet mode remain fixed per epoch",
+            "TRF1 latches pair count and gain"
+          ],
+          "rect": [
+            80,
+            250,
+            480,
+            185
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "source",
+          "title": "Source ownership and prefetch",
+          "body": [
+            "Advance only on accepted handshakes",
+            "TRF1 holds a registered raw pair until used"
+          ],
+          "rect": [
+            660,
+            250,
+            480,
+            185
+          ],
+          "tone": "blue",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "core",
+          "title": "Shared core state",
+          "body": [
+            "Sample index, overlap and WOLA history",
+            "A stall must not restart the signal"
+          ],
+          "rect": [
+            1240,
+            250,
+            480,
+            185
+          ],
+          "tone": "lav",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "host",
+          "title": "HPS releases queue occupancy",
+          "body": [
+            "Drain both output FIFOs regularly",
+            "Feed input only when capacity is available"
+          ],
+          "rect": [
+            80,
+            500,
+            480,
+            185
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "spectral",
+          "title": "Spectral credit and FIFO",
+          "body": [
+            "Frame capture and packing have finite capacity",
+            "Completed record releases next-hop credit"
+          ],
+          "rect": [
+            660,
+            500,
+            480,
+            185
+          ],
+          "tone": "rose",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "wave",
+          "title": "Waveform FIFO backpressure",
+          "body": [
+            "A full FIFO deasserts downstream ready",
+            "Y and its index stay stable until accepted"
+          ],
+          "rect": [
+            1240,
+            500,
+            480,
+            185
+          ],
+          "tone": "rose",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "fault",
+          "title": "Fault detection",
+          "body": [
+            "Invalid words, counts and configuration",
+            "Watchdog and exporter/core faults"
+          ],
+          "rect": [
+            80,
+            750,
+            480,
+            180
+          ],
+          "tone": "gray",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "clear",
+          "title": "CLEAR or reset aborts ownership",
+          "body": [
+            "Cancel pending prefetch and held samples",
+            "Reset counts and clear the enclosing core"
+          ],
+          "rect": [
+            660,
+            750,
+            480,
+            180
+          ],
+          "tone": "blue",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "restart",
+          "title": "Re-admit and restart cleanly",
+          "body": [
+            "New transaction receives its own epoch",
+            "Verify counts and faults before completion"
+          ],
+          "rect": [
+            1240,
+            750,
+            480,
+            180
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        }
+      ],
+      "edges": [
+        {
+          "from": "config",
+          "to": "source",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "control"
+        },
+        {
+          "from": "source",
+          "to": "core",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "data"
+        },
+        {
+          "from": "core",
+          "to": "wave",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "data"
+        },
+        {
+          "from": "core",
+          "to": "spectral",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "tap",
+          "via": [
+            [
+              1480,
+              465
+            ],
+            [
+              900,
+              465
+            ]
+          ]
+        },
+        {
+          "from": "wave",
+          "to": "core",
+          "fromPort": "right",
+          "toPort": "right",
+          "kind": "control",
+          "via": [
+            [
+              1760,
+              592.5
+            ],
+            [
+              1760,
+              342.5
+            ]
+          ]
+        },
+        {
+          "from": "spectral",
+          "to": "host",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "data"
+        },
+        {
+          "from": "host",
+          "to": "source",
+          "fromPort": "top",
+          "toPort": "left",
+          "kind": "control",
+          "via": [
+            [
+              320,
+              465
+            ],
+            [
+              610,
+              465
+            ],
+            [
+              610,
+              342
+            ]
+          ]
+        },
+        {
+          "from": "fault",
+          "to": "clear",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "control"
+        },
+        {
+          "from": "clear",
+          "to": "restart",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "control"
+        },
+        {
+          "from": "wave",
+          "to": "restart",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "control"
+        }
+      ],
+      "notes": [
+        {
+          "title": "Two different throttling mechanisms",
+          "body": "Y has a ready/valid path. Spectral taps are valid-only, so upstream frame credit protects the exporter instead. Treating every internal link as an interchangeable streaming interface would hide this distinction.",
+          "tone": "gray",
+          "rect": [
+            80,
+            970,
+            1640,
+            125
+          ],
+          "titleSize": 15.7,
+          "bodySize": 14.2
+        }
+      ],
+      "description": [
+        "Ready/valid ownership is local and precise. A producer presenting a valid sample retains its value and sidebands while the consumer is not ready. An input FIFO pop may also have registered latency. TRF1 therefore tracks a pending read and a held prefetched pair explicitly.",
+        "The waveform output directly uses backpressure. Spectral observation taps are valid-only, so the surrounding source and exporter enforce next-hop credit to prevent an unbounded accumulation of frames. The HPS must drain both output types because either path can limit progress.",
+        "Clear and reset are transaction events, not benign changes to a threshold. They withdraw current output ownership and clear the enclosing pipeline. The RF verification includes reset while a FIFO response is pending, clear while a prefetched pair is held, watchdog recovery and restart checks."
+      ],
+      "source_ids": [
+        "A01",
+        "R01",
+        "R02",
+        "R04",
+        "R07",
+        "C07",
+        "V01"
+      ]
+    },
+    {
+      "number": 8,
+      "slug": "08-platform-and-verification",
+      "title": "Platform and verification boundaries",
+      "subtitle": "The combined architecture is documented at system level. Evidence remains attached to the profile and source that produced it.",
+      "nodes": [
+        {
+          "id": "clock",
+          "title": "DE1-SoC fabric clock",
+          "body": [
+            "Nominal constrained CLOCK_50 domain",
+            "Sources, DSP, exporter and synchronous FIFOs"
+          ],
+          "rect": [
+            80,
+            250,
+            480,
+            185
+          ],
+          "tone": "blue",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "reset",
+          "title": "Reset and finite initialization",
+          "body": [
+            "HPS reset asserts asynchronously",
+            "Synchronized release and explicit core clear"
+          ],
+          "rect": [
+            660,
+            250,
+            480,
+            185
+          ],
+          "tone": "blue",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "platform",
+          "title": "HPS platform remains external",
+          "body": [
+            "CPU, Ethernet and DDR clocks are platform-owned",
+            "Generated IP, handoff and boot assets required"
+          ],
+          "rect": [
+            1240,
+            250,
+            480,
+            185
+          ],
+          "tone": "sand",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "identity",
+          "title": "Profile and build identity",
+          "body": [
+            "TSH2 and TRF1 have distinct register magic",
+            "ABI, SOURCE_ID and geometry admit each run"
+          ],
+          "rect": [
+            80,
+            500,
+            480,
+            185
+          ],
+          "tone": "gray",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "audio",
+          "title": "Existing TSH2 evidence",
+          "body": [
+            "Procedural RTL and physical campaigns",
+            "Scoped UVM and local formal supplement"
+          ],
+          "rect": [
+            660,
+            500,
+            480,
+            185
+          ],
+          "tone": "lav",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "radio",
+          "title": "New RF evidence",
+          "body": [
+            "Independent conversion model and RTL tests",
+            "Actual-core MMIO, stalls and recovery checks"
+          ],
+          "rect": [
+            1240,
+            500,
+            480,
+            185
+          ],
+          "tone": "lav",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "physical",
+          "title": "Historical physical RF capture",
+          "body": [
+            "Source-bound fitted image and five epochs",
+            "Exact Y and TSP1 comparison to references"
+          ],
+          "rect": [
+            80,
+            750,
+            480,
+            180
+          ],
+          "tone": "rose",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "fresh",
+          "title": "Fresh RF publication regression",
+          "body": [
+            "Five self-checking suites with actual VCDs",
+            "32 actual-core integration epochs"
+          ],
+          "rect": [
+            660,
+            750,
+            480,
+            180
+          ],
+          "tone": "rose",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        },
+        {
+          "id": "limits",
+          "title": "Evidence must keep its scope",
+          "body": [
+            "No new RF formal proof or RF UVM claim",
+            "No live-rate or electrical-power claim"
+          ],
+          "rect": [
+            1240,
+            750,
+            480,
+            180
+          ],
+          "tone": "gray",
+          "titleSize": 17.2,
+          "bodySize": 14.1
+        }
+      ],
+      "edges": [
+        {
+          "from": "clock",
+          "to": "reset",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "clock"
+        },
+        {
+          "from": "platform",
+          "to": "reset",
+          "fromPort": "left",
+          "toPort": "right",
+          "kind": "control"
+        },
+        {
+          "from": "identity",
+          "to": "audio",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "control"
+        },
+        {
+          "from": "identity",
+          "to": "physical",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "control"
+        },
+        {
+          "from": "radio",
+          "to": "limits",
+          "fromPort": "bottom",
+          "toPort": "top",
+          "kind": "control"
+        },
+        {
+          "from": "fresh",
+          "to": "limits",
+          "fromPort": "right",
+          "toPort": "left",
+          "kind": "control"
+        }
+      ],
+      "notes": [
+        {
+          "title": "What this atlas establishes",
+          "body": "These are source-derived architecture views with reproducible figures and written descriptions. Drawing the complete system does not rerun synthesis, program hardware or extend an existing proof beyond its checked modules.",
+          "tone": "gray",
+          "rect": [
+            80,
+            970,
+            1640,
+            125
+          ],
+          "titleSize": 15.7,
+          "bodySize": 14.2
+        }
+      ],
+      "description": [
+        "The finite processing fabric uses the nominal 50 MHz board clock. HPS-owned clocks, DDR calibration, Ethernet and generated platform IP have their own implementation requirements. Board rebuilds require the matching generated system, pin and timing assignments, handoff files and boot assets in addition to the published non-vendor simulation closure.",
+        "Source and interface identity prevent an audio client from accidentally using an RF register map. Physical timing and capture evidence refer to a particular fitted image. Fresh RTL simulation refers to the source and test package it actually executed. A documentation refresh is not a new board measurement.",
+        "The preserved TSH2 UVM and formal results retain their documented scope. The RF addition has its own independent numerical reference and five fresh self-checking suites, including 32 actual-core integration epochs. Its historical five-epoch physical qualification is reported separately. The unified diagram does not imply continuous acquisition or full-platform signoff."
+      ],
+      "source_ids": [
+        "R06",
+        "A01",
+        "R04",
+        "V01",
+        "V02"
+      ]
+    }
+  ]
+}

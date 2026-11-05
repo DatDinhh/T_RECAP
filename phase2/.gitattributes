@@ -88,3 +88,14 @@ docs/architecture/rf_iq/** -text
 docs/verification/rf_iq/** -text
 # Keep native simulator transcript spacing in reviewed RF evidence.
 verification/rf_iq/evidence/**/*.txt whitespace=-blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol
+
+# Preserve the source-bound whole-project atlas and academic document bytes.
+docs/architecture/system/** -text
+
+# Preserve reviewed documentation and publication-manifest byte identities.
+docs/** -text
+*.md -text
+*.rst -text
+
+# Preserve Matplotlib SVG path serialization in reviewed scientific figures.
+docs/applications/*/figures/*.svg whitespace=-blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

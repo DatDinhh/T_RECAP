@@ -24,7 +24,7 @@ Thresholding compares integer `re*re + im*im` strictly below the selected thresh
 | Sparse bipolar transients | 1,105 | 7,725 | 83.82% | 5,972 | 57.736 | 1,530 |
 | All-zero control | 1,152 | 9,216 | 100.00% | 9,216 | 0.000 | 0 |
 
-Errors are measured against the **384-sample-delayed, zero-padded input** over all 1,536 output samples. They quantify threshold-induced reconstruction error in the reference computation; they are not differences between baseline and isolated RTL. The synthetic signals are deterministic stress cases, not a representative application corpus. Their exact integer generation rules and input hashes are recorded in the manifest.
+Errors are measured against the **384-sample-delayed, zero-padded input** over all 1,536 output samples. They quantify threshold-induced reconstruction error in the reference computation. They are not differences between baseline and isolated RTL. The synthetic signals are deterministic stress cases, not a representative application corpus. Their exact integer generation rules and input hashes are recorded in the manifest.
 
 For the measured multitone, the zero-operand distribution is concentrated in early IFFT stages:
 
@@ -74,4 +74,4 @@ From the directory containing this README, using a repository checkout with the 
 python profile_ifft_zeros.py --repo <repository-root> --out <new-output-directory>
 ```
 
-The output directory must be new. Plot generation requires Matplotlib; add `--no-plots` for standard-library-only numerical reproduction. The default sweep is `0`, `1e8`, `1e9`, `1e10`, `1e11`, `1e12`, `1e13`, and `2^56-1`. The manifest identifies the exact profiled source revision through file hashes; later RTL changes are a separate experiment.
+The output directory must be new. Plot generation requires Matplotlib. Add `--no-plots` for standard-library-only numerical reproduction. The default sweep is `0`, `1e8`, `1e9`, `1e10`, `1e11`, `1e12`, `1e13`, and `2^56-1`. The manifest identifies the exact profiled source revision through file hashes. Later RTL changes are a separate experiment.

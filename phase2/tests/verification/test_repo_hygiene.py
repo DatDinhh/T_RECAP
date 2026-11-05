@@ -6,6 +6,8 @@ No repository files, network services, builds or hardware are modified.
 from __future__ import annotations
 
 import importlib.util
+import hashlib
+import json
 import os
 from pathlib import Path
 import shutil
@@ -118,6 +120,25 @@ class PublicationHygiene(unittest.TestCase):
     def test_other_logs_are_not_allowed_as_public_receipts(self):
         self.write("docs/results/other/fixture.log", "raw capture\n")
         self.assertTrue(any("local build/output" in issue for issue in self.audit()))
+
+    def test_reviewed_audio_requires_exact_path_and_content(self):
+        name = "docs/applications/audio/media/example.wav"
+        p = self.write(name, "placeholder")
+        content = b"RIFF\0\0\0\0WAVE"
+        p.write_bytes(content)
+        self.write(hygiene.PUBLIC_MEDIA_MANIFEST, json.dumps({"files": {name: hashlib.sha256(content).hexdigest()}}))
+        self.assertEqual(self.audit(), [])
+        p.write_bytes(content + b"changed")
+        self.assertTrue(any("media digest mismatch" in issue for issue in self.audit()))
+        p.write_bytes(content)
+        other = self.write("docs/applications/audio/media/unreviewed.wav", "placeholder")
+        other.write_bytes(content)
+        self.assertTrue(any("unexpected binary" in issue for issue in self.audit()))
+
+    def test_media_inventory_cannot_allow_executables_or_path_escape(self):
+        for name in ("docs/applications/audio/media/program.exe", "docs/applications/audio/media/../../private.wav"):
+            self.write(hygiene.PUBLIC_MEDIA_MANIFEST, json.dumps({"files": {name: "0" * 64}}))
+            self.assertTrue(any("invalid reviewed media inventory" in issue for issue in self.audit()))
 
     def test_template_links_use_output_directory_and_missing_targets_fail(self):
         self.write("experiments/ifft_zero_isolation/study/report_template.md",

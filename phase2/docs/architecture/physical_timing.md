@@ -4,7 +4,7 @@ We implement the physical source interface for the DE1-SoC Rev-H board profile,
 50 MHz fabric, 48 ksample/s WM8731 codec-master audio, and 100 ksample/s LTC2308
 acquisition. These are source design choices. The actual board revision and boot
 image must match before deployment. The numeric ledger is
-[`physical_timing.json`](../../config/boards/physical_timing.json); the executable
+[`physical_timing.json`](../../config/boards/physical_timing.json). The executable
 constraints are [`clocks.sdc`](../../constraints/de1soc/clocks.sdc) and
 [`de1soc.sdc`](../../constraints/de1soc/de1soc.sdc).
 
@@ -12,7 +12,7 @@ constraints are [`clocks.sdc`](../../constraints/de1soc/clocks.sdc) and
 
 `CLOCK_50` has a 20 ns period. The audio wrapper instantiates `altera_pll` for
 12.288 MHz MCLK. Quartus must resolve the Cyclone V primitive, compensation, and
-legal divider/VCO configuration. `derive_pll_clocks` owns that clock tree; the
+legal divider/VCO configuration. `derive_pll_clocks` owns that clock tree. The
 portable phase-accumulator model is excluded from synthesis. It cannot establish
 physical MCLK duty cycle, jitter, or analog operation.
 
@@ -26,13 +26,13 @@ AUD_XCK is a forwarded PLL clock. Confirm its derived clock reaches the output
 pin, with the requested frequency and duty cycle, in the generated design.
 The WM8731 requires a period of at least 54 ns, high/low times of at least 18 ns,
 and a 40:60 to 60:40 duty cycle. The requested 12.288 MHz period is 81.3802 ns and
-nominal high/low time 40.6901 ns; actual pad timing remains a fitted result.
+nominal high/low time 40.6901 ns. Actual pad timing remains a fitted result.
 [WM8731 Rev4.9, p 15](https://www.mouser.com/datasheet/2/76/WM8731_v4_9-1141834.pdf)
 
 ## Codec serial data
 
 The codec is BCLK/LRCK master. We constrain the external BCLK independently at
-3.072 MHz, period 325.520833 ns. Receive words are sampled on rising BCLK;
+3.072 MHz, period 325.520833 ns. Receive words are sampled on rising BCLK.
 DAC output changes on falling BCLK and the codec captures it on the next rising
 edge. LRCK transition handling follows the one-bit I2S delay in the wrapper.
 
@@ -55,12 +55,12 @@ The 2 ns board skew and 0.5 ns uncertainty are design allocations, not measureme
 
 The RX/TX FIFO pointers are Gray coded with two synchronization stages. Their
 payloads use explicitly selected logic storage with asynchronous reads. A word
-is held until the synchronized read pointer returns ownership; the receiving
+is held until the synchronized read pointer returns ownership. The receiving
 side cannot see the write pointer until its two-stage publication completes.
 
 We constrain Gray launch-to-synchronizer delay to 20 ns and bus skew to 10 ns,
 at the faster 20 ns fabric period. The direct FIFO payload-to-receiving-register
-path is also bounded to 20 ns. RX constraints must resolve in the board top;
+path is also bounded to 20 ns. RX constraints must resolve in the board top.
 TX may disappear when LINE-OUT is disabled. Only single-bit control/status first
 stages use false-path exceptions. Capture-stop acknowledgement has its own
 fabric synchronizer, so rearm cannot mistake a stopped BCLK for a completed stop.
@@ -120,7 +120,7 @@ reallocation from the original 5 ns input allowance, not an LTC2308 timing
 requirement or a threshold chosen to equal an observed fitted delay. The
 native-10 input-register packing was applied and its largest reported input data
 path was 5.886 ns. That observation alone does not establish that 5 ns is
-physically impossible; detailed path components are needed for that conclusion.
+physically impossible. Detailed path components are needed for that conclusion.
 
 The first bit has a separate deadline. CONVST rises at E0, remains high for two
 fabric cycles, and is already low when conversion finishes. After the 80-cycle
@@ -147,7 +147,7 @@ The input path is checked as an absolute pin-to-first-stage data path, with a
 hold analysis. The subsequent synchronizer and controller paths keep their
 normal timing requirements. Output routes retain their 5 ns allocation. These
 inequalities apply to the frozen 50 MHz fabric, divider 10, two-stage receiver
-configuration; changing those parameters requires a new complete return budget.
+configuration. Changing those parameters requires a new complete return budget.
 
 With 0..5 ns output routing, SCLK high/low and CONVST pulse widths can differ by
 up to 5 ns from their RTL intervals before board skew. DIN changes on falling SCLK
@@ -157,15 +157,15 @@ SDI setup/hold. No transport delay participates in this acquisition schedule.
 ## Slow-control output data paths
 
 `ADC_SCLK`, `ADC_CS_N`, and `ADC_DIN` have a 0..5 ns registered-data propagation
-allocation; `FPGA_I2C_SCLK` and `FPGA_I2C_SDAT` have a 0..20 ns allocation including
+allocation. `FPGA_I2C_SCLK` and `FPGA_I2C_SDAT` have a 0..20 ns allocation including
 open-drain and ownership-control logic. These five outputs are physical data
 paths in timed serial FSMs, not outputs captured by an external CLOCK_50 receiver.
 Their protocol budgets remain as specified above and below.
 
 The native-12 fit before explicit ADC output packing placed the three existing
 output registers in fabric logic. Their slow-corner data paths had no
-combinational logic levels but included substantial register-to-pin routing;
-the largest complete delay was 5.608 ns, exceeding the unchanged 5 ns budget.
+combinational logic levels but included substantial register-to-pin routing.
+The largest complete delay was 5.608 ns, exceeding the unchanged 5 ns budget.
 We therefore set `FAST_OUTPUT_REGISTER ON` on the exact `ADC_SCLK`, `ADC_CS_N`,
 and `ADC_DIN` ports in
 [`pin_assignments.tcl`](../../constraints/de1soc/pin_assignments.tcl). This requests
@@ -181,22 +181,22 @@ were nonnegative. This includes the 3.3 V I/O-buffer delay. The
 [public implementation result](../results/de1soc_bram_native12.json) records the
 per-port, per-corner measurements and report identities. The 2 ns board
 allocation, 100 ns device-response allocation and 177 ns complete return budget
-remain unchanged. Every new build must still satisfy the complete 0..5 ns bound;
-this fitted result does not establish the external board/device allocations.
+remain unchanged. Every new build must still satisfy the complete 0..5 ns bound.
+This fitted result does not establish the external board/device allocations.
 
 Quartus 20.1 `set_max_delay -to <port>` adds the launching register's clock-network
 latency. In fitted native11, ADC_SCLK's 2.968 ns data path plus 4.997 ns clock
 latency produced a spurious -2.965 ns result against a 5 ns absolute data budget.
 The raw data path meets that budget. The installed API also requires a `-from`
 pin of `set_max_delay` to be a clock pin and supports only port references for
-`set_output_delay -reference_pin`; a fabricated internal reference is not used.
+`set_output_delay -reference_pin`. A fabricated internal reference is not used.
 
 `clocks.sdc` resolves each exact output port and registers its scalar bound.
 The mandatory fitted gate checks the actual register fan-in and complete paths. Quartus 20.1 reports no nets
-for the attempted register-to-port `set_net_delay` assignments on these outputs;
-we omit those ineffective assignments. The fitter receives no external
+for the attempted register-to-port `set_net_delay` assignments on these outputs.
+We omit those ineffective assignments. The fitter receives no external
 capture-edge timing requirement for these five ports. ADC outputs retain their
-I/O-register placement request; acceptance still requires the complete data
+I/O-register placement request. Acceptance still requires the complete data
 route to meet its physical budget. The mandatory fitted gate uses both
 longest `get_path` and shortest `get_path -min_path`, retains detailed
 `report_path` output, and requires every corner to satisfy 0..5 ns or 0..20 ns.
@@ -206,7 +206,7 @@ cutoff is introduced for these outputs, and no budget is increased.
 
 Conventional synchronous output-delay reports can list exactly these five ports
 without an external capture-clock requirement. Their explicit disposition is
-the compulsory physical data-path report; this is not a waiver for any other
+the compulsory physical data-path report. This is not a waiver for any other
 unconstrained port or for internal setup/hold timing.
 
 ## Codec control bus
@@ -220,8 +220,8 @@ uses a route bound rather than an unconstrained asynchronous input.
 The codec's control interface permits at least 1.3 us low, 600 ns high, 100 ns data
 setup, and 300 ns rise/fall limits. Board pull-ups must meet the settling allocation.
 Clock stretching and multi-master arbitration are outside this dedicated control
-bus. GPIO 48 ownership is held by our Linux platform driver throughout operation;
-loss of grant aborts initialization and stops an active live-source epoch.
+bus. GPIO 48 ownership is held by our Linux platform driver throughout operation.
+Loss of grant aborts initialization and stops an active live-source epoch.
 [WM8731 Rev4.9, p 19](https://www.mouser.com/datasheet/2/76/WM8731_v4_9-1141834.pdf)
 
 ## What remains after source implementation
@@ -230,7 +230,7 @@ Generate the selected vendor IP, resolve all required endpoint collections, fit
 the target device, and examine setup/hold, recovery/removal, pulse width, skew,
 and unconstrained-path reports. Board measurements must establish the stated
 external allocations. These are implementation results and later hardware
-qualification; the numeric budgets above do not substitute for them.
+qualification. The numeric budgets above do not substitute for them.
 
 
 ## HPS peripheral electrical standards
@@ -238,14 +238,14 @@ qualification; the numeric budgets above do not substitute for them.
 Our board constraints assign `3.3-V LVTTL` to all 55 exposed, non-DDR HPS
 peripheral signals in `constraints/de1soc/hps_peripheral_io.tcl`: Ethernet,
 QSPI flash, SD, UART, USB, SPI master, both I2C buses, and the named HPS GPIO
-signals. These are electrical-standard assignments; generated `HPS_LOCATION`
+signals. These are electrical-standard assignments. Generated `HPS_LOCATION`
 assignments retain ownership of the hard-pin placement. The generated DDR pin
 script separately supplies `HPS_DDR3_*` SSTL-15 standards and calibrated OCT.
 
 The authority is the official
 [Terasic DE1-SoC Rev-H System CD](https://download.terasic.com/downloads/cd-rom/de1-soc/DE1-SoC_v.6.0.0_HWrevH_SystemCD.zip),
 member `Demonstrations/SOC_FPGA/de1_soc_GHRD/soc_system.qsf`, lines 252 and
-325–378. That member contains exactly the same 55 non-DDR HPS signal names as
+325 to 378. That member contains exactly the same 55 non-DDR HPS signal names as
 our top-level interface, all assigned `3.3-V LVTTL`.
 
 | Source metadata | Value |
@@ -257,7 +257,7 @@ our top-level interface, all assigned `3.3-V LVTTL`.
 | Member ZIP CRC32 | `aca297b8` |
 | Retrieval | HTTPS byte-range reads of the vendor ZIP directory and this member |
 
-This audit checked the extracted member's CRC and computed its SHA-256; it did
+This audit checked the extracted member's CRC and computed its SHA-256. It did
 not recompute the full ZIP hash. The frozen Qsys preset contains the DDR voltage
 and peripheral pinmux selections but no equivalent HPS peripheral I/O-standard
 assignments. Registering generated HPS placement therefore does not replace these
@@ -278,7 +278,7 @@ For example, `HPS_DDR3_RZQ` is `PIN_D27`, `HPS_DDR3_CK_N` is `PIN_L23`, and
 The reviewed official GHRD QSF contains DDR electrical assignments but no
 explicit DDR `set_location_assignment` records. We therefore keep this ledger
 as comparison data and do not invent a second placement owner. The generated
-DDR pin pass remains responsible for SSTL/OCT settings; a fitted `.pin` report
+DDR pin pass remains responsible for SSTL/OCT settings. A fitted `.pin` report
 must establish the actual package locations.
 
 Quartus warnings 169085 (72 pins without exact user locations) and 174073 (RZQ
@@ -288,7 +288,7 @@ correct or incorrect physical routing. They can be classified as expected for
 this dedicated-HPS placement flow only after all 72 fitted DDR signal locations
 match the ledger, including RZQ, and their generated electrical assignments are
 present. A missing or differing location remains unresolved and blocks hardware
-use; the warning count alone does not close this review.
+use. The warning count alone does not close this review.
 
 The authority is the official
 [Terasic DE1-SoC Rev-H System CD](https://download.terasic.com/downloads/cd-rom/de1-soc/DE1-SoC_v.6.0.0_HWrevH_SystemCD.zip),
@@ -297,7 +297,7 @@ member `UserManual/DE1-SoC_User_manual.pdf` (9,936,624 bytes, ZIP CRC32
 `f9d743dec68e9d5cc3d9a64c44231fde1d4ac0fed3f4961088fcacca2624e5b1`).
 The member was extracted by HTTPS byte range, its CRC was checked, and its
 SHA-256 was computed. The full ZIP hash was not computed. This source identifies
-the reference board wiring; it does not identify the connected board revision
+the reference board wiring. It does not identify the connected board revision
 or establish completed fitted timing or live DDR operation.
 
 We compare a completed artifact with the ledger and the source FPGA/HPS I/O

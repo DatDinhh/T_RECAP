@@ -7,7 +7,7 @@ File class: `[1]` hand-written HPS bring-up documentation.
 The selected source baseline supplies `socfpga_cyclone5_trecap.dts`, its static
 reservation/platform includes, and the Linux 6.12.109 platform driver. The
 installed boot image must select the matching built DTB. Source presence is not
-Linux boot or runtime evidence; live telemetry requires the actual reservation
+Linux boot or runtime evidence. Live telemetry requires the actual reservation
 and driver device described below.
 
 ## Frozen interval
@@ -48,7 +48,7 @@ mechanism:
 
 `no-map` is mandatory. Do not add `reusable`, a shared-pool compatible, a CMA
 default marker, or an allocation range. The FPGA owns the write side of this
-fixed carveout; Linux must neither allocate it as ordinary RAM nor manage it as
+fixed carveout. Linux must neither allocate it as ordinary RAM nor manage it as
 a reusable pool.
 
 The former kernel memory-limit workaround is retired and must not be kept as a
@@ -60,16 +60,16 @@ bootloader state and gives the final FDT one auditable source of truth.
 Follow [the Linux build/install recipe](../../../platform/de1soc/linux/README.md)
 to stage the static board DTS, build the matching kernel/DTB/module, and install
 the application and services. The board DTS includes `trecap_platform.dtsi` and
-its reservation; the platform node references that exact region and gives the
+its reservation. The platform node references that exact region and gives the
 driver ownership of GPIO48 codec selection.
 
 Select `socfpga_cyclone5_trecap.dtb` in the board boot flow and retain a recovery
 boot entry. The reservation must be in the FDT before Linux starts. A configfs
 overlay applied after boot cannot reserve pages Linux may already use. The
 compatible FPGA image and bridges must also be established before CSR access.
-Start `trecap_platform.service` before the streamer; it creates `/dev/trecap-ring`
+Start `trecap_platform.service` before the streamer. It creates `/dev/trecap-ring`
 and holds the FPGA codec-bus grant. The driver validates the platform CSR ABI,
-acquires GPIO48 output-low with readback, then asserts `PLATFORM_CONTROL`; cleanup
+acquires GPIO48 output-low with readback, then asserts `PLATFORM_CONTROL`. Cleanup
 revokes that grant before returning the GPIO high. See
 [platform_grant.md](../../../docs/architecture/platform_grant.md). No userspace
 GPIO48 export is required.
@@ -103,7 +103,7 @@ The ring reader opens `/dev/trecap-ring` with `O_RDONLY | O_CLOEXEC` and checks
 noncached flags, physical base `0x3e000000`, size `0x02000000`, and zero reserved
 field. It then maps the complete aperture with `PROT_READ | MAP_SHARED` at file
 offset zero. The driver rejects writable/executable, partial, private, or nonzero-
-offset mappings and sets `pgprot_noncached`; userspace does not infer cache
+offset mappings and sets `pgprot_noncached`. Userspace does not infer cache
 attributes from `O_SYNC`. Cached ring mapping remains forbidden.
 
 The device admits one open consumer. The reader retains its file descriptor until

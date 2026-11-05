@@ -21,7 +21,7 @@ The measurement hierarchy is `trecap_core_bram_replay_top` ->
   butterfly supports isolation only in registered mode.
 
 Use support `1` with runtime `0` versus runtime `1` for a same-image comparison.
-Both cases include the added circuitry; runtime `0` is the original numerical
+Both cases include the added circuitry. Runtime `0` is the original numerical
 operation schedule in the candidate image, not an area-identical old bitstream.
 
 ## Datapath
@@ -45,7 +45,7 @@ These are real source-level multiplier-input isolation muxes, not only a
 zero-result mux or a disabled output register. Settled multiplier-input nets
 are exposed internally as `gen_registered_output.mul_b_re`, `mul_b_im`,
 `mul_tw_re`, and `mul_tw_im` for passive checking. Between transactions,
-invalid input changes are not globally isolated; in the IFFT the RAM and ROM
+invalid input changes are not globally isolated. In the IFFT the RAM and ROM
 already hold their data between scheduled reads. A runtime mode change or a
 nonzero transaction can change the input nets. RTL stability does not prove
 absence of physical mux glitches or guarantee a reduction in board power.
@@ -62,12 +62,12 @@ arbitrary a values and preserves their possible output saturation behavior.
 No state, handshake, RAM access, twiddle read, butterfly write, frame load or
 output schedule is added or removed. All 1,024 IFFT butterflies still execute
 their original seven-clock transactions per frame. Each isolated transaction
-inhibits four real multiplier product-register updates; it does not remove an
+inhibits four real multiplier product-register updates. It does not remove an
 FFT butterfly, IFFT butterfly, memory transaction, or output sample.
 
 Required validation includes frozen-baseline comparisons against support-off,
-runtime-off and runtime-on candidates; first-zero and zero-after-nonzero cases;
-signed extrema, saturation, stalls and clear/reset; frame-owned runtime
-control; and actual held multiplier inputs plus product registers. Synthesis
+runtime-off and runtime-on candidates. First-zero and zero-after-nonzero cases.
+Signed extrema, saturation, stalls and clear/reset. Frame-owned runtime
+control, and actual held multiplier inputs plus product registers. Synthesis
 must retain useful DSP mapping and meet timing. Electrical benefit must be
 measured separately with matched workload, threshold, outputs and image.

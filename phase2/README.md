@@ -10,17 +10,28 @@ The [main project README](https://github.com/DatDinhh/T_RECAP#readme) explains t
 
 **New to the terminology?** See [Terms and abbreviations](#terms-and-abbreviations), including the difference between TSH2, THR2 and TSP1.
 
-## Recorded RF extension
+## Application examples and editable specification
+
+- [Three application studies](docs/applications/README.md) include step counting, RF background suppression and audio preprocessing before FLAC, with original-source links and threshold comparisons.
+- [Full editable algorithm specification](docs/algorithm/README.md) transcribes the historical 106-page PDF and adds a separate current-profile and RF supplement.
+
+## Whole-project architecture after RF integration
+
+![Whole-project architecture](docs/architecture/system/01-system-overview.png)
+
+The [unified eight-view atlas](docs/architecture/system/README.md) explains the complete project, from audio, captured acceleration and recorded RF inputs through laptop preparation, HPS transport and FPGA processing to reconstructed Y and spectral TSP1 outputs. Each view includes a written explanation of its blocks and signal flow. The [academic LaTeX PDF](docs/architecture/system/TRECAP_System_Architecture_Atlas.pdf) and editable SVG figures use a consistent pastel palette.
+
+The common numerical core is shared by two separately fitted applications. TSH2 accepts prepared real samples. TRF1 adds I/Q conversion in FPGA hardware before the same core. The accelerometer experiment captures a bounded record and replays a selected axis through the real-sample path. It does not add a live accelerometer frontend to the FPGA.
+
+## Recorded RF profile
 
 The **TRF1** profile accepts recorded CU8 I/Q pairs and converts them inside the FPGA into the real signed 12-bit stream used by the existing DSP core. The added hardware performs byte centering, fourfold FIR interpolation, real-IF mixing, rounding and finite-file padding. Audio TSH2 and RF TRF1 are separate fitted applications.
 
-![Recorded RF architecture](docs/architecture/rf_iq/01-system.png)
-
-The [eight-view RF atlas](docs/architecture/rf_iq/README.md) explains the complete path from recorded file through HPS transport, the new adapter, unchanged DSP and returned Y/TSP1 outputs. The [RF source guide](profiles/trf1/README.md) maps the RTL, host client and platform dependencies.
+The [RF detail atlas](docs/architecture/rf_iq/README.md) expands the RF-specific implementation. The [RF source guide](profiles/trf1/README.md) maps the RTL, host client and platform dependencies. Start with the unified atlas above for the relationship to the rest of the project.
 
 The [portable RF verification package](verification/rf_iq/README.md) provides independent numerical checks, self-checking RTL suites and executed evidence. The [academic LaTeX report](docs/verification/rf_iq/README.md) includes requirements, waveforms, observed test counts and historical board results. Fresh offline verification and earlier physical captures are explicitly separated. The new RF block is outside the scope of the earlier TSH2 formal and UVM results.
 
-## Audio profile and objective
+## Real-sample profile and objective
 
 **TSH2** means **T-RECAP Signal-processing Hardware, version 2**. This finite-file FPGA implementation retains the FFT, tunable squared-magnitude threshold, and IFFT/WOLA reconstruction. It additionally exports sparse spectral powers so a compatible host consumer can avoid processing omitted bins. Evaluation measures waveform distortion, spectral packet bytes, and host consumer time separately.
 

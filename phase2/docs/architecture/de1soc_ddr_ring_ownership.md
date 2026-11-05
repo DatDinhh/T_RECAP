@@ -28,10 +28,10 @@ artifacts exist.
 
 The values must agree in the following source views:
 
-- `platform/de1soc/address_map/hps_bridge_regions.json`;
-- `platform/de1soc/qsys/hps_config.tcl`;
-- `sw/hps/config/trecap_hps_config.json`;
-- `platform/de1soc/linux/trecap_reserved_memory.dtsi`;
+- `platform/de1soc/address_map/hps_bridge_regions.json`.
+- `platform/de1soc/qsys/hps_config.tcl`.
+- `sw/hps/config/trecap_hps_config.json`.
+- `platform/de1soc/linux/trecap_reserved_memory.dtsi`.
 - the exact resource admission in `platform/de1soc/linux/driver/trecap_platform.c`.
 
 Step 12 does not alter the Step-4 canonical address-map contract or its frozen
@@ -81,7 +81,7 @@ Both pointers are 64-bit absolute byte pointers.  For power-of-two ring size
 
 An asynchronous hardware reset may initialize pointer storage.  During normal
 operation, telemetry soft reset, external transport reset, and ring
-reconfiguration invalidate the consumer epoch; they do not silently create a
+reconfiguration invalidate the consumer epoch. They do not silently create a
 new HPS consumer commit.  The first HPS commit in the new epoch must be the
 aligned value zero.  Later commits must be 64-byte aligned, monotonic within
 the epoch, not ahead of `W`, and leave at most `R` bytes used.  Write admission
@@ -103,7 +103,7 @@ Ffree = R - (W - Rd) - guard
 ```
 
 If `o + Lrec <= R`, the writer requires `Ffree >= Lrec`.  If
-`o + Lrec > R`, it requires `Ffree >= Ttail + Lrec`; checking only the normal
+`o + Lrec > R`, it requires `Ffree >= Ttail + Lrec`. Checking only the normal
 record length is insufficient.
 
 With sufficient space, the writer first emits packet type `0x007f` at the
@@ -130,7 +130,7 @@ The required HPS-owned initialization sequence is:
 8. Enable the ring writer, then telemetry.
 
 After the complete sequence, the writer is configured and idle with `W=0` and
-sequence zero; the HPS consumer epoch is valid with `Rd=0`.  Enabling before
+sequence zero. The HPS consumer epoch is valid with `Rd=0`.  Enabling before
 the explicit consumer commit is a contract violation.
 
 ## Ring mapping and consumer ownership
@@ -141,7 +141,7 @@ The ring reader opens `/dev/trecap-ring` with `O_RDONLY | O_CLOEXEC` and checks
 noncached flags, physical base `0x3e000000`, size `0x02000000`, and zero reserved
 field. It then maps the complete aperture with `PROT_READ | MAP_SHARED` at file
 offset zero. The driver rejects writable/executable, partial, private, or nonzero-
-offset mappings and sets `pgprot_noncached`; userspace does not infer cache
+offset mappings and sets `pgprot_noncached`. Userspace does not infer cache
 attributes from `O_SYNC`. Cached ring mapping remains forbidden.
 
 The device admits one open consumer. The reader retains its file descriptor until
@@ -162,7 +162,7 @@ before the HPS application accesses CSRs.
 
 `trecap_platform.service` loads the driver before `trecap_udp_streamer.service`.
 The driver owns HPS_GPIO48 through `portb` offset 19. After output-low readback,
-it asserts the FPGA-visible `PLATFORM_CONTROL` grant; teardown clears that CSR
+it asserts the FPGA-visible `PLATFORM_CONTROL` grant. Teardown clears that CSR
 before driving the GPIO high. It validates the exact CSR resource and platform
 capability before acquisition. See [platform grant](platform_grant.md) for ordering and reset
 semantics. No competing userspace GPIO owner is part of this design. Merely stopping the oneshot service does not unload the driver
@@ -173,7 +173,7 @@ on the next boot when changing the image or address map.
 The reservation must be present in the FDT consumed during early Linux boot.
 The selected static board DTS already includes it. A runtime configfs overlay
 cannot retroactively reserve pages that Linux may already use. An installed
-image must select the built T-RECAP DTB; a source file alone is not boot evidence.
+image must select the built T-RECAP DTB. A source file alone is not boot evidence.
 
 Example offline inspection of the compiled board DTB:
 
@@ -182,7 +182,7 @@ fdtget -tx socfpga_cyclone5_trecap.dtb /reserved-memory/trecap-ring@3e000000 reg
 fdtget -p socfpga_cyclone5_trecap.dtb /reserved-memory/trecap-ring@3e000000
 ```
 
-The first command must report cells `3e000000 02000000`; the property list must
+The first command must report cells `3e000000 02000000`. The property list must
 contain `no-map` and must not contain `reusable`.
 
 ## Runtime verification

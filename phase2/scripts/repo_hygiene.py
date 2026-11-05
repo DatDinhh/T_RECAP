@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import ast
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -22,6 +23,27 @@ IGNORED_DIRS = {
     "db", "incremental_db", "output_files", "work", "htmlcov", ".idea", ".vscode",
 }
 BINARY_SUFFIXES = {".pdf", ".png", ".jpg", ".jpeg", ".gif", ".ico", ".woff", ".woff2"}
+PUBLIC_MEDIA_MANIFEST = "docs/applications/public_media.json"
+
+
+def reviewed_media(root):
+    """Exact reviewed sample paths only, never a blanket audio/binary exemption."""
+    path = root / PUBLIC_MEDIA_MANIFEST
+    if not path.is_file():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    result = {}
+    for name, digest in data["files"].items():
+        p = Path(name)
+        if (p.is_absolute() or ".." in p.parts or "\\" in name
+                or not name.startswith(("docs/applications/audio/media/", "docs/applications/rf/audio/", "docs/applications/rf/data/"))
+                or p.suffix.lower() not in {".wav", ".flac", ".cu8", ".cf32", ".npz"}
+                or not re.fullmatch(r"[0-9a-f]{64}", digest)):
+            raise ValueError("Invalid reviewed media entry")
+        result[name] = digest
+    return result
+
+
 LOCAL_SUFFIXES = {
     ".exe", ".dll", ".obj", ".o", ".a", ".lib", ".pdb", ".so", ".dylib",
     ".pyc", ".zip", ".7z", ".tar", ".gz", ".sof", ".rbf", ".wlf", ".vcd",
@@ -280,6 +302,11 @@ def check(root: Path) -> tuple[int, list[str]]:
     issues = []
     seen = {}
     count = 0
+    try:
+        media = reviewed_media(root)
+    except (ValueError, KeyError, TypeError):
+        media = {}
+        issues.append(PUBLIC_MEDIA_MANIFEST + ": invalid reviewed media inventory")
 
     def report(path, message, line=None):
         location = path.relative_to(root).as_posix()
@@ -313,6 +340,10 @@ def check(root: Path) -> tuple[int, list[str]]:
             check_presentation(path, report)
             continue
         if path.suffix.lower() in BINARY_SUFFIXES:
+            continue
+        if relative in media:
+            if hashlib.sha256(path.read_bytes()).hexdigest() != media[relative]:
+                report(path, "reviewed media digest mismatch")
             continue
         raw = path.read_bytes()
         if b"\0" in raw:

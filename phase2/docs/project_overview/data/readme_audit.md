@@ -38,7 +38,7 @@ arrow after TSP1 in the new architecture picture.
   would want the current monitor. Lead with the concrete application and the
   threshold tradeoff before the verification portfolio.
 - The historical architecture atlas is useful, but label it as the original
-  architecture; use a separate active-profile picture near the introduction.
+  architecture. Use a separate active-profile picture near the introduction.
 - Verification is strong evidence, but the current front page lacks an actual
   processed-audio comparison and a receiver-work result. Show the spectrograms,
   waveform/quality panel, and a clearly scoped paired host plot.
@@ -55,7 +55,7 @@ Its top historical-status note is accurate but is followed by headings such as
 diagram still shows LINE-IN/ADC selection, DDR ring, HPS UDP and safe-boundary
 commands. Its statements about telemetry never backpressuring the core and
 integrated HPS transport remaining pending need an explicit original-baseline
-label. TSH2 has a separate finite TCP/MMIO path; this does not close the original
+label. TSH2 has a separate finite TCP/MMIO path. This does not close the original
 DDR/UDP requirements.
 
 The 21,220-ALM/209-pin result is an older image. The current admitted TSH2 fit is
@@ -80,7 +80,7 @@ included in both routes, and their outputs match exactly.
 This timing campaign used software-reference spectra, not a live FPGA producer.
 It records Windows 11 and Python 3.12.14, but no CPU model. Do not transfer the
 i7 identity from a different experiment. Later physical captures validate the
-numerical monitor path; they do not retroactively turn the original host timing
+numerical monitor path. They do not retroactively turn the original host timing
 into a fresh board or whole-system benchmark.
 
 As a second, stronger machine-identified example, the downstream flute benchmark
@@ -101,7 +101,7 @@ be replaced by a ratio of unrelated medians.
 
 - Eight-second flute at threshold 100,000,000: 523,200 sparse spectral bytes
   versus 2,856,952 compact dense spectral bytes, an 81.6868% reduction. Aligned
-  waveform NRMSE versus the original input is 1.7632%; maximum error versus the
+  waveform NRMSE versus the original input is 1.7632%. Maximum error versus the
   threshold-specific reference is zero LSB. These measure different things.
 - Threshold-zero flute: sparse spectra grow 13.4454% relative to compact dense.
 - Four held-out monitor clips: 24.79% to 44.57% less spectral data than matched
@@ -115,7 +115,7 @@ The monitor passes the registered engineering tolerances on four held-out clips.
 Only the chainsaw clip has positive natural activity clusters: three, all
 retained. The remaining recordings have no baseline clusters. This is agreement
 with threshold-zero measurements, not independently labeled detection accuracy.
-Revision 02 was developed after revision 01 failed calibration controls; the
+Revision 02 was developed after revision 01 failed calibration controls. The
 held-out split remained frozen. Keep that development history visible in the
 detailed results, even if the README uses one concise scope sentence.
 

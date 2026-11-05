@@ -1,10 +1,10 @@
 # Simulation assets
 
-The current [verification design](../docs/verification/README.md) defines the environments, checker contracts, coverage and signoff rules. [Current runners](../scripts/verification/README.md) and [executed results](../docs/results/verification_baseline_20260915.md) cover the first bounded campaign. The older benches and runners below require admission review; their presence does not establish an executed pass.
+The current [verification design](../docs/verification/README.md) defines the environments, checker contracts, coverage and signoff rules. [Current runners](../scripts/verification/README.md) and [executed results](../docs/results/verification_baseline_20260915.md) cover the first bounded campaign. The older benches and runners below require admission review. Their presence does not establish an executed pass.
 
 # Step 12 DDR-ring ownership and boundary gate
 
-Windows examples read `MODELSIM_EXE` and `MODELSIM_BIN` from the local shell environment. Set these to the executable and installation directory on the current machine; installation paths are not part of the repository.
+Windows examples read `MODELSIM_EXE` and `MODELSIM_BIN` from the local shell environment. Set these to the executable and installation directory on the current machine. Installation paths are not part of the repository.
 
 Run every simulator-independent Step 12 gate, including the source contract,
 the dependency-free boundary model, repository layout, generated contracts,
@@ -42,7 +42,7 @@ model is an independent arithmetic oracle, not evidence that RTL was executed.
 
 The static reservation source under `platform/de1soc/linux/` is part of this
 gate. Its presence and source checks do not by themselves prove that a deployed
-kernel loaded the expected DTB or excluded the range at runtime; hardware
+kernel loaded the expected DTB or excluded the range at runtime. Hardware
 bring-up must retain the boot-log, active-DTB, and `/proc/iomem` evidence.
 
 # Step 11 BRAM-replay end-to-end source gate
@@ -70,7 +70,7 @@ On Windows, use the fail-closed native runner:
   -ModelSimBin "$env:MODELSIM_BIN"
 ```
 
-This repository snapshot contains the testbench and runner source; it does not
+This repository snapshot contains the testbench and runner source. It does not
 claim that ModelSim/Questa was executed. The board wrapper's registered local
 `OKAY` response proves only that the generated bridge accepted a legal write
 beat. It is not physical-DDR completion or downstream hardware-error evidence.
@@ -119,15 +119,15 @@ C0_DELAY_HISTORY_PASS
 `tb/tb_trecap_c0_golden.sv` drives the full C0 BRAM-replay path with the
 frozen near-threshold vector. Its fail-closed scoreboard checks:
 
-- every accepted output sample and index against `y_out.memh`;
-- every valid frame-stat transaction against `frame_stats.csv`;
+- every accepted output sample and index against `y_out.memh`.
+- every valid frame-stat transaction against `frame_stats.csv`.
 - every unique canonical-bin transaction, including signed real/imaginary
-  values and the pre-mask decision, against `bin_stats.csv`;
+  values and the pre-mask decision, against `bin_stats.csv`.
 - independently accumulated suppression, spectral-energy, and time-domain
-  metrics against `metrics.json`;
-- the core's own time-error accumulator outputs at exact completion;
+  metrics against `metrics.json`.
+- the core's own time-error accumulator outputs at exact completion.
 - stable output payload under deterministic backpressure and a directed
-  37-cycle stall of `y[Ny-1]`;
+  37-cycle stall of `y[Ny-1]`.
 - exactly one done pulse followed by 32 cycles with no extra activity.
 
 The Python preflight validates the artifact schemas, hashes, row counts,
@@ -157,7 +157,7 @@ C0_GOLDEN_SUITE_PASS vectors=1
 This v68 harness intentionally supports only
 `near_threshold_multitone_Ns1024_thr64`, the only frozen vector with
 `bin_stats.csv`. The raw RTL threshold is read from `config.json` and is
-`THR2=4096`; the `thr64` suffix is not a raw threshold value. See
+`THR2=4096`. The `thr64` suffix is not a raw threshold value. See
 `docs/bringup/c0_artifact_scoreboard_v68.md` for the exact contract and
 known coverage limits.
 
@@ -170,12 +170,12 @@ cannot assert top-level completion early.
 
 For `Ns=1024`, the regression requires:
 
-- a persistent, monotonic scheduler frame count ending at exactly nine;
+- a persistent, monotonic scheduler frame count ending at exactly nine.
 - `core_busy_o` during input-ring, FFT, IFFT, WOLA, and final-output-buffer
-  work, including internal compute intervals with no output valid;
-- public output count `1535` and `done=0` while `y[1535]` is stalled;
-- public output count `1536` before the single completion pulse;
-- exact replay, WOLA, analysis-sample, and frame counts at completion;
+  work, including internal compute intervals with no output valid.
+- public output count `1535` and `done=0` while `y[1535]` is stalled.
+- public output count `1536` before the single completion pulse.
+- exact replay, WOLA, analysis-sample, and frame counts at completion.
 - `top_busy_o=0`, sticky `top_done_o=1`, and no completion error afterward.
 
 The dependency-free completion model also exercises fail-closed undercount,
@@ -215,18 +215,18 @@ Ny            = 1536
 ```
 
 Replay still presents all `Ny` logical ticks. The top routes indices below
-`tau_last` through the input ring and scheduler; indices at or above
+`tau_last` through the input ring and scheduler. Indices at or above
 `tau_last` use the WOLA drain ready/valid path only.
 
 The regression requires:
 
-- exactly 1,536 accepted replay ticks and continuous indices `0..1535`;
-- exactly nine frame boundaries and nine frame-stat events;
-- exactly `9*129 = 1,161` unique-bin events;
-- no frame/bin/stat event while the WOLA drain state is active;
-- exactly 384 drain-token handshakes;
-- exactly 1,536 accepted output samples with continuous indices;
-- stable output payload through a directed stall at output index 1,152;
+- exactly 1,536 accepted replay ticks and continuous indices `0..1535`.
+- exactly nine frame boundaries and nine frame-stat events.
+- exactly `9*129 = 1,161` unique-bin events.
+- no frame/bin/stat event while the WOLA drain state is active.
+- exactly 384 drain-token handshakes.
+- exactly 1,536 accepted output samples with continuous indices.
+- stable output payload through a directed stall at output index 1,152.
 - no dummy frame, duplicate output, protocol error, or saturation.
 
 `tb/tb_trecap_wola_tail_drain.sv` independently exercises the WOLA boundary
@@ -235,10 +235,10 @@ frame, feeds nine nonzero IFFT frames through a test-only unity-Q15 window,
 checks the exact nonzero overlap sum at every output, stalls output index 1,152
 for 73 clocks, and requires:
 
-- 2,304 accepted active-frame beats;
-- 384 accepted drain tokens and 384 matching accept pulses;
-- exactly 1,536 outputs with continuous indices `0..1535`;
-- stable output and drain-token payloads through backpressure;
+- 2,304 accepted active-frame beats.
+- 384 accepted drain tokens and 384 matching accept pulses.
+- exactly 1,536 outputs with continuous indices `0..1535`.
+- stable output and drain-token payloads through backpressure.
 - one drain-done pulse only after output 1,535 is accepted.
 
 The dependency-free geometry model is:
@@ -257,7 +257,7 @@ Set-ExecutionPolicy -Scope Process Bypass -Force
   -ModelSimExe "$env:MODELSIM_EXE"
 ```
 
-The runner is fail-closed: compilation alone is insufficient; all three PASS
+The runner is fail-closed: compilation alone is insufficient. All three PASS
 sentinels (`C0_FLOW_CONTROL_PASS`, `WOLA_TAIL_DRAIN_PASS`, and
 `C0_ACTIVE_TAIL_PASS`) must appear, and any ModelSim Error/Fatal fails the run.
 
@@ -269,18 +269,18 @@ the instantiated BRAM replay source, input ring, and frame scheduler.
 The test continuously offers `6*H = 768` indexed samples and stalls frame
 extraction for 720 clocks. It requires:
 
-- 768 source and ring sample handshakes with no index gaps or duplicates;
+- 768 source and ring sample handshakes with no index gaps or duplicates.
 - six consecutive frame requests with trigger indices
-  `127, 255, 383, 511, 639, 767`;
-- exactly six accepted frame requests and six frame boundaries;
-- exactly `6*L = 1536` extracted frame beats;
-- frame indices and offsets in strict order, with no repeats, gaps, or reordering;
-- correct zero extension and sample data on every beat;
-- stable source payload whenever `ready=0`;
-- stable frame payload whenever downstream `ready=0`;
-- all 720 directed stall clocks overlap a valid held frame beat;
-- at most one accepted post-boundary look-ahead sample before each request;
-- exactly one accepted replay start and a clean replay `done`;
+  `127, 255, 383, 511, 639, 767`.
+- exactly six accepted frame requests and six frame boundaries.
+- exactly `6*L = 1536` extracted frame beats.
+- frame indices and offsets in strict order, with no repeats, gaps, or reordering.
+- correct zero extension and sample data on every beat.
+- stable source payload whenever `ready=0`.
+- stable frame payload whenever downstream `ready=0`.
+- all 720 directed stall clocks overlap a valid held frame beat.
+- at most one accepted post-boundary look-ahead sample before each request.
+- exactly one accepted replay start and a clean replay `done`.
 - no scheduler protocol error and no input-ring overflow/tag miss.
 
 Six hops exceed the 512-entry physical ring depth, so the test exercises address

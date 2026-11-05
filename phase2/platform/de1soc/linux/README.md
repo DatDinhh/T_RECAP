@@ -15,7 +15,7 @@ and then asserts the FPGA-visible PLATFORM_CONTROL grant. Probe checks the exact
 0xff200000/0x1000 CSR resource, FPGA ID, and PLATFORM_CAPABILITY ABI first.
 Cleanup revokes the CSR grant before returning the mux high to HPS. The dedicated
 HPS pin is not read directly into FPGA fabric. HPS userspace retains /dev/mem
-access for CSRs; the DDR ring uses the driver device. The complete ownership
+access for CSRs. The DDR ring uses the driver device. The complete ownership
 sequence is in [platform_grant.md](../../../docs/architecture/platform_grant.md).
 
 ## Stage source and build
@@ -105,7 +105,7 @@ Expected products are:
 The following manual commands install into a staging directory. They do not
 modify the build host's running kernel, load the module, or start a service.
 The destination must be a prepared ARM Linux root filesystem when producing a
-bootable image; an empty directory only collects project build products.
+bootable image. An empty directory only collects project build products.
 
 ~~~sh
 export TRECAP_ROOTFS="$TRECAP_LINUX_WORK/rootfs"
@@ -153,7 +153,7 @@ or change a running board's boot environment.
 
 [boot.cmd](boot.cmd) is our **U-Boot v2025.01 Cyclone V** boot source template.
 It boots from MMC device 0, FAT partition 1 by default, with an ext4 root filesystem
-on /dev/mmcblk0p2. File and partition choices are deployment variables; no
+on /dev/mmcblk0p2. File and partition choices are deployment variables. No
 bootloader flash operation or persistent environment write is part of the
 template.
 
@@ -163,7 +163,7 @@ the static DTB, then boot Linux without an initrd. The root filesystem therefore
 needs its storage/filesystem drivers built into the kernel. The script stops on
 a missing required setting, failed command, oversized file, or short load. Its
 failure path attempts to disable bridges and stays in a sleep loop instead of
-booting a partial configuration; console recovery remains an operator action.
+booting a partial configuration. Console recovery remains an operator action.
 
 | Deployment variable | Default / required value |
 | --- | --- |
@@ -192,7 +192,7 @@ The script uses nonoverlapping staging regions within the board's 1 GiB DDR:
 Every image size is obtained before its load and must fit its region. These
 regions avoid the reserved ring at 0x3e000000. FDT relocation is bounded below
 0x20000000. The fixed staging layout assumes a normal DE1-SoC U-Boot relocation
-and heap outside these ranges; a customized bootloader memory layout must retain
+and heap outside these ranges. A customized bootloader memory layout must retain
 those reservations.
 
 ### SPL handoff and FPGA-to-SDRAM
@@ -209,7 +209,7 @@ Our platform uses **hps_0.f2h_sdram0_data**, an **Avalon-MM bidirectional,
 64-bit port**. The generated handoff must enable that exact port's required
 read/write resources. A generic nonzero mask is insufficient. U-Boot's stock
 [DE1-SoC SDRAM configuration](https://github.com/u-boot/u-boot/blob/v2025.01/board/terasic/de1-soc/qts/sdram_config.h#L57)
-sets CFG_HPS_SDR_CTRLCFG_FPGAPORTRST to zero; using it unchanged cannot provide
+sets CFG_HPS_SDR_CTRLCFG_FPGAPORTRST to zero. Using it unchanged cannot provide
 this project's FPGA-to-SDRAM path. The bridge command returns success after
 restoring its cached values and does not establish that the handoff matches
 the RBF.
@@ -252,7 +252,7 @@ mkimage -A arm -O linux -T script -C none \
 
 For an explicitly selected manual boot at the U-Boot console, set the required
 deployment variables and any partition overrides first. Then load and source
-only this script; do not chain an alternate Linux boot after a failure:
+only this script. Do not chain an alternate Linux boot after a failure:
 
 ~~~text
 fatload mmc 0:1 0x02100000 boot.scr 0x10000 && source 0x02100000
@@ -276,7 +276,7 @@ At startup, trecap_platform.service loads the matching module and establishes
 node is /trecap-platform@ff200000. The driver holds GPIO48 low and the fabric CSR
 grant throughout that boot. The streamer opens the reserved ring through the
 driver and keeps its handle for the mapping lifetime. Shutdown revokes the fabric
-grant before returning GPIO48 high; FPGA clocks and bridges must remain available
+grant before returning GPIO48 high. FPGA clocks and bridges must remain available
 until the driver's shutdown callback completes. A fabric hard reset clears the
 grant and requires the matching static boot lifecycle to establish it again.
 

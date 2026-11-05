@@ -3,7 +3,7 @@
 This executable observes public C++ reference APIs. It does not contain expected
 values and is not a replacement reference model. The independent Python oracle
 uses a recursive radix-2 decomposition and an absolute-index WOLA contribution
-map; the production reference uses iterative transforms and circular buffers.
+map. The production reference uses iterative transforms and circular buffers.
 Both intentionally consume the same frozen integer coefficient files.
 
 Run from the repository root:
@@ -14,16 +14,16 @@ python scripts/verification/reference_qualification.py
 
 CMake and a C++20 compiler must be available. `--generator`, `--build-dir` and
 `--run-dir` provide explicit control. Build output is restricted to
-`build/verification/`; evidence is restricted to a new directory under
+`build/verification/`. Evidence is restricted to a new directory under
 `runs/verification/`. The driver always configures/builds the adapter and records
-its executable hash. Existing build directories may be reused through CMake;
-existing evidence directories are rejected.
+its executable hash. Existing build directories may be reused through CMake.
+Existing evidence directories are rejected.
 
 The campaign currently checks:
 
 - Eight selected existing C++ self-tests as supplementary evidence.
 - Independent rounding and saturation cases, including signed integer extrema
-  for shifts 0, 1, 2 and 15; coefficient endpoint/axis anchors.
+  for shifts 0, 1, 2 and 15. Coefficient endpoint/axis anchors.
 - Hand-derived zero, impulse, DC, Nyquist and complex quarter-rate transforms,
   plus fixed reproducible mixed-sign transform operands.
 - Canonical pair rounding, DC/Nyquist handling, mask equality, protection and
@@ -44,9 +44,9 @@ run-local `trecap_artifact_expectations_pkg.sv` exports the TEXP constants neede
 by a core scoreboard, including independent full bin expectations for impulse,
 whose historical frozen output set has no bin CSV. `ifft_output.csv` contains
 `frame_idx,offset,re,im` for every accepted complex IFFT output expected at the
-WOLA boundary (256 rows per frame); both components must compare exactly. The
+WOLA boundary (256 rows per frame). Both components must compare exactly. The
 export is round-trip checked. Each vector report pins all six emitted files in
-`oracle_artifact_sha256`, including the generated TEXP package; a downstream
+`oracle_artifact_sha256`, including the generated TEXP package. A downstream
 runner must validate that complete map before consuming the bundle. The report
 also pins the qualification sources and `input_identities.json`. It does
 not authorize a blanket allowance for imaginary residuals. A bundle is a candidate until
@@ -55,8 +55,8 @@ input identities.
 
 `report.json` and `SUMMARY.md` separate the bounded baseline status from broader
 public-API findings. A baseline, build, parser or checker failure returns a
-nonzero exit code. The public rounded-shift API is also probed at shift 63;
-findings outside the qualified baseline shift set remain visible even when the
+nonzero exit code. The public rounded-shift API is also probed at shift 63.
+Findings outside the qualified baseline shift set remain visible even when the
 bounded baseline campaign returns zero. Therefore exit zero never means that
 all public API inputs or all V1 requirements are qualified. The JSON explicitly
 keeps `all_V1_qualified` false.
@@ -65,5 +65,5 @@ This campaign does not execute RTL, qualify dynamic thresholds or reset/metric
 epochs, prove coefficient transcendental generation, admit the complete normative
 vector suite, accept quality bounds, or establish board/electrical results. The
 source and frozen-input hashes are rechecked at completion. Per-run stdout,
-stderr, partial failures and the input inventory are retained; reruns do not
+stderr, partial failures and the input inventory are retained. Reruns do not
 overwrite earlier failed evidence.

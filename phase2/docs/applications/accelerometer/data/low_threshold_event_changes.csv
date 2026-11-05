@@ -1,0 +1,5 @@
+retained_matched_reference_events,lost_previously_detected_events,newly_recovered_events,lost_ordinary_steps,recovered_ordinary_steps,threshold,condition,fp_change,fn_change,fp_reduction_pct,all_previous_events_retained
+1413,2,5,2,4,100000000,original,-4,-3,1.6736401673640167,False
+1433,0,0,0,0,100000000,added_awgn_0p10g,-1,0,0.10111223458038422,True
+1401,14,15,11,14,1000000000,original,9,-1,-3.7656903765690375,False
+1422,11,16,9,10,1000000000,added_awgn_0p10g,-11,-5,1.1122345803842264,False

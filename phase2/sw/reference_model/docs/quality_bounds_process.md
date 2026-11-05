@@ -165,7 +165,7 @@ Real release files must use actual hashes and measured integer fields.
 
 | Failure | Likely meaning |
 |---|---|
-| `y_out_sha256` mismatch | output artifact changed; rerun release comparison before quality analysis |
+| `y_out_sha256` mismatch | output artifact changed. Rerun release comparison before quality analysis |
 | `error_sample_count` mismatch | finite-tail length or delay policy changed |
 | `max_abs_err` exceeds bound | possible WOLA, rounding, coefficient, or delay bug |
 | `sum_sq_err` exceeds bound | broad quality degradation, maybe scaling or window issue |
@@ -175,18 +175,18 @@ Real release files must use actual hashes and measured integer fields.
 
 Quality bounds may change when:
 
-- arithmetic contract changes;
-- coefficient tables change;
-- vector set changes;
-- bug fix changes expected output;
+- arithmetic contract changes.
+- coefficient tables change.
+- vector set changes.
+- bug fix changes expected output.
 - model version changes intentionally.
 
 Every quality-bound update must include:
 
-1. old metrics;
-2. new metrics;
-3. old/new stream hashes;
-4. reason for change;
+1. old metrics.
+2. new metrics.
+3. old/new stream hashes.
+4. reason for change.
 5. reviewer signoff in release notes.
 
 Do not update quality bounds merely to make a failing run pass.
@@ -195,12 +195,12 @@ Do not update quality bounds merely to make a failing run pass.
 
 Quality-bound tooling should include self-tests for:
 
-- missing vector entry;
-- hash mismatch;
-- measured value below bound;
-- measured value equal to bound;
-- measured value above bound;
-- missing `error_sample_count`;
-- wide integer values encoded as JSON numbers instead of strings;
+- missing vector entry.
+- hash mismatch.
+- measured value below bound.
+- measured value equal to bound.
+- measured value above bound.
+- missing `error_sample_count`.
+- wide integer values encoded as JSON numbers instead of strings.
 - placeholder strings in frozen files.
 

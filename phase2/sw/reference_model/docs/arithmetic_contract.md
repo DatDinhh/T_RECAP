@@ -162,9 +162,9 @@ cmuli(b, w) = rnd_shr(br*wi + bi*wr, F)
 
 Rules:
 
-1. product terms must be formed at full precision;
-2. sum/difference must be formed before rounding;
-3. rounding happens once per output component;
+1. product terms must be formed at full precision.
+2. sum/difference must be formed before rounding.
+3. rounding happens once per output component.
 4. no intermediate truncation is allowed.
 
 ## Magnitude-squared thresholding
@@ -228,13 +228,13 @@ RMSE may be reported, but it is derived. The signoff authority is the integer nu
 
 C++ implementation must provide explicit helpers for:
 
-- `sat_signed(width, value)`;
-- `asr(value, shift)`;
-- `rnd_shr(value, shift)`;
-- `qcoef(value, F)`;
-- signed and unsigned width range checks;
-- two's-complement encode/decode for canonical `memh`;
-- checked product-width calculations;
+- `sat_signed(width, value)`.
+- `asr(value, shift)`.
+- `rnd_shr(value, shift)`.
+- `qcoef(value, F)`.
+- signed and unsigned width range checks.
+- two's-complement encode/decode for canonical `memh`.
+- checked product-width calculations.
 - arbitrary-precision or checked-wide accumulators for metrics.
 
 Do not rely on accidental compiler behavior.

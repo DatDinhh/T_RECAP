@@ -1,0 +1,69 @@
+{
+  "schema": "trecap-rf-awgn-sonification-v1",
+  "new_hardware_run": false,
+  "source": "Retained actual FPGA captures of project-generated AWGN examples",
+  "tone_hz": 800,
+  "slowdown_factor": 8,
+  "iq_rate_hz": 250000,
+  "playback_rate_hz": 48000,
+  "common_gain": 2.244396884509431,
+  "per_clip_normalization": false,
+  "agc": false,
+  "noise_gate": false,
+  "padding_seconds_each_side": 0.3,
+  "outer_ramp_seconds": 0.01,
+  "mapping": "Magnitude of recovered IQ controls the amplitude of an added audible carrier.",
+  "meaning": "Illustrative sonification, not speech or sound transmitted by the source. Loudness is not an RF quality metric.",
+  "files": [
+    {
+      "file": "audio/snr20_t0.wav",
+      "sha256": "e73c8ef2f3b95071372363c7a5b0de8b05e9ec0b5587e854cd43827d68adb400",
+      "nominal_snr_db": 20,
+      "threshold": 0,
+      "duration_seconds": 1.6485833333333333,
+      "sample_rate_hz": 48000
+    },
+    {
+      "file": "audio/snr20_t1000000000.wav",
+      "sha256": "eb7f4fa4f37a48b8943221ccac49bc053815d6c860ffc745ba9d7592841cda33",
+      "nominal_snr_db": 20,
+      "threshold": 1000000000,
+      "duration_seconds": 1.6485833333333333,
+      "sample_rate_hz": 48000
+    },
+    {
+      "file": "audio/snr10_t0.wav",
+      "sha256": "a680ca1aab6b9eba0c52af50ec27d6f06418751d91a05a9f9badd90029286ed5",
+      "nominal_snr_db": 10,
+      "threshold": 0,
+      "duration_seconds": 1.6485833333333333,
+      "sample_rate_hz": 48000
+    },
+    {
+      "file": "audio/snr10_t1000000000.wav",
+      "sha256": "397418cf7eaf0731409b8f02c74c0e8160400dbf53831a6983852423f9f7855c",
+      "nominal_snr_db": 10,
+      "threshold": 1000000000,
+      "duration_seconds": 1.6485833333333333,
+      "sample_rate_hz": 48000
+    },
+    {
+      "file": "audio/snr0_t0.wav",
+      "sha256": "75c75d5b287bf0ded92452420daa06cb15fe7f577787b9c08b8a8e86d3aa9f96",
+      "nominal_snr_db": 0,
+      "threshold": 0,
+      "duration_seconds": 1.6485833333333333,
+      "sample_rate_hz": 48000
+    },
+    {
+      "file": "audio/snr0_t1000000000.wav",
+      "sha256": "f263ae1712d49ef845746f6cef07bf6644449328391c0263b7c8f5f21a9ba505",
+      "nominal_snr_db": 0,
+      "threshold": 1000000000,
+      "duration_seconds": 1.6485833333333333,
+      "sample_rate_hz": 48000
+    }
+  ],
+  "sample_bindings_sha256": "88f7a9e0682db6a7da46cc1e8db28a589e2dee51780131ab4f376478ec2cce05",
+  "generator_sha256": "d8763b148d30ab3f16c8a4638b282881c741ef375ef3da47341edcc78821d29f"
+}

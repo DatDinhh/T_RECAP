@@ -49,7 +49,7 @@ sw/hps/config/trecap_hps_config.json
 
 Profiles must not copy or override core constants (`N`, `L`, `P`, `H`, `F`, `G`, `D`, `THR2`,
 fixed-point widths), CSR offsets, packet IDs, payload layouts, or DDR addresses. In particular,
-`SPEC64` and `SPEC129` are display packet formats; they are not alternate FFT sizes.
+`SPEC64` and `SPEC129` are display packet formats. They are not alternate FFT sizes.
 
 `de1soc_bram_replay.json` references the current platform address-map source instead of claiming
 that the bootstrap DDR/CSR addresses have been proven. Those addresses remain provisional until
@@ -61,7 +61,7 @@ the real Platform Designer `system.sopcinfo` is generated and reconciled.
   `audio_wrapper`, and `diagnostic_source`. The informal alias `audio` is rejected.
 - `PEAKS` and `DEBUG` are reserved-disabled in Telemetry Revision G and are rejected.
 - Revision-G command version 1 has no HPS/PC replay-start command. Step 14 adds
-  `START_BRAM_REPLAY` only in explicit command version 2; profiles still cannot
+  `START_BRAM_REPLAY` only in explicit command version 2. Profiles still cannot
   auto-select a network request.
 - The generated transport/CSR capability is major 1, minor 8. The telemetry
   common-header version remains 1.
@@ -99,4 +99,4 @@ BRAM replay automatically or establish codec-bus ownership. Manual ADC conversio
 diagnostics: they do not enter STFT/WOLA and use a zero periodic sample rate in telemetry.
 A metrics cadence of zero disables the metrics tick. Shipped profiles disable LINE-OUT in the
 bitstream, so SW[3] alone cannot turn it on. The current CSR version cannot read back a build
-profile hash; pair the build and launch manifests explicitly.
+profile hash. Pair the build and launch manifests explicitly.

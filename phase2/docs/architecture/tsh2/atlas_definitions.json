@@ -9,7 +9,7 @@
     {
       "id": "S01",
       "path": "profiles/tsh2/work/trecap_stream8_v01/CONTRACT.md",
-      "sha256": "73af404e631860483433b1df3e0fb53f7ea66bdc1f87319b5e519aec89181f13"
+      "sha256": "5a178d659add3fc96380455b4e58eb07bb9adc5e389d97926741be0b115fbd52"
     },
     {
       "id": "S02",
@@ -29,7 +29,7 @@
     {
       "id": "S05",
       "path": "profiles/tsh2/work/trecap_laptop_fpga_v01/service/PROTOCOL.md",
-      "sha256": "e6ae0f1abf6f65b1ac75d3fe5fc64f8c987665de3ad9eb20ef59286a406bb65e"
+      "sha256": "465bd74a5575987a9d9277f0b6c5feff2c9f4a6b560611772f0138b2a5ea2066"
     },
     {
       "id": "S06",
@@ -44,12 +44,12 @@
     {
       "id": "S08",
       "path": "profiles/tsh2/README.md",
-      "sha256": "2dbd78a0d9e5313cfe8348e2b5988130970530a28e83be4d6ddb07e2b7711cba"
+      "sha256": "84d784c6a3475b21f103f6244ad883b44a85003c55e67569add2804a426d86c6"
     },
     {
       "id": "S09",
       "path": "profiles/tsh2/source_lineage.json",
-      "sha256": "1782e4315bab8e9a2b64fb181de8560a4454b83820dca608611dfbb4e8324eee"
+      "sha256": "5e2c63108057b8cc4c5270c0948ed340452736968974612b0c6bc70c092dab43"
     },
     {
       "id": "S10",
@@ -69,17 +69,17 @@
     {
       "id": "S13",
       "path": "verification/tsh2/README.md",
-      "sha256": "3b866f96fc7f7ea53f6971599b75a6146743186359cf8f895078ca758a983b0c"
+      "sha256": "b00a9400944259114976bac15b30084077289213d04e77ca1e4641cb89731ab7"
     },
     {
       "id": "S14",
       "path": "verification/README.md",
-      "sha256": "4b1289ddd6a4c0b0f008468102cdcc5d3b1bb4431d97be31c15e6b7d8769ab8b"
+      "sha256": "7abcd1db0fbc73f76da1541c9dd4efcc2fa6c95404435c9c08b96bfd1d2f010b"
     },
     {
       "id": "S15",
       "path": "docs/results/verification_20261017/README.md",
-      "sha256": "2797554bec9b43dc36e708258b7574b38f36d99fcf392539cb7d9ae202c3ad53"
+      "sha256": "74a55f4339aa30008e681f656a713ab249bd01ca15012ea1dca8688302f5ba64"
     },
     {
       "id": "S16",
@@ -184,7 +184,7 @@
       "original_sha256": "cce69d7a6395d93c8a487e36b8db8e4288e5b2e9613f205dfd84b1f380d96447",
       "public_binding": "docs/results/verification_20261017/source_bindings/fitted_source_manifest.json",
       "manifest_entry": "sources/trecap_hps_top.sv",
-      "scope": "Original retained source was reviewed separately; public check verifies only its hash entry in the published fitted manifest."
+      "scope": "Original retained source was reviewed separately. Public check verifies only its hash entry in the published fitted manifest."
     },
     {
       "id": "A02",
@@ -192,7 +192,7 @@
       "original_sha256": "3123d253447c91903e41c646049a3f4c837ff871f3ca493b3019382d00934c4e",
       "public_binding": "docs/results/verification_20261017/source_bindings/fitted_source_manifest.json",
       "manifest_entry": "sources/platform_designer_wrapper.sv",
-      "scope": "Original retained source was reviewed separately; public check verifies only its hash entry in the published fitted manifest."
+      "scope": "Original retained source was reviewed separately. Public check verifies only its hash entry in the published fitted manifest."
     }
   ],
   "source_aliases": {
@@ -254,7 +254,7 @@
         "No live codec input, UDP transport, online software-DSP replacement or board programming belongs in this plate."
       ],
       "review_callouts": [
-        "50 MHz fabric; unpaced finite-file input at nominal 48 kHz sample interpretation.",
+        "50 MHz fabric. Unpaced finite-file input at nominal 48 kHz sample interpretation.",
         "HPS RAM buffers are ordinary CPU memory. The FPGA-to-DDR ring writer is not active.",
         "TSP1 has powers without phase. Audio reconstruction comes from the separate Y path."
       ],
@@ -536,7 +536,7 @@
             115
           ],
           "title": "Active boundary",
-          "body": "Ordinary HPS RAM buffers; no active FPGA DDR ring, UDP or live codec. TSP1 cannot reconstruct audio without the separate Y path.",
+          "body": "Ordinary HPS RAM buffers. No active FPGA DDR ring, UDP or live codec. TSP1 cannot reconstruct audio without the separate Y path.",
           "tone": "sand"
         }
       ],
@@ -593,13 +593,13 @@
       ],
       "review_notes": [
         "Full finite geometry: frames=floor((Ns+254)/128), tau_last=128*frames, Ny=tau_last+384.",
-        "The packet path receives pre-mask power plus the mask decision; sparse output omits masked bins, dense output writes zero for them.",
+        "The packet path receives pre-mask power plus the mask decision. Sparse output omits masked bins, dense output writes zero for them.",
         "Core metric logic exists, but the current TSH2 hardware protocol does not export the broader original per-frame METRICS/WAVE telemetry records.",
-        "Delayed-reference history participates in input ready/acceptance; this is not a valid-only observation tap."
+        "Delayed-reference history participates in input ready/acceptance. This is not a valid-only observation tap."
       ],
       "review_callouts": [
-        "Ns=384,000; frames=3,001; analysis tokens=384,128; full Y=384,512.",
-        "Frame 0 covers conceptual sample indices -128 through 127; its left half is zero.",
+        "Ns=384,000. Frames=3,001. Analysis tokens=384,128. Full Y=384,512.",
+        "Frame 0 covers conceptual sample indices -128 through 127. Its left half is zero.",
         "THR2 equality is retained. Nyquist is eligible. The frame snapshot prevents mixed thresholds."
       ],
       "nodes": [
@@ -645,7 +645,7 @@
           "title": "Analysis window",
           "body": [
             "x[i] * unsigned16 Qw[i]",
-            "27-bit real; no downshift"
+            "27-bit real. No downshift"
           ],
           "tone": "lav",
           "code": "trecap_analysis_window"
@@ -677,7 +677,7 @@
           "title": "IFFT256",
           "body": [
             "36-bit complex components",
-            "Inverse twiddles; no stage /2"
+            "Inverse twiddles. No stage /2"
           ],
           "tone": "lav",
           "code": "trecap_ifft256"
@@ -946,7 +946,7 @@
             100
           ],
           "title": "Threshold ownership",
-          "body": "DC is protected; Nyquist is eligible; equality is retained. First frame covers indices -128..127 with a zero left half.",
+          "body": "DC is protected. Nyquist is eligible. Equality is retained. First frame covers indices -128..127 with a zero left half.",
           "tone": "lav",
           "bodySize": 13.2,
           "titleSize": 14
@@ -968,14 +968,14 @@
         "S28"
       ],
       "review_notes": [
-        "This diagram is a template instantiated independently by FFT and IFFT; it is not one RAM shared by both engines.",
-        "The registered butterfly has five arithmetic register stages and a held result. Engine source describes seven-clock butterfly transactions; this is not a whole-frame or network latency claim.",
-        "RAM contents/read registers are not asynchronously cleared. All locations are loaded before compute; read and write schedules do not overlap, and the two butterfly addresses differ.",
+        "This diagram is a template instantiated independently by FFT and IFFT. It is not one RAM shared by both engines.",
+        "The registered butterfly has five arithmetic register stages and a held result. Engine source describes seven-clock butterfly transactions. This is not a whole-frame or network latency claim.",
+        "RAM contents/read registers are not asynchronously cleared. All locations are loaded before compute. Read and write schedules do not overlap, and the two butterfly addresses differ.",
         "Use no arithmetic throughput or 48 kHz real-time acceptance claim derived solely from this structural schedule."
       ],
       "review_callouts": [
         "Eight radix-2 stages x 128 butterflies = 1,024 butterflies per transform.",
-        "Forward FFT divides by 2 at every stage; inverse FFT does not. Do not reverse these scaling labels.",
+        "Forward FFT divides by 2 at every stage. Inverse FFT does not. Do not reverse these scaling labels.",
         "Round-to-nearest, ties away from zero, followed by signed saturation."
       ],
       "nodes": [
@@ -1112,7 +1112,7 @@
           "title": "Round / add / round",
           "body": [
             "Twiddle product shift15",
-            "Add/subtract; output scaling"
+            "Add/subtract. Output scaling"
           ],
           "tone": "lav",
           "code": "fft_stage / round_sat"
@@ -1286,7 +1286,7 @@
             105
           ],
           "title": "Scaling and storage discipline",
-          "body": "FFT divides by 2 per stage; IFFT does not. Ties round away from zero, then saturate. Work RAM is reloaded, not asynchronously cleared.",
+          "body": "FFT divides by 2 per stage. IFFT does not. Ties round away from zero, then saturate. Work RAM is reloaded, not asynchronously cleared.",
           "tone": "lav",
           "bodySize": 13.2,
           "titleSize": 14
@@ -1298,7 +1298,7 @@
       "number": 4,
       "slug": "04-finite-epoch-feed-drain",
       "title": "Finite epoch, sample ownership and completion",
-      "subtitle": "Host pauses preserve overlap/history; a completed core can still leave output bytes for the host to drain.",
+      "subtitle": "Host pauses preserve overlap/history. A completed core can still leave output bytes for the host to drain.",
       "source_ids": [
         "S01",
         "S02",
@@ -1316,7 +1316,7 @@
       "review_callouts": [
         "One START owns the entire file and full tail. Chunk boundaries do not create reset or new epochs.",
         "DONE means production complete, not that the host or laptop has received every byte.",
-        "CLEAR drops ownership and sticky faults but preserves the epoch counter; hardware reset resets epoch."
+        "CLEAR drops ownership and sticky faults but preserves the epoch counter. Hardware reset resets epoch."
       ],
       "nodes": [
         {
@@ -1393,7 +1393,7 @@
           "title": "Host drains leftovers",
           "body": [
             "Verify full read totals",
-            "No drops; stable epoch",
+            "No drops. Stable epoch",
             "Final status checked"
           ],
           "tone": "sand"
@@ -1542,7 +1542,7 @@
             115
           ],
           "title": "Ownership reset versus hardware reset",
-          "body": "CLEAR preserves the epoch counter; hardware reset resets it. These are logical token phases, not measured wall-clock intervals.",
+          "body": "CLEAR preserves the epoch counter. Hardware reset resets it. These are logical token phases, not measured wall-clock intervals.",
           "tone": "lav"
         }
       ],
@@ -1562,14 +1562,14 @@
         "S05"
       ],
       "review_notes": [
-        "Header offsets: magic0, version4, encoding6, config8, payload length12, frame16, threshold24, entry count32, flags34, reserved36, checksum40; payload begins48.",
+        "Header offsets: magic0, version4, encoding6, config8, payload length12, frame16, threshold24, entry count32, flags34, reserved36, checksum40. Payload begins48.",
         "Checksum covers header bytes0..39 and payload/padding, excluding the stored checksum itself. It is FNV-1a64, not CRC.",
         "Sparse K=129 at threshold zero yields1080bytes/frame, larger than dense952. Do not imply sparse always saves bytes.",
         "Packet bytes count only the spectral representation. Y has384512*4=1538048 bytes in the full run, separately returned. TSP1 has no phase and cannot reconstruct the waveform by itself.",
         "No legacy32-byte telemetry header, SPEC129 compression shift, METRICS, STATUS UDP record or DDR64-byte alignment belongs here."
       ],
       "review_callouts": [
-        "Sparse: 48 + 8K bytes/frame. Each entry is bin index8 + power56; DC is always present, so 1 <= K <= 129.",
+        "Sparse: 48 + 8K bytes/frame. Each entry is bin index8 + power56. DC is always present, so 1 <= K <= 129.",
         "Dense: 129 x 7 power bytes + header + 1 zero pad byte = 952 bytes/frame.",
         "Finite TCP service selects sparse. The lower-level adapter and tests also support dense."
       ],
@@ -1661,8 +1661,8 @@
           ],
           "title": "TSP1 formatter",
           "body": [
-            "48-byte header; little endian",
-            "FNV-1a64; align to 8 bytes"
+            "48-byte header. Little endian",
+            "FNV-1a64. Align to 8 bytes"
           ],
           "tone": "rose"
         },
@@ -1787,7 +1787,7 @@
             140
           ],
           "title": "Power packets are separate from waveform samples",
-          "body": "TSP1 stores squared magnitudes without phase. Full Y is 384,512 x 4 = 1,538,048 bytes and remains a separate output. The TCP service selects sparse; the adapter also supports dense.",
+          "body": "TSP1 stores squared magnitudes without phase. Full Y is 384,512 x 4 = 1,538,048 bytes and remains a separate output. The TCP service selects sparse. The adapter also supports dense.",
           "tone": "sand",
           "bodySize": 15
         },
@@ -1824,7 +1824,7 @@
       "number": 6,
       "slug": "06-tcp-hps-mmio",
       "title": "Laptop TCP, HPS software and MMIO transport",
-      "subtitle": "Complete input reception precedes accelerator execution; the response carries both full outputs.",
+      "subtitle": "Complete input reception precedes accelerator execution. The response carries both full outputs.",
       "source_ids": [
         "S04",
         "S05",
@@ -1834,14 +1834,14 @@
         "A02"
       ],
       "review_notes": [
-        "Request magic0x31515254; header< I Q I >: magic, threshold, input byte count. Reply magic0x31535254; header< I I I I Q Q Q >: magic,status,Y bytes,TSP1 bytes,epoch,board wall ns,board thread CPU ns.",
-        "Socket upload/reply and idle accept have10s deadlines; controller has45s epoch deadline; process alarm60s. A blocked MMIO bus cannot be interrupted by its own polling deadline.",
+        "Request magic0x31515254. Header< I Q I >: magic, threshold, input byte count. Reply magic0x31535254. Header< I I I I Q Q Q >: magic,status,Y bytes,TSP1 bytes,epoch,board wall ns,board thread CPU ns.",
+        "Socket upload/reply and idle accept have10s deadlines. Controller has45s epoch deadline. Process alarm60s. A blocked MMIO bus cannot be interrupted by its own polling deadline.",
         "Failed requests terminate the service without automatic retry/MMIO recovery. Exact reference gold is not uploaded to the FPGA.",
         "Do not draw FPGA-to-HPS DMA, a reserved DDR ring or UDP. HPS uses physical DDR for normal Linux RAM, which is not the old FPGA ring-writer architecture.",
         "Do not print historical private IP/boot/runtime ownership values in the plate. Port/protocol details are descriptive, not deployment instructions."
       ],
       "review_callouts": [
-        "One request per connection; a bounded number of requests is served serially.",
+        "One request per connection. A bounded number of requests is served serially.",
         "The service invokes the frozen host02 timed controller and selects sparse mode1.",
         "Board wall/thread timers exclude TCP input receipt and reply send. Laptop end-to-end timing has a different boundary."
       ],
@@ -1874,7 +1874,7 @@
           "title": "Exact admission",
           "body": [
             "Magic, length, THR2 range",
-            "Exact EOF; signed12 values",
+            "Exact EOF. Signed12 values",
             "Reject extra / missing bytes"
           ],
           "tone": "sand",
@@ -1892,7 +1892,7 @@
           "body": [
             "Full input already in RAM",
             "Outputs prefaulted",
-            "CPU0; exclusive /dev/mem"
+            "CPU0. Exclusive /dev/mem"
           ],
           "tone": "blue",
           "bodySize": 14.8
@@ -2112,7 +2112,7 @@
             115
           ],
           "title": "Bounded, serialized service",
-          "body": "One request per connection; bounded requests served serially. Failed requests end the service without automatic retry or MMIO recovery.",
+          "body": "One request per connection. Bounded requests served serially. Failed requests end the service without automatic retry or MMIO recovery.",
           "tone": "sand"
         },
         {
@@ -2145,14 +2145,14 @@
         "S30"
       ],
       "review_notes": [
-        "START only in IDLE, with no faults or preloaded PCM. CLEAR=1 is explicit; epoch increments on START and survives CLEAR.",
-        "All bus requests require exactly one of read/write, byteenable15, burstcount1 and aligned address; invalid registers, busy config writes and malformed PCM latch bus fault.",
+        "START only in IDLE, with no faults or preloaded PCM. CLEAR=1 is explicit. Epoch increments on START and survives CLEAR.",
+        "All bus requests require exactly one of read/write, byteenable15, burstcount1 and aligned address. Invalid registers, busy config writes and malformed PCM latch bus fault.",
         "Hardware watchdog defaults to3,000,000,000 fabric cycles (60s at50MHz). Elapsed fabric cycles include host-induced stalls and are not isolated FFT timing.",
         "Exporter has four storage slots but active-source credit intentionally bounds the triggered-not-emitted frame count to one. Do not show four concurrently admitted frames in this profile."
       ],
       "review_callouts": [
         "Taps remain valid-only. Export pressure throttles future source hops, not the tap interface itself.",
-        "The adapter responds with an error to illegal empty/full accesses; it does not wait indefinitely for data or space.",
+        "The adapter responds with an error to illegal empty/full accesses. It does not wait indefinitely for data or space.",
         "THR2 is fixed for the entire active TSH2 epoch, even though the shared core has per-frame configuration ownership."
       ],
       "nodes": [
@@ -2538,7 +2538,7 @@
             110
           ],
           "title": "Illegal accesses fail explicitly",
-          "body": "Full/empty illegal MMIO accesses return an error and latch a fault. Hardware watchdog: 3,000,000,000 cycles; elapsed cycles include host stalls.",
+          "body": "Full/empty illegal MMIO accesses return an error and latch a fault. Hardware watchdog: 3,000,000,000 cycles. Elapsed cycles include host stalls.",
           "tone": "rose",
           "bodySize": 13.5
         }
@@ -2565,17 +2565,17 @@
         "S13"
       ],
       "review_notes": [
-        "The retained board top uses HPS reset only; KEY does not cancel a pending bus response. A copied TSH1 comment does not change its instantiated TSH2 adapter.",
+        "The retained board top uses HPS reset only. KEY does not cancel a pending bus response. A copied TSH1 comment does not change its instantiated TSH2 adapter.",
         "No formal CDC/RDC, metastability proof, exhaustive code-coverage closure, PVT qualification or industrial certification is claimed.",
         "Public portable tests cover the unchanged stream/core/exporter closure at Ns1024 and use synthetic fixtures. The broader accepted campaign includes two full384000 simulations and58physical epochs, but these are distinct evidence scopes.",
-        "The original functional RTL campaigns omit SYNTHESIS and use procedural assertions/checkers. A later supplement executes genuine UVM 1.2 and scoped local formal safety/equivalence and bounded-cover jobs on unchanged TSH2 RTL. These are separate evidence scopes; they do not establish full pipeline formal equivalence or concurrent-SVA coverage. Source-bound fit/timing is historical; creating these diagrams performs no new synthesis, simulation or hardware run.",
+        "The original functional RTL campaigns omit SYNTHESIS and use procedural assertions/checkers. A later supplement executes genuine UVM 1.2 and scoped local formal safety/equivalence and bounded-cover jobs on unchanged TSH2 RTL. These are separate evidence scopes. They do not establish full pipeline formal equivalence or concurrent-SVA coverage. Source-bound fit/timing is historical. Creating these diagrams performs no new synthesis, simulation or hardware run.",
         "The public repository omits generated vendor IP and full fitted build artifacts. Board wrapper clock/reset details were checked against retained sources whose hashes match the published fitted source manifest.",
-        "The reviewed S14 verification index links the UVM/formal supplement and discloses its preserved simulator startup failure and bounded recovery. The 12 completed UVM epochs include three reset recoveries, with three aborted prefixes recorded separately; local formal proofs retain explicit assumptions and exclusions."
+        "The reviewed S14 verification index links the UVM/formal supplement and discloses its preserved simulator startup failure and bounded recovery. The 12 completed UVM epochs include three reset recoveries, with three aborted prefixes recorded separately. Local formal proofs retain explicit assumptions and exclusions."
       ],
       "review_callouts": [
         "No active codec RX/TX asynchronous FIFOs in this profile. Do not copy the old audio-clock diagram.",
-        "Payload RAM is generally not asynchronously reset: ownership is cleared; transform RAM is reloaded; WOLA OLA storage is explicitly scrubbed.",
-        "Representative VCD clock is10ns in simulation; physical fabric constraint is20ns. A VCD is not a board latency measurement."
+        "Payload RAM is generally not asynchronously reset: ownership is cleared. Transform RAM is reloaded. WOLA OLA storage is explicitly scrubbed.",
+        "Representative VCD clock is10ns in simulation. Physical fabric constraint is20ns. A VCD is not a board latency measurement."
       ],
       "nodes": [
         {
@@ -2706,8 +2706,8 @@
           ],
           "title": "Source-bound physical evidence",
           "body": [
-            "58 checked epochs; registered image and source manifest",
-            "Historical fit/timing evidence; no new runs in this atlas",
+            "58 checked epochs. Registered image and source manifest",
+            "Historical fit/timing evidence. No new runs in this atlas",
             "No formal CDC/RDC or full-platform sign-off"
           ],
           "tone": "gray",
@@ -2873,5 +2873,10 @@
       "notes": [],
       "panels": []
     }
-  ]
+  ],
+  "editorial_revision": {
+    "date": "2026-11-04",
+    "scope": "Punctuation and reader-facing source bindings refreshed. Numerical architecture and historical source identity are unchanged.",
+    "ledger": "../../editorial/20261104-prose/manifest.json"
+  }
 }

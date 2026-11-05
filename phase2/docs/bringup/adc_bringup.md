@@ -35,7 +35,7 @@ Technology LTC2308. Older DE1-SoC revisions may use an AD7928 and are not
 interchangeable with this RTL. Verify the PCB revision and the converter marking
 before enabling the source. The board signal
 named `ADC_CS_N` is a legacy top-level alias for the converter's `CONVST`
-input; the suffix is misleading. It idles low and a high pulse starts a
+input. The suffix is misleading. It idles low and a high pulse starts a
 conversion. It is not an active-low SPI chip select.
 
 | Logical signal | Cyclone V pin | Direction | Electrical/protocol role |
@@ -46,12 +46,12 @@ conversion. It is not an active-low SPI chip select.
 | `ADC_SCLK` | `PIN_AK2` | FPGA output | Registered serial clock, idle low. |
 
 The checked-in pin source assigns 3.3-V LVTTL. Step 18 must still bind and
-review the external input/output timing; a pin assignment is not TimeQuest or
+review the external input/output timing. A pin assignment is not TimeQuest or
 electrical evidence.
 
 Protocol authority is the primary ADI LTC2308 Rev-C datasheet. The Rev-H Terasic
 manual/System CD corroborates the board device and pin identity. The official
-Terasic demo's legacy CONVST width is not the timing authority; T-RECAP
+Terasic demo's legacy CONVST width is not the timing authority. T-RECAP
 intentionally uses the ADI short-pulse guidance instead.
 
 | Authority | Pinned reference |
@@ -73,9 +73,9 @@ performs the following sequence:
 2. Wait through the complete conversion holdoff.
 3. Generate exactly twelve `ADC_SCLK` pulses.
 4. Sample one `ADC_DOUT` bit on each generated rising edge, MSB first. `B11` is
-   already valid after conversion; `B10` through `B0` advance after subsequent
+   already valid after conversion. `B10` through `B0` advance after subsequent
    falling SCLK edges.
-5. Present the next six-bit command on `ADC_DIN`; advance it on falling edges,
+5. Present the next six-bit command on `ADC_DIN`. Advance it on falling edges,
    then send zero for the remaining result clocks.
 6. Hold the acquisition guard before admitting another conversion.
 
@@ -97,7 +97,7 @@ values. The complete default transaction is 334 fabric cycles, or 6.68 us, and
 is shorter than the 10-us scheduler interval. Elaboration-time assertions use
 wide cross-multiplied timing checks so parameter overrides cannot rely on the
 default cycle literals accidentally. Fail-closed behavior applies to
-structurally well-formed parameter overrides; degenerate zero-width overrides
+structurally well-formed parameter overrides. Degenerate zero-width overrides
 are outside the module ABI and may be rejected during elaboration.
 
 `ADC_SCLK` is a peripheral protocol output. It is not used in an `always_ff`
@@ -134,7 +134,7 @@ Therefore the board latches the selected channel only when entering
 `TSRC_ADC_LIVE`, holds that channel for the whole source epoch, and primes by
 discarding the first old-configuration result. Moving `SW[6:4]` during an ADC
 epoch does not mix channels silently. To apply a different channel, leave and
-re-enter ADC mode; the new epoch is marked as a source discontinuity and is
+re-enter ADC mode. The new epoch is marked as a source discontinuity and is
 primed again.
 
 Local request controls are:
@@ -148,7 +148,7 @@ Manual conversions do not enter the mathematical core. With `SW[9:8]=00`,
 HEX5..3 show the low 12 bits of the eligible raw-sample count and HEX2..0 show the
 latest raw code. The first request after enable/abort primes the converter and is
 discarded. FPGA telemetry reports `sample_rate_hz=0` while manual diagnostics are
-selected; the dashboard labels that as no periodic DSP stream.
+selected. The dashboard labels that as no periodic DSP stream.
 
 Changing SW[7] clears the source/core epoch and briefly disables the controller,
 which aborts any in-flight conversion and primes the pipeline again. This does not
@@ -165,7 +165,7 @@ unsigned downstream format cannot be changed silently.
 The board contract exposes no ADC reset pin and assumes no guaranteed power-on
 MUX command. For that reason, serial outputs return to idle-low while disabled
 and prime/discard is mandatory after reset, enable, abort, or command change.
-The frozen command keeps `SLP=0`; the 200-ms wake requirement applies only after
+The frozen command keeps `SLP=0`. The 200-ms wake requirement applies only after
 entering sleep and must not be inserted into ordinary awake transactions.
 
 ## Sample format and normalization
@@ -183,12 +183,12 @@ centered code = raw - 2048 = -2048 .. +2047
 pulse. `trecap_adc_adapter` owns recentering, signed core-width scaling,
 saturation, and ready/valid staging. With the current 12-bit core baseline the
 centered value maps exactly to the signed core sample range. The Step-17 profile
-keeps the optional zero-code override invalid and DC blocking disabled; changing
+keeps the optional zero-code override invalid and DC blocking disabled. Changing
 either option changes live-source semantics and requires a new explicit profile.
 
 The raw wrapper cannot be backpressured. If its event arrives while the adapter
 cannot replace or release its pending output, the adapter drops that event and
-counts/reports it; telemetry pressure still must not return to the core or ADC
+counts/reports it. Telemetry pressure still must not return to the core or ADC
 controller.
 
 ## CDC and source switching
@@ -196,12 +196,12 @@ controller.
 No sample-data async FIFO is required for this ADC implementation:
 
 - the state machine, sample scheduler, result register, adapter, source mux, and
-  mathematical core all use `clk_fabric` and `rst_n_platform`;
+  mathematical core all use `clk_fabric` and `rst_n_platform`.
 - `ADC_SCLK` is generated by registered fabric logic and only clocks the
-  external converter;
+  external converter.
 - `ADC_DOUT` first passes through the wrapper's two-flop fabric synchronizer and
   the synchronized bit is captured atomically into the twelve-bit shift register
-  on the fabric edge that generates the selected SCLK edge; and
+  on the fabric edge that generates the selected SCLK edge, and
 - synchronized board controls are latched before they affect an ADC epoch.
 
 The implemented external timing policy is in
@@ -210,7 +210,7 @@ The implemented external timing policy is in
 with a mandatory fitted gate defined in [build_order.md](../architecture/build_order.md).
 These allocations require their full serial return-budget assumptions and do not
 establish physical converter operation. If a later design places the ADC controller
-or adapter in another domain, it must add a reviewed atomic CDC path; independent
+or adapter in another domain, it must add a reviewed atomic CDC path. Independent
 bit synchronizers are forbidden.
 
 Selecting `adc_live` through the generated source-mode commit is the only legal
@@ -220,7 +220,7 @@ cleared, and one discontinuity pulse resets source-dependent core alignment.
 The ADC wrapper is disabled outside its own mode and returns its serial outputs
 to idle. It may not bypass `trecap_source_core_integration`. Disable or abort
 also restarts a 92-cycle recovery holdoff. A manual or scheduled request during
-that holdoff is rejected and sets the request-overrun sticky; the first accepted
+that holdoff is rejected and sets the request-overrun sticky. The first accepted
 transaction is then still subject to the normal prime/discard rule.
 
 ## Counters and faults
@@ -230,17 +230,17 @@ The live path keeps different failure domains attributable:
 | Observability | Meaning |
 | --- | --- |
 | wrapper `sample_count_o` | Saturating count of eligible current-command samples published with `sample_valid_o`. |
-| `transaction_done_pulse_o` | One-cycle evidence that a physical serial transaction completed; it is not a retained counter. |
+| `transaction_done_pulse_o` | One-cycle evidence that a physical serial transaction completed. It is not a retained counter. |
 | request-overrun sticky | A manual or scheduled request arrived during re-entry recovery or while a transaction was active. |
 | protocol-error sticky | The controller entered an illegal state, rejected an unsupported well-formed static configuration, or rejected a non-single-ended/non-unipolar/sleep command. |
 | adapter samples-seen/admitted/accepted counts | Raw events, normalized events, and core-accepted samples. |
 | adapter dropped-sample count | A raw event could not enter the one-entry adapter stage. |
 | adapter clip/config stickies | Normalization saturation or unsupported adapter configuration. |
 
-The wrapper sample count and adapter drop count saturate; no wraparound may look
+The wrapper sample count and adapter drop count saturate. No wraparound may look
 like a reset. Other adapter accounting remains owner-local unless a named status
 or debug path exports it. Sticky
-fault clearing is explicit; it is not implied by merely leaving ADC mode. These
+fault clearing is explicit. It is not implied by merely leaving ADC mode. These
 ADC diagnostics remain dedicated board/source observability because the frozen
 CSR overflow register has no honest one-to-one field for them. `LEDR[7]` may
 aggregate their fault levels, but that does not make them separately CSR-visible.
@@ -312,7 +312,7 @@ Do not enable the entire system at once:
 8. Only after local capture is stable, enable telemetry and inspect the exported
    ADC fault summary plus FIFO, DDR, HPS, and PC loss counters. Inspect the
    owner-local adapter counters only through an explicitly preserved named
-   SignalTap/debug tap; they are not currently exported through CSR telemetry.
+   SignalTap/debug tap. They are not currently exported through CSR telemetry.
 
 Do not claim a passed live-ADC milestone without preserving the selected profile,
 Quartus/TimeQuest reports, measured serial timing, input stimulus, raw/normalized

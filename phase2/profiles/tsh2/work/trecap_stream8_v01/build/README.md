@@ -12,8 +12,8 @@ wrapper changes only the adapter module name. No HPS/Qsys regeneration is needed
 
 After root releases the candidate, `simulate.py` can compile the root-owned
 testbench against the registered application and actual numerical core. Pass
-`--build`, fresh `--out`, `--testbench`, `--top` and exact `--pass-marker`;
-optional `--plusarg` values are forwarded to ModelSim. `source_id.svh` defines
+`--build`, fresh `--out`, `--testbench`, `--top` and exact `--pass-marker`.
+Optional `--plusarg` values are forwarded to ModelSim. `source_id.svh` defines
 TEST_SOURCE_ID, and `+OUT` names the simulation output directory. A passing
 marker confirms only the assertions actually implemented by that testbench.
 
@@ -38,6 +38,6 @@ SOF SHA256:
 `f96bc5a35adf08711a5f392baf9f8cbf5ec65a17211a58117bdb53f62acbb7ab`.
 SOURCE_ID:
 `39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed`.
-The RTL simulation used 1024-sample parameter variants; the assembled image is
+The RTL simulation used 1024-sample parameter variants. The assembled image is
 configured for 384000 samples. These build receipts alone do not establish a
 successful physical eight-second run.

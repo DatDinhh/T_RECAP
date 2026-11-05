@@ -4,21 +4,21 @@ File class: **[1] hand-written architecture document**.
 
 This document is the implementation module inventory for `T_RECAP_Phase2`. It
 lists implementation files, their owner layer, write phase, provenance class,
-dependencies, and acceptance checks. The list remains implementation-focused;
-the directed Step-11/Step-12 RTL sources, Step-13 HPS host test, and Step-14
+dependencies, and acceptance checks. The list remains implementation-focused.
+The directed Step-11/Step-12 RTL sources, Step-13 HPS host test, and Step-14
 structural/model plus HPS/PC host-test sources are bounded source or host gates,
 while comprehensive coverage and hardware evidence remain
 outside this inventory.
 
 The inventory describes the current source implementation. Step 11 introduced the deterministic
-BRAM-to-core-to-STATUS-DDR source gate; Step 12 adds DDR-ring ownership and the
-canonical Linux reserved-memory source; Step 13 adds the strict HPS ring
+BRAM-to-core-to-STATUS-DDR source gate. Step 12 adds DDR-ring ownership and the
+canonical Linux reserved-memory source. Step 13 adds the strict HPS ring
 consumer, UDP transport, malformed latch/re-arm, diagnostic STATUS mode, and
 RAM-backed host regression. Step 14 adds the explicit version-2 command/result
 contract, HPS command bridge, generated CSR minor-1.8 replay/counter controls,
 exact peer binding, safe lifecycle/mutation ownership, and host source gates.
-Step 15 completes the PC dashboard source inventory; Step 16 completes the
-LINE-IN audio source inventory; Step 17 completes the pinned Rev-H LTC2308
+Step 15 completes the PC dashboard source inventory. Step 16 completes the
+LINE-IN audio source inventory. Step 17 completes the pinned Rev-H LTC2308
 100-kS/s source/profile/checker inventory.
 These entries do not claim accepted native RTL simulation,
 active-DTB or native HPS runtime, physical Ethernet, systemd deployment,
@@ -65,7 +65,7 @@ R12 live ADC operational bring-up
 
 | Path | Class | Phase | Owner | Purpose | Acceptance |
 | --- | --- | --- | --- | --- | --- |
-| `spec/generated/core_config.json` | `[0]` | R1/R2 | reference-model import | Core constants, widths, artifact row names. | Used by generator; no hand-coded duplicate constants in RTL. |
+| `spec/generated/core_config.json` | `[0]` | R1/R2 | reference-model import | Core constants, widths, artifact row names. | Used by generator. No hand-coded duplicate constants in RTL. |
 | `spec/generated/width_config.json` | `[0]` | R1/R2 | reference-model import | Fixed-point width schedule. | Matches reference-model arithmetic contract. |
 | `spec/generated/artifact_contract.json` | `[0]` | R1/R2 | reference-model import | Artifact row counts, names, hash contract. | Used by artifact checker. |
 | `spec/generated/csr_map.json` | `[1]` | R1 | transport architecture | Normative CSR offsets, bits, access types, reset values, ownership. | Drives SV and HPS C headers. |
@@ -107,7 +107,7 @@ Generated outputs:
 | `simple_dual_port_ram.sv` | `[1]` | R4 | One-write, one-read memory wrapper. | Core modules avoid direct board-specific RAM IP. |
 | `true_dual_port_ram.sv` | `[1]` | R4 | Two-port memory wrapper. | Parameterized width/depth. |
 | `sync_fifo.sv` | `[1]` | R4 | Same-clock FIFO for packet or stream buffering. | Full behavior documented: drop or ready/valid depending on owner. |
-| `async_fifo.sv` | `[1]` | R4 | CDC FIFO for split-clock variants. | Uses safe pointer synchronization; no multi-bit bit-sync. |
+| `async_fifo.sv` | `[1]` | R4 | CDC FIFO for split-clock variants. | Uses safe pointer synchronization. No multi-bit bit-sync. |
 
 ### `rtl/interfaces/`
 
@@ -124,10 +124,10 @@ Generated outputs:
 
 | Module | Class | Phase | Responsibility | Acceptance |
 | --- | --- | --- | --- | --- |
-| `trecap_bram_replay_source.sv` | `[1]` | R4/C0 | Feeds frozen `x_in.memh` and required full-tail zero flush samples. | Primary C0 signoff source; no live input dependency. |
-| `trecap_diagnostic_source.sv` | `[1]` | R4 | Generates deterministic ramp, impulse, constant, or debug streams. | Useful for board bring-up; not signoff authority. |
+| `trecap_bram_replay_source.sv` | `[1]` | R4/C0 | Feeds frozen `x_in.memh` and required full-tail zero flush samples. | Primary C0 signoff source. No live input dependency. |
+| `trecap_diagnostic_source.sv` | `[1]` | R4 | Generates deterministic ramp, impulse, constant, or debug streams. | Useful for board bring-up, not signoff authority. |
 | `trecap_source_mux.sv` | `[1]` | R4 | Selects BRAM/audio/ADC/diagnostic source mode. | Source-mode change resets or marks discontinuity. |
-| `trecap_audio_adapter.sv` | `[1]` | R11 | Maps signed audio samples into signed `N = 12` scale with `sat_N(rnd_shr(a_audio, B_audio-N))`. | Not required for C0; BRAM replay remains the correctness authority. |
+| `trecap_audio_adapter.sv` | `[1]` | R11 | Maps signed audio samples into signed `N = 12` scale with `sat_N(rnd_shr(a_audio, B_audio-N))`. | Not required for C0. BRAM replay remains the correctness authority. |
 | `trecap_adc_adapter.sv` | `[1]` | R11 | Recenters unsigned ADC samples and optional wrapper-level DC blocking. | Not required for C0. |
 
 ## R5 core modules
@@ -148,11 +148,11 @@ Generated outputs:
 | Module | Class | Phase | Responsibility | Inputs | Outputs | Acceptance |
 | --- | --- | --- | --- | --- | --- | --- |
 | `trecap_core_top.sv` | `[1]` | R5/C0 | Core-only integration wrapper. | Signed sample ticks, control shadow values. | `y[n]`, frame stats, metrics, valid-only taps. | Builds without HPS/DDR/Ethernet/dashboard. |
-| `trecap_input_ring.sv` | `[1]` | R5 | Circular buffer holding recent `L = 256` samples and conservative C0 source admission. | Ready/valid sample stream. | Oldest-to-newest frame reads and source backpressure while a request/extraction is outstanding. | Uses generated `L`; no packet dependency; positive-index reads require a matching tag. |
+| `trecap_input_ring.sv` | `[1]` | R5 | Circular buffer holding recent `L = 256` samples and conservative C0 source admission. | Ready/valid sample stream. | Oldest-to-newest frame reads and source backpressure while a request/extraction is outstanding. | Uses generated `L`. No packet dependency. Positive-index reads require a matching tag. |
 | `trecap_frame_scheduler.sv` | `[1]` | R5 | Triggers frames every `H = 128` accepted samples. | Sample count. | Frame event, frame index, trigger sample index. | Delay basis remains `D = L + G`. |
 | `trecap_analysis_window.sv` | `[1]` | R5 | Multiplies frame samples by frozen `sqrt(Hann)` window coefficients. | Frame samples, window ROM. | Windowed samples. | No rounding during analysis product unless specified. |
 | `window_rom.sv` | `[1]` | R5 | Loads `window_qw.memh`. | Artifact path. | `Qw[i]`. | No internal window generation. |
-| `trecap_hermitian_canonicalizer.sv` | `[1]` | R5 | Canonicalizes mirrored FFT bins before thresholding. | Raw FFT bins. | Canonical spectrum. | DC/Nyquist real; mirror bins conjugate. |
+| `trecap_hermitian_canonicalizer.sv` | `[1]` | R5 | Canonicalizes mirrored FFT bins before thresholding. | Raw FFT bins. | Canonical spectrum. | DC/Nyquist real. Mirror bins conjugate. |
 | `trecap_mag2_mask.sv` | `[1]` | R5 | Computes `mag2`, `pre_mask`, protected final mask, per-frame counts. | Canonical bins, active `THR2`. | Unique-bin mask/stat inputs. | Unsigned full-precision compare, width `W_mag2`. |
 | `trecap_spectrum_mask_builder.sv` | `[1]` | R5 | Builds conjugate-symmetric masked spectrum `Xb`. | Canonical spectrum, mask. | IFFT input spectrum. | `Xb[L-k] = conj(Xb[k])`. |
 | `trecap_synthesis_wola.sv` | `[1]` | R5 | Applies inverse FFT output to synthesis window and overlap-add ring. | IFFT samples, window ROM. | OLA accumulator output. | No OLA wrap on signoff vectors. |
@@ -164,7 +164,7 @@ Generated outputs:
 | --- | --- | --- | --- | --- |
 | `trecap_core_only_top.sv` | `[1]` | R5/C0 | Pure core wrapper for compile smoke. | No board pins, HPS bridge, telemetry transport. |
 | `trecap_core_bram_replay_top.sv` | `[1]` | R5/C0 | BRAM replay source plus core plus artifact-facing outputs. | Used for first core implementation cut. |
-| `trecap_source_core_integration.sv` | `[1]` | S7/R8 | Instantiates all normalized sources, guarded source mux, exact finite-replay tail routing, and the mathematical core. | Exposes real safe boundaries, counters, valid-only taps, exact-match CSR new-fault events, and dedicated non-CSR fault levels; no telemetry backpressure or board pins. |
+| `trecap_source_core_integration.sv` | `[1]` | S7/R8 | Instantiates all normalized sources, guarded source mux, exact finite-replay tail routing, and the mathematical core. | Exposes real safe boundaries, counters, valid-only taps, exact-match CSR new-fault events, and dedicated non-CSR fault levels. No telemetry backpressure or board pins. |
 
 ## R6 telemetry modules
 
@@ -172,40 +172,40 @@ Telemetry modules observe the core and build records. They do not own DDR writes
 
 | Module | Class | Phase | Responsibility | Inputs | Outputs | Acceptance |
 | --- | --- | --- | --- | --- | --- | --- |
-| `trecap_telemetry_top.sv` | `[1]` | R6/S8 | Integrates scheduler, packetizers, and the sole telemetry packet FIFO. | Valid-only core taps, authoritative core counters/error aggregates, packet controls, observation-epoch reset. | Formatted records to `rtl/hps_bridge/`. | No ready signal into core; invalid configuration fails closed; source discontinuity cannot mix partial collections or truncate started records. |
-| `trecap_packet_scheduler.sv` | `[1]` | R6/S8 | Selects WAVE/SPEC/METRICS/STATUS emission by rate and priority. | Packetizer record candidates and config. | One record-atomic stream plus exact terminal drop events. | STATUS highest priority; WAVE lowest; disabled/illegal drain ownership remains latched through the candidate's final beat. |
+| `trecap_telemetry_top.sv` | `[1]` | R6/S8 | Integrates scheduler, packetizers, and the sole telemetry packet FIFO. | Valid-only core taps, authoritative core counters/error aggregates, packet controls, observation-epoch reset. | Formatted records to `rtl/hps_bridge/`. | No ready signal into core. Invalid configuration fails closed. Source discontinuity cannot mix partial collections or truncate started records. |
+| `trecap_packet_scheduler.sv` | `[1]` | R6/S8 | Selects WAVE/SPEC/METRICS/STATUS emission by rate and priority. | Packetizer record candidates and config. | One record-atomic stream plus exact terminal drop events. | STATUS highest priority. WAVE lowest. Disabled/illegal drain ownership remains latched through the candidate's final beat. |
 | `trecap_wave_packetizer.sv` | `[1]` | R6 | Creates WAVE payload: delayed input, output, error triples. | Sample taps. | WAVE record payload. | Uses stride semantics and `nsamp` bound. |
-| `trecap_spec_packetizer.sv` | `[1]` | R6 | Creates SPEC64 or SPEC129 compressed spectrum payload. | `mag2`, mask, spec shift. | Spectrum record payload. | SPEC_MODE authoritative; no separate SPEC64_EN/SPEC129_EN. |
-| `trecap_metrics_packetizer.sv` | `[1]` | R6/S8 | Creates METRICS payloads. | Core-owned error aggregates and telemetry-owned eligible-bin aggregates. | METRICS record payload. | One safe clear event defines both aggregate epochs; exactly one metrics-class flag set. |
-| `trecap_status_packetizer.sv` | `[1]` | R6/S8 | Creates FPGA-originated STATUS skeleton. | Authoritative core counters and transport status. | STATUS record payload. | Does not reconstruct counts from delayed taps; HPS may patch only outgoing UDP copy. |
+| `trecap_spec_packetizer.sv` | `[1]` | R6 | Creates SPEC64 or SPEC129 compressed spectrum payload. | `mag2`, mask, spec shift. | Spectrum record payload. | SPEC_MODE authoritative. No separate SPEC64_EN/SPEC129_EN. |
+| `trecap_metrics_packetizer.sv` | `[1]` | R6/S8 | Creates METRICS payloads. | Core-owned error aggregates and telemetry-owned eligible-bin aggregates. | METRICS record payload. | One safe clear event defines both aggregate epochs. Exactly one metrics-class flag set. |
+| `trecap_status_packetizer.sv` | `[1]` | R6/S8 | Creates FPGA-originated STATUS skeleton. | Authoritative core counters and transport status. | STATUS record payload. | Does not reconstruct counts from delayed taps. HPS may patch only outgoing UDP copy. |
 | `trecap_packet_fifo.sv` | `[1]` | R6 | Buffers accepted formatted records before writer. | Formatted records. | Record stream to HPS bridge. | Full behavior increments `PACKET_FIFO_DROP_COUNT`. |
 | `trecap_priority_dropper.sv` | `[1]` | R6 | Evicts or sheds lower-priority records to protect high-priority telemetry. | FIFO state, incoming record priority. | Drop decisions. | Does not drop STATUS while WAVE is evictable. |
-| `trecap_core_telemetry_top.sv` | `[1]` | S8 | Standalone normalized-source composition with one real core and one telemetry formatter/FIFO. | Samples, core/tail controls, telemetry controls/ticks/status context. | Mathematical output, direct taps/status, formatted records. | No source mux, HPS/DDR, Platform Designer, or board pins; telemetry ready never reaches the core. |
+| `trecap_core_telemetry_top.sv` | `[1]` | S8 | Standalone normalized-source composition with one real core and one telemetry formatter/FIFO. | Samples, core/tail controls, telemetry controls/ticks/status context. | Mathematical output, direct taps/status, formatted records. | No source mux, HPS/DDR, Platform Designer, or board pins. Telemetry ready never reaches the core. |
 
 ## R7 HPS bridge modules
 
 | Module | Class | Phase | Responsibility | Inputs | Outputs | Acceptance |
 | --- | --- | --- | --- | --- | --- | --- |
-| `trecap_avmm_csr_adapter.sv` | `[1]` | R7/Step 5 | Converts strict Avalon-MM CSR requests into the private CSR leaf protocol after full aperture decode. | 21-bit byte address, read/write, 32-bit data, byteenable, burstcount. | waitrequest/read/write responses plus one native CSR request. | One outstanding request; no address alias; rejected bus requests never reach the leaf. |
-| `trecap_csr_bank.sv` | `[1]` | R7/S14 | Implements normative HPS-visible CSRs, W1P controls, W1C sticky flags, VERSION, counter clear, retained replay admission/result, and rejects. | HPS CSR bus plus replay-owner feedback. | Control shadows, status registers, replay request/rearm pulses. | Driven from generated CSR package; board-key replay cannot overwrite a pending CSR result. |
+| `trecap_avmm_csr_adapter.sv` | `[1]` | R7/Step 5 | Converts strict Avalon-MM CSR requests into the private CSR leaf protocol after full aperture decode. | 21-bit byte address, read/write, 32-bit data, byteenable, burstcount. | waitrequest/read/write responses plus one native CSR request. | One outstanding request. No address alias. Rejected bus requests never reach the leaf. |
+| `trecap_csr_bank.sv` | `[1]` | R7/S14 | Implements normative HPS-visible CSRs, W1P controls, W1C sticky flags, VERSION, counter clear, retained replay admission/result, and rejects. | HPS CSR bus plus replay-owner feedback. | Control shadows, status registers, replay request/rearm pulses. | Driven from generated CSR package. Board-key replay cannot overwrite a pending CSR result. |
 | `trecap_csr_shadow_commit.sv` | `[1]` | R7 | Shadow/commit for 56-bit THR2, source mode, 64-bit pointers. | CSR writes. | Active config at safe boundary. | No torn multiword update. |
 | `trecap_ring_pointer_ctrl.sv` | `[1]` | R7 | Producer snapshot and consumer commit management. | Writer pointer, HPS CSR writes. | Safe W/Rd values. | 64-bit snapshot/commit protocol only. |
 | `trecap_ddr_record_builder.sv` | `[1]` | R7 | Builds 32-byte header and 64-byte-aligned record body. | Formatted telemetry record. | DDR write commands/data. | Exact payload sizes and header fields. |
-| `trecap_avmm_write_master.sv` | `[1]` | R7 | Avalon-style write-master implementation. | Write commands/data. | Platform write bus. | Waitrequest handled; no partial commit. |
+| `trecap_avmm_write_master.sv` | `[1]` | R7 | Avalon-style write-master implementation. | Write commands/data. | Platform write bus. | Waitrequest handled. No partial commit. |
 | `trecap_ddr_ring_writer.sv` | `[1]` | R7 | Owns DDR write master, WRAP/free-space logic, producer pointer commit, `DMA_DROP_COUNT`. | Record builder output, ring config. | DDR writes, producer pointer. | Exists only in `rtl/hps_bridge/`. |
-| `trecap_hps_bridge_top.sv` | `[1]` | R7/S14 | Integrates Avalon-MM CSR adapter/bank, pointer control, record builder, DDR writer, replay feedback, counter-clear routing, CDC boundaries, and PD-facing ports. | Avalon-MM CSR agent, record stream, replay-owner feedback. | DDR bus, Avalon responses, CSR/replay controls. | No signal-processing arithmetic; generated CSR minor 1.8. |
+| `trecap_hps_bridge_top.sv` | `[1]` | R7/S14 | Integrates Avalon-MM CSR adapter/bank, pointer control, record builder, DDR writer, replay feedback, counter-clear routing, CDC boundaries, and PD-facing ports. | Avalon-MM CSR agent, record stream, replay-owner feedback. | DDR bus, Avalon responses, CSR/replay controls. | No signal-processing arithmetic. Generated CSR minor 1.8. |
 
 ## R8 DE1-SoC platform modules
 
 | Module | Class | Phase | Responsibility | Acceptance |
 | --- | --- | --- | --- | --- |
-| `de1_soc_trecap_top.sv` | `[1]` | S9/S16/S17/R8 | Physical Quartus board top and board pins. | Binds real Platform Designer CSR/DDR, lock-qualified audio PLL/I2C/I2S and Rev-H LTC2308 capture, sole source/core integration, active-source sample-rate status, logical telemetry/HPS transport, best-effort core-y monitoring, and real board status; no synthetic taps or safe-idle bus substitutes. |
-| `clock_reset_ctrl.sv` | `[1]` | S10/R8 | Sole active 50 MHz fabric clock/reset owner, 20 ms released-key qualification, HPS reset combination, synchronized controls, fractional enables, and heartbeat. | One at-least-two-stage canonical `rst_n_platform` chain releases all fabric owners simultaneously; ticks are enables; no pseudo-domains or fabricated PLL lock. |
-| `audio_pll_wrapper.sv` | `[1]` | S16/R11 | Generates the peripheral-only 12.288 MHz `AUD_XCK` profile from `CLOCK_50`. | Lock is qualified before codec init; it does not clock fabric logic. Native Quartus/TimeQuest and measured-clock evidence remain pending. |
-| `audio_codec_i2c_init.sv` | `[1]` | S16/R11 | Owns open-drain FPGA-I2C initialization of the WM8731 at 7-bit address `0x1a`. | Programs 48 kS/s, signed 16-bit I2S codec-master mode, retries/NACK accounting, and ACTIVE last; requires the HPS mux grant and never drives `HPS_I2C_CONTROL`. |
+| `de1_soc_trecap_top.sv` | `[1]` | S9/S16/S17/R8 | Physical Quartus board top and board pins. | Binds real Platform Designer CSR/DDR, lock-qualified audio PLL/I2C/I2S and Rev-H LTC2308 capture, sole source/core integration, active-source sample-rate status, logical telemetry/HPS transport, best-effort core-y monitoring, and real board status. No synthetic taps or safe-idle bus substitutes. |
+| `clock_reset_ctrl.sv` | `[1]` | S10/R8 | Sole active 50 MHz fabric clock/reset owner, 20 ms released-key qualification, HPS reset combination, synchronized controls, fractional enables, and heartbeat. | One at-least-two-stage canonical `rst_n_platform` chain releases all fabric owners simultaneously. Ticks are enables. No pseudo-domains or fabricated PLL lock. |
+| `audio_pll_wrapper.sv` | `[1]` | S16/R11 | Generates the peripheral-only 12.288 MHz `AUD_XCK` profile from `CLOCK_50`. | Lock is qualified before codec init. It does not clock fabric logic. Native Quartus/TimeQuest and measured-clock evidence remain pending. |
+| `audio_codec_i2c_init.sv` | `[1]` | S16/R11 | Owns open-drain FPGA-I2C initialization of the WM8731 at 7-bit address `0x1a`. | Programs 48 kS/s, signed 16-bit I2S codec-master mode, retries/NACK accounting, and ACTIVE last. Requires the HPS mux grant and never drives `HPS_I2C_CONTROL`. |
 | `audio_codec_wrapper.sv` | `[1]` | S9/S10/S16/R11 | Audio codec LINE-IN capture and non-stalling best-effort core-y LINE-OUT monitor. | Uses separate BCLK receive-edge/transmit-edge reset release, complete-frame async FIFOs in both directions, epoch flush, and dedicated saturating 64-bit RX-overflow/TX-overflow/TX-underflow counters. External timing and hardware evidence remain pending. |
-| `adc_wrapper.sv` | `[1]` | S9/S17/R12 | Rev-H LTC2308 100-kS/s CONVST, conversion-wait, 2.5-MHz 12-bit result, and six-bit next-configuration controller. | Synchronizes DOUT through at least two preserved flops, fails closed on unsupported timing/width configuration, primes after reset/enable/config changes, and saturates the eligible-sample count; post-fit timing and analog/device operation remain pending. |
-| `platform_designer_wrapper.sv` | `[1]` | R8 | Hand-written typed boundary around generated module `system`; binds HPS pins, CSR, DDR, and reset policy. | No fallback stub; generated ABI must pass the Step-6 checker. |
+| `adc_wrapper.sv` | `[1]` | S9/S17/R12 | Rev-H LTC2308 100-kS/s CONVST, conversion-wait, 2.5-MHz 12-bit result, and six-bit next-configuration controller. | Synchronizes DOUT through at least two preserved flops, fails closed on unsupported timing/width configuration, primes after reset/enable/config changes, and saturates the eligible-sample count. Post-fit timing and analog/device operation remain pending. |
+| `platform_designer_wrapper.sv` | `[1]` | R8 | Hand-written typed boundary around generated module `system`. Binds HPS pins, CSR, DDR, and reset policy. | No fallback stub. Generated ABI must pass the Step-6 checker. |
 
 Platform files:
 
@@ -219,7 +219,7 @@ Platform files:
 | `platform/de1soc/address_map/hps_bridge_regions.json` | `[1]` | R8 | Machine-readable bridge regions. |
 | `constraints/de1soc/de1soc.qsf` | `[1]` | R8 | Quartus settings and file assignments. |
 | `constraints/de1soc/de1soc.sdc` | `[1]` | R8 | Timing constraints. |
-| `constraints/de1soc/clocks.sdc` | `[1]` | S10/R8 | Supplemental/deferred clock policy; it creates no additional Step-10 clocks. |
+| `constraints/de1soc/clocks.sdc` | `[1]` | S10/R8 | Supplemental/deferred clock policy. It creates no additional Step-10 clocks. |
 | `constraints/de1soc/pin_assignments.tcl` | `[1]` | R8 | Board pin assignment source. |
 
 ## R9 HPS software modules
@@ -227,28 +227,28 @@ Platform files:
 | File | Class | Phase | Responsibility | Acceptance |
 | --- | --- | --- | --- | --- |
 | `sw/hps/include/trecap_hps_config.h` | `[1]` | S13/R9 | Strict runtime-config and live-reservation API. | Pins the frozen windows and fails closed before normal mapping. |
-| `sw/hps/include/csr_map.h` | `[1]` | S13/R9 | CSR mapping and access API. | Uses generated offsets; no duplicate register map. |
+| `sw/hps/include/csr_map.h` | `[1]` | S13/R9 | CSR mapping and access API. | Uses generated offsets. No duplicate register map. |
 | `sw/hps/include/ring_reader.h` | `[1]` | S13/R9 | Ring reader and re-arm state API. | Exposes reset, reconfigure, `Rd=0`, active, and malformed-latched states. |
 | `sw/hps/include/udp_sender.h` | `[1]` | S13/R9 | UDP send API. | Nonblocking or bounded timeout. |
-| `sw/hps/include/command_server.h` | `[1]` | S13/S14/R9 | UDP command receiver/parser API. | Preserves exact v1 parsing; validates v2, exact peer IP/port, and result routing. |
-| `sw/hps/include/command_bridge.h` | `[1]` | S14/R9 | Lifecycle, safe-mutation, replay, RFC1982 ledger/cache API. | Ring addresses come only from validated local runtime state; direct live control writes are rejected. |
+| `sw/hps/include/command_server.h` | `[1]` | S13/S14/R9 | UDP command receiver/parser API. | Preserves exact v1 parsing. Validates v2, exact peer IP/port, and result routing. |
+| `sw/hps/include/command_bridge.h` | `[1]` | S14/R9 | Lifecycle, safe-mutation, replay, RFC1982 ledger/cache API. | Ring addresses come only from validated local runtime state. Direct live control writes are rejected. |
 | `sw/hps/include/status_patch.h` | `[1]` | S13/R9 | STATUS UDP-copy patching API. | Does not modify committed DDR records. |
 | `sw/hps/src/main.c` | `[1]` | S13/R9 | Program entry. | Delegates to the checked streamer lifecycle. |
 | `sw/hps/src/trecap_udp_streamer.c` | `[1]` | S13/R9 | Resource admission, ring/command loop, and dummy STATUS mode. | Preserves send/drop/commit order and exactly-once malformed latch. |
 | `sw/hps/src/config.c` | `[1]` | S13/R9 | Parse strict flat runtime JSON and validate live reservation. | Rejects duplicate, missing, unsafe, or non-frozen values. |
 | `sw/hps/src/csr_map.c` | `[1]` | S13/R9 | Map CSR and perform register access. | Uses generated CSR constants. |
 | `sw/hps/src/ring_reader.c` | `[1]` | S13/R9 | Validate committed records, consume WRAP, and commit `Rd`. | Bounds hostile lengths and latches malformed input exactly once. |
-| `sw/hps/src/udp_sender.c` | `[1]` | S13/R9 | Send one exact telemetry record per UDP datagram. | No padding or fragmentation; bounded failures are classified. |
-| `sw/hps/src/command_server.c` | `[1]` | S13/S14/R9 | Parse both exact 28-byte command versions and encode exact v2 results. | PING stays diagnostic-only; every v2 non-PING is handed to the sequence/cache path. |
+| `sw/hps/src/udp_sender.c` | `[1]` | S13/R9 | Send one exact telemetry record per UDP datagram. | No padding or fragmentation. Bounded failures are classified. |
+| `sw/hps/src/command_server.c` | `[1]` | S13/S14/R9 | Parse both exact 28-byte command versions and encode exact v2 results. | PING stays diagnostic-only. Every v2 non-PING is handed to the sequence/cache path. |
 | `sw/hps/src/command_bridge.c` | `[1]` | S14/R9 | Execute verified RESET/CONFIGURE/ENABLE, disabled/idle control mutation, counter-clear, replay, and status/version operations. | Enforces readback, timeout, CONTROL=0 recovery attempt, RESET_REQUIRED software lock when hardware disable is unverified, RFC1982 duplicate/conflict/stale behavior, and bounded cache. |
 | `sw/hps/src/status_patch.c` | `[1]` | S13/R9 | Patch local UDP STATUS copy with HPS-owned counters. | Patches STATUS only. |
 | `sw/hps/config/trecap_hps_config.json` | `[1]` | S13/R9 | Canonical frozen runtime profile and safety policy. | Cached mapping and automatic malformed restart remain disabled. |
-| `sw/hps/scripts/run_udp_streamer.sh` | `[1]` | S13/R9 | Validated normal or UDP-only dummy launcher. | Normal mode fails closed on live reservation; dummy mode needs no privileged mapping. |
-| `sw/hps/systemd/trecap_udp_streamer.service` | `[1]` | S13/R9 | Canonical service policy. | Latch-and-stay-alive default; debug exit 3 is not restarted. |
+| `sw/hps/scripts/run_udp_streamer.sh` | `[1]` | S13/R9 | Validated normal or UDP-only dummy launcher. | Normal mode fails closed on live reservation. Dummy mode needs no privileged mapping. |
+| `sw/hps/systemd/trecap_udp_streamer.service` | `[1]` | S13/R9 | Canonical service policy. | Latch-and-stay-alive default. Debug exit 3 is not restarted. |
 | `sw/hps/tests/test_step13_hps_transport.c` | `[1]` | S13/R9 | RAM-backed and wrapped host regression. | Covers five types, WRAP, hostile lengths, malformed re-arm, send failures, and dummy STATUS. |
 | `sw/hps/tests/test_step14_command_path.c` | `[1]` | S14/R9 | Command bridge/server host-test source. | Covers both wire versions, exact results, peer IP/port, sequence/cache, lifecycle, failure injection, counter preservation, replay, and fairness. |
-| `sim/check_step14_command_rtl.py` | `[1]` | S14/R7 | Dependency-free RTL structural/model source gate. | Checks generated CSR/owner wiring and modeled replay/counter semantics; is not native RTL simulation. |
-| `sim/tb/tb_trecap_step14_command_csr.sv` | `[1]` | S14/R7 | Directed CSR counter/replay/status testbench source. | Built by `sim/filelists/step14_command_csr.f`; checked-in source is not accepted native simulator evidence. |
+| `sim/check_step14_command_rtl.py` | `[1]` | S14/R7 | Dependency-free RTL structural/model source gate. | Checks generated CSR/owner wiring and modeled replay/counter semantics. Is not native RTL simulation. |
+| `sim/tb/tb_trecap_step14_command_csr.sv` | `[1]` | S14/R7 | Directed CSR counter/replay/status testbench source. | Built by `sim/filelists/step14_command_csr.f`. Checked-in source is not accepted native simulator evidence. |
 | `config/boards/de1soc_hps_transport.json` | `[1]` | S13/R9 | Machine-readable Step-13 source/evidence contract. | Hardware/runtime evidence fields remain false. |
 | `spec/schemas/de1soc_hps_transport.schema.json` | `[1]` | S13/R9 | Schema for the Step-13 transport contract. | Validates with the primary and fallback schema paths. |
 | `scripts/check_hps_transport.py` | `[1]` | S13/R9 | Cross-layer Step-13 source checker. | Rejects contract, policy, implementation, test, or documentation drift. |

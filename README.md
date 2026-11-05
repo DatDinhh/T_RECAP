@@ -2,196 +2,156 @@
 
 **Threshold-based Reduction and Encoding for Controlled Audio Processing**
 
-**FPGA spectral sparsification, waveform reconstruction, and measured host workload reduction on DE1-SoC, with audio and recorded RF input profiles.**
+**A shared FPGA signal-processing architecture for finite audio, captured acceleration and recorded RF experiments.**
 
 [![Source and host checks](https://github.com/DatDinhh/T_RECAP/actions/workflows/phase2-source.yml/badge.svg)](https://github.com/DatDinhh/T_RECAP/actions/workflows/phase2-source.yml)
 
-[UVM and formal report](phase2/docs/verification/uvm_formal/TRECAP_UVM_Formal_Report.pdf) | [Original verification report](phase2/docs/verification/portfolio/TRECAP_DV_Portfolio.pdf) | [Runnable RTL verification](phase2/verification/tsh2/README.md) | [Results and provenance](phase2/docs/project_overview/README.md) | [Recorded web demo](https://github.com/DatDinhh/trecap-spectral-studio)
+[Whole-project architecture atlas](phase2/docs/architecture/system/README.md) | [Atlas PDF](phase2/docs/architecture/system/TRECAP_System_Architecture_Atlas.pdf) | [Three applications](#three-concrete-applications) | [Editable algorithm spec](phase2/docs/algorithm/README.md) | [Verification](#design-verification) | [Terms](#terms-and-abbreviations)
 
-T-RECAP is a senior capstone project built around a fixed-point **FFT → tunable threshold → IFFT/WOLA** pipeline. The FPGA produces both a reconstructed audio waveform and a sparse representation of its spectrum. A laptop can inspect the audio, visualize spectral changes, and compute monitoring features from the retained spectral bins.
+T-RECAP is an undergraduate senior design project that explores how an FPGA can transform a signal into a smaller spectral representation for a compatible downstream consumer. Its common processing path is **windowing, FFT, adjustable power threshold, IFFT and weighted overlap-add**. It returns two distinct outputs: a reconstructed signal called **Y**, and spectral power records called **TSP1**.
 
-**New to the terminology?** See [Terms and abbreviations](#terms-and-abbreviations), including the difference between TSH2, THR2 and TSP1.
+The RF extension adds hardware that converts recorded complex I/Q samples into the real input expected by that common path. Audio and captured acceleration already use real samples. The architecture below brings these applications together while showing the boundaries between host preparation, FPGA computation and downstream analysis.
 
 ## Objective
 
-**Reduce the spectral data a host must receive and process, while measuring the signal information lost at each threshold.** The practical application is a spectral-activity monitor: track dominant frequency, spectral centroid, band energy, and changes in activity from compact spectral records. The reconstruction path lets us hear and measure what the threshold removed.
+**Reduce the spectral data a host receives and the work a compatible spectral consumer performs, while measuring the information lost at each threshold.** The project studies this tradeoff through audio monitoring and additional sensor and RF experiments. The reconstructed output provides a separate way to inspect distortion.
 
-This asks a specific engineering question: can a consumer that understands sparse spectra do less work while retaining the information its task needs? We compare dense and sparse representations at the **same threshold**, check their feature outputs for equality, and separately compare thresholded results with the original signal.
+There are two comparisons. Comparing the original signal with the thresholded result measures information loss. Comparing dense and sparse storage of the same thresholded values isolates the effect of representation on packet size and host processing time. A benefit in the second comparison does not establish that every application tolerates the loss in the first.
 
-The qualified finite-file implementations process audio and recorded RF I/Q on a real DE1-SoC. The RF profile adds an input adapter while retaining the numerical core. Live microphone input and continuous real-time RF transport have not been qualified by these verification packages. The [project naming note](phase2/docs/project_identity.md) records the current full name and its relationship to historical documents. Electrical energy savings have not been established.
+## Current implementation
 
-## What the project demonstrates
+| Input class | Preparation and FPGA entry | Application status |
+|---|---|---|
+| Audio file | Laptop prepares signed 12-bit samples. The TSH2 application feeds them into the shared core | Published source, physical capture evidence and audio visualization examples |
+| Captured acceleration | A bounded sensor capture or an existing dataset is mapped to one real-valued axis and replayed through TSH2 | Local application experiments using the existing real-sample path. The capture helpers are not part of the public source package |
+| Recorded RF | A CU8 file supplies unsigned I/Q byte pairs. The TRF1 application performs centering, interpolation and real-IF conversion in FPGA hardware | Published RF adapter, host source, fresh RTL regression and separately recorded physical results |
 
-| Capability | Evidence |
+**TSH2 and TRF1 are separately fitted FPGA applications that reuse the same numerical core.** The atlas shows their relationship, not a simultaneous three-input processor or a runtime audio/RF selector. The qualified paths process finite records. Live input, continuous RF reception and a browser RF-upload flow require separate integration.
+
+## Whole-project architecture
+
+![Whole-project architecture after RF integration](phase2/docs/architecture/system/01-system-overview.png)
+
+The laptop prepares the input and preserves its units and sample-rate metadata. HPS Linux handles transport, memory-mapped control and input/output FIFOs. Inside the FPGA, the selected application presents a signed 12-bit real stream to the common processor. The host receives Y and TSP1 independently, then visualizes or analyzes the output appropriate to its application.
+
+The [complete atlas](phase2/docs/architecture/system/README.md) has eight coordinated views with academic pastel blocks and written descriptions. The [LaTeX PDF](phase2/docs/architecture/system/TRECAP_System_Architecture_Atlas.pdf) collects the views for presentation and review. PNG and editable SVG versions are included.
+
+| View | Question it answers |
 |---|---|
-| Process complete audio files through physical FPGA hardware | 58 checked runs across 13 inputs, including two repeats of every configuration |
-| Preserve the intended fixed-point algorithm | All 22,301,696 returned waveform samples and 107,200,224 spectral packet bytes matched their threshold-specific reference |
-| Trade spectral data volume for waveform fidelity | On the eight-second flute excerpt, threshold `10^8` reduced spectral packet bytes by **81.69%**, with **1.76% waveform NRMSE** |
-| Reduce work in a compatible laptop consumer | At `10^8`, strict packet validation plus 16-band features used **77.21% less elapsed time** in paired warm-RAM replay of actual FPGA output |
-| Check application-specific quality | A separate spectral monitor retained its registered quality gates on four held-out natural recordings at `10^7` |
-| Provide reviewable design verification | Independent arithmetic checks, directed and seeded RTL tests, scoreboards, negative controls, observed coverage, native waveforms, physical receipts, and an academic LaTeX report |
-
-These are different measurement boundaries. A smaller spectral packet is not a smaller WAV file, a faster sparse consumer is not a faster FPGA FFT, and exact reference agreement does not mean the threshold preserved the original audio.
-
-## Recorded RF extension
-
-**The TRF1 application now accepts raw I/Q files and performs the input conversion in FPGA hardware.** The laptop sends CU8 data. The HPS transports it through RAM and memory-mapped FIFOs. The new adapter centers the bytes, interpolates by four, mixes to a real intermediate frequency and emits signed 12-bit samples into the existing FFT, threshold, IFFT/WOLA and TSP1 pipeline.
-
-![Recorded RF system architecture](phase2/docs/architecture/rf_iq/01-system.png)
-
-The audio TSH2 and RF TRF1 applications are separate fitted images. The new RF adapter does not change the numerical core, and there is no runtime audio/RF switch or RF drag-and-drop route in the existing website. The recorded-file workflow is upload, execute the local HPS client, drain results, download, and validate.
-
-The [RF architecture atlas](phase2/docs/architecture/rf_iq/README.md) provides eight detailed views alongside the preserved audio atlas below. Each RF view is linked to the implementation source.
-
-| RF view | What it explains |
-|---|---|
-| [1. System overview](phase2/docs/architecture/rf_iq/01-system.png) | Receiver recording, laptop, HPS RAM and FPGA responsibilities |
-| [2. Signal representation](phase2/docs/architecture/rf_iq/02-signal-representation.png) | CU8 centering, interpolation, real-IF mixing and signed 12-bit conversion |
-| [3. Adapter hardware](phase2/docs/architecture/rf_iq/03-adapter-hardware.png) | Histories, coefficient table, shared arithmetic and phase selection |
-| [4. Finite transaction](phase2/docs/architecture/rf_iq/04-finite-file-completion.png) | FIR startup, tail flushing, valid samples and core padding |
-| [5. Output interpretation](phase2/docs/architecture/rf_iq/05-waveform-and-spectral-outputs.png) | Real-IF Y, phase-free TSP1 and host decoding boundaries |
-| [6. Host and registers](phase2/docs/architecture/rf_iq/06-host-and-registers.png) | File transfers, raw-pair FIFO and TRF1 register access |
-| [7. Control and stalls](phase2/docs/architecture/rf_iq/07-state-and-backpressure.png) | Ready/valid, state transitions, clipping and recovery |
-| [8. Verification boundaries](phase2/docs/architecture/rf_iq/08-clock-reset-verification.png) | Clocks, reset, references, simulation and physical evidence |
+| [1. Whole system](phase2/docs/architecture/system/01-system-overview.png) | Where do the input files, laptop, HPS, FPGA and returned results fit together? |
+| [2. Input profiles](phase2/docs/architecture/system/02-input-profiles.png) | How do audio, captured acceleration and RF reach the same real-sample boundary? |
+| [3. Shared DSP](phase2/docs/architecture/system/03-shared-dsp.png) | What happens inside the FFT, threshold and reconstruction path? |
+| [4. RF input adapter](phase2/docs/architecture/system/04-rf-input-adapter.png) | What new hardware converts I/Q before the existing processor? |
+| [5. Outputs and consumers](phase2/docs/architecture/system/05-outputs-and-consumers.png) | How do waveform reconstruction and sparse spectral analysis serve different tasks? |
+| [6. Host and transactions](phase2/docs/architecture/system/06-host-and-transactions.png) | How do files and commands move through HPS to FPGA registers and FIFOs? |
+| [7. Control and backpressure](phase2/docs/architecture/system/07-control-and-backpressure.png) | How are configuration, stalls, completion and recovery handled? |
+| [8. Platform and verification](phase2/docs/architecture/system/08-platform-and-verification.png) | Which clocks, resets and evidence boundaries apply to each part? |
 
 <details>
-<summary>Expand the seven detailed RF architecture views</summary>
+<summary>2. Input profiles</summary>
 
-### RF signal representation
+![2. Input profiles](phase2/docs/architecture/system/02-input-profiles.png)
 
-![RF signal representation](phase2/docs/architecture/rf_iq/02-signal-representation.png)
-
-### RF adapter hardware
-
-![RF adapter hardware](phase2/docs/architecture/rf_iq/03-adapter-hardware.png)
-
-### RF finite file and completion
-
-![RF finite file and completion](phase2/docs/architecture/rf_iq/04-finite-file-completion.png)
-
-### RF waveform and spectral outputs
-
-![RF waveform and spectral outputs](phase2/docs/architecture/rf_iq/05-waveform-and-spectral-outputs.png)
-
-### RF host and registers
-
-![RF host and registers](phase2/docs/architecture/rf_iq/06-host-and-registers.png)
-
-### RF control and backpressure
-
-![RF control and backpressure](phase2/docs/architecture/rf_iq/07-state-and-backpressure.png)
-
-### RF clock, reset and verification
-
-![RF clock, reset and verification](phase2/docs/architecture/rf_iq/08-clock-reset-verification.png)
+Audio preparation produces signed 12-bit real samples. The accelerometer workflow captures a bounded record, selects an axis on the host and reuses that same FPGA input. The RF path starts with CU8 I/Q pairs and needs an additional FPGA adapter before it can use the real-signal core. Sample rate and physical units remain application metadata. Padding a short record does not extend its measured observation interval.
 
 </details>
 
-The initial physical RF campaign processed one public 0.262144-second OOK recording in five full hardware epochs. Every returned Y sample and TSP1 byte matched its threshold-specific reference. At threshold `10^8`, valid-interval TSP1 bytes were **34.06% smaller than dense TSP1**, with **0.353% relative L2 waveform error against the fixed-point adapter output**. At `10^10`, these values were **59.39%** and **8.086%**. The one expected message was recovered by the CPU decoder at each tested setting.
-
-These are historical physical measurements, separately identified from the fresh publication regression. They do not measure savings against raw I/Q file bytes, CPU workload, power, or live throughput. Adapter conversion error is outside the quoted threshold error. No new board run is implied by updating the report.
-
-The [RF source package](phase2/profiles/trf1/README.md), [portable verification](phase2/verification/rf_iq/README.md), and [academic LaTeX report with waveforms](phase2/docs/verification/rf_iq/README.md) document numerical tests, stream and register checks, source hashes, observed coverage and remaining limits. The earlier TSH2 UVM and formal results retain their original scope and do not automatically cover the RF adapter.
-
-## Audio TSH2 architecture
-
-![Current finite-file TSH2 architecture](phase2/docs/architecture/tsh2/01-system.png)
-
-The [current TSH2 architecture atlas](phase2/docs/architecture/tsh2/README.md) expands this overview into eight source-bound views. Each plate describes the finite-file TCP/MMIO implementation and names its verification boundary.
-
-| View | What it explains | Vector |
-|---|---|---|
-| [1. System overview](phase2/docs/architecture/tsh2/01-system.png) | Laptop, HPS and FPGA responsibilities in the finite-file path | [SVG](phase2/docs/architecture/tsh2/01-system.svg) |
-| [2. DSP and finite frames](phase2/docs/architecture/tsh2/02-dsp-finite-frames.png) | Windowing, FFT, threshold, IFFT/WOLA and finite-stream geometry | [SVG](phase2/docs/architecture/tsh2/02-dsp-finite-frames.svg) |
-| [3. Transform engines and memory](phase2/docs/architecture/tsh2/03-transform-memory.png) | Iterative transform engines and their local storage | [SVG](phase2/docs/architecture/tsh2/03-transform-memory.svg) |
-| [4. Finite epoch and feed/drain](phase2/docs/architecture/tsh2/04-finite-epoch-feed-drain.png) | Start, input feeding, output draining and full-tail completion | [SVG](phase2/docs/architecture/tsh2/04-finite-epoch-feed-drain.svg) |
-| [5. TSP1 and waveform outputs](phase2/docs/architecture/tsh2/05-tsp1-y-outputs.png) | Separate sparse spectral powers and reconstructed samples | [SVG](phase2/docs/architecture/tsh2/05-tsp1-y-outputs.svg) |
-| [6. TCP, HPS and MMIO](phase2/docs/architecture/tsh2/06-tcp-hps-mmio.png) | Finite host transaction, Linux RAM and adapter FIFO access | [SVG](phase2/docs/architecture/tsh2/06-tcp-hps-mmio.svg) |
-| [7. Configuration and backpressure](phase2/docs/architecture/tsh2/07-configuration-backpressure.png) | Idle configuration, ready/valid flow control and spectral credit | [SVG](phase2/docs/architecture/tsh2/07-configuration-backpressure.svg) |
-| [8. Clock, reset and verification boundaries](phase2/docs/architecture/tsh2/08-clock-reset-verification.png) | Clock/reset ownership, checked behavior and remaining scope | [SVG](phase2/docs/architecture/tsh2/08-clock-reset-verification.svg) |
-
 <details>
-<summary>Expand the seven detailed architecture views</summary>
+<summary>3. Shared DSP</summary>
 
-### 2. DSP and finite frames
+![3. Shared DSP](phase2/docs/architecture/system/03-shared-dsp.png)
 
-Windowing, FFT, threshold, IFFT/WOLA and finite-stream geometry.
-
-![DSP and finite frames](phase2/docs/architecture/tsh2/02-dsp-finite-frames.png)
-
-### 3. Transform engines and memory
-
-Iterative transform engines and their local storage.
-
-![Transform engines and memory](phase2/docs/architecture/tsh2/03-transform-memory.png)
-
-### 4. Finite epoch and feed/drain
-
-Start, input feeding, output draining and full-tail completion.
-
-![Finite epoch and feed/drain](phase2/docs/architecture/tsh2/04-finite-epoch-feed-drain.png)
-
-### 5. TSP1 and waveform outputs
-
-Separate sparse spectral powers and reconstructed samples.
-
-![TSP1 and waveform outputs](phase2/docs/architecture/tsh2/05-tsp1-y-outputs.png)
-
-### 6. TCP, HPS and MMIO
-
-Finite host transaction, Linux RAM and adapter FIFO access.
-
-![TCP, HPS and MMIO](phase2/docs/architecture/tsh2/06-tcp-hps-mmio.png)
-
-### 7. Configuration and backpressure
-
-Idle configuration, ready/valid flow control and spectral credit.
-
-![Configuration and backpressure](phase2/docs/architecture/tsh2/07-configuration-backpressure.png)
-
-### 8. Clock, reset and verification boundaries
-
-Clock/reset ownership, checked behavior and remaining scope.
-
-![Clock, reset and verification boundaries](phase2/docs/architecture/tsh2/08-clock-reset-verification.png)
+Overlapping 256-sample frames are windowed and transformed with a 128-sample hop. The threshold compares squared FFT magnitude with THR2. Eligible bins below the threshold are removed, equality is retained and DC is protected. The masked complex spectrum supplies the IFFT and weighted overlap-add reconstruction. The spectral exporter separately records canonical-bin power. Raising the threshold changes retained information, but does not shorten the existing FFT/IFFT schedule.
 
 </details>
 
-1. **Laptop:** prepare signed 12-bit PCM samples and choose `THR2` for the run.
-2. **ARM HPS on the board:** receive the complete file over TCP into Linux RAM, then interleave MMIO input writes with waveform and spectral FIFO reads.
-3. **FPGA:** window overlapping frames, calculate the FFT, canonicalize the real-signal spectrum, suppress eligible bins below the power threshold, and reconstruct the waveform using IFFT and weighted overlap-add.
-4. **FPGA spectral exporter:** emit retained powers and bin indices as sparse TSP1 records. The HPS returns these records and the separate reconstructed waveform to the laptop.
-5. **Laptop consumer:** validate records, compute features or monitor activity, and display the results. Reference checking evaluates implementation correctness and signal distortion separately.
+<details>
+<summary>4. RF input adapter</summary>
 
-The **waveform output contains reconstructed samples**. The **TSP1 output contains squared magnitudes without phase**, so it cannot reconstruct audio by itself. The finite TCP service returns sparse records. The lower-level adapter also supports dense records for verification.
+![4. RF input adapter](phase2/docs/architecture/system/04-rf-input-adapter.png)
 
-The audio implementation is **TSH2**, short for **T-RECAP Signal-processing Hardware, version 2**. Its host interface exposes memory-mapped control/status registers and FIFO data ports. Software on the board's ARM HPS uses them to configure and start processing, transfer audio samples and results, and inspect progress and faults.
+The added adapter centers each unsigned byte with 2*b - 255. An 81-tap FIR interpolates the signal by four. A quarter-rate mixer maps the complex result into a real intermediate-frequency stream using successive +I, -Q, -I and +Q phases. A shared multiply-accumulate datapath applies the fixed coefficients. Gain, defined rounding and signed 12-bit saturation complete the conversion. The finite wrapper aligns the FIR result and pads the valid 4*N samples to the common transaction length.
 
-The FPGA implementation uses ready/valid waveform flow control and spectral-record credit to preserve state while the host feeds and drains data. Its elapsed FPGA counter includes host-induced stalls. The [historical architecture atlas](phase2/docs/architecture/diagrams/README.md) preserves the broader DDR-ring/UDP source snapshot dated 2026-09-14. Its interfaces and acceptance scope are separate from current TSH2 verification.
+</details>
 
-| Architecture scope | Current TSH2 atlas | Historical atlas, 2026-09-14 |
-|---|---|---|
-| Input | Complete PCM file through HPS-fed MMIO FIFO | BRAM replay, LINE-IN, ADC and diagnostic source architecture |
-| Transport | TCP to HPS Linux RAM, then interleaved MMIO feed/drain | Reserved-DDR ring and HPS UDP forwarding |
-| Outputs | Separate reconstructed Y samples and TSP1 spectral powers | WAVE, spectrum, metrics and status telemetry records |
-| Qualification | Registered finite-file RTL and physical-capture checks | Historical design snapshot with its own bring-up and acceptance scope |
+<details>
+<summary>5. Outputs and consumers</summary>
 
+![5. Outputs and consumers](phase2/docs/architecture/system/05-outputs-and-consumers.png)
 
-| Parameter | Current verified profile |
+Y contains the reconstructed time-domain signal. For audio it can be played after the appropriate host conversion. For acceleration it represents the processed axis. For RF it is real IF and needs host recovery or demodulation before an application can interpret it. TSP1 contains power and bin metadata without phase. A sparse-aware consumer can skip omitted bins for band-energy features or spectral activity monitoring. TSP1 alone cannot reconstruct Y or the original I/Q signal.
+
+</details>
+
+<details>
+<summary>6. Host and transactions</summary>
+
+![6. Host and transactions](phase2/docs/architecture/system/06-host-and-transactions.png)
+
+Both profiles use HPS Linux as the bridge between the laptop and FPGA registers. The audio finite TCP service receives prepared samples and interleaves input writes with output reads. The RF workflow uploads a bounded archive, runs a local HPS client and returns a results archive. These are distinct host protocols. The HPS feeds raw I/Q to TRF1, so the RF conversion is performed in the FPGA. The laptop validates and interprets the returned data.
+
+</details>
+
+<details>
+<summary>7. Control and backpressure</summary>
+
+![7. Control and backpressure](phase2/docs/architecture/system/07-control-and-backpressure.png)
+
+The host admits the expected hardware identity and configures a run while idle. Ready/valid handshakes and spectral-record credit allow input or output progress to pause without replacing pending data. Registered FIFO reads require explicit pending and held-data state. Completion includes finite-stream padding and reconstruction tail handling. The host continues draining queued outputs after production ends. Reset, clear and watchdog recovery have defined effects on the enclosing transaction.
+
+</details>
+
+<details>
+<summary>8. Platform and verification</summary>
+
+![8. Platform and verification](phase2/docs/architecture/system/08-platform-and-verification.png)
+
+The board combines the Cyclone V FPGA fabric with the ARM HPS and its generated platform interfaces. The qualified finite-file builds use a nominal 50 MHz fabric clock. Source identities distinguish the two fitted applications. TSH2 has its own simulation, physical, UVM and local formal evidence. The RF extension has independent arithmetic checks, five self-checking RTL suites and separately identified historical board captures. Reusing the DSP core does not extend every prior proof automatically to the new adapter.
+
+</details>
+
+The earlier [TSH2 atlas](phase2/docs/architecture/tsh2/README.md) and [RF detail atlas](phase2/docs/architecture/rf_iq/README.md) remain supporting profile references. The [original DDR-ring and UDP atlas](phase2/docs/architecture/diagrams/README.md) documents a different historical deployment scope.
+
+| Shared numerical property | Value |
 |---|---|
-| Platform | Terasic DE1-SoC, Cyclone V, 50 MHz fabric clock |
-| Input | Signed 12-bit PCM, represented in sign-extended 32-bit transport words |
-| FFT / hop | 256 samples / 128 samples |
+| Core input | Signed 12-bit real samples |
+| FFT and hop | 256 samples and 128 samples |
 | Fixed-point fractional precision | 15 bits |
-| Spectral representation | 129 canonical bins, unsigned 56-bit squared magnitudes |
-| Eight-second run | 384,000 input samples at nominal 48 kHz, 3,001 frames and 384,512 full-tail output samples |
-| Reconstruction delay | 384 samples, equivalent to 8 ms at 48 kHz. This is not network latency |
-| Packet size | 952 bytes/frame in dense mode and `48 + 8K` bytes/frame in sparse mode for `K` retained bins |
-| Fitted profile resources | 6,521 ALMs, 47 M10K blocks and 35 DSP blocks, as recorded in the historical fit and timing evidence tied to the source |
+| Canonical spectrum | 129 bins with unsigned 56-bit squared magnitudes |
+| Full finite transaction | 384,000 input samples, 3,001 spectral frames and 384,512 full-tail Y samples |
+| Reconstruction alignment | 384 samples. Its duration depends on the input representation's sample rate |
+| Dense TSP1 record | 952 bytes per frame |
+| Sparse TSP1 record | 48 + 8*K bytes per frame for K retained bins |
 
-`THR2` is a power threshold on `Re(X)^2 + Im(X)^2`, not a percentage or a calibrated sound level. An eligible bin is suppressed when its power is **strictly less** than the threshold. Equality is retained, DC is protected, and Nyquist is eligible. Thresholds are configured while idle and remain fixed throughout a run. Increasing the threshold does not shorten the baseline FFT/IFFT schedule.
+For audio at 48 kHz, 384,000 samples represent eight seconds. For the recorded RF example, 250 ksample/s complex input becomes a 1 Msample/s real-IF representation after interpolation. These rates describe the signal, not measured FPGA execution throughput.
 
-## What happens to an audio file?
+## Three concrete applications
+
+The [application collection](phase2/docs/applications/README.md) includes source files, before/after comparisons, threshold sweeps and downloadable results. Each page separates the proposed scenario from what the measurements actually demonstrate.
+
+| Scenario | Measured result | What the tradeoff costs |
+| --- | --- | --- |
+| [Step counting as a component of indoor movement sensing without GPS](phase2/docs/applications/accelerometer/README.md) | With added synthetic noise, threshold 10^10 reduces extra detections from 989 to 360 | Missed events rise from 232 to 279. Lower thresholds have much smaller effects. Position and heading estimation are not implemented |
+| [RF background suppression before monitoring and decoding](phase2/docs/applications/rf/README.md) | About 44% less quiet-window power in two recorded fixtures at 10^10, with messages retained. A generated noisy case gains about 5.40 dB SNR on hardware at 10^9 | One recorded message is lost at 10^11. Weak useful components can be removed with the background |
+| [Audio cleanup experiments and smaller FLAC archives](phase2/docs/applications/audio/README.md) | Across four clips, nonzero thresholds reduce FLAC bytes by an extra 4.11% and 15.97% relative to the same quantized threshold-0 baseline | Higher thresholds remove audible detail. Encoder timing does not show a consistent speedup. Separate software denoising trials include degraded cases |
+
+The pages include actual physical captures where indicated. Audio noise tests using the fixed-point reference are explicitly labeled as software. The RF listening demo is an audible mapping of a signal envelope, not sound transmitted by the sensor. The accelerometer demonstration evaluates a step detector, not a full navigation system.
+
+![False and missed walking events at all five thresholds](phase2/docs/applications/accelerometer/figures/event_errors.png)
+
+![Recorded RF background and message-retention tradeoff](phase2/docs/applications/rf/figures/recorded_rf_hardware.png)
+
+![Actual audio compression size, timing and error](phase2/docs/applications/audio/figures/flac_tradeoff.png)
+
+The [audio listening page](phase2/docs/applications/audio/listen.html) contains original and processed WAV files and actual FLAC files for each threshold. Open it locally after cloning to use its playback controls. The corresponding application pages show how the acceleration traces and RF spectra change.
+
+## Editable algorithm specification
+
+The [algorithm folder](phase2/docs/algorithm/README.md) provides an editable Markdown transcription of the full 106-page integrated PDF, with source-page coverage and its original historical scope. A separate [current-profile and RF supplement](phase2/docs/algorithm/current_profiles_and_rf.md) documents CU8 centering, fourfold interpolation, real-IF mixing, gain, rounding, finite alignment, backpressure and the TRF1 host contract.
+
+The original PDF remains available for comparison. Historical DDR-ring and UDP requirements are distinguished from the current finite-file profiles instead of being silently rewritten as the same deployment.
+
+## Audio results
 
 The following plots use the actual reconstructed waveform captured from the board. They show an eight-second flute excerpt credited to the University of Iowa Musical Instrument Samples collection. Output is aligned by the known 384-sample delay before comparison. The full output tail is still checked during verification.
 
@@ -248,11 +208,27 @@ The application adds a **causal spectral-activity monitor** with grouped band en
 - Thresholding a waveform did not establish fewer YAMNet inference calls or an AI inference speedup. This repository's demonstrated consumer is spectral monitoring.
 - Electrical energy savings, live microphone acceptance, production reliability, and recognition accuracy remain unproven.
 
+## Recorded RF results
+
+The initial physical RF campaign processed one public 0.262144-second OOK recording in five complete hardware epochs. All 1,922,560 returned Y samples and 8,518,600 TSP1 bytes matched their threshold-specific reference. The CPU decoder recovered the one expected payload at every tested setting.
+
+| Threshold | Valid-interval spectral byte reduction against dense TSP1 | Relative L2 error against fixed-point adapter output |
+|---|---:|---:|
+| `10^8` | 34.06% | 0.353% |
+| `10^10` | 59.39% | 8.086% |
+| `10^11` | 90.66% | 35.115% |
+
+![Recorded RF spectral-size and waveform-error tradeoff](phase2/docs/verification/rf_iq/figures/historical_tradeoff.png)
+
+Only the 2,049 frames touching valid input contribute to this table. Padding-only frames are excluded. The byte baseline is dense spectral packets, not raw CU8 file size. The error baseline excludes the adapter's own conversion error. Recovery of one payload demonstrates compatibility for that recording, not general protection of weak signals or arbitrary RF protocols. These results do not measure RF CPU workload or power savings.
+
+The [RF verification report](phase2/docs/verification/rf_iq/README.md) preserves the original physical evidence separately from the fresh publication regression. The accelerometer route is shown in the unified architecture as a local application experiment, without assigning the audio or RF result percentages to that input class.
+
 ## Design verification
 
 The verification work connects a defined contract, an independently checked numerical model, RTL simulation, and physical board output. It also tests whether the checkers reject incorrect results.
 
-![Verification environment and evidence flow](phase2/docs/project_overview/figures/dv_topology.png)
+![Verification environment and evidence flow](phase2/docs/verification/portfolio/figures/topology.png)
 
 | Verification layer | Executed evidence |
 |---|---|
@@ -266,13 +242,13 @@ The verification work connects a defined contract, an independently checked nume
 
 **A real defect was found and repaired:** the software reference's signed round-shift helper mishandled shifts 63 and 64. The failing boundary cases were reproduced before the fix, then checked independently after it. This repair concerns the reference arithmetic. It is not presented as a new FPGA speed optimization.
 
-![Round-shift boundary defect and correction](phase2/docs/project_overview/figures/dv_rounding.png)
+![Round-shift boundary defect and correction](phase2/docs/verification/portfolio/figures/rounding.png)
 
 **Flow control and recovery are verified explicitly.** The traces below come from RTL simulation. They show held data during output stalls, completed transfers, and reset/recovery behavior. They are evidence excerpts, not schematic illustrations or complete full-run waveforms.
 
-![RTL handshake and output backpressure](phase2/docs/project_overview/figures/dv_handshake.png)
+![RTL handshake and output backpressure](phase2/docs/verification/portfolio/figures/handshake.png)
 
-![RTL reset and recovery](phase2/docs/project_overview/figures/dv_reset.png)
+![RTL reset and recovery](phase2/docs/verification/portfolio/figures/reset.png)
 
 Open the native [startup](phase2/docs/results/verification_20261017/waveforms/startup.vcd), [reset/recovery](phase2/docs/results/verification_20261017/waveforms/reset_recovery.vcd), and [final-output-stall](phase2/docs/results/verification_20261017/waveforms/final_y_stall.vcd) traces in a waveform viewer. The [16-page academic report](phase2/docs/verification/portfolio/TRECAP_DV_Portfolio.pdf) includes eight figures, eleven tables, methodology, failures, source binding, and sign-off limits. Its [LaTeX source and build guide](phase2/docs/verification/portfolio/README.md) are committed with the report.
 
@@ -301,22 +277,40 @@ The October 17 supplement adds a reusable **Accellera UVM 1.2** environment and 
 
 Read the [academic LaTeX supplement](phase2/docs/verification/uvm_formal/README.md), [UVM runner and evidence](phase2/verification/uvm/README.md), and [formal properties, assumptions and witnesses](phase2/verification/formal/README.md). UVM uses deterministic seeded schedules and observed counters with the installed Starter simulator. Solver-constrained randomization, covergroups and code-coverage closure are not claimed. Formal scope is local and instance-specific: it does not prove the complete FFT/IFFT pipeline, production-depth FIFO data order or the separate PCM FIFO.
 
+### RF integration verification
+
+The published RF regression checks the new adapter and its connection to the actual shared core. It compares every accepted adapter sample, source sample, reconstructed output and packet byte against the corresponding reference path.
+
+| Check | Fresh executed result |
+|---|---|
+| Standalone adapter | Three seeds, 120 transactions and 33,240 exact sample comparisons |
+| Maximum input | 96,000 I/Q pairs and 384,000 exact real outputs |
+| Finite wrapper | Four completed transactions, two aborts and 264 sample checks |
+| Core and MMIO integration | 32 epochs, 5,634,999 checks, 81,920 Y samples and 411,712 TSP1 bytes |
+| Admission and recovery | 4,260 checks, including pending-prefetch reset and held-prefetch clear |
+| Independent reference | 42 synthetic fixtures and 405,304 checked samples |
+| Native host client | 28 register-mock checks, 11 file cases and four numeric cases under the undefined-behavior sanitizer |
+
+![Actual RF adapter waveform under output backpressure](phase2/docs/verification/rf_iq/figures/rtl_backpressure.png)
+
+The negative control deliberately corrupts an expected value and must produce a mismatch. Evidence checkers bind the published source, test vectors, logs and native VCD traces. The [10-page LaTeX supplement](phase2/docs/verification/rf_iq/rf_verification_supplement.pdf) documents requirements, results and limits. These are fresh simulation and offline host checks. Historical physical RF captures are reported separately. The new RF adapter is outside the earlier TSH2 UVM and formal scope.
+
 ## Terms and abbreviations
 
 Start here if you are new to the project. **TSH2 identifies the FPGA implementation and its host interface, THR2 is a threshold setting, and TSP1 is an output format.** They refer to different things.
 
-In one sentence: the **TSH2** FPGA implementation applies **THR2** to FFT-bin power, exports retained spectral powers in **TSP1** packets, and separately produces reconstructed audio **Y**.
+In one sentence: the shared FPGA processor applies **THR2** to FFT-bin power, exports retained spectral powers in **TSP1** packets, and separately produces the reconstructed signal **Y**.
 
 ### Project names and output labels
 
 | Term | Meaning in this repository |
 |---|---|
 | **T-RECAP** | Threshold-based Reduction and Encoding for Controlled Audio Processing. |
-| **TSH2** | T-RECAP Signal-processing Hardware, version 2. The finite-file audio FPGA implementation and its host interface. HPS software uses this interface to configure processing, transfer samples and results, and inspect status and faults. |
+| **TSH2** | T-RECAP Signal-processing Hardware, version 2. The finite-file real-sample implementation originally developed for audio. HPS software uses its interface to configure processing, transfer samples and results, and inspect status and faults. |
 | **TSH1** | T-RECAP Signal-processing Hardware, version 1. The earlier Phase 2 implementation used for the historical 1,024-sample resident-compute comparison. Its timing results must not be read as current TSH2 measurements. |
 | **THR2** | The threshold applied to squared FFT magnitude: `Re(X)^2 + Im(X)^2`. It is expressed in the implementation's fixed-point power units, not percent, decibels or sound-pressure level. Values below it are suppressed. Equality is retained, and DC is protected. |
 | **TSP1** | The project's version-1 spectral packet format. It carries frame metadata and power values, with retained-bin indices in sparse mode. It omits phase, so these packets alone cannot reconstruct the audio. |
-| **Y** | The reconstructed time-domain audio output from the IFFT/WOLA path. This sample stream is separate from TSP1 spectral packets. |
+| **Y** | The reconstructed time-domain signal from the IFFT/WOLA path. It represents audio, an acceleration axis or real IF according to the selected application. This sample stream is separate from TSP1 spectral packets. |
 
 ### RF extension terms
 
@@ -331,7 +325,7 @@ In one sentence: the **TSH2** FPGA implementation applies **THR2** to FFT-bin po
 
 ### How software uses TSH2
 
-TSH1 and TSH2 are both Phase 2 implementations. The number identifies an implementation/interface version, not a project phase. TSH2 names the current hardware implementation and the interface used to access it. The signal-processing operations are FFT, thresholding and IFFT/WOLA.
+TSH1 and TSH2 are both Phase 2 implementations. The number identifies an implementation/interface version, not a project phase. TSH2 names the real-sample hardware implementation and its interface. TRF1 names the separately fitted RF application interface. The signal-processing operations are FFT, thresholding and IFFT/WOLA.
 
 Software on the board's ARM HPS uses **memory-mapped registers and FIFO data ports** to:
 
@@ -370,7 +364,7 @@ For the exact interfaces, see the [TSH2 contract](phase2/profiles/tsh2/work/trec
 | **CPU / HPS / host** | CPU means central processing unit. HPS means hard processor system, the ARM side of the board running Linux. In the workload plots, the host CPU is the laptop's Intel CPU. The board CPU and laptop CPU are distinct measurement targets. |
 | **MMIO** | Memory-mapped input/output. Software reads or writes hardware registers through addresses, allowing the HPS to configure, feed and drain the FPGA. |
 | **FIFO / BRAM / M10K** | First-in, first-out queue / block RAM. FIFOs buffer ordered data. BRAM is on-chip memory. M10K names a Cyclone V embedded memory-block resource. |
-| **RAM / DDR** | Random-access memory / double data rate. DDR refers to external memory in the historical architecture. It should not be confused with the current FPGA's on-chip FIFOs. |
+| **RAM / DDR** | Random-access memory / double data rate. Current HPS Linux buffers reside in external DDR memory. The historical FPGA-reserved DDR telemetry ring is a separate architecture. FPGA input/output FIFOs use on-chip storage. |
 | **Ready/valid / backpressure / credit** | A ready/valid transfer occurs when both signals are asserted. Backpressure pauses acceptance until the receiver has space. Spectral-record credit reserves capacity before producing another frame's records. |
 | **TCP/IP / UDP / Ethernet** | Transmission Control Protocol / Internet Protocol and User Datagram Protocol are network protocols. Ethernet provides the network link. The current finite-file path uses TCP. UDP appears in the historical architecture. |
 | **Epoch / tail / drain** | An epoch is one accepted processing run. The tail completes the final overlapping frames after input ends. Draining reads pending outputs. FPGA DONE alone does not mean the laptop has received every output. This use of epoch is unrelated to AI training. |
@@ -423,10 +417,21 @@ The [portable regression guide](phase2/verification/tsh2/README.md) documents si
 
 The [TSH2 application archive](phase2/profiles/tsh2/README.md) includes the board adapter, service, consumers, monitor, and local visualizer source. It also documents external coefficients, native libraries, fitted-image dependencies, and runtime admission requirements. It is not a one-command board deployment. The separate [Spectral Studio repository](https://github.com/DatDinhh/trecap-spectral-studio) is a recorded demonstration. Visiting it does not remotely operate this board.
 
+From the repository root, check the complete recorded RF package and its committed evidence:
+
+```sh
+python phase2/verification/rf_iq/run.py --check-package
+python phase2/verification/rf_iq/check_evidence.py
+python phase2/docs/architecture/system/build_atlas.py --check
+```
+
+The [RF reproduction guide](phase2/verification/rf_iq/README.md) explains reference dependencies and simulator execution. The [unified atlas guide](phase2/docs/architecture/system/README.md) explains diagram generation, LaTeX compilation and source bindings. Rendering documentation does not run the FPGA.
+
 ## Repository map
 
 | Path | Purpose |
 |---|---|
+| [`phase2/docs/architecture/system`](phase2/docs/architecture/system/README.md) | Whole-project architecture atlas, eight pastel views, descriptions, editable figures and LaTeX PDF |
 | [`phase2/profiles/trf1`](phase2/profiles/trf1/README.md) | Recorded RF adapter, complete application wrapper, host source and frozen simulation closure |
 | [`phase2/verification/rf_iq`](phase2/verification/rf_iq/README.md) | Portable RF reference, RTL, finite-wrapper and actual-core register verification |
 | [`phase2/docs/architecture/rf_iq`](phase2/docs/architecture/rf_iq/README.md) | Eight source-bound RF architecture views in PNG and SVG |
@@ -439,6 +444,8 @@ The [TSH2 application archive](phase2/profiles/tsh2/README.md) includes the boar
 | [`phase2/verification/formal`](phase2/verification/formal/README.md) | Local proof harnesses, assumptions, solver receipts and counterexamples |
 | [`phase2/docs/verification/uvm_formal`](phase2/docs/verification/uvm_formal/README.md) | Academic supplement, LaTeX, diagrams and actual trace plots |
 | [`phase2/verification/campaign_sources`](phase2/verification/campaign_sources/README.md) | Accepted boundary/recovery bench source archive |
+| [`phase2/docs/algorithm`](phase2/docs/algorithm/README.md) | Full editable historical algorithm specification and current RF supplement |
+| [`phase2/docs/applications`](phase2/docs/applications/README.md) | Three measured application studies with plots, source links and before/after files |
 | [`phase2/docs/verification/portfolio`](phase2/docs/verification/portfolio/README.md) | Academic PDF, editable LaTeX, and report figures |
 | [`phase2/docs/results/verification_20261017`](phase2/docs/results/verification_20261017/README.md) | Physical/RTL evidence ledger, coverage, source binding, and VCDs |
 | [`phase2/docs/project_overview`](phase2/docs/project_overview/README.md) | README figures, tables, audit, provenance, and reproduction notes |

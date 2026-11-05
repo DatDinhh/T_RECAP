@@ -37,14 +37,14 @@ python -m pip install -e "sw/pc_dashboard[gui]"
 python sw/pc_dashboard/scripts/run_dashboard.py --config sw/pc_dashboard/configs/dashboard_direct_link.json
 ```
 
-The package's base dependency set supports text mode; graphical plots require
+The package's base dependency set supports text mode. Graphical plots require
 its `gui` extra. Add `--text-only` for a console display. The script supplies the
 local package/generated-constant import paths, so no `python -m` entry point or
 manual `PYTHONPATH` is required for this invocation.
 
 For a live session, configure the documented direct-link addresses before using
 controls: the PC listens on UDP port `5005` and expects telemetry from HPS IP
-`192.168.10.2`; its command socket binds `192.168.10.1:5007`. These are lab defaults, not discovery settings.
+`192.168.10.2`. Its command socket binds `192.168.10.1:5007`. These are lab defaults, not discovery settings.
 For offline display of an existing framed capture, add
 `--capture-read <capture-file> --no-live-controls` and omit explicit pre-run
 command options. The dashboard uses the recorded receive timestamps for replay.
@@ -190,7 +190,7 @@ config.py             -> typed dashboard config loading
 ```
 
 The running GUI owns one command worker and one `CommandClient` session. Button
-callbacks enqueue typed commands; only that worker performs command socket I/O.
+callbacks enqueue typed commands. Only that worker performs command socket I/O.
 It serializes requests, preserves one monotonic version-2 sequence stream, and
 publishes result events back to the dashboard. A GUI callback shall not create a
 new default-sequence client, wait for UDP command I/O, or bypass HPS validation.
@@ -202,12 +202,12 @@ Loss and truncation state is separated by ownership:
 | PC queue drops | Local dashboard event queue overflow. |
 | PC parser errors | Datagram reached the parser but violated the wire contract. |
 | PC truncated/oversized datagrams | Local socket receive/truncation or UDP-size observation. |
-| `payload_truncated` | Wire flag on a valid telemetry payload; not a parser failure. |
+| `payload_truncated` | Wire flag on a valid telemetry payload, not a parser failure. |
 | HPS malformed/oversized/send counters | HPS DDR validation or UDP forwarding state from STATUS. |
 | `packet_fifo_drop_count` | FPGA pre-writer telemetry loss. |
 | `dma_drop_count` | FPGA DDR-writer/ring-space loss after writer admission. |
 | local sequence gaps | PC-observed normal forwarded sequence discontinuities. |
-| HPS sequence gaps | HPS-owned STATUS counter; displayed separately from the local count. |
+| HPS sequence gaps | HPS-owned STATUS counter. Displayed separately from the local count. |
 
 Forbidden behavior:
 
@@ -256,7 +256,7 @@ Canonical direct-link endpoint shape (display/capture fields omitted here):
 The dashboard may reject packets from an unexpected HPS IP in direct-link mode.
 The capture config separately records `capture_write`, `capture_read`, and
 `capture_append`. Append is legal only after the existing capture magic/header
-is validated; it extends the same framed stream and must not emit a second magic
+is validated. It extends the same framed stream and must not emit a second magic
 header.
 
 ## Bring-up ladder
@@ -513,7 +513,7 @@ and zero CRC. PING in either version returns only a fresh diagnostic STATUS with
 
 All commands except PING and `READ_STATUS_VERSION` require CSR ID/VERSION 1.8
 before `NOOP` or `APPLIED`. `READ_STATUS_VERSION` is the diagnostic exception:
-it returns raw STATUS/VERSION as `NOOP` even for an incompatible FPGA image; only
+it returns raw STATUS/VERSION as `NOOP` even for an incompatible FPGA image. Only
 a read failure returns `FAILED`.
 
 Supported command smoke sequence:
@@ -540,7 +540,7 @@ python sw/pc_dashboard/scripts/run_dashboard.py \
 
 The v2 lifecycle options must execute RESET, CONFIGURE, safe control mutations,
 and ENABLE in that order even if CLI flags are written in a different order.
-Use one bound client session so mutation sequences advance monotonically; do not
+Use one bound client session so mutation sequences advance monotonically. Do not
 start separate default-sequence processes for each command.
 
 The Step-15 live controls reuse the same command implementation. The dashboard
@@ -550,7 +550,7 @@ then completed or failed. For a version-2 non-PING request, the completed displa
 includes the disposition, reject reason, raw STATUS, and raw VERSION. PING shows
 its diagnostic STATUS response and never fabricates a generic command result.
 
-`CONFIGURE_DDR_RING` is a button/action with all-zero wire arguments; there is no
+`CONFIGURE_DDR_RING` is a button/action with all-zero wire arguments. There is no
 dashboard field for a network-supplied physical DDR address. A packet/telemetry
 profile maps to generated `SET_PACKET_ENABLE` and `SET_SPEC_MODE` commands instead
 of inventing a new wire command.
@@ -621,8 +621,8 @@ cadence does not redefine the measured transport rate. Capture replay supplies
 the original recorded receive timestamps to the same calculation.
 
 No loss counter is a substitute for another. In particular, a local PC queue
-drop does not increment `packet_fifo_drop_count`; a local parser error does not
-become an HPS malformed-DDR count; and a pre-commit FPGA drop is visible through
+drop does not increment `packet_fifo_drop_count`. A local parser error does not
+become an HPS malformed-DDR count, and a pre-commit FPGA drop is visible through
 its owner counter rather than a fabricated PC sequence gap.
 
 ### P9: dashboard performance soak
@@ -836,4 +836,4 @@ bring-up items:
 No live HPS/FPGA UDP exchange, ten-minute soak, hardware CSR result, or hardware
 non-stall behavior is claimed until those items are recorded as external bring-up
 evidence. Even after they pass, the dashboard remains demo observability and
-control; it cannot replace BRAM replay plus golden-artifact correctness signoff.
+control. It cannot replace BRAM replay plus golden-artifact correctness signoff.

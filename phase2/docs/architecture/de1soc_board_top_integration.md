@@ -45,8 +45,8 @@ does not create another reset chain.
 
 Step 16 adds the checked-in audio control and data path around that unchanged
 fabric domain. `audio_pll_wrapper` generates the peripheral-only 12.288 MHz
-`AUD_XCK`; `audio_codec_i2c_init` programs the WM8731 at 7-bit address `0x1a`;
-and `audio_codec_wrapper` implements 48 kS/s, signed 16-bit I2S with the codec as
+`AUD_XCK`. `audio_codec_i2c_init` programs the WM8731 at 7-bit address `0x1a`.
+And `audio_codec_wrapper` implements 48 kS/s, signed 16-bit I2S with the codec as
 BCLK/LRCK master. Audio admission is gated by qualified PLL lock, FPGA I2C-bus
 grant, and codec configuration done.
 
@@ -87,17 +87,17 @@ All fabric-facing owners run on the current shared `clk_fabric` and
 `rst_n_platform` integration domain where their public APIs require it. The
 audio PLL output is a codec peripheral clock, not a new core/telemetry/CSR/DDR
 domain. Vendor HPS/peripheral pins terminate only at
-`platform_designer_wrapper`; mathematical logic remains pin-agnostic.
+`platform_designer_wrapper`. Mathematical logic remains pin-agnostic.
 
 `clock_reset_ctrl` exports `clk_fabric`, canonical `rst_n_platform`, synchronized
 controls, source pacing, status/metrics ticks, and heartbeat only. The 48 kHz,
 10 Hz, 30 Hz, and 2 Hz-toggle events are exact-average fractional clock enables,
 not clocks. It no longer exports a
-synthetic frame boundary or source-safe boundary; the real owners are
+synthetic frame boundary or source-safe boundary. The real owners are
 `trecap_source_core_integration` and its mathematical core. The direct
 `CLOCK_50` baseline also does not report a fabricated `pll_locked=1` status or
 make reset correctness depend on that value. `CLOCK2_50`, `CLOCK3_50`, and
-`CLOCK4_50` are reserved; split-clock operation is unsupported pending a real
+`CLOCK4_50` are reserved. Split-clock operation is unsupported pending a real
 CDC redesign.
 
 ## Real Platform Designer paths
@@ -135,7 +135,7 @@ trecap_ddr_ring_writer
 DDR response path returns `waitrequest`, `writeresponsevalid`, and `response` to
 the writer. The board top may not replace either path with safe-idle constants.
 The hand-written wrapper requires the generated `system
-u_platform_designer_system` instance; it does not provide a local `system` stub.
+u_platform_designer_system` instance. It does not provide a local `system` stub.
 Therefore a missing generated Qsys product remains an honest full-board
 elaboration failure.
 
@@ -147,13 +147,13 @@ BCLK-to-fabric async FIFO. The codec remains serial-clock master at 48 kS/s.
 Capture is exposed only after PLL lock, FPGA I2C-bus grant, and codec init done.
 LTC2308 results move from
 `ADC_DOUT` through `adc_wrapper` as unsigned 12-bit samples. Both wrappers feed
-the matching inputs on `trecap_source_core_integration`; neither wrapper scales
+the matching inputs on `trecap_source_core_integration`. Neither wrapper scales
 samples directly into the core or bypasses the guarded source mux.
 
 Continuous LTC2308 requests use an exact-average 100 kHz fractional phase
 accumulator referenced to `FABRIC_CLK_HZ`. Individual intervals may differ by one
-fabric cycle for a general supported parameterization; the frozen 50-MHz/100-kHz
-profile divides exactly. This scheduler is a clock-enable source; the 2.5 MHz
+fabric cycle for a general supported parameterization. The frozen 50-MHz/100-kHz
+profile divides exactly. This scheduler is a clock-enable source. The 2.5 MHz
 `ADC_SCLK` remains a registered serial-protocol output and is never an internal
 RTL clock. The asynchronous `ADC_DOUT` input passes a two-flop `async_reg`/
 preserved synchronizer before the fabric shift register consumes it. No
@@ -182,12 +182,12 @@ best-effort and may drop samples when its async FIFO is full.
 The mono core sample is sign-preservingly left shifted by
 `AUDIO_SAMPLE_W - T_SAMPLE_W` and sent to both line-out channels. The top may
 name that result `core_y_audio_scaled`, but the derived net must remain directly
-traceable to the real source/core `y_data_o`; a same-width counter or switch
+traceable to the real source/core `y_data_o`. A same-width counter or switch
 value is not an acceptable substitute.
 
 If the fabric-to-BCLK async FIFO is full, the monitor sample is dropped and the
 dedicated saturating 64-bit TX-overflow counter increments.
-`audio_codec_wrapper.lineout_ready_o` is observability only; it does not become
+`audio_codec_wrapper.lineout_ready_o` is observability only. It does not become
 `y_ready_i`. An epoch tag and synchronized flush event discard stale monitor
 samples after disable, loss of codec readiness, or a source discontinuity. Once
 primed, a missing frame produces digital silence and increments the dedicated
@@ -200,8 +200,8 @@ qualified lock, `audio_codec_i2c_init` owns the open-drain
 `FPGA_I2C_SCLK`/`FPGA_I2C_SDAT` transaction sequence for WM8731 address `0x1a`,
 programming 48 kS/s, 16-bit I2S codec-master mode and ACTIVE last. The board's
 HPS codec mux must leave `HPS_I2C_CONTROL` low while FPGA initialization runs.
-FPGA logic observes the resulting bus grant and fails closed when it is absent;
-it never drives the HPS control signal.
+FPGA logic observes the resulting bus grant and fails closed when it is absent.
+It never drives the HPS control signal.
 
 This is source implementation, not proof that audio hardware is ready. The
 portable PLL branch is only an average-rate test model. Step 18 still owns
@@ -215,7 +215,7 @@ replay remains a prerequisite before live audio can be claimed.
 The pinned DE1-SoC Rev-H converter is the Linear Technology LTC2308. The
 DE1-SoC signal
 named `ADC_CS_N` is the converter's `CONVST` signal despite the misleading
-chip-select-style name. It idles low and conversion starts on a rising edge; it
+chip-select-style name. It idles low and conversion starts on a rising edge. It
 is not a generic active-low SPI chip-select.
 
 The wrapper contract is:
@@ -247,12 +247,12 @@ overrun handling.
 CONVST width, the at-least-1.6-us wait, acquisition spacing, SCLK frequency, and
 complete transaction length are checked against `CLK_HZ` with overflow-safe
 wide cross-multiplied arithmetic. The cycle counts remain parameterized, but
-compile-time assertions validate every override; literal defaults such as 2,
+compile-time assertions validate every override. Literal defaults such as 2,
 80, or 12 cycles are not accepted as the only timing proof.
 
 The supported Rev-H board-level input range is 0 to 4.096 V. The wrapper
-publishes a saturating 64-bit count only for eligible current-command samples;
-request overrun and protocol/config failures remain explicit stickies. The ADC
+publishes a saturating 64-bit count only for eligible current-command samples.
+Request overrun and protocol/config failures remain explicit stickies. The ADC
 adapter owns its separate seen/admitted/accepted/drop and clip/config
 observability. These meanings are not aliases for reserved CSR overflow bits.
 
@@ -265,17 +265,17 @@ The explicit source/build selection is
 `config/profiles/de1soc_adc_demo.json`. It freezes 100 ksample/s, 2.5 MHz SCLK,
 straight-binary unsigned 12-bit data, code-2048 recentering, channel-at-epoch
 entry, full telemetry, and DC blocking disabled. STATUS reports 100 ksample/s
-only while ADC is active; audio and BRAM replay remain 48 ksample/s.
+only while ADC is active. Audio and BRAM replay remain 48 ksample/s.
 
 This source contract still does not prove SCLK/CONVST/DOUT post-fit timing,
 analog settling, channel identity, voltage accuracy/noise, or operation against
-physical LTC2308 hardware. Bring-up must verify a Rev-H PCB and LTC2308 marking;
-older board revisions with another ADC are outside this profile. The converter
+physical LTC2308 hardware. Bring-up must verify a Rev-H PCB and LTC2308 marking.
+Older board revisions with another ADC are outside this profile. The converter
 has no reset pin or guaranteed power-on channel configuration in this contract,
 so idle-low outputs, a 92-cycle post-enable/abort recovery holdoff, and
 prime/discard are mandatory. Requests during that holdoff are rejected with
-sticky attribution. The profile keeps `SLP=0`;
-the sleep-wake delay must not be added to normal awake transactions.
+sticky attribution. The profile keeps `SLP=0`.
+The sleep-wake delay must not be added to normal awake transactions.
 
 ## Board status
 
@@ -297,7 +297,7 @@ exactly once in dependency order. They deliberately exclude
 `trecap_core_telemetry_top.sv` and generated
 `system.sv`:
 
-- the standalone composition would add a second core to the board closure;
+- the standalone composition would add a second core to the board closure.
 - generated Platform Designer HDL belongs to the vendor-generation/QIP flow,
   not the hand-written SystemVerilog filelist.
 
@@ -315,7 +315,7 @@ make check-de1soc-audio-path
 ```
 
 The machine-readable authority is
-`config/boards/de1soc_board_top_integration.json`; its schema is
+`config/boards/de1soc_board_top_integration.json`. Its schema is
 `spec/schemas/de1soc_board_top_integration.schema.json`. Passing the gate means
 only that the checked-in Step-9 composition, Step-10 clock/reset source, and
 Step-16 audio source structure agree with their contracts. The Step-16 audio

@@ -1,6 +1,6 @@
 # Repository architecture
 
-We keep one Phase 2 implementation tree with a reusable software reference model and explicit hardware/software boundaries. The [integrated specification](../specs/README.md) defines the baseline; this document describes ownership in the current repository.
+We keep one Phase 2 implementation tree with a reusable software reference model and explicit hardware/software boundaries. The [integrated specification](../specs/README.md) defines the baseline. This document describes ownership in the current repository.
 
 ## Directory ownership
 
@@ -33,15 +33,15 @@ Existing documents use these file classes:
 - `[1]`: hand-written project source, documentation, or configuration.
 - `[2]`: generated output, owned by its generator.
 
-A directory named `generated/` is not enough to determine ownership. Some JSON files under `spec/generated/` are input contracts; emitted headers and manifests are outputs. The [generated-contract guide](generated_contracts.md) identifies those roles.
+A directory named `generated/` is not enough to determine ownership. Some JSON files under `spec/generated/` are input contracts. Emitted headers and manifests are outputs. The [generated-contract guide](generated_contracts.md) identifies those roles.
 
 Root `scripts/gen_headers.py` emits the shared SV, HPS C, and dashboard Python constants. `scripts/gen_filelists.py` emits the active compilation order. The reference model owns its arithmetic configuration flow and exports the source snapshot used by the integrated build. Consumers must not maintain independent executable copies of CSR offsets, packet fields, or baseline arithmetic constants.
 
 ## Dependency boundaries
 
-The mathematical core builds independently of the platform and transports. HPS and PC code never compute the FPGA FFT/IFFT, mask, WOLA, or sample-by-sample core error. Telemetry formats and buffers records; only the HPS bridge writes DDR. Board-specific memory and IP wrappers stay outside `rtl/core/`.
+The mathematical core builds independently of the platform and transports. HPS and PC code never compute the FPGA FFT/IFFT, mask, WOLA, or sample-by-sample core error. Telemetry formats and buffers records. Only the HPS bridge writes DDR. Board-specific memory and IP wrappers stay outside `rtl/core/`.
 
-The physical board hierarchy contains one core. `trecap_source_core_integration` owns source selection and the core instance; `trecap_de1soc_full_top` consumes the exported taps for telemetry/HPS. The standalone `trecap_core_telemetry_top` is a different composition and must not be inserted into that board hierarchy as a second core.
+The physical board hierarchy contains one core. `trecap_source_core_integration` owns source selection and the core instance. `trecap_de1soc_full_top` consumes the exported taps for telemetry/HPS. The standalone `trecap_core_telemetry_top` is a different composition and must not be inserted into that board hierarchy as a second core.
 
 For full dependency rules, see [dependency_rules.md](dependency_rules.md), [module_inventory.md](module_inventory.md), and [module_api.md](module_api.md).
 
@@ -61,9 +61,9 @@ The physical Quartus top is `rtl/platform/de1soc/de1_soc_trecap_top.sv`. The nam
 
 ## Profiles and artifacts
 
-Build profiles select sources, platform dependencies, and telemetry presets. They reference shared contracts and do not redefine `N`, `L`, `H`, `F`, `G`, `D`, widths, packet IDs, or CSR offsets. BRAM replay is the default board profile; live sources are selected explicitly.
+Build profiles select sources, platform dependencies, and telemetry presets. They reference shared contracts and do not redefine `N`, `L`, `H`, `F`, `G`, `D`, widths, packet IDs, or CSR offsets. BRAM replay is the default board profile. Live sources are selected explicitly.
 
-`artifacts/reference_outputs/` contains expected outputs promoted from the reference model. Reference-package naming and source-import manifests describe provenance, not board completion. Preserve logical paths and manifest relationships when updating either tree; do not merge unrelated generated output directories by hand.
+`artifacts/reference_outputs/` contains expected outputs promoted from the reference model. Reference-package naming and source-import manifests describe provenance, not board completion. Preserve logical paths and manifest relationships when updating either tree. Do not merge unrelated generated output directories by hand.
 
 ## Project history
 

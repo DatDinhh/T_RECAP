@@ -1,6 +1,6 @@
 # C0 busy, frame count, and exact completion v67
 
-> Historical design note. Revision-specific results and open items below belong to that development stage; they are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
+> Historical design note. Revision-specific results and open items below belong to that development stage. They are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
 
 File class: **[1] hand-written bring-up and verification note**.
 
@@ -38,12 +38,12 @@ statistics event.
 
 `core_busy_o` is asserted while any of the following work is in flight:
 
-- an input sample is being accepted or forwarded;
-- the input ring owns a frame extraction or held output beat;
-- analysis-window load/output is active;
-- FFT or IFFT load, compute, or output is active;
-- canonicalizer, mask, or spectrum-builder data is held;
-- WOLA collection/add/emit/drain work is active;
+- an input sample is being accepted or forwarded.
+- the input ring owns a frame extraction or held output beat.
+- analysis-window load/output is active.
+- FFT or IFFT load, compute, or output is active.
+- canonicalizer, mask, or spectrum-builder data is held.
+- WOLA collection/add/emit/drain work is active.
 - the final public `y` beat is buffered and waiting for `y_ready_i`.
 
 This closes the legal no-`valid` gaps during sequential FFT/IFFT compute and
@@ -89,7 +89,7 @@ top_completion_error_sticky_o    undercount, extra output, or index/count mismat
 ```
 
 The public counter also checks that the accepted output index equals the
-pre-increment count. It saturates at `Ny`; an extra beat cannot wrap or create
+pre-increment count. It saturates at `Ny`. An extra beat cannot wrap or create
 a false completion.
 
 ## Restart contract
@@ -189,7 +189,7 @@ parsed directly and is what the native ModelSim runner compiles.
 The RTL regression directly exercises normal exact completion, a final-output
 stall, a clear/start collision, and an in-flight restart rejection. Undercount,
 wrong-index, and extra-output fault branches are checked by the dependency-free
-behavioral model in this revision; they are not yet forced into the native RTL
+behavioral model in this revision. They are not yet forced into the native RTL
 testbench.
 
 ModelSim/Questa was not available for that historical revision. A native
@@ -198,7 +198,7 @@ runner result is required before treating v67 as Intel-simulator evidence.
 ## Explicitly deferred
 
 - exact `y_out.memh`, `frame_stats.csv`, `metrics.json`, and `bin_stats.csv`
-  comparison for nonzero frozen vectors;
-- the delay-metrics RAM addressing issue identified in the broader audit;
-- Quartus resource/timing closure and board BRAM replay;
+  comparison for nonzero frozen vectors.
+- the delay-metrics RAM addressing issue identified in the broader audit.
+- Quartus resource/timing closure and board BRAM replay.
 - real core/CSR/DDR integration in the DE1-SoC platform top.

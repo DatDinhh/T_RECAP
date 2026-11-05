@@ -40,12 +40,12 @@ frame calls its opaque observer on real output memory, so callers must materiali
 the results. This small observer cost is included in both representations.
 Outside every timed trial, all frames from the final repetition are checked.
 Intermediate repetitions are observed but are not individually fully compared.
-Encode checks exact packet bytes; decode checks all values/indices and features;
-consumer-containing stages check all16 independently expected integer features.
+Encode checks exact packet bytes. Decode checks all values/indices and features.
+Consumer-containing stages check all16 independently expected integer features.
 
 Canonical fixture admission validates unsigned56 magnitude range, complete ordered
 frames, threshold/mask semantics, protection, and independent expected features.
-Encoder numeric inputs are trusted after this admission; decoder byte input is
+Encoder numeric inputs are trusted after this admission. Decoder byte input is
 untrusted and fully checked. Sparse encoder also checks entry count before writing.
 The fixed unsigned64 feature bounds follow directly from unsigned56 magnitudes:
 total weighted energy is at most256*(2^56-1), which fits unsigned64.
@@ -54,7 +54,7 @@ total weighted energy is at most256*(2^56-1), which fits unsigned64.
 
 `raw_trials.csv`: one row per trial, stage and B/C mode, retaining raw duration,
 repeat and frame counts, bytes per pass and stable expected packet/feature hashes.
-Warmups have trial IDs -3..-1; measured trials0..29.
+Warmups have trial IDs -3..-1. Measured trials0..29.
 
 `summary.json`: per-case byte counts and per-stage/mode median, quartiles and p95
 nanoseconds per frame. These percentiles describe30 trial means, not individual
@@ -74,5 +74,5 @@ metadata/count/flags mismatches, unordered/out-of-range/duplicate sparse indices
 missing protected DC, below-threshold entries and zero-threshold missing bins.
 The current suite has8 positive scenarios and27 rejection scenarios. Fixture
 validation additionally checks every frame of all56 frozen cases. The dense
-implementation uses vectorization-friendly contiguous loops; this does not by
+implementation uses vectorization-friendly contiguous loops. This does not by
 itself assert that every loop received SIMD code generation.

@@ -5,17 +5,17 @@
   "generator": {
     "file": "build_atlas.py",
     "sha256": "75cd2db934f0e2cc29d20fbd11918131219c425eea8df63acfa486c091039886",
-    "matplotlib": "3.11.2"
+    "matplotlib": "3.10.7"
   },
   "definitions": {
     "file": "atlas_definitions.json",
-    "sha256": "723d552b0c03ab272a097503f6b3d83b2890851230aaf7869481a4d273c2b7b2"
+    "sha256": "46b9bdb9ce1091b4fab54d50ce1f3975b08277f3b7cf2707738c551f2897022d"
   },
   "sources": [
     {
       "id": "S01",
       "path": "profiles/tsh2/work/trecap_stream8_v01/CONTRACT.md",
-      "sha256": "73af404e631860483433b1df3e0fb53f7ea66bdc1f87319b5e519aec89181f13"
+      "sha256": "5a178d659add3fc96380455b4e58eb07bb9adc5e389d97926741be0b115fbd52"
     },
     {
       "id": "S02",
@@ -35,7 +35,7 @@
     {
       "id": "S05",
       "path": "profiles/tsh2/work/trecap_laptop_fpga_v01/service/PROTOCOL.md",
-      "sha256": "e6ae0f1abf6f65b1ac75d3fe5fc64f8c987665de3ad9eb20ef59286a406bb65e"
+      "sha256": "465bd74a5575987a9d9277f0b6c5feff2c9f4a6b560611772f0138b2a5ea2066"
     },
     {
       "id": "S06",
@@ -50,12 +50,12 @@
     {
       "id": "S08",
       "path": "profiles/tsh2/README.md",
-      "sha256": "2dbd78a0d9e5313cfe8348e2b5988130970530a28e83be4d6ddb07e2b7711cba"
+      "sha256": "84d784c6a3475b21f103f6244ad883b44a85003c55e67569add2804a426d86c6"
     },
     {
       "id": "S09",
       "path": "profiles/tsh2/source_lineage.json",
-      "sha256": "1782e4315bab8e9a2b64fb181de8560a4454b83820dca608611dfbb4e8324eee"
+      "sha256": "5e2c63108057b8cc4c5270c0948ed340452736968974612b0c6bc70c092dab43"
     },
     {
       "id": "S10",
@@ -75,17 +75,17 @@
     {
       "id": "S13",
       "path": "verification/tsh2/README.md",
-      "sha256": "3b866f96fc7f7ea53f6971599b75a6146743186359cf8f895078ca758a983b0c"
+      "sha256": "b00a9400944259114976bac15b30084077289213d04e77ca1e4641cb89731ab7"
     },
     {
       "id": "S14",
       "path": "verification/README.md",
-      "sha256": "4b1289ddd6a4c0b0f008468102cdcc5d3b1bb4431d97be31c15e6b7d8769ab8b"
+      "sha256": "7abcd1db0fbc73f76da1541c9dd4efcc2fa6c95404435c9c08b96bfd1d2f010b"
     },
     {
       "id": "S15",
       "path": "docs/results/verification_20261017/README.md",
-      "sha256": "2797554bec9b43dc36e708258b7574b38f36d99fcf392539cb7d9ae202c3ad53"
+      "sha256": "74a55f4339aa30008e681f656a713ab249bd01ca15012ea1dca8688302f5ba64"
     },
     {
       "id": "S16",
@@ -190,7 +190,7 @@
       "original_sha256": "cce69d7a6395d93c8a487e36b8db8e4288e5b2e9613f205dfd84b1f380d96447",
       "public_binding": "docs/results/verification_20261017/source_bindings/fitted_source_manifest.json",
       "manifest_entry": "sources/trecap_hps_top.sv",
-      "scope": "Original retained source was reviewed separately; public check verifies only its hash entry in the published fitted manifest."
+      "scope": "Original retained source was reviewed separately. Public check verifies only its hash entry in the published fitted manifest."
     },
     {
       "id": "A02",
@@ -198,7 +198,7 @@
       "original_sha256": "3123d253447c91903e41c646049a3f4c837ff871f3ca493b3019382d00934c4e",
       "public_binding": "docs/results/verification_20261017/source_bindings/fitted_source_manifest.json",
       "manifest_entry": "sources/platform_designer_wrapper.sv",
-      "scope": "Original retained source was reviewed separately; public check verifies only its hash entry in the published fitted manifest."
+      "scope": "Original retained source was reviewed separately. Public check verifies only its hash entry in the published fitted manifest."
     }
   ],
   "plates": [
@@ -327,113 +327,113 @@
     {
       "file": "01-system.png",
       "repo_path": "docs/architecture/tsh2/01-system.png",
-      "sha256": "78f79f5ee794696145d006a866636e9b9e779aef3bf2b54071b225d7235cd644",
-      "bytes": 367602,
+      "sha256": "b1383c21e15036174579a90ba372a080ad95d1a786a15fae83ba42e57a24289f",
+      "bytes": 409304,
       "plate": 1
     },
     {
       "file": "01-system.svg",
       "repo_path": "docs/architecture/tsh2/01-system.svg",
-      "sha256": "afc77d9a3a68084ff6b2511139b838f05c8872ecfc599377c3aa643e9a55971f",
-      "bytes": 30137,
+      "sha256": "c60959878914f040c122762ab712e2414982ae99501f9d483667b05d35bb62bd",
+      "bytes": 30046,
       "plate": 1
     },
     {
       "file": "02-dsp-finite-frames.png",
       "repo_path": "docs/architecture/tsh2/02-dsp-finite-frames.png",
-      "sha256": "a6176af0dfab3204c01df05725f12f56b0095ee1e034a1638e1c5803da1404c6",
-      "bytes": 402886,
+      "sha256": "8168ad9b30ae0d4cedcd2c1045aa272af511a9830eaadd652845e60027a67473",
+      "bytes": 450355,
       "plate": 2
     },
     {
       "file": "02-dsp-finite-frames.svg",
       "repo_path": "docs/architecture/tsh2/02-dsp-finite-frames.svg",
-      "sha256": "c29761711a063cdc6705707e67dd2291fe776fe24ac013d62c474187130c0f80",
-      "bytes": 33879,
+      "sha256": "83666285c6b2d8db183581df28571f11a6c818b7c33fc3321af2d17710b0b504",
+      "bytes": 33661,
       "plate": 2
     },
     {
       "file": "03-transform-memory.png",
       "repo_path": "docs/architecture/tsh2/03-transform-memory.png",
-      "sha256": "3adf78e0ad64f1e3c00bfae14bdaf22cd5f443daa43b0015c05c77bffb3200ec",
-      "bytes": 388964,
+      "sha256": "5986ce6b59411893561517870eb7b2000d8c83eaa379b20b935634a995451142",
+      "bytes": 423075,
       "plate": 3
     },
     {
       "file": "03-transform-memory.svg",
       "repo_path": "docs/architecture/tsh2/03-transform-memory.svg",
-      "sha256": "3ba9b7db61533679b8e107c754cd79ec5c89b2495af19f33f6e57c9f2d181811",
-      "bytes": 29611,
+      "sha256": "4593dd798f65b22cee7aa5881218867d024a27f4f16ab828d1126419f73512fe",
+      "bytes": 29487,
       "plate": 3
     },
     {
       "file": "04-finite-epoch-feed-drain.png",
       "repo_path": "docs/architecture/tsh2/04-finite-epoch-feed-drain.png",
-      "sha256": "88eb6269df4291bda844d2df4857058c2c73fa78125aa6fbe29ca63732830e21",
-      "bytes": 394684,
+      "sha256": "ce336be0571fea48fb5729273e4373db5194e88e68713866eeb2b251272b5056",
+      "bytes": 432394,
       "plate": 4
     },
     {
       "file": "04-finite-epoch-feed-drain.svg",
       "repo_path": "docs/architecture/tsh2/04-finite-epoch-feed-drain.svg",
-      "sha256": "42ac24d3d724416131e4f76c024297030798cec242151b6cef64c0f345883ee7",
-      "bytes": 26200,
+      "sha256": "3ead142f13fdf01f57fc7249b458a7a5a9113d9b62d9ebed367bdf027e86bdbe",
+      "bytes": 26135,
       "plate": 4
     },
     {
       "file": "05-tsp1-y-outputs.png",
       "repo_path": "docs/architecture/tsh2/05-tsp1-y-outputs.png",
-      "sha256": "f39c3086630288bc47b5971297884cf1695721cb063420b79fb7572449c73758",
-      "bytes": 384775,
+      "sha256": "49d2f88289598807337e695ad89fb9b11bae9656e192b6ab94af1e25ae0a2146",
+      "bytes": 429024,
       "plate": 5
     },
     {
       "file": "05-tsp1-y-outputs.svg",
       "repo_path": "docs/architecture/tsh2/05-tsp1-y-outputs.svg",
-      "sha256": "3aaada3c1a2d111546ab6b140b5e86e6266fc6a883e74fb4d9676f7efd2c0c98",
+      "sha256": "4a525654bc1c0014fe102ba57a2e2ea9c5ec35efa0a06d219e030c718b4ed895",
       "bytes": 25785,
       "plate": 5
     },
     {
       "file": "06-tcp-hps-mmio.png",
       "repo_path": "docs/architecture/tsh2/06-tcp-hps-mmio.png",
-      "sha256": "775020e7f4ac12c5c7fea9989ad09b657a013f175e1d26959cb8c0473a64d6d0",
-      "bytes": 412983,
+      "sha256": "ad931563c46d11d11d12c00cb531fc60d2eb1f2050efad89549fd326d5f22e45",
+      "bytes": 445893,
       "plate": 6
     },
     {
       "file": "06-tcp-hps-mmio.svg",
       "repo_path": "docs/architecture/tsh2/06-tcp-hps-mmio.svg",
-      "sha256": "8621ba8aedbb25cbe14e604a6623a90cdb12a75213a26576336d6a339dab2846",
-      "bytes": 28108,
+      "sha256": "e31ce75d23de10c149421a03d4ea446e42f89bca245ec1fa6ec9f19cda61dfc6",
+      "bytes": 27928,
       "plate": 6
     },
     {
       "file": "07-configuration-backpressure.png",
       "repo_path": "docs/architecture/tsh2/07-configuration-backpressure.png",
-      "sha256": "023e48c9fb850e842a69627696b68014061e083d438f67bae05d00c25c5daead",
-      "bytes": 409291,
+      "sha256": "eb5d82ee7e98516b54ee99ac221da10b2ce3d1cc35c89e181ede773b6cbf2716",
+      "bytes": 452582,
       "plate": 7
     },
     {
       "file": "07-configuration-backpressure.svg",
       "repo_path": "docs/architecture/tsh2/07-configuration-backpressure.svg",
-      "sha256": "88e59c2524b1ea03d782ee68be7774a5670a42d743f879becb384684ad92c146",
-      "bytes": 33215,
+      "sha256": "941f2767069e10f9edd11d49c5c43e3ba93ca12357d3213e8549d02a65065abd",
+      "bytes": 33150,
       "plate": 7
     },
     {
       "file": "08-clock-reset-verification.png",
       "repo_path": "docs/architecture/tsh2/08-clock-reset-verification.png",
-      "sha256": "04856b6f047b4e494191f179534ea8f137db81573c07d3f156ec120c732fadb9",
-      "bytes": 366267,
+      "sha256": "981fe2b1e5b95d27c9c2e03a0c5a11511cf868e5c7b2850091056cde27315af0",
+      "bytes": 388925,
       "plate": 8
     },
     {
       "file": "08-clock-reset-verification.svg",
       "repo_path": "docs/architecture/tsh2/08-clock-reset-verification.svg",
-      "sha256": "368237051a0d6f711c8e65b3912eea7f97646b68688540938bcf1b2cb73f69b7",
-      "bytes": 27236,
+      "sha256": "3c8d11bfb5b8c27426b36150d63c283bff39cb1940ed61311fdf6f065038ecec",
+      "bytes": 27080,
       "plate": 8
     }
   ],
@@ -450,7 +450,7 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: prior visual review retained; regenerated PNG/SVG bytes are unchanged"
+      "visual_review": "Pending separate human/agent inspection"
     },
     {
       "plate": 2,
@@ -464,7 +464,7 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: prior visual review retained; regenerated PNG/SVG bytes are unchanged"
+      "visual_review": "Pending separate human/agent inspection"
     },
     {
       "plate": 3,
@@ -478,7 +478,7 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: prior visual review retained; regenerated PNG/SVG bytes are unchanged"
+      "visual_review": "Pending separate human/agent inspection"
     },
     {
       "plate": 4,
@@ -492,7 +492,7 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: prior visual review retained; regenerated PNG/SVG bytes are unchanged"
+      "visual_review": "Pending separate human/agent inspection"
     },
     {
       "plate": 5,
@@ -506,7 +506,7 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: prior visual review retained; regenerated PNG/SVG bytes are unchanged"
+      "visual_review": "Pending separate human/agent inspection"
     },
     {
       "plate": 6,
@@ -520,7 +520,7 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: prior visual review retained; regenerated PNG/SVG bytes are unchanged"
+      "visual_review": "Pending separate human/agent inspection"
     },
     {
       "plate": 7,
@@ -534,7 +534,7 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: prior visual review retained; regenerated PNG/SVG bytes are unchanged"
+      "visual_review": "Pending separate human/agent inspection"
     },
     {
       "plate": 8,
@@ -548,49 +548,7 @@
         2700,
         1800
       ],
-      "visual_review": "PASS: regenerated plate 8 visually inspected; SVG uses the same rendered definition"
+      "visual_review": "Pending separate human/agent inspection"
     }
-  ],
-  "publication_review": {
-    "status": "PASS",
-    "scope": "Documentation refresh only: retain prior reviewed plates1-7 by exact PNG/SVG byte identity; regenerated plate8 source semantics and final PNG visually reviewed",
-    "reviewed_updated_plates": [
-      8
-    ],
-    "byte_identical_prior_plates": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7
-    ],
-    "reviewer": "source-review agent",
-    "method": "Reviewed S14 verification index and supplemental report boundaries; verified physical nodes, edges and all source mappings unchanged; inspected final plate8 for legibility, clipping and overlaps",
-    "updated_definitions_sha256": "723d552b0c03ab272a097503f6b3d83b2890851230aaf7869481a4d273c2b7b2",
-    "source_binding_changed": "S14 verification/README.md",
-    "prior_review": {
-      "status": "PASS",
-      "scope": "Visual inspection of all eight final PNGs for legibility, overlap and clipping; source semantics separately reviewed",
-      "reviewed_plates": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8
-      ],
-      "reviewers": [
-        "renderer author",
-        "independent root reviewer"
-      ],
-      "method": "Final author inspection of all eight PNGs; independent root inspection of all eight compositions and approval of the final plate 4 wording adjustment",
-      "source_spec_sha256": "23aa806175467c544d641b1a5afc2d0e3060a0525c39233ec4338ef7802cb23f",
-      "generator_manifest_sha256_before_review_supplement": "cdc5a0c5bb0826d4e39a8ae7d24f11cf63483b8f02026ae43474a3443deb78fb",
-      "supplement": "Only visual-review fields added after rendering; all image, generator, definition and source hashes preserved"
-    }
-  }
+  ]
 }

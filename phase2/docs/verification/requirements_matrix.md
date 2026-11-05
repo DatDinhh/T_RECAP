@@ -2,7 +2,7 @@
 
 This is the requirement design matrix, not a coverage report. The [first
 executed campaign](../results/verification_baseline_20260915.md) supplies partial
-evidence for selected families; full requirement closure remains open. A row is
+evidence for selected families. Full requirement closure remains open. A row is
 complete only when it links a qualified checker and every applicable mandatory
 test instance to immutable evidence for the current source/configuration. A historical PASS, source hash or documentation
 review alone cannot close a functional requirement.
@@ -34,8 +34,8 @@ Known disagreements are recorded in [open items](decisions_and_open_items.md).
 | SB-CMD | Peer/session/sequence and command side-effect lifecycle |
 | SB-EVID | Test inventory, enabled checks, coverage, watchdog and evidence validation |
 
-Property IDs are defined in the [assertion catalog](assertion_catalog.md);
-test-family IDs in the [test catalog](test_catalog.md). Additional requirement
+Property IDs are defined in the [assertion catalog](assertion_catalog.md).
+Test-family IDs in the [test catalog](test_catalog.md). Additional requirement
 rows can be introduced when a contract decision adds behavior, without reusing
 an existing ID for a different meaning.
 
@@ -43,52 +43,52 @@ an existing ID for a different meaning.
 
 | Requirement | Required behavior | Authority | Checker/property | Tests | Mandatory coverage focus |
 | --- | --- | --- | --- | --- | --- |
-| R-AUTH-01 | Versioned expected behavior and immutable inputs | PDF; generated contracts | SB-ART | T-REF-01, T-ENV-03 | All selected revisions, hashes, widths and artifact rows |
-| R-REF-01 | Reference qualified independently before prediction | PDF 3-8; reference public APIs | SB-NUM, SB-ART | T-REF-02, T-REF-03, T-REF-05 | Primitive/frame/finite checks; dynamic adapter static-equivalence witness |
-| R-REF-02 | All required vector classes admitted; no invented quality bounds | PDF 8.1-8.4 | SB-ART, SB-MET | T-REF-04, T-REF-06 | Every mandatory class and no-suppression bound |
-| R-NUM-01 | Correct signed/unsigned coefficients and width schedule | PDF 3.3-3.5 | SB-NUM, P-NUM-03 | T-AR-02 | Window 0/unity; twiddle +/-unity; full input extrema |
+| R-AUTH-01 | Versioned expected behavior and immutable inputs | PDF. Generated contracts | SB-ART | T-REF-01, T-ENV-03 | All selected revisions, hashes, widths and artifact rows |
+| R-REF-01 | Reference qualified independently before prediction | PDF 3-8. Reference public APIs | SB-NUM, SB-ART | T-REF-02, T-REF-03, T-REF-05 | Primitive/frame/finite checks. Dynamic adapter static-equivalence witness |
+| R-REF-02 | All required vector classes admitted. No invented quality bounds | PDF 8.1-8.4 | SB-ART, SB-MET | T-REF-04, T-REF-06 | Every mandatory class and no-suppression bound |
+| R-NUM-01 | Correct signed/unsigned coefficients and width schedule | PDF 3.3-3.5 | SB-NUM, P-NUM-03 | T-AR-02 | Window 0/unity. Twiddle +/-unity. Full input extrema |
 | R-NUM-02 | Exact shifts, ties-away rounding and defined saturation | PDF 3.1-3.4 | SB-NUM, P-NUM-03 | T-AR-01, T-AR-03 | Sign x tie x shift x boundary |
 | R-NUM-03 | Custom FFT/IFFT graph, normalization and ordering | PDF 4.2,4.6,6 | SB-NUM, P-CORE-02 | T-XF-01, T-XF-02, T-XF-04 | All bins/stages, direction, ROM axes, RAM phases |
 | R-NUM-04 | Canonicalization precedes full-width mask decisions | PDF 4.3-4.5 | SB-NUM, P-NUM-01, P-NUM-02 | T-AR-04, T-AR-05 | Conjugate/self-conjugate x signed tie x threshold relation |
-| R-NUM-05 | Correct final/preliminary mask, protection and weighted statistics | PDF 4.5,5,7.1 | SB-NUM, SB-MET, P-NUM-02 | T-AR-05, T-AR-06, T-C-01 | Eligible 128/unique 129; interior weight 2; endpoint weight 1 |
+| R-NUM-05 | Correct final/preliminary mask, protection and weighted statistics | PDF 4.5,5,7.1 | SB-NUM, SB-MET, P-NUM-02 | T-AR-05, T-AR-06, T-C-01 | Eligible 128/unique 129. Interior weight 2. Endpoint weight 1 |
 | R-NUM-06 | Exact synthesis, OLA and final output rounding | PDF 4.6,5 | SB-NUM, SB-GEO, P-CORE-06 | T-C-01, T-C-02 | Overlap phases, startup/tail and output saturation |
-| R-NUM-07 | No unexpected overflow on normative vectors | PDF 3.1,3.4,8.4 AC14 | SB-NUM, P-NUM-03 | T-C-01, T-C-07 | Frozen headroom cases; separately classified stress flags |
-| R-GEO-01 | Window-active finite geometry and pure drain | PDF 2.2-2.3,5; BRAM path | SB-GEO, P-CORE-03, P-CORE-05 | T-C-02 | Ns=1/2, H+1/H+2, L+1/L+2, long wraps |
-| R-GEO-02 | Delayed reference and exact full-tail error metrics | PDF 5.1,7.2 | SB-GEO, SB-MET | T-C-01, T-C-08 | All Ny samples scored; startup reference and post-input tail zero extension |
-| R-FLOW-01 | Atomic input acceptance and tagged history ownership | Core/source integration; storage schedule | SB-GEO, P-CORE-01, P-CORE-06 | T-C-03, T-C-06 | Full/empty and pointer reuse; delayed output pressure |
-| R-FLOW-02 | Stable streams and no duplicated/missing work | Module APIs and core RTL | SB-GEO, P-OBS-01, P-RV-01, P-CORE-02 | T-XF-03, T-C-03 | First/middle/last stall; consecutive identical accepted values |
-| R-FLOW-03 | Each frame owns its threshold snapshot | Core RTL; CSR commit contract | SB-CTL, SB-NUM, P-CORE-04 | T-C-04, T-CTL-02 | Commit timing x queue occupancy x old frame in flight |
-| R-FLOW-04 | Correct internal metric commit versus public output acceptance | Delay/error block; core statistics contract | SB-MET, P-CORE-07, P-TEL-04 | T-C-08 | Clear x pending request/commit/held y; local MAG2 policy separate |
-| R-FLOW-05 | Exact completion and no premature done | BRAM path; PDF 8.4 AC7/AC9/AC13 | SB-GEO, SB-DDR, P-CORE-08 | T-C-03, T-BRD-01 | Source/core/system completion distinctions; final y held |
-| R-SRC-01 | Correct source normalization and mode selection | PDF 9; source-health policy | SB-SRC, P-SRC-01 | T-S-01 | Audio ties; ADC midscale/extrema; manual exclusion |
-| R-SRC-02 | Coherent epoch change and defined recovery | Source-health and source integration | SB-SRC, P-SRC-01, P-SRC-02 | T-S-02 | Gap/duplicate/readiness loss; idempotent commit; settle |
+| R-NUM-07 | No unexpected overflow on normative vectors | PDF 3.1,3.4,8.4 AC14 | SB-NUM, P-NUM-03 | T-C-01, T-C-07 | Frozen headroom cases. Separately classified stress flags |
+| R-GEO-01 | Window-active finite geometry and pure drain | PDF 2.2-2.3,5. BRAM path | SB-GEO, P-CORE-03, P-CORE-05 | T-C-02 | Ns=1/2, H+1/H+2, L+1/L+2, long wraps |
+| R-GEO-02 | Delayed reference and exact full-tail error metrics | PDF 5.1,7.2 | SB-GEO, SB-MET | T-C-01, T-C-08 | All Ny samples scored. Startup reference and post-input tail zero extension |
+| R-FLOW-01 | Atomic input acceptance and tagged history ownership | Core/source integration. Storage schedule | SB-GEO, P-CORE-01, P-CORE-06 | T-C-03, T-C-06 | Full/empty and pointer reuse. Delayed output pressure |
+| R-FLOW-02 | Stable streams and no duplicated/missing work | Module APIs and core RTL | SB-GEO, P-OBS-01, P-RV-01, P-CORE-02 | T-XF-03, T-C-03 | First/middle/last stall. Consecutive identical accepted values |
+| R-FLOW-03 | Each frame owns its threshold snapshot | Core RTL. CSR commit contract | SB-CTL, SB-NUM, P-CORE-04 | T-C-04, T-CTL-02 | Commit timing x queue occupancy x old frame in flight |
+| R-FLOW-04 | Correct internal metric commit versus public output acceptance | Delay/error block. Core statistics contract | SB-MET, P-CORE-07, P-TEL-04 | T-C-08 | Clear x pending request/commit/held y. Local MAG2 policy separate |
+| R-FLOW-05 | Exact completion and no premature done | BRAM path. PDF 8.4 AC7/AC9/AC13 | SB-GEO, SB-DDR, P-CORE-08 | T-C-03, T-BRD-01 | Source/core/system completion distinctions. Final y held |
+| R-SRC-01 | Correct source normalization and mode selection | PDF 9. Source-health policy | SB-SRC, P-SRC-01 | T-S-01 | Audio ties. ADC midscale/extrema. Manual exclusion |
+| R-SRC-02 | Coherent epoch change and defined recovery | Source-health and source integration | SB-SRC, P-SRC-01, P-SRC-02 | T-S-02 | Gap/duplicate/readiness loss. Idempotent commit. Settle |
 | R-SRC-03 | Audio serialization, I2C and complete-frame transfer | Audio wrapper and bringup contract | SB-SRC, P-SRC-03, P-CDC-01 | T-S-03 | I2S L/R/edges, ACK/NACK, grant/lock, clock loss, FIFO pressure |
-| R-SRC-04 | ADC protocol priming and mode behavior | ADC wrapper and source-health contract | SB-SRC, P-SRC-01 | T-S-04 | Channel/prime/abort/manual/continuous; first result |
-| R-RST-01 | Reset and clear affect their specified owners | Clock/reset, source-health, local owner RTL | SB-GEO, SB-SRC, SB-DDR, P-CTRL-01 | T-C-05, T-CTL-03, T-DDR-05 | Each reset/clear x outstanding work; resolved collisions |
+| R-SRC-04 | ADC protocol priming and mode behavior | ADC wrapper and source-health contract | SB-SRC, P-SRC-01 | T-S-04 | Channel/prime/abort/manual/continuous. First result |
+| R-RST-01 | Reset and clear affect their specified owners | Clock/reset, source-health, local owner RTL | SB-GEO, SB-SRC, SB-DDR, P-CTRL-01 | T-C-05, T-CTL-03, T-DDR-05 | Each reset/clear x outstanding work. Resolved collisions |
 | R-CDC-01 | Functional CDC protocol and coordinated FIFO reset | CDC plan and active topology | SB-SRC, P-CDC-01, P-CDC-02 | T-S-05 | Clock phase/ratio x occupancy x reset sequence |
-| R-CDC-02 | Structural CDC/RDC and fitted physical constraints | CDC plan; physical timing | Reviewed structural/STA evidence | T-PHY-01, T-PHY-02 | Every active crossing, clock and constrained path group |
-| R-TEL-01 | Observer pressure cannot throttle admitted DSP work | PDF 13.3; source/telemetry composition | SB-GEO, P-TEL-01 | T-S-06 | Paired runs with matched source/control and aligned accepted start |
-| R-TEL-02 | Packet fields, sizes, timestamps, endian/sign and flags | PDF 18-19; packet layouts | SB-TEL | T-TEL-01, T-SW-03 | All types/fields; SPEC64 buckets and SPEC129 masks; WAVE boundaries |
-| R-TEL-03 | Atomic packet storage and specified arbitration | Packet FIFO RTL; interface contracts | SB-LOSS, P-TEL-02, P-TEL-03 | T-TEL-02, T-TEL-03 | Priority x occupancy x simultaneous pop/admit |
-| R-TEL-04 | Loss accounting respects stage and counter semantics | Source health; packet FIFO; HPS transport | SB-LOSS, P-SRC-03, P-TEL-03 | T-TEL-05, T-SW-01 | Every terminal reason; no exact-count assumption for coalesced audio events |
-| R-TEL-05 | Coherent metric/status snapshots and effective profile cadence | Core statistics; profiles; CSR map | SB-MET, SB-CTL, SB-TEL, P-TEL-04 | T-TEL-04 | Applied clear vs raw request; profile-derived period/enables |
-| R-CTL-01 | Valid CSR accesses and rejection without alias/side effects | CSR map; Avalon CSR adapter | SB-CTL, P-CSR-01, P-CSR-03 | T-CTL-01 | Every implemented access class and defined invalid request |
-| R-CTL-02 | Atomic shadow/commit, snapshots and owner permissions | PDF 16; command extension | SB-CTL, P-CSR-02, P-CTRL-01 | T-CTL-02, T-CTL-03 | All multiword values; safe application; local collision precedence |
-| R-DDR-01 | Ring alignment, range and wrap-aware free-space admission | PDF 17-19; DDR ownership | SB-DDR, P-DDR-05 | T-DDR-01, T-DDR-02 | Exact end; guard; required extent +/-64; invalid range |
-| R-DDR-02 | Accepted bus writes complete under the declared backend | Avalon master; board wrapper | SB-DDR, P-DDR-01, P-DDR-02 | T-DDR-03, T-DDR-06 | Generic responses versus local acceptance; all beat fault positions |
-| R-DDR-03 | Record-level atomic publication and pointer ownership | PDF 17,19; ring-pointer RTL | SB-DDR, P-DDR-03, P-DDR-04 | T-DDR-02, T-DDR-04 | WRAP separate from normal; seq wrap; torn snapshot/illegal Rd |
-| R-DDR-04 | Reset/reconfigure cannot publish stale or wrong-epoch work | DDR ownership; local owner RTL | SB-DDR, P-CTRL-01 | T-DDR-05 | Outstanding response and post-WRAP reset; late-response decision |
-| R-SW-01 | HPS consumes committed records and forwards correct bytes | PDF 20-23; HPS transport | SB-SW, SB-DDR | T-SW-01 | Malformed extents, WRAP/padding, UDP failure and Rd-commit outcomes |
+| R-CDC-02 | Structural CDC/RDC and fitted physical constraints | CDC plan. Physical timing | Reviewed structural/STA evidence | T-PHY-01, T-PHY-02 | Every active crossing, clock and constrained path group |
+| R-TEL-01 | Observer pressure cannot throttle admitted DSP work | PDF 13.3. Source/telemetry composition | SB-GEO, P-TEL-01 | T-S-06 | Paired runs with matched source/control and aligned accepted start |
+| R-TEL-02 | Packet fields, sizes, timestamps, endian/sign and flags | PDF 18-19. Packet layouts | SB-TEL | T-TEL-01, T-SW-03 | All types/fields. SPEC64 buckets and SPEC129 masks. WAVE boundaries |
+| R-TEL-03 | Atomic packet storage and specified arbitration | Packet FIFO RTL. Interface contracts | SB-LOSS, P-TEL-02, P-TEL-03 | T-TEL-02, T-TEL-03 | Priority x occupancy x simultaneous pop/admit |
+| R-TEL-04 | Loss accounting respects stage and counter semantics | Source health. Packet FIFO. HPS transport | SB-LOSS, P-SRC-03, P-TEL-03 | T-TEL-05, T-SW-01 | Every terminal reason. No exact-count assumption for coalesced audio events |
+| R-TEL-05 | Coherent metric/status snapshots and effective profile cadence | Core statistics. Profiles. CSR map | SB-MET, SB-CTL, SB-TEL, P-TEL-04 | T-TEL-04 | Applied clear vs raw request. Profile-derived period/enables |
+| R-CTL-01 | Valid CSR accesses and rejection without alias/side effects | CSR map. Avalon CSR adapter | SB-CTL, P-CSR-01, P-CSR-03 | T-CTL-01 | Every implemented access class and defined invalid request |
+| R-CTL-02 | Atomic shadow/commit, snapshots and owner permissions | PDF 16. Command extension | SB-CTL, P-CSR-02, P-CTRL-01 | T-CTL-02, T-CTL-03 | All multiword values. Safe application. Local collision precedence |
+| R-DDR-01 | Ring alignment, range and wrap-aware free-space admission | PDF 17-19. DDR ownership | SB-DDR, P-DDR-05 | T-DDR-01, T-DDR-02 | Exact end. Guard. Required extent +/-64. Invalid range |
+| R-DDR-02 | Accepted bus writes complete under the declared backend | Avalon master. Board wrapper | SB-DDR, P-DDR-01, P-DDR-02 | T-DDR-03, T-DDR-06 | Generic responses versus local acceptance. All beat fault positions |
+| R-DDR-03 | Record-level atomic publication and pointer ownership | PDF 17,19. Ring-pointer RTL | SB-DDR, P-DDR-03, P-DDR-04 | T-DDR-02, T-DDR-04 | WRAP separate from normal. Seq wrap. Torn snapshot/illegal Rd |
+| R-DDR-04 | Reset/reconfigure cannot publish stale or wrong-epoch work | DDR ownership. Local owner RTL | SB-DDR, P-CTRL-01 | T-DDR-05 | Outstanding response and post-WRAP reset. Late-response decision |
+| R-SW-01 | HPS consumes committed records and forwards correct bytes | PDF 20-23. HPS transport | SB-SW, SB-DDR | T-SW-01 | Malformed extents, WRAP/padding, UDP failure and Rd-commit outcomes |
 | R-SW-02 | Command retries are at most once in the specified session | Command version 2 contract | SB-CMD, P-CMD-01 | T-SW-02 | Duplicate/conflict/stale/wrap/half-range x peer/session/cache |
-| R-SW-03 | PC decoder and playback obey the wire contract | PDF 24; packet layouts; dashboard guide | SB-SW, SB-TEL | T-SW-03 | Every type, size, sign, flag, gap/reorder and capture mode |
-| R-PLAT-01 | Kernel reservation/mapping and codec-grant ownership | Linux baseline; platform grant | Kernel tests plus board evidence | T-SW-04, T-BRD-01 | Exclusive owner; mmap/ioctl bounds; revoke/cleanup readback |
-| R-PLAT-02 | Model substitution limits and real DDR visibility explicit | Platform wrapper; DDR ownership | Assumption inventory plus physical evidence | T-PHY-03, T-DDR-06, T-BRD-01 | Every vendor boundary; posted-write visibility not inferred from OKAY |
-| R-BOARD-01 | BRAM hardware matches mandatory artifacts before live demo | PDF 8.4 AC13; BRAM path | SB-NUM, SB-MET, complete capture | T-BRD-01 | All required vectors/artifact fields; no required observation lost |
-| R-BOARD-02 | Live-source claims carry separate physical evidence | LINE-IN/ADC bringup | Measured interface and source-health results | T-BRD-02, T-BRD-03 | Only selected live profiles; ADC remains optional |
+| R-SW-03 | PC decoder and playback obey the wire contract | PDF 24. Packet layouts. Dashboard guide | SB-SW, SB-TEL | T-SW-03 | Every type, size, sign, flag, gap/reorder and capture mode |
+| R-PLAT-01 | Kernel reservation/mapping and codec-grant ownership | Linux baseline. Platform grant | Kernel tests plus board evidence | T-SW-04, T-BRD-01 | Exclusive owner. Mmap/ioctl bounds. Revoke/cleanup readback |
+| R-PLAT-02 | Model substitution limits and real DDR visibility explicit | Platform wrapper. DDR ownership | Assumption inventory plus physical evidence | T-PHY-03, T-DDR-06, T-BRD-01 | Every vendor boundary. Posted-write visibility not inferred from OKAY |
+| R-BOARD-01 | BRAM hardware matches mandatory artifacts before live demo | PDF 8.4 AC13. BRAM path | SB-NUM, SB-MET, complete capture | T-BRD-01 | All required vectors/artifact fields. No required observation lost |
+| R-BOARD-02 | Live-source claims carry separate physical evidence | LINE-IN/ADC bringup | Measured interface and source-health results | T-BRD-02, T-BRD-03 | Only selected live profiles. ADC remains optional |
 | R-ENV-01 | Checkers run, reject intentional defects and preserve evidence | This verification architecture | SB-EVID, P-OBS-01 | T-ENV-01, T-ENV-02, T-ENV-03 | Enabled/triggered checks, four-state behavior, both watchdogs |
-| R-ENV-02 | Conditional progress is stated and tested without vacuity | Module interfaces; scenario assumptions | SB-EVID, P-LIVE-01 | T-C-03, T-S-02, T-DDR-03 | Fairness satisfied/violated partitions; no unconditional clock-return assumption |
-| R-EXT-01 | Future zero-aware RTL preserves baseline arithmetic | Optional benchmark extension | SB-NUM plus operation counts | T-EXT-01 | Identical input/THR2; zero opportunities per stage |
-| R-EXT-02 | Activity traces and electrical measurements have separate scope | Benchmark plan | SB-EVID and measurement methodology | T-EXT-02 | Workload, trace interval, mapping and uncertainty; no proxy-as-energy claim |
+| R-ENV-02 | Conditional progress is stated and tested without vacuity | Module interfaces. Scenario assumptions | SB-EVID, P-LIVE-01 | T-C-03, T-S-02, T-DDR-03 | Fairness satisfied/violated partitions. No unconditional clock-return assumption |
+| R-EXT-01 | Future zero-aware RTL preserves baseline arithmetic | Optional benchmark extension | SB-NUM plus operation counts | T-EXT-01 | Identical input/THR2. Zero opportunities per stage |
+| R-EXT-02 | Activity traces and electrical measurements have separate scope | Benchmark plan | SB-EVID and measurement methodology | T-EXT-02 | Workload, trace interval, mapping and uncertainty. No proxy-as-energy claim |
 
 ## Core Revision J acceptance mapping
 

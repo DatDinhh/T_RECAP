@@ -4,7 +4,7 @@ We use this repository for the Phase 2 capstone implementation, reference model,
 
 ## Before changing a component
 
-Read the [project overview](README.md), [specification index](docs/specs/README.md), and the relevant [architecture document](docs/README.md). Use the current canonical tree; historical Phase 1 code is not an implementation dependency.
+Read the [project overview](README.md), [specification index](docs/specs/README.md), and the relevant [architecture document](docs/README.md). Use the current canonical tree. Historical Phase 1 code is not an implementation dependency.
 
 Keep a change focused on one engineering decision or component. Describe the problem, resulting behavior, affected interfaces, and remaining limitations. When a change alters a design assumption, update its owning contract and document the reason alongside the implementation.
 
@@ -14,14 +14,14 @@ Keep a change focused on one engineering decision or component. Describe the pro
 - `rtl/telemetry/` owns best-effort formatting and buffering. `rtl/hps_bridge/` owns the DDR writer and control registers.
 - `sw/hps/` owns transport and control. `sw/pc_dashboard/` owns display and commands. Neither duplicates the FPGA signal-processing algorithm.
 - `sw/reference_model/` owns the software reference implementation. Its documented public library API is the entry point for arithmetic experiments.
-- Machine-readable contracts live under `spec/`; build/runtime selections live under `config/`. A profile does not redefine arithmetic constants or packet layouts.
-- Change source contracts or generators, then regenerate their outputs. Do not edit files marked `AUTO-GENERATED` by hand. Some JSON under `spec/generated/` is source input despite the directory name; consult the [generated-contract guide](docs/architecture/generated_contracts.md).
+- Machine-readable contracts live under `spec/`. Build/runtime selections live under `config/`. A profile does not redefine arithmetic constants or packet layouts.
+- Change source contracts or generators, then regenerate their outputs. Do not edit files marked `AUTO-GENERATED` by hand. Some JSON under `spec/generated/` is source input despite the directory name. Consult the [generated-contract guide](docs/architecture/generated_contracts.md).
 
 ## Working locally
 
 The root Makefile expects Bash. Use `make help` for available commands, and the [build guide](docs/architecture/build_order.md) for component-specific tools. Keep local builds and captures under ignored `build/`, `runs/`, or `out/` directories.
 
-Do not include machine-specific absolute paths, credentials, private network details, temporary source copies, or tool caches in a change. The documented direct-link IP addresses are intentional lab defaults; personal overrides belong in local configuration.
+Do not include machine-specific absolute paths, credentials, private network details, temporary source copies, or tool caches in a change. The documented direct-link IP addresses are intentional lab defaults. Personal overrides belong in local configuration.
 
 ## Describing results
 

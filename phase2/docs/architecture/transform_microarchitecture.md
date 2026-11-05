@@ -11,7 +11,7 @@ natural-order samples. A frame owns its engine until its last output is accepted
 
 The [butterfly](../../rtl/fft/trecap_fft_stage.sv) uses its registered mode in both
 engines. The legacy combinational mode remains available to existing standalone
-users; it is not the production transform datapath.
+users. It is not the production transform datapath.
 
 For one butterfly, the following seven consecutive rising edges implement the
 complete transaction. The addresses and stage counter remain unchanged until
@@ -20,15 +20,15 @@ edge 7.
 | Edge | Engine / butterfly state | Registered operation |
 | --- | --- | --- |
 | 1 | S_READ | Read both complex RAM operands and the twiddle ROMs. |
-| 2 | S_START / B_IDLE | Accept operands; hold operand A and register four signed products for B times the twiddle. |
+| 2 | S_START / B_IDLE | Accept operands. Hold operand A and register four signed products for B times the twiddle. |
 | 3 | S_WAIT / B_PRODUCT_SUM | Sign-extend the products and register the full real difference and imaginary sum. |
 | 4 | S_WAIT / B_QUANTIZE | Apply the original FRAC_SHIFT=15 rounding and saturation to each complex-product component. |
 | 5 | S_WAIT / B_ADD | Register widened A plus/minus the quantized complex product. |
-| 6 | S_WAIT / B_ROUND | Apply the original final rounding/saturation; register four result components. |
-| 7 | S_WAIT / B_OUTPUT | Accept the held butterfly result and write both RAM addresses; advance the iteration. |
+| 6 | S_WAIT / B_ROUND | Apply the original final rounding/saturation. Register four result components. |
+| 7 | S_WAIT / B_OUTPUT | Accept the held butterfly result and write both RAM addresses. Advance the iteration. |
 
 There is no truncation between multiplication and the complex product sum. The
-product-sum width remains DATA_W + TWIDDLE_W + 2; the butterfly sum width
+product-sum width remains DATA_W + TWIDDLE_W + 2. The butterfly sum width
 remains DATA_W + 2. The forward transform divides by two at every stage using
 the existing trecap_round_sat rule. The inverse transform has no stage shift.
 The registered path uses exactly the same two rounding points as the retained
@@ -44,7 +44,7 @@ combinational arithmetic path.
 | Final stage shift | 1 | 0 |
 
 The four product registers carry multstyle="dsp". They are four logical signed
-DSP multiplications per engine; physical DSP block packing depends on device
+DSP multiplications per engine. Physical DSP block packing depends on device
 width decomposition. Register boundaries separate multiplication, product
 addition, quantization, butterfly addition, and final rounding. There is no
 single combinational path spanning all of those operations.
@@ -59,7 +59,7 @@ in `S_IDLE`/`S_LOAD` and butterfly writes only in `S_WAIT`. Reset and clear gate
 all accesses. The two butterfly write addresses differ by `2**(stage-1)` for
 stages 1 through P, and `S_OUT_SEND` performs no access while holding output
 data through backpressure. The attribute permits Quartus to choose a hardware
-read-during-write mode for an unreachable case; it does not change any observed
+read-during-write mode for an unreachable case. It does not change any observed
 data or cycle count. This is a per-memory inference setting, not a global
 relaxation of memory behavior. Their packed complex words share the same address
 for real and imaginary components.
@@ -102,7 +102,7 @@ dynamic direction for other callers.
 
 These choices specify the RAM and DSP architecture now. Physical M10K count,
 DSP packing, and fitted timing are implementation reports, not values inferred
-from logical bit totals. The timing target is 50 MHz; the cycle schedule alone
+from logical bit totals. The timing target is 50 MHz. The cycle schedule alone
 does not establish a fitted maximum clock frequency.
 
 ## Hermitian canonicalizer
@@ -116,7 +116,7 @@ all 256 natural-order FFT bins. Each output bin then takes four edges:
 4. S_EMIT: accept the held output, then advance to the next read.
 
 The negative half negates the already rounded positive imaginary component.
-It does not round an independently negated pre-add; this preserves the specified
+It does not round an independently negated pre-add. This preserves the specified
 tie behavior. DC and Nyquist pass their real component through the existing
 saturation operation and force the imaginary component to zero. Natural bin
 order, unique/self-conjugate flags, frame identity, and last-bin indication are
@@ -144,7 +144,7 @@ For a transform, after the final input acceptance, there are 7168 compute edges
 and 512 output edges until the final output acceptance. With the first accepted
 input at edge 0, the final output is accepted at edge 7935, and the next frame
 can begin at edge 7936. A transform output takes a synchronous read edge
-followed by an acceptance edge; output throughput is one complex value every
+followed by an acceptance edge. Output throughput is one complex value every
 two clocks. The registered butterfly itself makes its result valid four clocks
 after operand acceptance and transfers it on the next edge.
 

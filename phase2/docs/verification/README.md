@@ -32,7 +32,7 @@ The [execution plan](execution_plan.md) is the main roadmap: specification readi
 ## Design principles
 
 - The integrated specification defines expected behavior. RTL is inspected to
-  locate interfaces and risks; its output never defines its own expected result.
+  locate interfaces and risks. Its output never defines its own expected result.
 - Qualify the reference model with independent arithmetic checks before using it
   as the main exact-output predictor.
 - Keep data correctness, temporal/protocol correctness, and physical evidence
@@ -53,10 +53,10 @@ The [specification index](../specs/README.md), [architecture](../architecture/ar
 and [interface contracts](../architecture/interface_contracts.md) remain the design
 authorities. The [existing simulation guide](../../sim/README.md) describes
 historical benches that require admission review before reuse. The
-[benchmark plan](../evaluation/benchmark_plan.md) consumes verification evidence;
-speedup and electrical energy savings are later measurements.
+[benchmark plan](../evaluation/benchmark_plan.md) consumes verification evidence.
+Speedup and electrical energy savings are later measurements.
 
 The catalogs describe the full planned scope. Only cases linked to executed
-evidence in the results report have a result; partial family coverage does not
+evidence in the results report have a result. Partial family coverage does not
 close an entire requirement. [Runner instructions](../../scripts/verification/README.md)
 provide the reproducible implementation entry point.

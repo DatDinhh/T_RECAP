@@ -1,0 +1,282 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[margin=0.65in,headheight=15pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx,graphicx,booktabs,tabularx,array,xcolor,caption,fancyhdr,float}
+\usepackage[hyphens]{url}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue]{hyperref}
+\hypersetup{pdftitle={T-RECAP System Architecture Atlas},pdfauthor={T-RECAP Senior Design Project}}
+\pagestyle{fancy}\fancyhf{}\lhead{\small T-RECAP System Architecture}\rhead{\small After RF integration}\cfoot{\thepage}
+\setlength{\parindent}{1em}\setlength{\parskip}{4pt}\setlength{\emergencystretch}{2em}
+\captionsetup{font=small,labelfont=bf}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\begin{document}
+\begin{center}{\LARGE\bfseries T-RECAP System Architecture Atlas}\par\vspace{6pt}
+{\large Complete project after recorded RF integration}\par\vspace{6pt}
+{\small Threshold-based Reduction and Encoding for Controlled Audio Processing}\par\vspace{4pt}
+{\small Senior design project}\end{center}
+This atlas explains the complete project through eight coordinated views. The RF extension is placed in the same system context as audio processing, accelerometer replay, HPS transport and laptop analysis. The source-derived diagrams use a consistent academic pastel palette.
+TSH2 and TRF1 are separate fitted FPGA applications. They reuse the same numerical core without an implemented runtime audio/RF selector. The accelerometer acquisition and axis-preparation scripts describe a local capture-and-replay workflow rather than a new live FPGA sensor frontend.
+\section*{Reading the atlas}
+\begin{tabularx}{\linewidth}{@{}p{0.35in}X@{}}\toprule
+1 & One project, adapted inputs, one numerical core \\
+2 & Input contracts and application boundaries \\
+3 & The common spectral-processing datapath \\
+4 & The new I/Q block inside the full architecture \\
+5 & Two outputs and the work performed on the laptop \\
+6 & Host transport and finite-transaction ownership \\
+7 & Control, buffering and recovery across the system \\
+8 & Platform and verification boundaries \\
+\bottomrule\end{tabularx}
+\par\vspace{10pt}
+Sage marks signal inputs, blue marks storage and platform interfaces, lilac marks DSP, peach marks returned signal representations, and warm cream marks host software or transaction control. Solid arrows represent data. Dashed arrows represent control. Dotted arrows identify observation taps.
+\section*{Evidence boundary}
+The views are architecture documentation. Source bindings identify the public implementation used for review. Historical board measurements, fresh RTL simulations and scoped formal/UVM results retain their own boundaries. Rendering this atlas does not rerun synthesis or verification.
+Each view has a full diagram, a system-level explanation and a table describing its blocks. The companion SVG files remain scalable for zooming during a demonstration.
+\clearpage
+\section{One project, adapted inputs, one numerical core}
+The diagram combines application routes while preserving the boundary between the TSH2 and TRF1 fitted images.\par
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{01-system-overview.pdf}\caption{The two routes describe alternative fitted applications. They do not run simultaneously on the board and there is no runtime audio/RF selector. Accelerometer replay uses the real-sample route.}\end{figure}\par
+T-RECAP moves a finite signal record into the FPGA, applies a common fixed-point spectral-processing chain, and returns two representations to the laptop. The RF extension changes the input conversion and application interface. It does not replace the FFT, threshold, IFFT or reconstruction arithmetic.
+
+Audio and accelerometer records are real-valued signals. Host software prepares their sample representation before replay through TSH2. Recorded RF is complex baseband I/Q. TRF1 transports its raw CU8 pairs to a new hardware adapter that produces the real signed 12-bit stream expected by the same numerical core.
+
+\noindent\textbf{Source bindings:} C01, A01, A02, A03, R01, R04, R05.
+\clearpage
+\subsection*{Block responsibilities}
+TSH2 and TRF1 are separate fitted FPGA images. The lines converge to show shared implementation and numerical behavior, not an implemented runtime multiplexer. A host must identify and admit the loaded profile before using its registers.
+\par\medskip\noindent
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{1.65in}Y@{}}\toprule
+\textbf{Block} & \textbf{Responsibility} \\ \midrule
+Audio and motion records & Audio files or a captured sensor axis. Real-valued samples with a known rate. \\[5pt]
+Laptop preparation & Decode or map the input to signed 12-bit. Keep sample-rate and scaling metadata. \\[5pt]
+HPS + TSH2 entry & Upload the finite PCM record. MMIO FIFO feeds the existing source. \\[5pt]
+Recorded RF I/Q & Receiver has already downconverted RF. File stores alternating unsigned I and Q. \\[5pt]
+Laptop + HPS file transport & Upload unchanged CU8 bytes. TRF1 client feeds the raw-pair FIFO. \\[5pt]
+New FPGA RF adapter & Center, FIR interpolate, mix to real IF. Round and saturate to signed 12-bit. \\[5pt]
+Laptop applications & Listen and compare reconstructed audio. Inspect spectra and run sparse consumers. \\[5pt]
+Two returned representations & Y contains reconstructed time samples. TSP1 contains spectral power records. \\[5pt]
+Shared FPGA DSP core & FFT, tunable threshold, IFFT and WOLA. Same numerical core in each profile. \\[5pt]
+\bottomrule\end{tabularx}
+\vspace{8pt}
+\noindent\textbf{Interpretation.} The two routes describe alternative fitted applications. They do not run simultaneously on the board and there is no runtime audio/RF selector. Accelerometer replay uses the real-sample route.
+\clearpage
+\section{Input contracts and application boundaries}
+Physical units and signal sample rates remain metadata even though all core input samples use the same signed 12-bit representation.\par
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{02-input-profiles.pdf}\caption{The accelerometer application is a capture-and-replay workflow without a new FPGA sensor frontend. The RF profile adds an actual I/Q hardware adapter. Neither route establishes continuous live acquisition.}\end{figure}\par
+A common integer interface does not make audio, acceleration and radio signals interchangeable. The sample rate, scaling and original units are needed to label time, frequency and physical amplitude correctly. An eight-second audio label must not be reused for a shorter RF record simply because the buffer length is the same.
+
+The local accelerometer workflow reads the onboard ADXL345 through HPS I2C, records a bounded sample set, selects one axis on the laptop and pads it for TSH2 replay. Its native-rate axis adapter does not resample or remove DC. These acquisition scripts remain a local extension and are identified in the review record rather than presented as a published live FPGA interface.
+
+\noindent\textbf{Source bindings:} A01, A02, R01, R02, R04.
+\clearpage
+\subsection*{Block responsibilities}
+TRF1 instead accepts one to 96,000 raw I/Q pairs. It generates exactly four valid real samples per pair, then supplies zeros to the 384,000-sample core transaction. The raw RF center frequency is already downconverted by the receiver that produced the file.
+\par\medskip\noindent
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{1.65in}Y@{}}\toprule
+\textbf{Block} & \textbf{Responsibility} \\ \midrule
+Audio record & PCM waveform from a file or prior recording. Host conversion produces admitted samples. \\[5pt]
+Accelerometer record & Local workflow captures ADXL345 through HPS. One selected X, Y or Z axis is replayed. \\[5pt]
+RF receiver recording & Complex CU8 baseband pairs. Sample rate and RF center frequency supplied. \\[5pt]
+Audio preparation & Decode and scale into the signed 12-bit range. Finite record is prepared on the laptop. \\[5pt]
+Axis preparation on laptop & Preserve native-rate signed sensor counts. Pad one axis to the finite core transaction. \\[5pt]
+TRF1 hardware preparation & 4x interpolating FIR and real-IF mixer. Gain, rounding, saturation and padding. \\[5pt]
+TSH2 real-sample application & Input word carries one signed sample. Audio and axis records share this interface. \\[5pt]
+TRF1 raw-I/Q application & Input word carries two unsigned bytes. RF conversion occurs in FPGA fabric. \\[5pt]
+\bottomrule\end{tabularx}
+\vspace{8pt}
+\noindent\textbf{Interpretation.} The accelerometer application is a capture-and-replay workflow without a new FPGA sensor frontend. The RF profile adds an actual I/Q hardware adapter. Neither route establishes continuous live acquisition.
+\clearpage
+\section{The common spectral-processing datapath}
+RF is adapted before this chain. FFT size, hop, threshold rule and reconstruction arithmetic are preserved.\par
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{03-shared-dsp.pdf}\caption{THR2 is an unsigned 56-bit threshold in fixed-point squared-magnitude units. Equality is retained and DC is protected. Removing bins trades signal information for a smaller sparse spectral representation.}\end{figure}\par
+The core groups accepted samples into overlapping 256-point frames at a hop of 128. A fixed analysis window precedes the forward FFT. The frame scheduler, ring buffer and output flow control preserve overlap state when transport stalls.
+
+After Hermitian canonicalization, the power comparison produces a conjugate-pair mask. Eligible powers below THR2 are suppressed, equality is retained, and DC is protected. The same thresholded spectrum supplies both reconstruction and spectral export. Threshold values are implementation power units rather than percentages or decibels.
+
+\noindent\textbf{Source bindings:} C01, C02, C03, C04, C05, C06, C07, C08.
+\clearpage
+\subsection*{Block responsibilities}
+The IFFT and synthesis weighted overlap-add stage return Y. A separate exporter captures 129 canonical power bins per frame for TSP1. The RF profile uses byte-identical shared FFT, IFFT, magnitude-mask, synthesis and top-level numerical core sources.
+\par\medskip\noindent
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{1.65in}Y@{}}\toprule
+\textbf{Block} & \textbf{Responsibility} \\ \midrule
+Finite real-sample source & Indexed signed 12-bit sample tokens. Real input followed by analysis zeros. \\[5pt]
+Input ring and analysis window & 256-sample frames with a 128-sample hop. Multiply by fixed window coefficients. \\[5pt]
+256-point FFT & 28-bit complex components. Eight radix-2 stages with per-stage scaling. \\[5pt]
+256-point IFFT & 36-bit complex components. Inverse twiddles reconstruct each frame. \\[5pt]
+Paired spectral mask & Power = Re squared + Im squared. Suppress eligible bins below THR2. \\[5pt]
+Hermitian canonicalization & One consistent decision for each pair. Real DC and Nyquist components. \\[5pt]
+Synthesis and overlap-add & Window and accumulate overlapping frames. Emit 128 mature samples per hop. \\[5pt]
+Reconstructed samples Y & Signed 12-bit output with sample index. Full finite tail retained for comparison. \\[5pt]
+Spectral exporter branch & 129 canonical-bin rows per frame. Powers and retained-bin identities. \\[5pt]
+\bottomrule\end{tabularx}
+\vspace{8pt}
+\noindent\textbf{Interpretation.} THR2 is an unsigned 56-bit threshold in fixed-point squared-magnitude units. Equality is retained and DC is protected. Removing bins trades signal information for a smaller sparse spectral representation.
+\clearpage
+\section{The new I/Q block inside the full architecture}
+One shared multiply-accumulate datapath schedules the four interpolation phases before the existing real-sample core.\par
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{04-rf-input-adapter.pdf}\caption{At a 250 ksample/s complex input rate, the equivalent real stream is 1 Msample/s and centered at 250 kHz. The sequential converter takes multiple fabric clocks for each sample and can stall.}\end{figure}\par
+CU8 contains unsigned I and Q bytes, not amplitude and phase values stored independently. Centering maps each byte to an odd signed integer with the expression 2*b - 255. Exact zero flush samples are inserted after centering because neither unsigned byte 127 nor byte 128 represents exact zero under this convention.
+
+The 81-tap FIR is decomposed into four phases. The schedule uses one multiplier with 21 tap positions per phase and a signed 36-bit accumulator. Even phases read I history and odd phases read Q history. The quarter-rate real-IF sign sequence is applied at successive interpolated times, not as four copies of a raw input pair.
+
+\noindent\textbf{Source bindings:} R01, R02, R03, R04, C07.
+\clearpage
+\subsection*{Block responsibilities}
+After gain, rounding and saturation, the finite-record wrapper discards startup delay, flushes the FIR and emits exactly 4*N real samples. It then pads the common transaction. The clip count and valid-prefix count remain available to the host so that interpolation, clipping and padding are not mistaken for threshold effects.
+\par\medskip\noindent
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{1.65in}Y@{}}\toprule
+\textbf{Block} & \textbf{Responsibility} \\ \midrule
+Raw pair FIFO & Low byte I, next byte Q. Upper 16 input-word bits must be zero. \\[5pt]
+Center and retain I/Q history & Each byte becomes 2*b - 255. 21 signed 9-bit samples in each history. \\[5pt]
+Polyphase FIR hardware & 81 signed 18-bit coefficients. One multiplier and 36-bit accumulator. \\[5pt]
+Gain and output quantization & Round half ties away from zero. Saturate to signed 12-bit and count clips. \\[5pt]
+Quarter-rate real-IF mixer & Successive phases select +I, -Q, -I, +Q. Sign selection avoids a general oscillator. \\[5pt]
+Phase and tap schedule & Four phases, 21 MAC clocks per phase. Unused coefficient positions contribute zero. \\[5pt]
+Finite-record alignment & Discard 40 startup outputs. Flush ten exact zero pairs internally. \\[5pt]
+Valid prefix and core padding & Emit exactly 4*N valid real samples. Pad the transaction to 384,000 samples. \\[5pt]
+Existing DSP core & FFT to threshold to IFFT/WOLA. Y and TSP1 output paths are unchanged. \\[5pt]
+\bottomrule\end{tabularx}
+\vspace{8pt}
+\noindent\textbf{Interpretation.} At a 250 ksample/s complex input rate, the equivalent real stream is 1 Msample/s and centered at 250 kHz. The sequential converter takes multiple fabric clocks for each sample and can stall.
+\clearpage
+\section{Two outputs and the work performed on the laptop}
+The waveform path preserves a time-domain result. The spectral path supports consumers that understand sparse power records.\par
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{05-outputs-and-consumers.pdf}\caption{TSP1 byte reduction is measured against dense TSP1, not WAV or raw I/Q file size. A faster sparse consumer is not a faster FPGA FFT. TSP1 alone cannot reconstruct the waveform because it omits phase.}\end{figure}\par
+Y and TSP1 serve different purposes. Y is a reconstructed sample stream that can be turned into a playable waveform for audio or analyzed as a real-valued signal for other applications. TSP1 is a versioned spectral-power representation with bin identities in sparse mode. It does not contain the complex phase required for waveform reconstruction.
+
+For a fair consumer benchmark, dense and sparse records must represent the same thresholded powers. Their feature outputs are compared for equality. A separate comparison against the original signal measures the information lost to thresholding. This separates representation efficiency from signal distortion.
+
+\noindent\textbf{Source bindings:} A03, A04, A01, R04, R05, C01.
+\clearpage
+\subsection*{Block responsibilities}
+The laptop also performs plotting, playback, packet validation and optional application logic. Archived visualizer code separates a new physical capture from a saved-result load. RF protocol decoding after real-IF recovery remains a host operation. Dense AI consumers do not automatically execute fewer operations when more input bins are zero.
+\par\medskip\noindent
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{1.65in}Y@{}}\toprule
+\textbf{Block} & \textbf{Responsibility} \\ \midrule
+Y from IFFT/WOLA & Reconstructed signed 12-bit samples. Index, finite tail and comparison context. \\[5pt]
+Waveform FIFO + HPS return & 1,024 words with sign-extended values. Host drains the complete sample stream. \\[5pt]
+Waveform applications & Audio playback and distortion measures. Acceleration traces or real-IF analysis. \\[5pt]
+Canonical spectral powers & 129 bins and frame identities. Power has no retained complex phase. \\[5pt]
+TSP1 records + HPS return & Dense powers or sparse bin/power entries. Header, checksum and word-aligned transport. \\[5pt]
+Spectral consumers & Band energies, monitoring and plots. Sparse-aware loops visit retained entries. \\[5pt]
+Signal-quality comparison & Original versus thresholded reconstruction. Quantization and threshold error separated. \\[5pt]
+Representation comparison & Dense and sparse at the same threshold. Equal features isolate encoding workload. \\[5pt]
+Application-dependent benefit & Smaller TSP1 can reduce compatible host work. A dense AI input may retain the same workload. \\[5pt]
+\bottomrule\end{tabularx}
+\vspace{8pt}
+\noindent\textbf{Interpretation.} TSP1 byte reduction is measured against dense TSP1, not WAV or raw I/Q file size. A faster sparse consumer is not a faster FPGA FFT. TSP1 alone cannot reconstruct the waveform because it omits phase.
+\clearpage
+\section{Host transport and finite-transaction ownership}
+Both applications use HPS MMIO feed and drain, while the outer file-transfer protocols remain distinct.\par
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{06-host-and-transactions.pdf}\caption{The application keeps one configured geometry for admission and completion checks. Only the valid input interval should determine the physical time axis and headline RF data-reduction denominator.}\end{figure}\par
+The outer transports are not identical. TSH2 exposes a finite TCP request and reply around resident HPS buffers. The RF workflow uploads a bounded archive into HPS RAM, executes a local TRF1 client and downloads a bounded result archive. Neither should be described as a continuous packet-stream radio receiver.
+
+Both clients must identify the loaded application and respect its register contract before issuing input. The HPS interleaves bounded input writes with output reads so that limited FPGA queues do not deadlock the transaction. TRF1 uses a 256-pair raw-input FIFO and registered prefetch rather than treating the FIFO pop as an immediate data response.
+
+\noindent\textbf{Source bindings:} A01, A02, R04, R05, R07, R08, C07, C08.
+\clearpage
+\subsection*{Block responsibilities}
+The standard core transaction consumes 384,000 real samples. The source additionally owns the analysis-zero tokens and WOLA tail needed for 3,001 frames and 384,512 returned samples. FPGA completion records produced totals. Host retrieval is complete only after any remaining queued output has been drained and checked.
+\par\medskip\noindent
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{1.65in}Y@{}}\toprule
+\textbf{Block} & \textbf{Responsibility} \\ \midrule
+Laptop prepares a request & Audio uses the TSH2 TCP service. RF uses bounded file-archive transfer. \\[5pt]
+HPS admission and buffers & Verify profile, ABI and source identity. Validate file length and sample contract. \\[5pt]
+Idle configuration + START & Set THR2 and packet mode. TRF1 also sets pair count and gain. \\[5pt]
+Input FIFO and source & TSH2 accepts signed PCM words. TRF1 accepts raw CU8 pairs then converts. \\[5pt]
+HPS feed and drain loop & Write only available input capacity. Interleave reads of Y and spectral words. \\[5pt]
+FPGA finite processing epoch & 384,000 core input samples. 3,001 frames and 384,512 full-tail Y samples. \\[5pt]
+Laptop validation and analysis & Check returned counts and packet integrity. Compare signal quality and consumer work. \\[5pt]
+Drain and return complete results & Finish retrieving queued Y and TSP1. TCP reply or result archive returns to laptop. \\[5pt]
+DONE and exact production counts & Core and exporter finish the epoch. Queued output may still need host reads. \\[5pt]
+\bottomrule\end{tabularx}
+\vspace{8pt}
+\noindent\textbf{Interpretation.} The application keeps one configured geometry for admission and completion checks. Only the valid input interval should determine the physical time axis and headline RF data-reduction denominator.
+\clearpage
+\section{Control, buffering and recovery across the system}
+Transport can pause progress. Accepted samples, reconstruction history and frame identity must remain consistent.\par
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{07-control-and-backpressure.pdf}\caption{Y has a ready/valid path. Spectral taps are valid-only, so upstream frame credit protects the exporter instead. Treating every internal link as an interchangeable streaming interface would hide this distinction.}\end{figure}\par
+Ready/valid ownership is local and precise. A producer presenting a valid sample retains its value and sidebands while the consumer is not ready. An input FIFO pop may also have registered latency. TRF1 therefore tracks a pending read and a held prefetched pair explicitly.
+
+The waveform output directly uses backpressure. Spectral observation taps are valid-only, so the surrounding source and exporter enforce next-hop credit to prevent an unbounded accumulation of frames. The HPS must drain both output types because either path can limit progress.
+
+\noindent\textbf{Source bindings:} A01, R01, R02, R04, R07, C07, V01.
+\clearpage
+\subsection*{Block responsibilities}
+Clear and reset are transaction events, not benign changes to a threshold. They withdraw current output ownership and clear the enclosing pipeline. The RF verification includes reset while a FIFO response is pending, clear while a prefetched pair is held, watchdog recovery and restart checks.
+\par\medskip\noindent
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{1.65in}Y@{}}\toprule
+\textbf{Block} & \textbf{Responsibility} \\ \midrule
+Configuration is admitted while idle & THR2 and packet mode remain fixed per epoch. TRF1 latches pair count and gain. \\[5pt]
+Source ownership and prefetch & Advance only on accepted handshakes. TRF1 holds a registered raw pair until used. \\[5pt]
+Shared core state & Sample index, overlap and WOLA history. A stall must not restart the signal. \\[5pt]
+HPS releases queue occupancy & Drain both output FIFOs regularly. Feed input only when capacity is available. \\[5pt]
+Spectral credit and FIFO & Frame capture and packing have finite capacity. Completed record releases next-hop credit. \\[5pt]
+Waveform FIFO backpressure & A full FIFO deasserts downstream ready. Y and its index stay stable until accepted. \\[5pt]
+Fault detection & Invalid words, counts and configuration. Watchdog and exporter/core faults. \\[5pt]
+CLEAR or reset aborts ownership & Cancel pending prefetch and held samples. Reset counts and clear the enclosing core. \\[5pt]
+Re-admit and restart cleanly & New transaction receives its own epoch. Verify counts and faults before completion. \\[5pt]
+\bottomrule\end{tabularx}
+\vspace{8pt}
+\noindent\textbf{Interpretation.} Y has a ready/valid path. Spectral taps are valid-only, so upstream frame credit protects the exporter instead. Treating every internal link as an interchangeable streaming interface would hide this distinction.
+\clearpage
+\section{Platform and verification boundaries}
+The combined architecture is documented at system level. Evidence remains attached to the profile and source that produced it.\par
+\begin{figure}[H]\centering\includegraphics[width=\linewidth]{08-platform-and-verification.pdf}\caption{These are source-derived architecture views with reproducible figures and written descriptions. Drawing the complete system does not rerun synthesis, program hardware or extend an existing proof beyond its checked modules.}\end{figure}\par
+The finite processing fabric uses the nominal 50 MHz board clock. HPS-owned clocks, DDR calibration, Ethernet and generated platform IP have their own implementation requirements. Board rebuilds require the matching generated system, pin and timing assignments, handoff files and boot assets in addition to the published non-vendor simulation closure.
+
+Source and interface identity prevent an audio client from accidentally using an RF register map. Physical timing and capture evidence refer to a particular fitted image. Fresh RTL simulation refers to the source and test package it actually executed. A documentation refresh is not a new board measurement.
+
+\noindent\textbf{Source bindings:} R06, A01, R04, V01, V02.
+\clearpage
+\subsection*{Block responsibilities}
+The preserved TSH2 UVM and formal results retain their documented scope. The RF addition has its own independent numerical reference and five fresh self-checking suites, including 32 actual-core integration epochs. Its historical five-epoch physical qualification is reported separately. The unified diagram does not imply continuous acquisition or full-platform signoff.
+\par\medskip\noindent
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{1.65in}Y@{}}\toprule
+\textbf{Block} & \textbf{Responsibility} \\ \midrule
+DE1-SoC fabric clock & Nominal constrained CLOCK\_50 domain. Sources, DSP, exporter and synchronous FIFOs. \\[5pt]
+Reset and finite initialization & HPS reset asserts asynchronously. Synchronized release and explicit core clear. \\[5pt]
+HPS platform remains external & CPU, Ethernet and DDR clocks are platform-owned. Generated IP, handoff and boot assets required. \\[5pt]
+Profile and build identity & TSH2 and TRF1 have distinct register magic. ABI, SOURCE\_ID and geometry admit each run. \\[5pt]
+Existing TSH2 evidence & Procedural RTL and physical campaigns. Scoped UVM and local formal supplement. \\[5pt]
+New RF evidence & Independent conversion model and RTL tests. Actual-core MMIO, stalls and recovery checks. \\[5pt]
+Historical physical RF capture & Source-bound fitted image and five epochs. Exact Y and TSP1 comparison to references. \\[5pt]
+Fresh RF publication regression & Five self-checking suites with actual VCDs. 32 actual-core integration epochs. \\[5pt]
+Evidence must keep its scope & No new RF formal proof or RF UVM claim. No live-rate or electrical-power claim. \\[5pt]
+\bottomrule\end{tabularx}
+\vspace{8pt}
+\noindent\textbf{Interpretation.} These are source-derived architecture views with reproducible figures and written descriptions. Drawing the complete system does not rerun synthesis, program hardware or extend an existing proof beyond its checked modules.
+\clearpage
+\section*{Reproduction and source review}
+The companion atlas definitions contain the exact source hashes, block text, routing coordinates and local workflow review identities. The generator creates the PNG, SVG and vector PDF diagrams together with the written guide and offline gallery.
+\begin{verbatim}
+python phase2/docs/architecture/system/build_atlas.py --check
+\end{verbatim}
+This check uses only the Python standard library. It validates public source bindings and artifact hashes. Local accelerometer source identities are recorded for provenance but their files are not bundled. The checker does not claim to rerun that acquisition workflow.
+\par\medskip\noindent\begin{tabularx}{\linewidth}{@{}p{0.4in}Y@{}}\toprule
+\textbf{ID} & \textbf{Published source path} \\ \midrule
+C01 & \path{rtl/core/trecap_core_top.sv} \\[4pt]
+C02 & \path{rtl/include/generated/trecap_core_pkg.sv} \\[4pt]
+C03 & \path{rtl/fft/trecap_fft256.sv} \\[4pt]
+C04 & \path{rtl/fft/trecap_ifft256.sv} \\[4pt]
+C05 & \path{rtl/core/trecap_mag2_mask.sv} \\[4pt]
+C06 & \path{rtl/core/trecap_synthesis_wola.sv} \\[4pt]
+C07 & \path{verification/tsh2/rtl/trecap_pcm_stream_top.sv} \\[4pt]
+C08 & \path{verification/tsh2/rtl/trecap_pcm_stream_source.sv} \\[4pt]
+A01 & \path{profiles/tsh2/work/trecap_stream8_v01/rtl/trecap_stream_adapter.sv} \\[4pt]
+A02 & \path{profiles/tsh2/work/trecap_laptop_fpga_v01/service/service.c} \\[4pt]
+A03 & \path{profiles/tsh2/work/trecap_visualizer_v01/server.py} \\[4pt]
+A04 & \path{profiles/tsh2/work/trecap_visualizer_v01/data.py} \\[4pt]
+R01 & \path{profiles/trf1/adapter/rtl/trecap_rf_iq_adapter.sv} \\[4pt]
+R02 & \path{profiles/trf1/adapter/rtl/trecap_rf_file_source.sv} \\[4pt]
+R03 & \path{profiles/trf1/adapter/coefficients/rf_coefficients.svh} \\[4pt]
+R04 & \path{profiles/trf1/board/rtl/trecap_rf_board_adapter.sv} \\[4pt]
+R05 & \path{profiles/trf1/board/host/trf1_client.c} \\[4pt]
+R06 & \path{profiles/trf1/board/platform/trecap_hps_top.sv} \\[4pt]
+R07 & \path{profiles/trf1/board/rtl/stream_fifo.sv} \\[4pt]
+R08 & \path{profiles/trf1/board/orchestration/capture.py} \\[4pt]
+V01 & \path{verification/rf_iq/evidence/summary.json} \\[4pt]
+V02 & \path{verification/tsh2/admission.json} \\[4pt]
+\bottomrule\end{tabularx}
+\end{document}

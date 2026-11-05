@@ -635,199 +635,198 @@ z
 " clip-path="url(#p8a27c2ca8c)" style="fill: #f8e0e8; stroke: #a66882; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_47">
-    <path d="M 910.067813 510.48
-L 1048.332188 510.48
-Q 1051.212188 510.48 1051.212188 513.36
-L 1051.212188 525.6
-Q 1051.212188 528.48 1048.332188 528.48
-L 910.067813 528.48
-Q 907.187813 528.48 907.187813 525.6
-L 907.187813 513.36
-Q 907.187813 510.48 910.067813 510.48
+    <path d="M 910.26 510.48
+L 1048.14 510.48
+Q 1051.02 510.48 1051.02 513.36
+L 1051.02 525.6
+Q 1051.02 528.48 1048.14 528.48
+L 910.26 528.48
+Q 907.38 528.48 907.38 525.6
+L 907.38 513.36
+Q 907.38 510.48 910.26 510.48
 z
 " clip-path="url(#p8a27c2ca8c)" style="fill: #fcfcfe"/>
    </g>
    <g id="patch_48">
-    <path d="M 209.202187 510.48
-L 395.597812 510.48
-Q 398.477812 510.48 398.477812 513.36
-L 398.477812 525.6
-Q 398.477812 528.48 395.597812 528.48
-L 209.202187 528.48
-Q 206.322187 528.48 206.322187 525.6
-L 206.322187 513.36
-Q 206.322187 510.48 209.202187 510.48
+    <path d="M 209.985 510.48
+L 394.815 510.48
+Q 397.695 510.48 397.695 513.36
+L 397.695 525.6
+Q 397.695 528.48 394.815 528.48
+L 209.985 528.48
+Q 207.105 528.48 207.105 525.6
+L 207.105 513.36
+Q 207.105 510.48 209.985 510.48
 z
 " clip-path="url(#p8a27c2ca8c)" style="fill: #fcfcfe"/>
    </g>
    <g id="text_1">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #a66882" x="979.2" y="524.339219" transform="rotate(-0 979.2 524.339219)">Accepted unique bins</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #a66882" x="979.2" y="522.138047" transform="rotate(-0 979.2 522.138047)">Accepted unique bins</text>
    </g>
    <g id="text_2">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #708299" x="302.4" y="524.339219" transform="rotate(-0 302.4 524.339219)">Reference history handshake</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #708299" x="302.4" y="522.138047" transform="rotate(-0 302.4 522.138047)">Reference history handshake</text>
    </g>
    <g id="text_3">
-    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="51.945625" transform="rotate(-0 68.4 51.945625)">T-RECAP  /  CURRENT TSH2 ARCHITECTURE</text>
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="48.797812" transform="rotate(-0 68.4 48.797812)">T-RECAP  /  CURRENT TSH2 ARCHITECTURE</text>
    </g>
    <g id="text_4">
-    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="68.4" y="91.942187" transform="rotate(-0 68.4 91.942187)">DSP datapath and finite-frame ownership</text>
+    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="68.4" y="86.835469" transform="rotate(-0 68.4 86.835469)">DSP datapath and finite-frame ownership</text>
    </g>
    <g id="text_5">
-    <text style="font-size: 16.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="116.242969" transform="rotate(-0 68.4 116.242969)">The same 256 / 128 geometry drives arithmetic, threshold ownership and the exact full tail.</text>
+    <text style="font-size: 16.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="113.337422" transform="rotate(-0 68.4 113.337422)">The same 256 / 128 geometry drives arithmetic, threshold ownership and the exact full tail.</text>
    </g>
    <g id="text_6">
-    <text style="font-weight: 700; font-size: 32px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #8066a9" x="1245.6" y="80.2875" transform="rotate(-0 1245.6 80.2875)">02</text>
+    <text style="font-weight: 700; font-size: 32px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #8066a9" x="1245.6" y="71.835" transform="rotate(-0 1245.6 71.835)">02</text>
    </g>
    <g id="text_7">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="67.68" y="216.286875" transform="rotate(-0 67.68 216.286875)">Finite sample tokens</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="67.68" y="213.117188" transform="rotate(-0 67.68 213.117188)">Finite sample tokens</text>
    </g>
    <g id="text_8">
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 243.330237)">Indexed signed12 PCM</text>
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 263.658237)">Then analysis-zero tokens</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 240.618394)">Indexed signed12 PCM</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 259.267216)">Then analysis-zero tokens</text>
    </g>
    <g id="text_9">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="377.28" y="216.216563" transform="rotate(-0 377.28 216.216563)">Ring + scheduler</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="377.28" y="213.117188" transform="rotate(-0 377.28 213.117188)">Ring + scheduler</text>
    </g>
    <g id="text_10">
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(377.28 243.330237)">256-sample window</text>
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(377.28 263.658237)">Hop: 128 accepted tokens</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(377.28 240.618394)">256-sample window</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(377.28 259.267216)">Hop: 128 accepted tokens</text>
    </g>
    <g id="text_11">
-    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #407d6c" x="377.28" y="301.401687" transform="rotate(-0 377.28 301.401687)">input_ring / frame_scheduler</text>
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #407d6c" x="377.28" y="299.710656" transform="rotate(-0 377.28 299.710656)">input_ring / frame_scheduler</text>
    </g>
    <g id="text_12">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="686.88" y="216.216563" transform="rotate(-0 686.88 216.216563)">Analysis window</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="686.88" y="213.117188" transform="rotate(-0 686.88 213.117188)">Analysis window</text>
    </g>
    <g id="text_13">
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 243.330237)">x[i] * unsigned16 Qw[i]</text>
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 264.364472)">27-bit real; no downshift</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 240.618394)">x[i] * unsigned16 Qw[i]</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 259.267216)">27-bit real. No downshift</text>
    </g>
    <g id="text_14">
-    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #8066a9" x="686.88" y="301.401687" transform="rotate(-0 686.88 301.401687)">trecap_analysis_window</text>
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #8066a9" x="686.88" y="299.710656" transform="rotate(-0 686.88 299.710656)">trecap_analysis_window</text>
    </g>
    <g id="text_15">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="996.48" y="217.871719" transform="rotate(-0 996.48 217.871719)">FFT256</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="996.48" y="213.117188" transform="rotate(-0 996.48 213.117188)">FFT256</text>
    </g>
    <g id="text_16">
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(996.48 243.330237)">28-bit complex components</text>
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(996.48 263.658237)">Eight radix-2 stages, each /2</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(996.48 240.618394)">28-bit complex components</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(996.48 259.267216)">Eight radix-2 stages, each /2</text>
    </g>
    <g id="text_17">
-    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #8066a9" x="996.48" y="301.373531" transform="rotate(-0 996.48 301.373531)">trecap_fft256</text>
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #8066a9" x="996.48" y="299.654344" transform="rotate(-0 996.48 299.654344)">trecap_fft256</text>
    </g>
    <g id="text_18">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="67.68" y="405.071719" transform="rotate(-0 67.68 405.071719)">IFFT256</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="67.68" y="400.317188" transform="rotate(-0 67.68 400.317188)">IFFT256</text>
    </g>
    <g id="text_19">
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 430.530238)">36-bit complex components</text>
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 450.858238)">Inverse twiddles; no stage</text>
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 471.936988)">/2</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 427.818394)">36-bit complex components</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 446.467216)">Inverse twiddles. No stage /2</text>
    </g>
    <g id="text_20">
-    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #8066a9" x="67.68" y="488.573531" transform="rotate(-0 67.68 488.573531)">trecap_ifft256</text>
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #8066a9" x="67.68" y="486.854344" transform="rotate(-0 67.68 486.854344)">trecap_ifft256</text>
    </g>
    <g id="text_21">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="377.28" y="403.486875" transform="rotate(-0 377.28 403.486875)">Masked spectrum</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="377.28" y="400.317188" transform="rotate(-0 377.28 400.317188)">Masked spectrum</text>
    </g>
    <g id="text_22">
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(377.28 432.022113)">One decision controls both</text>
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(377.28 450.858238)">conjugate partners</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(377.28 427.818394)">One decision controls both</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(377.28 446.467216)">conjugate partners</text>
    </g>
    <g id="text_23">
-    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #8066a9" x="377.28" y="488.601688" transform="rotate(-0 377.28 488.601688)">spectrum_mask_builder</text>
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #8066a9" x="377.28" y="486.910656" transform="rotate(-0 377.28 486.910656)">spectrum_mask_builder</text>
    </g>
    <g id="text_24">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="686.88" y="403.416563" transform="rotate(-0 686.88 403.416563)">Magnitude + THR2</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="686.88" y="400.317188" transform="rotate(-0 686.88 400.317188)">Magnitude + THR2</text>
    </g>
    <g id="text_25">
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 431.886159)">u56 Re^2 + Im^2</text>
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 450.858238)">Mask if eligible power &lt;</text>
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 472.651644)">THR2</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 427.818394)">u56 Re^2 + Im^2</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 446.467216)">Mask if eligible power &lt;</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 465.116039)">THR2</text>
    </g>
    <g id="text_26">
-    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #8066a9" x="686.88" y="488.573531" transform="rotate(-0 686.88 488.573531)">trecap_mag2_mask</text>
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #8066a9" x="686.88" y="486.854344" transform="rotate(-0 686.88 486.854344)">trecap_mag2_mask</text>
    </g>
    <g id="text_27">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="996.48" y="403.416563" transform="rotate(-0 996.48 403.416563)">Hermitian pairing</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="996.48" y="400.317188" transform="rotate(-0 996.48 400.317188)">Hermitian pairing</text>
    </g>
    <g id="text_28">
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(996.48 430.530238)">Pair-average k with 256-k</text>
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(996.48 450.858238)">DC / Nyquist imaginary = 0</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(996.48 427.818394)">Pair-average k with 256-k</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(996.48 446.467216)">DC / Nyquist imaginary = 0</text>
    </g>
    <g id="text_29">
-    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #8066a9" x="996.48" y="488.601688" transform="rotate(-0 996.48 488.601688)">hermitian_canonicalizer</text>
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #8066a9" x="996.48" y="486.910656" transform="rotate(-0 996.48 486.910656)">hermitian_canonicalizer</text>
    </g>
    <g id="text_30">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="67.68" y="590.616563" transform="rotate(-0 67.68 590.616563)">Synthesis WOLA</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="67.68" y="587.517188" transform="rotate(-0 67.68 587.517188)">Synthesis WOLA</text>
    </g>
    <g id="text_31">
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 617.730238)">Emit 128 mature samples</text>
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 639.550113)">Then add the new frame</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 615.018394)">Emit 128 mature samples</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 633.667216)">Then add the new frame</text>
    </g>
    <g id="text_32">
-    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #8066a9" x="67.68" y="675.801688" transform="rotate(-0 67.68 675.801688)">trecap_synthesis_wola</text>
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #8066a9" x="67.68" y="674.110656" transform="rotate(-0 67.68 674.110656)">trecap_synthesis_wola</text>
    </g>
    <g id="text_33">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="377.28" y="590.616563" transform="rotate(-0 377.28 590.616563)">Delay context + Y</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="377.28" y="587.517188" transform="rotate(-0 377.28 587.517188)">Delay context + Y</text>
    </g>
    <g id="text_34">
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(377.28 617.730238)">384-sample reference delay</text>
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(377.28 638.058238)">Held signed12 Y + index</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(377.28 615.018394)">384-sample reference delay</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(377.28 633.667216)">Held signed12 Y + index</text>
    </g>
    <g id="text_35">
-    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #4d78a8" x="377.28" y="675.801688" transform="rotate(-0 377.28 675.801688)">trecap_delay_error_metrics</text>
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #4d78a8" x="377.28" y="674.110656" transform="rotate(-0 377.28 674.110656)">trecap_delay_error_metrics</text>
    </g>
    <g id="text_36">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="686.88" y="592.430625" transform="rotate(-0 686.88 592.430625)">Pure tail drain</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="686.88" y="587.517188" transform="rotate(-0 686.88 587.517188)">Pure tail drain</text>
    </g>
    <g id="text_37">
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 617.730238)">384 WOLA-only ticks</text>
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 638.058238)">No dummy FFT frames</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 615.018394)">384 WOLA-only ticks</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 633.667216)">No dummy FFT frames</text>
    </g>
    <g id="text_38">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="996.48" y="590.686875" transform="rotate(-0 996.48 590.686875)">Canonical-bin taps</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="996.48" y="587.517188" transform="rotate(-0 996.48 587.517188)">Canonical-bin taps</text>
    </g>
    <g id="text_39">
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(996.48 617.730238)">129 rows per frame</text>
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(996.48 638.764472)">Power, mask, frame/bin,</text>
-    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(996.48 659.851644)">THR2</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(996.48 615.018394)">129 rows per frame</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(996.48 633.667216)">Power, mask, frame/bin,</text>
+    <text style="font-size: 15.4px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(996.48 652.316039)">THR2</text>
    </g>
    <g id="text_40">
-    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #407d6c" x="60.48" y="746.728438" transform="rotate(-0 60.48 746.728438)">Exact finite geometry</text>
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #407d6c" x="60.48" y="744.317813" transform="rotate(-0 60.48 744.317813)">Exact finite geometry</text>
    </g>
    <g id="text_41">
-    <text style="font-size: 13.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="60.48" y="765.474375" transform="rotate(-0 60.48 765.474375)">384,000 PCM -&gt; 384,128 analysis tokens -&gt; 3,001 frames -&gt; 384,512 Y.</text>
+    <text style="font-size: 13.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="60.48" y="763.149938" transform="rotate(-0 60.48 763.149938)">384,000 PCM -&gt; 384,128 analysis tokens -&gt; 3,001 frames -&gt; 384,512 Y.</text>
    </g>
    <g id="text_42">
-    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #8066a9" x="679.68" y="746.783125" transform="rotate(-0 679.68 746.783125)">Threshold ownership</text>
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #8066a9" x="679.68" y="744.317813" transform="rotate(-0 679.68 744.317813)">Threshold ownership</text>
    </g>
    <g id="text_43">
-    <text style="font-size: 13.2px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(679.68 765.474375)">DC is protected; Nyquist is eligible; equality is retained. First frame covers indices</text>
-    <text style="font-size: 13.2px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(679.68 784.177125)">-128..127 with a zero left half.</text>
+    <text style="font-size: 13.2px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(679.68 763.149938)">DC is protected. Nyquist is eligible. Equality is retained. First frame covers indices</text>
+    <text style="font-size: 13.2px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(679.68 779.134643)">-128..127 with a zero left half.</text>
    </g>
    <g id="text_44">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="823.028594" transform="rotate(-0 68.4 823.028594)">PCM / sources</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="820.218047" transform="rotate(-0 68.4 820.218047)">PCM / sources</text>
    </g>
    <g id="text_45">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="262.8" y="823.138945" transform="rotate(-0 262.8 823.138945)">DSP / control</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="262.8" y="820.218047" transform="rotate(-0 262.8 820.218047)">DSP / control</text>
    </g>
    <g id="text_46">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="460.8" y="822.419219" transform="rotate(-0 460.8 822.419219)">Spectral output</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="460.8" y="820.218047" transform="rotate(-0 460.8 820.218047)">Spectral output</text>
    </g>
    <g id="text_47">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="676.8" y="823.028594" transform="rotate(-0 676.8 823.028594)">Host / HPS</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="676.8" y="820.218047" transform="rotate(-0 676.8 820.218047)">Host / HPS</text>
    </g>
    <g id="text_48">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="882" y="822.419219" transform="rotate(-0 882 822.419219)">Memory / platform</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="882" y="820.218047" transform="rotate(-0 882 820.218047)">Memory / platform</text>
    </g>
    <g id="text_49">
-    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #586a80" x="1245.6" y="823.83375" transform="rotate(-0 1245.6 823.83375)">solid: data   dashed: control</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #586a80" x="1245.6" y="820.558125" transform="rotate(-0 1245.6 820.558125)">solid: data   dashed: control</text>
    </g>
    <g id="text_50">
-    <text style="font-size: 11.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="50.4" y="846.105781" transform="rotate(-0 50.4 846.105781)">SOURCE BINDINGS: S20, S19, S21, S22, S23, S29, S30, S31, S32, S33, S18  |  Reviewed source structure, not new execution or timing measurements.</text>
+    <text style="font-size: 11.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="50.4" y="844.217781" transform="rotate(-0 50.4 844.217781)">SOURCE BINDINGS: S20, S19, S21, S22, S23, S29, S30, S31, S32, S33, S18  |  Reviewed source structure, not new execution or timing measurements.</text>
    </g>
    <g id="text_51">
-    <text style="font-size: 11.8px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #586a80" x="1245.6" y="846.819313" transform="rotate(-0 1245.6 846.819313)">TSH2 / 02</text>
+    <text style="font-size: 11.8px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #586a80" x="1245.6" y="844.166156" transform="rotate(-0 1245.6 844.166156)">TSH2 / 02</text>
    </g>
   </g>
  </g>

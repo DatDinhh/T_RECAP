@@ -39,7 +39,7 @@ Bind the unchanged finite TCP service ARM binary and its qualification, included
 host02 controller source, build registration, coefficients,
 prior revision02 calibration/quality/code, and all source/derived data hashes.
 Current hardware boot, source ID, bridge state and safety admission must be
-verified by the root operator before MMIO; historical receipts do not admit
+verified by the root operator before MMIO. Historical receipts do not admit
 the current board. All deployment and capture happens in temporary RAM paths.
 
 Validate each complete physical epoch:384000 accepted inputs,384512 signed12
@@ -61,7 +61,7 @@ function. Preserve its startup/tail omissions,48-frame groups, clustering,
 quality tolerances and independently specified synthetic event targets.
 Compare physical threshold1e7 with physical threshold0 and with the frozen
 software result. Natural agreement is a replication of prior engineering
-tolerances; it is not labeled fault recognition. Report all eight controls,
+tolerances. It is not labeled fault recognition. Report all eight controls,
 their five intended persistent additions/switches, misses and extra clusters.
 
 Report two distinct byte scopes. Full transaction bytes include all3001
@@ -69,22 +69,22 @@ physical frames, added silence, finite tail and metadata. Original-support
 prefix bytes cover the1876 natural or1921 synthetic frames and are the
 like-for-like comparison to the previous5s/5.12s software result. Never present
 the full8s padded saving as the5s natural-data saving. Compact dense control
-costs952 bytes per frame at the same threshold and preserves identical powers;
-it is a host-generated comparator, not an additional physical capture.
+costs952 bytes per frame at the same threshold and preserves identical powers.
+It is a host-generated comparator, not an additional physical capture.
 Also retain PCM16, packed12 and task-summary controls with matching durations.
 
 ## Timing boundaries
 
-Physical client fabric cycles include HPS input starvation and output draining;
-they are not pure FFT/threshold/IFFT compute latency. Board roundtrip time
+Physical client fabric cycles include HPS input starvation and output draining.
+They are not pure FFT/threshold/IFFT compute latency. Board roundtrip time
 includes host/network/setup and must never be substituted for compute time.
 The primary new result is physical correctness plus application behavior.
 
 After all board activity finishes, the laptop may repeat the prior receiver
 benchmark using actual physical spectral prefixes:3 warmups and30 matched
 trials for sparse decode+monitor, generated compact-dense decode+monitor and
-CPU PCM-to-features+monitor. Inputs are preloaded; allocations and returned
-copies within called routines count; context setup and checking are untimed.
+CPU PCM-to-features+monitor. Inputs are preloaded. Allocations and returned
+copies within called routines count. Context setup and checking are untimed.
 Use the same prior batching and deterministic ordering, verify all outputs.
 Cached receiver paths exclude producer/transport and cannot establish complete
 FPGA system speedup. Do not infer power savings, live microphone behavior,

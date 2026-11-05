@@ -64,7 +64,7 @@ For each vector:
 | `y_out.memh` | reconstructed output stream, signed `N`-bit two's-complement hex, exactly `Ny` lines |
 | `frame_stats.csv` | one header row plus exactly `Nframes` rows |
 | `metrics.json` | aggregate counters under exact schema |
-| `bin_stats.csv` | optional debug artifact; required only when manifest says it is required |
+| `bin_stats.csv` | optional debug artifact. Required only when manifest says it is required |
 
 ## Row-count rules
 
@@ -93,10 +93,10 @@ frame_idx,unique_bins,unique_suppressed_bins,eligible_unique_bins,eligible_suppr
 
 Rules:
 
-- all values are decimal unsigned integers;
-- `frame_idx` is zero-based;
-- rows are emitted in increasing `frame_idx` order;
-- there is exactly one logical header row;
+- all values are decimal unsigned integers.
+- `frame_idx` is zero-based.
+- rows are emitted in increasing `frame_idx` order.
+- there is exactly one logical header row.
 - there are no comments or blank lines.
 
 ## `bin_stats.csv`
@@ -109,10 +109,10 @@ frame_idx,bin_idx,real,imag,mag2,eligible,pre_mask,mask
 
 Rules:
 
-- `frame_idx` and `bin_idx` are unsigned decimal integers;
-- `real` and `imag` are signed decimal integers;
-- `mag2` is an unsigned decimal integer;
-- `eligible`, `pre_mask`, and `mask` are `0` or `1`;
+- `frame_idx` and `bin_idx` are unsigned decimal integers.
+- `real` and `imag` are signed decimal integers.
+- `mag2` is an unsigned decimal integer.
+- `eligible`, `pre_mask`, and `mask` are `0` or `1`.
 - rows are sorted first by `frame_idx`, then by `bin_idx` from `0` to `L/2`.
 
 `bin_stats.csv` is intentionally conditional. For ordinary signoff vectors, it may be omitted to reduce artifact size. For near-threshold and debug vectors, it should be present.
@@ -238,15 +238,15 @@ error_sample_count
 
 `test_vectors.json` is the frozen vector manifest. A vector is not a signoff vector unless this file records:
 
-- vector name;
-- `Ns`;
-- generator name;
-- generator parameters;
-- `THR2`;
-- `PROTECT_DC` and `PROTECT_NYQ`;
-- `tail_policy`;
-- rounding mode;
-- `x_in_sha256`;
+- vector name.
+- `Ns`.
+- generator name.
+- generator parameters.
+- `THR2`.
+- `PROTECT_DC` and `PROTECT_NYQ`.
+- `tail_policy`.
+- rounding mode.
+- `x_in_sha256`.
 - `y_out_sha256` after golden generation.
 
 Frequency parameters must use exact rational fields `f_num` and `f_den`. Phase fields must use decimal strings such as `"0.5"`. Legacy strings such as `"23/256"` are not part of the baseline schema.
@@ -277,17 +277,17 @@ Generator equations and source code are not enough. A regenerated artifact is ac
 
 `tools/artifact_check.py` should check:
 
-1. all required files exist;
-2. no required artifact is empty;
-3. all `memh` files are canonical or can be normalized to canonical form;
-4. canonical hashes match manifests;
-5. line counts match `artifact_rows`;
-6. CSV headers are exact;
-7. CSV rows are sorted and count-correct;
-8. JSON schemas validate;
-9. wide integer fields are encoded as decimal strings;
-10. `THR2` is in range;
-11. `THR2=0` vectors have zero eligible masks;
+1. all required files exist.
+2. no required artifact is empty.
+3. all `memh` files are canonical or can be normalized to canonical form.
+4. canonical hashes match manifests.
+5. line counts match `artifact_rows`.
+6. CSV headers are exact.
+7. CSV rows are sorted and count-correct.
+8. JSON schemas validate.
+9. wide integer fields are encoded as decimal strings.
+10. `THR2` is in range.
+11. `THR2=0` vectors have zero eligible masks.
 12. conditional `bin_stats.csv` presence matches `artifact_rows`.
 
 The checker should fail closed. Missing metadata is a failure, not a warning.

@@ -1,0 +1,209 @@
+{
+  "schema": "trecap-accelerometer-application-publication-1",
+  "published_utc_date": "2026-11-04",
+  "status": "PASS_ARCHIVED_MEASUREMENT_PUBLICATION",
+  "new_hardware_execution": false,
+  "scope": "Compact application report, measured CSV excerpts and graphs derived from verified archived FPGA outputs.",
+  "physical_thresholds": [
+    0,
+    100000000,
+    1000000000,
+    10000000000,
+    100000000000
+  ],
+  "scored_recording_routes_recomputed": 120,
+  "publication_checks": [
+    "Original and quantized input bindings verified",
+    "Actual full Y and TSP1 hashes match frozen expected output hashes",
+    "Five original physical capture receipt hashes verified",
+    "All saved recording scores reproduced with the unchanged detector",
+    "Threshold zero returns exact packed input after fixed alignment",
+    "All local Markdown links resolve",
+    "No private local user paths in published data"
+  ],
+  "visual_review": {
+    "reviewed_pngs": [
+      "figures/event_errors.png",
+      "figures/quality_tradeoff.png",
+      "figures/waveform_thresholds.png"
+    ],
+    "scope": "Labels and layout inspected. Common waveform limits include every displayed value. No clipped axes were retained."
+  },
+  "dependencies": {
+    "numpy": "2.3.3",
+    "scipy": "1.16.2",
+    "matplotlib": "3.10.7"
+  },
+  "files": [
+    {
+      "path": "code/frozen_detector.py",
+      "sha256": "1eb77d57f25e7d896516846ed70cce397b2de9cdb54542840e8af8529714f6cb",
+      "bytes": 11540
+    },
+    {
+      "path": "data/capture_bindings.json",
+      "sha256": "9b18f27a24413e54f5a9a2da19b7249bab884a6e4fed78b522b7e571ab792c57",
+      "bytes": 16250
+    },
+    {
+      "path": "data/cpu_control_metrics.csv",
+      "sha256": "5d3ed2d990f40b46d05527cf8bbb614c8c967a308b02ea2dd198dd55fb0d290b",
+      "bytes": 460
+    },
+    {
+      "path": "data/event_excerpt.csv",
+      "sha256": "dc65c384a3a59d17195dfe8b4c91f1461dfa04c6f0e5218e91defca32edd28ae",
+      "bytes": 22347
+    },
+    {
+      "path": "data/experiment_summary.json",
+      "sha256": "f097fe41d55fe8cb50abef4f5b68541b36dcd3fbbfb61d33f4b3bca992ea9a6b",
+      "bytes": 1045
+    },
+    {
+      "path": "data/fpga_added_awgn_0p10g_t0_excerpt.csv",
+      "sha256": "a642f4815c3bc5964bd667f4311c6f05a767cb040994ed8387bcd49cd48a7f3d",
+      "bytes": 24511
+    },
+    {
+      "path": "data/fpga_added_awgn_0p10g_t100000000000_excerpt.csv",
+      "sha256": "b346de8eae21e8508c2db5c33abf2f53aa644de3c33c4ef1d75a111934bc4607",
+      "bytes": 24418
+    },
+    {
+      "path": "data/fpga_added_awgn_0p10g_t10000000000_excerpt.csv",
+      "sha256": "9f88f438aa3a8c3ffe605245169d2b6add853b4e9dee1a135ebcec4596311461",
+      "bytes": 24451
+    },
+    {
+      "path": "data/fpga_added_awgn_0p10g_t1000000000_excerpt.csv",
+      "sha256": "31651953ae45926968284c7d01095515c42a10e54cb54fea385a93edf9409ede",
+      "bytes": 24495
+    },
+    {
+      "path": "data/fpga_added_awgn_0p10g_t100000000_excerpt.csv",
+      "sha256": "c3ba25b4b56a958ab975dcc3413c701474c9f3788f09d25dc3ebb6aa95fc02d8",
+      "bytes": 24479
+    },
+    {
+      "path": "data/fpga_original_t0_excerpt.csv",
+      "sha256": "0275419845d02515591d46c1eac3dee52149089e444bb74e6e726795f55497b9",
+      "bytes": 24412
+    },
+    {
+      "path": "data/fpga_original_t100000000000_excerpt.csv",
+      "sha256": "09b98ebd75acbcc409b6d84721efc84156a2102a4a2c408178b56f0e3b9129de",
+      "bytes": 24402
+    },
+    {
+      "path": "data/fpga_original_t10000000000_excerpt.csv",
+      "sha256": "77322efa0fb642fcb38de35a5e9bc567295dcdea17a7299f1105178d85ff157e",
+      "bytes": 24540
+    },
+    {
+      "path": "data/fpga_original_t1000000000_excerpt.csv",
+      "sha256": "a1803e88dba7adcf93b32148136b6fa6da3b4ad94bc0ff4354a2ad0ec58b1e57",
+      "bytes": 24403
+    },
+    {
+      "path": "data/fpga_original_t100000000_excerpt.csv",
+      "sha256": "f0c2f951ad76a1feb0e03c486a81e81d131ff5ba9bf86429da90c8910c0674bc",
+      "bytes": 24472
+    },
+    {
+      "path": "data/input_quantized_added_awgn_0p10g_excerpt.csv",
+      "sha256": "a642f4815c3bc5964bd667f4311c6f05a767cb040994ed8387bcd49cd48a7f3d",
+      "bytes": 24511
+    },
+    {
+      "path": "data/input_quantized_original_excerpt.csv",
+      "sha256": "0275419845d02515591d46c1eac3dee52149089e444bb74e6e726795f55497b9",
+      "bytes": 24412
+    },
+    {
+      "path": "data/low_threshold_event_changes.csv",
+      "sha256": "1a28ce507dfd9a3298fc116e75e1968222641378a27f91d5d4e91e989c53d2de",
+      "bytes": 502
+    },
+    {
+      "path": "data/metrics.csv",
+      "sha256": "076fa9f6bdd559dfbc37e606a342de5fa9864a95cfadd73ef06db996cc6fba0b",
+      "bytes": 1605
+    },
+    {
+      "path": "data/per_recording_metrics.csv",
+      "sha256": "addb8e283f4bfe72d043c41e08cf65e2dc79bc17e6b433776d6926577f2b7090",
+      "bytes": 16718
+    },
+    {
+      "path": "data/provenance.json",
+      "sha256": "b7cfe712220c90584307af3039fb1b315f9278bd76d100cd7a44a1d4c323856e",
+      "bytes": 7714
+    },
+    {
+      "path": "data/source_added_noise_excerpt.csv",
+      "sha256": "5213cc0821fac8fd9d9c8bdc1ab230a70f56df7e99965f23edbe95adf12dc319",
+      "bytes": 29608
+    },
+    {
+      "path": "data/source_original_excerpt.csv",
+      "sha256": "5ee2f60f83defdf2e2ea149d7862188a608c8fd157939f4f14f142c187ffefac",
+      "bytes": 20118
+    },
+    {
+      "path": "figures/event_errors.pdf",
+      "sha256": "d4f3087834ca2cf72485434cd109657db7221b6b32d1aab24fb1cc6b3e3d40a7",
+      "bytes": 28316
+    },
+    {
+      "path": "figures/event_errors.png",
+      "sha256": "5db19d1650cc16d0eb713843876fe36e87d9a544fbd5b24e2e0e62fed07c0a43",
+      "bytes": 130977
+    },
+    {
+      "path": "figures/event_errors.svg",
+      "sha256": "71c6812a21e0285fb6bef9f52375ae7ff8c7b9b66ce63f1ffe2b7786e40170a2",
+      "bytes": 102710
+    },
+    {
+      "path": "figures/quality_tradeoff.pdf",
+      "sha256": "ec2b9eae693d92b18b82797fa6887cdfa17e52a569bfb72f9f5a676d78aa3e21",
+      "bytes": 26960
+    },
+    {
+      "path": "figures/quality_tradeoff.png",
+      "sha256": "1a1966eb65109b41af8c19ec8564f6074d90c07b1dc2422a31b94935c46f62ee",
+      "bytes": 109100
+    },
+    {
+      "path": "figures/quality_tradeoff.svg",
+      "sha256": "9ff312b9b6cf8b2b61e385b495f9bd0366d41576ba9d1b9d7e7c3371bd82437b",
+      "bytes": 81105
+    },
+    {
+      "path": "figures/waveform_thresholds.pdf",
+      "sha256": "82bb7a950c438ff87069ff3612bc6e281f97b949c9e229320768a9d97bc2a92d",
+      "bytes": 61254
+    },
+    {
+      "path": "figures/waveform_thresholds.png",
+      "sha256": "6e49812b2c4a0c1970e04a498a4a0138ff4e57f586909f6ff5e3cdab457727a2",
+      "bytes": 636279
+    },
+    {
+      "path": "figures/waveform_thresholds.svg",
+      "sha256": "a442a2e571eb2ee0968d15f2a6e64a21c1de1777036a4397b082e88476af38b8",
+      "bytes": 249689
+    },
+    {
+      "path": "README.md",
+      "sha256": "3a4101b21cb3939c8ba1213115993bc2086a5b4450f648a3f80b81a6f964bbba",
+      "bytes": 11777
+    },
+    {
+      "path": "replot.py",
+      "sha256": "27d1ff7a46db94e628df906174b4d6f3f614a6f321e16a1d9a49ddb6811d9e94",
+      "bytes": 8087
+    }
+  ]
+}

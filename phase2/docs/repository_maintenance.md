@@ -10,7 +10,7 @@ The source package contained an implementation tree and a separate reference
 package. Their C++ core sources and public headers were byte-identical. The
 implementation copy included additional artifact and configuration tooling fixes,
 so we retained it as the maintained reference and preserved the original reference
-license. The supplied specification copies were identical; the authoritative copy
+license. The supplied specification copies were identical. The authoritative copy
 is listed in [the specification index](specs/README.md).
 
 Historical package labels and `trecap_golden` identifiers remain where changing
@@ -40,7 +40,7 @@ Personal tool-installation paths belong in environment variables or explicit
 command-line arguments. The checked-in private-network addresses are documented
 DE1-SoC direct-link defaults, not credentials or a deployed network inventory.
 Team attribution and the specification's authorship are retained. The adapted
-Linux board DTS retains its GPL-2.0+ license and Altera copyright; see the
+Linux board DTS retains its GPL-2.0+ license and Altera copyright. See the
 [platform notices](../platform/de1soc/linux/THIRD_PARTY_NOTICES.md).
 
 ## Local checks
@@ -48,25 +48,25 @@ Linux board DTS retains its GPL-2.0+ license and Altera copyright; see the
 Run `python scripts/repo_hygiene.py` before preparing a commit. It parses Python,
 JSON and TOML sources, checks relative Markdown links, finds common credential
 patterns and machine-specific paths, and reports portable-path conflicts. It does
-not execute project code or functional tests. Pattern scanning has limited coverage;
-review the proposed commit contents as well.
+not execute project code or functional tests. Pattern scanning has limited coverage.
+Review the proposed commit contents as well.
 
 In a Git checkout, the hygiene scan checks tracked files and unignored new
-files; tracked build products remain findings. Reviewed CPU qualification
+files. Tracked build products remain findings. Reviewed CPU qualification
 logs are still scanned as text, and presentation XML is inspected for local
 paths and credential patterns. Run `python tests/verification/test_repo_hygiene.py`
 to check these publication safeguards with disposable fixtures.
 
 The optional local pre-commit hook runs this same command. Build the software with
-`cmake --preset host` and `cmake --build --preset host`; the presets disable tests.
+`cmake --preset host` and `cmake --build --preset host`. The presets disable tests.
 The Linux `hps` preset adds the transport executable. The optional pinned
 `pyslang` frontend elaborates production RTL through
-`python scripts/elaborate_rtl_sources.py`; vendor IP remains external.
+`python scripts/elaborate_rtl_sources.py`. Vendor IP remains external.
 
 Use `python scripts/record_source_snapshot.py` after an intentional reference
 source update to refresh its byte inventory. This records source identity and
-checks that copied reference contracts/artifacts still match their originals;
-it does not generate new model outputs or establish numerical correctness.
+checks that copied reference contracts/artifacts still match their originals.
+It does not generate new model outputs or establish numerical correctness.
 
 ## Publication
 
@@ -76,5 +76,5 @@ checkout is under `build/github-publish-20260914/`, which is ignored by this
 source tree. Preserve its Git history and review the intended `phase2/` diff
 before committing with the team's normal Git identity. Run the source checks
 from the `phase2/` directory. Do not include local build or execution logs as
-project evidence without describing how they were made; the reviewed CPU
+project evidence without describing how they were made. The reviewed CPU
 qualification exports are an explicit published-evidence exception.

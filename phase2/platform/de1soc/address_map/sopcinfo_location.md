@@ -74,7 +74,7 @@ The current checker establishes artifact presence, the expected HPS/export
 identities, and that `system.qsys` was normalized by the pinned tool flow. The
 checked-in Qsys source now routes the raw lightweight AXI master through
 `trecap_csr_bridge` and routes the exported 64-bit Avalon DDR agent through
-`trecap_f2h_sdram_bridge`; the hand-written `platform_designer_wrapper.sv` binds
+`trecap_f2h_sdram_bridge`. The hand-written `platform_designer_wrapper.sv` binds
 those exports to the board RTL hierarchy. This is source connectivity only.
 The generated SOPCINFO and flattened `system` HDL must still prove CSR
 reachability, the non-aliasing 4 KiB assignment, and the exact port ABI. Boot-time

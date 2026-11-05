@@ -1,0 +1,1427 @@
+{
+  "schema": "trecap-editorial-publication-1",
+  "editorial_date": "2026-11-04",
+  "original_git_commit": "07bc8224aa080c8eaa1b77b4603c118d853465d0",
+  "scope": "Reader-facing punctuation revision. No new hardware run, simulation or proof result is asserted.",
+  "transformations": [
+    "Replace prose semicolons with sentence boundaries or commas.",
+    "Replace en dash ranges with written ranges.",
+    "Replace em dash separators with ordinary sentence punctuation.",
+    "Regenerate retained TSH2 diagram captions and current publication inventories.",
+    "Copy four current pastel verification previews into the overview without changing underlying measured results."
+  ],
+  "prose_edits": [
+    {
+      "path": "phase2/CONTRIBUTING.md",
+      "original_sha256": "14ce2d41eb68b4a045038ad195ec1ace43eee9481940216b7cc06df372a07723",
+      "current_sha256": "518b712ee9f3112ea618ed4984033aaa5f15a48fd6f3d8e1e50f2eb984adf778",
+      "original_bytes": 3571,
+      "current_bytes": 3571,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/config/boards/README.md",
+      "original_sha256": "8bf29e57a328a632038800d3c623c1379845601bea3c90964b8ff430ad49f9df",
+      "current_sha256": "0680373b40188566ca5f507547a820180f3b87bb0259c9b92352171b76ed46a0",
+      "original_bytes": 1409,
+      "current_bytes": 1409,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/config/profiles/README.md",
+      "original_sha256": "ac197689df3e3fe8241977953367eb94e1997b2fc2d142c8099388511d6e863f",
+      "current_sha256": "c4edff0003416d4d3d369185526155359ac94834f7b91257e78b6f46bb4e43d0",
+      "original_bytes": 4641,
+      "current_bytes": 4641,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/architecture_design.md",
+      "original_sha256": "3ea6c976a04d07f9a14e2f28a1a9c3e187e8a6c6cfa58bc6674567e75b95c7c3",
+      "current_sha256": "329cfe752f37661063563336aa902dbcba2f15565691dd3c84244fd2142cdc7e",
+      "original_bytes": 18993,
+      "current_bytes": 18993,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/architecture_implementation.md",
+      "original_sha256": "9550b20a83524b4100041a317ac6074d29819fd007b2e91bc184df55dc5b113c",
+      "current_sha256": "6ae7dc141aa62cffa1b1367112590d63eef757780cfdd811b6287efa728c4a12",
+      "original_bytes": 8263,
+      "current_bytes": 8263,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/avalon_mm_csr_adapter.md",
+      "original_sha256": "eaed04e42cd5785515ecdfd2d39acf327707f3595eb88267d06fbd794100ef15",
+      "current_sha256": "863870481bad6be9b59df3f306fe798436a35f14c3ba15966a93b683e2d91260",
+      "original_bytes": 12465,
+      "current_bytes": 12465,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/build_order.md",
+      "original_sha256": "01c0fa03974de062ddb81e50f15c39610a86e10fa0c35fc134c82589337af668",
+      "current_sha256": "48a124d64653abb00aab8ae9d05080ac32d46bcbdb20af82f4475c88bbfe2981",
+      "original_bytes": 34819,
+      "current_bytes": 34831,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/cdc_plan.md",
+      "original_sha256": "8af9ba20c47c43949d81990039ef8cbcc4b27d00229608b75850693d11844bb7",
+      "current_sha256": "da1b59b5034e36c484a84ead88b95fcde79d9be6040fe3b448327843de129af6",
+      "original_bytes": 22864,
+      "current_bytes": 22864,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/clock_reset_plan.md",
+      "original_sha256": "231432386761f120f6cb38ffc636be9ac79bb5fc6fe40afa0a31e784b453a9e5",
+      "current_sha256": "84d4f0729558e0485a8018e827ade4fe81cb7b96e5236026ab34757f0785a1e2",
+      "original_bytes": 19034,
+      "current_bytes": 19034,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/core_telemetry_composition.md",
+      "original_sha256": "6c80901c0c075cde00097dfa70e5e3ec79857fc8f4f5f73d5246952c342b08a2",
+      "current_sha256": "3be6e84d8f92bbaf4374be3b6a214de218d12a3623f0c107e6c614e638eb9e95",
+      "original_bytes": 15548,
+      "current_bytes": 15548,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/de1soc_board_top_integration.md",
+      "original_sha256": "2efd8c630b9e7b9a873645dd54821401e449741f6eb53b6e7d6043cf090550d0",
+      "current_sha256": "d0b1779c8f4a098afc040ccc3dffad43fea1538ea3b0257a51d78b1ac66b99b9",
+      "original_bytes": 16227,
+      "current_bytes": 16227,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/de1soc_bram_replay_path.md",
+      "original_sha256": "f80e0b64999bc9d946e3376e76ae8908de1203cffd2118a2117357d8a9a8bc10",
+      "current_sha256": "7bcce081ec6e63b636c51798fd9047b09395040a8896adb8b03834679ab10843",
+      "original_bytes": 16356,
+      "current_bytes": 16354,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/de1soc_command_path.md",
+      "original_sha256": "d5970dc8d56350be8470291bfabcc695ff4f54f85cf5c91d8e23b1e245449e12",
+      "current_sha256": "1dd7ed736efa0ca68cad25fb0c59ed4904b4e7fa8c31290719f6ea4802ed8684",
+      "original_bytes": 16944,
+      "current_bytes": 16944,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/de1soc_ddr_ring_ownership.md",
+      "original_sha256": "e4ea2a1738ead30d5fef5f5531887a11a9bc3f30748d0d34c1190205ddd5ed6f",
+      "current_sha256": "a3d1fe619e62763002da931740a73d1fe77fade64ca33b74e46112d797d4654c",
+      "original_bytes": 9092,
+      "current_bytes": 9092,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/de1soc_hps_transport.md",
+      "original_sha256": "f73b21f366969739ce83e0d42fb019e1f34c61624c2026210c78f238ce796935",
+      "current_sha256": "1183d773b11a34ecf711de40e10b8b850ff9b7c71990a690a31b2226b26e9dd1",
+      "original_bytes": 9708,
+      "current_bytes": 9708,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/dependency_rules.md",
+      "original_sha256": "62bf876b996de90a260c7bed9da45a34d06b0d2511f19a945b9b84c4917b2bbc",
+      "current_sha256": "59fc49864e81d512ebca0d6ba404fca76c805f7bb9f17002809a56bf85cf43f2",
+      "original_bytes": 17703,
+      "current_bytes": 17703,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/diagrams/README.md",
+      "original_sha256": "aaed6607a4dd988407ccf7fb0679efb6f76268f20af4acc518e37c56350d3fcd",
+      "current_sha256": "1124dd0d42d1f3e919aacb1d0242dc860be022c523994842290bb6bc53fb3c7b",
+      "original_bytes": 11441,
+      "current_bytes": 11441,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/diagrams/index.html",
+      "original_sha256": "8b88f6f45018f5fd75b4c49884aa4067c8a5bb6707ffd47d515578efd900d35a",
+      "current_sha256": "7bac5f4b3b905c199babf1d1f1d76e818a9892d0531f88e8715b2fb6cc7f4c1f",
+      "original_bytes": 6825,
+      "current_bytes": 6825,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/generated_contracts.md",
+      "original_sha256": "991b02a8a5be1449ff899c3688c99454a665cde458484dcff33dc5aca8f38c55",
+      "current_sha256": "35959eeb2fdff9b0468944ef013a36646a435b93df82f3a3340c9bca7b70197a",
+      "original_bytes": 20246,
+      "current_bytes": 20246,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/generated_header_flow.md",
+      "original_sha256": "cab1ed1504f261ed8655ef197ce480b6f35fec0f613e16963600c625650fd17c",
+      "current_sha256": "225199e7e5916c67a6dd22e2b8bc2d6302dabd743379e06f8d03e15feaafe37f",
+      "original_bytes": 18954,
+      "current_bytes": 18954,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/interface_contracts.md",
+      "original_sha256": "8a6a5649e29997a6760a9a5699a36abbbfb1bc016d7951618de8e902363b2a20",
+      "current_sha256": "46b2ca174eb17e96d8ce87863e99e3364ba70c790a58e6631098a2fd112682ac",
+      "original_bytes": 29291,
+      "current_bytes": 29291,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/magnitude_mask_timing.md",
+      "original_sha256": "b6d8ec32f0dedf72cb957013ab3aa2a374ec3e360868f8b238308c58001f4fc5",
+      "current_sha256": "7f6fc628e11e1f7ef0ffef8d1077e137e40c457af1e6aa11dc49a25c0cc01bcb",
+      "original_bytes": 3362,
+      "current_bytes": 3362,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/memory_map.md",
+      "original_sha256": "6a2e1c985076a1e83c681fa2d7a54664eaceb0d0be89985c9dae56ec660a5096",
+      "current_sha256": "e8ac9f94932d34092ec4383fc728a5eaa9ecbf6f6419694ce6d5bb43008b70b6",
+      "original_bytes": 20436,
+      "current_bytes": 20436,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/module_api.md",
+      "original_sha256": "e4361c0e2dcf2de6e9969650479f2d45b0ff0dbcd4a5a463f8178f889000acd3",
+      "current_sha256": "1bc7fdfe8ba57917d3daf31b2302c66f1d06339b9d059ca5c1817994f7c963aa",
+      "original_bytes": 32638,
+      "current_bytes": 32638,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/module_inventory.md",
+      "original_sha256": "929a1974f624747c4f4e6aa5f5945867f7db7c54b2643a3b7d50d34726511c33",
+      "current_sha256": "6773fba6ae3474f68f0a3c7d7071b15a2afac25b3d47360b3b85f937705ab826",
+      "original_bytes": 30493,
+      "current_bytes": 30493,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/physical_timing.md",
+      "original_sha256": "d9cde76b4c09c0c73d75509bc2ad9ffa7b1dc1d4121122fe2f6ce15dbae4bbc9",
+      "current_sha256": "e78331ed817b91edf88f7b75491ebcb1e0702bc5ee1efc3877c35a95f108ec4d",
+      "original_bytes": 20245,
+      "current_bytes": 20246,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/platform_designer_wrapper.md",
+      "original_sha256": "9af5e826b0379414539ca8e953c12cfb4096cb4273ac2483dbecf5159371677d",
+      "current_sha256": "7278fcfafd3826fedaf5b124d07378372b5a6ab693baf706d9a5ad2a3de65326",
+      "original_bytes": 12986,
+      "current_bytes": 12986,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/platform_grant.md",
+      "original_sha256": "8a9e330951bb0ab1460b58f5430df17b542aeb30e930d7b0aeb0fcc1761e1a5a",
+      "current_sha256": "575deb7b3c9937a512f88dbb9dc7e4d3ae33cbdee33a141afa1e958cd0e4dd62",
+      "original_bytes": 4839,
+      "current_bytes": 4839,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/repo_architecture.md",
+      "original_sha256": "2d577d66e6497036525338b5d30b5d849aa9dd6537bce0ec7729e5d70ec8abe0",
+      "current_sha256": "6689c0a6cd02294bee1f193f1a74ad40ebbb1d6a94d83c7a6ddf735c532586f0",
+      "original_bytes": 5483,
+      "current_bytes": 5483,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/source_core_integration.md",
+      "original_sha256": "89441b71d9fddb3160f4410b9a4618eab26f5f9c7f251eeec3938e7b62769966",
+      "current_sha256": "2af5a043020489f0a0ffb1476315ace2fbbc14e810e9b8d96c0dcfbbba2f3a01",
+      "original_bytes": 19318,
+      "current_bytes": 19319,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/source_health.md",
+      "original_sha256": "94d0ba2cb749a499189a09c0e496c1c0983d5266c0b314be8d0e417189c1594a",
+      "current_sha256": "e5b2f49794591551df5a346619c2d57e6750862adbc08ff40bed364b954a7b94",
+      "original_bytes": 9497,
+      "current_bytes": 9498,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/spectrum_packetizer_timing.md",
+      "original_sha256": "7d3d85fa894d4b6b5d53d1bee84a73dab18a81f67c80d32db7f3363f9769d7bd",
+      "current_sha256": "e54b7a2ec64deb2e810d963f488dc1d135ff66b9c58e8c490d4d1c5b0fc1d722",
+      "original_bytes": 2291,
+      "current_bytes": 2291,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/storage_schedule.md",
+      "original_sha256": "626cb95f3082010223eb6764170ac097bf5af7e36b61d767cfff95ae79b4e024",
+      "current_sha256": "cf30ff76242e5990aee848bbc1fbf2effb56123f545c70fbba81dba8631faa3e",
+      "original_bytes": 25383,
+      "current_bytes": 25383,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/architecture/transform_microarchitecture.md",
+      "original_sha256": "80c54f7c4132afa60c583908abbeb58bf059444c9de35389f6fe23526acdfe3d",
+      "current_sha256": "26dde0180c396ad0f2938509ad1e0c026b53b23b651f03d611c56d8eaf81e28b",
+      "original_bytes": 10066,
+      "current_bytes": 10066,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/bringup/adc_bringup.md",
+      "original_sha256": "a47b0e22003e585f28c71d202da7459ba7b56322505fed6b664b340f31f1bda8",
+      "current_sha256": "ed9b4165a8695ca11ff612831b88f2b1d276bf73a926f2266adc5801056a5e18",
+      "original_bytes": 14925,
+      "current_bytes": 14925,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/bringup/audio_linein_bringup.md",
+      "original_sha256": "746bae7f9b53ad151ccdd5f93b4b37aede756108341211859922c496cc48b587",
+      "current_sha256": "dab3a337e5d8f80da8cc6b34ecb52a7aa4be560082e2a1b48c2b2efd4979bcc3",
+      "original_bytes": 25392,
+      "current_bytes": 25392,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/bringup/bram_replay_signoff.md",
+      "original_sha256": "14a2c457e2c9afa1b216b1429ca32fa89d6bbf7451bb936454161bef22be67db",
+      "current_sha256": "840aacaacbe184b96c7445583a2093edf5d0cb0c6b7577249ab90ae281fee53e",
+      "original_bytes": 16154,
+      "current_bytes": 16154,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/bringup/c0_active_tail_split_v66.md",
+      "original_sha256": "c3e834ec0139bf09e30589f2d3f58ee347334f5244ed6ca6c1836cdc8a6d1521",
+      "current_sha256": "596811800244b4c162d2d310def6f60fe809982e90399d105cfef1d9c0b5157d",
+      "original_bytes": 5553,
+      "current_bytes": 5553,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/bringup/c0_artifact_scoreboard_v68.md",
+      "original_sha256": "9f88e0d8e40a4ef24ddb6864258ecceaec46278b5ec540e821ba0f80add7e10e",
+      "current_sha256": "c43574bbd0246b33181814a4e1d7b1b0063fc561ae4c0bf98299a2c3eb9ae539",
+      "original_bytes": 8952,
+      "current_bytes": 8952,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/bringup/c0_delay_history_fix_v70.md",
+      "original_sha256": "6ee4a3795728a6708505dfa439bf750a0d6b3fdd24f3f4b55638444c47e286a8",
+      "current_sha256": "a98eb87233df6449052c75f7dad249714d6741e3e449eb164360568041a4e6e3",
+      "original_bytes": 6033,
+      "current_bytes": 6033,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/bringup/c0_exact_completion_v67.md",
+      "original_sha256": "ca11a4cb98e82464e976f4e0ac5660d6871d620d4a336164ef4670dbe1e49dea",
+      "current_sha256": "6a1dc7b7df404ee0c9f02268406ad47a0ccd8e7e3b9fc98f77e202c6bfd472fc",
+      "original_bytes": 7512,
+      "current_bytes": 7512,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/bringup/c0_flow_control_fix_v65.md",
+      "original_sha256": "25af6dfa043345f5950f21abac634434c39b88ef23cd7e30e266655133a995de",
+      "current_sha256": "e0335f9a29a70e1f1edda75f0ddf87fc63d0a99489ea4cf01024c04c84bae4df",
+      "original_bytes": 6744,
+      "current_bytes": 6744,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/bringup/c0_mag2_width_fix_v70b.md",
+      "original_sha256": "66b27f7c98dbe4181e538ebde1605a9a82885624ab64dc4893aa3040244ab360",
+      "current_sha256": "100f385b9845ce8b3a9ca2001b864e12f580e724518d5517c14884ff7b384302",
+      "original_bytes": 2357,
+      "current_bytes": 2357,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/bringup/ddr_ring_bringup.md",
+      "original_sha256": "7ed0ca96d93410835d7eaf477bfc4681e2406f1a17871f50aa7cac1cbf9fb095",
+      "current_sha256": "111832e43ddde9b9c672c54a62b4b8b0ea8323c386692f4d3d18bef1862b33ea",
+      "original_bytes": 26283,
+      "current_bytes": 26283,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/bringup/de1_soc_connections.md",
+      "original_sha256": "40cf468467a17c680a28add52014f2e7370ddb69b13aed4feb82e8521a3686d5",
+      "current_sha256": "7f80278779c598b110e2a159178055d2f896393b757049700c7e18b5d06cb894",
+      "original_bytes": 19243,
+      "current_bytes": 19243,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/bringup/fpga_measurement.md",
+      "original_sha256": "f102a632d9eacce4bb5cbbba1431171caaad7a25038df7650712b93a9a2d7332",
+      "current_sha256": "3050227eb2bfe551addccbed970fb30c71d4cd0110e8c81cad269411d6281b0d",
+      "original_bytes": 9978,
+      "current_bytes": 9978,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/bringup/hps_ethernet_bringup.md",
+      "original_sha256": "6e3591ac5ca4996c57efb3d355a3eef8feb25b7d9a250992824f14e512438ea4",
+      "current_sha256": "a43e360cd7d1f374a5ed601b0679af813bef6e83d97398d042fa9eb118d379b1",
+      "original_bytes": 24609,
+      "current_bytes": 24609,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/bringup/pc_dashboard_bringup.md",
+      "original_sha256": "4649cb28ec291db2b0fd1660e9355dc228489d6fe40cf610c5bbdab137317657",
+      "current_sha256": "611e56df437b3d5498c9b039c03d4c74212bde78586b78582317a3c0d9d7f6ff",
+      "original_bytes": 27764,
+      "current_bytes": 27764,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/bringup/quartus_programming.md",
+      "original_sha256": "4a2a82b35a6c2b1989f9ac25d0835067a1b0cfd0c04de017a9429206b6da510e",
+      "current_sha256": "7655038c0421266216434e30a5ff609e2ef24bf33d79eb594c83fea8bb697b25",
+      "original_bytes": 12835,
+      "current_bytes": 12835,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/deprecation/phase1_quarantine_notes.md",
+      "original_sha256": "a690624219f6b3d1c2914a55a849308dd0ddb21aa002cf6008361c4927c954db",
+      "current_sha256": "e812c27881bd9791ff683a366fce9a644527c8f5515baf833c919244335ff0d6",
+      "original_bytes": 1154,
+      "current_bytes": 1154,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/evaluation/benchmark_plan.md",
+      "original_sha256": "e38c11276305eb8f7d8276af39760f96ade89e1184eda45b3cdb7789ffe46be4",
+      "current_sha256": "3d67d9b17016daeae115f46334d47bac772bd42fddb1b39f4cc3ef7a64c92039",
+      "original_bytes": 8224,
+      "current_bytes": 8224,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/presentation/TA_Slide_Explanations_EN.md",
+      "original_sha256": "d10e3c8d9f65cc658703a963d251d28c504c3f1c557d081daa5656be2c617952",
+      "current_sha256": "34d50e8c58865a07930524178750ebd35bd67f1874bcf4595bc524354d9dbac2",
+      "original_bytes": 24376,
+      "current_bytes": 24376,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/project_overview/data/readme_audit.md",
+      "original_sha256": "e7af901e024e445c1389579a8a4e08c6d92632b098db8dd1b8c09e1a44a816a3",
+      "current_sha256": "384d39609f4aa9fea2b49e71fe09fb506e2d3e4a33d1bbb4e14b0220d5cad088",
+      "original_bytes": 8181,
+      "current_bytes": 8181,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/project_overview/data/review_addendum.md",
+      "original_sha256": "1ccfce7be119d1252726d5db0ce60229233d95465e993ed0e06d7e2a0efc04cf",
+      "current_sha256": "1e95cc4db0489f267f9dd79cc6d694266c3284064b00bcec4027c74d07fcae0f",
+      "original_bytes": 4347,
+      "current_bytes": 4347,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/project_overview/figures/FIGURE_NOTES.md",
+      "original_sha256": "dcbc54cc3ee2a518d09e53e60a21210ee928e0427bb6edd41cb62ca3d6309158",
+      "current_sha256": "221db6832386e56700425fedf38df6a62bc0ef3a9c592faf5264fe5ddcc9c319",
+      "original_bytes": 6403,
+      "current_bytes": 6403,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/repository_maintenance.md",
+      "original_sha256": "ed2037e0421323f18701edab1f0d216bda91a5c87eda8528745e550d4ba261d0",
+      "current_sha256": "ef3d0b9089953e9ad1da8d45a671a854ed87988a6363355d182f7baca93b1a3c",
+      "original_bytes": 4574,
+      "current_bytes": 4574,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/results/board_power_20260925/README.md",
+      "original_sha256": "600652eb5ebc58b1f87008c91abec22c9e8b4c45ce4b144934f00ac6c516fd37",
+      "current_sha256": "7d302c9f572234c48b2289dd62a4522c99d76cfdf61ed11f30d19f561cb88a00",
+      "original_bytes": 8467,
+      "current_bytes": 8467,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/results/de1soc_lite_bram_20260915.md",
+      "original_sha256": "a9d5ab8781b5336fc91b98a8437d8118c5128ef4571c57f37682511ec10861b0",
+      "current_sha256": "9797f9cce6e41414dc8ce904a4f878136070b7f528992cdea794cf67b35b8f18",
+      "original_bytes": 6736,
+      "current_bytes": 6736,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/results/fpga_implementation.md",
+      "original_sha256": "5328b8f4c2e39f7d4bc8a73759a5c44718cc2a1770bfc7178025985cc9cebed5",
+      "current_sha256": "4d07aa6c8edc24753b8447da12c416f958998c69463995e53fb42105fca9a2a2",
+      "original_bytes": 8767,
+      "current_bytes": 8761,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/results/hps_cpu_benchmark_20260925/README.md",
+      "original_sha256": "96e1c189d1f640eb9749fd11146e7c6513b0d694b90aaa7509258279601ed932",
+      "current_sha256": "433d9ba5bc1e77b2558170e7c4c18edde983f93021fae283305be026c9ea7cbe",
+      "original_bytes": 10043,
+      "current_bytes": 10045,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/results/ifft_zero_isolation_20260925/README.md",
+      "original_sha256": "95b7ab68beda1ab3f178b2c5d003f05cb67f9534e4788325f8f5b4e702f12e10",
+      "current_sha256": "3732a0d8352e42fce15b8d3fd02cec2dc1f0cbbbcf535d0bb2ca94b6b226ad15",
+      "original_bytes": 12668,
+      "current_bytes": 12669,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/results/verification_20261017/README.md",
+      "original_sha256": "2797554bec9b43dc36e708258b7574b38f36d99fcf392539cb7d9ae202c3ad53",
+      "current_sha256": "74a55f4339aa30008e681f656a713ab249bd01ca15012ea1dca8688302f5ba64",
+      "original_bytes": 3023,
+      "current_bytes": 3023,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/results/verification_baseline_20260915.md",
+      "original_sha256": "fc3aa502671e5fe5af6be101d60151b312859f281d4d92cf9b36c03c31c2ee5f",
+      "current_sha256": "c83d549c8639cc922bb0fe5e37642cb05c8483072446e994f785ba936393c896",
+      "original_bytes": 9068,
+      "current_bytes": 9068,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/results/verification_boundaries_20260915.md",
+      "original_sha256": "6b3dc1d42769259dd1be7151db8484842293017fced324469d184809d25c96bc",
+      "current_sha256": "1b4f2cdbd12c1a12654eb2c4f1a382bcc36a95d05e816f305a0f8223e1f9460d",
+      "original_bytes": 7738,
+      "current_bytes": 7738,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/verification/README.md",
+      "original_sha256": "0da63676b6f824cc4754f1663d569fbd7ad636aad83eb1edabf36bbe07a86910",
+      "current_sha256": "750f7ec7f6744b810fa7bf4bf43f6d90131600d48f00b2355fe3a356c84aafd6",
+      "original_bytes": 4061,
+      "current_bytes": 4061,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/verification/architecture.md",
+      "original_sha256": "288af1845d731e2332f3b4ac407cd0588c25439906efc2538fd164381c4172cd",
+      "current_sha256": "5524877c2cacb719fca7676b3ccbc912983bb430f42d289ffa550005f4c53a24",
+      "original_bytes": 13769,
+      "current_bytes": 13769,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/verification/assertion_catalog.md",
+      "original_sha256": "689e8c58ea6c652bb767c2ef6d807e2beaa8f7912572bb4b2104ac2d8ac3237b",
+      "current_sha256": "95084c44aa2ff926edd0a9689731db7c7d53c366f2c47580ead404722ab3146f",
+      "original_bytes": 10722,
+      "current_bytes": 10722,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/verification/coverage_and_signoff.md",
+      "original_sha256": "4b1baabde834112962424671da4ba85680065f0d560b521d18360751c0256464",
+      "current_sha256": "0bab3ea7a2ab7bd8932683d45c3c1ecec235992b5c2b2804906152118201357d",
+      "original_bytes": 15671,
+      "current_bytes": 15671,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/verification/decisions_and_open_items.md",
+      "original_sha256": "99ae8a23cc51850694e28ae0dd47a878114c30bf914a81d1f132e5a0c13d7b72",
+      "current_sha256": "2b293d07e0c1d315dd9d7f4869ebc61d6225495564458e31f9f7612588201c86",
+      "original_bytes": 8890,
+      "current_bytes": 8890,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/verification/execution_plan.md",
+      "original_sha256": "b3eba18d08b0a89cc5c9439c0331fa9f073e5909af7416341a5f5933664e14b9",
+      "current_sha256": "ea94c00ff91cdf8c7abb711f6e18c50cc72ca7402d23d93699a8fdea10bd36cd",
+      "original_bytes": 9294,
+      "current_bytes": 9294,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/verification/reference_and_core.md",
+      "original_sha256": "1893470a07bf1e3a8381292d7d3b7f171ed8f3cd48d0edf913125ae36141221b",
+      "current_sha256": "c1db95655b9cf129f809d600372c9a2e1fecfb5e6e19e8685993b49ca5f062fa",
+      "original_bytes": 15978,
+      "current_bytes": 15978,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/verification/requirements_matrix.md",
+      "original_sha256": "39820a19f02c002863c057fe20d551b5a0d15088d2c69e8e39dbcfbc7a5fc8e0",
+      "current_sha256": "abe9ed091e6011b62062d7cf27efb2716e52709409f7ed52d08827bfd2992fb9",
+      "original_bytes": 14227,
+      "current_bytes": 14227,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/verification/system_and_interfaces.md",
+      "original_sha256": "d5f57dbefca11b152ed995e75651cfe979d9e387258f6a9a501d6925bdef3bcd",
+      "current_sha256": "2475fbd4028b9094020acf2620613fb5f03b2e5e568a97d8d6fe165236f4a538",
+      "original_bytes": 17382,
+      "current_bytes": 17382,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/docs/verification/test_catalog.md",
+      "original_sha256": "200b8d9278e02cc9b7059505d39575d3a97a3af2d260e4de8aff5bc3ea0f56eb",
+      "current_sha256": "a0a2cbe2063d4beb86d3fd88a6cb944b9b21b3fa10bf2d5d7e70e703b74862a0",
+      "original_bytes": 19195,
+      "current_bytes": 19195,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/experiments/hps_cpu_benchmark/README.md",
+      "original_sha256": "853425f9ad6199b6dfa01a7a83180bd722d106e2695ef530208c82e2352f8902",
+      "current_sha256": "43bf6aa1752c6df823675473dc0e713469160ae50542d667f4866809d8d73af5",
+      "original_bytes": 8556,
+      "current_bytes": 8556,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/experiments/hps_cpu_benchmark/src/README.md",
+      "original_sha256": "6e23da5b28c446f78f833900518793a740b4487f3fbc3ad545da319bc4a324dc",
+      "current_sha256": "2b11d56693857c57439c087ce1551ef075d783426424f45dd4cea65aaba01046",
+      "original_bytes": 7187,
+      "current_bytes": 7187,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/experiments/ifft_zero_isolation/PROTOTYPE.md",
+      "original_sha256": "3121e881b4350d885e27285b36b80a9179bb102b392c7343063718c470227bf0",
+      "current_sha256": "bb51dc56e52b9468c9d50b97c8a67c7de4cd39ebec385cb4dabe253acd13bb6b",
+      "original_bytes": 4149,
+      "current_bytes": 4149,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/experiments/ifft_zero_isolation/README.md",
+      "original_sha256": "d12fa4ff4d9c054f036eebbb45d91e50ffad724611bcda6fafcbdbf30f1372c4",
+      "current_sha256": "0b77a5e167707c38355ec2a5826ede49ad3e1bfc290859cf0459baea3487d0db",
+      "original_bytes": 9222,
+      "current_bytes": 9222,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/experiments/ifft_zero_isolation/activity/README.md",
+      "original_sha256": "1fc73a7c2957fc904cee702669a738188bb0dca96be7cf25e2607bafe8209c7e",
+      "current_sha256": "12a6583a6edb8379f23dd554d3f3c84e9eb3bb7326490f164aee8eeffee973ee",
+      "original_bytes": 1307,
+      "current_bytes": 1307,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/experiments/ifft_zero_isolation/profiling/README.md",
+      "original_sha256": "ce300d9767af997a240332c886ddf8b835215e7274b072299082816a7391aa58",
+      "current_sha256": "408409011f6e1b1bef07cd0a1d8f79558413b11b67466164d8f0533913cd5eaa",
+      "original_bytes": 7426,
+      "current_bytes": 7426,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/experiments/ifft_zero_isolation/profiling/results_01/README.md",
+      "original_sha256": "7071538b2f2d1db0986dfa0ca96bfd9e9134f7a79bd328ef037823c7b45b94ea",
+      "current_sha256": "2a3c2e683d0c39226196825b85ba8ed42bbe935d0d22cf891224fe30c5620eb2",
+      "original_bytes": 2091,
+      "current_bytes": 2091,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/experiments/ifft_zero_isolation/study/report_template.md",
+      "original_sha256": "c77ea0a429e33c33120a2e41b9f3d5bcf6a21a262b6ddb1f0a2d5f8a6ee40730",
+      "current_sha256": "921937d0de00138c9150de1230581915a982a6085b3674dbbdfb7b67ebf68f42",
+      "original_bytes": 11472,
+      "current_bytes": 11472,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/experiments/ifft_zero_isolation/verification/README.md",
+      "original_sha256": "78d731495197d340fab2ec2608341096c3ed2f542ee741f5928ef6d05fcae294",
+      "current_sha256": "78f5728f7d0252c19e894e7c54be91884689af0f9764a5449fa9535fb4341635",
+      "original_bytes": 4882,
+      "current_bytes": 4882,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/platform/de1soc/address_map/address_map.md",
+      "original_sha256": "bb2c5e97d434820f16ccb5260f622af91aed804177c3cd10678055ead091b083",
+      "current_sha256": "f032871917e18a2b7063eebcd45e4babbfce0b8bf50e96094ca4e9a37a5666e2",
+      "original_bytes": 23177,
+      "current_bytes": 23177,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/platform/de1soc/address_map/sopcinfo_location.md",
+      "original_sha256": "388b98a83765c0db5d53552e79991ab5399370ca0229105fc01a4e77c321cb4d",
+      "current_sha256": "4e55b6b46782071ee75156abbdec8d482ab1419f181f6e2922d4a2379c565b84",
+      "original_bytes": 4725,
+      "current_bytes": 4725,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/platform/de1soc/generated_notes/generated_files_readme.md",
+      "original_sha256": "4c3c2233813e39e2e5478e5abda93546848ba9d99d7a3734d63e7404e8027dca",
+      "current_sha256": "0a6b2ef56e0a5cb6b30b2be40dd60144d1c7e811b8b169f8761cd5f6d3c31f0d",
+      "original_bytes": 22032,
+      "current_bytes": 22032,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/platform/de1soc/linux/README.md",
+      "original_sha256": "b6e94b50227d8f0e2663a9fa2706c78ba942f83f0ba758bafff9fbe7589742ba",
+      "current_sha256": "a041d669ef28f36274021e0f71f3f053df07ceb8618d53c283eed8293774a049",
+      "original_bytes": 14540,
+      "current_bytes": 14540,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/platform/de1soc/qsys/presets/README.md",
+      "original_sha256": "279ac48a9eab63b99842cbd86a161d0eae3a5bc4f4404490e137eef55b983765",
+      "current_sha256": "ed571bb63989fd7230d2f631c2bb1d4be57733477276a3c1ba7b7aa38332b99e",
+      "original_bytes": 4979,
+      "current_bytes": 4979,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/profiles/tsh2/README.md",
+      "original_sha256": "2dbd78a0d9e5313cfe8348e2b5988130970530a28e83be4d6ddb07e2b7711cba",
+      "current_sha256": "84d784c6a3475b21f103f6244ad883b44a85003c55e67569add2804a426d86c6",
+      "original_bytes": 4709,
+      "current_bytes": 4709,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/profiles/tsh2/work/trecap_ai_scheduler_v01/native/README.md",
+      "original_sha256": "18df7a78054bbd7bc40dfe713eda79edf8fe1ec702d808971c2851d4624aba31",
+      "current_sha256": "2969c1503d741f1288bf15021f6f1b872ddbcba0548031eb94ebf8bae3ab3e85",
+      "original_bytes": 3986,
+      "current_bytes": 3986,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/profiles/tsh2/work/trecap_cpu_fpga_bench_v01/cpu02/NUMERICS.md",
+      "original_sha256": "212819e31ad007d524b7a2e68ab41c60e53ca03868ca8cb0edfdfa085f864d82",
+      "current_sha256": "3a27ca4156e70b98a2eea9d943f14c440e3cf99cbe5a1d9204f6d10360890a8c",
+      "original_bytes": 2693,
+      "current_bytes": 2693,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/profiles/tsh2/work/trecap_laptop_fpga_v01/service/PROTOCOL.md",
+      "original_sha256": "e6ae0f1abf6f65b1ac75d3fe5fc64f8c987665de3ad9eb20ef59286a406bb65e",
+      "current_sha256": "465bd74a5575987a9d9277f0b6c5feff2c9f4a6b560611772f0138b2a5ea2066",
+      "original_bytes": 2234,
+      "current_bytes": 2234,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/profiles/tsh2/work/trecap_monitor_board_v01/PROTOCOL.md",
+      "original_sha256": "086a6d3e23f90567691dd5755bd9982cfdaadbf43001f3214d9eb1911bf5ba4d",
+      "current_sha256": "7d5d56a56a15f491e6a837ac81d592485aba475111bf910bbd6b80848bb3dcbc",
+      "original_bytes": 5740,
+      "current_bytes": 5740,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/profiles/tsh2/work/trecap_sparse_consumer_v01/native/README.md",
+      "original_sha256": "0f936039e61f82d1503753b9435a9e9c650e7ef9c82329530168a2ab0de62e41",
+      "current_sha256": "55cdc258bebd1f83febe037a9ae4e8d900fa2f12a55b3cf43a0face5fc9171fd",
+      "original_bytes": 4737,
+      "current_bytes": 4737,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/profiles/tsh2/work/trecap_spectral_monitor_v01/native/README.md",
+      "original_sha256": "02cf0aed7b08526a24dda3dd339bb81fd9421b2d4ed9c65c2d9b19736c6c68a8",
+      "current_sha256": "2751f0b8b7b45cb2862ab4ee8f40fad93700428fb414acffdb247f7ec26886f5",
+      "original_bytes": 4275,
+      "current_bytes": 4275,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/profiles/tsh2/work/trecap_spectral_monitor_v02/PROTOCOL.md",
+      "original_sha256": "eac20aaaffad605ad772958f09b3d4ad12bb9c959796411eb79124f9b5c74705",
+      "current_sha256": "2ac7f1cf458b2f1025c29b44602c47ee23b386ee9c91963c765f60b900edfb54",
+      "original_bytes": 9932,
+      "current_bytes": 9932,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/profiles/tsh2/work/trecap_stream8_v01/CONTRACT.md",
+      "original_sha256": "73af404e631860483433b1df3e0fb53f7ea66bdc1f87319b5e519aec89181f13",
+      "current_sha256": "5a178d659add3fc96380455b4e58eb07bb9adc5e389d97926741be0b115fbd52",
+      "original_bytes": 3499,
+      "current_bytes": 3499,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/profiles/tsh2/work/trecap_stream8_v01/build/README.md",
+      "original_sha256": "3b428fafa51fb191370f4d00a9170d6c9926f2c594e61647c9347049e762da56",
+      "current_sha256": "9bf8a1f2a901a5c5c3a4300e84aaca4890ecb876bd767fe27e30d5170fe67b30",
+      "original_bytes": 2521,
+      "current_bytes": 2521,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/profiles/tsh2/work/trecap_stream8_v01/core/README.md",
+      "original_sha256": "830659273811ceeb7c36207fd5761e782e4c0ebe9a542c9ee1ee0e23a9350390",
+      "current_sha256": "b113647f6d021ff19e519bbf85aab3fd511d6ae587a4527e1379c338419d8bcd",
+      "original_bytes": 2778,
+      "current_bytes": 2778,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/profiles/tsh2/work/trecap_visualizer_v01/probe/README.md",
+      "original_sha256": "68caaeda99fc03118b21aef1e4adc7dc5de66bf6fd9b65107ccdd47b527f6ca2",
+      "current_sha256": "f3993f443185faefcaeb0f9542e3a144cb86c24c266a647b54f1afa72510676d",
+      "original_bytes": 1648,
+      "current_bytes": 1648,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/profiles/tsh2/work/trecap_visualizer_v01/web/index.html",
+      "original_sha256": "5f91a9bf53668afab7133babdc2d7536bc79b890a63bfe13d5f37eda5aa1befa",
+      "current_sha256": "641d6566fe2e911c7eb0ed65b9d5c4ee118a117c15bf6792ab4affea2008f445",
+      "original_bytes": 21702,
+      "current_bytes": 21702,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/scripts/verification/README.md",
+      "original_sha256": "1f6371c17650fb51ea4ba7af4ed15c0066f87afab95f6f4c12489ee77b507a2b",
+      "current_sha256": "ada55e7f209b88b48c8287969827486dd2f666677a6e37812a83daab7d617380",
+      "original_bytes": 6700,
+      "current_bytes": 6700,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sim/README.md",
+      "original_sha256": "f5350c868fd1b8d3855a764baf7d067445aeb970c98a82879c4cdf8e477e82ba",
+      "current_sha256": "a6f28d36c800eaba7317b4e4c2bfb580c2db282c9d8dfaf49b9470b0744c1bca",
+      "original_bytes": 12209,
+      "current_bytes": 12209,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sim/verification/core_run_contract.md",
+      "original_sha256": "22c722d0ac3601d7c804d84980e3b1458327dcb511f6a86e4447d5ec86ab12c0",
+      "current_sha256": "8f0547c8069b940627262a9cbd7e871bc7e1f2bef12704478d7d30b9bc376c75",
+      "original_bytes": 3674,
+      "current_bytes": 3674,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sim/verification/reference_adapter/README.md",
+      "original_sha256": "c193dc35eeac8d6c6e2946e21c31cce42d746c156fdedfb8fc3a9c990582159e",
+      "current_sha256": "098a0dea6a905bba246bdbd1892870d62aac2ef8c07f40e8564c8e9738d8f1a8",
+      "original_bytes": 4092,
+      "current_bytes": 4092,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/spec/schemas/frame_stats.schema.md",
+      "original_sha256": "2be25169b2184afdb088dc512e7ca59b7cbecce0c1621cefaf40b0c7988ac70e",
+      "current_sha256": "9d582c128d96e72676857700f767a728982ed8b636607296cb73d3db188f4fdb",
+      "original_bytes": 3728,
+      "current_bytes": 3728,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/hps/scripts/reserve_ddr_region_notes.md",
+      "original_sha256": "542d2325ae1b59ce0debc8202c2a618b92f91a3bfa9205d49c026c062be5ce87",
+      "current_sha256": "ab04bfb5f3c944333f5d4593e8502d083c1a2c10a830b08c143d4c6d6b52e0a1",
+      "original_bytes": 7182,
+      "current_bytes": 7182,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/measurement/ina228/MEASUREMENT_PROTOCOL.md",
+      "original_sha256": "40baea3661abcbd5fb17428b150d453a900d6056131132be8e7476723ed64618",
+      "current_sha256": "b0cbbca71ae5f0e5e16431d75c0234dd619ef89854f5388c5b42bf2d0ad1e2d8",
+      "original_bytes": 7425,
+      "current_bytes": 7425,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/measurement/ina228/README.md",
+      "original_sha256": "283b36f5290809ebb6943954e14fd3ca8918cf062200d77a74cf0e185fdb4ccc",
+      "current_sha256": "04ec94880c4a0ac71d006cfbfecba066fd62c85b494e448fa141962d7064b364",
+      "original_bytes": 7141,
+      "current_bytes": 7141,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/CHANGELOG.md",
+      "original_sha256": "bffd963d710ce32a22c8c3676ffe9555b05a8df2379a33e807e4e03c5849c483",
+      "current_sha256": "6e737eba768d078c8298d657db6b5aab89b204f754c6a3198e3907ffd46e43f3",
+      "original_bytes": 15799,
+      "current_bytes": 15799,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/README.md",
+      "original_sha256": "447d6c5a5f9eed30aa3493ea855b86e25c7f0f2092cc47c06e97d7741374bd8c",
+      "current_sha256": "fadda4a9f6c964d0c26866d39ab8c51641d55b217a8d0128234f486ddf2ab5d2",
+      "original_bytes": 5233,
+      "current_bytes": 5233,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/docs/arithmetic_contract.md",
+      "original_sha256": "7d821e36d74a57e5656e9444e30a1aa338edf3572a60396d28baf5d1eda06df5",
+      "current_sha256": "c0c66c29bffd8e494ec0adb53b516cc507253387a44acf16d0667457d0996426",
+      "original_bytes": 6643,
+      "current_bytes": 6643,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/docs/artifact_contract.md",
+      "original_sha256": "adf8404e386378149e9b6721f187459adc5c3106342ceebcb1769b4145ecd669",
+      "current_sha256": "84cab715cab7fd426c63f104aac1a7b6d9b030bddb578ab7ff0272837b98406f",
+      "original_bytes": 7565,
+      "current_bytes": 7565,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/docs/canonical_memh_hashing.md",
+      "original_sha256": "4e7f528aa242396a31f412b1990da1f2d751cf6dc1fb1354d3cc49f3a739b9f9",
+      "current_sha256": "7c233991995c88fa010c7dfd2073e35ad6d4a4bedb4320f1250767f2a7cb3617",
+      "original_bytes": 6002,
+      "current_bytes": 6002,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/docs/dev_guide.md",
+      "original_sha256": "f6bcc5ea167e4e5384e0057ec31e2a4ac7dfdf0a4dd3f87c731c98f6a7e4dc0f",
+      "current_sha256": "ba43372431ff30b7a4755706ebce7c0a4299b6b1a7f2f555b2d6f96119d17e3b",
+      "original_bytes": 3734,
+      "current_bytes": 3734,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/docs/fft_ifft_contract.md",
+      "original_sha256": "b7f43cc3b97ac572adf932ec3481b7efb887b15b7a303de954839523ee844034",
+      "current_sha256": "e7036fb988824ffdf08b4f461943bdc1f687c7614b1a71432203c0d6c058adaf",
+      "original_bytes": 5464,
+      "current_bytes": 5464,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/docs/fixed_point_widths.md",
+      "original_sha256": "989157a36f96f0dbf09e1eaa5af29992d2749ea25aba30298382f964ff0929ca",
+      "current_sha256": "68f4206a7c7a7e784b669a1dee2e9a8a80c2ea60e02c0c744b0f469170e585d3",
+      "original_bytes": 6754,
+      "current_bytes": 6754,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/docs/golden_model_overview.md",
+      "original_sha256": "a374eb84f1ce9c9e0e0a9b00e58d2ee1fac32ddc0a4294b283061cec3bfe71de",
+      "current_sha256": "7ba957d2214763550fe2ff8fb850a9035ddd86531efa147f372d139692425614",
+      "original_bytes": 2729,
+      "current_bytes": 2729,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/docs/quality_bounds_process.md",
+      "original_sha256": "8c7f8098fa92f4645423839b3a702432eb228c8f195b2ab3abb4709c34bc7f19",
+      "current_sha256": "ba2ee191e194f362201b63231f88d21514673fe19a022e5fc00e7f8e60556c73",
+      "original_bytes": 5713,
+      "current_bytes": 5713,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/docs/release_process.md",
+      "original_sha256": "0cb88e9c233bb6de8d697ef0ad0385ca73722da684366eb4ae0506ef2163880d",
+      "current_sha256": "23770af09f9a1b9988c35a77ad9e5b6cab3273ea26b297cd0ba709f7d83df106",
+      "original_bytes": 7252,
+      "current_bytes": 7252,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/docs/runtime_contract.md",
+      "original_sha256": "3b5f92211edc5022b86d4a68799c42981f59473ce13e6ef3a23cf1354a7b3758",
+      "current_sha256": "f8e2735fd59cb0a47dc6011aa9586db89c077000567060542b86600b7973b55a",
+      "original_bytes": 2424,
+      "current_bytes": 2424,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/docs/stft_wola_contract.md",
+      "original_sha256": "94af352c0dc3273aff9e6221be8351278d3e2d18ad5e8cbb55a7f0b5338529d6",
+      "current_sha256": "0fa401081dc8584324948ac69e0cb017cc9b3aecc7fe38a037be2addfb1a3f87",
+      "original_bytes": 6580,
+      "current_bytes": 6580,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/docs/vector_freeze_process.md",
+      "original_sha256": "dde1da2b5de64cf1fa92cdc536068bee5c92b8bee3794ca004d6e576e056e343",
+      "current_sha256": "60e69c936910f4f1c65571182e11944dae314c732ed8df65b09e579fecf89d89",
+      "original_bytes": 7119,
+      "current_bytes": 7119,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/spec/schemas/frame_stats.schema.md",
+      "original_sha256": "2be25169b2184afdb088dc512e7ca59b7cbecce0c1621cefaf40b0c7988ac70e",
+      "current_sha256": "9d582c128d96e72676857700f767a728982ed8b636607296cb73d3db188f4fdb",
+      "original_bytes": 3728,
+      "current_bytes": 3728,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/sw/reference_model/tests/golden_selfcheck/README.md",
+      "original_sha256": "42655e56ec4f1aade5de903dba60d4db57a566e63094be6830f7d3b8c1038e37",
+      "current_sha256": "5b988df871acfd185e25393ebea39c148b616db8f77de2fcfeb3a2a7f48cfe52",
+      "original_bytes": 1624,
+      "current_bytes": 1624,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/verification/README.md",
+      "original_sha256": "4b1289ddd6a4c0b0f008468102cdcc5d3b1bb4431d97be31c15e6b7d8769ab8b",
+      "current_sha256": "7abcd1db0fbc73f76da1541c9dd4efcc2fa6c95404435c9c08b96bfd1d2f010b",
+      "original_bytes": 5924,
+      "current_bytes": 5924,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/verification/campaign_sources/README.md",
+      "original_sha256": "0f25af31d6b5eb707939552af7a0515fec460132e495c9eeec31b0c011522a5d",
+      "current_sha256": "2da247494df112d579cc028e65ad2a422d53cb8e55ea49e7202bf40087e9ac21",
+      "original_bytes": 2257,
+      "current_bytes": 2257,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/verification/formal/README.md",
+      "original_sha256": "8278d66a66dea541c7366485bf3b8ca9bc07c4e85218c2a788c9fb1422f92878",
+      "current_sha256": "0f241bbf8bae9282ade395c8b8d4ce2ad073aa303ef244b9d8cedb4bc2f993fb",
+      "original_bytes": 9275,
+      "current_bytes": 9275,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/verification/tsh2/README.md",
+      "original_sha256": "3b866f96fc7f7ea53f6971599b75a6146743186359cf8f895078ca758a983b0c",
+      "current_sha256": "b00a9400944259114976bac15b30084077289213d04e77ca1e4641cb89731ab7",
+      "original_bytes": 6991,
+      "current_bytes": 6991,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/verification/uvm/README.md",
+      "original_sha256": "263f1a141993018ab5924ce2a88442f1652705f13f0fb06c16b5bae17644aeb1",
+      "current_sha256": "ab26f235301a6dd214e30ce168bfea5779d7bee407aa51e722135113c879e504",
+      "original_bytes": 6671,
+      "current_bytes": 6671,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    },
+    {
+      "path": "phase2/verification/uvm/evidence/README.md",
+      "original_sha256": "cfc19697fd8baf8bdbefa38bc5c45c27801a47685c689e9d71efd73c590c5512",
+      "current_sha256": "be43bf0d1a4c520691d25fa1c66d57454fb5f78454e0d9e16d3deb9bff8762c1",
+      "original_bytes": 3596,
+      "current_bytes": 3596,
+      "protected_regions_unchanged": true,
+      "numeric_tokens_unchanged": true
+    }
+  ],
+  "current_publication_metadata": [
+    {
+      "path": "phase2/artifacts/manifests/reference_import_manifest.json",
+      "original_sha256": "b035a94391c417062521a65b9489155089c7ab9c93737d1e7425830b78b629c9",
+      "current_sha256": "d977896ccd880ce3197c720a622b50200dff6c5a5a5bcefb2badcb24dfea37db",
+      "purpose": "Maintained reference proxy inventory refreshed with supported tooling."
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/atlas_definitions.json",
+      "original_sha256": "723d552b0c03ab272a097503f6b3d83b2890851230aaf7869481a4d273c2b7b2",
+      "current_sha256": "46b9bdb9ce1091b4fab54d50ce1f3975b08277f3b7cf2707738c551f2897022d",
+      "purpose": "TSH2 current prose, description and current publication source bindings refreshed."
+    },
+    {
+      "path": "phase2/docs/project_overview/data/PUBLICATION_FILES.json",
+      "original_sha256": "f053a75a936f2ec947d09baf342c0009fc8f4f42796104d26e8ffe4c2f45404c",
+      "current_sha256": "914349046d25249984f082bd01be6a0d30259e414a6dd13ee8991d35a060e359",
+      "purpose": "Current publication inventory. Historical original source identities and execution records retained."
+    },
+    {
+      "path": "phase2/docs/project_overview/figures/FIGURE_PUBLICATION_FILES.json",
+      "original_sha256": "92ee04ec9fe56a3f71113fcff94be78ad7b297bfc6af7805d2c7d25bf1f96780",
+      "current_sha256": "86fb57ed6641a559d133ae8116465fb4ae847814b1c031ec5dd16eb8f6c07f4a",
+      "purpose": "Current publication inventory refreshed for prose edits and four duplicate pastel verification previews. Historical source and measured-result records retained.",
+      "punctuation_only_publication_sha256": "ee84e5a4ac9b16387aeca1f92d49c7212c79ad977141e84364b95ee1488fceb5"
+    },
+    {
+      "path": "phase2/docs/project_overview/manifest.json",
+      "original_sha256": "89f6ac6af2559b26f63c90a1271011884ceca9af64bb1250b5baef396b3d01a2",
+      "current_sha256": "5a313856d43e44daf802608637f8bfc498dc548d5908724233bf975aea1935ef",
+      "purpose": "Current publication inventory refreshed for prose edits and four duplicate pastel verification previews. Historical source and measured-result records retained.",
+      "punctuation_only_publication_sha256": "4104feb09daae64cad608fbbb22aa77608506f3c5c7799424619216dd4fed0cf"
+    },
+    {
+      "path": "phase2/docs/results/board_power_20260925/publication_manifest.json",
+      "original_sha256": "10f7df7b9283af37569ab3d84c00298e9b5f4e2a76a7974d5f2f88c111723ff9",
+      "current_sha256": "70bc0f650e9395a91fe2876f217f42bc113046660ecbae0ed8229085450d7bc9",
+      "purpose": "Current publication inventory. Historical original source identities and execution records retained."
+    },
+    {
+      "path": "phase2/docs/results/hps_cpu_benchmark_20260925/publication_manifest.json",
+      "original_sha256": "51a25b55ce5f47885a806823498e8e59aa6877cb1c1e012ef4902dde504807e2",
+      "current_sha256": "ddba8e65c5b57e19d1ef294178bbbda751af265f403a4c086d5cc8b5139f348d",
+      "purpose": "Current publication inventory. Historical original source identities and execution records retained."
+    },
+    {
+      "path": "phase2/docs/results/ifft_zero_isolation_20260925/publication_manifest.json",
+      "original_sha256": "de8939b24c278d7209a754f7d3d17cb9ce113b5ca4ec2c9c4a444ea1f195ac49",
+      "current_sha256": "0ab0b2b54e48b4f28259a8ae839c8d57f45f9a8e194c479adbbe4aad8f8186bd",
+      "purpose": "Current publication inventory. Historical original source identities and execution records retained."
+    },
+    {
+      "path": "phase2/docs/results/verification_20261017/manifest.json",
+      "original_sha256": "8c18ca08daa1faee7499b5d386c59efa40d9b83286558ad73757386f55a0d7e3",
+      "current_sha256": "002da9bd88cc1a80e6d771669e29b6fc4ab3ebf5465e0432990c21b6b816bd5c",
+      "purpose": "Current publication inventory. Historical original source identities and execution records retained."
+    },
+    {
+      "path": "phase2/experiments/hps_cpu_benchmark/package_manifest.json",
+      "original_sha256": "50fee7f72c0a78e5718bfe7794b96487f7a3a7fdffe1621cffcd56cf37a1112b",
+      "current_sha256": "f9c0a599804eea79502a20b92f6a97061a1f5b2ab61dece13646d7ef52c562e8",
+      "purpose": "Current publication inventory. Historical original source identities and execution records retained."
+    },
+    {
+      "path": "phase2/experiments/ifft_zero_isolation/overlay_manifest.json",
+      "original_sha256": "256e8bd6091d5af2970d69997b71df9f39f4ed6589b9d536d6cc4d6a80d9b2ff",
+      "current_sha256": "2e1c32d2981e6937fb1765b3a43b91f920466a7ea9855f2f6bb57a6a1e7ff330",
+      "purpose": "Current publication inventory. Historical original source identities and execution records retained."
+    },
+    {
+      "path": "phase2/profiles/tsh2/source_lineage.json",
+      "original_sha256": "1782e4315bab8e9a2b64fb181de8560a4454b83820dca608611dfbb4e8324eee",
+      "current_sha256": "5e2c63108057b8cc4c5270c0948ed340452736968974612b0c6bc70c092dab43",
+      "purpose": "Current publication inventory. Historical original source identities and execution records retained."
+    },
+    {
+      "path": "phase2/sw/reference_model/import_manifest.json",
+      "original_sha256": "b035a94391c417062521a65b9489155089c7ab9c93737d1e7425830b78b629c9",
+      "current_sha256": "d977896ccd880ce3197c720a622b50200dff6c5a5a5bcefb2badcb24dfea37db",
+      "purpose": "Maintained reference proxy inventory refreshed with supported tooling."
+    },
+    {
+      "path": "phase2/verification/formal/package_manifest.json",
+      "original_sha256": "87f7e3929d88ec0be32b6a83d612de72af56af9897e50d9fe7c0c776be4c634e",
+      "current_sha256": "52a556ce6e1a1da66020c19bd706751765f24cc1bd9df9fda9ff051596d37727",
+      "purpose": "Current publication inventory. Historical original source identities and execution records retained."
+    },
+    {
+      "path": "phase2/verification/uvm/package_manifest.json",
+      "original_sha256": "a68d089503c9f664decb593f0188255224ac7c3bf4169535d3f169de7d1abc28",
+      "current_sha256": "ce7a4d959eb0e50094cca84ba7dfaec616ba519b60bb3a67aea39b7281c3d370",
+      "purpose": "Current publication inventory. Historical original source identities and execution records retained."
+    }
+  ],
+  "regenerated_atlas_artifacts": [
+    {
+      "path": "phase2/docs/architecture/tsh2/01-system.png",
+      "original_sha256": "78f79f5ee794696145d006a866636e9b9e779aef3bf2b54071b225d7235cd644",
+      "current_sha256": "b1383c21e15036174579a90ba372a080ad95d1a786a15fae83ba42e57a24289f"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/01-system.svg",
+      "original_sha256": "afc77d9a3a68084ff6b2511139b838f05c8872ecfc599377c3aa643e9a55971f",
+      "current_sha256": "c60959878914f040c122762ab712e2414982ae99501f9d483667b05d35bb62bd"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/02-dsp-finite-frames.png",
+      "original_sha256": "a6176af0dfab3204c01df05725f12f56b0095ee1e034a1638e1c5803da1404c6",
+      "current_sha256": "8168ad9b30ae0d4cedcd2c1045aa272af511a9830eaadd652845e60027a67473"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/02-dsp-finite-frames.svg",
+      "original_sha256": "c29761711a063cdc6705707e67dd2291fe776fe24ac013d62c474187130c0f80",
+      "current_sha256": "83666285c6b2d8db183581df28571f11a6c818b7c33fc3321af2d17710b0b504"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/03-transform-memory.png",
+      "original_sha256": "3adf78e0ad64f1e3c00bfae14bdaf22cd5f443daa43b0015c05c77bffb3200ec",
+      "current_sha256": "5986ce6b59411893561517870eb7b2000d8c83eaa379b20b935634a995451142"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/03-transform-memory.svg",
+      "original_sha256": "3ba9b7db61533679b8e107c754cd79ec5c89b2495af19f33f6e57c9f2d181811",
+      "current_sha256": "4593dd798f65b22cee7aa5881218867d024a27f4f16ab828d1126419f73512fe"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/04-finite-epoch-feed-drain.png",
+      "original_sha256": "88eb6269df4291bda844d2df4857058c2c73fa78125aa6fbe29ca63732830e21",
+      "current_sha256": "ce336be0571fea48fb5729273e4373db5194e88e68713866eeb2b251272b5056"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/04-finite-epoch-feed-drain.svg",
+      "original_sha256": "42ac24d3d724416131e4f76c024297030798cec242151b6cef64c0f345883ee7",
+      "current_sha256": "3ead142f13fdf01f57fc7249b458a7a5a9113d9b62d9ebed367bdf027e86bdbe"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/05-tsp1-y-outputs.png",
+      "original_sha256": "f39c3086630288bc47b5971297884cf1695721cb063420b79fb7572449c73758",
+      "current_sha256": "49d2f88289598807337e695ad89fb9b11bae9656e192b6ab94af1e25ae0a2146"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/05-tsp1-y-outputs.svg",
+      "original_sha256": "3aaada3c1a2d111546ab6b140b5e86e6266fc6a883e74fb4d9676f7efd2c0c98",
+      "current_sha256": "4a525654bc1c0014fe102ba57a2e2ea9c5ec35efa0a06d219e030c718b4ed895"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/06-tcp-hps-mmio.png",
+      "original_sha256": "775020e7f4ac12c5c7fea9989ad09b657a013f175e1d26959cb8c0473a64d6d0",
+      "current_sha256": "ad931563c46d11d11d12c00cb531fc60d2eb1f2050efad89549fd326d5f22e45"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/06-tcp-hps-mmio.svg",
+      "original_sha256": "8621ba8aedbb25cbe14e604a6623a90cdb12a75213a26576336d6a339dab2846",
+      "current_sha256": "e31ce75d23de10c149421a03d4ea446e42f89bca245ec1fa6ec9f19cda61dfc6"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/07-configuration-backpressure.png",
+      "original_sha256": "023e48c9fb850e842a69627696b68014061e083d438f67bae05d00c25c5daead",
+      "current_sha256": "eb5d82ee7e98516b54ee99ac221da10b2ce3d1cc35c89e181ede773b6cbf2716"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/07-configuration-backpressure.svg",
+      "original_sha256": "88e59c2524b1ea03d782ee68be7774a5670a42d743f879becb384684ad92c146",
+      "current_sha256": "941f2767069e10f9edd11d49c5c43e3ba93ca12357d3213e8549d02a65065abd"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/08-clock-reset-verification.png",
+      "original_sha256": "04856b6f047b4e494191f179534ea8f137db81573c07d3f156ec120c732fadb9",
+      "current_sha256": "981fe2b1e5b95d27c9c2e03a0c5a11511cf868e5c7b2850091056cde27315af0"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/08-clock-reset-verification.svg",
+      "original_sha256": "368237051a0d6f711c8e65b3912eea7f97646b68688540938bcf1b2cb73f69b7",
+      "current_sha256": "3c8d11bfb5b8c27426b36150d63c283bff39cb1940ed61311fdf6f065038ecec"
+    },
+    {
+      "path": "phase2/docs/architecture/tsh2/atlas_manifest.json",
+      "original_sha256": "ff7d837e97920078b4c1b4f8e67ed56f4ef95c5782a91afb8867e5e89d5aa63a",
+      "current_sha256": "4ece0132c71a927b4178c2ef80864691787493cc0e880c95858848798e239772"
+    }
+  ],
+  "historical_records_preserved": [
+    "Fitted-source and baseline-source manifests",
+    "Registered acceptance plans and original requirement dispositions",
+    "Formal proof logs, UVM run logs and execution receipts",
+    "Board captures, expected numerical results and test fixtures",
+    "Original source hashes and commit-pinned claim source bindings"
+  ],
+  "reference_proxy_refresh": {
+    "method": "reference_import.py refresh-proxy",
+    "source_archive_verified": false,
+    "imported_files": 220,
+    "promotions": 39,
+    "imported_tree_sha256": "f31598362d70d52757cd3d1dd1354f6083cc8f02e1d52abbceaf5d5799bbb255"
+  },
+  "preservation_checks": {
+    "markdown_fences_inline_code_links_and_markup_unchanged": true,
+    "numeric_token_sequences_unchanged": true,
+    "original_doc_bytes_match_git_base": true,
+    "indented_command_changes": 0
+  },
+  "report_scope": "Verification portfolio and UVM/formal report rebuilds are recorded by their own current report manifests.",
+  "archival_reproduction_note": "Frozen experimental baselines remain frozen. A current editorial checkout is not asserted to satisfy a historical complete-tree baseline. Use the original required source revision when replaying that experiment.",
+  "restyled_verification_previews": [
+    {
+      "path": "phase2/docs/project_overview/figures/dv_topology.png",
+      "original_sha256": "d4c6a66bddcf3ccd2a74362e2dae7f467611e8693b7e0e20644d4c33ecfa3730",
+      "source_path": "phase2/docs/verification/portfolio/figures/topology.png",
+      "current_sha256": "a10a063f82fe4d85615dbba540af8787f0f9ab05ac87bf8b01c77cb4179def5d",
+      "reason": "Copy the current pastel portfolio preview. Historical numerical result data is unchanged."
+    },
+    {
+      "path": "phase2/docs/project_overview/figures/dv_rounding.png",
+      "original_sha256": "9bda83f884c9e2e751b5419cc727630d3d92b8655653d905672539211dfaa855",
+      "source_path": "phase2/docs/verification/portfolio/figures/rounding.png",
+      "current_sha256": "20df4c3d97f0b535f67bfdd51499d3da18fdb917466408bdc88c575514d61682",
+      "reason": "Copy the current pastel portfolio preview. Historical numerical result data is unchanged."
+    },
+    {
+      "path": "phase2/docs/project_overview/figures/dv_handshake.png",
+      "original_sha256": "e1b5d467e1509f711abdab8cf1dcc82af01142a2c683969ea7313e02155ae95d",
+      "source_path": "phase2/docs/verification/portfolio/figures/handshake.png",
+      "current_sha256": "f722ed2070e79c5adcb23ff2e3c6637150b16406ba64cf73aba0051446364e97",
+      "reason": "Copy the current pastel portfolio preview. Historical numerical result data is unchanged."
+    },
+    {
+      "path": "phase2/docs/project_overview/figures/dv_reset.png",
+      "original_sha256": "21cad60f6f1f579155e6963ce83271978648d97a03a9ce797f24a64edc7f1cd9",
+      "source_path": "phase2/docs/verification/portfolio/figures/reset.png",
+      "current_sha256": "bc2240516cf495eb4afad8d33e345e1977f54cb0b2386d5c15a5f522c3756922",
+      "reason": "Copy the current pastel portfolio preview. Historical numerical result data is unchanged."
+    }
+  ]
+}

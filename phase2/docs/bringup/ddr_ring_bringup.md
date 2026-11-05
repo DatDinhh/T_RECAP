@@ -134,7 +134,7 @@ make hps-build
 ```
 
 Step 13 now provides checked-in HPS transport source and deterministic host
-tests. Source-gate failures are blockers; do not replace generated contracts
+tests. Source-gate failures are blockers. Do not replace generated contracts
 with hard-coded ring paths. A host-test pass is not HPS Linux, active-DTB,
 Ethernet, systemd, FPGA, or hardware evidence.
 
@@ -241,7 +241,7 @@ The ring reader opens `/dev/trecap-ring` with `O_RDONLY | O_CLOEXEC` and checks
 noncached flags, physical base `0x3e000000`, size `0x02000000`, and zero reserved
 field. It then maps the complete aperture with `PROT_READ | MAP_SHARED` at file
 offset zero. The driver rejects writable/executable, partial, private, or nonzero-
-offset mappings and sets `pgprot_noncached`; userspace does not infer cache
+offset mappings and sets `pgprot_noncached`. Userspace does not infer cache
 attributes from `O_SYNC`. Cached ring mapping remains forbidden.
 
 The device admits one open consumer. The reader retains its file descriptor until
@@ -260,7 +260,7 @@ before the HPS application accesses CSRs.
 
 `trecap_platform.service` loads the driver before `trecap_udp_streamer.service`.
 The driver owns HPS_GPIO48 through `portb` offset 19. After output-low readback,
-it asserts the FPGA-visible `PLATFORM_CONTROL` grant; teardown clears that CSR
+it asserts the FPGA-visible `PLATFORM_CONTROL` grant. Teardown clears that CSR
 before driving the GPIO high. It validates the exact CSR resource and platform
 capability before acquisition. See [platform grant](../architecture/platform_grant.md) for ordering and reset
 semantics. No competing userspace GPIO owner is part of this design. Merely stopping the oneshot service does not unload the driver
@@ -300,7 +300,7 @@ RESET_TRANSPORT -> CONFIGURE_DDR_RING -> SET_TELEMETRY_ENABLE 1
 ```
 
 `CONFIGURE_DDR_RING` has three zero arguments. It uses the already validated
-runtime profile and live reservation; no network datagram may supply a ring
+runtime profile and live reservation. No network datagram may supply a ring
 address, size, or guard value. On partial failure the bridge attempts
 `CONTROL=0` and verifies both controls off in STATUS. If MMIO/readback cannot
 prove that state, software locks `RESET_REQUIRED`, reports hardware disable as
@@ -377,7 +377,7 @@ Minimum runtime config fields:
 ```
 
 This is the canonical Step-13 profile shape, including the required safety
-booleans. These are frozen DE1-SoC contract addresses; changing them requires
+booleans. These are frozen DE1-SoC contract addresses. Changing them requires
 updating the authoritative address map and regenerating/checking every
 consumer. They remain subject to the compiled-SOPCINFO, active-DTB, Linux
 runtime, and hardware evidence gates.
@@ -761,7 +761,7 @@ Stop the test and disable telemetry if any of these occur:
 | First STATUS payload is not 72 | packet schema drift | fix `packet_layouts.json` and regenerate |
 | WRAP appears in UDP stream | HPS forwarding WRAP incorrectly | fix `ring_reader.c` |
 | PC sequence gaps under no-loss run | HPS skipped committed normal record | inspect Rd advancement and WRAP logic |
-| HPS sees old packet repeatedly | unsupported cached mapping or bad reservation | Stop; restore the read-only non-cacheable mapping and revalidate the live reservation. |
+| HPS sees old packet repeatedly | unsupported cached mapping or bad reservation | Stop. Restore the read-only non-cacheable mapping and revalidate the live reservation. |
 | DMA drops increment immediately | ring free-space math or Rd commit bug | inspect `W`, `Rd`, `Lreq`, `Gguard` |
 | Packet FIFO drops merge with DMA drops | counter ownership bug | keep pre-writer and writer-stage drops separate |
 

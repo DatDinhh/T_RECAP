@@ -32,7 +32,7 @@ This supplement adds transaction-based UVM simulation and local formal verificat
 
 \clearpage
 \section{Scope and verification contract}
-The verification target is the fixed-point FFT, threshold, IFFT/WOLA and spectral-export pipeline used in the registered TSH2 profile. The UVM environment reuses the admitted short synthetic corpus and exact reference outputs. Local formal harnesses instantiate unchanged implementation modules. The historical campaign of 14 RTL suites and 58 physical epochs is separate evidence; it was not retroactively executed using UVM.
+The verification target is the fixed-point FFT, threshold, IFFT/WOLA and spectral-export pipeline used in the registered TSH2 profile. The UVM environment reuses the admitted short synthetic corpus and exact reference outputs. Local formal harnesses instantiate unchanged implementation modules. The historical campaign of 14 RTL suites and 58 physical epochs is separate evidence. It was not retroactively executed using UVM.
 
 The acceptance policy was recorded before results: genuine UVM execution, passive transfer observation, exact numerical scoreboards, nonzero observed event counts, bounded runner completion, actual formal-engine results, explicit assumptions, cover witnesses and deliberate checker failures. Failed infrastructure or harness-development attempts remain distinct from successful verification runs.
 
@@ -44,7 +44,7 @@ UVM simulation & Does the DUT satisfy the checked contracts for executed transac
 Formal safety proof & Can the named property fail in the instantiated transition system under the assumptions? & The exact module, parameters, reset model and assumptions.\\
 Formal cover & Can a specified scenario occur within the search depth? & A witness establishes reachability, not universal correctness.\\
 Negative control & Does the verification flow detect a deliberate violation? & Qualifies a specified checker path, not every possible defect.\\
-Physical campaign & Did the registered implementation reproduce expected captures on DE1-SoC? & Historical board conditions; not rerun for this supplement.\\\bottomrule
+Physical campaign & Did the registered implementation reproduce expected captures on DE1-SoC? & Historical board conditions. Not rerun for this supplement.\\\bottomrule
 \end{tabularx}\end{table}
 
 The original 46 broad requirements retain their historical 30 partial and 16 excluded dispositions. This supplement supplies additional evidence for selected numerical, framing, flow-control and reset contracts. A framework label does not automatically close a requirement.

@@ -3,7 +3,7 @@
 T-RECAP is a fixed-point FPGA signal-processing system with a separate observation
 and control path. We process a signed 12-bit sample stream through a 256-point
 STFT, a magnitude-squared threshold mask, and WOLA reconstruction. The HPS moves
-committed telemetry records from DDR to a desktop dashboard; it does not perform
+committed telemetry records from DDR to a desktop dashboard. It does not perform
 the signal-processing algorithm.
 
 This document records our current design, explicit resource budgets, and the
@@ -46,7 +46,7 @@ diagnostic generator ----------------------------+                   v
 
 The fabric clock is `CLOCK_50` at 50 MHz. Audio serialization has its own positive
 and negative BCLK edges and crosses to fabric through async FIFOs. ADC serial
-edges are registered fabric outputs; the ADC controller never clocks RTL from
+edges are registered fabric outputs. The ADC controller never clocks RTL from
 `ADC_SCLK`. HPS, DDR, UDP, and dashboard congestion can discard telemetry but
 cannot control mathematical-core ready signals.
 
@@ -70,7 +70,7 @@ admission and sets the existing core protocol fault. Reset, core clear, and sour
 discontinuity invalidate the queue with the data path.
 
 The scheduler's boundary pulse is registered after frame admission. Therefore a
-commit triggered by that pulse affects subsequent frame admissions; the frame
+commit triggered by that pulse affects subsequent frame admissions. The frame
 that raised the pulse keeps its preceding threshold. STATUS reports the current
 CSR value, while already admitted frames may still complete with older snapshots.
 We do not claim that a STATUS packet identifies the threshold of every in-flight
@@ -87,12 +87,12 @@ an enable/abort primes the converter's next-command pipeline and is discarded.
 Switching between continuous and manual acquisition clears the DSP epoch and
 briefly disables the ADC controller so an unfinished conversion cannot cross the
 transition. The channel remains the selection latched on entry to ADC source
-mode; changing channel still requires leaving and re-entering that source.
+mode. Changing channel still requires leaving and re-entering that source.
 
 With manual ADC selected, FPGA STATUS/METRICS use `sample_rate_hz=0` to mean there
 is no periodic DSP sample stream. The dashboard labels that condition explicitly.
 HPS-synthesized diagnostic STATUS uses zero to mean that physical cadence is not
-available through the current CSR ABI; the dashboard distinguishes this from a
+available through the current CSR ABI. The dashboard distinguishes this from a
 normal FPGA STATUS. This avoids guessing a rate after a source or manual-mode
 change. The standalone dummy-UDP generator retains its requested diagnostic rate.
 For `SW[9:8]=00`, the board displays the low 12 bits of the eligible raw-sample
@@ -122,7 +122,7 @@ configuration and log plan into its run directory but does not invoke Quartus.
 `sw/hps/scripts/run_udp_streamer.sh --profile <profile>` applies the same profile
 before starting the HPS binary and saves `effective_runtime.json` next to the launch
 manifest. Explicit launcher options follow profile arguments and therefore override
-them; the final argument vector is recorded. Without `--profile`, the launcher
+them. The final argument vector is recorded. Without `--profile`, the launcher
 retains STATUS-only startup. Source mode always resets to BRAM in hardware, and
 HPS applies the selected source through the normal shadow/commit path.
 
@@ -131,7 +131,7 @@ profiles. The current CSR ABI does not contain a bitstream/profile hash and cann
 automatically enforce that pairing. Use the paired build and launch manifests.
 Selecting a BRAM profile never starts replay automatically. A zero metrics cadence
 produces no metrics tick. LINE-OUT additionally requires `AUDIO_LINEOUT_ALLOWED=1`
-in the bitstream and `SW[3]=1`; shipped profiles keep it disabled.
+in the bitstream and `SW[3]=1`. Shipped profiles keep it disabled.
 
 ## Timing and cycle budget
 
@@ -170,7 +170,7 @@ store, closing the no-prior-frame-backlog assumption for steady operation.
 The bound assumes ordered legal input, a cleared/initialized epoch, normal
 periodic source cadence, and continuously ready core output. The physical top
 meets the output condition because telemetry taps have no ready return path.
-The generic reusable core permits external output stalls; unbounded stalls have
+The generic reusable core permits external output stalls. Unbounded stalls have
 no finite service guarantee. WOLA needs 384 clear-free clocks to scrub its RAM
 before accepting its first frame. Source recovery provides 4096 settling clocks
 only after physical capture-stop acknowledgement.
@@ -178,7 +178,7 @@ only after physical capture-stop acknowledgement.
 Input extraction temporarily refuses new samples for about 514 clocks. Each live
 adapter holds one pending sample. At 100 ksample/s the extraction request follows
 the just-accepted hop-ending sample by about two clocks, so only the next raw
-sample arrives during that refusal interval; it is consumed before the following
+sample arrives during that refusal interval. It is consumed before the following
 sample at about 1000 clocks. This argument requires healthy periodic phase and no
 existing backlog. We do not claim arbitrary-phase or burst tolerance for a
 one-entry adapter. Any actual refused event or sequence discontinuity stops the
@@ -186,7 +186,7 @@ epoch through the source supervisor.
 
 A conservative delayed-history allowance is 549 samples, below its 1024 entries,
 using `D+H+ceil(18000/500)` with one extra boundary sample. Finite replay tail
-is paced by source ticks; its bound after frame work is `(D+1)*T_tick_max+4`,
+is paced by source ticks. Its bound after frame work is `(D+1)*T_tick_max+4`,
 not the local unpaced 768-clock WOLA drain. This is 192504 clocks at 100 ksample/s
 or at most 401174 clocks with 1042-clock maximum tick spacing at 48 ksample/s.
 It is a finite flush cost, separate from the recurring hop budget.
@@ -200,8 +200,8 @@ and [storage_schedule.md](storage_schedule.md).
 
 Large frame, history, and payload stores use explicit synchronous M10K port
 schedules. Payload reset is replaced by ownership/validity invalidation or a
-sequential scrub. The packet FIFO moves descriptors between nine ownership slots;
-the DDR builder reads one payload RAM and generates header/padding while streaming.
+sequential scrub. The packet FIFO moves descriptors between nine ownership slots.
+The DDR builder reads one payload RAM and generates header/padding while streaming.
 Neither moves an entire resident record through a wide register vector.
 
 | Storage group | Logical geometry | Planning allowance |
@@ -215,11 +215,11 @@ Neither moves an entire resident record through a wide register vector.
 | WAVE / SPEC / STATUS+METRICS capture | Fixed packet capture buffers | 9216 /4248 /1024 register bits |
 | Threshold metadata / input validity | 4x120 /512x1 | 480 /512 register bits |
 
-The **53 M10K planning allowance** deliberately uses conservative legal slices;
-it is not a fitted count. It excludes control/arithmetic registers, pointer
+The **53 M10K planning allowance** deliberately uses conservative legal slices.
+It is not a fitted count. It excludes control/arithmetic registers, pointer
 metadata, packet header registers and implementation packing losses. Both
-transforms have four logical DSP multipliers, with 36x17 or 28x17 operands;
-physical DSP block use depends on width decomposition. Optional LINE-OUT is
+transforms have four logical DSP multipliers, with 36x17 or 28x17 operands.
+Physical DSP block use depends on width decomposition. Optional LINE-OUT is
 constant-disabled in shipped profiles and is budgeted separately when enabled.
 The device fit and selected ROM packing must come from Quartus reports.
 
@@ -229,11 +229,11 @@ active packet contracts bound a DDR record to 1216 bytes. As a conservative
 all-types-every-frame envelope, four records per 100 ksample/s hop consume at most
 4*1216*781.25 = **3.8 MB/s** of ring space. This deliberately overestimates WAVE,
 which groups 192 samples, and small STATUS/METRICS records. Four maximum builder
-records consume at most 4*1952 = 7808 fabric clocks before external DDR stalls;
-the packet FIFO allows up to 600 clocks to transfer one configured maximum payload
+records consume at most 4*1952 = 7808 fabric clocks before external DDR stalls.
+The packet FIFO allows up to 600 clocks to transfer one configured maximum payload
 into the builder. Counting capture and emission serially gives at most 10208 clocks
 for four records, plus bounded control transitions and external Avalon stalls.
-We allocate 11000 clocks of local telemetry service per hop; external memory stalls
+We allocate 11000 clocks of local telemetry service per hop. External memory stalls
 consume queue/ring headroom rather than extending the mathematical-core schedule.
 
 The usable ring capacity is 33554432-64 bytes, so the 3.8 MB/s envelope allows about
@@ -246,8 +246,8 @@ and pointer ownership remain defined in [de1soc_ddr_ring_ownership.md](de1soc_dd
 
 `trecap_source_core_integration` owns physical readiness, sequence continuity,
 source loss and epoch recovery. Its additive SOURCE_HEALTH page begins at 0x100
-and is discovered through capability 0x53480100. Snapshot captures 31 words;
-existing CSR offsets and UDP formats are preserved. The HPS utility reads each
+and is discovered through capability 0x53480100. Snapshot captures 31 words.
+Existing CSR offsets and UDP formats are preserved. The HPS utility reads each
 word with an aligned 32-bit MMIO access and can request an explicit rearm.
 
 Sequence gaps, refused live events, readiness loss and watchdog timeout invalidate
@@ -282,7 +282,7 @@ See [physical_timing.md](physical_timing.md) for numeric values and their source
 
 Board reset is qualified and combined with HPS-to-FPGA reset before synchronized
 fabric release. Audio domains release reset locally. Telemetry soft clear leaves
-the mathematical epoch intact; source discontinuity clears dependent history.
+the mathematical epoch intact. Source discontinuity clears dependent history.
 
 Deployment loads a matched FPGA image and boots the selected kernel/DTB with
 bridges configured, loads the platform driver, and starts HPS with the paired
@@ -299,12 +299,12 @@ concrete design choices with corresponding RTL/C/DT/SDC source.
 
 The native11 build generated the actual Platform Designer/PLL products and
 completed placement and routing. Subsequent source revisions require their own
-build and timing reports; see [architecture_implementation.md](architecture_implementation.md)
+build and timing reports. See [architecture_implementation.md](architecture_implementation.md)
 for current results and [build_order.md](build_order.md) for the acceptance flow.
 The installed Standard Edition evaluation flow has not produced a programmable
 SOF. A compiled kernel/DTB/module, matched board boot configuration, and physical
 audio/ADC operation remain pending. Source elaboration and fitted reports do not
-establish functional correctness; functional verification and board evaluation
+establish functional correctness. Functional verification and board evaluation
 remain separate project work.
 
 The memory allowance uses the supported [Cyclone V M10K configurations](https://www.intel.com/content/www/us/en/programmable/quartushelp/17.0/reference/glossary/def_m10k.htm), including 512x20 slices for conservative planning.

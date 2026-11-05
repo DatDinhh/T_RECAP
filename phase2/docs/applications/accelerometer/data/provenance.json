@@ -1,0 +1,178 @@
+{
+  "dataset": "Clemson Pedometer Evaluation Project",
+  "primary_page": "https://cecas.clemson.edu/~ahoover/pedometer/",
+  "download_url": "https://cecas.clemson.edu/tracking/Pedometer/Data.zip",
+  "download_sha256": "ce37832d5e234f6f014193a3a2af2f3162ab90905f303d473849512d690885da",
+  "download_bytes": 31661301,
+  "citations": [
+    {
+      "authors": "R. Mattfeld, E. Jesch, A. Hoover",
+      "title": "A new dataset for evaluating pedometer performance",
+      "year": 2017,
+      "doi": "10.1109/BIBM.2017.8217769"
+    },
+    {
+      "authors": "Ryan Mattfeld, Elliot Jesch, Adam Hoover",
+      "title": "Evaluating Pedometer Algorithms on Semi-Regular and Unstructured Gaits",
+      "year": 2021,
+      "doi": "10.3390/s21134260"
+    }
+  ],
+  "redistribution_scope": "Full source dataset is linked upstream. Only a 20-second attributed numerical excerpt and derived project measurements are included here. No dataset license is inferred from an article license.",
+  "license_observation": "No explicit dataset license was observed in the recorded university source page or Data.zip. The cached provenance was recorded on 2026-11-04.",
+  "source_recordings": [
+    {
+      "id": "P003_Regular_original",
+      "source_recording_filename": "P003_Regular.txt",
+      "participant": "P003",
+      "activity": "Regular",
+      "source_sha256": "edf0531feea8de601f37ae1a4a6b27ed3bf7ee6673b8c95a076177c8a5728b0e",
+      "video_labels_sha256": "bd5794b4748b404a83a614f617ca610b629e7214444dd403e9677137a3397bef"
+    },
+    {
+      "id": "P003_SemiRegular_original",
+      "source_recording_filename": "P003_Semiregular.txt",
+      "participant": "P003",
+      "activity": "SemiRegular",
+      "source_sha256": "4f720ec11733c46a3ccfff9e6cd231d30a432559fe7381327f86d86fbd9a6bcc",
+      "video_labels_sha256": "9bea12be8c4fc8f1b5bad2c0c1b585285a90fcc548aa48707796c12d21c7fac9"
+    },
+    {
+      "id": "P003_Irregular_original",
+      "source_recording_filename": "P003_Irregular.txt",
+      "participant": "P003",
+      "activity": "Irregular",
+      "source_sha256": "486e90ae08bc1fadc55072bcdf8af44a22abd82e3003aaabe3915d173ca7023c",
+      "video_labels_sha256": "b0859fbf8d27b2b3b8f320a16dec03e32efee4c17fe292be8d357b372695a4d0"
+    },
+    {
+      "id": "P004_Regular_original",
+      "source_recording_filename": "P004_Regular.txt",
+      "participant": "P004",
+      "activity": "Regular",
+      "source_sha256": "4cd407883e0483f19d8a37cd54581a6987607650a4dfe91b6ed0b673955b1c98",
+      "video_labels_sha256": "75f778f06e27dd93205c110077a45d2759d46f6aee9a8a2a769daf94850cdb07"
+    },
+    {
+      "id": "P004_SemiRegular_original",
+      "source_recording_filename": "P004_Semiregular.txt",
+      "participant": "P004",
+      "activity": "SemiRegular",
+      "source_sha256": "71e5e3f71079cded308fbb6701941c65b7e3afba38e75c4dbbf0ce37e9aaa8c4",
+      "video_labels_sha256": "6bd5f21ce13722ac7f722b6e7c481a3e4ea8bcc14cd2c35d48e2613686046bf6"
+    },
+    {
+      "id": "P004_Irregular_original",
+      "source_recording_filename": "P004_Irregular.txt",
+      "participant": "P004",
+      "activity": "Irregular",
+      "source_sha256": "f7b8bc3f18a062bca7132d980781881c7b0edcfc239ca35579c04b2d7d48d1e9",
+      "video_labels_sha256": "900ede35a32e5d5c0597edff08025c797926b8a7de5d343e1524e1abe98cce44"
+    },
+    {
+      "id": "P005_Regular_original",
+      "source_recording_filename": "P005_Regular.txt",
+      "participant": "P005",
+      "activity": "Regular",
+      "source_sha256": "67c402172820ba620cb0ade46e540fda39ebf029ed09a044e612eb4964126c7a",
+      "video_labels_sha256": "fd66351ad8692518d076a292afc22983ba84fefdc781fd658195fbfbfdb20593"
+    },
+    {
+      "id": "P005_SemiRegular_original",
+      "source_recording_filename": "P005_Semiregular.txt",
+      "participant": "P005",
+      "activity": "SemiRegular",
+      "source_sha256": "408f05f74b861f5368ae339cde4fc7735e950a37da57d85285a1f9767a720a03",
+      "video_labels_sha256": "f477abeb799458c63685cf44fd76b4da25882ddfad8843bfba352f62bf9f394d"
+    },
+    {
+      "id": "P005_Irregular_original",
+      "source_recording_filename": "P005_Irregular.txt",
+      "participant": "P005",
+      "activity": "Irregular",
+      "source_sha256": "7ad8ea546a6527352306e98418397cc2d349768d7de30247fa1bb7b14a270cfe",
+      "video_labels_sha256": "7d88e8597a363c2ae6142cf625086d0a3e242f957d16d6abdbe4357b6b27a0ef"
+    },
+    {
+      "id": "P006_Regular_original",
+      "source_recording_filename": "P006_Regular.txt",
+      "participant": "P006",
+      "activity": "Regular",
+      "source_sha256": "f812408844854c30b68c37e3f543651eb660c17c643fe9050d3b1dad87c141b6",
+      "video_labels_sha256": "e5fecdf5bd28f3787630c98254c48666ce505d094f1a2de663fa4cb87dd8b806"
+    },
+    {
+      "id": "P006_SemiRegular_original",
+      "source_recording_filename": "P006_Semiregular.txt",
+      "participant": "P006",
+      "activity": "SemiRegular",
+      "source_sha256": "260efe1c4e200668661c7e3ba1e964cb5ebbcc08ca1fbf3d14e4aa48cae298f6",
+      "video_labels_sha256": "d1457966efaec518530412d146a3880d56e0ad24fc9b9a371a317e20ed055757"
+    },
+    {
+      "id": "P006_Irregular_original",
+      "source_recording_filename": "P006_Irregular.txt",
+      "participant": "P006",
+      "activity": "Irregular",
+      "source_sha256": "302fb7e4d5383896fdad956fab91ca4617a366107171899b8fbf76c2380f6a09",
+      "video_labels_sha256": "d03597f011e3bf2cb8bc6d503147148cc4e54974716ad57babd2310a5d0c6ae8"
+    }
+  ],
+  "archived_result_sources": [
+    {
+      "archive_id": "trecap_steps_v01/report01/report.json",
+      "sha256": "bd5ad94699445c4b72de6ea58701d145264af3d2e2c2bf294856597cef0665f5",
+      "bytes": 5828710
+    },
+    {
+      "archive_id": "trecap_steps_v01/followup01/report.json",
+      "sha256": "c00d7835b746ffc1e05012749d78a8be3a123e05edaa1c647b9c07d7ef90e9d3",
+      "bytes": 3460920
+    },
+    {
+      "archive_id": "trecap_steps_v01/capture01/receipt.json",
+      "sha256": "fe926ae627fb5b8abb01f763f769b0db4f853ad959e45401b25a6bd86ee368cd",
+      "bytes": 16130
+    },
+    {
+      "archive_id": "trecap_steps_v01/capture02/receipt.json",
+      "sha256": "7ff3760bccab2f3bd2105d71938dc7a7ea878d06d4997a1243e47d468993a27f",
+      "bytes": 11816
+    },
+    {
+      "archive_id": "trecap_steps_v01/experiment02/plan.json",
+      "sha256": "a5e34ba291f4b97f8dbf7d236938cca185a2f81f581f07c72e59df2e989b1f06",
+      "bytes": 4083
+    },
+    {
+      "archive_id": "trecap_steps_v01/experiment02/detector_selection.json",
+      "sha256": "875b247db7e1bb945524cfe9850cbb31678d1caa066d340f5e1d839be8d9b396",
+      "bytes": 28027
+    },
+    {
+      "archive_id": "trecap_steps_v01/experiment02/threshold_selection.json",
+      "sha256": "f21346b6fc2a7a230a4cea30008367114175fcd969ba3c4b0634a5b7f83864d2",
+      "bytes": 4582060
+    },
+    {
+      "archive_id": "trecap_steps_v01/experiment02/heldout/index.json",
+      "sha256": "f957a97a3cdf5c4161714d5f76750d7cbfc7bdeae653ee86ffac549afa93a881",
+      "bytes": 27189
+    },
+    {
+      "archive_id": "trecap_steps_v01/experiment02/heldout/physical_plan.json",
+      "sha256": "b1434a3ac02ccd9f96577831d4d050cfe8e0cf2cce06f361ca1d06f228f7ecbf",
+      "bytes": 2393
+    },
+    {
+      "archive_id": "trecap_steps_v01/followup01/physical_plan.json",
+      "sha256": "e8656c9c2e04e6445e34fee51e0e1cc336bc7086a4dfb3e4b9c1c3dffa97da11",
+      "bytes": 2270
+    },
+    {
+      "archive_id": "trecap_steps_v01/sources01/provenance.json",
+      "sha256": "17dbd3d089299d4f121fc54af685c8fe354fdad4089d69702d8dc5be1eb7371d",
+      "bytes": 8241
+    }
+  ]
+}

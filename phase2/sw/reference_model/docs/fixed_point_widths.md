@@ -209,11 +209,11 @@ The checker should reject missing keys and should reject values inconsistent wit
 
 A width change is a contract change. It requires:
 
-1. spec/schema update;
-2. C++ model update;
-3. coefficient/vector/golden artifact regeneration;
-4. quality-bound regeneration;
-5. release-manifest update;
+1. spec/schema update.
+2. C++ model update.
+3. coefficient/vector/golden artifact regeneration.
+4. quality-bound regeneration.
+5. release-manifest update.
 6. explanation of which old hashes changed and why.
 
 Do not merge a width change as a local cleanup.

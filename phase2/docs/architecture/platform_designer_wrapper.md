@@ -9,7 +9,7 @@ to bind a frozen flattened generated ABI to repository-native CSR and DDR buses,
 to the board top, and reject DDR addresses that cannot be represented safely.
 
 The machine-readable authority for this boundary is
-`platform/de1soc/address_map/platform_designer_wrapper.json`; its schema is
+`platform/de1soc/address_map/platform_designer_wrapper.json`. Its schema is
 `spec/schemas/platform_designer_wrapper.schema.json`.
 
 ## What is implemented now
@@ -17,13 +17,13 @@ The machine-readable authority for this boundary is
 The following source connections exist:
 
 - `de1_soc_trecap_top` instantiates `platform_designer_wrapper` as
-  `u_platform_designer_wrapper`;
+  `u_platform_designer_wrapper`.
 - the CSR path is connected between the generated system and
-  `trecap_de1soc_full_top`, with no board-level idle stub;
+  `trecap_de1soc_full_top`, with no board-level idle stub.
 - the DDR write path is connected between `trecap_de1soc_full_top` and the generated system, with
-  no board-level `waitrequest` stub;
+  no board-level `waitrequest` stub.
 - `platform_designer.tcl` creates `trecap_csr_bridge` and
-  `trecap_f2h_sdram_bridge` and connects both into the HPS graph; and
+  `trecap_f2h_sdram_bridge` and connects both into the HPS graph, and
 - the generated HPS reset output participates in fabric reset release without being connected to
   an HPS reset sink.
 
@@ -32,7 +32,7 @@ bootstrap and there was no Quartus-normalized graph or generated implementation.
 Generated `system.v`/`system.sv`, `system.qip`, and `system.sopcinfo` remain build
 products rather than checked-in vendor sources. Actual generation and native11
 placement/routing have since completed. Later source revisions need their own
-reports; [architecture_implementation.md](architecture_implementation.md) records
+reports. [architecture_implementation.md](architecture_implementation.md) records
 current results and [build_order.md](build_order.md) defines the build gates.
 Standard Edition evaluation mode has not produced a programmable SOF, and no
 functional verification or physical board operation is established.
@@ -45,7 +45,7 @@ functional verification or physical board operation is established.
 | `de1_soc_trecap_top.sv` | `[1]` hand-written | Owns board pins and reset composition. |
 | `platform_designer.tcl`, `hps_config.tcl` | `[1]` hand-written | Authoritative graph construction and frozen parameters. |
 | `system.qsys` | `[1]` bootstrap now, then tool-normalized source | Replace only through the documented Quartus 20.1 construct flow. |
-| `system.v`/`system.sv`, `system.qip`, `system.sopcinfo` | `[2]` generated | Generate locally; never hand-edit or replace with a compatibility stub. |
+| `system.v`/`system.sv`, `system.qip`, `system.sopcinfo` | `[2]` generated | Generate locally. Never hand-edit or replace with a compatibility stub. |
 
 The wrapper deliberately instantiates `system` without defining it. A source-only structural check
 can therefore run without Quartus output, while a real full-board elaboration fails until the
@@ -81,7 +81,7 @@ The installed Intel 20.1 `altera_avalon_mm_bridge` exposes a two-bit `response` 
 `writeresponsevalid`. Its use on the CSR path would make the interconnect synthesize successful
 write responses at acceptance. Delaying `waitrequest` alone would still lose the write error code.
 The source component therefore carries the complete response protocol explicitly. Its Qsys
-descriptor is loaded through the project IP search path; generated HDL remains a build product.
+descriptor is loaded through the project IP search path. Generated HDL remains a build product.
 
 The wrapper preserves all of this Avalon-MM agent ABI:
 
@@ -122,7 +122,7 @@ exported bridge interface. The exported bidirectional SDRAM port has read signal
 is write-only: `trecap_f2h_sdram0_read` is tied low and the generated read data/valid are unused.
 Because the exported HPS F2SDRAM port has no write-response channel, the wrapper generates one
 registered local response for each accepted repository-side beat. This response closes the local
-ready/response protocol; it does not manufacture physical-DRAM completion or downstream error
+ready/response protocol. It does not manufacture physical-DRAM completion or downstream error
 evidence that the generated interface cannot provide.
 
 ### Legal writes
@@ -130,9 +130,9 @@ evidence that the generated interface cannot provide.
 The board has 1 GiB of HPS DDR at FPGA-visible byte addresses
 `[0x00000000,0x40000000)`. For a legal write:
 
-- the low 32 address bits are forwarded;
-- data, byte enable, and the one-bit burst count are forwarded unchanged;
-- generated `waitrequest` is returned to the repository writer; and
+- the low 32 address bits are forwarded.
+- data, byte enable, and the one-bit burst count are forwarded unchanged.
+- generated `waitrequest` is returned to the repository writer, and
 - exactly one registered local `writeresponsevalid`/`OKAY` is returned after the generated bridge
   accepts the beat (`write && !waitrequest`).
 
@@ -157,7 +157,7 @@ avm_response_o             = SLVERR (2'b10)
 
 The one-cycle delay is required by Avalon-MM write-response timing. The invalid beat is never
 forwarded, and silently truncating a 64-bit address to 32 bits is prohibited. The upstream write
-master permits one outstanding beat and waits in `MSTATE_WAIT_RESPONSE`; it emits record
+master permits one outstanding beat and waits in `MSTATE_WAIT_RESPONSE`. It emits record
 `write_done` only after the final beat's local response is `OKAY`. A response error moves the master
 and ring writer to their fault states before `producer_advance_valid` can assert. A rejected write
 therefore cannot advance the producer pointer.
@@ -184,8 +184,8 @@ KEY[0] released stable high for 20 ms
 ```
 
 `system.reset_n_reset_n` is a fabric-bridge reset input despite the generic generated name. The
-checked-in Qsys graph connects it through `clk_0.clk_reset` only to the two typed Avalon bridges;
-it is not connected to an HPS reset sink. Therefore `h2f_reset_n` may safely reach that input after
+checked-in Qsys graph connects it through `clk_0.clk_reset` only to the two typed Avalon bridges.
+It is not connected to an HPS reset sink. Therefore `h2f_reset_n` may safely reach that input after
 the `clock_reset_ctrl`-owned synchronizer without creating a self-sustaining reset loop. A warm HPS reset now
 clears bridge pipeline state, the wrapper-local write-response registers, the CSR leaf, and the DDR
 writer together. The board top does not own a second fabric reset synchronizer.
@@ -196,13 +196,13 @@ The expected generated module name is `system`, instantiated as
 `u_platform_designer_system`. The exact 99-port flattened ABI is frozen in
 `generated_system_contract.expected_flattened_abi` in the JSON contract. It contains:
 
-- `clk_50_clk`, `reset_n_reset_n`, and `h2f_reset_reset_n`;
+- `clk_50_clk`, `reset_n_reset_n`, and `h2f_reset_reset_n`.
 - three preserved HPS fabric reset-request inputs, each with role `reset_n` and tied to inactive
-  `1'b1`, plus the 28-bit `hps_f2h_stm_hw_events_stm_hwevents` input tied to zero;
-- the complete `memory_mem_*` HPS DDR conduit;
+  `1'b1`, plus the 28-bit `hps_f2h_stm_hw_events_stm_hwevents` input tied to zero.
+- the complete `memory_mem_*` HPS DDR conduit.
 - EMAC1, QSPI, SDIO, USB1, SPIM1, UART0, I2C0, I2C1, and the seven frozen GPIO pins under
-  `hps_io_hps_io_*`;
-- the complete `trecap_csr_lw_master_*` Avalon interface; and
+  `hps_io_hps_io_*`.
+- the complete `trecap_csr_lw_master_*` Avalon interface, and
 - the write-capable `trecap_f2h_sdram0_*` Avalon interface, including its unused read signals
   and the bridge's `debugaccess` input tied to `1'b0`.
 

@@ -69,6 +69,16 @@ jobs:
         run: python docs/architecture/rf_iq/build_atlas.py --repo-root . --output docs/architecture/rf_iq --check
       - name: Check RF academic report integrity
         run: python docs/verification/rf_iq/check_bundle.py
+      - name: Check whole-project architecture and academic atlas
+        run: python docs/architecture/system/build_atlas.py --check
+      - name: Check application results and listening media
+        run: python docs/applications/check_bundle.py
+      - name: Check full algorithm transcription and RF supplement
+        run: python docs/algorithm/check_spec.py
+      - name: Check accelerometer score and publication bindings
+        run: python docs/applications/accelerometer/replot.py --check
+      - name: Check authored prose and preserved editorial identities
+        run: python docs/editorial/20261104-prose/check_prose.py --check-ledger
       - name: Compile and test RF host client without hardware access
         if: runner.os == 'Linux'
         run: bash profiles/trf1/board/host/build_offline.sh "$RUNNER_TEMP/trf1-client-offline"

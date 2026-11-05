@@ -60,13 +60,13 @@
     },
     {
       "path": "data/PUBLICATION_FILES.json",
-      "bytes": 2577,
-      "sha256": "f053a75a936f2ec947d09baf342c0009fc8f4f42796104d26e8ffe4c2f45404c"
+      "bytes": 2499,
+      "sha256": "914349046d25249984f082bd01be6a0d30259e414a6dd13ee8991d35a060e359"
     },
     {
       "path": "data/readme_audit.md",
       "bytes": 8181,
-      "sha256": "e7af901e024e445c1389579a8a4e08c6d92632b098db8dd1b8c09e1a44a816a3"
+      "sha256": "384d39609f4aa9fea2b49e71fe09fb506e2d3e4a33d1bbb4e14b0220d5cad088"
     },
     {
       "path": "data/review_addendum.json",
@@ -76,7 +76,7 @@
     {
       "path": "data/review_addendum.md",
       "bytes": 4347,
-      "sha256": "1ccfce7be119d1252726d5db0ce60229233d95465e993ed0e06d7e2a0efc04cf"
+      "sha256": "1e95cc4db0489f267f9dd79cc6d694266c3284064b00bcec4027c74d07fcae0f"
     },
     {
       "path": "data/source_bindings.json",
@@ -105,23 +105,23 @@
     },
     {
       "path": "figures/dv_handshake.png",
-      "bytes": 196703,
-      "sha256": "e1b5d467e1509f711abdab8cf1dcc82af01142a2c683969ea7313e02155ae95d"
+      "bytes": 89584,
+      "sha256": "f722ed2070e79c5adcb23ff2e3c6637150b16406ba64cf73aba0051446364e97"
     },
     {
       "path": "figures/dv_reset.png",
-      "bytes": 303689,
-      "sha256": "21cad60f6f1f579155e6963ce83271978648d97a03a9ce797f24a64edc7f1cd9"
+      "bytes": 120688,
+      "sha256": "bc2240516cf495eb4afad8d33e345e1977f54cb0b2386d5c15a5f522c3756922"
     },
     {
       "path": "figures/dv_rounding.png",
-      "bytes": 162621,
-      "sha256": "9bda83f884c9e2e751b5419cc727630d3d92b8655653d905672539211dfaa855"
+      "bytes": 59819,
+      "sha256": "20df4c3d97f0b535f67bfdd51499d3da18fdb917466408bdc88c575514d61682"
     },
     {
       "path": "figures/dv_topology.png",
-      "bytes": 382217,
-      "sha256": "d4c6a66bddcf3ccd2a74362e2dae7f467611e8693b7e0e20644d4c33ecfa3730"
+      "bytes": 219123,
+      "sha256": "a10a063f82fe4d85615dbba540af8787f0f9ab05ac87bf8b01c77cb4179def5d"
     },
     {
       "path": "figures/figure_audit.json",
@@ -131,7 +131,7 @@
     {
       "path": "figures/FIGURE_NOTES.md",
       "bytes": 6403,
-      "sha256": "dcbc54cc3ee2a518d09e53e60a21210ee928e0427bb6edd41cb62ca3d6309158"
+      "sha256": "221db6832386e56700425fedf38df6a62bc0ef3a9c592faf5264fe5ddcc9c319"
     },
     {
       "path": "figures/figure_provenance.json",
@@ -140,8 +140,8 @@
     },
     {
       "path": "figures/FIGURE_PUBLICATION_FILES.json",
-      "bytes": 5063,
-      "sha256": "92ee04ec9fe56a3f71113fcff94be78ad7b297bfc6af7805d2c7d25bf1f96780"
+      "bytes": 6325,
+      "sha256": "86fb57ed6641a559d133ae8116465fb4ae847814b1c031ec5dd16eb8f6c07f4a"
     },
     {
       "path": "figures/flute_captured_spectrograms.png",
@@ -198,5 +198,10 @@
       "bytes": 10560,
       "sha256": "84e7c29a051ff1e373a4579e2b6743f09e2ee1b4fbc915837d29abc929012b7c"
     }
-  ]
+  ],
+  "editorial_preview_revision": {
+    "date": "2026-11-04",
+    "scope": "Current duplicate previews restyled from the existing numerical evidence. No new hardware or verification execution.",
+    "ledger": "../editorial/20261104-prose/manifest.json"
+  }
 }

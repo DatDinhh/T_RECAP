@@ -56,7 +56,7 @@
       "bytes": 1914
     },
     "activity/README.md": {
-      "sha256": "1fc73a7c2957fc904cee702669a738188bb0dca96be7cf25e2607bafe8209c7e",
+      "sha256": "12a6583a6edb8379f23dd554d3f3c84e9eb3bb7326490f164aee8eeffee973ee",
       "bytes": 1307
     },
     "activity/run_power_capture.py": {
@@ -108,7 +108,7 @@
       "bytes": 21612
     },
     "profiling/README.md": {
-      "sha256": "ce300d9767af997a240332c886ddf8b835215e7274b072299082816a7391aa58",
+      "sha256": "408409011f6e1b1bef07cd0a1d8f79558413b11b67466164d8f0533913cd5eaa",
       "bytes": 7426
     },
     "profiling/results_01/bin_masks.csv": {
@@ -320,7 +320,7 @@
       "bytes": 6144
     },
     "profiling/results_01/README.md": {
-      "sha256": "7071538b2f2d1db0986dfa0ca96bfd9e9134f7a79bd328ef037823c7b45b94ea",
+      "sha256": "2a3c2e683d0c39226196825b85ba8ed42bbe935d0d22cf891224fe30c5620eb2",
       "bytes": 2091
     },
     "profiling/results_01/stage_counts.csv": {
@@ -328,11 +328,11 @@
       "bytes": 29195
     },
     "PROTOTYPE.md": {
-      "sha256": "3121e881b4350d885e27285b36b80a9179bb102b392c7343063718c470227bf0",
+      "sha256": "bb51dc56e52b9468c9d50b97c8a67c7de4cd39ebec385cb4dabe253acd13bb6b",
       "bytes": 4149
     },
     "README.md": {
-      "sha256": "d12fa4ff4d9c054f036eebbb45d91e50ffad724611bcda6fafcbdbf30f1372c4",
+      "sha256": "0b77a5e167707c38355ec2a5826ede49ad3e1bfc290859cf0459baea3487d0db",
       "bytes": 9222
     },
     "study/publish_zero_report.py": {
@@ -340,7 +340,7 @@
       "bytes": 33269
     },
     "study/report_template.md": {
-      "sha256": "c77ea0a429e33c33120a2e41b9f3d5bcf6a21a262b6ddb1f0a2d5f8a6ee40730",
+      "sha256": "921937d0de00138c9150de1230581915a982a6085b3674dbbdfb7b67ebf68f42",
       "bytes": 11472
     },
     "verification/core_profile_tb.sv": {
@@ -352,7 +352,7 @@
       "bytes": 6749
     },
     "verification/README.md": {
-      "sha256": "78d731495197d340fab2ec2608341096c3ed2f542ee741f5928ef6d05fcae294",
+      "sha256": "78f5728f7d0252c19e894e7c54be91884689af0f9764a5449fa9535fb4341635",
       "bytes": 4882
     },
     "verification/run_verification.py": {

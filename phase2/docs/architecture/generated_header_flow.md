@@ -2,7 +2,7 @@
 
 File class: **[1] hand-written architecture document**.
 
-This document defines the implementation flow that turns the shared Phase 2 contracts into checked-in SystemVerilog, C, and Python headers. It is narrower than `generated_contracts.md`: that file defines the full generated-contract policy; this file defines the actual header-generation pipeline, review rules, and failure handling that the team shall follow when writing `scripts/gen_headers.py` and using `make gen-headers`.
+This document defines the implementation flow that turns the shared Phase 2 contracts into checked-in SystemVerilog, C, and Python headers. It is narrower than `generated_contracts.md`: that file defines the full generated-contract policy. This file defines the actual header-generation pipeline, review rules, and failure handling that the team shall follow when writing `scripts/gen_headers.py` and using `make gen-headers`.
 
 This file is not a verification architecture document. It does not define scoreboards, monitors, assertions, regressions, or coverage.
 
@@ -30,7 +30,7 @@ Python package's `python/trecap_golden/generated/trecap_config.py`.
 
 This separation keeps arithmetic ownership in the reference package and CSR,
 packet, interface and board ownership in the integrated implementation. The
-promotion map and source manifests record their relationship; two files with
+promotion map and source manifests record their relationship. Two files with
 similar names must not become independently edited definitions.
 
 ## Authority
@@ -66,7 +66,7 @@ sw/reference_model/                                          [0]
 artifacts/reference_outputs/                                 [0]
 ```
 
-The specification and reference package retain some historical `golden` names. The maintained source is `sw/reference_model/`; naming does not establish implementation signoff.
+The specification and reference package retain some historical `golden` names. The maintained source is `sw/reference_model/`. Naming does not establish implementation signoff.
 
 ## Design goal
 
@@ -438,7 +438,7 @@ Suspicious generated-output changes:
 | `make check-generated` | Regenerate and fail if outputs differ from checked-in files. |
 | `make rtl-filelist` | Generate compile-order filelists. |
 | `make check-contracts` | Run generated-header and filelist checks. |
-| `make c0` | Core-first gate; depends on generated headers before core compile. |
+| `make c0` | Core-first gate. Depends on generated headers before core compile. |
 
 These targets require their source scripts and declared dependencies. Missing scripts are build failures.
 

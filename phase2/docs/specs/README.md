@@ -4,6 +4,8 @@
 
 We include the Phase 2 specification at [t_recap_phase2_integrated_spec.pdf](t_recap_phase2_integrated_spec.pdf). This is the canonical repository copy of the integrated algorithm, telemetry, and repository-architecture document.
 
+The [complete editable specification](../algorithm/complete_specification.md) now contains all 106 historical PDF pages in Markdown, followed by the current finite-profile and RF extension. Its [reading guide](../algorithm/README.md) provides chapter links, a page-by-page index, editable equations and tables, and reproducible coverage checks.
+
 | Field | Value |
 | --- | --- |
 | Project name in the baseline document | T-RECAP: Transform-domain Representation and Energy-aware Computation Accelerator with Controlled Precision |
@@ -18,6 +20,20 @@ We include the Phase 2 specification at [t_recap_phase2_integrated_spec.pdf](t_r
 The file covers the core algorithm and artifact contract, Ethernet/HPS DDR telemetry and control, and the implementation repository architecture. The hash identifies this exact document. It does not certify that the implementation satisfies it.
 
 The original PDF retains its historical project title. The current naming update does not revise its algorithm or interface requirements. Its bytes, revision identifiers and SHA-256 remain unchanged.
+
+## Editable content and later extensions
+
+The Markdown transcription preserves all 53 main sections, 116 numbered equations, 45 tables, seven algorithms, appendices, schemas, file inventories and references. It retains source-page links and explicitly records formatting and notation repairs.
+
+The historical telemetry contract describes a non-stalling DDR ring and UDP design. The later TSH2 and TRF1 finite applications have separate transport, buffering and register contracts. The [current-profile and recorded-RF specification](../algorithm/current_profiles_and_rf.md) documents those differences, the integrated I/Q adapter and its verification scope with links to actual source. It does not silently replace the historical telemetry proposal.
+
+Run the source and publication checks from the repository root:
+
+```powershell
+python phase2/docs/algorithm/check_spec.py
+```
+
+This check verifies source identity, complete page and numbered-item coverage, Markdown structure, local links and reviewed hashes. It is not a hardware verification run or an independent proof of semantic equivalence.
 
 ## Reading the baseline
 

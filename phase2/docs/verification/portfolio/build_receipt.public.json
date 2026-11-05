@@ -1,14 +1,15 @@
 {
-  "schema": "trecap-public-latex-build-receipt-v1",
-  "derived_export": true,
   "original_receipt_artifact_id": "archive:workspace/work/dv_portfolio_20261017/latex/publication/build/attempt06/build_receipt.json",
   "original_receipt_sha256": "9e2a79527a7dd325088914b47b8f3995d2e2d77b02fc9756b540103aeb476b00",
-  "transformation": "Compiler executable and working/output directories normalized. Original log and receipt hashes preserved separately. This is a derived receipt, not an exact command transcript.",
+  "schema": "trecap-current-latex-publication-receipt-v2",
   "status": "PASS_LATEX_COMPILE",
+  "derived_export": true,
   "engine": "real pdfLaTeX",
   "compiler_version": "MiKTeX-pdfTeX 4.18 (MiKTeX 24.1), pdfTeX-1.40.25",
-  "compiler_version_original_stdout_sha256": "411fe348ef60dcedb763ef814869eb58fd088f6df51ed4d0205df697adbab463",
-  "compiler_version_original_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "historical_publication_receipt_sha256": "42b92f57ebcb1c435787b3c7596f963592ddb28e6ed2481158c8002c28c8d3fd",
+  "historical_publication_commit": "07bc8224aa080c8eaa1b77b4603c118d853465d0",
+  "current_local_receipt_sha256": "dfb1c8c5d33c329e41729262d0a374432e276ccc868d8e21046f0e840532b401",
+  "historical_identity_note": "Original receipt fields retain the historical campaign provenance. Commands and output below describe only the current document compilation.",
   "commands": [
     {
       "normalized_argv": [
@@ -18,14 +19,14 @@
         "-halt-on-error",
         "-file-line-error",
         "-jobname=TRECAP_DV_Portfolio",
-        "-output-directory=build/attempt06",
+        "-output-directory=build/attempt02",
         "main.tex"
       ],
       "cwd": ".",
-      "started_utc": "2026-10-17T03:39:36.674842+00:00",
+      "started_utc": "2026-11-05T03:04:50.199401+00:00",
       "exit_code": 0,
-      "original_stdout_sha256": "848de16308f4c69e5ac0f19b11977e7ed0cdeb9961237ba40bbefb04ff4a2860",
-      "original_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "stdout_sha256": "60d4904013c2dd89548f1c3e04f76341f94f49f3c7b0fa654eba3d897c95a1b0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
       "normalized_argv": [
@@ -35,31 +36,32 @@
         "-halt-on-error",
         "-file-line-error",
         "-jobname=TRECAP_DV_Portfolio",
-        "-output-directory=build/attempt06",
+        "-output-directory=build/attempt02",
         "main.tex"
       ],
       "cwd": ".",
-      "started_utc": "2026-10-17T03:39:38.271242+00:00",
+      "started_utc": "2026-11-05T03:04:51.919985+00:00",
       "exit_code": 0,
-      "original_stdout_sha256": "0d43fdd072e34ed40100d615a315c28b3a893309bab5385e8595f09112e277af",
-      "original_stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      "stdout_sha256": "32e2dd22d2cb9af62f1a68a5c939cc24abaa85746cb41f3f5faf5040a9861e2d",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     }
   ],
   "input_hashes": {
-    "main.tex": "dffd2f12ca5ec633f8b4305b7c71f18f8cc8a8344e99a589cc92b92b880bee04",
-    "portfolio_integration.tex": "ec1ecc619f2b82ed4a5cf8eed9a7eea3e1819089ef23e2f44f7d38fcd6f26313",
-    "source_manifest.json": "106ecc25e8960fa6092e5078c8ae8cb4438697069dad81850348d5efe9894fc2",
-    "figures/audio.pdf": "f266bbffda660930e14d3caf6849c0466410f52cf055881395eac37c70b2bed7",
-    "figures/fullrun.pdf": "944a5156eae78b004df626d81996d4b35da18044d0ba38dee5493ef095058be9",
-    "figures/handshake.pdf": "12504f60afa2cfc28618ee1c38249fce16f29e67f4a893f629b5478a496a7a33",
-    "figures/packet_sizes.pdf": "dcb66bf0dbb6d4b74034181209ecf9631a9a7d1f91cf988fd1dff68ad8982374",
-    "figures/quality.pdf": "a0c252a2132954004420bb7b1a709fb01f4c8129badc3be9809063fd4259fb6f",
-    "figures/reset.pdf": "fc320d96631dcac4b2d7035088b14d421336078c9ba49f8439a6f445166b3593",
-    "figures/rounding.pdf": "89d49856e33aaec70be74d34e8122b51a4c9c5885245fb13ec066e3a81c1f3c1",
-    "figures/topology.pdf": "c080201e3f6afda1cfa3eacd5e599dc3a7c15f82d5e6be5902677ba494f1a139"
+    "main.tex": "611ae2c067faed7c6062ca1bdfdcefbbdcd897608d57dd782527efdbe7eed76e",
+    "portfolio_integration.tex": "51c4df6d0729b6762f5979f810115401f19c41b84fe3ae411b2c1b3830041caf",
+    "source_manifest.json": "30e30fa1034985d4137d02fe581254de783f9a653368f1ffbe61239a47a4d86b",
+    "figures/audio.pdf": "7fcd218a7516f367cbaddd48039240f3db1a1a7bc3f2c1d3e273440f5354e715",
+    "figures/fullrun.pdf": "b632d1e5395d244146e0aaf4f2428025bded3a80174ea002c5542f17e46f625e",
+    "figures/handshake.pdf": "472b6583652016fae318209e232bf22fe15cd42175e00ed6d87f5191e7d306e5",
+    "figures/packet_sizes.pdf": "6916a9e0669bab493875cd27e8f9097ba595466c1aea9765ca429fb90f679315",
+    "figures/quality.pdf": "c1a89d822d093cba9584f3132548de28a1b91dd811470f2458c549a7bcc2a81d",
+    "figures/reset.pdf": "0de0660c34a5df90695933be0c116034d47d4d314e0f951803c5bb70e419641e",
+    "figures/rounding.pdf": "120a50498ae2a1f747c2dcc2b43893d5e25abe86c7e494b4e1c4dad41153092b",
+    "figures/topology.pdf": "4fa1ad52742ae773e56120f810e45dd3e047a9faef713a01d7defee2978aaba9"
   },
-  "pdf_sha256": "67689f75ebd617875c5f97e912b440e71fc51dbf159a2d12972a52e9d667f700",
-  "pdf_bytes": 1120709,
-  "original_compile_log_sha256": "135dcba535c7f0db8bae935ce42c276e53b78231e6485cc821f416a41677b000",
-  "scope": "Two successful real LaTeX compiler passes. This build does not rerun RTL or hardware verification."
+  "pdf_sha256": "0a9922d8832d32a9033ea79cc5104ee1fbe3c7b7aabe87415266d93b86cd74ae",
+  "pdf_bytes": 2829620,
+  "current_compile_log_sha256": "cf56e84626dbcdbf3bcebb903715dd7a2de56da6e02ee3f0c1a60902a8e31729",
+  "build_script_sha256": "193689b3fa4950469a1b2b82f359c53fddc930e3d51fbd162fc93a244d32dd64",
+  "scope": "Two successful LaTeX passes for presentation changes. No simulation, solver or hardware execution."
 }

@@ -1,23 +1,52 @@
 {
   "generator_sha256": "5df324238380c6a7c59b7dfecad0a3b2d871eb19c5479c651de9eb515c537ea3",
   "matplotlib": "3.11.2",
-  "kind": "conceptual verification architecture diagrams",
+  "kind": "Published conceptual diagrams and actual trace excerpts with a pastel presentation refresh",
   "files": [
     {
       "path": "formal_architecture.pdf",
-      "sha256": "30f041c79b451eead762a3eb98e0bcad5c17f87b53f573e7b4042b46df4736fe"
+      "sha256": "5f2391af53ba38bd017b42e6c208de6b73287768bd4368b69af2dc06be8e8df8",
+      "bytes": 31540
     },
     {
       "path": "formal_architecture.png",
-      "sha256": "036e57ab0fcc38462c9c8288899766a70fd2a1c8b64d7b62248b1fe25c33a826"
+      "sha256": "72a618a2d59d3363a8a13881fe6af7a29ef5042188655c9c4ee9bb96679638b6",
+      "bytes": 123423
+    },
+    {
+      "path": "formal_counterexample.pdf",
+      "sha256": "fc1fecabea760641df15b6b8384e237833a823d4fdc6453481d619c2708b9b33",
+      "bytes": 35126
+    },
+    {
+      "path": "formal_counterexample.png",
+      "sha256": "2b87e3952acaa18788023c6b3c9f08c853a1a193d5c7eefc4b831516571cfa7b",
+      "bytes": 57013
     },
     {
       "path": "uvm_architecture.pdf",
-      "sha256": "19b12940482ff0247db28ec4b853f0636d0a65b2fcfb31f8d579f4cd203d1ed1"
+      "sha256": "89f4333fcd627e09e04ddfee5127257381860d89568cf56d3c928609975aeb38",
+      "bytes": 36557
     },
     {
       "path": "uvm_architecture.png",
-      "sha256": "0bc8d1b07aea2caae0a496ea642466868a5d78b910c44ab813e2f37ef184d999"
+      "sha256": "3db149f4c55b0564629c7437dd5cf8ce2e0076ca0d1a49232db230b9df74d517",
+      "bytes": 133881
+    },
+    {
+      "path": "uvm_final_y.pdf",
+      "sha256": "c5ece7a7386feeba39221b66b14c2763dc62d90c9ea9db5d331366e6aabb5cc2",
+      "bytes": 41831
+    },
+    {
+      "path": "uvm_final_y.png",
+      "sha256": "ccab636801f26a793754b7187d865d31232775c8c1e12fca6c46dc9ead925d71",
+      "bytes": 52741
     }
-  ]
+  ],
+  "historical_manifest_sha256": "228a78bdca1f4656494d513d471c3a6e82ea4d2fd2ed4649c42aa5ff90500d84",
+  "historical_publication_commit": "07bc8224aa080c8eaa1b77b4603c118d853465d0",
+  "presentation_generator": "../portfolio/restyle_figures.py",
+  "presentation_generator_sha256": "ec896a9be1a80d9c08fd8e7327fd3fe0a8312a8368bb15428e501da366ec5acd",
+  "editorial_audit_sha256": "1ccf97bf4ed42f79ba9e521de1221773bb91f935a8d59be78d71e7e6933929d1"
 }

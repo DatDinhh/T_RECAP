@@ -8,11 +8,11 @@ the real source-to-core path. The implementation boundary is
 through `trecap_source_mux`, drives `trecap_core_top`, and returns the real valid-only core taps,
 safe boundaries, counters, and fault events to the CSR/telemetry hierarchy. Its
 live supervisor requires physical stop acknowledgement plus a 4096-clock settle
-interval before capture; missing or refused live samples invalidate the epoch
+interval before capture. Missing or refused live samples invalidate the epoch
 instead of compressing physical time.
 
 The machine-readable authority is
-`config/boards/de1soc_source_core_integration.json`; its schema is
+`config/boards/de1soc_source_core_integration.json`. Its schema is
 `spec/schemas/source_core_integration.schema.json`. The source-only gate is
 `scripts/check_source_core_integration.py`.
 
@@ -49,7 +49,7 @@ trecap_core_top taps
 
 No telemetry, FIFO, DDR, HPS, or Platform Designer ready signal returns into the mathematical
 core. Core-local ready/valid is used only to keep each selected source beat atomic with core
-acceptance. The board ties the exposed `y_ready_i` high; telemetry is not a `y` consumer and
+acceptance. The board ties the exposed `y_ready_i` high. Telemetry is not a `y` consumer and
 cannot stall it.
 
 The reverse control path is:
@@ -79,13 +79,13 @@ reset = rst_n_platform
 `clock_reset_ctrl` qualifies released `KEY[0]` high for 20 ms, combines it with
 the HPS-to-FPGA reset, and uses the sole at-least-two-stage fabric synchronizer
 to produce `rst_n_platform`. The board therefore instantiates
-`trecap_de1soc_full_top` with `SYNC_TOP_RESET_DEASSERTION=0`; a second hidden reset-release delay
+`trecap_de1soc_full_top` with `SYNC_TOP_RESET_DEASSERTION=0`. A second hidden reset-release delay
 would make the source/core and CSR/transport sides leave reset on different cycles.
 
 Audio bit-clock capture has explicitly documented internal CDC logic and separate
 receive-edge/transmit-edge reset-release synchronizers inside
 `audio_codec_wrapper`. A complete stereo-frame async FIFO emits each
-`clk_fabric`-domain raw event before the audio adapter is reached; a second async
+`clk_fabric`-domain raw event before the audio adapter is reached. A second async
 FIFO carries best-effort core-y monitor frames back to BCLK. The ADC wrapper also
 emits its raw sample event in `clk_fabric`.
 
@@ -94,8 +94,8 @@ emits its raw sample event in `clk_fabric`.
 | Generated mode | Normalization owner | Input cadence | Step-7 status |
 | --- | --- | --- | --- |
 | `TSRC_BRAM_REPLAY` | `trecap_bram_replay_source` | `source_tick_i` | Source-connected with frozen zero-vector defaults. |
-| `TSRC_ADC_LIVE` | `adc_wrapper` then `trecap_adc_adapter` | 100 kS/s raw `adc_sample_valid` | Step-17 source implements Rev-H LTC2308 CONVST/2.5-MHz serial timing, two-flop DOUT synchronization, epoch-latched channel command, first-result discard, signed normalization, accounting, and explicit ADC profile; Step-18 timing and Step-20 hardware evidence remain pending. |
-| `TSRC_AUDIO_WRAPPER` | `audio_codec_wrapper` then `trecap_audio_adapter` | Raw `audio_sample_valid` | Step-16 source implements 12.288 MHz XCK, WM8731 FPGA-I2C init, 48 kS/s/16-bit codec-master I2S, async-FIFO CDC, and the explicit LINE-IN profile; Step-18 timing and Step-20 hardware evidence remain pending. |
+| `TSRC_ADC_LIVE` | `adc_wrapper` then `trecap_adc_adapter` | 100 kS/s raw `adc_sample_valid` | Step-17 source implements Rev-H LTC2308 CONVST/2.5-MHz serial timing, two-flop DOUT synchronization, epoch-latched channel command, first-result discard, signed normalization, accounting, and explicit ADC profile. Step-18 timing and Step-20 hardware evidence remain pending. |
+| `TSRC_AUDIO_WRAPPER` | `audio_codec_wrapper` then `trecap_audio_adapter` | Raw `audio_sample_valid` | Step-16 source implements 12.288 MHz XCK, WM8731 FPGA-I2C init, 48 kS/s/16-bit codec-master I2S, async-FIFO CDC, and the explicit LINE-IN profile. Step-18 timing and Step-20 hardware evidence remain pending. |
 | `TSRC_DIAGNOSTIC` | `trecap_diagnostic_source` | `source_tick_i` | Source-connected for non-signoff bring-up. |
 
 The diagnostic source and source integration expose `DIAGNOSTIC_PERIOD_FIXED`.
@@ -115,13 +115,13 @@ both ready and valid acceptance with `source_tick_i`, so neither source silently
 the synthetic tick.
 
 Every normalized source enters `trecap_source_mux`. Selecting an inactive or not-yet-configured
-live source may correctly produce no core samples; the implementation must not bypass the mux or
+live source may correctly produce no core samples. The implementation must not bypass the mux or
 fabricate live data.
 
 The physical source is not backpressured by extraction. The synchronous input ring
 can occupy 513 fabric clocks for one 256-sample frame, slightly longer than the
 500-clock interval between 100 kS/s ADC samples. The selected live adapter retains
-one complete pending sample until the core accepts it; this absorbs that bounded
+one complete pending sample until the core accepts it. This absorbs that bounded
 phase overlap. A further raw event arriving while the adapter remains full is an
 explicit drop and stops the epoch. Thus buffering capacity and the live fault
 policy remain defined even when downstream core service exceeds its design
@@ -159,9 +159,9 @@ sample_idx >= tau_last -> WOLA tail-tick input only
 
 The two paths are mutually exclusive. Tail ticks bypass the input ring, FFT, magnitude/mask, and
 IFFT scheduling and advance only the synthesis WOLA drain path. `finite_stream_i` is asserted only
-while BRAM replay is selected; ADC, audio, and diagnostic operation are open-ended streams.
+while BRAM replay is selected. ADC, audio, and diagnostic operation are open-ended streams.
 `replay_tail_drain_phase_o` remains high while a selected tail token is held between board sample
-ticks; only `tail_tick_valid_w` is tick-qualified as the WOLA handshake event.
+ticks. Only `tail_tick_valid_w` is tick-qualified as the WOLA handshake event.
 
 A replay start or restart is accepted only when BRAM mode is selected, no source switch is
 pending, no selected source beat is held, the core pipeline is idle, the `y` output is empty, and
@@ -177,7 +177,7 @@ Those stronger claims remain the responsibility of the later verification/signof
 The CSR bank validates the requested enum and waits for `source_safe_boundary` before updating
 its active source-mode value. Its post-boundary `source_mode_apply_pulse` then reaches the source
 mux. Because that first safe-boundary wait has already happened, the mux's local
-`safe_to_switch_i` is tied true; introducing a second unrelated wait could split the active CSR
+`safe_to_switch_i` is tied true. Introducing a second unrelated wait could split the active CSR
 mode from the actual mux mode.
 
 For a real mode change, Step 7 performs this sequence:
@@ -201,12 +201,12 @@ discontinuity-marking the stream.
 
 Integration `clear_i` is a datapath/source-epoch clear and preserves the registered active mux
 selection. Shared `rst_n` is the coordinated reset that returns both CSR control and the mux to
-the BRAM reset mode; this avoids silently splitting them when only datapath state is cleared.
+the BRAM reset mode. This avoids silently splitting them when only datapath state is cleared.
 
 The source-mode CSR safe boundary is asserted only when the integration is not clearing,
 switching, or holding a pending transition and either:
 
-- the selected source is empty; or
+- the selected source is empty, or
 - the selected beat is accepted atomically.
 
 A free-running sample tick by itself is not a safe-boundary proof.
@@ -215,13 +215,13 @@ A free-running sample tick by itself is not a safe-boundary proof.
 
 The mathematical core snapshots `{frame_idx, THR2}` at scheduler-to-input-ring
 frame acceptance and retains it until the final canonical bin is accepted by the
-mask stage. Its four-entry metadata queue backpressures frame admission when full;
-it does not permit a frame without a matching threshold entry. Frame mismatch
+mask stage. Its four-entry metadata queue backpressures frame admission when full.
+It does not permit a frame without a matching threshold entry. Frame mismatch
 sets the core protocol fault and blocks mask admission. Core/source clear and hard
 reset invalidate metadata together with arithmetic history.
 
 The registered boundary pulse follows frame acceptance. A CSR commit on that pulse
-applies to subsequent admitted frames; it cannot alter the frame that raised the
+applies to subsequent admitted frames. It cannot alter the frame that raised the
 pulse or any older in-flight frame. STATUS still reports active CSR THR2, not a
 per-frame configuration history. Fixed-point arithmetic and the CSR ABI are unchanged.
 
@@ -231,7 +231,7 @@ per-frame configuration history. Fixed-point arithmetic and the CSR ABI are unch
 `y` output are structurally idle. It is the only boundary returned to the THR2 shadow/commit cell.
 
 `tap_frame_i.valid` is late observation data produced after frame processing. It must never be
-ORed into the THR2 commit boundary; doing so could apply a pending threshold after a frame has
+ORed into the THR2 commit boundary. Doing so could apply a pending threshold after a frame has
 already begun. `trecap_de1soc_full_top` therefore forwards only its dedicated
 `frame_boundary_i` input to the CSR bank.
 
@@ -259,22 +259,22 @@ The source-mux reject pulse also enters the dedicated external CSR-reject input 
 reject counter records the event.
 
 The delayed W1C owner pulse also re-arms the corresponding edge-history bit. If an owner remains
-high or faults again on its clear edge, the integration emits a fresh set event after that clear;
-it never reconnects a persistent sticky level directly to the CSR set interface.
+high or faults again on its clear edge, the integration emits a fresh set event after that clear.
+It never reconnects a persistent sticky level directly to the CSR set interface.
 
 Live input continuity is exposed by the separate `SOURCE_HEALTH` CSR page at
-0x100–0x180. Its snapshot reports physical readiness, nominal rate, epoch, wrapper
+0x100 to 0x180. Its snapshot reports physical readiness, nominal rate, epoch, wrapper
 and adapter drops, raw/admitted/core-accepted counters, and precise fault causes.
 A sequence gap, drop, readiness loss, timeout, or wrapper protocol failure stops
 the selected live epoch and invokes the existing discontinuity clear. Explicit
-rearm uses a separate W1P command; clearing a legacy sticky bit cannot resume a
+rearm uses a separate W1P command. Clearing a legacy sticky bit cannot resume a
 faulted live epoch. Clipping, optional LINE-OUT monitor faults, replay configuration
 faults, and core protocol faults retain their dedicated status meanings. See
 [source health and recovery](source_health.md) for the full contract and HPS tool.
 
 W1C clear requests are divided by ownership:
 
-- arithmetic, OLA, and ring/history masks clear core-owned sticky state; and
+- arithmetic, OLA, and ring/history masks clear core-owned sticky state, and
 - source-mode-error clears source/mux/adapter-owned sticky state.
 
 ## Board binding
@@ -291,7 +291,7 @@ u_full_top
 ```
 
 `KEY[0]` remains board reset. The debounced `KEY[1]` press requests BRAM replay. Switch bits select
-the diagnostic generator's local mode only; they do not bypass the generated source-mode CSR.
+the diagnostic generator's local mode only. They do not bypass the generated source-mode CSR.
 
 The board connects real core taps and counters into `u_full_top`, connects
 `core_config_safe_boundary` and `source_core_safe_boundary` into the two CSR commit boundaries,
@@ -301,8 +301,8 @@ synthetic sample/frame/bin tap generator is forbidden.
 The audio source includes the checked-in peripheral PLL, FPGA-side open-drain
 codec initialization, I2S, and FIFO CDC. Audio readiness requires qualified PLL
 lock, the kernel-owned `PLATFORM_CONTROL.codec_fpga_grant`, and codec init done.
-The driver asserts that CSR only after acquiring GPIO48 low and checking readback;
-the dedicated `HPS_I2C_CONTROL` pin is never driven or sampled by fabric logic.
+The driver asserts that CSR only after acquiring GPIO48 low and checking readback.
+The dedicated `HPS_I2C_CONTROL` pin is never driven or sampled by fabric logic.
 See [platform_grant.md](platform_grant.md) for probe, shutdown, and reset ordering. Dedicated saturating 64-bit
 RX-overflow, TX-overflow, and TX-underflow counters remain separate board
 diagnostics. This source structure still does not prove native RTL compilation,
@@ -310,10 +310,10 @@ external timing, Quartus/TimeQuest closure, I2C ACKs, measured clocks, or live
 samples.
 
 Step 17 separately freezes the pinned Rev-H LTC2308 path at 100 ksample/s with
-a 2.5 MHz registered `ADC_SCLK`. `ADC_DOUT` is the only asynchronous ADC input;
-it passes a preserved two-flop synchronizer before the 12-bit word is assembled
+a 2.5 MHz registered `ADC_SCLK`. `ADC_DOUT` is the only asynchronous ADC input.
+It passes a preserved two-flop synchronizer before the 12-bit word is assembled
 with valid in `clk_fabric`. `SW[6:4]` is latched only on entry to
-`TSRC_ADC_LIVE`; the first result is discarded because the six-bit command
+`TSRC_ADC_LIVE`. The first result is discarded because the six-bit command
 shifted during a read applies to the next conversion. `trecap_adc_adapter`
 recenters unsigned straight binary at code 2048 and accounts for raw, admitted,
 accepted, and dropped events without bypassing the mux. No async FIFO or second
@@ -356,7 +356,7 @@ The physical board passes ADC raw-valid events into this integration only during
 continuous acquisition. Manual KEY[2] conversions remain board diagnostics and do
 not advance the core. Changing SW[7] generates a coordinated source/core epoch
 clear and aborts/reprimes the ADC transaction pipeline. The active source enum
-stays ADC; STATUS/METRICS report a zero periodic rate during manual operation.
+stays ADC. STATUS/METRICS report a zero periodic rate during manual operation.
 See `architecture_design.md` for profile application and resource budgets.
 
 ## Live-source recovery control

@@ -2,23 +2,23 @@
 
 This page records the Standard Edition checkpoints before the verification RTL corrections. The [15 September Lite result](de1soc_lite_bram_20260915.md) records the newer implementation and successful FPGA configuration. References to the latest fit or pending work below describe this historical checkpoint.
 
-We have completed full-board placement and routing for the BRAM replay profile on the Cyclone V **5CSEMA5F31C6**, using Quartus Prime Standard **20.1.1 Build 720** and its final timing models. The latest fit, **native12 / fitter-io-02**, uses **20,280 of 32,070 ALMs (63%)**. All 209 pins passed the post-fit board comparison. The complete fitted timing gate passed all four operating conditions, including the 50 MHz fabric and ADC output-route bounds. Assembler produced no `.sof` in Evaluation Mode, so the run remains incomplete for programming. These fitted results establish the implemented pin and timing contracts for this profile; they do not establish functional correctness or physical board operation. The [public machine-readable result](de1soc_bram_native12.json) records the values and provenance hashes.
+We have completed full-board placement and routing for the BRAM replay profile on the Cyclone V **5CSEMA5F31C6**, using Quartus Prime Standard **20.1.1 Build 720** and its final timing models. The latest fit, **native12 / fitter-io-02**, uses **20,280 of 32,070 ALMs (63%)**. All 209 pins passed the post-fit board comparison. The complete fitted timing gate passed all four operating conditions, including the 50 MHz fabric and ADC output-route bounds. Assembler produced no `.sof` in Evaluation Mode, so the run remains incomplete for programming. These fitted results establish the implemented pin and timing contracts for this profile. They do not establish functional correctness or physical board operation. The [public machine-readable result](de1soc_bram_native12.json) records the values and provenance hashes.
 
-Functional verification and hardware power/energy measurements remain pending. Resource counts and timing slack do not quantify energy savings; no measured savings are claimed.
+Functional verification and hardware power/energy measurements remain pending. Resource counts and timing slack do not quantify energy savings. No measured savings are claimed.
 
 ## Fitted resources
 
-The native09, native10, native11 and native12 retry01 rows are historical checkpoints. Native12 IO02 is the latest fitted implementation. All runs use `config/profiles/de1soc_bram_replay.json`; source and constraint changes mean the rows are not controlled performance experiments.
+The native09, native10, native11 and native12 retry01 rows are historical checkpoints. Native12 IO02 is the latest fitted implementation. All runs use `config/profiles/de1soc_bram_replay.json`. Source and constraint changes mean the rows are not controlled performance experiments.
 
 | Checkpoint | ALMs / 32,070 | Registers | RAM blocks / 397 | Block-memory bits / 4,065,280 | DSP blocks / 87 | Top-level pins |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| native09, historical | 24,831 (77%) | — | 55 (14%) | — | 32 (37%) | 209 |
+| native09, historical | 24,831 (77%) |, | 55 (14%) |, | 32 (37%) | 209 |
 | native10, historical | 24,711 (77%) | 30,480 | 55 (14%) | 368,256 (9%) | 32 (37%) | 209 |
 | native11, historical | 24,100 (75%) | 30,440 | 55 (14%) | 368,256 (9%) | 32 (37%) | 209 |
 | native12 retry01, historical | 20,273 (63%) | 29,108 | 55 (14%) | 368,256 (9%) | 36 (41%) | 209 |
 | **native12 IO02, latest fit** | **20,280 (63%)** | **29,115** | **55 (14%)** | **368,256 (9%)** | **36 (41%)** | **209** |
 
-Native09 values are the resource counts recorded at that checkpoint; its detailed fitted summary was not archived. A dash marks an unrecorded value. We do not reconstruct it from a later build. Native10/11 values come from their archived `fit.summary` files; native12 values come from the archived fitted summaries for each placement attempt. Resource use is not a power or throughput measurement.
+Native09 values are the resource counts recorded at that checkpoint. Its detailed fitted summary was not archived. A dash marks an unrecorded value. We do not reconstruct it from a later build. Native10/11 values come from their archived `fit.summary` files. Native12 values come from the archived fitted summaries for each placement attempt. Resource use is not a power or throughput measurement.
 
 ## Timing and image status
 
@@ -39,7 +39,7 @@ Retry01 failed five ADC output-route checks across its two slow corners. IO02 re
 | `ADC_CS_N` | 5.594 ns, FAIL | **2.938 ns, PASS** | 5 ns |
 | `ADC_DIN` | 5.608 ns, FAIL | **2.929 ns, PASS** | 5 ns |
 
-The IO02 gate also passed required global setup, hold, recovery/removal, all other physical routes, CDC skew, classified clock coverage and generated HPS DDR microtiming at all four corners. All 209 fitted pins passed the location/I/O-standard comparison. These results use the external assumptions and reviewed hard-IP model classifications in the [physical timing contract](../architecture/physical_timing.md); physical qualification remains separate.
+The IO02 gate also passed required global setup, hold, recovery/removal, all other physical routes, CDC skew, classified clock coverage and generated HPS DDR microtiming at all four corners. All 209 fitted pins passed the location/I/O-standard comparison. These results use the external assumptions and reviewed hard-IP model classifications in the [physical timing contract](../architecture/physical_timing.md). Physical qualification remains separate.
 
 Native12's initial Fitter process crashed during placement preparation. Retry01 completed after topology-inspection queries were moved from the fitting SDC into the post-fit timing gate. IO02 then completed the ADC output placement change. The original failed manifest and both placement/recovery records remain available.
 
@@ -65,7 +65,7 @@ Raw tool outputs remain under ignored `runs/` directories and the ignored Quartu
 | Native12 IO02 timing and final continuation | `runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/fitted-timing/fitted_timing.tsv`, `runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/recovery_manifest.json` |
 | Native12 IO02 image limitation | `runs/quartus/windows/20260913-bram-12/fitter-io-02/postfit-02/quartus-asm.log` |
 
-For example, from the repository root, `Get-Content -LiteralPath 'platform/de1soc/quartus/output_files/trecap_de1soc.fit.summary'` reads the current local fit summary in PowerShell. The shared output directory changes on later builds; retained run reports and their manifest hashes identify a particular checkpoint.
+For example, from the repository root, `Get-Content -LiteralPath 'platform/de1soc/quartus/output_files/trecap_de1soc.fit.summary'` reads the current local fit summary in PowerShell. The shared output directory changes on later builds. Retained run reports and their manifest hashes identify a particular checkpoint.
 
 Source elaboration and host compilation check source acceptance. Synthesis and fitting establish a mapped, placed and routed implementation. STA and the fitted-pin gate check the timing and pin contracts represented in their inputs. None of these results includes numerical equivalence, RTL simulation, a functional regression, physical board qualification, or HPS/Linux deployment. No new functional verification was run for this implementation work.
 

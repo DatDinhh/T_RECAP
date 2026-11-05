@@ -453,217 +453,217 @@ z
 " clip-path="url(#p8a27c2ca8c)" style="fill: #ebeff4; stroke: #65778a; stroke-width: 1.2; stroke-linejoin: miter"/>
    </g>
    <g id="patch_33">
-    <path d="M 826.095937 246.24
-L 901.904063 246.24
-Q 904.784063 246.24 904.784063 249.12
-L 904.784063 261.36
-Q 904.784063 264.24 901.904063 264.24
-L 826.095937 264.24
-Q 823.215937 264.24 823.215937 261.36
-L 823.215937 249.12
-Q 823.215937 246.24 826.095937 246.24
+    <path d="M 826.335 246.24
+L 901.665 246.24
+Q 904.545 246.24 904.545 249.12
+L 904.545 261.36
+Q 904.545 264.24 901.665 264.24
+L 826.335 264.24
+Q 823.455 264.24 823.455 261.36
+L 823.455 249.12
+Q 823.455 246.24 826.335 246.24
 z
 " clip-path="url(#p8a27c2ca8c)" style="fill: #fcfcfe"/>
    </g>
    <g id="patch_34">
-    <path d="M 692.895937 365.04
-L 768.704062 365.04
-Q 771.584062 365.04 771.584062 367.92
-L 771.584062 380.16
-Q 771.584062 383.04 768.704062 383.04
-L 692.895937 383.04
-Q 690.015937 383.04 690.015937 380.16
-L 690.015937 367.92
-Q 690.015937 365.04 692.895937 365.04
+    <path d="M 693.3225 365.04
+L 768.2775 365.04
+Q 771.1575 365.04 771.1575 367.92
+L 771.1575 380.16
+Q 771.1575 383.04 768.2775 383.04
+L 693.3225 383.04
+Q 690.4425 383.04 690.4425 380.16
+L 690.4425 367.92
+Q 690.4425 365.04 693.3225 365.04
 z
 " clip-path="url(#p8a27c2ca8c)" style="fill: #fcfcfe"/>
    </g>
    <g id="patch_35">
-    <path d="M 414.06 347.04
-L 449.94 347.04
-Q 452.82 347.04 452.82 349.92
-L 452.82 362.16
-Q 452.82 365.04 449.94 365.04
-L 414.06 365.04
-Q 411.18 365.04 411.18 362.16
-L 411.18 349.92
-Q 411.18 347.04 414.06 347.04
+    <path d="M 414.4725 347.04
+L 449.5275 347.04
+Q 452.4075 347.04 452.4075 349.92
+L 452.4075 362.16
+Q 452.4075 365.04 449.5275 365.04
+L 414.4725 365.04
+Q 411.5925 365.04 411.5925 362.16
+L 411.5925 349.92
+Q 411.5925 347.04 414.4725 347.04
 z
 " clip-path="url(#p8a27c2ca8c)" style="fill: #fcfcfe"/>
    </g>
    <g id="patch_36">
-    <path d="M 937.785 365.76
-L 1006.215 365.76
-Q 1009.095 365.76 1009.095 368.64
-L 1009.095 380.88
-Q 1009.095 383.76 1006.215 383.76
-L 937.785 383.76
-Q 934.905 383.76 934.905 380.88
-L 934.905 368.64
-Q 934.905 365.76 937.785 365.76
+    <path d="M 938.4975 365.76
+L 1005.5025 365.76
+Q 1008.3825 365.76 1008.3825 368.64
+L 1008.3825 380.88
+Q 1008.3825 383.76 1005.5025 383.76
+L 938.4975 383.76
+Q 935.6175 383.76 935.6175 380.88
+L 935.6175 368.64
+Q 935.6175 365.76 938.4975 365.76
 z
 " clip-path="url(#p8a27c2ca8c)" style="fill: #fcfcfe"/>
    </g>
    <g id="patch_37">
-    <path d="M 839.295937 455.04
-L 888.704062 455.04
-Q 891.584062 455.04 891.584062 457.92
-L 891.584062 470.16
-Q 891.584062 473.04 888.704062 473.04
-L 839.295937 473.04
-Q 836.415937 473.04 836.415937 470.16
-L 836.415937 457.92
-Q 836.415937 455.04 839.295937 455.04
+    <path d="M 839.61 455.04
+L 888.39 455.04
+Q 891.27 455.04 891.27 457.92
+L 891.27 470.16
+Q 891.27 473.04 888.39 473.04
+L 839.61 473.04
+Q 836.73 473.04 836.73 470.16
+L 836.73 457.92
+Q 836.73 455.04 839.61 455.04
 z
 " clip-path="url(#p8a27c2ca8c)" style="fill: #fcfcfe"/>
    </g>
    <g id="patch_38">
-    <path d="M 498.195937 574.56
-L 740.204062 574.56
-Q 743.084062 574.56 743.084062 577.44
-L 743.084062 589.68
-Q 743.084062 592.56 740.204062 592.56
-L 498.195937 592.56
-Q 495.315937 592.56 495.315937 589.68
-L 495.315937 577.44
-Q 495.315937 574.56 498.195937 574.56
+    <path d="M 499.11 574.56
+L 739.29 574.56
+Q 742.17 574.56 742.17 577.44
+L 742.17 589.68
+Q 742.17 592.56 739.29 592.56
+L 499.11 592.56
+Q 496.23 592.56 496.23 589.68
+L 496.23 577.44
+Q 496.23 574.56 499.11 574.56
 z
 " clip-path="url(#p8a27c2ca8c)" style="fill: #fcfcfe"/>
    </g>
    <g id="patch_39">
-    <path d="M 446.202187 601.2
-L 561.797812 601.2
-Q 564.677812 601.2 564.677812 604.08
-L 564.677812 616.32
-Q 564.677812 619.2 561.797812 619.2
-L 446.202187 619.2
-Q 443.322187 619.2 443.322187 616.32
-L 443.322187 604.08
-Q 443.322187 601.2 446.202187 601.2
+    <path d="M 446.8725 601.2
+L 561.1275 601.2
+Q 564.0075 601.2 564.0075 604.08
+L 564.0075 616.32
+Q 564.0075 619.2 561.1275 619.2
+L 446.8725 619.2
+Q 443.9925 619.2 443.9925 616.32
+L 443.9925 604.08
+Q 443.9925 601.2 446.8725 601.2
 z
 " clip-path="url(#p8a27c2ca8c)" style="fill: #fcfcfe"/>
    </g>
    <g id="text_1">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8066a9" x="864" y="259.925391" transform="rotate(-0 864 259.925391)">h2f_reset_n</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8066a9" x="864" y="257.898047" transform="rotate(-0 864 257.898047)">h2f_reset_n</text>
    </g>
    <g id="text_2">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8066a9" x="730.8" y="378.538867" transform="rotate(-0 730.8 378.538867)">async reset</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8066a9" x="730.8" y="376.698047" transform="rotate(-0 730.8 376.698047)">async reset</text>
    </g>
    <g id="text_3">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #4d78a8" x="432" y="362.110156" transform="rotate(-0 432 362.110156)">clock</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #4d78a8" x="432" y="358.698047" transform="rotate(-0 432 358.698047)">clock</text>
    </g>
    <g id="text_4">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #4d78a8" x="972" y="379.335039" transform="rotate(-0 972 379.335039)">CLOCK_50</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #4d78a8" x="972" y="377.197344" transform="rotate(-0 972 377.197344)">CLOCK_50</text>
    </g>
    <g id="text_5">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8066a9" x="864" y="468.365039" transform="rotate(-0 864 468.365039)">reset_n</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8066a9" x="864" y="466.350391" transform="rotate(-0 864 466.350391)">reset_n</text>
    </g>
    <g id="text_6">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8066a9" x="619.2" y="588.419219" transform="rotate(-0 619.2 588.419219)">Synchronous ownership / initialization</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #8066a9" x="619.2" y="586.218047" transform="rotate(-0 619.2 586.218047)">Synchronous ownership / initialization</text>
    </g>
    <g id="text_7">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #a66882" x="504" y="616.270156" transform="rotate(-0 504 616.270156)">Functional checks</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #a66882" x="504" y="612.858047" transform="rotate(-0 504 612.858047)">Functional checks</text>
    </g>
    <g id="text_8">
-    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="51.945625" transform="rotate(-0 68.4 51.945625)">T-RECAP  /  CURRENT TSH2 ARCHITECTURE</text>
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="48.797812" transform="rotate(-0 68.4 48.797812)">T-RECAP  /  CURRENT TSH2 ARCHITECTURE</text>
    </g>
    <g id="text_9">
-    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="68.4" y="92.898281" transform="rotate(-0 68.4 92.898281)">Clock, reset and verification boundaries</text>
+    <text style="font-weight: 700; font-size: 29px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="68.4" y="86.835469" transform="rotate(-0 68.4 86.835469)">Clock, reset and verification boundaries</text>
    </g>
    <g id="text_10">
-    <text style="font-size: 16.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="116.242969" transform="rotate(-0 68.4 116.242969)">Active clock/reset structure and distinct evidence scopes. Dotted evidence links are not hardware signals.</text>
+    <text style="font-size: 16.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="113.337422" transform="rotate(-0 68.4 113.337422)">Active clock/reset structure and distinct evidence scopes. Dotted evidence links are not hardware signals.</text>
    </g>
    <g id="text_11">
-    <text style="font-weight: 700; font-size: 32px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #8066a9" x="1245.6" y="80.2875" transform="rotate(-0 1245.6 80.2875)">08</text>
+    <text style="font-weight: 700; font-size: 32px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #8066a9" x="1245.6" y="71.835" transform="rotate(-0 1245.6 71.835)">08</text>
    </g>
    <g id="text_12">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="67.68" y="237.477656" transform="rotate(-0 67.68 237.477656)">CLOCK_50</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="67.68" y="234.399375" transform="rotate(-0 67.68 234.399375)">CLOCK_50</text>
    </g>
    <g id="text_13">
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 265.220831)">Nominal / constrained 50 MHz</text>
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 283.904675)">Adapter, source, DSP, exporter</text>
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 303.440675)">and synchronous FIFOs</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 261.762488)">Nominal / constrained 50 MHz</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 279.684732)">Adapter, source, DSP, exporter</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 297.606977)">and synchronous FIFOs</text>
    </g>
    <g id="text_14">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="503.28" y="237.636562" transform="rotate(-0 503.28 237.636562)">HPS h2f_reset_n</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="503.28" y="234.717187" transform="rotate(-0 503.28 234.717187)">HPS h2f_reset_n</text>
    </g>
    <g id="text_15">
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(503.28 264.368675)">Asynchronous reset source</text>
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(503.28 283.904675)">from the retained platform</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(503.28 261.762488)">Asynchronous reset source</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(503.28 279.684732)">from the retained platform</text>
    </g>
    <g id="text_16">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="938.88" y="237.886875" transform="rotate(-0 938.88 237.886875)">Generated HPS platform</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="938.88" y="234.717187" transform="rotate(-0 938.88 234.717187)">Generated HPS platform</text>
    </g>
    <g id="text_17">
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(938.88 265.047394)">CPU, Ethernet and DDR clocks</text>
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(938.88 283.904675)">remain platform-owned</text>
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(938.88 304.874425)">F2SDRAM writes tied inactive</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(938.88 261.762488)">CPU, Ethernet and DDR clocks</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(938.88 279.684732)">remain platform-owned</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(938.88 297.606977)">F2SDRAM writes tied inactive</text>
    </g>
    <g id="text_18">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="67.68" y="446.686875" transform="rotate(-0 67.68 446.686875)">CLEAR / epoch init</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="67.68" y="443.517188" transform="rotate(-0 67.68 443.517188)">CLEAR / epoch init</text>
    </g>
    <g id="text_19">
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 473.168675)">Clear ownership and counts</text>
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 492.704675)">Transform RAM loads per frame</text>
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 512.240675)">Explicitly scrub WOLA RAM</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 470.562488)">Clear ownership and counts</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 488.484733)">Transform RAM loads per frame</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 506.406978)">Explicitly scrub WOLA RAM</text>
    </g>
    <g id="text_20">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="503.28" y="446.616563" transform="rotate(-0 503.28 446.616563)">3-stage reset release</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="503.28" y="443.517188" transform="rotate(-0 503.28 443.517188)">3-stage reset release</text>
    </g>
    <g id="text_21">
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(503.28 473.168675)">Asynchronous assertion</text>
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(503.28 492.704675)">Release after 3 clock edges</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(503.28 470.562488)">Asynchronous assertion</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(503.28 488.484733)">Release after 3 clock edges</text>
    </g>
    <g id="text_22">
-    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #4d78a8" x="503.28" y="531.801688" transform="rotate(-0 503.28 531.801688)">trecap_hps_top.reset_release</text>
+    <text style="font-size: 10.6px; font-family: 'DejaVu Sans Mono'; text-anchor: start; fill: #4d78a8" x="503.28" y="530.110656" transform="rotate(-0 503.28 530.110656)">trecap_hps_top.reset_release</text>
    </g>
    <g id="text_23">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="938.88" y="448.430625" transform="rotate(-0 938.88 448.430625)">Active TSH2 fabric</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="938.88" y="443.517188" transform="rotate(-0 938.88 443.517188)">Active TSH2 fabric</text>
    </g>
    <g id="text_24">
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(938.88 474.602425)">One fabric clock domain</text>
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(938.88 492.704675)">Adapter / source / DSP</text>
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(938.88 512.240675)">Exporter + synchronous FIFOs</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(938.88 470.562488)">One fabric clock domain</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(938.88 488.484733)">Adapter / source / DSP</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(938.88 506.406978)">Exporter + synchronous FIFOs</text>
    </g>
    <g id="text_25">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="67.68" y="678.830625" transform="rotate(-0 67.68 678.830625)">Functional verification evidence</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="67.68" y="673.917188" transform="rotate(-0 67.68 673.917188)">Functional verification evidence</text>
    </g>
    <g id="text_26">
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 703.568675)">Original: directed/full-length procedural scoreboards</text>
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 723.104675)">Supplement: UVM 1.2 + scoped local formal proofs</text>
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 742.640675)">10 ns simulation clock is not board timing</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 700.962488)">Original: directed/full-length procedural scoreboards</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 718.884733)">Supplement: UVM 1.2 + scoped local formal proofs</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(67.68 736.806978)">10 ns simulation clock is not board timing</text>
    </g>
    <g id="text_27">
-    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="686.88" y="677.016563" transform="rotate(-0 686.88 677.016563)">Source-bound physical evidence</text>
+    <text style="font-weight: 700; font-size: 18px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #26364b" x="686.88" y="673.917188" transform="rotate(-0 686.88 673.917188)">Source-bound physical evidence</text>
    </g>
    <g id="text_28">
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 703.568675)">58 checked epochs; registered image and source manifest</text>
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 723.104675)">Historical fit/timing evidence; no new runs in this atlas</text>
-    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 742.640675)">No formal CDC/RDC or full-platform sign-off</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 700.962488)">58 checked epochs. Registered image and source manifest</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 718.884733)">Historical fit/timing evidence. No new runs in this atlas</text>
+    <text style="font-size: 14.8px; font-family: 'DejaVu Sans'; fill: #26364b" transform="translate(686.88 736.806978)">No formal CDC/RDC or full-platform sign-off</text>
    </g>
    <g id="text_29">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="823.028594" transform="rotate(-0 68.4 823.028594)">PCM / sources</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="68.4" y="820.218047" transform="rotate(-0 68.4 820.218047)">PCM / sources</text>
    </g>
    <g id="text_30">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="262.8" y="823.138945" transform="rotate(-0 262.8 823.138945)">DSP / control</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="262.8" y="820.218047" transform="rotate(-0 262.8 820.218047)">DSP / control</text>
    </g>
    <g id="text_31">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="460.8" y="822.419219" transform="rotate(-0 460.8 822.419219)">Spectral output</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="460.8" y="820.218047" transform="rotate(-0 460.8 820.218047)">Spectral output</text>
    </g>
    <g id="text_32">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="676.8" y="823.028594" transform="rotate(-0 676.8 823.028594)">Host / HPS</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="676.8" y="820.218047" transform="rotate(-0 676.8 820.218047)">Host / HPS</text>
    </g>
    <g id="text_33">
-    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="882" y="822.419219" transform="rotate(-0 882 822.419219)">Memory / platform</text>
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="882" y="820.218047" transform="rotate(-0 882 820.218047)">Memory / platform</text>
    </g>
    <g id="text_34">
-    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #586a80" x="1245.6" y="823.83375" transform="rotate(-0 1245.6 823.83375)">solid: data   dashed: control</text>
+    <text style="font-size: 12px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #586a80" x="1245.6" y="820.558125" transform="rotate(-0 1245.6 820.558125)">solid: data   dashed: control</text>
    </g>
    <g id="text_35">
-    <text style="font-size: 11.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="50.4" y="846.105781" transform="rotate(-0 50.4 846.105781)">SOURCE BINDINGS: A01, A02, S02, S17, S24, S25, S32, S10, S16, S14, S15, S13  |  Reviewed source structure, not new execution or timing measurements.</text>
+    <text style="font-size: 11.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #586a80" x="50.4" y="844.217781" transform="rotate(-0 50.4 844.217781)">SOURCE BINDINGS: A01, A02, S02, S17, S24, S25, S32, S10, S16, S14, S15, S13  |  Reviewed source structure, not new execution or timing measurements.</text>
    </g>
    <g id="text_36">
-    <text style="font-size: 11.8px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #586a80" x="1245.6" y="846.819313" transform="rotate(-0 1245.6 846.819313)">TSH2 / 08</text>
+    <text style="font-size: 11.8px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #586a80" x="1245.6" y="844.166156" transform="rotate(-0 1245.6 844.166156)">TSH2 / 08</text>
    </g>
   </g>
  </g>

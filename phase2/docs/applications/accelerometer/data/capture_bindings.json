@@ -1,0 +1,430 @@
+{
+  "schema": "trecap-step-capture-publication-1",
+  "status": "PASS_ARCHIVED_CAPTURE_RECHECK",
+  "new_hardware_execution": false,
+  "frozen_detector": {
+    "prominence_g": 0.12,
+    "height_g": 0,
+    "min_spacing_s": 0.4
+  },
+  "sample_rate_hz": 15,
+  "matching_tolerance_s": 0.25,
+  "scored_source_interval_s": [
+    30,
+    150
+  ],
+  "captured_thresholds": [
+    0,
+    100000000,
+    1000000000,
+    10000000000,
+    100000000000
+  ],
+  "physical_captures": [
+    {
+      "threshold": 0,
+      "historical_epoch": 1,
+      "y_sha256": "b88dbb0b1c9df10361d48f48739b6116e327450cd023f9a35ad5dc559f153d32",
+      "tsp1_sha256": "9f7bd60fa6338af840ce84960aa45bdad2c4734a6fb3727c0c1fcba62d430a61",
+      "y_bytes": 1538048,
+      "tsp1_bytes": 3241080,
+      "input_samples": 384000,
+      "output_samples": 384512,
+      "spectral_frames": 3001,
+      "input_sha256": "25fd756b3034f6d20e10f317221204b50e0b45606871c5089686345a1c735784",
+      "source_id": "39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed",
+      "sof_sha256": "f96bc5a35adf08711a5f392baf9f8cbf5ec65a17211a58117bdb53f62acbb7ab",
+      "capture_receipt_sha256": "f6e9147d9307b9f9381b0498a4599db109c53fe857cbc176a7471218af211066",
+      "complete_y_and_tsp_exact": true,
+      "same_threshold_dense_sparse_exact": true,
+      "comparison_scope": "Full captured bytes compared with frozen expected output hashes. No new board run."
+    },
+    {
+      "threshold": 100000000,
+      "historical_epoch": 4,
+      "y_sha256": "0a055d02914a63de8e4d1e8d2029e6eea4acd90d58f35a9e2cb5afc741ddc568",
+      "tsp1_sha256": "8a864b042f8986b7d270f02be6b61ca581972949fef825cdeeb5fb49b2e37504",
+      "y_bytes": 1538048,
+      "tsp1_bytes": 1563096,
+      "input_samples": 384000,
+      "output_samples": 384512,
+      "spectral_frames": 3001,
+      "input_sha256": "25fd756b3034f6d20e10f317221204b50e0b45606871c5089686345a1c735784",
+      "source_id": "39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed",
+      "sof_sha256": "f96bc5a35adf08711a5f392baf9f8cbf5ec65a17211a58117bdb53f62acbb7ab",
+      "capture_receipt_sha256": "3ea8395ed3021df8c475fe401d84d9adedbea717baa7576cf71d72d64022f983",
+      "complete_y_and_tsp_exact": true,
+      "same_threshold_dense_sparse_exact": true,
+      "comparison_scope": "Full captured bytes compared with frozen expected output hashes. No new board run."
+    },
+    {
+      "threshold": 1000000000,
+      "historical_epoch": 5,
+      "y_sha256": "77c136f696282a7326aa09acf35b429bd52216f7e120649793485f0d4b3ff562",
+      "tsp1_sha256": "9cac1cf6d05cf139f3159cff4da8005e63971076f67d28f59bd5408fdd77c52c",
+      "y_bytes": 1538048,
+      "tsp1_bytes": 1147976,
+      "input_samples": 384000,
+      "output_samples": 384512,
+      "spectral_frames": 3001,
+      "input_sha256": "25fd756b3034f6d20e10f317221204b50e0b45606871c5089686345a1c735784",
+      "source_id": "39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed",
+      "sof_sha256": "f96bc5a35adf08711a5f392baf9f8cbf5ec65a17211a58117bdb53f62acbb7ab",
+      "capture_receipt_sha256": "af7fb815f817888d693bb2318a77b53ff4a92cd18c7b937cf3058f8480db604e",
+      "complete_y_and_tsp_exact": true,
+      "same_threshold_dense_sparse_exact": true,
+      "comparison_scope": "Full captured bytes compared with frozen expected output hashes. No new board run."
+    },
+    {
+      "threshold": 10000000000,
+      "historical_epoch": 2,
+      "y_sha256": "3acfd94d35c61006b8134efd12230c44627b11ee2c3233b7600d081975d9f54c",
+      "tsp1_sha256": "9c877d26f495df931d0e4573f2448fbccb33227cfe32539cb7599178dc7aec29",
+      "y_bytes": 1538048,
+      "tsp1_bytes": 393704,
+      "input_samples": 384000,
+      "output_samples": 384512,
+      "spectral_frames": 3001,
+      "input_sha256": "25fd756b3034f6d20e10f317221204b50e0b45606871c5089686345a1c735784",
+      "source_id": "39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed",
+      "sof_sha256": "f96bc5a35adf08711a5f392baf9f8cbf5ec65a17211a58117bdb53f62acbb7ab",
+      "capture_receipt_sha256": "d5a166c7f6fed594f3850c2c3300bf4825c6dd2d0096692072abd48c33a5ef65",
+      "complete_y_and_tsp_exact": true,
+      "same_threshold_dense_sparse_exact": true,
+      "comparison_scope": "Full captured bytes compared with frozen expected output hashes. No new board run."
+    },
+    {
+      "threshold": 100000000000,
+      "historical_epoch": 3,
+      "y_sha256": "cac15f94d441a2af8a6208c9f875a406c5acc89900b224f2ec2b68ded5a2a4a5",
+      "tsp1_sha256": "38e1d3d0b8b902fdcf87a02f15ef6b53ecaedae8c72d77d6096e0c7f8956a58f",
+      "y_bytes": 1538048,
+      "tsp1_bytes": 193880,
+      "input_samples": 384000,
+      "output_samples": 384512,
+      "spectral_frames": 3001,
+      "input_sha256": "25fd756b3034f6d20e10f317221204b50e0b45606871c5089686345a1c735784",
+      "source_id": "39db0fdf3d451dfbf2d878575725cedd3df450980b40b2a742620dfb76a1a8ed",
+      "sof_sha256": "f96bc5a35adf08711a5f392baf9f8cbf5ec65a17211a58117bdb53f62acbb7ab",
+      "capture_receipt_sha256": "566f85e67d069c2b54f903b415dbb8c8a61efb54fc7532dc415bf787b4e2c5de",
+      "complete_y_and_tsp_exact": true,
+      "same_threshold_dense_sparse_exact": true,
+      "comparison_scope": "Full captured bytes compared with frozen expected output hashes. No new board run."
+    }
+  ],
+  "excerpt_derivations": [
+    {
+      "path": "data/source_original_excerpt.csv",
+      "case_id": "P003_Regular_original",
+      "kind": "Original measured hip XYZ values in g",
+      "samples": 300,
+      "source_interval_s": [
+        60,
+        80
+      ],
+      "source_sample_interval": [
+        900,
+        1200
+      ],
+      "source_case_sha256": "ae708495c888b331296b3efbd9dc8e3a14b003674d82a4515e4ad8e4d95a1450",
+      "source_recording_sha256": "edf0531feea8de601f37ae1a4a6b27ed3bf7ee6673b8c95a076177c8a5728b0e"
+    },
+    {
+      "path": "data/input_quantized_original_excerpt.csv",
+      "case_id": "P003_Regular_original",
+      "kind": "Exact packed signed 12-bit input expressed in g",
+      "samples": 300,
+      "source_interval_s": [
+        60,
+        80
+      ],
+      "source_sample_interval": [
+        900,
+        1200
+      ],
+      "source_case_sha256": "ae708495c888b331296b3efbd9dc8e3a14b003674d82a4515e4ad8e4d95a1450",
+      "source_recording_sha256": "edf0531feea8de601f37ae1a4a6b27ed3bf7ee6673b8c95a076177c8a5728b0e"
+    },
+    {
+      "path": "data/fpga_original_t0_excerpt.csv",
+      "case_id": "P003_Regular_original",
+      "kind": "Actual returned FPGA Y with fixed 384-sample alignment removed",
+      "samples": 300,
+      "source_interval_s": [
+        60,
+        80
+      ],
+      "source_sample_interval": [
+        900,
+        1200
+      ],
+      "source_case_sha256": "ae708495c888b331296b3efbd9dc8e3a14b003674d82a4515e4ad8e4d95a1450",
+      "source_recording_sha256": "edf0531feea8de601f37ae1a4a6b27ed3bf7ee6673b8c95a076177c8a5728b0e",
+      "threshold": 0,
+      "captured_y_sha256": "b88dbb0b1c9df10361d48f48739b6116e327450cd023f9a35ad5dc559f153d32",
+      "packed_axis_offsets": [
+        256,
+        3584,
+        6912
+      ],
+      "alignment_samples": 384
+    },
+    {
+      "path": "data/fpga_original_t100000000_excerpt.csv",
+      "case_id": "P003_Regular_original",
+      "kind": "Actual returned FPGA Y with fixed 384-sample alignment removed",
+      "samples": 300,
+      "source_interval_s": [
+        60,
+        80
+      ],
+      "source_sample_interval": [
+        900,
+        1200
+      ],
+      "source_case_sha256": "ae708495c888b331296b3efbd9dc8e3a14b003674d82a4515e4ad8e4d95a1450",
+      "source_recording_sha256": "edf0531feea8de601f37ae1a4a6b27ed3bf7ee6673b8c95a076177c8a5728b0e",
+      "threshold": 100000000,
+      "captured_y_sha256": "0a055d02914a63de8e4d1e8d2029e6eea4acd90d58f35a9e2cb5afc741ddc568",
+      "packed_axis_offsets": [
+        256,
+        3584,
+        6912
+      ],
+      "alignment_samples": 384
+    },
+    {
+      "path": "data/fpga_original_t1000000000_excerpt.csv",
+      "case_id": "P003_Regular_original",
+      "kind": "Actual returned FPGA Y with fixed 384-sample alignment removed",
+      "samples": 300,
+      "source_interval_s": [
+        60,
+        80
+      ],
+      "source_sample_interval": [
+        900,
+        1200
+      ],
+      "source_case_sha256": "ae708495c888b331296b3efbd9dc8e3a14b003674d82a4515e4ad8e4d95a1450",
+      "source_recording_sha256": "edf0531feea8de601f37ae1a4a6b27ed3bf7ee6673b8c95a076177c8a5728b0e",
+      "threshold": 1000000000,
+      "captured_y_sha256": "77c136f696282a7326aa09acf35b429bd52216f7e120649793485f0d4b3ff562",
+      "packed_axis_offsets": [
+        256,
+        3584,
+        6912
+      ],
+      "alignment_samples": 384
+    },
+    {
+      "path": "data/fpga_original_t10000000000_excerpt.csv",
+      "case_id": "P003_Regular_original",
+      "kind": "Actual returned FPGA Y with fixed 384-sample alignment removed",
+      "samples": 300,
+      "source_interval_s": [
+        60,
+        80
+      ],
+      "source_sample_interval": [
+        900,
+        1200
+      ],
+      "source_case_sha256": "ae708495c888b331296b3efbd9dc8e3a14b003674d82a4515e4ad8e4d95a1450",
+      "source_recording_sha256": "edf0531feea8de601f37ae1a4a6b27ed3bf7ee6673b8c95a076177c8a5728b0e",
+      "threshold": 10000000000,
+      "captured_y_sha256": "3acfd94d35c61006b8134efd12230c44627b11ee2c3233b7600d081975d9f54c",
+      "packed_axis_offsets": [
+        256,
+        3584,
+        6912
+      ],
+      "alignment_samples": 384
+    },
+    {
+      "path": "data/fpga_original_t100000000000_excerpt.csv",
+      "case_id": "P003_Regular_original",
+      "kind": "Actual returned FPGA Y with fixed 384-sample alignment removed",
+      "samples": 300,
+      "source_interval_s": [
+        60,
+        80
+      ],
+      "source_sample_interval": [
+        900,
+        1200
+      ],
+      "source_case_sha256": "ae708495c888b331296b3efbd9dc8e3a14b003674d82a4515e4ad8e4d95a1450",
+      "source_recording_sha256": "edf0531feea8de601f37ae1a4a6b27ed3bf7ee6673b8c95a076177c8a5728b0e",
+      "threshold": 100000000000,
+      "captured_y_sha256": "cac15f94d441a2af8a6208c9f875a406c5acc89900b224f2ec2b68ded5a2a4a5",
+      "packed_axis_offsets": [
+        256,
+        3584,
+        6912
+      ],
+      "alignment_samples": 384
+    },
+    {
+      "path": "data/source_added_noise_excerpt.csv",
+      "case_id": "P003_Regular_added_awgn_0p10g",
+      "kind": "Original hip XYZ plus simulated independent 0.10 g Gaussian noise per axis",
+      "samples": 300,
+      "source_interval_s": [
+        60,
+        80
+      ],
+      "source_sample_interval": [
+        900,
+        1200
+      ],
+      "source_case_sha256": "6cb67fb01803132d73c84e538175e248c3e487e8d47a913e6b19df3956bf1676",
+      "source_recording_sha256": "edf0531feea8de601f37ae1a4a6b27ed3bf7ee6673b8c95a076177c8a5728b0e"
+    },
+    {
+      "path": "data/input_quantized_added_awgn_0p10g_excerpt.csv",
+      "case_id": "P003_Regular_added_awgn_0p10g",
+      "kind": "Exact packed signed 12-bit input expressed in g",
+      "samples": 300,
+      "source_interval_s": [
+        60,
+        80
+      ],
+      "source_sample_interval": [
+        900,
+        1200
+      ],
+      "source_case_sha256": "6cb67fb01803132d73c84e538175e248c3e487e8d47a913e6b19df3956bf1676",
+      "source_recording_sha256": "edf0531feea8de601f37ae1a4a6b27ed3bf7ee6673b8c95a076177c8a5728b0e"
+    },
+    {
+      "path": "data/fpga_added_awgn_0p10g_t0_excerpt.csv",
+      "case_id": "P003_Regular_added_awgn_0p10g",
+      "kind": "Actual returned FPGA Y with fixed 384-sample alignment removed",
+      "samples": 300,
+      "source_interval_s": [
+        60,
+        80
+      ],
+      "source_sample_interval": [
+        900,
+        1200
+      ],
+      "source_case_sha256": "6cb67fb01803132d73c84e538175e248c3e487e8d47a913e6b19df3956bf1676",
+      "source_recording_sha256": "edf0531feea8de601f37ae1a4a6b27ed3bf7ee6673b8c95a076177c8a5728b0e",
+      "threshold": 0,
+      "captured_y_sha256": "b88dbb0b1c9df10361d48f48739b6116e327450cd023f9a35ad5dc559f153d32",
+      "packed_axis_offsets": [
+        10240,
+        13568,
+        16896
+      ],
+      "alignment_samples": 384
+    },
+    {
+      "path": "data/fpga_added_awgn_0p10g_t100000000_excerpt.csv",
+      "case_id": "P003_Regular_added_awgn_0p10g",
+      "kind": "Actual returned FPGA Y with fixed 384-sample alignment removed",
+      "samples": 300,
+      "source_interval_s": [
+        60,
+        80
+      ],
+      "source_sample_interval": [
+        900,
+        1200
+      ],
+      "source_case_sha256": "6cb67fb01803132d73c84e538175e248c3e487e8d47a913e6b19df3956bf1676",
+      "source_recording_sha256": "edf0531feea8de601f37ae1a4a6b27ed3bf7ee6673b8c95a076177c8a5728b0e",
+      "threshold": 100000000,
+      "captured_y_sha256": "0a055d02914a63de8e4d1e8d2029e6eea4acd90d58f35a9e2cb5afc741ddc568",
+      "packed_axis_offsets": [
+        10240,
+        13568,
+        16896
+      ],
+      "alignment_samples": 384
+    },
+    {
+      "path": "data/fpga_added_awgn_0p10g_t1000000000_excerpt.csv",
+      "case_id": "P003_Regular_added_awgn_0p10g",
+      "kind": "Actual returned FPGA Y with fixed 384-sample alignment removed",
+      "samples": 300,
+      "source_interval_s": [
+        60,
+        80
+      ],
+      "source_sample_interval": [
+        900,
+        1200
+      ],
+      "source_case_sha256": "6cb67fb01803132d73c84e538175e248c3e487e8d47a913e6b19df3956bf1676",
+      "source_recording_sha256": "edf0531feea8de601f37ae1a4a6b27ed3bf7ee6673b8c95a076177c8a5728b0e",
+      "threshold": 1000000000,
+      "captured_y_sha256": "77c136f696282a7326aa09acf35b429bd52216f7e120649793485f0d4b3ff562",
+      "packed_axis_offsets": [
+        10240,
+        13568,
+        16896
+      ],
+      "alignment_samples": 384
+    },
+    {
+      "path": "data/fpga_added_awgn_0p10g_t10000000000_excerpt.csv",
+      "case_id": "P003_Regular_added_awgn_0p10g",
+      "kind": "Actual returned FPGA Y with fixed 384-sample alignment removed",
+      "samples": 300,
+      "source_interval_s": [
+        60,
+        80
+      ],
+      "source_sample_interval": [
+        900,
+        1200
+      ],
+      "source_case_sha256": "6cb67fb01803132d73c84e538175e248c3e487e8d47a913e6b19df3956bf1676",
+      "source_recording_sha256": "edf0531feea8de601f37ae1a4a6b27ed3bf7ee6673b8c95a076177c8a5728b0e",
+      "threshold": 10000000000,
+      "captured_y_sha256": "3acfd94d35c61006b8134efd12230c44627b11ee2c3233b7600d081975d9f54c",
+      "packed_axis_offsets": [
+        10240,
+        13568,
+        16896
+      ],
+      "alignment_samples": 384
+    },
+    {
+      "path": "data/fpga_added_awgn_0p10g_t100000000000_excerpt.csv",
+      "case_id": "P003_Regular_added_awgn_0p10g",
+      "kind": "Actual returned FPGA Y with fixed 384-sample alignment removed",
+      "samples": 300,
+      "source_interval_s": [
+        60,
+        80
+      ],
+      "source_sample_interval": [
+        900,
+        1200
+      ],
+      "source_case_sha256": "6cb67fb01803132d73c84e538175e248c3e487e8d47a913e6b19df3956bf1676",
+      "source_recording_sha256": "edf0531feea8de601f37ae1a4a6b27ed3bf7ee6673b8c95a076177c8a5728b0e",
+      "threshold": 100000000000,
+      "captured_y_sha256": "cac15f94d441a2af8a6208c9f875a406c5acc89900b224f2ec2b68ded5a2a4a5",
+      "packed_axis_offsets": [
+        10240,
+        13568,
+        16896
+      ],
+      "alignment_samples": 384
+    }
+  ],
+  "checks": {
+    "all_source_case_and_label_hashes": true,
+    "packed_quantized_input_exact": true,
+    "all_captured_Y_and_TSP1_hashes_match_frozen_expected": true,
+    "all_120_recording_route_scores_reproduced": true,
+    "threshold_zero_aligned_input_identity": true,
+    "unchanged_detector": true
+  },
+  "full_capture_distribution": "Full historical Y and TSP1 captures remain in the original project archive. Published CSV files are explicitly indexed compact excerpts, not full captures."
+}

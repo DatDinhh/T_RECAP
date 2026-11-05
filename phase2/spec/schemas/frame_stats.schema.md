@@ -39,7 +39,7 @@ metrics.json.configuration.frames
 
 | Column | Type | Required rule |
 |---|---:|---|
-| `frame_idx` | unsigned decimal integer | Zero-based frame index. First row is `0`; final row is `Nframes - 1`. |
+| `frame_idx` | unsigned decimal integer | Zero-based frame index. First row is `0`. Final row is `Nframes - 1`. |
 | `unique_bins` | unsigned decimal integer | Number of unique bins for the frame. Baseline `L = 256` gives `129`. |
 | `unique_suppressed_bins` | unsigned decimal integer | Count of final post-protection `mask[k] = 1` over all unique bins. |
 | `eligible_unique_bins` | unsigned decimal integer | Count of bins eligible for suppression after protection eligibility is applied. |

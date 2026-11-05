@@ -5,7 +5,7 @@ the physical verification campaign: PCM streaming, the HPS adapter and FIFOs,
 finite request service, native arithmetic and packet consumers, spectral monitor,
 and local visualizer. The `work/<component>/...` layout preserves relative Python
 imports and C++ includes. The original broader DDR/UDP architecture remains in
-the surrounding `phase2` tree; this snapshot does not close its acceptance gaps.
+the surrounding `phase2` tree. This snapshot does not close its acceptance gaps.
 
 For a portable, synthetic, off-board verification entry point, use
 [the TSH2 DV package](../../verification/tsh2/README.md). This archived workbench is
@@ -20,7 +20,7 @@ evidence is a derived review export and does not contain every original raw byte
 | `trecap_cpu_fpga_bench_v01/cpu02`, `host02` | Frozen arithmetic included by CPU wrappers and finite MMIO client included by the service |
 | `trecap_downstream8_v01`, `trecap_sparse_consumer_v01` | Native packet codecs/consumers, reference packet audit |
 | `trecap_jtag_readback_v01/physical/validate_tsp1.py` | Pure off-board packet validator imported by the stream host checks |
-| `trecap_ai_scheduler_v01/native` | Native full/spectral reference API; this component loads no AI model |
+| `trecap_ai_scheduler_v01/native` | Native full/spectral reference API. This component loads no AI model |
 | `trecap_spectral_monitor_v01/native`, `trecap_spectral_monitor_v02` | Qualified native features and causal monitor revision 02 |
 | `trecap_monitor_board_v01` | Input preparation and off-board monitor/capture analysis |
 | `trecap_visualizer_v01` | Local UI, queue/data/hardware contracts, fake-hardware tests, read-only probe source |
@@ -33,9 +33,9 @@ Those generated artifacts and vendor dependencies are deliberately absent here.
 Do not substitute unrelated binaries or regenerate coefficients and claim the
 original source-bound result. Original build scripts are retained for review,
 not advertised as portable commands. Python components additionally depend on
-NumPy and, for selected preparation paths, SciPy; native builds used C++20/MSVC.
+NumPy and, for selected preparation paths, SciPy. Native builds used C++20/MSVC.
 The service/probe shell builders now require `TSH2_ARM_DEPS` to identify an
-externally provided cross-toolchain root; the original personal path was removed.
+externally provided cross-toolchain root. The original personal path was removed.
 
 The local visualizer's `hardware.py` includes an explicit historical `provision`
 operation and admission checks because server/fake-hardware tests import its
@@ -46,7 +46,7 @@ reviewed image, boot, ownership, bridge/MMIO and service admission. None of the
 public verification commands invokes this archived hardware path.
 
 The optional remote gateway, remote configuration and remote UI were excluded.
-The preserved local server still contains optional remote flags/routes; they are
+The preserved local server still contains optional remote flags/routes. They are
 unsupported in this source snapshot. Use the local contract tests or the separate
 recorded demonstration. Native wrappers require their missing qualified DLLs and
 archived coefficients before real-capture replay can work.
@@ -63,7 +63,7 @@ real-time, full architecture closure or industrial certification claim.
 the published SHA256, and any documented transformation. All RTL, C and C++ bytes
 are unchanged. One Markdown command replaces a personal Python executable path
 with `python`, and two shell builders require `TSH2_ARM_DEPS` instead of a personal
-toolchain path; no RTL/C/C++ or contract semantics changed. The physical image remains
+toolchain path. No RTL/C/C++ or contract semantics changed. The physical image remains
 bound to its original 182-file manifest, not to a new unbuilt image from this tree.
-Existing source copyright notices are retained; project-authored source follows
+Existing source copyright notices are retained. Project-authored source follows
 the parent project license. External platform licenses remain separate.

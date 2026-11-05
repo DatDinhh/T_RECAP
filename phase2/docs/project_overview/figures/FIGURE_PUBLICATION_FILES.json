@@ -16,28 +16,40 @@
       "bytes": 28282
     },
     {
-      "source": "attempt02/dv_handshake.png",
+      "source": "phase2/docs/verification/portfolio/figures/handshake.png",
       "destination": "figures/dv_handshake.png",
-      "sha256": "e1b5d467e1509f711abdab8cf1dcc82af01142a2c683969ea7313e02155ae95d",
-      "bytes": 196703
+      "sha256": "f722ed2070e79c5adcb23ff2e3c6637150b16406ba64cf73aba0051446364e97",
+      "bytes": 89584,
+      "previous_source": "attempt02/dv_handshake.png",
+      "previous_sha256": "e1b5d467e1509f711abdab8cf1dcc82af01142a2c683969ea7313e02155ae95d",
+      "source_scope": "Current repository publication preview"
     },
     {
-      "source": "attempt02/dv_reset.png",
+      "source": "phase2/docs/verification/portfolio/figures/reset.png",
       "destination": "figures/dv_reset.png",
-      "sha256": "21cad60f6f1f579155e6963ce83271978648d97a03a9ce797f24a64edc7f1cd9",
-      "bytes": 303689
+      "sha256": "bc2240516cf495eb4afad8d33e345e1977f54cb0b2386d5c15a5f522c3756922",
+      "bytes": 120688,
+      "previous_source": "attempt02/dv_reset.png",
+      "previous_sha256": "21cad60f6f1f579155e6963ce83271978648d97a03a9ce797f24a64edc7f1cd9",
+      "source_scope": "Current repository publication preview"
     },
     {
-      "source": "attempt02/dv_rounding.png",
+      "source": "phase2/docs/verification/portfolio/figures/rounding.png",
       "destination": "figures/dv_rounding.png",
-      "sha256": "9bda83f884c9e2e751b5419cc727630d3d92b8655653d905672539211dfaa855",
-      "bytes": 162621
+      "sha256": "20df4c3d97f0b535f67bfdd51499d3da18fdb917466408bdc88c575514d61682",
+      "bytes": 59819,
+      "previous_source": "attempt02/dv_rounding.png",
+      "previous_sha256": "9bda83f884c9e2e751b5419cc727630d3d92b8655653d905672539211dfaa855",
+      "source_scope": "Current repository publication preview"
     },
     {
-      "source": "attempt02/dv_topology.png",
+      "source": "phase2/docs/verification/portfolio/figures/topology.png",
       "destination": "figures/dv_topology.png",
-      "sha256": "d4c6a66bddcf3ccd2a74362e2dae7f467611e8693b7e0e20644d4c33ecfa3730",
-      "bytes": 382217
+      "sha256": "a10a063f82fe4d85615dbba540af8787f0f9ab05ac87bf8b01c77cb4179def5d",
+      "bytes": 219123,
+      "previous_source": "attempt02/dv_topology.png",
+      "previous_sha256": "d4c6a66bddcf3ccd2a74362e2dae7f467611e8693b7e0e20644d4c33ecfa3730",
+      "source_scope": "Current repository publication preview"
     },
     {
       "source": "attempt02/figure_audit.json",
@@ -120,11 +132,16 @@
     {
       "source": "FIGURE_NOTES.md",
       "destination": "figures/FIGURE_NOTES.md",
-      "sha256": "dcbc54cc3ee2a518d09e53e60a21210ee928e0427bb6edd41cb62ca3d6309158",
+      "sha256": "221db6832386e56700425fedf38df6a62bc0ef3a9c592faf5264fe5ddcc9c319",
       "bytes": 6403
     }
   ],
   "include_this_manifest_as": "figures/FIGURE_PUBLICATION_FILES.json",
   "data_dependency": "Audited plotting data from the separate evidence agent belongs in data/.",
-  "excluded": "Do not copy commands01/commands02, mpl_cache, attempt01, audit_bundle.py or any raw capture arrays."
+  "excluded": "Do not copy commands01/commands02, mpl_cache, attempt01, audit_bundle.py or any raw capture arrays.",
+  "editorial_preview_revision": {
+    "date": "2026-11-04",
+    "scope": "Four duplicate verification previews now use the current pastel portfolio drawings. Historical source and result provenance is retained.",
+    "ledger": "phase2/docs/editorial/20261104-prose/manifest.json"
+  }
 }

@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>T-RECAP audio comparisons</title>
+<style>body{margin:32px auto;padding:0 24px;max-width:1300px;background:#111a2a;color:#e7eef6;font:16px/1.6 system-ui}h1,h2,h3{line-height:1.25}a{color:#a8d6ed}section{padding:22px;margin:22px 0;background:#1d2a3e;border-radius:14px}.players{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}audio{width:100%}img{max-width:100%}.note{border-left:4px solid #ecc9ad;padding:16px}pre{white-space:pre-wrap;font:14px/1.5 system-ui}@media(max-width:900px){.players{grid-template-columns:1fr 1fr}}@media(max-width:550px){.players{grid-template-columns:1fr}}</style>
+<h1>Listen to the threshold tradeoff</h1><p><a href="README.md">Methods and measured results</a> | <a href="CREDITS.md">Credits and licenses</a></p><p class="note">Keep playback volume fixed. A quieter background can also mean lost detail. These are archived samples, not a live connection to the FPGA.</p><h2>Actual FPGA output followed by FLAC</h2><p>All four versions use the same playback gain. Threshold 0 already includes signed 12-bit input quantization. FLAC decodes exactly to the waveform provided to its encoder.</p>
+<section><h2>Speech A</h2><div class="players">
+<div><h3>Original PCM16</h3><audio controls preload="none" src="media/speech_test_a/original_pcm16.wav"></audio><p><a href="media/speech_test_a/original_pcm16.wav" download>WAV</a> | <a href="media/speech_test_a/original_pcm16.flac" download>FLAC</a></p></div>
+<div><h3>FPGA threshold 0</h3><audio controls preload="none" src="media/speech_test_a/fpga_t0.wav"></audio><p><a href="media/speech_test_a/fpga_t0.wav" download>WAV</a> | <a href="media/speech_test_a/fpga_t0.flac" download>FLAC</a></p></div>
+<div><h3>FPGA threshold 10^8</h3><audio controls preload="none" src="media/speech_test_a/fpga_t100000000.wav"></audio><p><a href="media/speech_test_a/fpga_t100000000.wav" download>WAV</a> | <a href="media/speech_test_a/fpga_t100000000.flac" download>FLAC</a></p></div>
+<div><h3>FPGA threshold 10^10</h3><audio controls preload="none" src="media/speech_test_a/fpga_t10000000000.wav"></audio><p><a href="media/speech_test_a/fpga_t10000000000.wav" download>WAV</a> | <a href="media/speech_test_a/fpga_t10000000000.flac" download>FLAC</a></p></div>
+</div></section>
+<section><h2>Speech B</h2><div class="players">
+<div><h3>Original PCM16</h3><audio controls preload="none" src="media/speech_test_b/original_pcm16.wav"></audio><p><a href="media/speech_test_b/original_pcm16.wav" download>WAV</a> | <a href="media/speech_test_b/original_pcm16.flac" download>FLAC</a></p></div>
+<div><h3>FPGA threshold 0</h3><audio controls preload="none" src="media/speech_test_b/fpga_t0.wav"></audio><p><a href="media/speech_test_b/fpga_t0.wav" download>WAV</a> | <a href="media/speech_test_b/fpga_t0.flac" download>FLAC</a></p></div>
+<div><h3>FPGA threshold 10^8</h3><audio controls preload="none" src="media/speech_test_b/fpga_t100000000.wav"></audio><p><a href="media/speech_test_b/fpga_t100000000.wav" download>WAV</a> | <a href="media/speech_test_b/fpga_t100000000.flac" download>FLAC</a></p></div>
+<div><h3>FPGA threshold 10^10</h3><audio controls preload="none" src="media/speech_test_b/fpga_t10000000000.wav"></audio><p><a href="media/speech_test_b/fpga_t10000000000.wav" download>WAV</a> | <a href="media/speech_test_b/fpga_t10000000000.flac" download>FLAC</a></p></div>
+</div></section>
+<section><h2>Piano</h2><div class="players">
+<div><h3>Original PCM16</h3><audio controls preload="none" src="media/music_test_a/original_pcm16.wav"></audio><p><a href="media/music_test_a/original_pcm16.wav" download>WAV</a> | <a href="media/music_test_a/original_pcm16.flac" download>FLAC</a></p></div>
+<div><h3>FPGA threshold 0</h3><audio controls preload="none" src="media/music_test_a/fpga_t0.wav"></audio><p><a href="media/music_test_a/fpga_t0.wav" download>WAV</a> | <a href="media/music_test_a/fpga_t0.flac" download>FLAC</a></p></div>
+<div><h3>FPGA threshold 10^8</h3><audio controls preload="none" src="media/music_test_a/fpga_t100000000.wav"></audio><p><a href="media/music_test_a/fpga_t100000000.wav" download>WAV</a> | <a href="media/music_test_a/fpga_t100000000.flac" download>FLAC</a></p></div>
+<div><h3>FPGA threshold 10^10</h3><audio controls preload="none" src="media/music_test_a/fpga_t10000000000.wav"></audio><p><a href="media/music_test_a/fpga_t10000000000.wav" download>WAV</a> | <a href="media/music_test_a/fpga_t10000000000.flac" download>FLAC</a></p></div>
+</div></section>
+<section><h2>Jazz</h2><div class="players">
+<div><h3>Original PCM16</h3><audio controls preload="none" src="media/music_test_b/original_pcm16.wav"></audio><p><a href="media/music_test_b/original_pcm16.wav" download>WAV</a> | <a href="media/music_test_b/original_pcm16.flac" download>FLAC</a></p></div>
+<div><h3>FPGA threshold 0</h3><audio controls preload="none" src="media/music_test_b/fpga_t0.wav"></audio><p><a href="media/music_test_b/fpga_t0.wav" download>WAV</a> | <a href="media/music_test_b/fpga_t0.flac" download>FLAC</a></p></div>
+<div><h3>FPGA threshold 10^8</h3><audio controls preload="none" src="media/music_test_b/fpga_t100000000.wav"></audio><p><a href="media/music_test_b/fpga_t100000000.wav" download>WAV</a> | <a href="media/music_test_b/fpga_t100000000.flac" download>FLAC</a></p></div>
+<div><h3>FPGA threshold 10^10</h3><audio controls preload="none" src="media/music_test_b/fpga_t10000000000.wav"></audio><p><a href="media/music_test_b/fpga_t10000000000.wav" download>WAV</a> | <a href="media/music_test_b/fpga_t10000000000.flac" download>FLAC</a></p></div>
+</div></section>
+<img src="figures/decoded_spectrograms.png" alt="Decoded original and three FPGA thresholds"><h2>Separate software denoising pilot</h2><p class="note">The following processed clips are fixed-point software-reference outputs. They are not board captures. All show the same preselected condition with synthetic hiss at 5 dB input SNR. Speech uses threshold 10^10 and music uses 3 x 10^9.</p>
+<section><h2>Speech A</h2><div class="players">
+<div><h3>Reference before added noise</h3><audio controls preload="none" src="media/denoising/speech_test_a/reference.wav"></audio><p><a href="media/denoising/speech_test_a/reference.wav" download>Download WAV</a></p></div>
+<div><h3>Noisy input</h3><audio controls preload="none" src="media/denoising/speech_test_a/noisy.wav"></audio><p><a href="media/denoising/speech_test_a/noisy.wav" download>Download WAV</a></p></div>
+<div><h3>Software-processed output</h3><audio controls preload="none" src="media/denoising/speech_test_a/processed.wav"></audio><p><a href="media/denoising/speech_test_a/processed.wav" download>Download WAV</a></p></div>
+</div></section>
+<section><h2>Speech B</h2><div class="players">
+<div><h3>Reference before added noise</h3><audio controls preload="none" src="media/denoising/speech_test_b/reference.wav"></audio><p><a href="media/denoising/speech_test_b/reference.wav" download>Download WAV</a></p></div>
+<div><h3>Noisy input</h3><audio controls preload="none" src="media/denoising/speech_test_b/noisy.wav"></audio><p><a href="media/denoising/speech_test_b/noisy.wav" download>Download WAV</a></p></div>
+<div><h3>Software-processed output</h3><audio controls preload="none" src="media/denoising/speech_test_b/processed.wav"></audio><p><a href="media/denoising/speech_test_b/processed.wav" download>Download WAV</a></p></div>
+</div></section>
+<section><h2>Piano</h2><div class="players">
+<div><h3>Reference before added noise</h3><audio controls preload="none" src="media/denoising/music_test_a/reference.wav"></audio><p><a href="media/denoising/music_test_a/reference.wav" download>Download WAV</a></p></div>
+<div><h3>Noisy input</h3><audio controls preload="none" src="media/denoising/music_test_a/noisy.wav"></audio><p><a href="media/denoising/music_test_a/noisy.wav" download>Download WAV</a></p></div>
+<div><h3>Software-processed output</h3><audio controls preload="none" src="media/denoising/music_test_a/processed.wav"></audio><p><a href="media/denoising/music_test_a/processed.wav" download>Download WAV</a></p></div>
+</div></section>
+<section><h2>Jazz</h2><div class="players">
+<div><h3>Reference before added noise</h3><audio controls preload="none" src="media/denoising/music_test_b/reference.wav"></audio><p><a href="media/denoising/music_test_b/reference.wav" download>Download WAV</a></p></div>
+<div><h3>Noisy input</h3><audio controls preload="none" src="media/denoising/music_test_b/noisy.wav"></audio><p><a href="media/denoising/music_test_b/noisy.wav" download>Download WAV</a></p></div>
+<div><h3>Software-processed output</h3><audio controls preload="none" src="media/denoising/music_test_b/processed.wav"></audio><p><a href="media/denoising/music_test_b/processed.wav" download>Download WAV</a></p></div>
+</div></section>
+<h2>Attribution</h2>
+<h3>Speech A</h3><pre>The Age of Chivalry / Chapter 18: Perceval / Read by Anders Lankford
+From the LibriSpeech SLR12 collection: https://www.openslr.org/12/
+CC-BY 4.0 https://creativecommons.org/licenses/by/4.0/
+</pre>
+<h3>Speech B</h3><pre>Sense and Sensibility / Chapter 18 / Jane Austen / Read by Heather Barnett
+From the LibriSpeech SLR12 collection: https://www.openslr.org/12/
+CC-BY 4.0 https://creativecommons.org/licenses/by/4.0/
+</pre>
+<h3>Piano</h3><pre>Pistachio Ice Cream Ragtime by The Piano Lady (Lena Orsa)
+https://freesound.org/people/lena_orsa/sounds/442789/
+CC-BY NC 3.0: https://creativecommons.org/licenses/by-nc/3.0/
+</pre>
+<h3>Jazz</h3><pre>Vibe Ace by Kevin MacLeod is licensed under a Creative Commons Attribution License.
+From the Free Music Archive: https://freemusicarchive.org/music/Kevin_MacLeod/Jazz_Sampler/Vibe_Ace
+CC-BY https://creativecommons.org/licenses/by/3.0/
+</pre>
+<p>Recordings were excerpted, resampled, level adjusted, quantized and processed as described in the methods. Denoising derivatives also contain synthetic noise. Piano media is CC BY-NC 3.0. The audio is not relicensed under the software license.</p></html>

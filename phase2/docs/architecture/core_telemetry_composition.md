@@ -22,7 +22,7 @@ normalized sample ready/valid
 ```
 
 Before Step 8, the file named `trecap_core_telemetry_top.sv` was only a shell
-around `trecap_telemetry_top`; it accepted taps from some other core. That was
+around `trecap_telemetry_top`. It accepted taps from some other core. That was
 not a core-plus-telemetry composition. The corrected boundary accepts the
 normalized sample stream and core controls, instantiates `trecap_core_top`, and
 connects the resulting taps directly to `trecap_telemetry_top`.
@@ -38,18 +38,18 @@ hardware evidence.
 
 It may:
 
-- instantiate one `trecap_core_top`;
-- instantiate one `trecap_telemetry_top`;
-- connect real core taps and authoritative counters to telemetry;
-- pass through the core y stream, core state, taps, and formatted record stream;
+- instantiate one `trecap_core_top`.
+- instantiate one `trecap_telemetry_top`.
+- connect real core taps and authoritative counters to telemetry.
+- pass through the core y stream, core state, taps, and formatted record stream.
 - maintain composition-level telemetry status such as W1C overflow reporting.
 
 It may not:
 
-- duplicate any packetizer, scheduler, or packet FIFO;
-- add a second formatted-record queue;
-- write DDR, generate WRAP records, or allocate transport sequence numbers;
-- instantiate Platform Designer, own board pins, or implement Ethernet;
+- duplicate any packetizer, scheduler, or packet FIFO.
+- add a second formatted-record queue.
+- write DDR, generate WRAP records, or allocate transport sequence numbers.
+- instantiate Platform Designer, own board pins, or implement Ethernet.
 - make telemetry ready state part of core input or y-output flow control.
 
 The mathematical implementation stays in `rtl/core/trecap_core_top.sv`. Packet
@@ -60,24 +60,24 @@ formatting and pre-writer shedding stay in
 
 The reusable top accepts these classes of input:
 
-- `clk` and `rst_n`;
-- core enable, datapath clear, sticky clear, and metrics clear controls;
-- normalized `sample_i`, `sample_valid_i`, and core-owned `sample_ready_o`;
-- `thr2_i` and source-discontinuity control;
-- finite-stream frame geometry and WOLA-only tail ticks;
-- independent `y_ready_i` for the mathematical y stream;
-- telemetry control, telemetry soft reset, and STATUS/METRICS ticks;
-- integration-owned sample-rate, overflow-event, DMA, and command-reject status;
+- `clk` and `rst_n`.
+- core enable, datapath clear, sticky clear, and metrics clear controls.
+- normalized `sample_i`, `sample_valid_i`, and core-owned `sample_ready_o`.
+- `thr2_i` and source-discontinuity control.
+- finite-stream frame geometry and WOLA-only tail ticks.
+- independent `y_ready_i` for the mathematical y stream.
+- telemetry control, telemetry soft reset, and STATUS/METRICS ticks.
+- integration-owned sample-rate, overflow-event, DMA, and command-reject status.
 - downstream `record_ready_i` for formatted telemetry records.
 
 It exposes:
 
-- the real core y stream and sample index;
-- tail-drain handshake and state;
+- the real core y stream and sample index.
+- tail-drain handshake and state.
 - raw core frame-boundary, busy/alive, sample/frame/error counters, metrics,
-  overflow, saturation, and protocol status;
-- real sample, frame, and bin taps for observation;
-- the formatted telemetry record stream;
+  overflow, saturation, and protocol status.
+- real sample, frame, and bin taps for observation.
+- the formatted telemetry record stream.
 - packetizer/scheduler/FIFO drop and configuration-health status.
 
 `sample_ready_o` is owned only by `trecap_core_top`. `record_ready_i` terminates
@@ -91,15 +91,15 @@ tap input on the reusable composition.
 
 | Core producer | Telemetry consumer | Packet use | Flow control |
 |---|---|---|---|
-| `tap_sample_o` | `tap_sample_i` | WAVE waveform triples | Valid-only; no ready |
-| `tap_frame_o` | `tap_frame_i` | SPEC frame association and METRICS frame aggregates | Valid-only; no ready |
-| `tap_bin_valid_o` | `tap_bin_valid_i` | SPEC unique-bin event | Valid-only; no ready |
-| `tap_bin_frame_idx_o` | `tap_bin_frame_idx_i` | SPEC frame identity | Valid-only; no ready |
-| `tap_bin_idx_o` | `tap_bin_idx_i` | SPEC unique-bin index | Valid-only; no ready |
-| `tap_bin_mag2_o` | `tap_bin_mag2_i` | SPEC displayed magnitude | Valid-only; no ready |
-| `tap_bin_mask_o` | `tap_bin_mask_i` | SPEC suppressed-bin state | Valid-only; no ready |
-| `tap_bin_eligible_o` | `tap_bin_eligible_i` | SPEC eligible-bin state | Valid-only; no ready |
-| `tap_bin_last_o` | `tap_bin_last_i` | End of compact unique-bin frame | Valid-only; no ready |
+| `tap_sample_o` | `tap_sample_i` | WAVE waveform triples | Valid-only. No ready |
+| `tap_frame_o` | `tap_frame_i` | SPEC frame association and METRICS frame aggregates | Valid-only. No ready |
+| `tap_bin_valid_o` | `tap_bin_valid_i` | SPEC unique-bin event | Valid-only. No ready |
+| `tap_bin_frame_idx_o` | `tap_bin_frame_idx_i` | SPEC frame identity | Valid-only. No ready |
+| `tap_bin_idx_o` | `tap_bin_idx_i` | SPEC unique-bin index | Valid-only. No ready |
+| `tap_bin_mag2_o` | `tap_bin_mag2_i` | SPEC displayed magnitude | Valid-only. No ready |
+| `tap_bin_mask_o` | `tap_bin_mask_i` | SPEC suppressed-bin state | Valid-only. No ready |
+| `tap_bin_eligible_o` | `tap_bin_eligible_i` | SPEC eligible-bin state | Valid-only. No ready |
+| `tap_bin_last_o` | `tap_bin_last_i` | End of compact unique-bin frame | Valid-only. No ready |
 
 The core also exposes bin real, imaginary, and pre-mask observability. They may
 be passed out of the composition, but they are not telemetry inputs in Revision
@@ -148,15 +148,15 @@ The scheduler operates only on packetizer record streams. It locks one selected
 packetizer until the accepted final payload beat so records cannot interleave.
 A disabled or illegal candidate is drained locally and reported as a drop so a
 runtime mode change cannot wedge telemetry. Drain ownership is latched per
-candidate until that candidate's final beat; a one-cycle disable or malformed
+candidate until that candidate's final beat. A one-cycle disable or malformed
 configuration therefore cannot drain only the first beat and later admit the
 remaining tail as if it were a new record.
 
 `observation_epoch_reset_i` marks a source discontinuity without acting like a
 telemetry soft reset. For that cycle, new packetizer admission is disabled:
 partial WAVE/SPEC collections are discarded through their normal disabled-drop
-paths. A record already selected by the scheduler continues to its final beat;
-an unselected record candidate drains locally to its final beat and produces one
+paths. A record already selected by the scheduler continues to its final beat.
+An unselected record candidate drains locally to its final beat and produces one
 counted drop. The packet FIFO is not reset, so an already-admitted complete
 record remains atomic and transport counters are not silently cleared. This
 prevents a WAVE payload from mixing samples from two source epochs without
@@ -166,7 +166,7 @@ The packet FIFO captures a complete record before admission. If capacity is
 available, it appends the record. If full, it evicts the oldest resident whose
 priority is lower than the incoming record. If no lower-priority resident is
 eligible, it drops the incoming record. The output head is not evictable while
-being presented downstream; this preserves ready/valid output stability.
+being presented downstream. This preserves ready/valid output stability.
 
 `packet_fifo_drop_count_o` counts pre-writer loss from packetizers, scheduler,
 and packet-FIFO admission. It is separate from `DMA_DROP_COUNT`, which belongs
@@ -219,7 +219,7 @@ frozen parameter, clears telemetry drop counters. It never gates or derives
 `rst_n`, and it shall not reset, clear, or discontinuity-mark the mathematical core.
 
 On the DE1-SoC path this is one explicit event chain. The raw CSR request leaves
-`trecap_hps_bridge_top` as `clear_metrics_pulse_o`; the source/core integration
+`trecap_hps_bridge_top` as `clear_metrics_pulse_o`. The source/core integration
 queues it until safe and emits `clear_metrics_apply_pulse_o`. That exact applied
 pulse drives both `trecap_core_top.clear_metrics_i` and
 `trecap_telemetry_top.metrics_clear_i`. Wiring the raw request directly to
@@ -253,7 +253,7 @@ bit again.
 
 For packet-FIFO loss, `packet_fifo_drop_pulse_o` is the set event. The
 `packet_fifo_overflow_o` sticky level remains separately exposed for local
-diagnostics; it must not be continuously ORed into the set expression. Doing so
+diagnostics. It must not be continuously ORed into the set expression. Doing so
 would make W1C ineffective because the cleared CSR bit would be set again on the
 next cycle by the still-high FIFO sticky level. Scheduler malformed-record
 events likewise set only from their new-event pulse.

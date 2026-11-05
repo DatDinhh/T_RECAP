@@ -1,0 +1,67 @@
+{
+  "schema": "trecap-rf-source-attribution-v1",
+  "source_manifest_sha256": "059d212a0860fbf833003762e4da8739373f0656ef7ea5898cc82815d7353186",
+  "recorded_sources": [
+    {
+      "id": "fineoffset_wh2a_1",
+      "source_url": "https://raw.githubusercontent.com/merbanan/rtl_433_tests/1aa8c29d6b9383739d1aeed495dbc5069b704392/tests/fineoffset/fineoffset_wh2A/01/g001_433.92M_250k.cu8",
+      "sha256": "b392fe8ed2a2a3851922700f11638127d9361aa5cf07df289ea39857057743af",
+      "git_blob_sha1": "4abb43ad773a57a3d60d16a398aaa96e81f1138a",
+      "source_commit": "1aa8c29d6b9383739d1aeed495dbc5069b704392",
+      "format": "CU8 I then Q",
+      "complex_samples": 65536,
+      "input_bytes": 131072,
+      "sample_rate_iq_hz": 250000,
+      "center_frequency_hz": 433920000,
+      "duration_seconds": 0.262144,
+      "expected_payload": {
+        "model": "Fineoffset-WH2A",
+        "id": 6,
+        "temperature_C": 22.3,
+        "humidity": 54,
+        "mic": "CRC"
+      },
+      "provenance": "Recorded physical Fineoffset-WH2A temperature/humidity sensor transmission, provided by sblakegit in rtl_433_tests.",
+      "noise_origin": "Receiver/background energy is visible in the recording. Its thermal, environmental and quantization components are not independently identified.",
+      "signal_ground_truth": "Upstream expected decoded payload only. No clean waveform or noise-only reference supplied."
+    },
+    {
+      "id": "fineoffset_wh2a_4",
+      "source_url": "https://raw.githubusercontent.com/merbanan/rtl_433_tests/1aa8c29d6b9383739d1aeed495dbc5069b704392/tests/fineoffset/fineoffset_wh2A/01/g004_433.92M_250k.cu8",
+      "sha256": "59332e4e82d083ef506dd3b25590dd3eb0cce23a919bd3f5d43004492c4bd759",
+      "git_blob_sha1": "ec715eed49a792f94312474e1c6309c26fc8d00b",
+      "source_commit": "1aa8c29d6b9383739d1aeed495dbc5069b704392",
+      "format": "CU8 I then Q",
+      "complex_samples": 65536,
+      "input_bytes": 131072,
+      "sample_rate_iq_hz": 250000,
+      "center_frequency_hz": 433920000,
+      "duration_seconds": 0.262144,
+      "expected_payload": {
+        "model": "Fineoffset-WH2A",
+        "id": 6,
+        "temperature_C": 22.3,
+        "humidity": 50,
+        "mic": "CRC"
+      },
+      "provenance": "Recorded physical Fineoffset-WH2A temperature/humidity sensor transmission, provided by sblakegit in rtl_433_tests.",
+      "noise_origin": "Receiver/background energy is visible in the recording. Its thermal, environmental and quantization components are not independently identified.",
+      "signal_ground_truth": "Upstream expected decoded payload only. No clean waveform or noise-only reference supplied."
+    }
+  ],
+  "license_review": {
+    "repository": "https://github.com/merbanan/rtl_433_tests/tree/1aa8c29d6b9383739d1aeed495dbc5069b704392",
+    "commit": "1aa8c29d6b9383739d1aeed495dbc5069b704392",
+    "reviewed": [
+      "Pinned repository root file listing",
+      "Fineoffset WH2A sample README"
+    ],
+    "finding": "No explicit sample license appeared in the inspected metadata. Raw recorded files are linked upstream. They are not relicensed or bundled here.",
+    "public_listening_choice": "Project-generated AWGN fixtures and actual FPGA output are used for bundled listening examples."
+  },
+  "primary_links": [
+    "https://github.com/merbanan/rtl_433_tests",
+    "https://github.com/merbanan/rtl_433/issues/625",
+    "https://raw.githubusercontent.com/merbanan/rtl_433_tests/1aa8c29d6b9383739d1aeed495dbc5069b704392/tests/fineoffset/fineoffset_wh2A/01/readme.md"
+  ]
+}

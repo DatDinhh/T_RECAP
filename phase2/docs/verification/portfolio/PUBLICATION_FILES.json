@@ -4,14 +4,14 @@
   "destination": "phase2/docs/verification/portfolio",
   "files": [
     {
-      "path": "main.tex",
-      "sha256": "dffd2f12ca5ec633f8b4305b7c71f18f8cc8a8344e99a589cc92b92b880bee04",
-      "bytes": 31125
+      "path": "README.md",
+      "sha256": "de8ce53658c3b3b2e97e46add5c359595aad08d4d15ed028b04da5cd1d816314",
+      "bytes": 4344
     },
     {
-      "path": "portfolio_integration.tex",
-      "sha256": "ec1ecc619f2b82ed4a5cf8eed9a7eea3e1819089ef23e2f44f7d38fcd6f26313",
-      "bytes": 1146
+      "path": "TRECAP_DV_Portfolio.pdf",
+      "sha256": "0a9922d8832d32a9033ea79cc5104ee1fbe3c7b7aabe87415266d93b86cd74ae",
+      "bytes": 2829620
     },
     {
       "path": "build.py",
@@ -19,69 +19,124 @@
       "bytes": 2696
     },
     {
-      "path": "README.md",
-      "sha256": "70a1f8cd0ddf0ba24be17bc886027f2f32ee42034b155bd7b5dce67cb09270cd",
-      "bytes": 3520
-    },
-    {
-      "path": "source_manifest.json",
-      "sha256": "106ecc25e8960fa6092e5078c8ae8cb4438697069dad81850348d5efe9894fc2",
-      "bytes": 31986
-    },
-    {
-      "path": "TRECAP_DV_Portfolio.pdf",
-      "sha256": "67689f75ebd617875c5f97e912b440e71fc51dbf159a2d12972a52e9d667f700",
-      "bytes": 1120709
-    },
-    {
-      "path": "figures/topology.pdf",
-      "sha256": "c080201e3f6afda1cfa3eacd5e599dc3a7c15f82d5e6be5902677ba494f1a139",
-      "bytes": 38229
-    },
-    {
-      "path": "figures/rounding.pdf",
-      "sha256": "89d49856e33aaec70be74d34e8122b51a4c9c5885245fb13ec066e3a81c1f3c1",
-      "bytes": 28063
-    },
-    {
-      "path": "figures/handshake.pdf",
-      "sha256": "12504f60afa2cfc28618ee1c38249fce16f29e67f4a893f629b5478a496a7a33",
-      "bytes": 23333
-    },
-    {
-      "path": "figures/reset.pdf",
-      "sha256": "fc320d96631dcac4b2d7035088b14d421336078c9ba49f8439a6f445166b3593",
-      "bytes": 21912
-    },
-    {
-      "path": "figures/fullrun.pdf",
-      "sha256": "944a5156eae78b004df626d81996d4b35da18044d0ba38dee5493ef095058be9",
-      "bytes": 27914
-    },
-    {
-      "path": "figures/audio.pdf",
-      "sha256": "f266bbffda660930e14d3caf6849c0466410f52cf055881395eac37c70b2bed7",
-      "bytes": 530415
-    },
-    {
-      "path": "figures/quality.pdf",
-      "sha256": "a0c252a2132954004420bb7b1a709fb01f4c8129badc3be9809063fd4259fb6f",
-      "bytes": 30437
-    },
-    {
-      "path": "figures/packet_sizes.pdf",
-      "sha256": "dcb66bf0dbb6d4b74034181209ecf9631a9a7d1f91cf988fd1dff68ad8982374",
-      "bytes": 22100
-    },
-    {
       "path": "build_receipt.public.json",
-      "sha256": "42b92f57ebcb1c435787b3c7596f963592ddb28e6ed2481158c8002c28c8d3fd",
-      "bytes": 3531
+      "sha256": "a1575706f74f6eaded7a6d346bdc69935c6248bd59cfe9c23fd5fd802f91283e",
+      "bytes": 3636
     },
     {
       "path": "document_audit.public.json",
-      "sha256": "dd938b334f60b17b126956712eaf03f65b880bdef8cec30b5e5daf94f3597310",
-      "bytes": 4118
+      "sha256": "34c9b5c0595596c12302d0526dd660e5c6039be7b7c9ef303b9ea90ef7f686e3",
+      "bytes": 3071
+    },
+    {
+      "path": "editorial_refresh.json",
+      "sha256": "f0945a196640219b5996faba95281c6f10d3c1f49f5eff7855e8f7b336b42abf",
+      "bytes": 1416
+    },
+    {
+      "path": "figures/audio.pdf",
+      "sha256": "7fcd218a7516f367cbaddd48039240f3db1a1a7bc3f2c1d3e273440f5354e715",
+      "bytes": 2593019
+    },
+    {
+      "path": "figures/audio.png",
+      "sha256": "858a310000133e556b371d4ef93067c29d3877749c6b647b0d311c6b33e52837",
+      "bytes": 403937
+    },
+    {
+      "path": "figures/editorial_refresh.json",
+      "sha256": "fae9970ba49216b5e66de7b15a8bbe5f98325de1280648ee6fa5051c526b721e",
+      "bytes": 4803
+    },
+    {
+      "path": "figures/fullrun.pdf",
+      "sha256": "b632d1e5395d244146e0aaf4f2428025bded3a80174ea002c5542f17e46f625e",
+      "bytes": 64829
+    },
+    {
+      "path": "figures/fullrun.png",
+      "sha256": "09ec50b6767b52c8bc4d448b429da3f0bb237109e3cb0d2e3c1b358a6f73a740",
+      "bytes": 107300
+    },
+    {
+      "path": "figures/handshake.pdf",
+      "sha256": "472b6583652016fae318209e232bf22fe15cd42175e00ed6d87f5191e7d306e5",
+      "bytes": 53788
+    },
+    {
+      "path": "figures/handshake.png",
+      "sha256": "f722ed2070e79c5adcb23ff2e3c6637150b16406ba64cf73aba0051446364e97",
+      "bytes": 89584
+    },
+    {
+      "path": "figures/packet_sizes.pdf",
+      "sha256": "6916a9e0669bab493875cd27e8f9097ba595466c1aea9765ca429fb90f679315",
+      "bytes": 36238
+    },
+    {
+      "path": "figures/packet_sizes.png",
+      "sha256": "5f82fa151012504a3977a2a6c9a569645d1c4eeacf9eff4f08516f9723074133",
+      "bytes": 110225
+    },
+    {
+      "path": "figures/quality.pdf",
+      "sha256": "c1a89d822d093cba9584f3132548de28a1b91dd811470f2458c549a7bcc2a81d",
+      "bytes": 47441
+    },
+    {
+      "path": "figures/quality.png",
+      "sha256": "ebdf8f623e71bca785a3683315654936683d31aede226927e87f887d402da94c",
+      "bytes": 108132
+    },
+    {
+      "path": "figures/reset.pdf",
+      "sha256": "0de0660c34a5df90695933be0c116034d47d4d314e0f951803c5bb70e419641e",
+      "bytes": 56829
+    },
+    {
+      "path": "figures/reset.png",
+      "sha256": "bc2240516cf495eb4afad8d33e345e1977f54cb0b2386d5c15a5f522c3756922",
+      "bytes": 120688
+    },
+    {
+      "path": "figures/rounding.pdf",
+      "sha256": "120a50498ae2a1f747c2dcc2b43893d5e25abe86c7e494b4e1c4dad41153092b",
+      "bytes": 47823
+    },
+    {
+      "path": "figures/rounding.png",
+      "sha256": "20df4c3d97f0b535f67bfdd51499d3da18fdb917466408bdc88c575514d61682",
+      "bytes": 59819
+    },
+    {
+      "path": "figures/topology.pdf",
+      "sha256": "4fa1ad52742ae773e56120f810e45dd3e047a9faef713a01d7defee2978aaba9",
+      "bytes": 69995
+    },
+    {
+      "path": "figures/topology.png",
+      "sha256": "a10a063f82fe4d85615dbba540af8787f0f9ab05ac87bf8b01c77cb4179def5d",
+      "bytes": 219123
+    },
+    {
+      "path": "main.tex",
+      "sha256": "611ae2c067faed7c6062ca1bdfdcefbbdcd897608d57dd782527efdbe7eed76e",
+      "bytes": 31124
+    },
+    {
+      "path": "portfolio_integration.tex",
+      "sha256": "51c4df6d0729b6762f5979f810115401f19c41b84fe3ae411b2c1b3830041caf",
+      "bytes": 1146
+    },
+    {
+      "path": "restyle_figures.py",
+      "sha256": "ec896a9be1a80d9c08fd8e7327fd3fe0a8312a8368bb15428e501da366ec5acd",
+      "bytes": 9752
+    },
+    {
+      "path": "source_manifest.json",
+      "sha256": "30e30fa1034985d4137d02fe581254de783f9a653368f1ffbe61239a47a4d86b",
+      "bytes": 34510
     }
   ],
   "include_this_manifest": "PUBLICATION_FILES.json",
@@ -91,5 +146,7 @@
     "private preparation helpers",
     "private evidence copies"
   ],
-  "note": "Copy only files listed here and this allowlist. Local reruns may create private workstation receipts that need a separate publication review."
+  "note": "Copy only files listed here and this allowlist. Local reruns may create private workstation receipts that need a separate publication review.",
+  "historical_inventory_sha256": "b48f4eac027ad1172708698d121332a87376ed0e250766b8cd8365a5b9d95b59",
+  "historical_publication_commit": "07bc8224aa080c8eaa1b77b4603c118d853465d0"
 }

@@ -1,0 +1,65 @@
+{
+  "schema": "trecap-system-atlas-visual-review-v1",
+  "status": "PASS",
+  "method": "Rendered all18 LaTeX pages with Poppler. Reviewed page sheets and diagram images. Geometry checks also enforce text containment and unrelated-node route intersections.",
+  "plates": [
+    {
+      "number": 1,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS"
+    },
+    {
+      "number": 2,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS"
+    },
+    {
+      "number": 3,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS"
+    },
+    {
+      "number": 4,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS"
+    },
+    {
+      "number": 5,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS"
+    },
+    {
+      "number": 6,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS"
+    },
+    {
+      "number": 7,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS"
+    },
+    {
+      "number": 8,
+      "status": "PASS",
+      "serif_pastel_style": "PASS",
+      "text_and_arrow_layout": "PASS"
+    }
+  ],
+  "pdf_pages": 18,
+  "pdf_sha256": "dedcad81c4b81f846f827e512c291603cc9f8f24b01872dd3aaebf550fbe152d",
+  "extracted_text_counts": {
+    "semicolon": 0,
+    "en_dash": 0,
+    "em_dash": 0
+  },
+  "tex_overfull_boxes": 0,
+  "tex_underfull_boxes": 0,
+  "scope": "Visual and document review only. No hardware execution or new performance measurements."
+}

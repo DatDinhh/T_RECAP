@@ -1,6 +1,6 @@
 # C0 flow-control fix v65
 
-> Historical design note. Revision-specific results and open items below belong to that development stage; they are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
+> Historical design note. Revision-specific results and open items below belong to that development stage. They are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
 
 File class: **[1] hand-written bring-up and verification note**.
 
@@ -18,7 +18,7 @@ Production RTL:
 - `rtl/core/trecap_input_ring.sv`: conservative sample admission, deterministic
   zero on a positive-index tag miss, and simulation-time safety checks.
 - `rtl/sources/trecap_bram_replay_source.sv`: portable, clear-safe
-  hold-under-backpressure monitor; datapath behavior is unchanged.
+  hold-under-backpressure monitor. Datapath behavior is unchanged.
 
 Regression and handoff:
 
@@ -33,8 +33,8 @@ Regression and handoff:
 The old input ring asserted `sample_ready_o` continuously while enabled. With a
 continuously-valid replay source:
 
-- a frame becomes due every `H=128` accepted samples;
-- one frame extraction requires at least `L=256` accepted frame beats;
+- a frame becomes due every `H=128` accepted samples.
+- one frame extraction requires at least `L=256` accepted frame beats.
 - the scheduler can hold only one unaccepted request.
 
 The third due frame therefore arrives while the second request is still
@@ -63,7 +63,7 @@ Because the directly connected scheduler consumes the ring's registered
 acceptance pulse, one post-boundary look-ahead sample may be accepted before
 `frame_req_valid_i` rises. That sample is newer than the requested frame and
 cannot replace its contents with the required `DEPTH >= 2*L`. This bound relies
-on the scheduler raising and holding its request on the next clock; it is not a
+on the scheduler raising and holding its request on the next clock. It is not a
 standalone guarantee for an arbitrary external requester.
 
 On a positive-index tag miss, the ring now emits deterministic zero and sets
@@ -113,7 +113,7 @@ periodic stalls.
 
 This regression instantiates the replay source, input ring, and scheduler
 directly. It does not elaborate `trecap_core_top` or
-`trecap_core_bram_replay_top`; backpressure is injected at the frame extractor
+`trecap_core_bram_replay_top`. Backpressure is injected at the frame extractor
 boundary rather than propagated through analysis, FFT, IFFT, and WOLA.
 
 `scripts/sim/check_c0_flow_control_model.py` is a cycle-level executable model
@@ -162,9 +162,9 @@ completion.
 Do not call C0 signoff complete after this patch. Separate fixes are still
 required for:
 
-- finite-tail ticks creating extra active frames;
-- WOLA retaining its final registered output valid during `STATE_ADD`;
+- finite-tail ticks creating extra active frames.
+- WOLA retaining its final registered output valid during `STATE_ADD`.
 - delayed-input metric storage addressing modulo `D` instead of its declared
-  `DEPTH`;
-- exact `busy`, `done`, output-count, and stable frame-count semantics;
+  `DEPTH`.
+- exact `busy`, `done`, output-count, and stable frame-count semantics.
 - full artifact comparison in RTL simulation and on the DE1-SoC board.

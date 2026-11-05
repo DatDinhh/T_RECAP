@@ -13,8 +13,8 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 FIG = HERE / 'figures'
 FIG.mkdir(exist_ok=True)
-plt.rcParams.update({'font.family':'DejaVu Sans','font.size':10,'axes.spines.top':False,'axes.spines.right':False,
-                     'axes.labelcolor':'#253447','text.color':'#253447','axes.titleweight':'bold'})
+plt.rcParams.update({'font.family':'STIXGeneral','font.size':10,'axes.spines.top':False,'axes.spines.right':False,
+                     'axes.labelcolor':'#253447','text.color':'#253447','axes.titleweight':'bold','figure.facecolor':'#FFFEFB','axes.facecolor':'#FFFEFB','savefig.facecolor':'#FFFEFB'})
 
 
 def sha(path):
@@ -25,17 +25,17 @@ def historical():
     p = HERE/'evidence/historical_projection.json'
     data = json.loads(p.read_text())['physical_run']['cases']
     names = ['0 sparse', '$10^8$ dense', '$10^8$ sparse', '$10^{10}$ sparse', '$10^{11}$ sparse']
-    colors = ['#8191a5','#4a6c8d','#168b8c','#168b8c','#168b8c']
+    colors = ['#E5E9EC','#DCE7F3','#DFEBDD','#F2DFD4','#E4DCEC']
     fig, ax = plt.subplots(1,2,figsize=(10,3.4),layout='constrained')
     sizes = np.array([c['valid_prefix_packet_bytes'] for c in data])/1024
-    ax[0].bar(range(5),sizes,color=colors,width=.63)
+    ax[0].bar(range(5),sizes,color=colors,edgecolor='#7B8997',linewidth=.8,width=.63)
     dense = data[0]['dense_valid_prefix_bytes']/1024
-    ax[0].axhline(dense,color='#c18433',ls=':',label='Full dense spectral packets')
+    ax[0].axhline(dense,color='#AD9567',ls=':',label='Full dense spectral packets')
     ax[0].set(ylabel='KiB over 2,049 valid-prefix frames',title='Measured spectral packet bytes')
     ax[0].legend(frameon=False,fontsize=8,loc='upper right')
     for i,y in enumerate(sizes): ax[0].text(i,y+30,f'{y:,.1f}',ha='center',fontsize=8)
     errs = [c['relative_l2_valid_real_pct'] for c in data]
-    ax[1].bar(range(5),errs,color=colors,width=.63)
+    ax[1].bar(range(5),errs,color=colors,edgecolor='#7B8997',linewidth=.8,width=.63)
     ax[1].set(ylabel='Relative L2 error (%)',title='Reconstructed waveform error',ylim=(0,42))
     for i,y in enumerate(errs): ax[1].text(i,y+.6,f'{y:.3f}%',ha='center',fontsize=8)
     for a in ax:
@@ -48,21 +48,21 @@ def historical():
 
 
 def diagrams():
-    def box(ax,x,y,w,h,text,color='#e5f1f1'):
-        ax.add_patch(FancyBboxPatch((x,y),w,h,boxstyle='round,pad=.06',facecolor=color,edgecolor='#45677a',linewidth=1))
+    def box(ax,x,y,w,h,text,color='#E8F1E5'):
+        ax.add_patch(FancyBboxPatch((x,y),w,h,boxstyle='round,pad=.06',facecolor=color,edgecolor='#708598',linewidth=1))
         ax.text(x+w/2,y+h/2,text,ha='center',va='center',fontsize=10)
     def arrow(ax,a,b):
-        ax.annotate('',xy=b,xytext=a,arrowprops={'arrowstyle':'->','lw':1.3,'color':'#45677a'})
+        ax.annotate('',xy=b,xytext=a,arrowprops={'arrowstyle':'->','lw':1.3,'color':'#708598'})
     fig,ax=plt.subplots(figsize=(10,2.8),layout='constrained')
     ax.set(xlim=(0,10),ylim=(0,2.8))
     ax.axis('off')
     positions=[.1,2.65,5.2,7.75]
     texts=['Laptop\nRecorded CU8 file','HPS\nTransport and MMIO','FPGA RF adapter\nFIR and real-IF conversion','Existing FPGA core\nFFT, threshold, IFFT/WOLA']
-    for x,text in zip(positions,texts): box(ax,x,1.65,2.1,.75,text)
+    for x,text,color in zip(positions,texts,['#F6EDD9','#E4EEF7','#EEE8F3','#EEE8F3']): box(ax,x,1.65,2.1,.75,text,color)
     for x in positions[:-1]: arrow(ax,(x+2.17,2.02),(x+2.48,2.02))
-    box(ax,7.75,.2,2.1,.8,'Separate outputs\nY waveform and TSP1 powers','#ece8f4')
-    box(ax,4.35,.2,2.45,.8,'HPS queues\nRead and return output bytes','#f5ebd6')
-    box(ax,.4,.2,2.75,.8,'Laptop checks and display\nOptional RF packet decoder','#e8edf5')
+    box(ax,7.75,.2,2.1,.8,'Separate outputs\nY waveform and TSP1 powers','#F7E4DE')
+    box(ax,4.35,.2,2.45,.8,'HPS queues\nRead and return output bytes','#F6EDD9')
+    box(ax,.4,.2,2.75,.8,'Laptop checks and display\nOptional RF packet decoder','#E4EEF7')
     arrow(ax,(8.8,1.59),(8.8,1.07))
     arrow(ax,(7.68,.6),(6.87,.6))
     arrow(ax,(4.28,.6),(3.22,.6))
@@ -72,15 +72,15 @@ def diagrams():
     ax.set(xlim=(0,10),ylim=(0,3.4))
     ax.axis('off')
     box(ax,.15,2.35,2.7,.75,'I/Q histories\n21 signed 9-bit values')
-    box(ax,3.55,2.35,2.7,.75,'Coefficient ROM\nAddress = 4 x tap + phase')
-    box(ax,3.55,1.25,2.7,.75,'One shared MAC\n27-bit product, 36-bit sum')
-    box(ax,7.15,1.25,2.7,.75,'Phase sign and gain\n+I, -Q, -I, +Q')
+    box(ax,3.55,2.35,2.7,.75,'Coefficient ROM\nAddress = 4 x tap + phase','#E4EEF7')
+    box(ax,3.55,1.25,2.7,.75,'One shared MAC\n27-bit product, 36-bit sum','#EEE8F3')
+    box(ax,7.15,1.25,2.7,.75,'Phase sign and gain\n+I, -Q, -I, +Q','#EEE8F3')
     arrow(ax,(1.5,2.29),(3.48,1.63))
     arrow(ax,(4.9,2.29),(4.9,2.07))
     arrow(ax,(6.32,1.63),(7.08,1.63))
-    box(ax,7.75,.15,2.1,.75,'Round and saturate\nSigned 12-bit output','#ece8f4')
-    box(ax,4.35,.15,2.45,.75,'HOLD until accepted\nStable data and sidebands','#f5ebd6')
-    box(ax,.4,.15,2.75,.75,'Finite file source\n4N valid samples, then padding','#e8edf5')
+    box(ax,7.75,.15,2.1,.75,'Round and saturate\nSigned 12-bit output','#F7E4DE')
+    box(ax,4.35,.15,2.45,.75,'HOLD until accepted\nStable data and sidebands','#F6EDD9')
+    box(ax,.4,.15,2.75,.75,'Finite file source\n4N valid samples, then padding','#E4EEF7')
     arrow(ax,(8.5,1.19),(8.8,.97))
     arrow(ax,(7.68,.52),(6.87,.52))
     arrow(ax,(4.28,.52),(3.22,.52))
@@ -149,11 +149,12 @@ def waveform(vcd):
     plot_names=['state_q','sample_valid_o','sample_ready_i','sample_data_o','output_count_o','sample_last_o']
     labels=['FSM state','Output valid','Consumer ready','Signed data','Accepted count','Last sample']
     fig,axs=plt.subplots(6,1,figsize=(10,4.9),sharex=True,layout='constrained',gridspec_kw={'height_ratios':[1,1,1,1.4,1.2,1]})
-    for ax,key,label in zip(axs,plot_names,labels):
+    trace_colors=['#9C83AD','#7799B3','#83A18A','#BB927C','#8397B4','#9D88AE']
+    for ax,key,label,color in zip(axs,plot_names,labels,trace_colors):
         ys=[v[key] for _,v in rows]
-        ax.step(times,ys,where='post',color='#176a8c',linewidth=1.4)
+        ax.step(times,ys,where='post',color=color,linewidth=1.9)
         ax.set_ylabel(label,rotation=0,ha='right',va='center',fontsize=9,labelpad=13)
-        ax.axvspan(begin/1e6,end/1e6,color='#e8bd58',alpha=.23)
+        ax.axvspan(begin/1e6,end/1e6,color='#F1E2BD',alpha=.52)
         ax.grid(axis='x',alpha=.18)
         if key=='state_q': ax.set_yticks([1,2,3,4],['LOAD','MAC','MAKE','HOLD'])
         elif key not in ('sample_data_o','output_count_o'): ax.set_yticks([0,1])

@@ -13,14 +13,14 @@ Snapshots are bounded and reject a changed epoch/status, wrong source/geometry,
 busy/fault, nonempty input/output FIFOs, drops, inconsistent IDLE/DONE counts,
 or an invalid cycle count. It accepts clean IDLE or fully drained DONE.
 The elapsed counter can be nonzero in IDLE because CLEAR_CORE and WAIT_INIT
-count as busy cycles in the frozen adapter; IDLE data counters must be zero.
+count as busy cycles in the frozen adapter. IDLE data counters must be zero.
 It neither clears nor repairs state. The JSON records source, epoch, raw
 register values and that no writes/pop reads were performed. A 5-second alarm
-and caller timeout bound ordinary stalls; blocked physical bus access still
+and caller timeout bound ordinary stalls. Blocked physical bus access still
 requires explicit operator recovery, never automatic retry.
 
 `--self-test` never opens hardware. Twenty-four register scenarios cover valid
 IDLE/DONE, wrong identity/source/geometry, busy/fault, all nonempty FIFOs, bad
 totals, changed epoch and drops. Three source parsing checks are included.
-The build runs the same tests with native UBSan and ARM QEMU; no FPGA operation
+The build runs the same tests with native UBSan and ARM QEMU. No FPGA operation
 is performed. Build output and qualification are separate from frozen sources.

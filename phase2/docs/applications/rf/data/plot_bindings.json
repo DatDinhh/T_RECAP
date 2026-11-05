@@ -1,0 +1,36 @@
+{
+  "schema": "trecap-rf-recorded-derived-plot-values-v1",
+  "original_parser_sha256": "3289cac017f4e38b7f6bf53a6c523c2a14c786d3d6c0df162451999223334627",
+  "kind": "Derived numerical plot values from actual FPGA Y and TSP1. These are not raw receiver recordings.",
+  "sources": [
+    {
+      "id": "fineoffset_wh2a_1_t0",
+      "threshold": 0,
+      "epoch": 12,
+      "original_y_sha256": "f48c628c43ebaed19f320372b5da6490669f2f82f7b7289a7589ba1839cfccaa",
+      "original_tsp1_sha256": "2e5ea474a5503e0c46e9d4fa1d51761ee1e3ecea7b6e37fcad3bf80189c717fa",
+      "valid_real_samples": 262144,
+      "spectrum_frames": 2049
+    },
+    {
+      "id": "fineoffset_wh2a_1_t10000000000",
+      "threshold": 10000000000,
+      "epoch": 13,
+      "original_y_sha256": "01db45d44e14e8c1b19633de8a9a2a53cbcad3b7cd255063d4a3acc0fbc4ae42",
+      "original_tsp1_sha256": "251a3cb16028e46ca0f6a4e0ca83ba987b2dc378cf344d3fdb68e2f2fa9ea57e",
+      "valid_real_samples": 262144,
+      "spectrum_frames": 2049
+    },
+    {
+      "id": "fineoffset_wh2a_1_t100000000000",
+      "threshold": 100000000000,
+      "epoch": 14,
+      "original_y_sha256": "87d7ad5da4853ebd369d5357e7220f7c23ec42c3db78ac54c9feb3a4ff567adc",
+      "original_tsp1_sha256": "27f25e9f2f7e2775df65fc2bf16dab8a6a2e1d93b3e80ee692e4bfa2749fcadb",
+      "valid_real_samples": 262144,
+      "spectrum_frames": 2049
+    }
+  ],
+  "published_sha256": "1bff01f12c987c553b74c85f4e466309bb9dc4eb2c46225a18e2ab77afb06f2d",
+  "transform": "Y aligned by 384 samples. Mean square calculated in 1000-sample blocks. TSP1 power decoded for the first 2049 frames with omitted bins represented as zero."
+}

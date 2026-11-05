@@ -1,30 +1,72 @@
 {
-  "status": "PASS_LATEX_COMPILE",
   "original_receipt_sha256": "996fa3a97b1b712c3bf19452176596b10b292bbfae2952d525d51723995c2302",
-  "compiler": "MiKTeX pdfTeX-1.40.25",
-  "pass_exit_codes": [
-    0,
-    0
+  "schema": "trecap-current-latex-publication-receipt-v2",
+  "status": "PASS_LATEX_COMPILE",
+  "derived_export": true,
+  "engine": "real pdfLaTeX",
+  "compiler_version": "MiKTeX-pdfTeX 4.18 (MiKTeX 24.1), pdfTeX-1.40.25",
+  "historical_publication_receipt_sha256": "401068fc2577171ad3a2272efa8f670aa087845ff4e5d653fe7170593601d242",
+  "historical_publication_commit": "07bc8224aa080c8eaa1b77b4603c118d853465d0",
+  "current_local_receipt_sha256": "2282747bba2ec1439c8d4a6dd9e52cb261d92e60f6e2ebb4417f1aa4a064aa33",
+  "historical_identity_note": "Original receipt fields retain the historical campaign provenance. Commands and output below describe only the current document compilation.",
+  "commands": [
+    {
+      "normalized_argv": [
+        "pdflatex",
+        "-disable-installer",
+        "-no-shell-escape",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-file-line-error",
+        "-jobname=TRECAP_UVM_Formal_Report",
+        "-output-directory=build/attempt02",
+        "main.tex"
+      ],
+      "cwd": ".",
+      "started_utc": "2026-11-05T03:04:59.476749+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "424c96c6974a87138affce969bedcafb4e4e4334955e7a2051edbdf7c6540f19",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "normalized_argv": [
+        "pdflatex",
+        "-disable-installer",
+        "-no-shell-escape",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-file-line-error",
+        "-jobname=TRECAP_UVM_Formal_Report",
+        "-output-directory=build/attempt02",
+        "main.tex"
+      ],
+      "cwd": ".",
+      "started_utc": "2026-11-05T03:05:00.944630+00:00",
+      "exit_code": 0,
+      "stdout_sha256": "86551f7dadcd8bceeb9f915e75057a02c8911d4cbeee0ef10b15630b491af3d0",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
   ],
-  "inputs": {
-    "controls.tex": "1eb9f047a1a95e0649fa85535efe9abb34b8f2e79b5683e4c2b94c1a75fc32ac",
-    "formal_method.tex": "ae5bf0f5e6305764830c5765def710584155fe108d55e06c32a18a75615aec27",
-    "formal_results.tex": "2fc9541eb300be882c98b59e9ed11f8b71d5aa894e3b1a52d2b415b058c256e1",
-    "main.tex": "8975cee1ec82fb36f1f694958b51fd6b252e13ff4adfbc1879a0c894ea7517df",
-    "mask_method.tex": "d8db65518dcdf3dd3a4a6bae803d6c811b5fe4658bb4333bbff75de9c9855136",
-    "reproduction.tex": "cb44ce1f63474d26d991fe2ef796ed056ee7ccbfae389a96e233932563661c25",
+  "input_hashes": {
+    "controls.tex": "dc3bbafc444d025afeeeaf6b6e8f2f8454d5d7af5869a33cb452b957321b7beb",
+    "formal_method.tex": "9210c7195ee98e3ef101348f945a6b6cb56b864f71757b10ff76bf8c876626fe",
+    "formal_results.tex": "4878b39019eecab21d7025061b14e0cea0e05a91b4d0213c04c9a414c9fc1bee",
+    "main.tex": "2ef1c7d0221a50c5294e34bdb9a2041e0ab232354aeac5139ab5710d70fa8aeb",
+    "mask_method.tex": "ed6a10303d5a03a11005c60f0032082c9b5dc2189405528932c03cd86e9ec370",
+    "reproduction.tex": "c93cfe6fdabc6a6363df0eee5c4652451d0001ab4eab2e6f28dd7a225a556715",
     "results_summary.tex": "dc7c25009f9a957a0fbf0c5911e6ddc8edb3803ade066325b3be3ad0aa2a7934",
-    "uvm_method.tex": "4444c9bb3198724964e10676e68746f512ca5452a39d9688b8243f576175b404",
-    "uvm_results.tex": "63fc6a8dc7848c15f31a13c906be332b763556f45aa26cada4b1c1b6fbf59f54",
+    "uvm_method.tex": "6012b13749e9ce36b2b567573af8baaacca89afe15b37717bc7f0478a88da0ff",
+    "uvm_results.tex": "99571f4d7b5c25c140b0e0275c50ce51dfd4a427253108594b3e2dbd669186ea",
     "waveforms.tex": "e6c6804be46fbe619af6d30c92bfae67ec4b2cedce6db777ab447e50712eeba1",
-    "figures/formal_architecture.pdf": "30f041c79b451eead762a3eb98e0bcad5c17f87b53f573e7b4042b46df4736fe",
-    "figures/formal_counterexample.pdf": "7580bc570cb8c5728b695309a55041226d5a7dfbd98f79d50fda61200e911685",
-    "figures/uvm_architecture.pdf": "19b12940482ff0247db28ec4b853f0636d0a65b2fcfb31f8d579f4cd203d1ed1",
-    "figures/uvm_final_y.pdf": "940c7118248783da66fa364ac381281e71f1049a06e5a9adafb63ffb56f71faa",
+    "figures/formal_architecture.pdf": "5f2391af53ba38bd017b42e6c208de6b73287768bd4368b69af2dc06be8e8df8",
+    "figures/formal_counterexample.pdf": "fc1fecabea760641df15b6b8384e237833a823d4fdc6453481d619c2708b9b33",
+    "figures/uvm_architecture.pdf": "89f4333fcd627e09e04ddfee5127257381860d89568cf56d3c928609975aeb38",
+    "figures/uvm_final_y.pdf": "c5ece7a7386feeba39221b66b14c2763dc62d90c9ea9db5d331366e6aabb5cc2",
     "report_data.json": "71ca022444302269591dd6f4f40f9fb4bf1e36f1af324df4ba6595a6b2d81f97"
   },
-  "pdf_sha256": "748e52f67488685db40a507463175a578b58c868c240d181dadd7d03f25311db",
-  "shell_escape": false,
-  "automatic_package_install": false,
-  "build_script_sha256": "16e15f015a9d38bfe8efac128f2e585f29b50c0d4d09517eb08839f4180d40c9"
+  "pdf_sha256": "07607859bb36818317877d0f2db8086850955c4b061ba6a4b5e807ade9e71705",
+  "pdf_bytes": 402697,
+  "current_compile_log_sha256": "ccdc980bd1c006912130fd3202669aa790ac47ba94c29134a98e222d79faf505",
+  "build_script_sha256": "16e15f015a9d38bfe8efac128f2e585f29b50c0d4d09517eb08839f4180d40c9",
+  "scope": "Two successful LaTeX passes for presentation changes. No simulation, solver or hardware execution."
 }

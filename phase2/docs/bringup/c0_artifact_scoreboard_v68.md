@@ -1,6 +1,6 @@
 # C0 exact artifact scoreboard v68
 
-> Historical design note. Revision-specific results and open items below belong to that development stage; they are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
+> Historical design note. Revision-specific results and open items below belong to that development stage. They are not results or completion claims for the current source. See the [implementation plan](../architecture/architecture_implementation.md) for current scope.
 
 > Historical revision record. Do not use the v68 runner or its old provenance
 > conclusions for the current tree. v69 replaced the import/release integrity
@@ -69,7 +69,7 @@ tap_bin_pre_mask_o
 ```
 
 It also corrects the unique-stream last marker. Full-spectrum `last` occurs at
-bin 255, while the artifact tap ends at unique bin 128; combining the old two
+bin 255, while the artifact tap ends at unique bin 128. Combining the old two
 conditions could never assert.
 
 The following core metric observations are also exposed:
@@ -90,21 +90,21 @@ change core flow control.
 Before any RTL is compiled,
 `scripts/sim/trecap_artifact_scoreboard.py prepare` checks:
 
-- strict JSON parsing with duplicate keys rejected;
-- non-finite JSON constants (`NaN` and infinities) rejected;
-- canonical ASCII/LF formatting, final LF, headers, and exact row counts;
-- exactly three lowercase hexadecimal digits per 12-bit MEMH row;
+- strict JSON parsing with duplicate keys rejected.
+- non-finite JSON constants (`NaN` and infinities) rejected.
+- canonical ASCII/LF formatting, final LF, headers, and exact row counts.
+- exactly three lowercase hexadecimal digits per 12-bit MEMH row.
 - all promoted-root hashes and sizes in the normalized reference-import
-  manifest;
-- strict coefficient MEMH width, row, LF, manifest, and SHA-256 contracts;
-- artifact hashes declared by the imported vector index;
+  manifest.
+- strict coefficient MEMH width, row, LF, manifest, and SHA-256 contracts.
+- artifact hashes declared by the imported vector index.
 - `config.json` consistency with the configuration, widths, and contracts in
-  `metrics.json`;
-- finite-stream geometry and exact frame/bin ordering;
-- `mag2 = real^2 + imag^2`;
-- strict `pre_mask = (mag2 < THR2)`;
-- DC/Nyquist protection and final mask semantics;
-- bin-to-frame and frame-to-metrics aggregate equality;
+  `metrics.json`.
+- finite-stream geometry and exact frame/bin ordering.
+- `mag2 = real^2 + imag^2`.
+- strict `pre_mask = (mag2 < THR2)`.
+- DC/Nyquist protection and final mask semantics.
+- bin-to-frame and frame-to-metrics aggregate equality.
 - independently recomputed time-domain metrics from frozen `x` and `y`.
 
 The tool emits a typed SystemVerilog expectation package under `runs/`.
@@ -200,10 +200,10 @@ runs/c0-artifact-scoreboard-v68/capture/
 
 After simulation, the Python `compare` step:
 
-- revalidates the exact preflight package and complete source hash snapshot;
-- reparses the captures under the same strict schema;
-- byte-compares `y_out.memh`, `frame_stats.csv`, and `bin_stats.csv`;
-- field-compares observed runtime metrics and status;
+- revalidates the exact preflight package and complete source hash snapshot.
+- reparses the captures under the same strict schema.
+- byte-compares `y_out.memh`, `frame_stats.csv`, and `bin_stats.csv`.
+- field-compares observed runtime metrics and status.
 - rejects missing, extra, reordered, reformatted, or corrupted content.
 
 This second layer prevents a testbench that merely prints a PASS sentinel from

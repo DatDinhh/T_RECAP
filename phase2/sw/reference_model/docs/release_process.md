@@ -101,18 +101,18 @@ artifacts/manifests/frozen_release_manifest.json
 
 The manifest should record:
 
-- release name;
-- spec revision identifiers;
-- git commit if available;
-- tool versions;
-- schema versions;
-- generator version and source hash;
-- coefficient artifact hashes;
-- vector input hashes;
-- golden output hashes;
-- frame/metric artifact hashes;
-- quality-bound hash;
-- artifact row counts;
+- release name.
+- spec revision identifiers.
+- git commit if available.
+- tool versions.
+- schema versions.
+- generator version and source hash.
+- coefficient artifact hashes.
+- vector input hashes.
+- golden output hashes.
+- frame/metric artifact hashes.
+- quality-bound hash.
+- artifact row counts.
 - build environment summary.
 
 ## Reproducibility check
@@ -158,13 +158,13 @@ The index is useful for CI and external consumers that do not want to infer arti
 
 Every release must update `CHANGELOG.md` with:
 
-- release name and date;
-- spec revision basis;
-- added/removed/modified vector names;
-- coefficient hash changes;
-- golden output hash changes;
-- quality-bound changes;
-- known limitations;
+- release name and date.
+- spec revision basis.
+- added/removed/modified vector names.
+- coefficient hash changes.
+- golden output hash changes.
+- quality-bound changes.
+- known limitations.
 - reproducibility status.
 
 Do not write vague entries such as "updated files". Release notes should help debug future hash drift.
@@ -192,30 +192,30 @@ Do not include `runs/`, local build directories, `.venv`, or editor files.
 
 CI should check:
 
-1. formatting/lint smoke;
-2. C++ unit tests;
-3. Python unit tests;
-4. artifact checker;
-5. release manifest schema;
-6. reproducibility against frozen manifest;
-7. no Phase 1 files at root;
-8. no placeholder strings in frozen JSON;
+1. formatting/lint smoke.
+2. C++ unit tests.
+3. Python unit tests.
+4. artifact checker.
+5. release manifest schema.
+6. reproducibility against frozen manifest.
+7. no Phase 1 files at root.
+8. no placeholder strings in frozen JSON.
 9. no non-canonical `memh` files.
 
 ## Handling hash drift
 
 If a hash changes unexpectedly:
 
-1. stop the release;
-2. identify the earliest changed artifact in the flow;
-3. compare canonical logical values, not raw files first;
-4. check generator source hash;
-5. check coefficient hashes;
-6. check schema/config changes;
-7. check platform-dependent math calls;
+1. stop the release.
+2. identify the earliest changed artifact in the flow.
+3. compare canonical logical values, not raw files first.
+4. check generator source hash.
+5. check coefficient hashes.
+6. check schema/config changes.
+7. check platform-dependent math calls.
 8. only then regenerate downstream artifacts intentionally.
 
-Never update the manifest first. The manifest records truth; it does not define truth by itself.
+Never update the manifest first. The manifest records truth. It does not define truth by itself.
 
 ## Emergency artifact fix
 
@@ -223,7 +223,7 @@ Sometimes an artifact has formatting damage but the logical vector is identical.
 
 Policy:
 
-- if canonical hash after normalization matches the old hash, fix formatting and record a patch release note;
+- if canonical hash after normalization matches the old hash, fix formatting and record a patch release note.
 - if logical canonical hash changes, treat it as a real artifact change and run the full freeze process.
 
 ## Deprecating a release
@@ -232,29 +232,29 @@ Do not delete old releases without traceability. Mark them deprecated and explai
 
 Common reasons:
 
-- wrong delay assumption;
-- wrong finite-tail policy;
-- wrong rounding mode;
-- bad coefficient table;
-- missing stream hashes;
+- wrong delay assumption.
+- wrong finite-tail policy.
+- wrong rounding mode.
+- bad coefficient table.
+- missing stream hashes.
 - schema too weak for signoff.
 
 The root README already warns that older Phase 2 drafts using `D = L` are historical only. Current baseline is `D = L + G = 384`.
 
 ## Release signoff checklist
 
-- [ ] `make check-layout` passes;
-- [ ] root docs match current Makefile targets;
-- [ ] all coefficient files present and hashed;
-- [ ] all vector input files present and hashed;
-- [ ] all golden outputs present and hashed;
-- [ ] CSV row counts are exact;
-- [ ] JSON schemas validate;
-- [ ] wide integers are decimal strings;
-- [ ] no placeholder strings remain;
-- [ ] `quality_bounds.json` generated and checked;
-- [ ] `frozen_release_manifest.json` generated;
-- [ ] `make reproduce-release` passes;
-- [ ] `CHANGELOG.md` updated;
-- [ ] artifact package created under `out/`;
+- [ ] `make check-layout` passes.
+- [ ] root docs match current Makefile targets.
+- [ ] all coefficient files present and hashed.
+- [ ] all vector input files present and hashed.
+- [ ] all golden outputs present and hashed.
+- [ ] CSV row counts are exact.
+- [ ] JSON schemas validate.
+- [ ] wide integers are decimal strings.
+- [ ] no placeholder strings remain.
+- [ ] `quality_bounds.json` generated and checked.
+- [ ] `frozen_release_manifest.json` generated.
+- [ ] `make reproduce-release` passes.
+- [ ] `CHANGELOG.md` updated.
+- [ ] artifact package created under `out/`.
 - [ ] release tag name matches release manifest.

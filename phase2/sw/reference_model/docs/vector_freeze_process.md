@@ -124,12 +124,12 @@ configs/vectors/<vector_name>.json
 
 Review for:
 
-- deterministic generator;
-- legal `Ns > 0`;
-- legal `THR2` range;
-- correct protection flags;
-- `tail_policy = full_tail` for signoff unless explicitly diagnostic;
-- no binary-floating generator parameters;
+- deterministic generator.
+- legal `Ns > 0`.
+- legal `THR2` range.
+- correct protection flags.
+- `tail_policy = full_tail` for signoff unless explicitly diagnostic.
+- no binary-floating generator parameters.
 - optional `bin_stats.csv` policy.
 
 ### 2. Generate input stream
@@ -185,13 +185,13 @@ make check-artifacts
 
 The checker must validate:
 
-- `x_in_sha256`;
-- `y_out_sha256`;
-- coefficient hashes;
-- row counts;
-- CSV header contracts;
-- JSON schemas;
-- wide integer string rules;
+- `x_in_sha256`.
+- `y_out_sha256`.
+- coefficient hashes.
+- row counts.
+- CSV header contracts.
+- JSON schemas.
+- wide integer string rules.
 - `THR2=0` mask invariant for eligible bins.
 
 ### 6. Freeze into manifest
@@ -208,24 +208,24 @@ The release manifest records the vector names, artifact paths, hashes, schema ve
 
 Do not silently overwrite a frozen vector. A change to any of these fields invalidates the old vector hash:
 
-- generator name;
-- generator parameters;
-- `Ns`;
-- seed;
-- threshold;
-- protection flags;
-- rounding mode;
-- tail policy;
-- arithmetic contract;
+- generator name.
+- generator parameters.
+- `Ns`.
+- seed.
+- threshold.
+- protection flags.
+- rounding mode.
+- tail policy.
+- arithmetic contract.
 - coefficient artifacts.
 
 Recommended update process:
 
-1. create a new vector name if the old one is still useful;
-2. regenerate input and golden artifacts;
-3. compare old/new manifests;
-4. explain the reason in `CHANGELOG.md`;
-5. update quality bounds if no-suppression behavior changed;
+1. create a new vector name if the old one is still useful.
+2. regenerate input and golden artifacts.
+3. compare old/new manifests.
+4. explain the reason in `CHANGELOG.md`.
+5. update quality bounds if no-suppression behavior changed.
 6. freeze a new release.
 
 ## Naming convention
@@ -261,19 +261,19 @@ Names should be stable enough to appear in release manifests and bug reports.
 
 Before a vector is accepted:
 
-- [ ] `name` is unique and stable;
-- [ ] `Ns > 0`;
-- [ ] `tail_policy` is explicit;
-- [ ] generator parameters are deterministic;
-- [ ] sine/cosine frequencies use `f_num` and `f_den`;
-- [ ] phase values are decimal strings;
-- [ ] noise seed is nonzero;
-- [ ] noise bit width `B` is between 1 and 32;
-- [ ] `THR2` is a decimal string if wide;
-- [ ] protection flags are present;
-- [ ] `x_in_sha256` matches canonical stream;
-- [ ] after golden run, `y_out_sha256` matches canonical output;
-- [ ] artifact row counts match formulas;
+- [ ] `name` is unique and stable.
+- [ ] `Ns > 0`.
+- [ ] `tail_policy` is explicit.
+- [ ] generator parameters are deterministic.
+- [ ] sine/cosine frequencies use `f_num` and `f_den`.
+- [ ] phase values are decimal strings.
+- [ ] noise seed is nonzero.
+- [ ] noise bit width `B` is between 1 and 32.
+- [ ] `THR2` is a decimal string if wide.
+- [ ] protection flags are present.
+- [ ] `x_in_sha256` matches canonical stream.
+- [ ] after golden run, `y_out_sha256` matches canonical output.
+- [ ] artifact row counts match formulas.
 - [ ] quality bounds exist for no-suppression vectors after quality freeze.
 
 ## Relationship to quality bounds

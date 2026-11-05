@@ -110,7 +110,7 @@ packages, common/interface helpers, packetizers, scheduler, packet FIFO, and
 
 `filelists/rtl_core_telemetry.f` is the reusable standalone composition closure.
 It adds FFT/core dependencies followed by telemetry and
-`trecap_core_telemetry_top`; it shall not acquire source selection, HPS/DDR,
+`trecap_core_telemetry_top`. It shall not acquire source selection, HPS/DDR,
 Platform Designer, or board files. The DE1-SoC full filelist must keep
 `trecap_source_core_integration` as its sole mathematical-core owner and must not
 also compile/instantiate the standalone composition.
@@ -127,12 +127,12 @@ hand-written full-board closure. They list Platform Designer, the Step-16 audio
 PLL/I2C/I2S owners, LTC2308, source/core, telemetry/HPS, and physical-board
 owners once in dependency order.
 They exclude the standalone core-plus-telemetry top and vendor-generated
-`system` HDL; the latter enters through the generated QIP flow.
+`system` HDL. The latter enters through the generated QIP flow.
 
 `de1_soc_trecap_top` may bind pins and owners but may not synthesize replacement
 core taps, return safe-idle CSR/DDR responses, or place codec readiness in the
 mathematical y-ready path. Core-y audio monitoring is best-effort/drop-on-FIFO-
-full with dedicated accounting; it never backpressures the mathematical core.
+full with dedicated accounting. It never backpressures the mathematical core.
 The LTC2308 configuration is a real six-bit next-conversion value and not a
 constant board scaffold.
 
@@ -261,7 +261,7 @@ spec/generated/*.json + spec/schemas/*.json + scripts/gen_headers.py
 
 ## Filelist dependency rules
 
-`filelists/*.f` are generated build-order contracts. Active build targets consume filelists; they do not guess source order.
+`filelists/*.f` are generated build-order contracts. Active build targets consume filelists. They do not guess source order.
 
 Required filelists:
 
@@ -447,7 +447,7 @@ HPS command bridge routes source/packet/decimation/spectrum mutations in both wi
 
 The simple parser may not issue direct live CSR writes for those safe control
 mutations. PING remains outside the mutation ledger and returns diagnostic
-STATUS only. The canonical listener is `192.168.10.2:5006`; wildcard binding or
+STATUS only. The canonical listener is `192.168.10.2:5006`. Wildcard binding or
 first-PING peer learning is an explicit lab/test override.
 
 ## PC dashboard dependency rules

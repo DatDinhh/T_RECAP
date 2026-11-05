@@ -1,0 +1,2037 @@
+{
+  "pages": {
+    "15": [
+      {
+        "start": 24,
+        "end": 25,
+        "markdown": "$$\nD=L+G.\\tag{2.1}\n$$"
+      },
+      {
+        "start": 50,
+        "end": 51,
+        "markdown": "$$\n\\tau_m=(m+1)H,\\qquad m\\in\\mathbb{N}_0.\\tag{2.2}\n$$"
+      }
+    ],
+    "16": [
+      {
+        "start": 6,
+        "end": 7,
+        "markdown": "$$\nx_m[i]=x[\\tau_m-L+i],\\qquad 0\\le i<L.\\tag{2.3}\n$$"
+      },
+      {
+        "start": 16,
+        "end": 20,
+        "markdown": "$$\nx_z[n]=\\begin{cases}x[n],&0\\le n<N_s\\\\0,&\\text{otherwise.}\\end{cases}\\tag{2.4}\n$$"
+      },
+      {
+        "start": 25,
+        "end": 26,
+        "markdown": "$$\n\\mathcal{M}_{\\mathrm{active}}=\\{m\\in\\mathbb{N}_0:\\exists i\\in\\{0,\\ldots,L-1\\}\\text{ such that }Q_w[i]\\ne0\\text{ and }0\\le\\tau_m-L+i<N_s\\}.\\tag{2.5}\n$$"
+      },
+      {
+        "start": 27,
+        "end": 31,
+        "markdown": "This prevents a zero-window edge frame from contributing artificial all-zero frame statistics when the only remaining real input sample lies at an analysis-window index whose quantized coefficient is zero. For the periodic square-root Hann baseline, $Q_w[0]=0$ and $Q_w[i]>0$ for $1\\le i<L$, so the active-frame set reduces to"
+      },
+      {
+        "start": 31,
+        "end": 32,
+        "markdown": "$$\n\\mathcal{M}_{\\mathrm{active}}=\\{m\\in\\mathbb{N}_0:\\tau_m=(m+1)H\\le N_s+L-2\\}.\\tag{2.6}\n$$"
+      },
+      {
+        "start": 33,
+        "end": 37,
+        "markdown": "$$\nN_{\\mathrm{frames}}=\\left\\lfloor\\frac{N_s+L-2}{H}\\right\\rfloor.\\tag{2.7}\n$$"
+      },
+      {
+        "start": 38,
+        "end": 39,
+        "markdown": "$$\n\\tau_{\\mathrm{last}}=N_{\\mathrm{frames}}H.\\tag{2.8}\n$$"
+      },
+      {
+        "start": 40,
+        "end": 41,
+        "markdown": "$$\nN_y=\\tau_{\\mathrm{last}}+G+L.\\tag{2.9}\n$$"
+      },
+      {
+        "start": 50,
+        "end": 51,
+        "markdown": "$$\nN_y=N_s+D.\\tag{2.10}\n$$"
+      }
+    ],
+    "17": [
+      {
+        "start": 9,
+        "end": 11,
+        "markdown": "$$\n\\mathcal{S}_N=[-2^{N-1},2^{N-1}-1]\\cap\\mathbb{Z}.\\tag{3.1}\n$$"
+      },
+      {
+        "start": 12,
+        "end": 21,
+        "markdown": "$$\n\\operatorname{sat}_N(z)=\\begin{cases}-2^{N-1},&z<-2^{N-1}\\\\z,&-2^{N-1}\\le z\\le2^{N-1}-1\\\\2^{N-1}-1,&z>2^{N-1}-1.\\end{cases}\\tag{3.2}\n$$"
+      },
+      {
+        "start": 33,
+        "end": 37,
+        "markdown": "$$\n\\operatorname{asr}(z,k)=\\left\\lfloor\\frac{z}{2^k}\\right\\rfloor.\\tag{3.3}\n$$"
+      },
+      {
+        "start": 39,
+        "end": 43,
+        "markdown": "$$\n\\operatorname{rnd\\_shr}(v,s)=\\operatorname{sgn}(v)\\left\\lfloor\\frac{|v|+2^{s-1}}{2^s}\\right\\rfloor.\\tag{3.4}\n$$"
+      },
+      {
+        "start": 43,
+        "end": 52,
+        "markdown": "The sign function is frozen as\n\n$$\n\\operatorname{sgn}(z)=\\begin{cases}-1,&z<0\\\\0,&z=0\\\\+1,&z>0.\\end{cases}\\tag{3.5}\n$$"
+      },
+      {
+        "start": 53,
+        "end": 54,
+        "markdown": "$$\n\\operatorname{rnd\\_shr}(v,0)=v.\\tag{3.6}\n$$"
+      },
+      {
+        "start": 60,
+        "end": 65,
+        "markdown": "$$\n\\operatorname{qcoef}(c,F)=\\operatorname{sgn}(c)\\left\\lfloor |c|2^F+\\frac12\\right\\rfloor.\\tag{3.7}\n$$"
+      }
+    ],
+    "18": [
+      {
+        "start": 16,
+        "end": 17,
+        "markdown": "$$\n\\operatorname{mul}_F(a,b,F_a,F_b)=\\operatorname{rnd\\_shr}(ab,F_a+F_b-F).\\tag{3.8}\n$$"
+      },
+      {
+        "start": 22,
+        "end": 23,
+        "markdown": "$$\n\\operatorname{cmul}_r(b,w)=\\operatorname{rnd\\_shr}(b_rw_r-b_iw_i,F).\\tag{3.9}\n$$"
+      },
+      {
+        "start": 23,
+        "end": 24,
+        "markdown": "$$\n\\operatorname{cmul}_i(b,w)=\\operatorname{rnd\\_shr}(b_rw_i+b_iw_r,F).\\tag{3.10}\n$$"
+      }
+    ],
+    "19": [
+      {
+        "start": 45,
+        "end": 49,
+        "markdown": "$$\nh_p[i]=\\frac12-\\frac12\\cos\\left(\\frac{2\\pi i}{L}\\right),\\qquad0\\le i<L.\\tag{4.1}\n$$"
+      },
+      {
+        "start": 50,
+        "end": 52,
+        "markdown": "$$\nw_a[i]=w_s[i]=w[i]=\\sqrt{h_p[i]}.\\tag{4.2}\n$$"
+      },
+      {
+        "start": 54,
+        "end": 55,
+        "markdown": "$$\nw_a[i]w_s[i]+w_a[i+H]w_s[i+H]=1,\\qquad0\\le i<H.\\tag{4.3}\n$$"
+      }
+    ],
+    "20": [
+      {
+        "start": 10,
+        "end": 11,
+        "markdown": "$$\nu_m[i]=x_z[\\tau_m-L+i]Q_w[i],\\qquad0\\le i<L.\\tag{4.4}\n$$"
+      },
+      {
+        "start": 13,
+        "end": 17,
+        "markdown": "$$\nX_m[k]=\\frac1L\\sum_{i=0}^{L-1}u_m[i]e^{-j2\\pi ki/L},\\qquad0\\le k<L.\\tag{4.5}\n$$"
+      },
+      {
+        "start": 24,
+        "end": 26,
+        "markdown": "$$\nX_m^{\\mathrm{can}}[0]=\\operatorname{Re}\\{X_m[0]\\}+j0.\\tag{4.6}\n$$"
+      },
+      {
+        "start": 26,
+        "end": 28,
+        "markdown": "$$\nX_m^{\\mathrm{can}}[L/2]=\\operatorname{Re}\\{X_m[L/2]\\}+j0.\\tag{4.7}\n$$"
+      },
+      {
+        "start": 31,
+        "end": 32,
+        "markdown": "$$\nR_m[k]=\\operatorname{rnd2}(\\operatorname{Re}\\{X_m[k]\\}+\\operatorname{Re}\\{X_m[L-k]\\}).\\tag{4.8}\n$$"
+      },
+      {
+        "start": 32,
+        "end": 33,
+        "markdown": "$$\nI_m[k]=\\operatorname{rnd2}(\\operatorname{Im}\\{X_m[k]\\}-\\operatorname{Im}\\{X_m[L-k]\\}).\\tag{4.9}\n$$"
+      },
+      {
+        "start": 33,
+        "end": 36,
+        "markdown": "$$\nX_m^{\\mathrm{can}}[k]=R_m[k]+jI_m[k].\\tag{4.10}\n$$"
+      },
+      {
+        "start": 36,
+        "end": 39,
+        "markdown": "$$\nX_m^{\\mathrm{can}}[L-k]=R_m[k]-jI_m[k].\\tag{4.11}\n$$"
+      },
+      {
+        "start": 47,
+        "end": 52,
+        "markdown": "$$\n\\operatorname{mag2}_m[k]=\\operatorname{Re}\\{X_m^{\\mathrm{can}}[k]\\}^2+\\operatorname{Im}\\{X_m^{\\mathrm{can}}[k]\\}^2.\\tag{4.12}\n$$"
+      },
+      {
+        "start": 55,
+        "end": 59,
+        "markdown": "$$\n\\operatorname{pre\\_mask}_m[k]=\\begin{cases}1,&\\operatorname{mag2}_m[k]<\\mathrm{THR2}\\\\0,&\\operatorname{mag2}_m[k]\\ge\\mathrm{THR2}.\\end{cases}\\tag{4.13}\n$$"
+      },
+      {
+        "start": 64,
+        "end": 65,
+        "markdown": "$$\n0\\le\\mathrm{THR2}<2^{W_{\\mathrm{mag2}}}.\\tag{4.14}\n$$"
+      }
+    ],
+    "21": [
+      {
+        "start": 6,
+        "end": 15,
+        "markdown": "Define\n\n$$\n\\epsilon[k]=\\begin{cases}0,&k=0\\text{ and }\\mathrm{PROTECT\\_DC}=1\\\\0,&k=L/2\\text{ and }\\mathrm{PROTECT\\_NYQ}=1\\\\1,&\\text{otherwise.}\\end{cases}\\tag{4.15}\n$$"
+      },
+      {
+        "start": 20,
+        "end": 25,
+        "markdown": "$$\n\\mathrm{Xb}_m[k]=\\begin{cases}0,&\\operatorname{mask}_m[k]=1\\\\X_m^{\\mathrm{can}}[k],&\\operatorname{mask}_m[k]=0.\\end{cases}\\tag{4.16}\n$$"
+      },
+      {
+        "start": 25,
+        "end": 30,
+        "markdown": "$$\n\\mathrm{Xb}_m[L-k]=\\begin{cases}0,&\\operatorname{mask}_m[k]=1\\\\X_m^{\\mathrm{can}}[L-k],&\\operatorname{mask}_m[k]=0.\\end{cases}\\tag{4.17}\n$$"
+      },
+      {
+        "start": 34,
+        "end": 37,
+        "markdown": "$$\n\\mathrm{Xb}_m[0]=(1-\\operatorname{mask}_m[0])X_m^{\\mathrm{can}}[0].\\tag{4.18}\n$$"
+      },
+      {
+        "start": 37,
+        "end": 40,
+        "markdown": "$$\n\\mathrm{Xb}_m[L/2]=(1-\\operatorname{mask}_m[L/2])X_m^{\\mathrm{can}}[L/2].\\tag{4.19}\n$$"
+      },
+      {
+        "start": 47,
+        "end": 52,
+        "markdown": "$$\nv_m[i]=\\sum_{k=0}^{L-1}\\mathrm{Xb}_m[k]e^{j2\\pi ki/L},\\qquad0\\le i<L.\\tag{4.20}\n$$"
+      },
+      {
+        "start": 55,
+        "end": 56,
+        "markdown": "$$\nz_m[i]=\\operatorname{rnd\\_shr}(\\operatorname{Re}\\{v_m[i]\\}Q_w[i],F).\\tag{4.21}\n$$"
+      },
+      {
+        "start": 59,
+        "end": 60,
+        "markdown": "$$\nA[\\tau_m+G+i]\\leftarrow A[\\tau_m+G+i]+z_m[i].\\tag{4.22}\n$$"
+      },
+      {
+        "start": 63,
+        "end": 64,
+        "markdown": "$$\ny[n]=\\operatorname{sat}_N(\\operatorname{rnd\\_shr}(A[n],F)).\\tag{4.23}\n$$"
+      },
+      {
+        "start": 64,
+        "end": 65,
+        "markdown": "$$\ne[n]=x_z[n-D]-y[n].\\tag{4.24}\n$$"
+      }
+    ],
+    "24": [
+      {
+        "start": 23,
+        "end": 27,
+        "markdown": "$$\nW_r[e]=\\operatorname{qcoef}\\left(\\cos\\frac{2\\pi e}{L},F\\right).\\tag{6.1}\n$$"
+      },
+      {
+        "start": 27,
+        "end": 31,
+        "markdown": "$$\nW_i[e]=\\operatorname{qcoef}\\left(-\\sin\\frac{2\\pi e}{L},F\\right).\\tag{6.2}\n$$"
+      },
+      {
+        "start": 32,
+        "end": 37,
+        "markdown": "$$\n\\widetilde W_r[e]=\\operatorname{qcoef}\\left(\\cos\\frac{2\\pi e}{L},F\\right).\\tag{6.3}\n$$"
+      },
+      {
+        "start": 37,
+        "end": 42,
+        "markdown": "$$\n\\widetilde W_i[e]=\\operatorname{qcoef}\\left(+\\sin\\frac{2\\pi e}{L},F\\right).\\tag{6.4}\n$$"
+      },
+      {
+        "start": 44,
+        "end": 45,
+        "markdown": "$$\nW_{\\mathrm{fwd}}[e]=W_r[e]+jW_i[e].\\tag{6.5}\n$$"
+      },
+      {
+        "start": 45,
+        "end": 47,
+        "markdown": "$$\nW_{\\mathrm{inv}}[e]=\\widetilde W_r[e]+j\\widetilde W_i[e].\\tag{6.6}\n$$"
+      },
+      {
+        "start": 56,
+        "end": 62,
+        "markdown": "```text\nRequire: real input vector u[0:L - 1] with F fractional bits; L = 2^P ; frozen forward twiddle table Wfwd[e]\nEnsure: normalized complex spectrum X[0:L - 1] in natural order\n1: for k = 0 to L - 1 do\n2:    A[k] ← u[bitrevP (k)] + j0\n3: end for\n4: for s = 1 to P do\n```"
+      }
+    ],
+    "25": [
+      {
+        "start": 54,
+        "end": 63,
+        "markdown": "The unique-bin weight is\n\n$$\n\\omega[k]=\\begin{cases}1,&k=0\\\\1,&k=L/2\\\\2,&1\\le k\\le L/2-1.\\end{cases}\\tag{7.1}\n$$"
+      },
+      {
+        "start": 4,
+        "end": 16,
+        "markdown": "```text\n 5:   span ← 2^s, half ← 2^(s-1)\n 6:   for base = 0 to L - 1 step span do\n 7:      for j = 0 to half - 1 do\n 8:          e ← jL/span\n 9:          t ← cmul(A[base + j + half ], Wfwd[e])\n10:           a ← A[base + j]\n11:           A[base + j] ← rnd2(a + t)\n12:           A[base + j + half ] ← rnd2(a - t)\n13:       end for\n14:    end for\n15: end for\n16: return X ← A\n```"
+      },
+      {
+        "start": 23,
+        "end": 41,
+        "markdown": "```text\nRequire: conjugate-symmetric masked spectrum Xb[0:L - 1] with F fractional bits; frozen inverse twiddle table Winv[e]\nEnsure: unscaled complex time-domain vector v[0:L - 1] in natural order\n 1: for k = 0 to L - 1 do\n 2:    B[k] ←Xb[bitrevP (k)]\n 3: end for\n 4: for s = 1 to P do\n 5:    span ← 2^s, half ← 2^(s-1)\n 6:    for base = 0 to L - 1 step span do\n 7:        for j = 0 to half - 1 do\n 8:           e ← jL/span\n 9:           t ← cmul(B[base + j + half ], Winv[e])\n10:            a ← B[base + j]\n11:            B[base + j] ← a + t\n12:            B[base + j + half ] ← a - t\n13:         end for\n14:     end for\n15: end for\n16: return v ← B\n```"
+      }
+    ],
+    "26": [
+      {
+        "start": 5,
+        "end": 10,
+        "markdown": "$$\nU_{\\mathrm{uniq}}=L/2+1,\\qquad S_{\\mathrm{uniq}}=\\sum_{k=0}^{L/2}\\operatorname{mask}[k].\\tag{7.2}\n$$"
+      },
+      {
+        "start": 10,
+        "end": 14,
+        "markdown": "$$\nU_{\\mathrm{elig}}=|\\mathcal E|,\\qquad S_{\\mathrm{elig}}=\\sum_{k\\in\\mathcal E}\\operatorname{mask}[k].\\tag{7.3}\n$$"
+      },
+      {
+        "start": 15,
+        "end": 19,
+        "markdown": "$$\nE_{\\mathrm{elig,total}}=\\sum_{k\\in\\mathcal E}\\omega[k]\\operatorname{mag2}[k],\\qquad E_{\\mathrm{elig,kept}}=\\sum_{k\\in\\mathcal E}(1-\\operatorname{mask}[k])\\omega[k]\\operatorname{mag2}[k].\\tag{7.4}\n$$"
+      },
+      {
+        "start": 35,
+        "end": 36,
+        "markdown": "$$\ne[n]=x_z[n-D]-y[n].\\tag{7.5}\n$$"
+      },
+      {
+        "start": 37,
+        "end": 42,
+        "markdown": "$$\n\\mathrm{sum\\_abs\\_err}=\\sum_{n=0}^{N_y-1}|e[n]|.\\tag{7.6}\n$$"
+      },
+      {
+        "start": 42,
+        "end": 47,
+        "markdown": "$$\n\\mathrm{sum\\_sq\\_err}=\\sum_{n=0}^{N_y-1}e[n]^2.\\tag{7.7}\n$$"
+      },
+      {
+        "start": 47,
+        "end": 49,
+        "markdown": "$$\n\\mathrm{max\\_abs\\_err}=\\max_{0\\le n<N_y}|e[n]|.\\tag{7.8}\n$$"
+      },
+      {
+        "start": 50,
+        "end": 51,
+        "markdown": "$$\n\\mathrm{error\\_sample\\_count}=N_y.\\tag{7.9}\n$$"
+      }
+    ],
+    "33": [
+      {
+        "start": 43,
+        "end": 44,
+        "markdown": "$$\nx[n]=\\operatorname{sat}_N(c).\\tag{8.1}\n$$"
+      },
+      {
+        "start": 48,
+        "end": 52,
+        "markdown": "$$\nx[n]=\\begin{cases}\\operatorname{sat}_N(A),&n=n_0\\\\0,&n\\ne n_0.\\end{cases}\\tag{8.2}\n$$"
+      },
+      {
+        "start": 56,
+        "end": 61,
+        "markdown": "$$\nx[n]=\\begin{cases}0,&n<n_0\\\\\\operatorname{sat}_N(A),&n\\ge n_0.\\end{cases}\\tag{8.3}\n$$"
+      }
+    ],
+    "34": [
+      {
+        "start": 6,
+        "end": 7,
+        "markdown": "$$\nx[n]=\\operatorname{sat}_N\\left(\\operatorname{qcoef}(A\\sin(2\\pi fn+\\phi),0)\\right).\\tag{8.4}\n$$"
+      },
+      {
+        "start": 13,
+        "end": 14,
+        "markdown": "$$\nx[n]=\\operatorname{sat}_N\\left(\\operatorname{qcoef}(A\\cos(2\\pi fn+\\phi),0)\\right).\\tag{8.5}\n$$"
+      },
+      {
+        "start": 18,
+        "end": 23,
+        "markdown": "$$\ns[n]=\\sum_{q=0}^{Q-1}A_q\\sin(2\\pi f_qn+\\phi_q).\\tag{8.6}\n$$"
+      },
+      {
+        "start": 24,
+        "end": 25,
+        "markdown": "$$\nx[n]=\\operatorname{sat}_N(\\operatorname{qcoef}(s[n],0)).\\tag{8.7}\n$$"
+      },
+      {
+        "start": 32,
+        "end": 33,
+        "markdown": "$$\nr\\leftarrow r\\oplus((r\\ll13)\\bmod2^{32}).\\tag{8.8}\n$$"
+      },
+      {
+        "start": 33,
+        "end": 34,
+        "markdown": "$$\nr\\leftarrow r\\oplus(r\\gg17).\\tag{8.9}\n$$"
+      },
+      {
+        "start": 34,
+        "end": 35,
+        "markdown": "$$\nr\\leftarrow r\\oplus((r\\ll5)\\bmod2^{32}).\\tag{8.10}\n$$"
+      },
+      {
+        "start": 36,
+        "end": 37,
+        "markdown": "$$\nu[n]=r\\bmod2^B,\\qquad x[n]=\\operatorname{sat}_N(u[n]-2^{B-1}).\\tag{8.11}\n$$"
+      }
+    ],
+    "35": [
+      {
+        "start": 34,
+        "end": 35,
+        "markdown": "$$\nu[n]=a_{\\mathrm{raw}}[n]-2^{B-1}.\\tag{9.1}\n$$"
+      },
+      {
+        "start": 35,
+        "end": 36,
+        "markdown": "$$\nd_c[-1]=0.\\tag{9.2}\n$$"
+      },
+      {
+        "start": 36,
+        "end": 37,
+        "markdown": "$$\nd_c[n]=d_c[n-1]+\\operatorname{asr}(u[n]-d_c[n-1],S_{\\mathrm{DC}}).\\tag{9.3}\n$$"
+      },
+      {
+        "start": 37,
+        "end": 38,
+        "markdown": "$$\nx[n]=\\operatorname{sat}_N(u[n]-d_c[n]).\\tag{9.4}\n$$"
+      },
+      {
+        "start": 41,
+        "end": 42,
+        "markdown": "$$\nx[n]=\\operatorname{sat}_N(\\operatorname{rnd\\_shr}(a_{\\mathrm{audio}}[n],B_{\\mathrm{audio}}-N)).\\tag{9.5}\n$$"
+      }
+    ],
+    "36": [
+      {
+        "start": 6,
+        "end": 9,
+        "markdown": "$$\n\\mathrm{THR2}=T_{\\mathrm{amp},QF}^{\\,2}.\\tag{9.6}\n$$"
+      },
+      {
+        "start": 11,
+        "end": 14,
+        "markdown": "$$\nT_{\\mathrm{amp},QF}=\\mathrm{SW}[7:0]\\ll K_{\\mathrm{thr}},\\qquad\\mathrm{THR2}=T_{\\mathrm{amp},QF}^{\\,2}.\\tag{9.7}\n$$"
+      },
+      {
+        "start": 17,
+        "end": 22,
+        "markdown": "Wrapper computation of $\\mathrm{THR2}=T_{\\mathrm{amp},QF}^{\\,2}$ shall be performed in a width large enough to hold the full square. The resulting threshold shall then be checked against $0\\le\\mathrm{THR2}<2^{W_{\\mathrm{mag2}}}$. Out-of-range wrapper thresholds are illegal for the core signoff contract unless the wrapper explicitly defines saturation or clipping outside the core contract and records that policy in `config.json`."
+      },
+      {
+        "start": 28,
+        "end": 31,
+        "markdown": "$$\nC_{\\mathrm{hop}}=f_{\\mathrm{clk}}\\frac{H}{F_s}.\\tag{10.1}\n$$"
+      },
+      {
+        "start": 33,
+        "end": 36,
+        "markdown": "$$\nT_{\\mathrm{frame}}<\\frac{G}{F_s}.\\tag{10.2}\n$$"
+      }
+    ],
+    "22": [
+      {
+        "start": 16,
+        "end": 44,
+        "markdown": "```text\nRequire: finite input vector x[0:Ns - 1] with Ns > 0; frozen parameters (N, L, H, F, G, D); frozen coefficient tables; threshold\n    register THR2\nEnsure: output vector y[0:Ny - 1], delayed-error metrics, aggregate frame metrics\n 1: Nframes ← ⌊(Ns + L - 2)/H⌋\n 2: tau_last ← Nframes H\n 3: Ny ← tau_last + G + L\n 4: initialize xring[0:L - 1] ← 0, ola[0:D - 1] ← 0\n 5: initialize wr ← 0, rd ← 0, sample_count ← 0, frame_count ← 0\n 6: initialize all frame-statistic and time-error accumulators to zero\n 7: for n = 0 to Ny - 1 do\n 8:     xin ← x[n] if 0 ≤ n < Ns , else 0                                            ▷ zero flush sample after real input ends\n 9:     xref ← x[n - D] if 0 ≤ n - D < Ns , else 0\n10:      xring[wr] ← xin\n11:      wr ← (wr + 1) mod L\n12:      y[n] ← sat_N (rnd_shr(ola[rd], F ))\n13:      e[n] ← xref - y[n]\n14:      update sum_abs_err, sum_sq_err, max_abs_err, and error_sample_count\n15:      ola[rd] ← 0\n16:      rd ← (rd + 1) mod D\n17:      sample_count ← sample_count + 1\n18:      if sample_count mod H = 0 and sample_count ≤ tau_last then\n19:          (Xb, mag2, pre_mask, mask, frame_stats) ← ProcessFrameAnalysisMask(xring, wr, THR2)\n20:          ProcessFrameSynthesisWOLA(Xb, frame_stats, ola, rd, G)\n21:          frame_count ← frame_count + 1\n22:      end if\n23: end for\n24: assert frame_count = Nframes\n25: return (y, Ny , frame_count, frame_stats, metrics)\n```"
+      },
+      {
+        "start": 52,
+        "end": 65,
+        "markdown": "```text\nRequire: input ring buffer xring[0:L - 1], write pointer wr, threshold register THR2\nEnsure: masked spectrum Xb[0:L - 1], unique-bin mag2[0:L/2], pre-protection mask bits pre_mask[0:L/2], final mask bits\n    mask[0:L/2], frame statistics\n 1: for i = 0 to L - 1 do\n 2:    xf [i] ← xring[(wr + i) mod L]                                                                    ▷ oldest to newest\n 3:    u[i] ← xf [i]Qw[i]                                                           ▷ F fractional bits; no rounding here\n 4: end for\n 5: X ← FFTnorm (u)\n 6: Xcan[0] ← Re{X[0]} + j0\n 7: Xcan[L/2] ← Re{X[L/2]} + j0\n 8: for k = 1 to L/2 - 1 do\n 9:    R ← rnd2(Re{X[k]} + Re{X[L - k]})\n10:     I ← rnd2(Im{X[k]} - Im{X[L - k]})\n```"
+      }
+    ],
+    "23": [
+      {
+        "start": 4,
+        "end": 46,
+        "markdown": "```text\n11:     Xcan[k] <- R + jI\n12:     Xcan[L - k] <- R - jI\n13: end for\n14: for k = 0 to L/2 do\n15:     mag2[k] <- Re{Xcan[k]}^2 + Im{Xcan[k]}^2\n16:     pre_mask[k] <- 1 if mag2[k] < THR2 else 0\n17:     mask[k] <- pre_mask[k]\n18: end for\n19: if PROTECT_DC = 1 then\n20:     mask[0] <- 0\n21: end if\n22: if PROTECT_NYQ = 1 then\n23:     mask[L/2] <- 0\n24: end if\n25: for k = 0 to L/2 do\n26:     eligible[k] <- epsilon[k]\n27:     wgt[k] <- 1 if k in {0, L/2} else 2\n28: end for\n29: unique_bins_this_frame <- L/2 + 1\n30: unique_suppressed_bins_this_frame <- sum(k=0..L/2, mask[k])\n31: eligible_unique_bins_this_frame <- sum(k=0..L/2, eligible[k])\n32: eligible_suppressed_bins_this_frame <- sum(k=0..L/2, eligible[k]*mask[k])\n33: eligible_total_mag2_this_frame <- sum(k=0..L/2, eligible[k]*wgt[k]*mag2[k])\n34: eligible_kept_mag2_this_frame <- sum(k=0..L/2, eligible[k]*(1-mask[k])*wgt[k]*mag2[k])\n35: for k = 1 to L/2 - 1 do\n36:     if mask[k] = 1 then\n37:         Xb[k] <- 0, Xb[L - k] <- 0\n38:     else\n39:         Xb[k] <- Xcan[k], Xb[L - k] <- Xcan[L - k]\n40:     end if\n41: end for\n42: Xb[0] <- 0 if mask[0] = 1 else Xcan[0]\n43: Xb[L/2] <- 0 if mask[L/2] = 1 else Xcan[L/2]\n44: return (Xb, mag2, pre_mask, mask, frame_stats)\n```"
+      },
+      {
+        "start": 53,
+        "end": 64,
+        "markdown": "```text\nRequire: masked spectrum Xb[0:L - 1], frame statistics, OLA ring buffer ola[0:D - 1], read pointer rd, scheduling cushion G\nEnsure: updated OLA ring buffer and aggregate spectral statistics\n1: v ← IFFTunscaled (Xb)\n2: for i = 0 to L - 1 do\n3:    vr [i] ← Re{v[i]}\n4:    z[i] ← rnd_shr(vr [i]Qw [i], F )\n5:    pi ← (rd + G + i) mod D\n6:    ola[pi ] ←ola[pi ] + z[i]\n7: end for\n8: update unique-bin and eligible-bin suppression totals using frame_stats\n9: update eligible_kept_mag2 and eligible_total_mag2 aggregate sums using frame_stats\n```"
+      }
+    ],
+    "29": [
+      {
+        "start": 9,
+        "end": 12,
+        "markdown": "```csv\nframe_idx,unique_bins,unique_suppressed_bins,\neligible_unique_bins,eligible_suppressed_bins,\neligible_kept_mag2,eligible_total_mag2\n```"
+      },
+      {
+        "start": 18,
+        "end": 19,
+        "markdown": "```csv\nframe_idx,bin_idx,real,imag,mag2,eligible,pre_mask,mask\n```"
+      },
+      {
+        "start": 44,
+        "end": 55,
+        "markdown": "```json\n{\n    \"configuration\": {\n      \"N\": 12, \"L\": 256, \"P\": 8, \"H\": 128, \"F\": 15,\n      \"G\": 128, \"D\": 384, \"Ns\": 4096, \"Ny\": 4608,\n      \"frames\": 33, \"THR2\": \"0\",\n      \"PROTECT_DC\": 1, \"PROTECT_NYQ\": 0\n    },\n    \"contract\": {\n      \"fft_mode\": \"custom_radix2_dit_bitrev_in_natural_out\",\n      \"rounding_mode\": \"round_nearest_ties_away_from_zero\",\n      \"tail_policy\": \"full_tail\",\n```"
+      }
+    ],
+    "30": [
+      {
+        "start": 4,
+        "end": 36,
+        "markdown": "```json\n      \"threshold_mapping\": \"raw_thr2\"\n    },\n    \"widths\": {\n      \"W_Qw\": 16, \"W_tw\": 17, \"W_u\": 27,\n      \"W_fft\": 28, \"W_fft_pre\": 29,\n      \"W_can_pre\": 29, \"W_can\": 28,\n      \"W_mag2\": 56, \"W_ifft\": 36,\n      \"W_z\": 36, \"W_ola\": 37\n    },\n    \"hashes\": {\n      \"window_qw_sha256\": \"<sha256-hex>\",\n      \"twiddle_re_sha256\": \"<sha256-hex>\",\n      \"twiddle_im_sha256\": \"<sha256-hex>\",\n      \"twiddle_inv_re_sha256\": \"<sha256-hex>\",\n      \"twiddle_inv_im_sha256\": \"<sha256-hex>\"\n    },\n    \"stream_hashes\": {\n      \"x_in_sha256\": \"<sha256-hex>\",\n      \"y_out_sha256\": \"<sha256-hex>\"\n    },\n    \"artifact_rows\": {\n      \"window_qw\": 256,\n      \"twiddle_re\": 256,\n      \"twiddle_im\": 256,\n      \"twiddle_inv_re\": 256,\n      \"twiddle_inv_im\": 256,\n      \"x_in\": 4096,\n      \"y_out\": 4608,\n      \"frame_stats_data_rows\": 33,\n      \"bin_stats_data_rows\": 4257\n    }\n}\n```"
+      },
+      {
+        "start": 41,
+        "end": 72,
+        "markdown": "```json\n{\n    \"configuration\": {\n      \"N\": 12, \"L\": 256, \"P\": 8, \"H\": 128, \"F\": 15,\n      \"G\": 128, \"D\": 384,\n      \"Ns\": 4096, \"Ny\": 4608, \"frames\": 33,\n      \"THR2\": \"0\",\n      \"PROTECT_DC\": 1, \"PROTECT_NYQ\": 0\n    },\n    \"contract\": {\n      \"fft_mode\": \"custom_radix2_dit_bitrev_in_natural_out\",\n      \"rounding_mode\": \"round_nearest_ties_away_from_zero\",\n      \"tail_policy\": \"full_tail\",\n      \"memh_encoding\": \"fixed_width_lowercase_hex_lf\",\n      \"hash_rule\": \"logical_integer_vector_fixed_width_hex_lf\"\n    },\n    \"widths\": {\n      \"W_Qw\": 16, \"W_tw\": 17, \"W_u\": 27,\n      \"W_fft\": 28, \"W_fft_pre\": 29,\n      \"W_can_pre\": 29, \"W_can\": 28,\n      \"W_mag2\": 56, \"W_ifft\": 36,\n      \"W_z\": 36, \"W_ola\": 37\n    },\n    \"hashes\": {\n      \"window_qw_sha256\": \"<sha256-hex>\",\n      \"twiddle_re_sha256\": \"<sha256-hex>\",\n      \"twiddle_im_sha256\": \"<sha256-hex>\",\n      \"twiddle_inv_re_sha256\": \"<sha256-hex>\",\n      \"twiddle_inv_im_sha256\": \"<sha256-hex>\"\n    },\n    \"stream_hashes\": {\n      \"x_in_sha256\": \"<sha256-hex>\",\n```"
+      }
+    ],
+    "31": [
+      {
+        "start": 4,
+        "end": 23,
+        "markdown": "```json\n      \"y_out_sha256\": \"<sha256-hex>\"\n    },\n    \"suppression_totals\": {\n      \"unique_bins\": \"4257\",\n      \"unique_suppressed_bins\": \"0\",\n      \"eligible_unique_bins\": \"4224\",\n      \"eligible_suppressed_bins\": \"0\"\n    },\n    \"spectral_totals\": {\n      \"eligible_kept_mag2\": \"123456789012345\",\n      \"eligible_total_mag2\": \"123456789012345\"\n    },\n    \"time_domain_errors\": {\n      \"sum_abs_err\": \"123\",\n      \"sum_sq_err\": \"456\",\n      \"max_abs_err\": \"3\",\n      \"error_sample_count\": \"4608\"\n    }\n}\n```"
+      },
+      {
+        "start": 27,
+        "end": 65,
+        "markdown": "```json\n{\n    \"schema\": \"trecap_phase2_test_vectors_v1\",\n    \"generator_version\": \"phase2_generators_revision_j\",\n    \"generator_source_sha256\": \"<sha256-hex>\",\n    \"vectors\": [\n      {\n        \"name\": \"zero_Ns4096_thr0\",\n        \"Ns\": 4096,\n        \"generator\": \"constant\",\n        \"parameters\": { \"value\": 0 },\n        \"THR2\": \"0\",\n        \"PROTECT_DC\": 1,\n        \"PROTECT_NYQ\": 0,\n        \"tail_policy\": \"full_tail\",\n        \"rounding\": \"round_nearest_ties_away_from_zero\",\n        \"x_in_sha256\": \"<sha256-hex>\",\n        \"y_out_sha256\": \"<sha256-hex>\"\n      },\n      {\n        \"name\": \"near_threshold_multitone_example\",\n        \"Ns\": 4096,\n        \"generator\": \"multitone_sine_sum\",\n        \"parameters\": {\n          \"tones\": [\n            {\"amplitude\": 512, \"f_num\": 16, \"f_den\": 256, \"phase_rad\": \"0\"},\n            {\"amplitude\": 128, \"f_num\": 23, \"f_den\": 256, \"phase_rad\": \"0.5\"}\n          ]\n        },\n        \"THR2\": \"<decimal-string>\",\n        \"PROTECT_DC\": 1,\n        \"PROTECT_NYQ\": 0,\n        \"tail_policy\": \"full_tail\",\n        \"rounding\": \"round_nearest_ties_away_from_zero\",\n        \"x_in_sha256\": \"<sha256-hex>\",\n        \"y_out_sha256\": \"<sha256-hex>\"\n      }\n    ]\n}\n```"
+      }
+    ],
+    "32": [
+      {
+        "start": 4,
+        "end": 29,
+        "markdown": "```json\n{\n    \"configuration\": {\n      \"N\": 12, \"L\": 256, \"H\": 128, \"F\": 15,\n      \"G\": 128, \"D\": 384, \"THR2\": \"0\",\n      \"PROTECT_DC\": 1, \"PROTECT_NYQ\": 0,\n      \"tail_policy\": \"full_tail\"\n    },\n    \"generator_version\": \"phase2_generators_revision_j\",\n    \"hashes\": {\n      \"window_qw_sha256\": \"<sha256-hex>\",\n      \"twiddle_re_sha256\": \"<sha256-hex>\",\n      \"twiddle_im_sha256\": \"<sha256-hex>\",\n      \"twiddle_inv_re_sha256\": \"<sha256-hex>\",\n      \"twiddle_inv_im_sha256\": \"<sha256-hex>\"\n    },\n    \"bounds\": {\n      \"zero_Ns4096_thr0\": {\n        \"x_in_sha256\": \"<sha256-hex>\",\n        \"y_out_sha256\": \"<sha256-hex>\",\n        \"max_abs_err\": \"0\",\n        \"sum_sq_err\": \"0\",\n        \"error_sample_count\": \"4608\"\n      }\n    }\n}\n```"
+      }
+    ],
+    "38": [
+      {
+        "start": 39,
+        "end": 47,
+        "markdown": "$$\n\\mathrm{transport\\_blocked}\\Rightarrow\\begin{cases}\\text{drop telemetry record}\\\\\\text{increment the relevant drop/error counter}\\\\\\text{continue core processing.}\\end{cases}\\tag{13.1}\n$$"
+      }
+    ],
+    "39": [
+      {
+        "start": 35,
+        "end": 36,
+        "markdown": "$$\n\\text{PC Ethernet IP}=192.168.10.1/24.\\tag{14.1}\n$$"
+      },
+      {
+        "start": 36,
+        "end": 37,
+        "markdown": "$$\n\\text{DE1-SoC HPS IP}=192.168.10.2/24.\\tag{14.2}\n$$"
+      }
+    ],
+    "48": [
+      {
+        "start": 15,
+        "end": 16,
+        "markdown": "$$\n0\\le\\mathrm{THR2}<2^{56}.\\tag{16.1}\n$$"
+      },
+      {
+        "start": 20,
+        "end": 24,
+        "markdown": "$$\n\\mathrm{THR2}_{\\mathrm{active}}[m+1]=\\begin{cases}\\mathrm{THR2}_{\\mathrm{shadow}},&\\text{if commit pending at frame boundary}\\\\\\mathrm{THR2}_{\\mathrm{active}}[m],&\\text{otherwise.}\\end{cases}\\tag{16.2}\n$$"
+      }
+    ],
+    "49": [
+      {
+        "start": 22,
+        "end": 23,
+        "markdown": "$$\nB=\\text{FPGA-visible ring base address}.\\tag{17.1}\n$$"
+      },
+      {
+        "start": 23,
+        "end": 24,
+        "markdown": "$$\nR=\\text{ring size in bytes}.\\tag{17.2}\n$$"
+      },
+      {
+        "start": 27,
+        "end": 28,
+        "markdown": "$$\nR=2^q,\\quad q\\ge20,\\quad R\\equiv0\\pmod{64}.\\tag{17.3}\n$$"
+      },
+      {
+        "start": 30,
+        "end": 31,
+        "markdown": "$$\nB\\equiv0\\pmod{64}.\\tag{17.4}\n$$"
+      },
+      {
+        "start": 40,
+        "end": 41,
+        "markdown": "$$\n\\operatorname{off}(p)=p\\mathbin{\\&}(R-1).\\tag{17.5}\n$$"
+      },
+      {
+        "start": 44,
+        "end": 45,
+        "markdown": "$$\nU=W-R_d.\\tag{17.6}\n$$"
+      },
+      {
+        "start": 47,
+        "end": 48,
+        "markdown": "$$\n0\\le U\\le R.\\tag{17.7}\n$$"
+      }
+    ],
+    "50": [
+      {
+        "start": 26,
+        "end": 27,
+        "markdown": "$$\no=\\operatorname{off}(W).\\tag{17.8}\n$$"
+      },
+      {
+        "start": 27,
+        "end": 28,
+        "markdown": "$$\nT_{\\mathrm{tail}}=R-o.\\tag{17.9}\n$$"
+      },
+      {
+        "start": 32,
+        "end": 36,
+        "markdown": "$$\nL_{\\mathrm{req}}=\\begin{cases}T_{\\mathrm{tail}}+L_{\\mathrm{rec}},&o+L_{\\mathrm{rec}}>R\\\\L_{\\mathrm{rec}},&o+L_{\\mathrm{rec}}\\le R.\\end{cases}\\tag{17.10}\n$$"
+      },
+      {
+        "start": 38,
+        "end": 39,
+        "markdown": "$$\nF_{\\mathrm{free}}=R-(W-R_d)-G_{\\mathrm{guard}}.\\tag{17.11}\n$$"
+      },
+      {
+        "start": 41,
+        "end": 42,
+        "markdown": "$$\nF_{\\mathrm{free}}\\ge L_{\\mathrm{req}}.\\tag{17.12}\n$$"
+      },
+      {
+        "start": 51,
+        "end": 52,
+        "markdown": "$$\nL_{\\mathrm{rec}}=\\operatorname{align}_{64}(H_{\\mathrm{bytes}}+P_{\\mathrm{bytes}}).\\tag{17.13}\n$$"
+      }
+    ],
+    "54": [
+      {
+        "start": 22,
+        "end": 23,
+        "markdown": "$$\n32+\\mathrm{payload\\_bytes}\\le P_{\\mathrm{udp,max}}=1200.\\tag{18.1}\n$$"
+      }
+    ],
+    "56": [
+      {
+        "start": 15,
+        "end": 16,
+        "markdown": "$$\n\\operatorname{clip}_{16}(z)=\\min(z,65535).\\tag{19.1}\n$$"
+      }
+    ],
+    "57": [
+      {
+        "start": 41,
+        "end": 45,
+        "markdown": "$$\nk_{\\min}(b)=\\left\\lfloor\\frac{129b}{64}\\right\\rfloor.\\tag{19.2}\n$$"
+      },
+      {
+        "start": 45,
+        "end": 49,
+        "markdown": "$$\nk_{\\max}(b)=\\left\\lfloor\\frac{129(b+1)}{64}\\right\\rfloor-1.\\tag{19.3}\n$$"
+      },
+      {
+        "start": 50,
+        "end": 53,
+        "markdown": "$$\n\\mathrm{spec64}[b]=\\operatorname{clip}_{16}\\left(\\max_{k_{\\min}(b)\\le k\\le k_{\\max}(b)}(\\operatorname{mag2}[k]\\gg\\mathrm{spec\\_shift})\\right).\\tag{19.4}\n$$"
+      }
+    ],
+    "58": [
+      {
+        "start": 23,
+        "end": 25,
+        "markdown": "$$\n\\frac{\\mathrm{suppressed\\_count}[b]}{\\mathrm{eligible\\_count}[b]}\n$$"
+      }
+    ],
+    "61": [
+      {
+        "start": 30,
+        "end": 31,
+        "markdown": "$$\nP_{\\mathrm{udp,max}}=1200\\text{ bytes}.\\tag{20.1}\n$$"
+      }
+    ],
+    "63": [
+      {
+        "start": 36,
+        "end": 37,
+        "markdown": "$$\n\\text{telemetry UDP port}=5005.\\tag{20.2}\n$$"
+      },
+      {
+        "start": 37,
+        "end": 38,
+        "markdown": "$$\n\\text{command UDP port}=5006.\\tag{20.3}\n$$"
+      },
+      {
+        "start": 41,
+        "end": 42,
+        "markdown": "$$\n\\text{PC}:192.168.10.1.\\tag{20.4}\n$$"
+      },
+      {
+        "start": 42,
+        "end": 43,
+        "markdown": "$$\n\\text{DE1-SoC HPS}:192.168.10.2.\\tag{20.5}\n$$"
+      },
+      {
+        "start": 4,
+        "end": 8,
+        "markdown": "```text\n37:       commit Rd through RING_RD_COMMIT\n38:    end while\n39:    poll command UDP socket and process accepted commands\n40: end while\n```"
+      }
+    ],
+    "65": [
+      {
+        "start": 32,
+        "end": 35,
+        "markdown": "$$\nF_{\\mathrm{frame}}=\\frac{F_s}{128}.\\tag{22.1}\n$$"
+      }
+    ],
+    "66": [
+      {
+        "start": 8,
+        "end": 9,
+        "markdown": "$$\nB_{\\mathrm{wave}}=F_s\\cdot3\\cdot2\\text{ bytes/s}.\\tag{22.2}\n$$"
+      },
+      {
+        "start": 12,
+        "end": 13,
+        "markdown": "$$\nF_s=48\\text{ kS/s}\\Rightarrow B_{\\mathrm{wave}}\\approx288\\text{ kB/s}.\\tag{22.3}\n$$"
+      },
+      {
+        "start": 13,
+        "end": 14,
+        "markdown": "$$\nF_s=100\\text{ kS/s}\\Rightarrow B_{\\mathrm{wave}}\\approx600\\text{ kB/s}.\\tag{22.4}\n$$"
+      }
+    ],
+    "67": [
+      {
+        "start": 29,
+        "end": 30,
+        "markdown": "$$\n\\mathrm{expected\\_next}=(\\mathrm{previous\\_seq}+1)\\bmod2^{32}.\\tag{24.1}\n$$"
+      }
+    ],
+    "102": [
+      {
+        "start": 29,
+        "end": 30,
+        "markdown": "$$\na[k]=x_0[k]+x_1[k],\\qquad d[k]=x_0[k]-x_1[k].\\tag{B.1}\n$$"
+      },
+      {
+        "start": 33,
+        "end": 37,
+        "markdown": "$$\ns_k=\\begin{cases}1,&|d[k]|<T\\\\0,&|d[k]|\\ge T.\\end{cases}\\tag{B.2}\n$$"
+      },
+      {
+        "start": 39,
+        "end": 40,
+        "markdown": "$$\ny_0[k]=\\operatorname{sat}_N(\\operatorname{rnd2}(a[k]+d^{\\prime}[k])).\\tag{B.3}\n$$"
+      },
+      {
+        "start": 40,
+        "end": 42,
+        "markdown": "$$\ny_1[k]=\\operatorname{sat}_N(\\operatorname{rnd2}(a[k]-d^{\\prime}[k])).\\tag{B.4}\n$$"
+      }
+    ],
+    "55": [
+      {
+        "start": 15,
+        "end": 47,
+        "markdown": "```text\nRequire: packet payload P , packet type T , current producer pointer W , committed consumer\n    pointer Rd\nEnsure: either one committed DDR record or one dropped telemetry packet\n 1: Hbytes ← 32\n 2: Pbytes ← |P |\n 3: Lrec ← align64 (Hbytes + Pbytes )\n 4: o ← W & (ring_size - 1)\n 5: Ttail ← ring_size - o\n 6: if o + Lrec > ring_size then\n 7:     Lreq ← Ttail + Lrec\n 8: else\n 9:     Lreq ← Lrec\n10: end if\n11: Ffree ← ring_size - (W - Rd ) - Gguard\n12: if Ffree < Lreq then\n13:     increment DMA_DROP_COUNT\n14:     discard packet\n15:     return\n16: end if\n17: if o + Lrec > ring_size then\n18:     write a WRAP header at B + o\n19:     write zero padding through the end of the ring\n20:     wait for all WRAP writes to complete\n21:     W ← W + Ttail ; commit producer pointer\n22:     o←0\n23: end if\n24: write packet header at B + o\n25: write packet payload immediately after header\n26: write zero padding up to 64-byte alignment\n27: wait for all DDR write transactions for this record to complete\n28: W ← W + Lrec\n29: commit producer pointer W\n```"
+      }
+    ],
+    "62": [
+      {
+        "start": 15,
+        "end": 52,
+        "markdown": "```text\nRequire: configured CSR base, DDR ring mapping, UDP destination\n 1: configure Ethernet and UDP socket as nonblocking or bounded-timeout\n 2: clear CONTROL.telemetry_enable and CONTROL.ring_writer_enable\n 3: pulse CONTROL.telemetry_soft_reset\n 4: configure ring base, ring size, packet enables, decimation, and spectrum shift\n 5: pulse RING_CONFIG_COMMIT while telemetry is disabled\n 6: Rd ← 0\n 7: write RING_RD_LO_SHADOW=0 and RING_RD_HI_SHADOW=0\n 8: pulse RING_RD_COMMIT\n 9: write CONTROL.ring_writer_enable=1 and CONTROL.telemetry_enable=1\n10: while streaming do\n11:     request RING_WR_SNAPSHOT\n12:     W ← latched 64-bit producer pointer\n13:     while Rd != W do\n14:        read candidate record header at B + off(Rd )\n15:        validate header and payload bounds using Section 20.5\n16:        if record is malformed then\n17:            increment malformed-record counter\n18:            disable telemetry writer\n19:            commit current Rd through RING_RD_COMMIT\n20:            require telemetry soft reset and ring reconfiguration before streaming resumes\n21:            break\n22:        end if\n23:        if packet type is WRAP then\n24:            Rd ← Rd + (R - off(Rd ))\n25:            commit Rd through RING_RD_COMMIT\n26:            continue\n27:        end if\n28:        if record exceeds Pudp,max then\n29:            increment oversized-record counter; drop UDP datagram\n30:        else\n31:            send header and payload as one UDP datagram\n32:            if send would block or fails then\n33:                increment udp_send_error_count; drop datagram\n34:            end if\n35:        end if\n36:        Rd ← Rd + align64 (32 + payload_bytes)\n```"
+      }
+    ],
+    "75": [
+      {
+        "start": 41,
+        "end": 49,
+        "markdown": "```text\nPC dashboard\n  packet parser + plots + command client\n        ^\n        | UDP Ethernet\n        v\nHPS software\n  DDR ring reader + UDP streamer + command server + CSR writer\n        ^\n```"
+      }
+    ],
+    "76": [
+      {
+        "start": 4,
+        "end": 22,
+        "markdown": "```text\n        | HPS-FPGA bridge + HPS DDR\n        v\nFPGA HPS bridge layer\n  CSR bank + pointer control + DDR record builder + DDR ring writer\n        ^\n        | formatted record stream\n        v\nFPGA telemetry layer\n  packet scheduler + WAVE/SPEC/METRICS/STATUS packetizers + packet FIFO\n        ^\n        | non-stalling core taps\n        v\nFPGA core layer\n  source -> STFT/FFT -> mask -> IFFT/WOLA -> metrics\n        ^\n        | samples\n        v\nBRAM replay / LINE-IN audio / ADC / diagnostics\n```"
+      },
+      {
+        "start": 32,
+        "end": 57,
+        "markdown": "```text\nT_RECAP_Phase2/\n  README.md\n  Makefile\n  .gitignore\n\n  docs/\n    specs/\n    architecture/\n    bringup/\n    deprecation/\n\n  spec/\n    generated/\n      core_config.json\n      csr_map.json\n      packet_layouts.json\n      interface_types.json\n      gen_manifest.json\n\n  config/\n    profiles/\n      baseline_core.json\n      sim_core_only.json\n      de1soc_bram_replay.json\n      de1soc_linein_demo.json\n```"
+      }
+    ],
+    "77": [
+      {
+        "start": 4,
+        "end": 58,
+        "markdown": "```text\n     telemetry_status_only.json\n     telemetry_full_demo.json\n\nscripts/\n  gen_headers.py\n  gen_filelists.py\n  package_artifacts.py\n  lint_repo_layout.py\n  check_generated.py\n\nfilelists/\n  rtl_core.f\n  rtl_core_plus_fft.f\n  rtl_telemetry.f\n  rtl_hps_bridge.f\n  rtl_de1soc_full.f\n  quartus_de1soc.qsf.inc\n\nrtl/\n  include/\n     generated/\n  common/\n  interfaces/\n  sources/\n  core/\n  fft/\n  telemetry/\n  hps_bridge/\n  platform/de1soc/\n  top/\n\nsw/\n  golden/\n    generated/\n  hps/\n    include/generated/\n  pc_dashboard/\n    generated/\n\nartifacts/\n  coefficients/\n  test_vectors/\n  golden/\n  manifests/\n  telemetry_captures/\n\nconstraints/\n  de1soc/\n\nplatform/\n  de1soc/\n    qsys/\n    address_map/\n    generated_notes/\n```"
+      }
+    ],
+    "78": [
+      {
+        "start": 5,
+        "end": 10,
+        "markdown": "```text\nlegacy/\n  phase1/\n  deprecated_phase2_docs/\n\nruns/\n```"
+      }
+    ],
+    "82": [
+      {
+        "start": 14,
+        "end": 23,
+        "markdown": "```text\nrtl/include/\n  generated/\n    trecap_core_pkg.sv        // generated core parameters and widths\n    trecap_csr_pkg.sv         // generated CSR constants\n    trecap_packet_pkg.sv      // generated packet constants\n    trecap_iface_pkg.sv       // generated or schema-checked typedefs\n  trecap_math_pkg.sv          // hand-written fixed-point helper declarations if needed\n  trecap_build_pkg.sv         // optional hand-written wrappers around generated\n    constants\n```"
+      },
+      {
+        "start": 30,
+        "end": 51,
+        "markdown": "```systemverilog\ntypedef struct packed {\n  logic                         valid;\n  logic signed [T_SAMPLE_W-1:0] data;\n  logic [63:0]                  sample_idx;\n} trecap_sample_t;\n\ntypedef struct packed {\n  logic        valid;\n  logic [63:0] frame_idx;\n  logic [63:0] trigger_sample_idx;\n} trecap_frame_event_t;\n\ntypedef struct packed {\n  logic [31:0] unique_bins;\n  logic [31:0] unique_suppressed_bins;\n  logic [31:0] eligible_unique_bins;\n  logic [31:0] eligible_suppressed_bins;\n  logic [63:0] eligible_kept_mag2_lo;\n  logic [63:0] eligible_total_mag2_lo;\n  logic        mag2_truncated;\n} trecap_frame_stats_t;\n```"
+      }
+    ],
+    "83": [
+      {
+        "start": 5,
+        "end": 23,
+        "markdown": "```systemverilog\ntypedef enum logic [15:0] {\n  TPKT_WAVE    = 16'h0001,\n  TPKT_SPEC64 = 16'h0002,\n  TPKT_SPEC129 = 16'h0003,\n  TPKT_METRICS = 16'h0004,\n  TPKT_STATUS = 16'h0005,\n  TPKT_WRAP    = 16'h007f\n} trecap_packet_type_e;\n\ntypedef struct packed {\n  logic                      valid;\n  trecap_packet_type_e       packet_type;\n  logic [15:0]               flags;\n  logic [31:0]               seq;\n  logic [63:0]               timestamp;\n  logic [15:0]               payload_bytes;\n  logic [1:0]                drop_priority;\n} trecap_record_meta_t;\n```"
+      },
+      {
+        "start": 39,
+        "end": 50,
+        "markdown": "```text\ncore output tap_sample_valid\ncore output tap_x_delayed\ncore output tap_y_out\ncore output tap_error\ncore output tap_sample_idx\n\ncore output tap_frame_valid\ncore output tap_frame_idx\ncore output tap_mag2_unique_bins\ncore output tap_mask_unique_bins\ncore output tap_frame_stats\n```"
+      }
+    ],
+    "85": [
+      {
+        "start": 33,
+        "end": 52,
+        "markdown": "```text\nsource_mux\n  -> input_ring\n  -> frame_scheduler\n  -> analysis_window\n  -> fft256\n  -> hermitian_canonicalizer\n  -> mag2_mask\n  -> spectrum_mask_builder\n  -> ifft256\n  -> synthesis_wola\n  -> delay_error_metrics\n  -> y_out\n\ncore taps\n  -> telemetry packetizers\n  -> packet_fifo\n  -> hps_bridge record builder\n  -> ddr_ring_writer\n  -> HPS DDR ring\n```"
+      }
+    ],
+    "89": [
+      {
+        "start": 24,
+        "end": 35,
+        "markdown": "```text\nrtl/include      -> no RTL dependencies\nrtl/common       -> rtl/include\nrtl/interfaces   -> rtl/include\nrtl/sources      -> rtl/include, rtl/common, rtl/interfaces\nrtl/fft          -> rtl/include, rtl/common, rtl/interfaces\nrtl/core         -> rtl/include, rtl/common, rtl/interfaces, rtl/fft\nrtl/telemetry    -> rtl/include, rtl/common, rtl/interfaces, core tap typedefs\nrtl/hps_bridge   -> rtl/include, rtl/common, rtl/interfaces, telemetry record typedefs\nrtl/platform     -> all RTL layers, board-specific only\nrtl/top          -> integration only; may instantiate rtl/sources, rtl/core, rtl/\n    telemetry, rtl/hps_bridge, and platform wrappers\n```"
+      }
+    ],
+    "92": [
+      {
+        "start": 23,
+        "end": 42,
+        "markdown": "```text\nsw/golden/\n  include/\n    fixed_point.hpp\n    fft_radix2_int.hpp\n    stft_wola_model.hpp\n    artifacts.hpp\n    canonical_hash.hpp\n  src/\n    fixed_point.cpp\n    fft_radix2_int.cpp\n    stft_wola_model.cpp\n    artifacts.cpp\n    canonical_hash.cpp\n  tools/\n    gen_coeffs.py\n    gen_vectors.py\n    artifact_check.py\n    make_quality_bounds.py\n  phase2_golden_model.cpp\n```"
+      },
+      {
+        "start": 47,
+        "end": 52,
+        "markdown": "```text\nsw/hps/\n  include/\n    generated/\n      trecap_csr.h             // generated from csr_map.json\n      trecap_packet.h          // generated from packet_layouts.json\n```"
+      }
+    ],
+    "93": [
+      {
+        "start": 4,
+        "end": 19,
+        "markdown": "```text\n  trecap_hps_config.h     // non-generated runtime-config API\nsrc/\n  trecap_udp_streamer.c\n  csr_map.c\n  ring_reader.c\n  udp_sender.c\n  command_server.c\n  status_patch.c\n  config.c\nconfig/\n  trecap_hps_config.json\nscripts/\n  setup_static_ip.sh\n  run_udp_streamer.sh\n  reserve_ddr_region_notes.md\n```"
+      },
+      {
+        "start": 29,
+        "end": 42,
+        "markdown": "```json\n{\n    \"csr_base_phys\": \"0xff200000\",\n    \"csr_span_bytes\": 4096,\n    \"ring_base_hps_phys\": \"0x3e000000\",\n    \"ring_base_fpga\": \"0x3e000000\",\n    \"ring_size_bytes\": 33554432,\n    \"telemetry_dst_ip\": \"192.168.10.1\",\n    \"telemetry_dst_port\": 5005,\n    \"command_listen_port\": 5006,\n    \"trusted_command_peer\": \"192.168.10.1\",\n    \"transport_version_major\": 1,\n    \"transport_version_minor\": 7\n}\n```"
+      },
+      {
+        "start": 47,
+        "end": 57,
+        "markdown": "```text\nsw/pc_dashboard/\n  generated/\n    trecap_packet.py        // generated packet constants and parser helpers\n  packet_parser.py\n  dashboard.py\n  ring_buffers.py\n  plots.py\n  command_client.py\n  config.py\n  configs/\n```"
+      }
+    ],
+    "94": [
+      {
+        "start": 4,
+        "end": 5,
+        "markdown": "```text\ndashboard_direct_link.json\n```"
+      },
+      {
+        "start": 20,
+        "end": 27,
+        "markdown": "```text\nconfig/profiles/\n  baseline_core.json\n  sim_core_only.json\n  de1soc_bram_replay.json\n  de1soc_linein_demo.json\n  telemetry_status_only.json\n  telemetry_full_demo.json\n```"
+      },
+      {
+        "start": 32,
+        "end": 42,
+        "markdown": "```json\n{\n    \"profile_name\": \"de1soc_status_only_bringup\",\n    \"source_mode\": \"bram_replay\",\n    \"packet_enable\": [\"STATUS\"],\n    \"spec_mode\": \"SPEC64\",\n    \"wave_decim\": 1,\n    \"sample_rate_hz\": 48000,\n    \"transport_version_major\": 1,\n    \"transport_version_minor\": 7\n}\n```"
+      }
+    ],
+    "95": [
+      {
+        "start": 12,
+        "end": 19,
+        "markdown": "```text\nartifacts/coefficients/\n  window_qw.memh\n  twiddle_re.memh\n  twiddle_im.memh\n  twiddle_inv_re.memh\n  twiddle_inv_im.memh\n  coeff_manifest.json\n```"
+      },
+      {
+        "start": 47,
+        "end": 51,
+        "markdown": "```text\nartifacts/\n  coefficients/\n    window_qw.memh\n    twiddle_re.memh\n```"
+      }
+    ],
+    "96": [
+      {
+        "start": 4,
+        "end": 26,
+        "markdown": "```text\n  twiddle_im.memh\n  twiddle_inv_re.memh\n  twiddle_inv_im.memh\n  coeff_manifest.json\ntest_vectors/\n  test_vectors.json\n  vector_name/\n    x_in.memh\n    config.json\ngolden/\n  vector_name/\n    y_out.memh\n    frame_stats.csv\n    metrics.json\nmanifests/\n  quality_bounds.json\n  artifact_index.json\n  frozen_release_manifest.json\ntelemetry_captures/\n  capture_name/\n    packets.bin\n    capture_manifest.json\n```"
+      },
+      {
+        "start": 41,
+        "end": 46,
+        "markdown": "```text\nlegacy/phase1/\n  rtl/\n  testbench/\n  golden_model/\n  docs/\n```"
+      }
+    ],
+    "103": [
+      {
+        "start": 6,
+        "end": 57,
+        "markdown": "```text\nrtl/include/\n  generated/\n    trecap_core_pkg.sv\n    trecap_csr_pkg.sv\n    trecap_packet_pkg.sv\n    trecap_iface_pkg.sv\n  trecap_math_pkg.sv\n  trecap_build_pkg.sv\n\nrtl/common/\n  round_sat.sv\n  reset_sync.sv\n  sync_pulse.sv\n  sync_bus_snapshot.sv\n  skid_buffer.sv\n  true_dual_port_ram.sv\n  simple_dual_port_ram.sv\n  sync_fifo.sv\n  async_fifo.sv\n\nrtl/sources/\n  trecap_bram_replay_source.sv\n  trecap_audio_adapter.sv\n  trecap_adc_adapter.sv\n  trecap_diagnostic_source.sv\n  trecap_source_mux.sv\n\nrtl/core/\n  trecap_core_top.sv\n  trecap_input_ring.sv\n  trecap_frame_scheduler.sv\n  trecap_analysis_window.sv\n  window_rom.sv\n  trecap_hermitian_canonicalizer.sv\n  trecap_mag2_mask.sv\n  trecap_spectrum_mask_builder.sv\n  trecap_synthesis_wola.sv\n  trecap_delay_error_metrics.sv\n\nrtl/fft/\n  trecap_fft256.sv\n  trecap_ifft256.sv\n  complex_mul_q.sv\n  bit_reverse_addr.sv\n  twiddle_rom.sv\n\nrtl/telemetry/\n  trecap_telemetry_top.sv\n  trecap_packet_scheduler.sv\n  trecap_wave_packetizer.sv\n  trecap_spec_packetizer.sv\n```"
+      }
+    ],
+    "104": [
+      {
+        "start": 4,
+        "end": 44,
+        "markdown": "```text\n   trecap_metrics_packetizer.sv\n   trecap_status_packetizer.sv\n   trecap_packet_fifo.sv\n\nrtl/hps_bridge/\n  trecap_csr_bank.sv\n  trecap_csr_shadow_commit.sv\n  trecap_ring_pointer_ctrl.sv\n  trecap_ddr_record_builder.sv\n  trecap_ddr_ring_writer.sv\n  trecap_hps_bridge_top.sv\n\nrtl/top/\n  trecap_core_only_top.sv\n  trecap_core_bram_replay_top.sv\n  trecap_core_telemetry_top.sv\n  trecap_de1soc_full_top.sv\n\nrtl/platform/de1soc/\n  de1_soc_trecap_top.sv\n  clock_reset_ctrl.sv\n  audio_codec_wrapper.sv\n  adc_wrapper.sv\n  platform_designer_wrapper.sv\n\nfilelists/\n  rtl_core.f\n  rtl_core_plus_fft.f\n  rtl_telemetry.f\n  rtl_hps_bridge.f\n  rtl_de1soc_full.f\n  quartus_de1soc.qsf.inc\n\nconfig/profiles/\n  baseline_core.json\n  sim_core_only.json\n  de1soc_bram_replay.json\n  de1soc_linein_demo.json\n  telemetry_status_only.json\n  telemetry_full_demo.json\n```"
+      },
+      {
+        "start": 50,
+        "end": 58,
+        "markdown": "```text\ndocs/architecture/\n  repo_architecture.md\n  module_inventory.md\n  interface_contracts.md\n  module_api.md\n  build_order.md\n  generated_contracts.md\n  generated_header_flow.md\n```"
+      }
+    ],
+    "105": [
+      {
+        "start": 4,
+        "end": 16,
+        "markdown": "```text\n  clock_reset_plan.md\n  coding_style.md\n\ndocs/bringup/\n  de1_soc_connections.md\n  hps_ethernet_bringup.md\n  audio_linein_bringup.md\n  bram_replay_signoff.md\n\ndocs/deprecation/\n  deprecated_phase2_documents.md\n  phase1_quarantine_notes.md\n```"
+      }
+    ],
+    "1": [
+      {
+        "start": 0,
+        "end": 32,
+        "markdown": "## T-RECAP: Transform-domain Representation and Energy-aware Computation Accelerator with Controlled Precision\n\n### Phase 2 Algorithm, Ethernet/HPS Telemetry, and Repository Architecture Specification\n\nReal-Time Fixed-Point STFT/WOLA Selective Suppression with DE1-SoC Telemetry and Core Repository Architecture.\n\nFormal algorithm, signoff, DDR ring, HPS, Ethernet, UDP, PC dashboard, and repository architecture contract.\n\n| Field | Historical document value |\n| --- | --- |\n| Team Name | Sigma Force, Team #2 |\n| Team Members | Dat Dinh, Dat Huynh, Paul Applebee, Kyung Jae Son |\n| Project Mentor | Dr. Chao Wang |\n| Platform Target | DE1-SoC FPGA fabric, HPS DDR, HPS Ethernet |\n| Date | May 4, 2026 |\n\n**Scope notice.** This document has three normative parts. Part I freezes the Phase 2 mathematical STFT/WOLA core and signoff artifacts. Part II freezes the Ethernet/HPS DDR telemetry and command architecture. Part III freezes the core implementation repository architecture. HPS and PC functions are transport, observability, and control infrastructure. They do not replace BRAM replay signoff or perform the STFT/WOLA core computation."
+      }
+    ],
+    "2": [
+      {
+        "start": 27,
+        "end": 36,
+        "markdown": "```mermaid\nflowchart TD\n    A[\"BRAM replay / audio / ADC source\"] --> B[\"FPGA STFT/WOLA selective-suppression core\"]\n    B --> C[\"FPGA telemetry formatter and DDR ring writer\"]\n    C --> D[\"HPS UDP streamer over Ethernet\"]\n    D --> E[\"PC waveform, error, spectrogram, metrics, and command dashboard\"]\n    style A fill:#e8f1e5,stroke:#52615b,color:#24323d\n    style B fill:#eee8f3,stroke:#665773,color:#24323d\n    style C fill:#e4eef7,stroke:#526575,color:#24323d\n    style D fill:#f6edd9,stroke:#796a48,color:#24323d\n    style E fill:#f7e4de,stroke:#805e52,color:#24323d\n```"
+      }
+    ],
+    "3": [
+      {
+        "start": 1,
+        "end": 41,
+        "markdown": "## Contents\n\n| Entry | Printed page |\n| --- | --- |\n| Part I - Core Algorithm and Signoff Contract | [1](page-014.md) |\n| 1 Overview and Scope | [1](page-014.md) |\n| 1.1 Purpose | [1](page-014.md) |\n| 1.2 Problem statement | [1](page-014.md) |\n| 1.3 Continuity from Phase 1 | [1](page-014.md) |\n| 1.4 Core boundary | [2](page-015.md) |\n| 2 Parameters, Timing, and Finite-Stream Policy | [2](page-015.md) |\n| 2.1 Baseline parameters | [2](page-015.md) |\n| 2.2 Frame timing | [2](page-015.md) |\n| 2.3 Finite-stream signoff policy | [3](page-016.md) |\n| 3 Bit-Accurate Fixed-Point Contract | [4](page-017.md) |\n| 3.1 Sample range and saturation | [4](page-017.md) |\n| 3.2 Arithmetic shift and rounded right shift | [4](page-017.md) |\n| 3.3 Coefficient quantization and storage widths | [4](page-017.md) |\n| 3.4 Fixed-point products and complex multiplication | [5](page-018.md) |\n| 3.5 Internal width schedule | [6](page-019.md) |\n| 4 STFT/WOLA Core Mathematics | [6](page-019.md) |\n| 4.1 Periodic square-root Hann window | [6](page-019.md) |\n| 4.2 Analysis windowing and normalized FFT | [7](page-020.md) |\n| 4.3 Hermitian canonicalization | [7](page-020.md) |\n| 4.4 Magnitude-squared mask | [7](page-020.md) |\n| 4.5 Protection rules and masked spectrum | [8](page-021.md) |\n| 4.6 Unscaled IFFT, synthesis window, and WOLA | [8](page-021.md) |\n| 5 Normative Core Algorithm Tables | [9](page-022.md) |\n| 5.1 Required invariants | [10](page-023.md) |\n| 6 Exact Custom FFT/IFFT Integer Algorithms | [11](page-024.md) |\n| 6.1 Bit reversal and twiddle tables | [11](page-024.md) |\n| 7 Metrics and Artifact Contract | [12](page-025.md) |"
+      }
+    ],
+    "4": [
+      {
+        "start": 1,
+        "end": 41,
+        "markdown": "## Contents\n\n| Entry | Printed page |\n| --- | --- |\n| 7.1 Spectral metrics | [12](page-025.md) |\n| 7.2 Time-domain quality metrics | [13](page-026.md) |\n| 7.3 Canonical memory-file encoding | [13](page-026.md) |\n| 7.4 Canonical SHA-256 hashing | [14](page-027.md) |\n| 7.5 Normative coefficient artifacts | [14](page-027.md) |\n| 7.6 Frozen stream artifacts | [14](page-027.md) |\n| 7.7 Artifact line counts | [14](page-027.md) |\n| 7.8 Required artifacts | [15](page-028.md) |\n| 7.9 CSV field contracts | [16](page-029.md) |\n| 7.10 JSON integer rule and schemas | [16](page-029.md) |\n| 8 Signoff Test Suite, Generators, and Acceptance Criteria | [19](page-032.md) |\n| 8.1 Required test-vector classes | [19](page-032.md) |\n| 8.2 Frozen generator algorithms | [20](page-033.md) |\n| 8.3 Golden-model quality bounds | [21](page-034.md) |\n| 8.4 Acceptance criteria | [22](page-035.md) |\n| 9 Live Source Abstraction and Threshold Mapping | [22](page-035.md) |\n| 10 Throughput and Power Interpretation | [23](page-036.md) |\n| 11 Conclusion | [23](page-036.md) |\n| Part II - Ethernet/HPS DDR Telemetry and Control Architecture | [24](page-037.md) |\n| 12 Purpose and Scope | [24](page-037.md) |\n| 12.1 Purpose | [24](page-037.md) |\n| 12.2 Relationship to Part I | [24](page-037.md) |\n| 12.3 Non-Goals | [24](page-037.md) |\n| 13 System Boundary and Ownership Rules | [25](page-038.md) |\n| 13.1 Core Ownership Rule | [25](page-038.md) |\n| 13.2 Transport Ownership Rule | [25](page-038.md) |\n| 13.3 Non-Stall Rule | [25](page-038.md) |\n| 13.4 Signoff Rule | [26](page-039.md) |\n| 14 Physical Connection Profile | [26](page-039.md) |"
+      }
+    ],
+    "5": [
+      {
+        "start": 1,
+        "end": 39,
+        "markdown": "## Contents\n\n| Entry | Printed page |\n| --- | --- |\n| 14.1 Required Connections | [26](page-039.md) |\n| 14.2 Recommended Demo Topology | [26](page-039.md) |\n| 15 Level-3 Architecture | [26](page-039.md) |\n| 15.1 Top-Level Dataflow | [26](page-039.md) |\n| 15.2 Functional Blocks | [27](page-040.md) |\n| 15.3 DE1-SoC Bridge and Address-Mapping Assumption | [27](page-040.md) |\n| 16 CSR Register Contract | [28](page-041.md) |\n| 16.1 Register Access Rules | [28](page-041.md) |\n| 16.2 CSR Map | [28](page-041.md) |\n| 16.3 Version Compatibility Rule | [30](page-043.md) |\n| 16.4 CSR Bit Definitions | [30](page-043.md) |\n| 16.5 Spectrum Packet Selection Rule | [31](page-044.md) |\n| 16.6 Atomic 64-bit Pointer Transfer | [33](page-046.md) |\n| 16.7 Core Counter Snapshot Rule | [34](page-047.md) |\n| 16.8 Sticky-Flag Clear Rule | [34](page-047.md) |\n| 16.9 Command-Reject Counter Ownership | [34](page-047.md) |\n| 16.10 Packet-FIFO Drop Accounting Rule | [34](page-047.md) |\n| 16.11 Threshold Commit Rule | [35](page-048.md) |\n| 16.12 Source-Mode Change Rule | [35](page-048.md) |\n| 16.13 Clock-Domain Crossing Requirements | [35](page-048.md) |\n| 17 DDR Ring Buffer Contract | [36](page-049.md) |\n| 17.1 Ring Size, Base Address, and Alignment | [36](page-049.md) |\n| 17.2 Absolute Pointers | [36](page-049.md) |\n| 17.3 Ring Initialization Rule | [37](page-050.md) |\n| 17.4 Free Space Rule Including Wrap | [37](page-050.md) |\n| 17.5 Record Alignment and WRAP Record | [37](page-050.md) |\n| 17.6 Memory Coherency Requirement | [38](page-051.md) |\n| 18 DDR Packet Record Format | [38](page-051.md) |\n| 18.1 Common Header | [38](page-051.md) |\n| 18.2 Header Flags | [39](page-052.md) |\n| 18.3 Timestamp Semantics | [40](page-053.md) |"
+      }
+    ],
+    "6": [
+      {
+        "start": 1,
+        "end": 39,
+        "markdown": "## Contents\n\n| Entry | Printed page |\n| --- | --- |\n| 18.4 Packet Types | [40](page-053.md) |\n| 18.5 Packet Validation Rules | [40](page-053.md) |\n| 18.6 Maximum Payload Rules | [41](page-054.md) |\n| 18.7 Commit Protocol | [42](page-055.md) |\n| 19 Telemetry Payload Formats | [43](page-056.md) |\n| 19.1 Magnitude Compression Operator | [43](page-056.md) |\n| 19.2 WAVE Payload | [43](page-056.md) |\n| 19.3 SPEC129 Payload | [44](page-057.md) |\n| 19.4 SPEC64 Payload | [44](page-057.md) |\n| 19.5 METRICS Payload | [45](page-058.md) |\n| 19.6 STATUS Ownership and HPS Patch Rule | [46](page-059.md) |\n| 19.7 STATUS Payload | [47](page-060.md) |\n| 20 HPS UDP Streamer Contract | [48](page-061.md) |\n| 20.1 HPS Responsibilities | [48](page-061.md) |\n| 20.2 UDP Datagrams and Fragmentation Policy | [48](page-061.md) |\n| 20.3 Nonblocking Send Rule | [48](page-061.md) |\n| 20.4 HPS Streamer Algorithm | [49](page-062.md) |\n| 20.5 Runtime Packet Validation Checklist | [50](page-063.md) |\n| 20.6 Ethernet Port Assignments | [50](page-063.md) |\n| 21 PC Command Contract | [51](page-064.md) |\n| 21.1 Command Header | [51](page-064.md) |\n| 21.2 Command Types and Valid Ranges | [51](page-064.md) |\n| 21.3 Command Source Rule and Security Scope | [52](page-065.md) |\n| 21.4 Command Safety Rules | [52](page-065.md) |\n| 22 Telemetry Scheduling and Bandwidth | [52](page-065.md) |\n| 22.1 Frame Rate | [52](page-065.md) |\n| 22.2 Recommended Packet Rates | [52](page-065.md) |\n| 22.3 Bandwidth Estimates | [53](page-066.md) |\n| 23 Memory Allocation and Cache Policy | [53](page-066.md) |\n| 23.1 Option A: Reserved DDR Region | [53](page-066.md) |"
+      }
+    ],
+    "7": [
+      {
+        "start": 1,
+        "end": 42,
+        "markdown": "## Contents\n\n| Entry | Printed page |\n| --- | --- |\n| 23.2 Option B: DMA-Coherent Kernel Driver | [53](page-066.md) |\n| 24 PC Dashboard Contract | [53](page-066.md) |\n| 24.1 Required Plots | [53](page-066.md) |\n| 24.2 Dashboard Update Rate | [54](page-067.md) |\n| 24.3 Packet Loss Handling | [54](page-067.md) |\n| 25 Startup and Shutdown Sequence | [54](page-067.md) |\n| 25.1 Startup Sequence | [54](page-067.md) |\n| 25.2 Shutdown Sequence | [55](page-068.md) |\n| 26 Failure Modes and Required Counters | [55](page-068.md) |\n| 27 Acceptance Criteria | [56](page-069.md) |\n| 28 First Implementation Scope | [58](page-071.md) |\n| 28.1 Required First-Demo Scope | [58](page-071.md) |\n| 28.2 Deferred Optional Scope | [58](page-071.md) |\n| 29 Development Milestones | [59](page-072.md) |\n| 30 Conclusion | [59](page-072.md) |\n| Part III - Core Implementation Repository Architecture | [60](page-073.md) |\n| 31 Repository Architecture Executive Summary | [60](page-073.md) |\n| 32 Scope and Inputs | [61](page-074.md) |\n| 32.1 Normative inputs | [61](page-074.md) |\n| 32.2 In scope | [61](page-074.md) |\n| 32.3 Out of scope | [62](page-075.md) |\n| 33 Architectural Principles | [62](page-075.md) |\n| 33.1 Non-negotiable implementation rules | [62](page-075.md) |\n| 33.2 Ownership diagram | [62](page-075.md) |\n| 34 Repository Layout | [63](page-076.md) |\n| 34.1 Normative top-level tree | [63](page-076.md) |"
+      }
+    ],
+    "8": [
+      {
+        "start": 1,
+        "end": 39,
+        "markdown": "## Contents\n\n| Entry | Printed page |\n| --- | --- |\n| 34.2 Directory responsibilities | [65](page-078.md) |\n| 35 Generated Shared Contract Flow | [66](page-079.md) |\n| 35.1 Purpose | [66](page-079.md) |\n| 35.2 Schema files | [66](page-079.md) |\n| 35.3 Generated outputs | [67](page-080.md) |\n| 35.4 Generated-file commit policy | [67](page-080.md) |\n| 35.5 Generated filelists | [68](page-081.md) |\n| 35.6 Normative CSR map rule | [68](page-081.md) |\n| 36 SystemVerilog Interface and Typedef Baseline | [69](page-082.md) |\n| 36.1 Package organization | [69](page-082.md) |\n| 36.2 Core sample and frame typedefs | [69](page-082.md) |\n| 36.3 Telemetry record typedefs | [69](page-082.md) |\n| 36.4 Core tap interface rule | [70](page-083.md) |\n| 37 Module API, Parameter, and Naming Rules | [71](page-084.md) |\n| 37.1 Parameter ownership | [71](page-084.md) |\n| 37.2 Port naming rules | [71](page-084.md) |\n| 37.3 Coding style baseline | [71](page-084.md) |\n| 38 RTL Layer Ownership | [72](page-085.md) |\n| 38.1 Layer partition | [72](page-085.md) |\n| 38.2 Dataflow | [72](page-085.md) |\n| 39 RTL Module Inventory | [73](page-086.md) |\n| 39.1 Source modules | [73](page-086.md) |\n| 39.2 Core modules | [73](page-086.md) |\n| 39.3 FFT modules | [74](page-087.md) |\n| 39.4 Telemetry modules | [74](page-087.md) |\n| 39.5 HPS bridge modules | [74](page-087.md) |\n| 39.6 DE1-SoC platform modules | [75](page-088.md) |\n| 39.7 Top-level build variants | [75](page-088.md) |\n| 40 Dependency Rules | [76](page-089.md) |"
+      }
+    ],
+    "9": [
+      {
+        "start": 1,
+        "end": 40,
+        "markdown": "## Contents\n\n| Entry | Printed page |\n| --- | --- |\n| 41 Clock and Reset Ownership | [77](page-090.md) |\n| 41.1 Clock-domain baseline | [77](page-090.md) |\n| 41.2 CDC rules | [77](page-090.md) |\n| 42 Platform Designer and DE1-SoC Ownership | [77](page-090.md) |\n| 42.1 Platform files | [77](page-090.md) |\n| 42.2 Platform Designer generated-artifact policy | [78](page-091.md) |\n| 42.3 Bridge assumptions | [78](page-091.md) |\n| 42.4 Address map file | [79](page-092.md) |\n| 43 Software Implementation Layout | [79](page-092.md) |\n| 43.1 Golden software | [79](page-092.md) |\n| 43.2 HPS software | [79](page-092.md) |\n| 43.3 HPS runtime configuration manifest | [80](page-093.md) |\n| 43.4 PC dashboard software | [80](page-093.md) |\n| 44 Runtime and Build Profiles | [81](page-094.md) |\n| 44.1 Profile separation rule | [81](page-094.md) |\n| 44.2 Example profile | [81](page-094.md) |\n| 45 Coefficient ROM and Memory Primitive Policy | [81](page-094.md) |\n| 45.1 Coefficient ROM ownership | [81](page-094.md) |\n| 45.2 Memory primitive policy | [82](page-095.md) |\n| 46 Artifact and Data Layout | [82](page-095.md) |\n| 46.1 Artifact directories | [82](page-095.md) |\n| 46.2 Artifact authority rule | [83](page-096.md) |\n| 47 Legacy and Deprecated Document Quarantine | [83](page-096.md) |\n| 47.1 Phase 1 quarantine | [83](page-096.md) |\n| 47.2 Deprecated Phase 2 warning | [83](page-096.md) |\n| 48 Build System Architecture | [84](page-097.md) |\n| 48.1 Required build targets | [84](page-097.md) |\n| 49 Implementation Milestones | [85](page-098.md) |"
+      }
+    ],
+    "10": [
+      {
+        "start": 1,
+        "end": 26,
+        "markdown": "## Contents\n\n| Entry | Printed page |\n| --- | --- |\n| 50 Implementation Cuts | [85](page-098.md) |\n| 50.1 Core Implementation Cut C0 | [85](page-098.md) |\n| 50.2 Transport Implementation Cut T0 | [86](page-099.md) |\n| 51 First Implementation Scope | [86](page-099.md) |\n| 51.1 Core-first required now: Cut C0 | [86](page-099.md) |\n| 51.2 First full-demo scope after C0/T0 | [87](page-100.md) |\n| 51.3 Deferred | [87](page-100.md) |\n| 52 Repository Acceptance Criteria | [87](page-100.md) |\n| 53 Conclusion | [88](page-101.md) |\n| Appendices | [89](page-102.md) |\n| A Vendor FFT IP Contract Checklist | [89](page-102.md) |\n| B Phase 1 Mathematical Anchor | [89](page-102.md) |\n| C Repository Recommended File Inventory | [90](page-103.md) |\n| D Repository Minimum Documentation Files | [91](page-104.md) |"
+      }
+    ],
+    "11": [
+      {
+        "start": 1,
+        "end": 13,
+        "markdown": "## List of Algorithms\n\n| Entry | Printed page |\n| --- | --- |\n| 1 Finite-stream Phase 2 core operator with full-tail scoring | [9](page-022.md) |\n| 2 ProcessFrameAnalysisMask: frame construction, FFT, canonicalization, masking, and frame statistics | [9](page-022.md) |\n| 3 ProcessFrameSynthesisWOLA: IFFT, synthesis window, and WOLA accumulation . | [10](page-023.md) |\n| 4 Exact custom FFTnorm integer algorithm | [11](page-024.md) |\n| 5 Exact custom IFFTunscaled integer algorithm | [12](page-025.md) |\n| 6 FPGA DDR record write and commit protocol with correct wrap-space accounting . | [42](page-055.md) |\n| 7 HPS DDR ring consumer and UDP streamer | [49](page-062.md) |"
+      }
+    ],
+    "12": [
+      {
+        "start": 1,
+        "end": 38,
+        "markdown": "## List of Tables\n\n| Entry | Printed page |\n| --- | --- |\n| 1 Mathematical continuity from Phase 1 to Phase 2 | [1](page-014.md) |\n| 2 Revision J baseline parameters | [2](page-015.md) |\n| 3 Revision J minimum internal widths for the custom radix-2 baseline | [6](page-019.md) |\n| 4 Required stream and coefficient artifacts | [15](page-028.md) |\n| 5 Required metadata, statistics, and signoff artifacts | [15](page-028.md) |\n| 6 Required mathematical signoff vector classes | [20](page-033.md) |\n| 7 Level-3 functional block responsibilities | [27](page-040.md) |\n| 8 Normative CSR map for Level-3 Ethernet/HPS telemetry, Revision G | [28](page-041.md) |\n| 9 CONTROL bit definitions | [30](page-043.md) |\n| 10 PACKET_ENABLE bit definitions | [31](page-044.md) |\n| 11 STATUS bit definitions | [32](page-045.md) |\n| 12 DMA_STATUS bit definitions | [32](page-045.md) |\n| 13 OVERFLOW_FLAGS and CLEAR_STICKY_FLAGS bit definitions | [33](page-046.md) |\n| 14 DDR telemetry packet header | [39](page-052.md) |\n| 15 Common flags bit definitions | [39](page-052.md) |\n| 16 Telemetry packet types | [40](page-053.md) |\n| 17 Maximum and exact payload-size rules by packet type | [41](page-054.md) |\n| 18 Exact WAVE payload layout | [43](page-056.md) |\n| 19 Exact SPEC129 payload layout | [44](page-057.md) |\n| 20 Exact SPEC64 payload layout | [45](page-058.md) |\n| 21 Baseline METRICS payload layout | [46](page-059.md) |\n| 22 Baseline STATUS payload layout | [47](page-060.md) |\n| 23 PC-to-HPS command packet | [51](page-064.md) |\n| 24 PC command types and valid argument ranges | [51](page-064.md) |\n| 25 Recommended packet scheduling | [52](page-065.md) |\n| 26 Failure modes and required observability | [55](page-068.md) |\n| 27 Recommended Level-3 development milestones | [59](page-072.md) |\n| 28 Repository directory responsibilities | [65](page-078.md) |\n| 29 Generated-contract schema files | [67](page-080.md) |\n| 30 Generated header outputs | [67](page-080.md) |\n| 31 Required generated filelists | [68](page-081.md) |\n| 32 RTL API and naming rules | [71](page-084.md) |"
+      }
+    ],
+    "13": [
+      {
+        "start": 1,
+        "end": 17,
+        "markdown": "## List of Tables\n\n| Entry | Printed page |\n| --- | --- |\n| 33 RTL layer ownership | [72](page-085.md) |\n| 34 Input-source module inventory | [73](page-086.md) |\n| 35 Core RTL module inventory | [73](page-086.md) |\n| 36 FFT/IFFT module inventory | [74](page-087.md) |\n| 37 Telemetry module inventory | [74](page-087.md) |\n| 38 HPS bridge module inventory | [75](page-088.md) |\n| 39 DE1-SoC platform module inventory | [75](page-088.md) |\n| 40 Top-level build variants | [76](page-089.md) |\n| 41 Clock/reset domain ownership | [77](page-090.md) |\n| 42 Baseline memory primitive wrappers | [82](page-095.md) |\n| 43 Core implementation build targets | [84](page-097.md) |\n| 44 Implementation milestones for the core repository | [85](page-098.md) |\n| 45 Core-first implementation cut C0 | [86](page-099.md) |"
+      }
+    ],
+    "106": [
+      {
+        "start": 4,
+        "end": 42,
+        "markdown": "## References\n\n1. A. V. Oppenheim and R. W. Schafer, *Discrete-Time Signal Processing*, 3rd ed. Upper Saddle River, NJ, USA: Prentice Hall, 2010.\n\n2. F. J. Harris, \"On the use of windows for harmonic analysis with the discrete Fourier transform,\" *Proceedings of the IEEE*, vol. 66, no. 1, pp. 51-83, Jan. 1978. [DOI](https://doi.org/10.1109/PROC.1978.10837).\n\n3. J. B. Allen and L. R. Rabiner, \"A unified approach to short-time Fourier analysis and synthesis,\" *Proceedings of the IEEE*, vol. 65, no. 11, pp. 1558-1564, Nov. 1977. [DOI](https://doi.org/10.1109/PROC.1977.10770).\n\n4. D. W. Griffin and J. S. Lim, \"Signal estimation from modified short-time Fourier transform,\" *IEEE Transactions on Acoustics, Speech, and Signal Processing*, vol. 32, no. 2, pp. 236-243, Apr. 1984. [DOI](https://doi.org/10.1109/TASSP.1984.1164317).\n\n5. U. Meyer-Baese, *Digital Signal Processing with Field Programmable Gate Arrays*, 4th ed. Berlin, Germany: Springer, 2014. [DOI](https://doi.org/10.1007/978-3-642-45309-0).\n\n6. Terasic Technologies, *DE1-SoC User Manual*, rev. F/rev. G board manual, version 2.0.4, Jan. 2019. [Manufacturer document archive](https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&No=836&PartNo=4).\n\n7. Intel Corporation, *Cyclone V Hard Processor System Technical Reference Manual*, document no. 683126, Feb. 2014. [Original cited PDF address](https://www.intel.com/programmable/technical-pdfs/683126.pdf).\n\n8. Intel Corporation, *Avalon Interface Specifications*, version 22.3, Sep. 2025. [Original cited documentation](https://www.intel.com/content/www/us/en/docs/programmable/683091/current/introduction-to-the-interface-specifications.html).\n\n9. IEEE Computer Society, *IEEE Standard for SystemVerilog, Unified Hardware Design, Specification, and Verification Language*, IEEE Std 1800-2023, Feb. 2024. [Standard listing](https://standards.ieee.org/ieee/1800/7743/).\n\n10. J. Postel, \"User Datagram Protocol,\" RFC 768, Internet Engineering Task Force, Aug. 1980. [DOI](https://doi.org/10.17487/RFC0768)."
+      }
+    ]
+  },
+  "tables": {
+    "1": [
+      [
+        "Concept",
+        "Phase 1: Haar",
+        "Phase 2: STFT/WOLA"
+      ],
+      [
+        "Streaming unit",
+        "Pair $(x[2k],x[2k+1])$",
+        "Overlapped frame $x_m[0:L-1]$"
+      ],
+      [
+        "Transform output",
+        "$a[k],d[k]$",
+        "$X_m[k]$"
+      ],
+      [
+        "Suppression variable",
+        "$\\lvert d[k]\\rvert<T$",
+        "$\\operatorname{mag2}[k]<\\mathrm{THR2}$"
+      ],
+      [
+        "Mask action",
+        "$d^{\\prime}[k]=(1-s_k)d[k]$",
+        "$\\mathrm{Xb}[k]=(1-\\operatorname{mask}[k])X^{\\mathrm{can}}[k]$"
+      ],
+      [
+        "Reconstruction",
+        "Inverse Haar",
+        "IFFT + synthesis window + WOLA"
+      ],
+      [
+        "Correctness anchor",
+        "Exact lossless at $T=0$",
+        "Deterministic near-lossless at $\\mathrm{THR2}=0$"
+      ],
+      [
+        "Metrics",
+        "Suppressed pairs and time error",
+        "Suppressed eligible bins, kept spectral total, and time error"
+      ]
+    ],
+    "2": [
+      [
+        "Symbol",
+        "Meaning",
+        "Baseline"
+      ],
+      [
+        "$N$",
+        "External signed input/output sample width",
+        "12"
+      ],
+      [
+        "$L$",
+        "FFT length",
+        "256"
+      ],
+      [
+        "$P$",
+        "Number of radix-2 stages, $P=\\log_2L$",
+        "8"
+      ],
+      [
+        "$H$",
+        "Hop size",
+        "$L/2=128$"
+      ],
+      [
+        "$F$",
+        "Fractional width for windows, twiddles, FFT data, and WOLA domain",
+        "15"
+      ],
+      [
+        "$G$",
+        "Scheduling cushion from frame trigger to first allowed WOLA contribution",
+        "$H=128$"
+      ],
+      [
+        "$D$",
+        "Exact causal delay",
+        "$L+G=384$ samples"
+      ],
+      [
+        "THR2",
+        "Internal threshold register in the magnitude-squared domain",
+        "Programmable unsigned $W_{\\mathrm{mag2}}$-bit integer"
+      ],
+      [
+        "PROTECT_DC",
+        "Force DC bin to be kept",
+        "1"
+      ],
+      [
+        "PROTECT_NYQ",
+        "Force Nyquist bin to be kept",
+        "0"
+      ]
+    ],
+    "3": [
+      [
+        "Quantity",
+        "Symbol",
+        "Width rule",
+        "Baseline"
+      ],
+      [
+        "External sample",
+        "$W_x$",
+        "signed $N$",
+        "12"
+      ],
+      [
+        "Window coefficient",
+        "$W_{Q_w}$",
+        "unsigned $F+1$",
+        "16"
+      ],
+      [
+        "Twiddle coefficient",
+        "$W_{\\mathrm{tw}}$",
+        "signed $F+2$",
+        "17"
+      ],
+      [
+        "Analysis-windowed input",
+        "$W_u$",
+        "signed $N+F$",
+        "27"
+      ],
+      [
+        "Forward FFT stored real/imag",
+        "$W_{\\mathrm{fft}}$",
+        "signed $W_u+1$",
+        "28"
+      ],
+      [
+        "Forward pre-round add/sub",
+        "$W_{\\mathrm{fft,pre}}$",
+        "signed $W_{\\mathrm{fft}}+1$",
+        "29"
+      ],
+      [
+        "Canonical pre-round add/sub",
+        "$W_{\\mathrm{can,pre}}$",
+        "signed $W_{\\mathrm{fft}}+1$",
+        "29"
+      ],
+      [
+        "Canonical real/imag",
+        "$W_{\\mathrm{can}}$",
+        "signed $W_{\\mathrm{fft}}$",
+        "28"
+      ],
+      [
+        "Magnitude-squared and THR2",
+        "$W_{\\mathrm{mag2}}$",
+        "unsigned $2W_{\\mathrm{can}}$",
+        "56"
+      ],
+      [
+        "Unscaled IFFT stored real/imag",
+        "$W_{\\mathrm{ifft}}$",
+        "signed $W_{\\mathrm{can}}+P$",
+        "36"
+      ],
+      [
+        "Synthesis-windowed sample",
+        "$W_z$",
+        "signed $W_{\\mathrm{ifft}}$",
+        "36"
+      ],
+      [
+        "OLA accumulator entry",
+        "$W_{\\mathrm{ola}}$",
+        "signed $W_z+1$",
+        "37"
+      ],
+      [
+        "Aggregate spectral sums",
+        "$W_{E\\mathrm{sum}}$",
+        "At least $W_{\\mathrm{mag2}}+\\lceil\\log_2(2N_{\\mathrm{frames}}L)\\rceil$ or arbitrary precision",
+        "run dependent"
+      ],
+      [
+        "Time-error sums",
+        "$W_{\\mathrm{err}}$",
+        "Large enough for all emitted samples or arbitrary precision",
+        "run dependent"
+      ]
+    ],
+    "6": [
+      [
+        "Test class",
+        "Purpose",
+        "Required"
+      ],
+      [
+        "Zero input",
+        "Confirms zero-extension, windowing, FFT/IFFT, WOLA, and output rounding do not create nonzero samples.",
+        "Yes"
+      ],
+      [
+        "No suppression, THR2 = 0",
+        "Confirms all eligible masks are zero and establishes near-lossless baseline error.",
+        "Yes"
+      ],
+      [
+        "Impulse and step",
+        "Exercises startup, flush, delay D, and WOLA alignment.",
+        "Yes"
+      ],
+      [
+        "Exact-bin tone sweep",
+        "Verifies dominant-bin placement and expected window-shaped spectral spread.",
+        "Yes"
+      ],
+      [
+        "Off-bin tone sweep",
+        "Exercises leakage behavior under the periodic square-root Hann window.",
+        "Yes"
+      ],
+      [
+        "Near-threshold multitone",
+        "Verifies full-precision unsigned threshold decisions and Hermitian-pair consistency.",
+        "Yes"
+      ],
+      [
+        "Noise-only stream",
+        "Characterizes suppression ratio, kept-energy ratio, and error under low-value content.",
+        "Yes"
+      ],
+      [
+        "High-amplitude headroom",
+        "Confirms no internal wraparound on the frozen width schedule.",
+        "Yes"
+      ],
+      [
+        "Short finite stream",
+        "Forces startup, flush, and full-tail scoring.",
+        "Yes"
+      ],
+      [
+        "Rectangular-window diagnostic",
+        "Debug-only exact one-bin sinusoid test. Not part of the normal core.",
+        "Optional"
+      ]
+    ],
+    "26-68": [
+      [
+        "Failure mode",
+        "Required behavior",
+        "Required counter/status"
+      ],
+      [
+        "Ring full",
+        "Drop telemetry, continue core.",
+        "DMA_DROP_COUNT, ring-full flag."
+      ],
+      [
+        "Packet FIFO full",
+        "Drop the affected telemetry tap event or formatted telemetry packet. Do not backpressure the STFT/WOLA core.",
+        "PACKET_FIFO_DROP_COUNT. Packet-FIFO overflow sticky flag. STATUS/DMA_STATUS live-full indicators."
+      ],
+      [
+        "Malformed DDR record",
+        "HPS disables telemetry and requires soft reset plus ring reconfiguration. Byte-scanning resync is not in baseline.",
+        "Malformed-record count."
+      ],
+      [
+        "UDP send failure",
+        "HPS drops datagram and advances consumer pointer.",
+        "udp_send_error_count."
+      ]
+    ],
+    "26-69": [
+      [
+        "Failure mode",
+        "Required behavior",
+        "Required counter/status"
+      ],
+      [
+        "Illegal command",
+        "Reject command and do not modify active state.",
+        "HPS reject counter plus CSR_COMMAND_REJECT_COUNT."
+      ],
+      [
+        "CDC violation detected",
+        "Raise sticky flag and optionally disable telemetry.",
+        "CDC error flag."
+      ],
+      [
+        "Oversized record",
+        "HPS drops record. FPGA scheduler should avoid generating it.",
+        "Oversized-record count."
+      ]
+    ],
+    "41": [
+      [
+        "Domain",
+        "Owned logic"
+      ],
+      [
+        "Core domain",
+        "STFT/WOLA core, source samples, frame scheduler, FFT/IFFT control, WOLA output, and core metrics."
+      ],
+      [
+        "Telemetry domain",
+        "Packetizers and packet FIFO, unless intentionally the same as the core domain."
+      ],
+      [
+        "HPS bridge / Avalon domain",
+        "CSR bank, DDR ring writer, pointer control, Platform Designer bus ports, and DDR write master."
+      ],
+      [
+        "Board wrapper domain",
+        "Board clocks, reset conditioning, audio/ADC clocks if used, and platform-specific clock crossing wrappers."
+      ]
+    ],
+    "44": [
+      [
+        "Milestone",
+        "Task",
+        "Exit condition"
+      ],
+      [
+        "R0",
+        "Restructure repository and quarantine legacy code.",
+        "Phase 2 root contains no active Phase 1 build files."
+      ],
+      [
+        "R1",
+        "Add generated schema flow.",
+        "gen_headers.py produces SV/C/Python headers from one schema source."
+      ],
+      [
+        "R2",
+        "Generate coefficients and frozen vectors.",
+        "Coefficient and vector manifests contain hashes and row counts."
+      ],
+      [
+        "R3",
+        "Implement golden model skeleton.",
+        "Golden tool emits config.json, x_in.memh, and placeholder output artifacts."
+      ],
+      [
+        "R4",
+        "Implement source and core RTL skeleton.",
+        "Core-only RTL compiles without telemetry/HPS/platform dependencies."
+      ],
+      [
+        "R5",
+        "Implement FFT/IFFT and STFT/WOLA top modules.",
+        "Core exposes sample input, output, frame stats, and metric taps."
+      ],
+      [
+        "R6",
+        "Implement telemetry packetizers.",
+        "Packetizers emit formatted records into packet FIFO. No DDR writer is inside telemetry."
+      ],
+      [
+        "R7",
+        "Implement HPS bridge RTL.",
+        "CSR bank, pointer control, record builder, and DDR ring writer are integrated."
+      ],
+      [
+        "R8",
+        "Add DE1-SoC platform integration.",
+        "Platform Designer wrapper, constraints, and address map are present."
+      ],
+      [
+        "R9",
+        "Implement HPS UDP streamer.",
+        "HPS code consumes generated CSR/packet headers and runtime manifest."
+      ],
+      [
+        "R10",
+        "Implement PC dashboard.",
+        "Dashboard consumes generated packet constants and displays required live panels."
+      ],
+      [
+        "R11",
+        "Add LINE-IN audio wrapper.",
+        "Audio adapter maps controlled LINE-IN samples into signed core scale."
+      ]
+    ]
+  },
+  "table_regions": [
+    {
+      "table": 1,
+      "page": 14,
+      "caption_start": 38,
+      "start": 40,
+      "end": 51,
+      "caption": "Mathematical continuity from Phase 1 to Phase 2.",
+      "col_starts": [
+        0,
+        34,
+        67
+      ],
+      "header": "Concept                           Phase 1: Haar                    Phase 2: STFT/WOLA"
+    },
+    {
+      "table": 2,
+      "page": 15,
+      "caption_start": 27,
+      "start": 29,
+      "end": 43,
+      "caption": "Revision J baseline parameters.",
+      "col_starts": [
+        0,
+        24,
+        81
+      ],
+      "header": "Symbol                  Meaning                                                  Baseline"
+    },
+    {
+      "table": 3,
+      "page": 19,
+      "caption_start": 6,
+      "start": 8,
+      "end": 30,
+      "caption": "Revision J minimum internal widths for the custom radix-2 baseline.",
+      "col_starts": [
+        0,
+        27,
+        47,
+        93
+      ],
+      "header": "Quantity                   Symbol              Width rule                                    Baseline"
+    },
+    {
+      "table": 4,
+      "page": 28,
+      "caption_start": 23,
+      "start": 25,
+      "end": 34,
+      "caption": "Required stream and coefficient artifacts.",
+      "col_starts": [
+        0,
+        32
+      ],
+      "header": "Artifact                        Contract"
+    },
+    {
+      "table": 5,
+      "page": 28,
+      "caption_start": 36,
+      "start": 38,
+      "end": 49,
+      "caption": "Required metadata, statistics, and signoff artifacts.",
+      "col_starts": [
+        0,
+        32
+      ],
+      "header": "Artifact                        Contract"
+    },
+    {
+      "table": 6,
+      "page": 33,
+      "caption_start": 4,
+      "start": 6,
+      "end": 25,
+      "caption": "Required mathematical signoff vector classes.",
+      "col_starts": [
+        0,
+        28,
+        86
+      ],
+      "header": "Test class                  Purpose                                                   Required"
+    },
+    {
+      "table": 7,
+      "page": 40,
+      "caption_start": 11,
+      "start": 13,
+      "end": 28,
+      "caption": "Level-3 functional block responsibilities.",
+      "col_starts": [
+        3,
+        29
+      ],
+      "header": "   Block                     Responsibility"
+    },
+    {
+      "table": 8,
+      "page": 41,
+      "caption_start": 19,
+      "start": 21,
+      "end": 50,
+      "caption": "Normative CSR map for Level-3 Ethernet/HPS telemetry, Revision G.",
+      "col_starts": [
+        2,
+        14,
+        35
+      ],
+      "header": "  Offset      Name                 Access Meaning"
+    },
+    {
+      "table": 9,
+      "page": 43,
+      "caption_start": 26,
+      "start": 28,
+      "end": 42,
+      "caption": "CONTROL bit definitions.",
+      "col_starts": [
+        0,
+        13,
+        40,
+        55
+      ],
+      "header": "Bit          Name                       Type           Meaning"
+    },
+    {
+      "table": 10,
+      "page": 44,
+      "caption_start": 4,
+      "start": 6,
+      "end": 20,
+      "caption": "PACKET_ENABLE bit definitions.",
+      "col_starts": [
+        0,
+        12,
+        40
+      ],
+      "header": "Bit         Name                        Meaning"
+    },
+    {
+      "table": 11,
+      "page": 45,
+      "caption_start": 4,
+      "start": 6,
+      "end": 23,
+      "caption": "STATUS bit definitions.",
+      "col_starts": [
+        0,
+        12,
+        39
+      ],
+      "header": "Bit         Name                       Meaning"
+    },
+    {
+      "table": 12,
+      "page": 45,
+      "caption_start": 25,
+      "start": 27,
+      "end": 42,
+      "caption": "DMA_STATUS bit definitions.",
+      "col_starts": [
+        0,
+        12,
+        39
+      ],
+      "header": "Bit         Name                       Meaning"
+    },
+    {
+      "table": 13,
+      "page": 46,
+      "caption_start": 4,
+      "start": 6,
+      "end": 30,
+      "caption": "OVERFLOW_FLAGS and CLEAR_STICKY_FLAGS bit definitions.",
+      "col_starts": [
+        0,
+        12,
+        40
+      ],
+      "header": "Bit         Name                        Meaning / clear behavior"
+    },
+    {
+      "table": 14,
+      "page": 52,
+      "caption_start": 7,
+      "start": 9,
+      "end": 26,
+      "caption": "DDR telemetry packet header.",
+      "col_starts": [
+        0,
+        13,
+        31,
+        49
+      ],
+      "header": "Offset       Field             Type              Meaning"
+    },
+    {
+      "table": 15,
+      "page": 52,
+      "caption_start": 30,
+      "start": 32,
+      "end": 44,
+      "caption": "Common flags bit definitions.",
+      "col_starts": [
+        0,
+        12,
+        38
+      ],
+      "header": "Bit         Name                      Meaning"
+    },
+    {
+      "table": 16,
+      "page": 53,
+      "caption_start": 20,
+      "start": 22,
+      "end": 36,
+      "caption": "Telemetry packet types.",
+      "col_starts": [
+        0,
+        14,
+        38
+      ],
+      "header": "Code          Name                    Purpose"
+    },
+    {
+      "table": 17,
+      "page": 54,
+      "caption_start": 27,
+      "start": 29,
+      "end": 49,
+      "caption": "Maximum and exact payload-size rules by packet type.",
+      "col_starts": [
+        0,
+        17,
+        56
+      ],
+      "header": "Packet           Payload-size rule                      Notes"
+    },
+    {
+      "table": 18,
+      "page": 56,
+      "caption_start": 29,
+      "start": 31,
+      "end": 49,
+      "caption": "Exact WAVE payload layout.",
+      "col_starts": [
+        0,
+        15,
+        44,
+        67
+      ],
+      "header": "Offset         Field                        Type                   Meaning"
+    },
+    {
+      "table": 19,
+      "page": 57,
+      "caption_start": 19,
+      "start": 21,
+      "end": 32,
+      "caption": "Exact SPEC129 payload layout.",
+      "col_starts": [
+        0,
+        15,
+        43,
+        66
+      ],
+      "header": "Offset         Field                       Type                   Meaning"
+    },
+    {
+      "table": 20,
+      "page": 58,
+      "caption_start": 4,
+      "start": 6,
+      "end": 19,
+      "caption": "Exact SPEC64 payload layout.",
+      "col_starts": [
+        0,
+        15,
+        43,
+        60
+      ],
+      "header": "Offset         Field                       Type             Meaning"
+    },
+    {
+      "table": 21,
+      "page": 59,
+      "caption_start": 4,
+      "start": 6,
+      "end": 25,
+      "caption": "Baseline METRICS payload layout.",
+      "col_starts": [
+        0,
+        15,
+        45,
+        61
+      ],
+      "header": "Offset         Field                         Type            Meaning"
+    },
+    {
+      "table": 22,
+      "page": 60,
+      "caption_start": 9,
+      "start": 11,
+      "end": 45,
+      "caption": "Baseline STATUS payload layout.",
+      "col_starts": [
+        0,
+        15,
+        41,
+        58
+      ],
+      "header": "Offset         Field                     Type             Meaning"
+    },
+    {
+      "table": 23,
+      "page": 64,
+      "caption_start": 14,
+      "start": 16,
+      "end": 28,
+      "caption": "PC-to-HPS command packet.",
+      "col_starts": [
+        0,
+        13,
+        34,
+        51
+      ],
+      "header": "Offset       Field                Type             Meaning"
+    },
+    {
+      "table": 24,
+      "page": 64,
+      "caption_start": 32,
+      "start": 34,
+      "end": 50,
+      "caption": "PC command types and valid argument ranges.",
+      "col_starts": [
+        0,
+        13,
+        38
+      ],
+      "header": "Code         Name                     Action and range"
+    },
+    {
+      "table": 25,
+      "page": 65,
+      "caption_start": 40,
+      "start": 42,
+      "end": 49,
+      "caption": "Recommended packet scheduling.",
+      "col_starts": [
+        0,
+        24,
+        54
+      ],
+      "header": "Packet                  Audio 48 kS/s                 ADC 100 kS/s"
+    },
+    {
+      "table": 26,
+      "page": 68,
+      "caption_start": 28,
+      "start": 30,
+      "end": 46,
+      "caption": "Failure modes and required observability.",
+      "col_starts": [
+        5,
+        32,
+        69
+      ],
+      "header": "     Failure mode               Required behavior                    Required"
+    },
+    {
+      "table": 27,
+      "page": 72,
+      "caption_start": 6,
+      "start": 8,
+      "end": 22,
+      "caption": "Recommended Level-3 development milestones.",
+      "col_starts": [
+        0,
+        15,
+        46
+      ],
+      "header": "Milestone      Name                           Pass condition"
+    },
+    {
+      "table": 28,
+      "page": 78,
+      "caption_start": 15,
+      "start": 17,
+      "end": 51,
+      "caption": "Repository directory responsibilities.",
+      "col_starts": [
+        3,
+        28
+      ],
+      "header": "   Directory                Responsibility"
+    },
+    {
+      "table": 29,
+      "page": 80,
+      "caption_start": 4,
+      "start": 6,
+      "end": 17,
+      "caption": "Generated-contract schema files.",
+      "col_starts": [
+        4,
+        34
+      ],
+      "header": "    File                          Purpose"
+    },
+    {
+      "table": 30,
+      "page": 80,
+      "caption_start": 24,
+      "start": 26,
+      "end": 43,
+      "caption": "Generated header outputs.",
+      "col_starts": [
+        4,
+        42
+      ],
+      "header": "    Generated file                        Consumer"
+    },
+    {
+      "table": 31,
+      "page": 81,
+      "caption_start": 22,
+      "start": 24,
+      "end": 38,
+      "caption": "Required generated filelists.",
+      "col_starts": [
+        4,
+        40
+      ],
+      "header": "    Filelist                            Purpose"
+    },
+    {
+      "table": 32,
+      "page": 84,
+      "caption_start": 21,
+      "start": 23,
+      "end": 36,
+      "caption": "RTL API and naming rules.",
+      "col_starts": [
+        7,
+        36
+      ],
+      "header": "       Signal class                 Required naming convention"
+    },
+    {
+      "table": 33,
+      "page": 85,
+      "caption_start": 13,
+      "start": 15,
+      "end": 29,
+      "caption": "RTL layer ownership.",
+      "col_starts": [
+        1,
+        17,
+        41
+      ],
+      "header": " Layer           Directory               Ownership"
+    },
+    {
+      "table": 34,
+      "page": 86,
+      "caption_start": 8,
+      "start": 10,
+      "end": 23,
+      "caption": "Input-source module inventory.",
+      "col_starts": [
+        3,
+        45
+      ],
+      "header": "   Module                                    Responsibility"
+    },
+    {
+      "table": 35,
+      "page": 86,
+      "caption_start": 27,
+      "start": 29,
+      "end": 50,
+      "caption": "Core RTL module inventory.",
+      "col_starts": [
+        3,
+        45
+      ],
+      "header": "   Module                                    Responsibility"
+    },
+    {
+      "table": 36,
+      "page": 87,
+      "caption_start": 6,
+      "start": 8,
+      "end": 19,
+      "caption": "FFT/IFFT module inventory.",
+      "col_starts": [
+        3,
+        45
+      ],
+      "header": "   Module                                    Responsibility"
+    },
+    {
+      "table": 37,
+      "page": 87,
+      "caption_start": 25,
+      "start": 27,
+      "end": 44,
+      "caption": "Telemetry module inventory.",
+      "col_starts": [
+        3,
+        45
+      ],
+      "header": "   Module                                    Responsibility"
+    },
+    {
+      "table": 38,
+      "page": 88,
+      "caption_start": 4,
+      "start": 6,
+      "end": 22,
+      "caption": "HPS bridge module inventory.",
+      "col_starts": [
+        3,
+        45
+      ],
+      "header": "   Module                                    Responsibility"
+    },
+    {
+      "table": 39,
+      "page": 88,
+      "caption_start": 26,
+      "start": 28,
+      "end": 39,
+      "caption": "DE1-SoC platform module inventory.",
+      "col_starts": [
+        3,
+        45
+      ],
+      "header": "   Module                                    Responsibility"
+    },
+    {
+      "table": 40,
+      "page": 89,
+      "caption_start": 4,
+      "start": 6,
+      "end": 18,
+      "caption": "Top-level build variants.",
+      "col_starts": [
+        5,
+        44
+      ],
+      "header": "     Top module                             Purpose"
+    },
+    {
+      "table": 41,
+      "page": 90,
+      "caption_start": 13,
+      "start": 15,
+      "end": 24,
+      "caption": "Clock/reset domain ownership.",
+      "col_starts": [
+        7,
+        32
+      ],
+      "header": "       Domain                   Owned logic"
+    },
+    {
+      "table": 42,
+      "page": 95,
+      "caption_start": 27,
+      "start": 29,
+      "end": 37,
+      "caption": "Baseline memory primitive wrappers.",
+      "col_starts": [
+        7,
+        42
+      ],
+      "header": "       Wrapper                            Purpose"
+    },
+    {
+      "table": 43,
+      "page": 97,
+      "caption_start": 17,
+      "start": 19,
+      "end": 45,
+      "caption": "Core implementation build targets.",
+      "col_starts": [
+        5,
+        37
+      ],
+      "header": "     Target                          Purpose"
+    },
+    {
+      "table": 44,
+      "page": 98,
+      "caption_start": 6,
+      "start": 8,
+      "end": 39,
+      "caption": "Implementation milestones for the core repository.",
+      "col_starts": [
+        2,
+        58
+      ],
+      "header": "  Milestone Task                                          Exit condition"
+    },
+    {
+      "table": 45,
+      "page": 99,
+      "caption_start": 4,
+      "start": 6,
+      "end": 16,
+      "caption": "Core-first implementation cut C0.",
+      "col_starts": [
+        5,
+        27
+      ],
+      "header": "     Class                 Content"
+    }
+  ]
+}

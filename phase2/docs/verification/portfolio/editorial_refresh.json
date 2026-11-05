@@ -1,0 +1,26 @@
+{
+  "schema": "trecap-report-editorial-refresh-v1",
+  "baseline_commit": "07bc8224aa080c8eaa1b77b4603c118d853465d0",
+  "scope": "Prose punctuation and academic pastel figure presentation. No numerical result was recomputed.",
+  "previous_pdf_sha256": "67689f75ebd617875c5f97e912b440e71fc51dbf159a2d12972a52e9d667f700",
+  "published_pdf_sha256": "0a9922d8832d32a9033ea79cc5104ee1fbe3c7b7aabe87415266d93b86cd74ae",
+  "latex_sources": [
+    {
+      "path": "main.tex",
+      "original_publication_sha256": "dffd2f12ca5ec633f8b4305b7c71f18f8cc8a8344e99a589cc92b92b880bee04",
+      "published_sha256": "611ae2c067faed7c6062ca1bdfdcefbbdcd897608d57dd782527efdbe7eed76e",
+      "numeric_tokens_unchanged": true,
+      "literal_code_bodies_unchanged": true
+    },
+    {
+      "path": "portfolio_integration.tex",
+      "original_publication_sha256": "ec1ecc619f2b82ed4a5cf8eed9a7eea3e1819089ef23e2f44f7d38fcd6f26313",
+      "published_sha256": "51c4df6d0729b6762f5979f810115401f19c41b84fe3ae411b2c1b3830041caf",
+      "numeric_tokens_unchanged": true,
+      "literal_code_bodies_unchanged": true
+    }
+  ],
+  "current_build_receipt_sha256": "a1575706f74f6eaded7a6d346bdc69935c6248bd59cfe9c23fd5fd802f91283e",
+  "document_audit_sha256": "34c9b5c0595596c12302d0526dd660e5c6039be7b7c9ef303b9ea90ef7f686e3",
+  "figure_audit_sha256": "fae9970ba49216b5e66de7b15a8bbe5f98325de1280648ee6fa5051c526b721e"
+}

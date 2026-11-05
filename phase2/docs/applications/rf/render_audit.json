@@ -1,0 +1,43 @@
+{
+  "status": "PASS_RETAINED_DATA_RENDER",
+  "new_hardware_execution": false,
+  "numpy": "2.3.3",
+  "scipy": "1.16.2",
+  "matplotlib": "3.10.7",
+  "generator_sha256": "d8763b148d30ab3f16c8a4638b282881c741ef375ef3da47341edcc78821d29f",
+  "awgn_snr_checks": [
+    {
+      "id": "ook_snr20_seed202_t0",
+      "recomputed_active_snr_db": 18.204978278345333,
+      "recomputed_snr_gain_db": 0.0
+    },
+    {
+      "id": "ook_snr20_seed202_t1000000000",
+      "recomputed_active_snr_db": 20.043321228802583,
+      "recomputed_snr_gain_db": 1.8383429504572484
+    },
+    {
+      "id": "ook_snr10_seed202_t0",
+      "recomputed_active_snr_db": 9.88933930596809,
+      "recomputed_snr_gain_db": 0.0
+    },
+    {
+      "id": "ook_snr10_seed202_t1000000000",
+      "recomputed_active_snr_db": 15.28939342505879,
+      "recomputed_snr_gain_db": 5.400054119090701
+    },
+    {
+      "id": "ook_snr0_seed202_t0",
+      "recomputed_active_snr_db": 0.08951989816699304,
+      "recomputed_snr_gain_db": 0.0
+    },
+    {
+      "id": "ook_snr0_seed202_t1000000000",
+      "recomputed_active_snr_db": 0.3449090087964012,
+      "recomputed_snr_gain_db": 0.25538911062940817
+    }
+  ],
+  "figures": 3,
+  "audio_examples": 6,
+  "scope": "Existing waveform values and reported metrics are checked and rendered. No new FPGA, proof or simulation run."
+}

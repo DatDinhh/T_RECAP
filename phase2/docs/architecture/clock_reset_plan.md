@@ -49,15 +49,15 @@ The clock/reset plan must preserve these system properties:
 | Domain | Clock | Reset | Owned logic |
 | --- | --- | --- | --- |
 | Fabric | `clk_fabric = CLOCK_50`, 50 MHz | `rst_n_platform` | Board control, ADC controller, source/core, telemetry, CSR/HPS bridge, DDR writer, and typed Platform Designer bridges. |
-| Audio MCLK output | `audio_pll_wrapper` 12.288 MHz output from `CLOCK_50` | `rst_n_platform` resets the wrapper; qualified lock gates codec init/admission | Peripheral `AUD_XCK` only; no core, telemetry, CSR, or DDR state. |
+| Audio MCLK output | `audio_pll_wrapper` 12.288 MHz output from `CLOCK_50` | `rst_n_platform` resets the wrapper. Qualified lock gates codec init/admission | Peripheral `AUD_XCK` only. No core, telemetry, CSR, or DDR state. |
 | Codec BCLK receive edge | external `AUD_BCLK` positive edge | local receive-edge synchronized release | I2S LINE-IN, complete-frame RX-FIFO writes, and TX-FIFO read control. |
 | Codec BCLK transmit edge | external `AUD_BCLK` negative edge | local transmit-edge synchronized release | I2S LINE-OUT serialization state. |
-| HPS hard subsystem | generated-system owned | generated-system owned | Linux and HPS hard peripherals; not hand-written fabric RTL. |
+| HPS hard subsystem | generated-system owned | generated-system owned | Linux and HPS hard peripherals, not hand-written fabric RTL. |
 
 `CLOCK2_50`, `CLOCK3_50`, and `CLOCK4_50` are reserved inputs and do not clock
 active logic. Step 17 generates `ADC_SCLK` as a 2.5 MHz registered serial
 peripheral output, not an RTL clock. Its 100 ksample/s scheduler is a fabric
-clock-enable event; ADC controller, word assembly, adapter, source mux, and core
+clock-enable event. ADC controller, word assembly, adapter, source mux, and core
 all remain in `clk_fabric`. The single-bit off-chip `ADC_DOUT` input alone passes
 a preserved two-flop synchronizer. The 48 kHz BRAM/audio sample, STATUS,
 METRICS, and heartbeat events are also clock-enable pulses in `clk_fabric`.
@@ -133,7 +133,7 @@ canonical rst_n_platform
 The phase accumulators dither each enable interval between the adjacent integer
 cycle counts when the requested rate does not divide 50 MHz. This introduces at
 most one fabric-cycle interval variation while preserving the exact long-term
-average; “exact-average” does not mean every pair of pulses is equally spaced.
+average. “exact-average” does not mean every pair of pulses is equally spaced.
 
 Leaf modules do not instantiate board-specific reset logic. Generic reset synchronization lives under `rtl/common/reset_sync.sv`.
 
@@ -237,7 +237,7 @@ HPS shall commit `Rd = 0` before enabling the ring writer after reconfiguration.
 Step 10 assigns reset ownership to `clock_reset_ctrl.sv`. It first requires
 released `KEY[0]` to remain high for 20 ms, then combines that qualified request
 with the generated active-low `h2f_reset`. One `trecap_reset_sync`, clocked by
-`CLOCK_50`, creates `rst_n_platform`; assertion remains asynchronous at that
+`CLOCK_50`, creates `rst_n_platform`. Assertion remains asynchronous at that
 conditioning boundary and release takes at least two fabric edges.
 
 `rst_n_platform` releases the board control state, ADC wrapper, source/core,
@@ -245,7 +245,7 @@ telemetry, CSR/HPS bridge, DDR writer, wrapper-local response state, and the two
 typed generated-system Avalon bridges simultaneously. The physical board top
 does not instantiate another fabric reset synchronizer. In the checked-in Qsys
 graph `system.reset_n_reset_n` fans out through `clk_0.clk_reset` only to
-`trecap_csr_bridge.reset` and `trecap_f2h_sdram_bridge.reset`; it is not connected
+`trecap_csr_bridge.reset` and `trecap_f2h_sdram_bridge.reset`. It is not connected
 to an HPS reset sink. The HPS reset can therefore be a global full-board fabric
 reset without creating a self-sustaining loop.
 
@@ -275,7 +275,7 @@ Full-board release and software enable order:
 
 Core may run with telemetry disabled. Ethernet and dashboard availability shall
 not hold the core in reset. The full-board HPS-to-FPGA reset deliberately resets
-the whole fabric; C0 remains HPS-independent because its core-only tops do not
+the whole fabric. C0 remains HPS-independent because its core-only tops do not
 instantiate the board/HPS reset path.
 
 ## Safe update boundaries
@@ -385,7 +385,7 @@ The current physical timing policy is
 [`physical_timing.json`](../../config/boards/physical_timing.json) together with
 [`clocks.sdc`](../../constraints/de1soc/clocks.sdc) and
 [`de1soc.sdc`](../../constraints/de1soc/de1soc.sdc). Current run status belongs to
-the build manifests and [architecture_implementation.md](architecture_implementation.md);
+the build manifests and [architecture_implementation.md](architecture_implementation.md).
 [build_order.md](build_order.md) defines the required gates. This scope distinction
 does not waive any current clock, CDC, I/O, or fitted-timing requirement.
 

@@ -45,7 +45,7 @@ Maroon points identify retained bins. Gold crosses identify suppressed bins. The
 
 An eligible bin is suppressed only when its squared magnitude is strictly below THR2. Equality is retained. DC is protected in this configuration, so it remains present even if its magnitude is below the threshold.
 
-These are model-exported, canonical, pre-mask FFT values for one frame. They are not an FFT of the entire output waveform. A small component is not automatically noise; this plot demonstrates a threshold decision, not a validated denoising application.
+These are model-exported, canonical, pre-mask FFT values for one frame. They are not an FFT of the entire output waveform. A small component is not automatically noise. This plot demonstrates a threshold decision, not a validated denoising application.
 
 **Suggested narration**
 
@@ -95,7 +95,7 @@ The horizontal axis is the unique FFT bin, and the vertical axis is frame index.
 
 The upper heatmap shows where stronger frequency components occur and how they vary across frames. The lower heatmap shows how those values lead to different mask decisions. DC stays protected.
 
-Frames 0 and 8 contain zero-padded boundaries of the finite input, so their spectra differ from interior frames. Frame number provides processing order; it is not a measured hardware time axis.
+Frames 0 and 8 contain zero-padded boundaries of the finite input, so their spectra differ from interior frames. Frame number provides processing order. It is not a measured hardware time axis.
 
 **Suggested narration**
 
@@ -263,7 +263,7 @@ At a 50 MHz fabric clock, 18,000 clocks correspond to 360 microseconds. With a h
 - At 100 ksample/s, one hop provides 64,000 clocks or 1.28 ms. The allocation uses 28.125% of that interval.
 - At 48 ksample/s, one hop provides approximately 133,333 clocks or 2.6667 ms. The allocation uses 13.5%.
 
-The source-derived connected bound is 17,673 clocks, rounded up for allocation. This budget assumes an initialized epoch, healthy periodic input, and ready output. Remaining clocks are scheduling margin; they do not establish that circuitry is power-gated or saving energy. Finite tail flushing is separate.
+The source-derived connected bound is 17,673 clocks, rounded up for allocation. This budget assumes an initialized epoch, healthy periodic input, and ready output. Remaining clocks are scheduling margin. They do not establish that circuitry is power-gated or saving energy. Finite tail flushing is separate.
 
 **Suggested narration**
 

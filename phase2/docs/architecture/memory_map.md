@@ -137,7 +137,7 @@ single-beat `burstcount=1`. The separate machine contract is
 Step 6 supplies the missing protocol boundary: the raw HPS lightweight AXI master
 connects to `trecap_csr_bridge.s0` at offset zero, Qsys inserts AXI-to-Avalon
 adaptation, and `trecap_csr_bridge.m0` is exported to the hand-written wrapper.
-The wrapper carries the full 21-bit byte address to the adapter; it does not weaken
+The wrapper carries the full 21-bit byte address to the adapter. It does not weaken
 the decode or introduce aliases. Generated HDL/SOPCINFO and Quartus evidence remain
 pending.
 
@@ -152,7 +152,7 @@ The values below are the architecture-visible Revision G baseline. The executabl
 | `0x008` | `CONTROL` | R/W | Telemetry enable, soft reset, clear metrics, ring writer enable. |
 | `0x00C` | `STATUS` | R | Live transport/core status bits. |
 | `0x010` | `THR2_LO` | W | Shadow threshold bits `[31:0]`. |
-| `0x014` | `THR2_HI` | W | Shadow threshold bits `[55:32]`; upper bits zero. |
+| `0x014` | `THR2_HI` | W | Shadow threshold bits `[55:32]`. Upper bits zero. |
 | `0x018` | `THR2_COMMIT` | W1P | Apply THR2 at safe frame boundary. |
 | `0x01C` | `PACKET_ENABLE` | R/W | Packet-enable bitmask. |
 | `0x020` | `WAVE_DECIM` | R/W | Waveform decimation, valid nonzero. |
@@ -183,7 +183,7 @@ The values below are the architecture-visible Revision G baseline. The executabl
 | `0x084` | `CSR_COMMAND_REJECT_COUNT` | R | CSR-side rejected command/safety requests. |
 | `0x088` | `PACKET_FIFO_DROP_COUNT` | R | Pre-writer packet FIFO/tap drop count. |
 | `0x08C` | `COUNTER_CLEAR` | W1P | Bit 0 `transport_counters` clears the defined FPGA transport counters only. |
-| `0x090` | `REPLAY_CONTROL` | W1P | Bit 0 `start`; bit 1 `rearm`. |
+| `0x090` | `REPLAY_CONTROL` | W1P | Bit 0 `start`. Bit 1 `rearm`. |
 | `0x094` | `REPLAY_STATUS` | R | Pending, retained accept/reject, replay/path/e2e state, error/rearm, and result epoch. |
 
 If any value above differs from generated headers, the generated schema and this document shall be reconciled before implementation continues.
@@ -198,7 +198,7 @@ mode differ.
 `last_reject`, bit 3 `start_ready`, bit 4 `replay_active`, bit 5
 `replay_path_busy`, bit 6 `replay_path_done`, bit 7 `e2e_busy`, bit 8
 `e2e_done`, bit 9 `error`, bit 10 `rearm_required`, and bits 31:16
-`result_epoch`; bits 15:11 read zero. The retained accept/reject result is for a
+`result_epoch`. Bits 15:11 read zero. The retained accept/reject result is for a
 CSR-originated request. Local board-key activity cannot overwrite it.
 
 ## Multiword CSR transfer policy
@@ -368,7 +368,7 @@ ring_base_fpga = ring_base_hps_phys + 0
 
 That identity depends on the reviewed Cyclone V boot/remap assumption recorded
 in `hps_bridge_regions.json`. A different boot mapping invalidates the source
-freeze; software must not guess an alias.
+freeze. Software must not guess an alias.
 
 The non-mutating source gate is:
 

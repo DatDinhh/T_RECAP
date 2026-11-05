@@ -30,7 +30,7 @@ python3 scripts/check_csr_adapter.py
 
 The Step-4 address map defines two different address widths:
 
-- the HPS lightweight aperture carries a 21-bit byte address and spans 2 MiB;
+- the HPS lightweight aperture carries a 21-bit byte address and spans 2 MiB.
 - the T-RECAP CSR leaf consumes a 12-bit byte offset and spans 4 KiB.
 
 Connecting the lower 12 address bits directly to the leaf would silently mirror
@@ -105,12 +105,12 @@ Once accepted, the adapter latches address, direction, and write data. It then
 owns that transaction until a response is emitted. This produces the following
 properties:
 
-- no second request can overtake the first request;
-- read and write responses remain ordered;
+- no second request can overtake the first request.
+- read and write responses remain ordered.
 - the shared response bus is never used for a read and a write response in the
-  same cycle;
+  same cycle.
 - native CSR request fields remain stable while `csr_valid_o` is waiting for
-  `csr_ready_i`;
+  `csr_ready_i`.
 - the Avalon host must keep its request fields stable whenever waitrequest is
   asserted, as required by the surrounding Avalon contract.
 
@@ -155,12 +155,12 @@ The two-bit response values are the standard Avalon-MM encodings used here:
 The adapter implements one write response for each accepted write and one read
 response for each accepted read. `avs_readdatavalid_o` and
 `avs_writeresponsevalid_o` are mutually exclusive. An error read always returns
-`32'h0000_0000`; stale CSR data is never exposed with an error response.
+`32'h0000_0000`. Stale CSR data is never exposed with an error response.
 
 Simultaneously asserting read and write is a host protocol violation. The
 adapter handles it deterministically instead of forwarding an ambiguous leaf
 operation: the read response channel wins, exactly one response is emitted, and
-no write response is emitted. An in-window dual assertion returns `SLVERR`; an
+no write response is emitted. An in-window dual assertion returns `SLVERR`. An
 out-of-window dual assertion returns `DECODEERROR` because address classification
 still takes precedence.
 
@@ -169,13 +169,13 @@ still takes precedence.
 The native CSR side is intentionally bound to the current
 `trecap_csr_bank` timing:
 
-- `csr_valid_o` stays high until `csr_ready_i` accepts the request;
+- `csr_valid_o` stays high until `csr_ready_i` accepts the request.
 - request direction, 12-bit byte offset, and write data remain stable during
-  that wait;
-- the bank supplies its registered result one cycle after request acceptance;
-- a successful read must assert `csr_rvalid_i` and provide `csr_rdata_i`;
-- a write completes successfully when `csr_error_i` is low;
-- a bank error becomes `SLVERR`;
+  that wait.
+- the bank supplies its registered result one cycle after request acceptance.
+- a successful read must assert `csr_rvalid_i` and provide `csr_rdata_i`.
+- a write completes successfully when `csr_error_i` is low.
+- a bank error becomes `SLVERR`.
 - a read completion with neither error nor `csr_rvalid_i` is treated as a
   malformed leaf completion and becomes `SLVERR`.
 
@@ -187,10 +187,10 @@ The implementation uses four states.
 
 | State | Avalon behavior | CSR-leaf behavior | Exit condition |
 | --- | --- | --- | --- |
-| `IDLE` | waitrequest low; may accept one request | valid low | Legal request goes to `ISSUE`; rejected request goes to `RESPOND`. |
+| `IDLE` | waitrequest low. May accept one request | valid low | Legal request goes to `ISSUE`. Rejected request goes to `RESPOND`. |
 | `ISSUE` | waitrequest high | valid high with latched fields | `csr_ready_i` goes to `WAIT_RESULT`. |
-| `WAIT_RESULT` | waitrequest high | valid low; sample fixed-latency result | Unconditionally capture the result and go to `RESPOND`. |
-| `RESPOND` | waitrequest high; pulse exactly one response-valid | valid low | Return to `IDLE`. |
+| `WAIT_RESULT` | waitrequest high | valid low. Sample fixed-latency result | Unconditionally capture the result and go to `RESPOND`. |
+| `RESPOND` | waitrequest high. Pulse exactly one response-valid | valid low | Return to `IDLE`. |
 
 A locally rejected request skips the two leaf states. A legal request cannot
 produce a response until the leaf result has been classified.
@@ -249,7 +249,7 @@ passes every request and response field, including `response` and
 The adapter is included by the generated HPS bridge filelist, full DE1-SoC
 filelist, and Quartus QSF include.
 
-## Source connectivity completed; generated evidence pending
+## Source connectivity completed. Generated evidence pending
 
 The checked-in Platform Designer source now instantiates `trecap_csr_bridge`,
 connects the raw HPS lightweight AXI master to its Avalon slave side at offset
@@ -268,17 +268,17 @@ required build gates in [build_order.md](build_order.md).
 ## Evidence boundary
 
 Steps 5 and 6 were source-implementation milestones. The following list preserves
-the evidence recorded as absent at those historical checkpoints; it is not a
+the evidence recorded as absent at those historical checkpoints. It is not a
 current inventory of generated files or native build reports:
 
-- no functional testbench or behavioral verification result;
-- no Platform Designer generation/normalization result;
-- no generated `system` module or verified flattened-port ABI;
-- no SOPCINFO identity evidence;
-- no Quartus compile report;
+- no functional testbench or behavioral verification result.
+- no Platform Designer generation/normalization result.
+- no generated `system` module or verified flattened-port ABI.
+- no SOPCINFO identity evidence.
+- no Quartus compile report.
 - no hardware read/write evidence.
 
-`scripts/check_csr_adapter.py` is a structural/source-consistency gate only;
+`scripts/check_csr_adapter.py` is a structural/source-consistency gate only.
 `scripts/check_platform_designer_wrapper.py` has the same evidence boundary.
 They check frozen contracts, key RTL semantics, source graph and top-chain wiring,
 filelist membership, and documentation. Passing them must not be presented as
@@ -289,11 +289,11 @@ functional verification or hardware signoff.
 Any edit to `trecap_avmm_csr_adapter.sv` changes its raw SHA-256 and intentionally
 fails the Step-5 checker. A reviewed behavioral change must update together:
 
-1. the RTL;
-2. `avalon_csr_adapter.json` and its pinned hash;
-3. `avalon_csr_adapter.schema.json` if the contract shape changes;
-4. this document;
-5. the structural checks; and
+1. the RTL.
+2. `avalon_csr_adapter.json` and its pinned hash.
+3. `avalon_csr_adapter.schema.json` if the contract shape changes.
+4. this document.
+5. the structural checks, and
 6. later Platform Designer/custom-component metadata that exposes the port.
 
 Do not relax the 21-bit full decode, 32-bit access rule, single-outstanding rule,

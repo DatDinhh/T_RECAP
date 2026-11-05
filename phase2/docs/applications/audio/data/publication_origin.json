@@ -1,0 +1,14 @@
+{
+  "upstream_audio_commit": "38f4b06556fa0ff1acda5e677d8ba05d1bc0fff0",
+  "flac_summary_original_sha256": "aa856526f8a83760066e855d7230549e2b0d817950e3ab6ecd540ac01c1456bc",
+  "codec_artifacts_original_sha256": "f173d4811541c9211a7387c531f8d11cceba1937adbf4eb91c0e62d4496390a8",
+  "denoising_summary_original_sha256": "88e33ec72eb6a47d630d275c492a2f5a1c515c53fa7f46ac9c4a99d7b59cc767",
+  "denoising_evaluation_original_sha256": "95debac34818556aac846d5f7d85a3e58672672ed63ae994a5700e24102ad24c",
+  "changes": "Public path normalization and selected metadata export. Numerical results unchanged. Audio WAV and FLAC bytes unchanged. Plot styles may be regenerated from the published data.",
+  "copied_spectrogram": {
+    "published": "figures/decoded_spectrograms.png",
+    "original": "outputs/trecap_flac_v01/report01/decoded_spectrograms.png",
+    "sha256": "9a701567152b077c36ec8e8f39d248ca231539d36a46752231e8deeada9f9975",
+    "method": "Unchanged archived chart from decoded physical-output WAVs. render.py regenerates the other two charts and the listening page, not this archived figure."
+  }
+}

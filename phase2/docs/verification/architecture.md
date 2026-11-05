@@ -5,7 +5,7 @@
 We verify the existing fixed-point DSP core and the system that supplies,
 observes, and transports its data. The baseline claim includes deterministic
 BRAM replay, complete mathematical output checking, control, and DDR/HPS/PC
-transport. LINE-IN is a separately qualified extension; the optional ADC and
+transport. LINE-IN is a separately qualified extension. The optional ADC and
 audio output monitor do not silently become mandatory baseline requirements.
 
 The integrated PDF and machine-readable contracts take precedence over this
@@ -20,7 +20,7 @@ claims that those agents, adapters, or regressions already exist.
 
 The environment has three independent checking paths: exact numeric prediction,
 protocol/lifecycle prediction, and evidence/coverage accounting. Simulation
-monitors are passive; only the selected driver owns a DUT input.
+monitors are passive. Only the selected driver owns a DUT input.
 
 ```mermaid
 flowchart LR
@@ -52,7 +52,7 @@ flowchart LR
 
 The accepted ledger includes observations of DUT input/control boundaries,
 not DUT-computed expected outputs. A source checker compares driver intent with
-what was accepted; a control checker independently validates legal application
+what was accepted. A control checker independently validates legal application
 of writes. A wrong DUT frame index or threshold must fail those checkers rather
 than redefine the predictor's expected frame.
 
@@ -77,7 +77,7 @@ monitors, BFM versions, and omitted vendor components. Passing a smaller cut
 does not pass a larger one.
 
 Keep common drivers, transaction definitions, and protocol monitors reusable.
-Change the top-level composition and enabled checkers between cuts; do not
+Change the top-level composition and enabled checkers between cuts. Do not
 create a separate mathematical oracle per testbench. Leaf tests can inject
 precisely chosen operands that a legal whole-core input cannot conveniently
 produce.
@@ -97,7 +97,7 @@ produce.
 
 A protocol predictor models externally promised behavior, such as FIFO admission
 and record atomicity, rather than every DUT FSM state. White-box probes may
-localize a fault and verify hidden ownership; black-box input/output checks
+localize a fault and verify hidden ownership. Black-box input/output checks
 remain the release-level authority.
 
 ## 5. Transaction identity
@@ -124,7 +124,7 @@ The canonical event envelope records schema version, run ID, source monitor,
 clock domain, simulation tick, local cycle, event kind, relevant identities,
 field widths/signedness, payload, and X/Z status. Use exact integers or explicitly
 encoded hex/decimal strings. Never round 56/64-bit values through JSON floating
-numbers. Sequence comparison rules are protocol-specific; Python's unbounded
+numbers. Sequence comparison rules are protocol-specific. Python's unbounded
 integer ordering is not automatically the rule for wrapping hardware counters.
 
 ## 6. Sampling and scheduling contract
@@ -134,16 +134,16 @@ the owning clock edge. A beat held while ready is low is still pending, not a
 new transaction each cycle. Consecutive valid-and-ready edges accept consecutive
 transactions even when their payloads are identical. Record payload stability
 during stalls. Valid-only taps produce one observation
-for each asserted event; no invented ready signal may throttle them.
+for each asserted event. No invented ready signal may throttle them.
 
 In the core input, `sample_valid_i && sample_ready_o` is the acceptance boundary.
-The packed sample struct also carries fields; each binding documents which
+The packed sample struct also carries fields. Each binding documents which
 valid signal is authoritative instead of ORing duplicate validity fields.
 Output acceptance is `y_valid_o && y_ready_i`. Unique-bin and frame taps follow
 their actual event definitions, not the public-output handshake.
 
 Use one explicit simulator scheduling convention: drivers settle before the
-active edge; handshake monitors sample values used at that edge; state
+active edge. Handshake monitors sample values used at that edge. State
 observations follow registered updates and are tagged with that phase. Clocking
 blocks are optional if qualified. Never mix pre-update and post-update signals
 into a fictitious same-cycle transaction. RAM read latency and output buffering
@@ -177,13 +177,13 @@ DDR publication, and command lifecycle. Their clocks and epochs are explicit.
 For static finite cases, precomputed expected artifacts support online SV
 comparison and independent post-run comparison. For dynamic thresholds or
 epochs, a frame-aware adapter reconstructs expected logical state from the
-checked accepted-input/control ledger; it does not repeatedly restart the batch
+checked accepted-input/control ledger. It does not repeatedly restart the batch
 model on arbitrary chunks. The adapter itself needs tests and independent
 geometry checks before it becomes an oracle.
 
 A mismatch report gives the first failing boundary, expected and actual identity,
 values/widths, applicable configuration, previous accepted events, and relevant
-waveform interval. Continue only enough to preserve diagnostic evidence; later
+waveform interval. Continue only enough to preserve diagnostic evidence. Later
 differences caused by one missing frame are not reported as unrelated bugs.
 
 ## 8. Testbench self-verification and completion
@@ -197,8 +197,8 @@ environment, not a successful DUT test.
 For a finite positive test, completion requires the independently expected
 transaction cardinalities, empty required scoreboards, no unexplained in-flight
 work, no unexpected error/drop flags, and the correct completion event. Observe
-a post-completion quiet interval derived from the relevant pipeline/queue bound;
-do not universally reuse a short historical fixed delay. An intentionally stalled
+a post-completion quiet interval derived from the relevant pipeline/queue bound.
+Do not universally reuse a short historical fixed delay. An intentionally stalled
 sink is released before asking for a positive completion verdict.
 
 A negative test declares the injected violation, allowed response, expected

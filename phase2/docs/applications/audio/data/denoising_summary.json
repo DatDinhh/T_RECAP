@@ -1,0 +1,24 @@
+[
+  {
+    "kind": "speech",
+    "threshold": 10000000000,
+    "noisy_cases": 16,
+    "mean_snr_improvement_db": 2.2458458101276784,
+    "worst_snr_improvement_db": -2.3257959830000043,
+    "improved_cases": 11,
+    "mean_stoi_change": -0.026494327030245977,
+    "clean_control_max_l2_pct": 18.90540361984706,
+    "quiet_clean_max_l2_pct": 71.4040812154292
+  },
+  {
+    "kind": "music",
+    "threshold": 3000000000,
+    "noisy_cases": 16,
+    "mean_snr_improvement_db": 2.179761696118055,
+    "worst_snr_improvement_db": -0.5321660735848699,
+    "improved_cases": 14,
+    "mean_stoi_change": null,
+    "clean_control_max_l2_pct": 10.473235240243035,
+    "quiet_clean_max_l2_pct": 59.33022173328831
+  }
+]

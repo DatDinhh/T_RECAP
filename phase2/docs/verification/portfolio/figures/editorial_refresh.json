@@ -1,0 +1,118 @@
+{
+  "schema": "trecap-vector-editorial-refresh-v1",
+  "kind": "Presentation change only",
+  "baseline_commit": "07bc8224aa080c8eaa1b77b4603c118d853465d0",
+  "palette": {
+    "sage_fill": "DCEBDD",
+    "blue_fill": "DBE9F4",
+    "lilac_fill": "E7DFF0",
+    "peach_fill": "F5E2D3",
+    "sage_stroke": "63917A",
+    "blue_stroke": "718FAE",
+    "lilac_stroke": "9C85B4",
+    "peach_stroke": "C48F70",
+    "ink": "273445",
+    "grid": "E3E7EB",
+    "neutral": "ACB6C5"
+  },
+  "generator_sha256": "ec896a9be1a80d9c08fd8e7327fd3fe0a8312a8368bb15428e501da366ec5acd",
+  "files": [
+    {
+      "file": "audio.pdf",
+      "original_sha256": "f266bbffda660930e14d3caf6849c0466410f52cf055881395eac37c70b2bed7",
+      "published_sha256": "7fcd218a7516f367cbaddd48039240f3db1a1a7bc3f2c1d3e273440f5354e715",
+      "geometry_operator_sha256": [
+        "925cc28fdbec1ec90b3b21c11209e021728402e644419e05232389d84e6b9782"
+      ],
+      "geometry_unchanged": true,
+      "numeric_text_unchanged": true,
+      "semicolon_to_comma_edits": 1,
+      "text_advance_compensated": true
+    },
+    {
+      "file": "fullrun.pdf",
+      "original_sha256": "944a5156eae78b004df626d81996d4b35da18044d0ba38dee5493ef095058be9",
+      "published_sha256": "b632d1e5395d244146e0aaf4f2428025bded3a80174ea002c5542f17e46f625e",
+      "geometry_operator_sha256": [
+        "0ae1a747c02324f9d043b34b883597fb733db6b32c8401cb96932c169a70d7ac"
+      ],
+      "geometry_unchanged": true,
+      "numeric_text_unchanged": true,
+      "semicolon_to_comma_edits": 2,
+      "text_advance_compensated": true
+    },
+    {
+      "file": "handshake.pdf",
+      "original_sha256": "12504f60afa2cfc28618ee1c38249fce16f29e67f4a893f629b5478a496a7a33",
+      "published_sha256": "472b6583652016fae318209e232bf22fe15cd42175e00ed6d87f5191e7d306e5",
+      "geometry_operator_sha256": [
+        "a82f91af7d13ba39d191c909471aada1cb8caba95a29b2ad46ce1828d8a7cd54"
+      ],
+      "geometry_unchanged": true,
+      "numeric_text_unchanged": true,
+      "semicolon_to_comma_edits": 0,
+      "text_advance_compensated": true
+    },
+    {
+      "file": "packet_sizes.pdf",
+      "original_sha256": "dcb66bf0dbb6d4b74034181209ecf9631a9a7d1f91cf988fd1dff68ad8982374",
+      "published_sha256": "6916a9e0669bab493875cd27e8f9097ba595466c1aea9765ca429fb90f679315",
+      "geometry_operator_sha256": [
+        "f0fbbdaefba5a212b30542d8f61e8f138f68acc8265c4f64e975edcfea7654b0"
+      ],
+      "geometry_unchanged": true,
+      "numeric_text_unchanged": true,
+      "semicolon_to_comma_edits": 0,
+      "text_advance_compensated": true
+    },
+    {
+      "file": "quality.pdf",
+      "original_sha256": "a0c252a2132954004420bb7b1a709fb01f4c8129badc3be9809063fd4259fb6f",
+      "published_sha256": "c1a89d822d093cba9584f3132548de28a1b91dd811470f2458c549a7bcc2a81d",
+      "geometry_operator_sha256": [
+        "4e1fb6ab3f2068da1f3fc3bc995394043613ee88358c3329b70dd24f782d5d90"
+      ],
+      "geometry_unchanged": true,
+      "numeric_text_unchanged": true,
+      "semicolon_to_comma_edits": 0,
+      "text_advance_compensated": true
+    },
+    {
+      "file": "reset.pdf",
+      "original_sha256": "fc320d96631dcac4b2d7035088b14d421336078c9ba49f8439a6f445166b3593",
+      "published_sha256": "0de0660c34a5df90695933be0c116034d47d4d314e0f951803c5bb70e419641e",
+      "geometry_operator_sha256": [
+        "19b9085c007323deba8e4d72bb1b97e3ba685d47cdea89142fcfaeb658afc3b7"
+      ],
+      "geometry_unchanged": true,
+      "numeric_text_unchanged": true,
+      "semicolon_to_comma_edits": 4,
+      "text_advance_compensated": true
+    },
+    {
+      "file": "rounding.pdf",
+      "original_sha256": "89d49856e33aaec70be74d34e8122b51a4c9c5885245fb13ec066e3a81c1f3c1",
+      "published_sha256": "120a50498ae2a1f747c2dcc2b43893d5e25abe86c7e494b4e1c4dad41153092b",
+      "geometry_operator_sha256": [
+        "58dbf91834bae857acd49c2c8d54293a8266d3919321e13872f5dd8f4847aba3"
+      ],
+      "geometry_unchanged": true,
+      "numeric_text_unchanged": true,
+      "semicolon_to_comma_edits": 0,
+      "text_advance_compensated": true
+    },
+    {
+      "file": "topology.pdf",
+      "original_sha256": "c080201e3f6afda1cfa3eacd5e599dc3a7c15f82d5e6be5902677ba494f1a139",
+      "published_sha256": "4fa1ad52742ae773e56120f810e45dd3e047a9faef713a01d7defee2978aaba9",
+      "geometry_operator_sha256": [
+        "25e7b671c9c6d843258ccf567c6fe1d5b3a9e3d4c8e4fdfac51f4490033c3470"
+      ],
+      "geometry_unchanged": true,
+      "numeric_text_unchanged": true,
+      "semicolon_to_comma_edits": 4,
+      "text_advance_compensated": true
+    }
+  ],
+  "scope": "Original vector paths, axes, event times and data labels retained. No new simulation, proof or board execution."
+}
